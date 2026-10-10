@@ -39,3 +39,11 @@ License: BSD-3-Clause
  POSSIBILITY OF SUCH DAMAGE.
 
 ```
+
+# Mitsubishi Electric MELFA model
+
+Source: https://github.com/MitsubishiElectric/melfa_ros2_driver
+Reviewed revision: 10098bed6bcca4e4bef46e36389a839065f8cb22 (humble), melfa_description 1.1.1.
+COPYRIGHT (C) 2024 Mitsubishi Electric Corporation. Licensed under Apache License 2.0; see licenses/melfa_APACHE-2.0.txt.
+
+The project wrapper reads the upstream RV-4FRL kinematics, mesh references and approximate inertias. Generated SDF adds project gripper geometry, separate robot names and Gazebo position controllers. Upstream source and meshes remain in the local cache/install directory. The wrapper does not enable real robot communication or the upstream Fortress control plugin.

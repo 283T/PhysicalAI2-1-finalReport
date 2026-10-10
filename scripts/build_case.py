@@ -110,10 +110,10 @@ def draw(design, output):
     plt.close(fig)
 
 
-def build(case, output):
+def build(case, output, factory_world=ROOT/'sim/worlds/factory_prototype.sdf'):
     output.mkdir(parents=True, exist_ok=True)
     design = case['design']
-    tree = ET.parse(ROOT/'sim/worlds/factory_prototype.sdf')
+    tree = ET.parse(factory_world)
     world = tree.getroot().find('world')
     world.set('name', 'multi_connector_factory')
     world.remove(world.find("model[@name='wire_harness']"))
@@ -144,8 +144,9 @@ def main():
     parser.add_argument('--design-seed', type=int, default=secrets.randbelow(2**31))
     parser.add_argument('--placement-seed', type=int, default=secrets.randbelow(2**31))
     parser.add_argument('--output', type=Path, default=ROOT/'outputs/multi_connector')
+    parser.add_argument('--factory-world', type=Path, default=ROOT/'sim/worlds/factory_prototype.sdf')
     args = parser.parse_args()
-    print(build(make_case(args.design_seed, args.placement_seed), args.output))
+    print(build(make_case(args.design_seed, args.placement_seed), args.output, args.factory_world))
 
 
 if __name__ == '__main__':

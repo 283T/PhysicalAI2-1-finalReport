@@ -1,5 +1,6 @@
 """Factory prototype: articulated arms, conveyor carrier and a jointed flexible cable."""
 
+import argparse
 import math
 import copy
 from pathlib import Path
@@ -57,16 +58,28 @@ JOINTS = ('shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint',
           'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint')
 
 
-def arm(world, name, origin, yaw):
-    """Load the official UR3e geometry, joint frames, limits and inertias."""
+def joint_names(robot_type):
+    return tuple(f'rv4frl_joint_{i}' for i in range(1, 7)) if robot_type == 'melfa_rv4frl' else JOINTS
+
+
+def arm(world, name, origin, yaw, robot_type='ur3e'):
+    """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
     import tempfile
     from ament_index_python.packages import get_package_share_directory
-    description = Path(get_package_share_directory('ur_description'))
     prefix = name + '_'
-    urdf = subprocess.check_output([
-        'xacro', str(description/'urdf/ur.urdf.xacro'), 'ur_type:=ur3e',
-        f'name:={name}', f'tf_prefix:={prefix}', 'force_abs_paths:=true'], text=True)
+    if robot_type == 'melfa_rv4frl':
+        description = Path(get_package_share_directory('melfa_description'))
+        urdf = subprocess.check_output(['xacro', str(ROOT/'sim/robots/melfa_rv4frl.xacro'),
+                                        f'prefix:={prefix}'], text=True)
+        urdf = urdf.replace('package://melfa_description/', description.as_uri()+'/')
+        tool_parent = prefix+'rv4frl_default_tcp'
+    else:
+        description = Path(get_package_share_directory('ur_description'))
+        urdf = subprocess.check_output([
+            'xacro', str(description/'urdf/ur.urdf.xacro'), 'ur_type:=ur3e',
+            f'name:={name}', f'tf_prefix:={prefix}', 'force_abs_paths:=true'], text=True)
+        tool_parent = prefix+'tool0'
     robot = ET.fromstring(urdf)
     # Simple fixed fingers are only a placeholder tool, not an actuated gripper.
     tool = child(robot, 'link', name=prefix+'gripper')
@@ -80,7 +93,7 @@ def arm(world, name, origin, yaw):
             child(shape, 'origin', xyz=f'{side*.025} 0 .04', rpy='0 0 0')
             child(child(shape, 'geometry'), 'box', size='.012 .02 .08')
     fixed = child(robot, 'joint', name=prefix+'gripper_mount', type='fixed')
-    child(fixed, 'parent', link=prefix+'tool0')
+    child(fixed, 'parent', link=tool_parent)
     child(fixed, 'child', link=prefix+'gripper')
     with tempfile.TemporaryDirectory() as directory:
         source = Path(directory)/'arm.urdf'
@@ -88,21 +101,28 @@ def arm(world, name, origin, yaw):
         converted = subprocess.check_output(['gz', 'sdf', '-p', str(source)], text=True)
     model = ET.fromstring(converted).find('model')
     if model is None:
-        raise RuntimeError('UR3e conversion produced no model')
+        raise RuntimeError('Robot conversion produced no model')
     model.set('name', name)
     child(model, 'pose', f'{origin[0]} {origin[1]} .12 0 0 {yaw}')
-    for index, joint in enumerate(JOINTS):
+    for index, joint in enumerate(joint_names(robot_type)):
         effort = float(model.find(f"joint[@name='{prefix+joint}']/axis/limit/effort").text)
+        melfa = robot_type == 'melfa_rv4frl'
         plugin(model, ('joint-position-controller','JointPositionController'),
                joint_name=prefix+joint, topic=f'/{name}/joint_{index}/cmd',
-               p_gain=800 if index < 3 else 80, d_gain=8 if index < 3 else .1,
-               i_gain=100 if index < 3 else 20, i_max=effort, i_min=-effort,
+               p_gain=(120 if index < 3 else 20) if melfa else (800 if index < 3 else 80),
+               d_gain=(1 if index < 3 else .02) if melfa else (8 if index < 3 else .1),
+               i_gain=(20 if index < 3 else 2) if melfa else (100 if index < 3 else 20), i_max=effort, i_min=-effort,
                cmd_max=effort, cmd_min=-effort)
     plugin(model, ('joint-state-publisher','JointStatePublisher'), topic=f'/{name}/joints')
     world.append(model)
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--robot', choices=['ur3e','melfa_rv4frl'], default='ur3e')
+    parser.add_argument('--output', type=Path, default=ROOT/'sim/worlds')
+    args=parser.parse_args()
+    args.output.mkdir(parents=True, exist_ok=True)
     tree=ET.parse(ROOT/'sim/worlds/insertion.sdf')
     world=tree.getroot().find('world'); world.set('name','harness_factory_prototype')
     world.remove(world.find("model[@name='gantry']"))
@@ -112,8 +132,8 @@ def main():
             fixture.remove(item)
     harness=world.find("model[@name='wire_harness']")
     flexible_cable(harness)
-    arm(world,'left_arm',(-.15,-.28),math.pi)
-    arm(world,'right_arm',(.38,-.28),0)
+    arm(world,'left_arm',(-.15,-.28),math.pi,args.robot)
+    arm(world,'right_arm',(.38,-.28),0,args.robot)
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier=child(world,'model',name='conveyor_carrier')
     base=link(carrier,'carrier',gravity=False)
@@ -135,10 +155,10 @@ def main():
     clip=child(cam,'clip'); child(clip,'near',.05); child(clip,'far',3)
     plugin(world,('sensors','Sensors'),render_engine='ogre')
     ET.indent(tree)
-    tree.write(ROOT/'sim/worlds/factory_prototype.sdf',encoding='utf-8',xml_declaration=True)
+    tree.write(args.output/'factory_prototype.sdf',encoding='utf-8',xml_declaration=True)
     # Keep motor validation independent of cable contact and camera rendering.
     arm_test=ET.Element('sdf', version='1.9')
-    arm_world=child(arm_test, 'world', name='dual_ur3e_validation')
+    arm_world=child(arm_test, 'world', name='dual_arm_validation')
     arm_physics=child(arm_world, 'physics', name='physics', type='ignored')
     child(arm_physics, 'max_step_size', .001)
     child(arm_world, 'gravity', '0 0 -9.81')
@@ -147,7 +167,7 @@ def main():
     for name in ('left_arm', 'right_arm'):
         arm_world.append(copy.deepcopy(world.find(f"model[@name='{name}']")))
     ET.indent(arm_test)
-    ET.ElementTree(arm_test).write(ROOT/'sim/worlds/arms_test.sdf', encoding='utf-8', xml_declaration=True)
+    ET.ElementTree(arm_test).write(args.output/'arms_test.sdf', encoding='utf-8', xml_declaration=True)
     # Independent cable test: anchor plug and let the cable droop freely beyond the table edge.
     test=ET.Element('sdf',version='1.9'); scene=child(test,'world',name='cable_validation')
     physics=child(scene,'physics',name='physics',type='ignored'); child(physics,'max_step_size',.001)
@@ -156,7 +176,7 @@ def main():
     cable=copy.deepcopy(harness); cable.find('pose').text='0 0 .45 0 0 0'
     anchor=child(cable,'joint',name='test_anchor',type='fixed'); child(anchor,'parent','world'); child(anchor,'child','body')
     scene.append(cable)
-    ET.indent(test); ET.ElementTree(test).write(ROOT/'sim/worlds/cable_test.sdf',encoding='utf-8',xml_declaration=True)
+    ET.indent(test); ET.ElementTree(test).write(args.output/'cable_test.sdf',encoding='utf-8',xml_declaration=True)
 
 
 if __name__=='__main__':

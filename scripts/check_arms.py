@@ -1,4 +1,5 @@
-"""Exercise both real UR3e models through ROS and verify independent joint feedback."""
+"""Exercise both official robot models through ROS and verify independent joint feedback."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -9,12 +10,16 @@ import rclpy
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 from rclpy.qos import qos_profile_sensor_data
-from build_factory import JOINTS
+from build_factory import joint_names
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--robot', choices=['ur3e','melfa_rv4frl'], default='ur3e')
+    parser.add_argument('--world', type=Path, default=ROOT/'sim/worlds/arms_test.sdf')
+    args=parser.parse_args()
     os.environ['ROS_DOMAIN_ID'] = '172'
     env = os.environ.copy()
     env['GZ_PARTITION'] = f'arms-check-{os.getpid()}'
@@ -37,13 +42,13 @@ def main():
             bridge.append(topic+'@std_msgs/msg/Float64]gz.msgs.Double')
     with (output/'arms_check.log').open('w') as log:
         try:
-            for command in (['gz', 'sim', '-s', '-r', str(ROOT/'sim/worlds/arms_test.sdf')], bridge):
+            for command in (['gz', 'sim', '-s', '-r', str(args.world)], bridge):
                 processes.append(subprocess.Popen(command, env=env, stdout=log, stderr=log))
             deadline = time.monotonic()+25
             while len(states) < 2 and time.monotonic() < deadline:
                 rclpy.spin_once(node, timeout_sec=.05)
             if len(states) != 2:
-                raise RuntimeError('Missing joint feedback from one or both UR3e models')
+                raise RuntimeError('Missing joint feedback from one or both robot models')
             initial = {name: data[1].copy() for name, data in states.items()}
             target = {'left_arm': .30, 'right_arm': -.25}
             start = time.monotonic()
@@ -55,17 +60,17 @@ def main():
             results = {}
             for name, (stamp, positions) in states.items():
                 expected = {name+'_'+joint: target[name] if i == 0 else 0.
-                            for i, joint in enumerate(JOINTS)}
+                            for i, joint in enumerate(joint_names(args.robot))}
                 errors = {joint: abs(positions.get(joint, float('inf'))-goal)
                           for joint, goal in expected.items()}
                 results[name] = {'initial_rad': initial[name], 'final_rad': positions,
                                  'target_rad': expected, 'max_error_rad': max(errors.values()),
                                  'feedback_age_s': time.monotonic()-stamp,
                                  'success': max(errors.values()) < .025 and time.monotonic()-stamp < 1}
-            result = {'robot': 'UR3e x 2', 'arms': results,
+            result = {'robot': args.robot+' x 2', 'arms': results,
                       'success': all(arm['success'] for arm in results.values()),
                       'scope': 'Independent six-joint control under gravity; not grasping or insertion'}
-            (output/'arms_validation.json').write_text(json.dumps(result, indent=2)+'\n')
+            (output/('melfa_arms_validation.json' if args.robot == 'melfa_rv4frl' else 'arms_validation.json')).write_text(json.dumps(result, indent=2)+'\n')
             print(json.dumps(result, indent=2))
             if not result['success']:
                 raise RuntimeError('Dual-arm position feedback validation failed')
