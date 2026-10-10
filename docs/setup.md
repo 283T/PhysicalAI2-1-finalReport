@@ -34,7 +34,7 @@ docker compose run --rm dev python3 scripts/check_sim.py
 docker compose run --rm dev gz sim -s -r /workspace/sim/worlds/smoke.sdf
 ```
 
-この段階のworldは床だけで、アームや基板はまだ含みません。停止はCtrl+Cです。
+この段階のworldは床だけで、アームや接続パネルはまだ含みません。停止はCtrl+Cです。
 
 ## 開発用シェル
 

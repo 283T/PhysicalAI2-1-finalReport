@@ -1,48 +1,15 @@
-# 構成と環境確認
+# ハーネス接続の構成
 
-## 実行環境
+Mac上でOllama / Qwen3-VL 2Bを使い、画像からハーネスWH1、端末プラグP1、接続先J1/J2、座標、向きを抽出する。外部AIサービスへ画像を送信しない。
 
-現在のMacはApple Siliconで、PATH上にros2・gzはなく、既定のPythonにはrclpy・genesisがない。指定された講義教材はDebian BookwormベースのPushT/RoboOps用Docker環境で、ROS 2・Gazeboの設定は含まれていなかった。
+モデルには画像・共通プロンプト・出力形式だけを渡す。配置一覧と正解JSONは渡さない。抽出後に登録ハーネス・プラグ・受け側・座標・向きを照合し、一致しない場合はロボットを起動しない。正解座標への自動補正は行わない。
 
-この課題用にROS公式Dockerイメージを使った専用環境を用意し、Ubuntu 24.04、ROS 2 Jazzy、Gazebo Harmonicを採用する。起動方法は[setup.md](setup.md)を参照。
+検証済みJSONをDocker内のROS 2実行スクリプトへ渡す。ROS 2のTopicでX/Y/Z関節指令、関節状態、ハーネスの姿勢、把持状態をGazeboと連携する。プラグを搬送して受け側へ垂直に差し込み、解放・退避後に着座を確認する。
 
-GazeboサーバーとROS連携を確認済み。追加のGUI用DockerサービスでXvfb・noVNCを使い、ブラウザから実際のGazebo画面を確認できる。動画録画は別途整備する。
+専用環境はUbuntu 24.04＋ROS 2 Jazzy＋Gazebo Harmonic。講義のPushT用Dockerとは別に用意した。Mac上で推論し、GazeboはDocker内で実行する。[起動手順](setup.md)を参照。
 
-参考：[Gazebo公式のROS互換表](https://gazebosim.org/docs/ionic/ros_installation/)
+ケーブルはプラグに追従する固定形状の視覚モデル。柔軟体の物理、ケーブルへの力、引き回し、ラッチ、電気的導通は未実装。[動作の限界](insertion-demo.md)と[検証](validation.md)を参照。
 
-## 処理の分担
+[表示サーバー](dashboard.md)は図面・読解結果・進捗・Gazeboを並べる。[録画スクリプト](recording.md)は実際の動作とAI出力をMP4に収録する。
 
-1. 図面読解：Mac上のOllama/Qwen3-VL 2Bで図面画像を作業指示JSONに変換する。
-2. 検証：登録部品、単位、座標範囲、向き、穴配置との整合性をチェックする。
-3. 作業管理：部品ごとにピック・移動・挿入・解放を順に実行する。
-4. ロボット制御：基礎デモは直交型ロボットのX・Y・Z関節へ位置指令を送る。把持は固定ジョイントで簡略化する。
-5. Gazebo：物理状態、関節状態、カメラ画像などを提供する。
-6. 結果確認：部品位置・向き・挿入深さを確認し、結果を表示する。
-
-画像読解と指示の検証はMac上で実行し、検証済みJSONをDocker内の実行スクリプトへ渡す。ROS 2のTopicで関節指令、関節状態、部品姿勢、把持状態をGazeboと連携する。`run_from_drawing.py`で画像入力から挿入まで一括実行できる。
-
-図面A・Bの画像をローカルモデルで読み、同じ制御コードでJ1・J2へ挿入する処理は検証済み。図面・AI出力・動作の表示とMP4録画も実装済み。回転軸・複数部品の連続挿入は未実装。[ローカルAI](local-ai.md)と[検証記録](validation.md)を参照。
-
-## Genesisの位置づけ
-
-挿入動作を独立して試す場合の追加候補とする。Gazeboと同時に同じ物理状態を制御する構成は採用せず、共通の作業指示を別のシミュレータで実行する比較を想定する。追加は最小デモの完成後に判断する。
-
-参考：[Genesisのインストールと対応環境](https://genesis-world.readthedocs.io/en/latest/user_guide/overview/installation.html)
-
-## Ubuntu側で確認する項目
-
-ROS環境を有効化したターミナルで確認する。以下は情報取得用で、インストールは行わない。
-
-```bash
-cat /etc/os-release
-uname -m
-printenv ROS_DISTRO
-command -v ros2
-command -v gz
-command -v ign
-command -v gazebo
-python3 --version
-ros2 doctor --report
-```
-
-Gazeboのコマンド名は世代で異なるため、見つかったコマンドでバージョンを確認する。SSH接続先、作業ディレクトリ、GUIを表示する方法、利用可能なアームモデルも確認する。
+Genesisは今後ケーブルモデルや動作を比較する場合の候補。現時点のデモはROS 2＋Gazeboで構成する。

@@ -1,0 +1,45 @@
+{
+  "model": "qwen3-vl:2b-instruct",
+  "cases": [
+    {
+      "variant": "A",
+      "success": true,
+      "matches": {
+        "drawing_id": true,
+        "socket": true,
+        "component": true,
+        "harness_id": true,
+        "plug_id": true,
+        "x_mm": true,
+        "y_mm": true,
+        "yaw_deg": true
+      },
+      "extracted_task": {
+        "drawing_id": "A",
+        "socket": "J1",
+        "component": "wire_harness",
+        "harness_id": "WH1",
+        "plug_id": "P1",
+        "x_mm": 60,
+        "y_mm": 50,
+        "yaw_deg": 0,
+        "source": "local_vision_model",
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "36182d2fe20ccdf7825aadad747d72687e95647e22da7d049f19fe519a429fb2",
+        "board_origin_m": [
+          0.19,
+          0.1,
+          0.14
+        ]
+      },
+      "elapsed_seconds": 28.717438417
+    },
+    {
+      "variant": "B",
+      "success": false,
+      "error": "Component, position and orientation must match a registered socket"
+    }
+  ],
+  "passed": 1,
+  "total": 2
+}

@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-10",
+  "video_sha256": "389cd87963b777f0987e5ad94d8885ac8cd8c615d2fb27e321c21cf0524d281a",
+  "duration_seconds": 120,
+  "width": 1920,
+  "height": 900,
+  "fps": 15,
+  "playback_speed": 1,
+  "cases": [
+    {
+      "variant": "A",
+      "task": {
+        "drawing_id": "A",
+        "socket": "J1",
+        "component": "connector",
+        "x_mm": 60,
+        "y_mm": 50,
+        "yaw_deg": 0,
+        "source": "local_vision_model",
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+        "board_origin_m": [
+          0.19,
+          0.1,
+          0.12
+        ]
+      },
+      "result": {
+        "task_source": "local_vision_model",
+        "drawing_id": "A",
+        "socket": "J1",
+        "position_m": [
+          0.25,
+          0.15000000000000002,
+          0.12999975196368133
+        ],
+        "target_m": [
+          0.25,
+          0.15000000000000002,
+          0.13
+        ],
+        "pin_insertion_depth_m": 0.04000024803631867,
+        "grasp_state": "detached",
+        "simplifications": [
+          "fixed-joint grasp",
+          "enlarged pins and holes",
+          "fixed supply and board"
+        ],
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+        "success": true
+      }
+    },
+    {
+      "variant": "B",
+      "task": {
+        "drawing_id": "B",
+        "socket": "J2",
+        "component": "connector",
+        "x_mm": 100,
+        "y_mm": 90,
+        "yaw_deg": 0,
+        "source": "local_vision_model",
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+        "board_origin_m": [
+          0.19,
+          0.1,
+          0.12
+        ]
+      },
+      "result": {
+        "task_source": "local_vision_model",
+        "drawing_id": "B",
+        "socket": "J2",
+        "position_m": [
+          0.29000000000000004,
+          0.19,
+          0.12999973611068785
+        ],
+        "target_m": [
+          0.29000000000000004,
+          0.19,
+          0.13
+        ],
+        "pin_insertion_depth_m": 0.040000263889312146,
+        "grasp_state": "detached",
+        "simplifications": [
+          "fixed-joint grasp",
+          "enlarged pins and holes",
+          "fixed supply and board"
+        ],
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+        "success": true
+      }
+    }
+  ]
+}

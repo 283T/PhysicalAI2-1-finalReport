@@ -2,24 +2,28 @@
   "task_source": "local_vision_model",
   "drawing_id": "A",
   "socket": "J1",
+  "harness_id": "WH1",
+  "plug_id": "P1",
+  "connection_check": "mechanical seating only",
   "position_m": [
     0.25,
     0.15000000000000002,
-    0.12999973591002772
+    0.14999942934297913
   ],
   "target_m": [
     0.25,
     0.15000000000000002,
-    0.13
+    0.15000000000000002
   ],
-  "pin_insertion_depth_m": 0.04000026408997227,
+  "pin_insertion_depth_m": 0.04000057065702088,
   "grasp_state": "detached",
   "simplifications": [
     "fixed-joint grasp",
     "enlarged pins and holes",
-    "fixed supply and board"
+    "fixed supply and panel",
+    "rigid visual cable; no cable forces"
   ],
   "model": "qwen3-vl:2b-instruct",
-  "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+  "image_sha256": "36182d2fe20ccdf7825aadad747d72687e95647e22da7d049f19fe519a429fb2",
   "success": true
 }

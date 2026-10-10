@@ -9,13 +9,13 @@ python3 scripts/record_demo.py
 
 録画中はダッシュボードや別のターミナルからデモを開始しない。スクリプトは専用GUIコンテナを再起動し、各図面をローカルモデルで読み直して実際にロボットを動かす。
 
-左側に入力図面と実際のAI出力、右側にGazebo画面を配置する。進捗と成功表示は実際の実行ログ・結果から更新する。AI読解の待ち時間は収録せず、検証済みの指示と動作を収録する。図面AとBは新しい基板・部品でそれぞれ実行する。
+左側に入力図面と実際のAI出力、右側にGazebo画面を配置する。進捗と成功表示は実際の実行ログ・結果から更新する。AI読解の待ち時間は収録せず、検証済みの指示と動作を収録する。図面AとBは新しいパネル・ハーネスでそれぞれ実行する。
 
 生成物：
 
 - `recordings/drawing_a.mp4`：図面A、60秒。
 - `recordings/drawing_b.mp4`：図面B、60秒。
-- `recordings/pcb_assembly_demo.mp4`：A→Bを連結した約2分、1920×900、等速、音声なし。
+- `recordings/harness_connection_demo.mp4`：A→Bを連結した約2分、1920×900、等速、音声なし。
 - `outputs/record_task_*.json`、`.audit.json`：実際の読解結果と監査記録。
 - `outputs/record_result_*.json`：解放・退避後の挿入結果。
 

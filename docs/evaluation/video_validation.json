@@ -1,53 +1,60 @@
 {
   "date": "2026-10-10",
-  "video_sha256": "389cd87963b777f0987e5ad94d8885ac8cd8c615d2fb27e321c21cf0524d281a",
+  "video_sha256": "5f15d62dbce3df6b0d184fa167cc7b57136db686b206ed66c54067943adf8379",
   "duration_seconds": 120,
   "width": 1920,
   "height": 900,
   "fps": 15,
   "playback_speed": 1,
+  "scope": "mechanical plug seating; rigid visual cable; no electrical or latch check",
   "cases": [
     {
       "variant": "A",
       "task": {
         "drawing_id": "A",
         "socket": "J1",
-        "component": "connector",
+        "component": "wire_harness",
+        "harness_id": "WH1",
+        "plug_id": "P1",
         "x_mm": 60,
         "y_mm": 50,
         "yaw_deg": 0,
         "source": "local_vision_model",
         "model": "qwen3-vl:2b-instruct",
-        "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+        "image_sha256": "36182d2fe20ccdf7825aadad747d72687e95647e22da7d049f19fe519a429fb2",
         "board_origin_m": [
           0.19,
           0.1,
-          0.12
+          0.14
         ]
       },
       "result": {
         "task_source": "local_vision_model",
         "drawing_id": "A",
         "socket": "J1",
+        "harness_id": "WH1",
+        "plug_id": "P1",
+        "connection_check": "mechanical seating only",
         "position_m": [
           0.25,
           0.15000000000000002,
-          0.12999975196368133
+          0.14999942934297913
         ],
         "target_m": [
           0.25,
           0.15000000000000002,
-          0.13
+          0.15000000000000002
         ],
-        "pin_insertion_depth_m": 0.04000024803631867,
+        "pin_insertion_depth_m": 0.04000057065702088,
         "grasp_state": "detached",
         "simplifications": [
           "fixed-joint grasp",
           "enlarged pins and holes",
-          "fixed supply and board"
+          "fixed supply and panel",
+          "rigid visual cable; no cable forces"
         ],
         "model": "qwen3-vl:2b-instruct",
-        "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+        "image_sha256": "36182d2fe20ccdf7825aadad747d72687e95647e22da7d049f19fe519a429fb2",
         "success": true
       }
     },
@@ -56,42 +63,48 @@
       "task": {
         "drawing_id": "B",
         "socket": "J2",
-        "component": "connector",
+        "component": "wire_harness",
+        "harness_id": "WH1",
+        "plug_id": "P1",
         "x_mm": 100,
         "y_mm": 90,
         "yaw_deg": 0,
         "source": "local_vision_model",
         "model": "qwen3-vl:2b-instruct",
-        "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+        "image_sha256": "5020800a633f169247e53ca971e009aeaab9632f2371e0ed2b457b225e044281",
         "board_origin_m": [
           0.19,
           0.1,
-          0.12
+          0.14
         ]
       },
       "result": {
         "task_source": "local_vision_model",
         "drawing_id": "B",
         "socket": "J2",
+        "harness_id": "WH1",
+        "plug_id": "P1",
+        "connection_check": "mechanical seating only",
         "position_m": [
           0.29000000000000004,
           0.19,
-          0.12999973611068785
+          0.14999949636406515
         ],
         "target_m": [
           0.29000000000000004,
           0.19,
-          0.13
+          0.15000000000000002
         ],
-        "pin_insertion_depth_m": 0.040000263889312146,
+        "pin_insertion_depth_m": 0.04000050363593487,
         "grasp_state": "detached",
         "simplifications": [
           "fixed-joint grasp",
           "enlarged pins and holes",
-          "fixed supply and board"
+          "fixed supply and panel",
+          "rigid visual cable; no cable forces"
         ],
         "model": "qwen3-vl:2b-instruct",
-        "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+        "image_sha256": "5020800a633f169247e53ca971e009aeaab9632f2371e0ed2b457b225e044281",
         "success": true
       }
     }

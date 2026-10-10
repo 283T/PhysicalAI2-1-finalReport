@@ -9,7 +9,7 @@ from read_drawing import MODEL, read_drawing
 def main():
     root = Path(__file__).resolve().parents[1]
     results = []
-    keys = ("drawing_id", "socket", "component", "x_mm", "y_mm", "yaw_deg")
+    keys = ("drawing_id", "socket", "component", "harness_id", "plug_id", "x_mm", "y_mm", "yaw_deg")
     for variant in ("a", "b"):
         expected = json.loads((root / f"examples/task_{variant}.json").read_text())
         output = root / f"outputs/ai_task_{variant}.json"

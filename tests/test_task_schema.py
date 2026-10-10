@@ -19,6 +19,14 @@ class TaskValidation(unittest.TestCase):
             task = json.loads((ROOT / f"examples/task_{variant}.json").read_text())
             self.assertEqual(validate_task(task, self.board)["id"], socket)
 
+    def test_wrong_harness_and_plug_are_rejected(self):
+        for key, value in (("harness_id", "WH2"), ("plug_id", "P2"), ("component", "connector")):
+            with self.subTest(key=key):
+                task = copy.deepcopy(self.task)
+                task[key] = value
+                with self.assertRaises(ValueError):
+                    validate_task(task, self.board)
+
     def test_wrong_socket_label_is_rejected(self):
         self.task["socket"] = "J2"
         with self.assertRaises(ValueError):

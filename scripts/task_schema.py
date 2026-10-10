@@ -19,6 +19,8 @@ def validate_task(task, board):
         raise ValueError("Board origin must match the calibrated fixture")
     if not all(number(task.get(key)) for key in ("x_mm", "y_mm", "yaw_deg")):
         raise ValueError("Coordinates and orientation must be finite numbers")
+    if task.get("harness_id") != board["harness_id"] or task.get("plug_id") != board["plug_id"]:
+        raise ValueError("Harness and plug must match the registered assembly")
     matching = [socket for socket in board["sockets"]
                 if all(task.get(key) == socket[key]
                        for key in ("component", "x_mm", "y_mm", "yaw_deg"))]

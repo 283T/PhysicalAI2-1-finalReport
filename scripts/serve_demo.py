@@ -63,7 +63,7 @@ class Demo:
             self.process = subprocess.Popen(command, cwd=ROOT, stdout=subprocess.PIPE,
                                             stderr=subprocess.STDOUT, text=True, bufsize=1)
             self.update(phase="moving", message="Gazebo起動中。表示接続後に動作を開始します")
-            labels = ["供給トレイへ接近", "部品を持ち上げ", "基板上へ搬送", "挿入箇所へ接近", "ピンを挿入", "解放・退避"]
+            labels = ["供給トレイへ接近", "プラグを持ち上げ", "接続パネル上へ搬送", "挿入箇所へ接近", "プラグを接続", "解放・退避"]
             with (ROOT / "outputs/dashboard.log").open("w") as log:
                 for line in self.process.stdout:
                     log.write(line)
@@ -75,7 +75,7 @@ class Demo:
                         result = json.loads((ROOT / "outputs/insertion_result.json").read_text())
                         if not result.get("success") or result.get("drawing_id") != variant:
                             raise RuntimeError("挿入結果が選択した図面と一致しません")
-                        self.update(phase="complete", message="挿入・解放・退避が完了", result=result)
+                        self.update(phase="complete", message="接続・解放・退避が完了", result=result)
                         # Stop reading here; Gazebo stays open until the next run or shutdown.
                         return
             raise RuntimeError("ロボット実行に失敗しました。outputs/dashboard.logを確認してください")

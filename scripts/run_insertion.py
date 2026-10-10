@@ -23,13 +23,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class Insertion:
     def __init__(self):
-        self.node = rclpy.create_node("pcb_insertion_baseline")
+        self.node = rclpy.create_node("harness_connection")
         self.joints = {}
         self.pose = None
         self.grasp_state = None
         self.node.create_subscription(JointState, "/gantry/joints", self.on_joints,
                                       qos_profile_sensor_data)
-        self.node.create_subscription(PoseArray, "/connector/pose", self.on_pose,
+        self.node.create_subscription(PoseArray, "/harness/pose", self.on_pose,
                                       qos_profile_sensor_data)
         self.node.create_subscription(String, "/grasp/state", self.on_grasp, 10)
         self.commands = {axis: self.node.create_publisher(Float64, f"/gantry/{axis}/cmd", 10)
@@ -89,12 +89,12 @@ class Insertion:
         self.grasp(True)
         self.move("2. Lift", start[0], start[1], 0.30)
         if self.pose.position.z < start[2] + 0.05:
-            raise RuntimeError("Connector did not lift with the tool")
+            raise RuntimeError("Harness plug did not lift with the tool")
         origin = task["board_origin_m"]
         x, y = origin[0] + task["x_mm"] / 1000, origin[1] + task["y_mm"] / 1000
-        self.move("3. Transfer above PCB", x, y, 0.30)
-        self.move("4. Approach holes", x, y, 0.20)
-        self.move("5. Insert pins", x, y, origin[2] + 0.04)
+        self.move("3. Transfer above connection panel", x, y, 0.30)
+        self.move("4. Approach receptacle", x, y, 0.20)
+        self.move("5. Connect harness plug", x, y, origin[2] + 0.04)
         self.grasp(False)
         self.move("6. Retract", x, y, 0.30)
         self.settle(1)
@@ -102,11 +102,12 @@ class Insertion:
         q = self.pose.orientation
         depth = origin[2] - (p.z - 0.05)
         result = {"task_source": task["source"], "drawing_id": task.get("drawing_id"),
-                  "socket": task.get("socket"), "position_m": [p.x, p.y, p.z],
+                  "socket": task.get("socket"), "harness_id": task["harness_id"],
+                  "plug_id": task["plug_id"], "connection_check": "mechanical seating only", "position_m": [p.x, p.y, p.z],
                   "target_m": [x, y, origin[2] + 0.01], "pin_insertion_depth_m": depth,
                   "grasp_state": self.grasp_state,
                   "simplifications": ["fixed-joint grasp", "enlarged pins and holes",
-                                      "fixed supply and board"]}
+                                      "fixed supply and panel", "rigid visual cable; no cable forces"]}
         if task["source"] == "local_vision_model":
             result["model"] = task.get("model")
             result["image_sha256"] = task.get("image_sha256")
@@ -121,7 +122,7 @@ class Insertion:
         (output / "insertion_result.json").write_text(text)
         print(json.dumps(result, indent=2), flush=True)
         if not result["success"]:
-            raise RuntimeError("Released connector is not seated in the PCB holes")
+            raise RuntimeError("Released harness plug is not seated in the receptacle")
 
 
 def main():
@@ -145,7 +146,7 @@ def main():
     env["GZ_PARTITION"] = f"pai-insertion-{os.getpid()}"
     bridges = [f"/gantry/{axis}/cmd@std_msgs/msg/Float64]gz.msgs.Double" for axis in "xyz"]
     bridges += ["/gantry/joints@sensor_msgs/msg/JointState[gz.msgs.Model",
-                "/connector/pose@geometry_msgs/msg/PoseArray[gz.msgs.Pose_V",
+                "/harness/pose@geometry_msgs/msg/PoseArray[gz.msgs.Pose_V",
                 "/grasp/attach@std_msgs/msg/Empty]gz.msgs.Empty",
                 "/grasp/detach@std_msgs/msg/Empty]gz.msgs.Empty",
                 "/grasp/state@std_msgs/msg/String[gz.msgs.StringMsg"]

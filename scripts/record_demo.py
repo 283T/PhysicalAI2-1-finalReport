@@ -27,12 +27,12 @@ def main():
         caption = output / f"record_caption_{variant}.txt"
         details = (f"DRAWING {task['drawing_id']} | LOCAL AI OUTPUT\n"
                    f"Qwen3-VL 2B / Ollama\n"
-                   f"Part: {task['component']} | Socket: {task['socket']}\n"
+                   f"Harness: {task['harness_id']} / {task['plug_id']} -> {task['socket']}\n"
                    f"X: {task['x_mm']} mm | Y: {task['y_mm']} mm\n"
                    f"Yaw: {task['yaw_deg']} deg | Quantity: 1\n"
                    "Validated before robot execution\n"
                    "Actual Gazebo / ROS 2 | 1x speed\n"
-                   "Ideal grasp / enlarged pins and holes\n")
+                   "Ideal grasp / rigid visual cable\n")
         caption.write_text(details + "Status: starting simulation\n")
         call(PREFIX + ["restart", "gui"])
         command = PREFIX + ["exec", "-T", "gui", "/ros_entrypoint.sh", "python3",
@@ -70,7 +70,7 @@ def main():
                             raise RuntimeError("Recording ended before insertion completed")
                         result = json.loads((output / "insertion_result.json").read_text())
                         success = result.get("success") and result.get("drawing_id") == task["drawing_id"]
-                        caption.write_text(details + ("INSERTION SUCCESS | released\n" if success else "INSERTION FAILED\n"))
+                        caption.write_text(details + ("CONNECTION SEATED | released\n" if success else "INSERTION FAILED\n"))
                         (output / f"record_result_{variant}.json").write_text(json.dumps(result, indent=2)+"\n")
                         break
             if not success:
@@ -88,8 +88,8 @@ def main():
     concat.write_text("file 'drawing_a.mp4'\nfile 'drawing_b.mp4'\n")
     call(PREFIX + ["exec", "-T", "gui", "ffmpeg", "-y", "-loglevel", "error",
                   "-f", "concat", "-safe", "0", "-i", "/workspace/recordings/concat.txt",
-                  "-c", "copy", "-movflags", "+faststart", "/workspace/recordings/pcb_assembly_demo.mp4"])
-    print("Recorded recordings/pcb_assembly_demo.mp4 (A then B, 1x speed)", flush=True)
+                  "-c", "copy", "-movflags", "+faststart", "/workspace/recordings/harness_connection_demo.mp4"])
+    print("Recorded recordings/harness_connection_demo.mp4 (A then B, 1x speed)", flush=True)
 
 
 if __name__ == "__main__":

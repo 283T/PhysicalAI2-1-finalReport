@@ -1,0 +1,65 @@
+{
+  "model": "qwen3-vl:2b-instruct",
+  "cases": [
+    {
+      "variant": "A",
+      "success": true,
+      "matches": {
+        "drawing_id": true,
+        "socket": true,
+        "component": true,
+        "x_mm": true,
+        "y_mm": true,
+        "yaw_deg": true
+      },
+      "extracted_task": {
+        "drawing_id": "A",
+        "socket": "J1",
+        "component": "connector",
+        "x_mm": 60,
+        "y_mm": 50,
+        "yaw_deg": 0,
+        "source": "local_vision_model",
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "551a414d149b436e81de907a4eebb1fe10911f6e132a5df61d799de3313508c9",
+        "board_origin_m": [
+          0.19,
+          0.1,
+          0.12
+        ]
+      },
+      "elapsed_seconds": 33.812963290999996
+    },
+    {
+      "variant": "B",
+      "success": true,
+      "matches": {
+        "drawing_id": true,
+        "socket": true,
+        "component": true,
+        "x_mm": true,
+        "y_mm": true,
+        "yaw_deg": true
+      },
+      "extracted_task": {
+        "drawing_id": "B",
+        "socket": "J2",
+        "component": "connector",
+        "x_mm": 100,
+        "y_mm": 90,
+        "yaw_deg": 0,
+        "source": "local_vision_model",
+        "model": "qwen3-vl:2b-instruct",
+        "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+        "board_origin_m": [
+          0.19,
+          0.1,
+          0.12
+        ]
+      },
+      "elapsed_seconds": 26.88635825
+    }
+  ],
+  "passed": 2,
+  "total": 2
+}

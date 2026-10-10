@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import json
+import math
 import xml.etree.ElementTree as ET
 
 
@@ -45,7 +46,7 @@ def link(model, name, gravity=True):
 
 def main():
     root = ET.Element("sdf", version="1.9")
-    world = child(root, "world", name="pcb_insertion")
+    world = child(root, "world", name="harness_connection")
     physics = child(world, "physics", name="physics", type="ignored")
     child(physics, "max_step_size", 0.001)
     child(physics, "real_time_factor", 1)
@@ -68,6 +69,7 @@ def main():
     root_dir = Path(__file__).resolve().parents[1]
     board = json.loads((root_dir / "configs/board.json").read_text())
     ox, oy, top_z = board["origin_m"]
+    panel_top = top_z - board["receptacle_depth_mm"] / 1000
     width, height = (v / 1000 for v in board["size_mm"])
     thickness = board["thickness_mm"] / 1000
     half_hole = board["hole_width_mm"] / 2000
@@ -84,9 +86,23 @@ def main():
             if any(abs(cx-x) < half_hole and abs(cy-y) < half_hole for x, y in holes):
                 continue
             box(base, f"pcb_{i}_{j}", f"{right-left} {top-bottom} {thickness}",
-                f"{cx} {cy} {top_z-thickness/2} 0 0 0", "0.05 0.45 0.15 1")
+                f"{cx} {cy} {panel_top-thickness/2} 0 0 0", "0.05 0.45 0.15 1")
 
-    part = child(world, "model", name="connector")
+    # Raised female receptacles with actual empty channels; the plug seats on their rim.
+    depth = board["receptacle_depth_mm"] / 1000
+    for socket in board["sockets"]:
+        cx, cy = ox + socket["x_mm"]/1000, oy + socket["y_mm"]/1000
+        rx = [cx-.03, cx-.01-half_hole, cx-.01+half_hole,
+              cx+.01-half_hole, cx+.01+half_hole, cx+.03]
+        ry = [cy-.02, cy-half_hole, cy+half_hole, cy+.02]
+        for i, (left, right) in enumerate(zip(rx, rx[1:])):
+            for j, (bottom, top) in enumerate(zip(ry, ry[1:])):
+                if i in (1, 3) and j == 1:
+                    continue
+                box(base, f"socket_{socket['id']}_{i}_{j}", f"{right-left} {top-bottom} {depth}",
+                    f"{(left+right)/2} {(bottom+top)/2} {top_z-depth/2} 0 0 0", "0.15 0.3 0.5 1")
+
+    part = child(world, "model", name="wire_harness")
     child(part, "pose", "-0.25 0 0.17 0 0 0")
     body = link(part, "body")
     box(body, "housing", "0.04 0.02 0.02", "0 0 0 0 0 0", "0.9 0.6 0.1 1")
@@ -99,9 +115,28 @@ def main():
             child(cylinder, "length", 0.04)
             if kind == "visual":
                 child(child(pin, "material"), "diffuse", "0.8 0.8 0.8 1")
+    # Two short leads are rigid visual geometry. Cable bending, forces and snagging are not modeled.
+    for wire, x, color in ((0, -.007, "0.8 0.08 0.04 1"), (1, .007, "0.08 0.08 0.1 1")):
+        points = [(x, -.01, .007), (x, -.035, .018), (x+.012, -.07, .025),
+                  (x+.028, -.105, .018), (x+.028, -.14, .002)]
+        for index, (start, end) in enumerate(zip(points, points[1:])):
+            delta = [b-a for a, b in zip(start, end)]
+            length = math.sqrt(sum(v*v for v in delta))
+            center = [(a+b)/2 for a, b in zip(start, end)]
+            yaw = math.atan2(delta[1], delta[0])
+            pitch = math.acos(delta[2]/length)
+            visual = child(body, "visual", name=f"wire_{wire}_{index}")
+            child(visual, "pose", " ".join(str(v) for v in (*center, 0, pitch, yaw)))
+            cylinder = child(child(visual, "geometry"), "cylinder")
+            child(cylinder, "radius", .003)
+            child(cylinder, "length", length)
+            material = child(visual, "material")
+            child(material, "diffuse", color)
+            child(material, "ambient", color)
+
     plugin(part, ("pose-publisher", "PosePublisher"), publish_link_pose="false",
            publish_model_pose="true", publish_nested_model_pose="true",
-           use_pose_vector_msg="true", update_frequency=50, topic="/connector/pose")
+           use_pose_vector_msg="true", update_frequency=50, topic="/harness/pose")
 
     robot = child(world, "model", name="gantry")
     child(robot, "pose", "-0.25 0 0.2 0 0 0")
@@ -147,7 +182,7 @@ def main():
         previous = name
     plugin(robot, ("joint-state-publisher", "JointStatePublisher"), topic="/gantry/joints")
     plugin(robot, ("detachable-joint", "DetachableJoint"), parent_link="z_carriage",
-           child_model="connector", child_link="body", attach_topic="/grasp/attach",
+           child_model="wire_harness", child_link="body", attach_topic="/grasp/attach",
            detach_topic="/grasp/detach", output_topic="/grasp/state")
     ET.indent(root)
     target = Path(__file__).resolve().parents[1] / "sim/worlds/insertion.sdf"
