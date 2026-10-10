@@ -53,7 +53,12 @@ def harness_model(world, trial):
         mass(terminal, .025)
         child(terminal, 'pose', f'{x+.02*math.cos(angle)} {y+.02*math.sin(angle)} 0 0 0 {angle}')
         box(terminal, 'housing', '.04 .02 .02', '0 0 0 0 0 0', branch['color'])
-        box(terminal, 'orientation_mark', '.012 .006 .001', '.01 0 .0105 0 0 0', '1 1 1 1', collision=False)
+        # Redundant positive-X marks remain visible when the housing rolls onto its side.
+        for side in (-1, 1):
+            box(terminal, f'orientation_mark_z_{side}', '.012 .006 .001',
+                f'.01 0 {side*.0105} 0 0 0', '1 1 1 1', collision=False)
+            box(terminal, f'orientation_mark_y_{side}', '.012 .001 .006',
+                f'.01 {side*.0105} 0 0 0 0', '1 1 1 1', collision=False)
         for index, offset in enumerate((-.01, .01)):
             for kind in ('collision', 'visual'):
                 pin = child(terminal, kind, name=f'pin_{index}_{kind}')
@@ -116,17 +121,34 @@ def build(case, output, factory_world=ROOT/'sim/worlds/factory_prototype.sdf'):
     tree = ET.parse(factory_world)
     world = tree.getroot().find('world')
     world.set('name', 'multi_connector_factory')
+    # Keep the arm pedestals outside the incoming pallet footprint and camera view.
+    for name in ('left_arm', 'right_arm'):
+        pose = world.find(f"model[@name='{name}']/pose")
+        values = pose.text.split()
+        values[1] = '-.38'
+        pose.text = ' '.join(values)
     world.remove(world.find("model[@name='wire_harness']"))
     fixture = world.find("model[@name='fixtures']/link")
     for item in list(fixture):
         if item.get('name', '').startswith(('pcb_', 'socket_')):
             fixture.remove(item)
     add_board(fixture, design)
+    for kind in ('collision', 'visual'):
+        fixture.find(f"{kind}[@name='table_{kind}']/geometry/box/size").text = '1.2 1.0 .04'
     pallet = world.find("model[@name='conveyor_carrier']/link")
     for shape in ('collision', 'visual'):
         pallet.find(f'{shape}/geometry/box/size').text = '.60 .65 .02'
         pallet.find(f'{shape}/pose').text = '-.30 .05 .11 0 0 0'
     harness_model(world, case['simulation_initialization'])
+    calibration = json.loads((ROOT/'configs/infeed_camera.json').read_text())
+    camera = world.find("model[@name='overhead_camera']/link")
+    camera.find('pose').text = ' '.join(map(str, calibration['position_m']+calibration['pose_rpy_rad']))
+    sensor = camera.find('sensor')
+    sensor.set('type', 'rgbd_camera')
+    sensor.find('topic').text = calibration['topic']
+    sensor.find('update_rate').text = '5'
+    sensor.find('camera/horizontal_fov').text = str(calibration['horizontal_fov_rad'])
+    world.find("plugin[@name='gz::sim::systems::Sensors']/render_engine").text = 'ogre2'
     ET.indent(tree)
     tree.write(output/'world.sdf', encoding='utf-8', xml_declaration=True)
     (output/'case.json').write_text(json.dumps(case, indent=2)+'\n')

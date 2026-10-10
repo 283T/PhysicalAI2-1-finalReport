@@ -14,6 +14,14 @@ Physical AI応用1講座の最終課題。多品種少量生産を想定し、�
 
 1本の分岐ハーネスに付いた全コネクタを接続します。最初は3端末を扱い、基板と図面を同じ設計データから生成し、初期配置を別のseedでランダム化します。[生成・ローカルAI読解・検証の手順](docs/multi-connector.md)。全端末を双腕で接続する統合制御は未完了です。
 
+## MELFA双腕とRGB-D端末認識の実行
+
+```bash
+python3 scripts/run_perception_demo.py --design-seed 101 --placement-seed 2
+```
+
+MELFAシーン生成からカメラ画像の受信、全3端末の可視表面位置・平面yawの検出まで実行します。[精度評価と制約](docs/perception.md)。把持・挿入動作はまだ統合していません。
+
 ## これまでの基礎デモ
 
 - 図面A：ハーネスWH1のプラグP1をJ1へ接続。

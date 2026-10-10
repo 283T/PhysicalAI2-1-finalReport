@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "stamp_skew_s": 0.0,
+  "connectors": [
+    {
+      "plug_id": "P1",
+      "true_center_xyz_m": [
+        -0.2748966527713582,
+        0.2785655529765808,
+        0.13211280608410256
+      ],
+      "xy_error_m": 0.003718855828708652,
+      "yaw_error_rad": 0.004286141336343196,
+      "surface_above_center_m": 0.009325880763584232
+    },
+    {
+      "plug_id": "P2",
+      "true_center_xyz_m": [
+        -0.46976289842823193,
+        -0.0952179616130519,
+        0.13176695084018195
+      ],
+      "xy_error_m": 0.005264967080618712,
+      "yaw_error_rad": 0.00048223530423907585,
+      "surface_above_center_m": 0.009171116596036338
+    },
+    {
+      "plug_id": "P3",
+      "true_center_xyz_m": [
+        -0.14149989048619202,
+        -0.04809555596444433,
+        0.13249768343063512
+      ],
+      "xy_error_m": 0.0032262530173836415,
+      "yaw_error_rad": 0.028046896568400426,
+      "surface_above_center_m": 0.009408065413511635
+    }
+  ],
+  "scope": "RGB-D XY and directed planar yaw; ideal extrinsics, colored marked prototypes; no 6D pose or robot grasp"
+}
