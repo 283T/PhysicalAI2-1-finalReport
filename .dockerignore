@@ -7,3 +7,6 @@ outputs
 recordings
 logs
 .cache
+log
+.pytest_cache
+.ruff_cache

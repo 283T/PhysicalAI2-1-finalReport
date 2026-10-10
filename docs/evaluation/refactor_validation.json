@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-10",
+  "purpose": "Regression validation after file cleanup and shared-module refactoring",
+  "unit_tests": {
+    "passed": 26,
+    "failed": 0
+  },
+  "static_checks": {
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "python_compileall": "passed",
+    "formatting_only_ast_comparison": "passed"
+  },
+  "ros_gazebo_clock": "passed",
+  "perception": {
+    "success": true,
+    "stamp_skew_s": 0.002,
+    "connectors": [
+      {
+        "plug_id": "P1",
+        "true_center_xyz_m": [
+          -0.4656587832371808,
+          -0.017941925870501016,
+          0.13420294822508538
+        ],
+        "xy_error_m": 0.004050690721477336,
+        "yaw_error_rad": 0.026376716081887963,
+        "surface_above_center_m": 0.009303364145214932
+      },
+      {
+        "plug_id": "P2",
+        "true_center_xyz_m": [
+          -0.0957258595080048,
+          -0.025672256819332953,
+          0.13239924075102436
+        ],
+        "xy_error_m": 0.0034921100627229675,
+        "yaw_error_rad": 0.02026877039756769,
+        "surface_above_center_m": 0.009099944811109456
+      },
+      {
+        "plug_id": "P3",
+        "true_center_xyz_m": [
+          -0.27533012032954696,
+          0.28484518203776327,
+          0.13308833911966245
+        ],
+        "xy_error_m": 0.004171786647003519,
+        "yaw_error_rad": 0.007966363403384857,
+        "surface_above_center_m": 0.009285544604550222
+      }
+    ],
+    "scope": "RGB-D XY and directed planar yaw; ideal extrinsics, colored marked prototypes; no 6D pose or robot grasp"
+  },
+  "dual_arm_joint_control": {
+    "success": true,
+    "max_error_rad": 0.0025509314554917617,
+    "scope": "Independent six-joint control under gravity; not grasping or insertion"
+  },
+  "cable_gravity": {
+    "success": true,
+    "link_count": 13,
+    "gravity_sag_m": 0.27721237024530354,
+    "scope": "jointed rigid segments with bending springs; not a calibrated continuum material"
+  },
+  "single_terminal_baseline": {
+    "task_source": "manual_baseline_not_ai",
+    "drawing_id": "A",
+    "socket": "J1",
+    "harness_id": "WH1",
+    "plug_id": "P1",
+    "connection_check": "mechanical seating only",
+    "position_m": [
+      0.25,
+      0.15000000000000002,
+      0.14999942888375328
+    ],
+    "target_m": [
+      0.25,
+      0.15000000000000002,
+      0.15000000000000002
+    ],
+    "pin_insertion_depth_m": 0.04000057111624673,
+    "grasp_state": "detached",
+    "simplifications": [
+      "fixed-joint grasp",
+      "enlarged pins and holes",
+      "fixed supply and panel",
+      "rigid visual cable; no cable forces"
+    ],
+    "success": true
+  },
+  "local_drawing_reader": {
+    "success": true,
+    "model": "qwen3-vl:2b-instruct",
+    "connections": [
+      {
+        "plug_id": "P1",
+        "socket": "J1",
+        "x_mm": 144,
+        "y_mm": 52,
+        "yaw_deg": 0
+      },
+      {
+        "plug_id": "P2",
+        "socket": "J2",
+        "x_mm": 52,
+        "y_mm": 139,
+        "yaw_deg": 0
+      },
+      {
+        "plug_id": "P3",
+        "socket": "J3",
+        "x_mm": 51,
+        "y_mm": 48,
+        "yaw_deg": 0
+      }
+    ],
+    "image_sha256": "353a3d5308d3043044d73ca2ae75083506be34233f458dfebcf9d09300c22ae2",
+    "elapsed_seconds": 45.988401792,
+    "scope": "Actual local inference; all three rows accepted by matching-board validation"
+  },
+  "scope": "Individual subsystem regression tests; full dual-arm grasp and multi-terminal insertion remain unimplemented"
+}

@@ -4,21 +4,19 @@ import argparse
 import json
 import math
 import os
-from pathlib import Path
-import signal
 import secrets
 import subprocess
 import time
+from pathlib import Path
 
 import rclpy
 from geometry_msgs.msg import PoseArray
+from processes import stop_process
+from project_paths import ROOT
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Empty, Float64, String
 from task_schema import validate_task
-
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 class Insertion:
@@ -27,13 +25,16 @@ class Insertion:
         self.joints = {}
         self.pose = None
         self.grasp_state = None
-        self.node.create_subscription(JointState, "/gantry/joints", self.on_joints,
-                                      qos_profile_sensor_data)
-        self.node.create_subscription(PoseArray, "/harness/pose", self.on_pose,
-                                      qos_profile_sensor_data)
+        self.node.create_subscription(
+            JointState, "/gantry/joints", self.on_joints, qos_profile_sensor_data
+        )
+        self.node.create_subscription(
+            PoseArray, "/harness/pose", self.on_pose, qos_profile_sensor_data
+        )
         self.node.create_subscription(String, "/grasp/state", self.on_grasp, 10)
-        self.commands = {axis: self.node.create_publisher(Float64, f"/gantry/{axis}/cmd", 10)
-                         for axis in "xyz"}
+        self.commands = {
+            axis: self.node.create_publisher(Float64, f"/gantry/{axis}/cmd", 10) for axis in "xyz"
+        }
         self.attach = self.node.create_publisher(Empty, "/grasp/attach", 10)
         self.detach = self.node.create_publisher(Empty, "/grasp/detach", 10)
 
@@ -72,14 +73,24 @@ class Insertion:
         goals = dict(zip("xyz", (x + 0.25, y, z - 0.2)))
         for axis, value in goals.items():
             self.commands[axis].publish(Float64(data=value))
-        self.wait(lambda: all(abs(self.joints.get(f"{axis}_joint", math.inf) - value) < 0.0005
-                              for axis, value in goals.items()), label)
+        self.wait(
+            lambda: all(
+                abs(self.joints.get(f"{axis}_joint", math.inf) - value) < 0.0005
+                for axis, value in goals.items()
+            ),
+            label,
+        )
         self.settle(0.3)
 
     def run(self, task):
-        self.wait(lambda: self.pose is not None and len(self.joints) >= 3
-                  and all(pub.get_subscription_count() for pub in self.commands.values()),
-                  "initial feedback")
+        self.wait(
+            lambda: (
+                self.pose is not None
+                and len(self.joints) >= 3
+                and all(pub.get_subscription_count() for pub in self.commands.values())
+            ),
+            "initial feedback",
+        )
         self.settle()
         self.grasp(False)  # Gazebo detachable joints are initially attached.
         self.settle()
@@ -101,21 +112,37 @@ class Insertion:
         p = self.pose.position
         q = self.pose.orientation
         depth = origin[2] - (p.z - 0.05)
-        result = {"task_source": task["source"], "drawing_id": task.get("drawing_id"),
-                  "socket": task.get("socket"), "harness_id": task["harness_id"],
-                  "plug_id": task["plug_id"], "connection_check": "mechanical seating only", "position_m": [p.x, p.y, p.z],
-                  "target_m": [x, y, origin[2] + 0.01], "pin_insertion_depth_m": depth,
-                  "grasp_state": self.grasp_state,
-                  "simplifications": ["fixed-joint grasp", "enlarged pins and holes",
-                                      "fixed supply and panel", "rigid visual cable; no cable forces"]}
+        result = {
+            "task_source": task["source"],
+            "drawing_id": task.get("drawing_id"),
+            "socket": task.get("socket"),
+            "harness_id": task["harness_id"],
+            "plug_id": task["plug_id"],
+            "connection_check": "mechanical seating only",
+            "position_m": [p.x, p.y, p.z],
+            "target_m": [x, y, origin[2] + 0.01],
+            "pin_insertion_depth_m": depth,
+            "grasp_state": self.grasp_state,
+            "simplifications": [
+                "fixed-joint grasp",
+                "enlarged pins and holes",
+                "fixed supply and panel",
+                "rigid visual cable; no cable forces",
+            ],
+        }
         if task["source"] == "local_vision_model":
             result["model"] = task.get("model")
             result["image_sha256"] = task.get("image_sha256")
-        result["success"] = (abs(p.x-x) < 0.001 and abs(p.y-y) < 0.001
-                             and abs(p.z-(origin[2]+0.01)) < 0.001
-                             and abs(q.x) < 0.02 and abs(q.y) < 0.02
-                             and abs(q.z) < 0.02 and depth > 0.03
-                             and self.grasp_state == "detached")
+        result["success"] = (
+            abs(p.x - x) < 0.001
+            and abs(p.y - y) < 0.001
+            and abs(p.z - (origin[2] + 0.01)) < 0.001
+            and abs(q.x) < 0.02
+            and abs(q.y) < 0.02
+            and abs(q.z) < 0.02
+            and depth > 0.03
+            and self.grasp_state == "detached"
+        )
         output = ROOT / "outputs"
         output.mkdir(exist_ok=True)
         text = json.dumps(result, indent=2) + "\n"
@@ -130,10 +157,12 @@ def main():
     parser.add_argument("--task", type=Path, default=ROOT / "examples/task_a.json")
     parser.add_argument("--world", type=Path, default=ROOT / "sim/worlds/insertion.sdf")
     parser.add_argument("--gui", action="store_true", help="Show Gazebo on the X display")
-    parser.add_argument("--start-delay", type=float, default=0,
-                        help="Wait this many seconds before robot motion")
-    parser.add_argument("--keep-open", action="store_true",
-                        help="Keep the finished simulation open until Ctrl+C")
+    parser.add_argument(
+        "--start-delay", type=float, default=0, help="Wait this many seconds before robot motion"
+    )
+    parser.add_argument(
+        "--keep-open", action="store_true", help="Keep the finished simulation open until Ctrl+C"
+    )
     args = parser.parse_args()
     task = json.loads(args.task.read_text())
     board = json.loads((ROOT / "configs/board.json").read_text())
@@ -145,18 +174,19 @@ def main():
     env = os.environ.copy()
     env["GZ_PARTITION"] = f"pai-insertion-{os.getpid()}"
     bridges = [f"/gantry/{axis}/cmd@std_msgs/msg/Float64]gz.msgs.Double" for axis in "xyz"]
-    bridges += ["/gantry/joints@sensor_msgs/msg/JointState[gz.msgs.Model",
-                "/harness/pose@geometry_msgs/msg/PoseArray[gz.msgs.Pose_V",
-                "/grasp/attach@std_msgs/msg/Empty]gz.msgs.Empty",
-                "/grasp/detach@std_msgs/msg/Empty]gz.msgs.Empty",
-                "/grasp/state@std_msgs/msg/String[gz.msgs.StringMsg"]
+    bridges += [
+        "/gantry/joints@sensor_msgs/msg/JointState[gz.msgs.Model",
+        "/harness/pose@geometry_msgs/msg/PoseArray[gz.msgs.Pose_V",
+        "/grasp/attach@std_msgs/msg/Empty]gz.msgs.Empty",
+        "/grasp/detach@std_msgs/msg/Empty]gz.msgs.Empty",
+        "/grasp/state@std_msgs/msg/String[gz.msgs.StringMsg",
+    ]
     gazebo = ["gz", "sim", "-r", str(args.world)]
     if args.gui:
         gazebo += ["--render-engine", "ogre", "--gui-config", str(ROOT / "sim/gui.config")]
     else:
         gazebo += ["-s"]
-    commands = [gazebo,
-                ["ros2", "run", "ros_gz_bridge", "parameter_bridge", *bridges]]
+    commands = [gazebo, ["ros2", "run", "ros_gz_bridge", "parameter_bridge", *bridges]]
     processes = []
     rclpy.init()
     demo = Insertion()
@@ -167,8 +197,11 @@ def main():
     with (output / "simulation.log").open("w") as log:
         try:
             for command in commands:
-                processes.append(subprocess.Popen(command, env=env, stdout=log, stderr=log,
-                                                  start_new_session=True))
+                processes.append(
+                    subprocess.Popen(
+                        command, env=env, stdout=log, stderr=log, start_new_session=True
+                    )
+                )
             if args.start_delay > 0:
                 print(f"Starting in {args.start_delay:g} seconds", flush=True)
                 demo.settle(args.start_delay)
@@ -181,17 +214,13 @@ def main():
         except KeyboardInterrupt:
             pass
         except Exception as error:
-            result_path.write_text(json.dumps({"success": False, "error": str(error)}, indent=2) + "\n")
+            result_path.write_text(
+                json.dumps({"success": False, "error": str(error)}, indent=2) + "\n"
+            )
             raise
         finally:
             for process in reversed(processes):
-                if process.poll() is None:
-                    os.killpg(process.pid, signal.SIGTERM)
-                    try:
-                        process.wait(timeout=5)
-                    except subprocess.TimeoutExpired:
-                        os.killpg(process.pid, signal.SIGKILL)
-                        process.wait()
+                stop_process(process, group=True)
             demo.node.destroy_node()
             rclpy.shutdown()
 

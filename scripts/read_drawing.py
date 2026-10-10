@@ -1,19 +1,13 @@
 """Extract a task from an image with a local Ollama vision model; no cloud calls."""
 
 import argparse
-import base64
-import hashlib
 import json
 from pathlib import Path
-import time
-import urllib.error
-import urllib.request
 
+from local_vision import MODEL, infer_drawing
+from project_paths import ROOT
 from task_schema import validate_task
 
-
-ROOT = Path(__file__).resolve().parents[1]
-MODEL = "qwen3-vl:2b-instruct"
 SCHEMA = {
     "type": "object",
     "properties": {
@@ -27,7 +21,17 @@ SCHEMA = {
         "y_mm": {"type": "number"},
         "yaw_deg": {"type": "number"},
     },
-    "required": ["drawing_id", "socket", "component", "harness_id", "plug_id", "quantity", "x_mm", "y_mm", "yaw_deg"],
+    "required": [
+        "drawing_id",
+        "socket",
+        "component",
+        "harness_id",
+        "plug_id",
+        "quantity",
+        "x_mm",
+        "y_mm",
+        "yaw_deg",
+    ],
     "additionalProperties": False,
 }
 PROMPT = """Read this wire harness connection drawing. Extract ONLY the component that the drawing
@@ -44,40 +48,15 @@ Return one JSON object with this schema:
 
 
 def read_drawing(image_path, output_path, model=MODEL):
-    image = image_path.read_bytes()
-    payload = {
-        "model": model,
-        "messages": [{"role": "user", "content": PROMPT,
-                      "images": [base64.b64encode(image).decode("ascii")]}],
-        "stream": False,
-        "format": SCHEMA,
-        "options": {"temperature": 0, "num_ctx": 4096, "num_predict": 256},
-        "keep_alive": "10m",
-    }
-    # Fixed loopback address: drawings are never sent to a cloud endpoint.
-    request = urllib.request.Request("http://127.0.0.1:11434/api/chat",
-                                     data=json.dumps(payload).encode(),
-                                     headers={"Content-Type": "application/json"})
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.unlink(missing_ok=True)
-    start = time.monotonic()
-    try:
-        with urllib.request.urlopen(request, timeout=300) as response:
-            raw = json.load(response)
-    except urllib.error.URLError as error:
-        raise RuntimeError("Local Ollama request failed. Start ollama serve and pull the model.") from error
-    audit = {"model": model, "image_sha256": hashlib.sha256(image).hexdigest(),
-             "elapsed_seconds": time.monotonic()-start, "response": raw}
-    output_path.with_suffix(".audit.json").write_text(json.dumps(audit, indent=2) + "\n")
-    if not raw.get("done") or raw.get("done_reason") == "length":
-        raise ValueError("Model output is incomplete")
-    extracted = json.loads(raw["message"]["content"])
+    extracted, audit = infer_drawing(image_path, output_path, PROMPT, SCHEMA, model)
     if set(extracted) != set(SCHEMA["required"]):
         raise ValueError("Unexpected fields in model output")
     if type(extracted["quantity"]) is not int or extracted["quantity"] != 1:
         raise ValueError("This demo supports exactly one component per board")
-    if not all(isinstance(extracted[key], str) and extracted[key]
-               for key in ("drawing_id", "socket", "component", "harness_id", "plug_id")):
+    if not all(
+        isinstance(extracted[key], str) and extracted[key]
+        for key in ("drawing_id", "socket", "component", "harness_id", "plug_id")
+    ):
         raise ValueError("Unreadable drawing/component/socket label")
     board = json.loads((ROOT / "configs/board.json").read_text())
     task = {key: value for key, value in extracted.items() if key != "quantity"}

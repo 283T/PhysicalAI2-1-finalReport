@@ -1,11 +1,10 @@
 """Record actual Gazebo execution with input drawing and local AI output alongside."""
 
 import json
-from pathlib import Path
 import subprocess
 
-from read_drawing import ROOT, read_drawing
-
+from project_paths import ROOT
+from read_drawing import read_drawing
 
 PREFIX = ["docker", "compose", "--profile", "gui"]
 
@@ -25,38 +24,101 @@ def main():
         task_path = output / f"record_task_{variant}.json"
         task = read_drawing(ROOT / f"drawings/assembly_{variant}.png", task_path)
         caption = output / f"record_caption_{variant}.txt"
-        details = (f"DRAWING {task['drawing_id']} | LOCAL AI OUTPUT\n"
-                   f"Qwen3-VL 2B / Ollama\n"
-                   f"Harness: {task['harness_id']} / {task['plug_id']} -> {task['socket']}\n"
-                   f"X: {task['x_mm']} mm | Y: {task['y_mm']} mm\n"
-                   f"Yaw: {task['yaw_deg']} deg | Quantity: 1\n"
-                   "Validated before robot execution\n"
-                   "Actual Gazebo / ROS 2 | 1x speed\n"
-                   "Ideal grasp / rigid visual cable\n")
+        details = (
+            f"DRAWING {task['drawing_id']} | LOCAL AI OUTPUT\n"
+            f"Qwen3-VL 2B / Ollama\n"
+            f"Harness: {task['harness_id']} / {task['plug_id']} -> {task['socket']}\n"
+            f"X: {task['x_mm']} mm | Y: {task['y_mm']} mm\n"
+            f"Yaw: {task['yaw_deg']} deg | Quantity: 1\n"
+            "Validated before robot execution\n"
+            "Actual Gazebo / ROS 2 | 1x speed\n"
+            "Ideal grasp / rigid visual cable\n"
+        )
         caption.write_text(details + "Status: starting simulation\n")
         call(PREFIX + ["restart", "gui"])
-        command = PREFIX + ["exec", "-T", "gui", "/ros_entrypoint.sh", "python3",
-                            "scripts/run_insertion.py", "--task", f"outputs/{task_path.name}",
-                            "--gui", "--start-delay", "15", "--keep-open"]
-        robot = subprocess.Popen(command, cwd=ROOT, stdout=subprocess.PIPE,
-                                 stderr=subprocess.STDOUT, text=True, bufsize=1)
+        command = PREFIX + [
+            "exec",
+            "-T",
+            "gui",
+            "/ros_entrypoint.sh",
+            "python3",
+            "scripts/run_insertion.py",
+            "--task",
+            f"outputs/{task_path.name}",
+            "--gui",
+            "--start-delay",
+            "15",
+            "--keep-open",
+        ]
+        robot = subprocess.Popen(
+            command,
+            cwd=ROOT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,
+        )
         capture = None
         try:
             # X display readiness is handled by the desktop supervisor. Wait until it is ready.
-            call(PREFIX + ["exec", "-T", "gui", "python3", "-c",
-                 "import subprocess,time; "
-                 "exec('for i in range(100):\\n if subprocess.run([\"xdpyinfo\"],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode==0: break\\n time.sleep(.1)\\nelse: raise RuntimeError(\"Display unavailable\")')"])
-            filters = ("[0:v]pad=1920:900:640:0:color=0x142c40[bg];"
-                       "[1:v]scale=640:512[draw];[bg][draw]overlay=0:0,"
-                       "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:"
-                       f"textfile=/workspace/outputs/{caption.name}:reload=1:"
-                       "fontcolor=white:fontsize=20:x=22:y=530:line_spacing=10[v]")
-            capture_command = PREFIX + ["exec", "-T", "gui", "ffmpeg", "-y", "-loglevel", "error",
-                "-f", "x11grab", "-video_size", "1280x900", "-framerate", "15", "-i", ":99",
-                "-loop", "1", "-i", f"/workspace/drawings/assembly_{variant}.png",
-                "-filter_complex", filters, "-map", "[v]", "-t", "60", "-an",
-                "-c:v", "libx264", "-preset", "ultrafast", "-crf", "24", "-pix_fmt", "yuv420p",
-                "-movflags", "+faststart", f"/workspace/recordings/drawing_{variant}.mp4"]
+            call(
+                PREFIX
+                + [
+                    "exec",
+                    "-T",
+                    "gui",
+                    "python3",
+                    "-c",
+                    "import subprocess,time; "
+                    'exec(\'for i in range(100):\\n if subprocess.run(["xdpyinfo"],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode==0: break\\n time.sleep(.1)\\nelse: raise RuntimeError("Display unavailable")\')',
+                ]
+            )
+            filters = (
+                "[0:v]pad=1920:900:640:0:color=0x142c40[bg];"
+                "[1:v]scale=640:512[draw];[bg][draw]overlay=0:0,"
+                "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:"
+                f"textfile=/workspace/outputs/{caption.name}:reload=1:"
+                "fontcolor=white:fontsize=20:x=22:y=530:line_spacing=10[v]"
+            )
+            capture_command = PREFIX + [
+                "exec",
+                "-T",
+                "gui",
+                "ffmpeg",
+                "-y",
+                "-loglevel",
+                "error",
+                "-f",
+                "x11grab",
+                "-video_size",
+                "1280x900",
+                "-framerate",
+                "15",
+                "-i",
+                ":99",
+                "-loop",
+                "1",
+                "-i",
+                f"/workspace/drawings/assembly_{variant}.png",
+                "-filter_complex",
+                filters,
+                "-map",
+                "[v]",
+                "-t",
+                "60",
+                "-an",
+                "-c:v",
+                "libx264",
+                "-preset",
+                "ultrafast",
+                "-crf",
+                "24",
+                "-pix_fmt",
+                "yuv420p",
+                "-movflags",
+                "+faststart",
+                f"/workspace/recordings/drawing_{variant}.mp4",
+            ]
             capture = subprocess.Popen(capture_command, cwd=ROOT)
             success = False
             with (output / f"record_robot_{variant}.log").open("w") as log:
@@ -69,9 +131,20 @@ def main():
                         if capture.poll() is not None:
                             raise RuntimeError("Recording ended before insertion completed")
                         result = json.loads((output / "insertion_result.json").read_text())
-                        success = result.get("success") and result.get("drawing_id") == task["drawing_id"]
-                        caption.write_text(details + ("CONNECTION SEATED | released\n" if success else "INSERTION FAILED\n"))
-                        (output / f"record_result_{variant}.json").write_text(json.dumps(result, indent=2)+"\n")
+                        success = (
+                            result.get("success") and result.get("drawing_id") == task["drawing_id"]
+                        )
+                        caption.write_text(
+                            details
+                            + (
+                                "CONNECTION SEATED | released\n"
+                                if success
+                                else "INSERTION FAILED\n"
+                            )
+                        )
+                        (output / f"record_result_{variant}.json").write_text(
+                            json.dumps(result, indent=2) + "\n"
+                        )
                         break
             if not success:
                 raise RuntimeError("Insertion did not succeed; recording is not a successful demo")
@@ -86,9 +159,29 @@ def main():
                 robot.wait(timeout=10)
     concat = recording / "concat.txt"
     concat.write_text("file 'drawing_a.mp4'\nfile 'drawing_b.mp4'\n")
-    call(PREFIX + ["exec", "-T", "gui", "ffmpeg", "-y", "-loglevel", "error",
-                  "-f", "concat", "-safe", "0", "-i", "/workspace/recordings/concat.txt",
-                  "-c", "copy", "-movflags", "+faststart", "/workspace/recordings/harness_connection_demo.mp4"])
+    call(
+        PREFIX
+        + [
+            "exec",
+            "-T",
+            "gui",
+            "ffmpeg",
+            "-y",
+            "-loglevel",
+            "error",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            "/workspace/recordings/concat.txt",
+            "-c",
+            "copy",
+            "-movflags",
+            "+faststart",
+            "/workspace/recordings/harness_connection_demo.mp4",
+        ]
+    )
     print("Recorded recordings/harness_connection_demo.mp4 (A then B, 1x speed)", flush=True)
 
 
