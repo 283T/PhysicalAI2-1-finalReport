@@ -7,6 +7,7 @@ from types import SimpleNamespace
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from arm_kinematics import transform
 from perception_stream import StableConnectors, SyncedFrames, image_array
 
 
@@ -58,6 +59,26 @@ class PerceptionStreamTest(unittest.TestCase):
         depth.encoding = "16UC1"
         with self.assertRaises(ValueError):
             image_array(depth)
+
+    def test_full_pose_stability_rejects_roll_change_even_with_unchanged_yaw(self):
+        stable = StableConnectors(require_6d=True)
+        rows = detections()
+        self.assertFalse(stable.update(rows))
+        for row in rows:
+            row["pose_6d"] = {
+                "center_xyz_m": row["surface_xyz_m"],
+                "rotation_world_from_connector": transform()[:3, :3].tolist(),
+            }
+        self.assertFalse(stable.update(rows))
+        self.assertFalse(stable.update(rows))
+        rotated = copy.deepcopy(rows)
+        rotated[0]["pose_6d"]["rotation_world_from_connector"] = transform(rpy=[0.2, 0, 0])[
+            :3, :3
+        ].tolist()
+        self.assertFalse(stable.update(rotated))
+        self.assertEqual(stable.count, 1)
+        self.assertFalse(stable.update(rotated))
+        self.assertTrue(stable.update(rotated))
 
     def test_stability_handles_wraparound_order_and_resets_on_missing_or_motion(self):
         stable = StableConnectors()

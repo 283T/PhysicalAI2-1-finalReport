@@ -21,6 +21,9 @@ CLIの名前と既存の実行コマンドは維持する。旧デモは動作�
 - `scripts/perception_stream.py`：RGB/depthの時刻同期、画像の行パディング・エンディアン処理、全3端末の安定判定。ROSをimportしないため単体テストできる。
 - `scripts/arm_kinematics.py`：URDF由来の順運動学、数値IK、共通の回転変換。
 - `scripts/connector_vision.py`：画像からの色・マーカー検出と座標変換。
+- `scripts/connector_pose.py`：面コードとRGB-D平面から試作端末の中心・6D姿勢を推定。
+- `scripts/grasp_poses.py`：端末と工具の相対姿勢を保つ幾何学的把持・上方姿勢候補。
+- `scripts/gripper_model.py`：対向直動指の共通モデル。`check_grippers.py`で空の開閉を検証。
 - `scripts/observe_connectors.py`：ROS購読・publishと観測結果の保存。
 - `scripts/evaluate_perception.py`：評価専用のGazebo正解購読。検出器への正解入力は行わない。
 - `scripts/processes.py`：終了待ち・タイムアウト時の強制終了。ROS bridgeなどは新規プロセスグループとして起動し、そのグループを終了する。

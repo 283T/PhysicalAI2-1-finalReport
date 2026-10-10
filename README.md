@@ -18,16 +18,16 @@ Physical AI応用1講座の最終課題。多品種少量生産を想定し、�
 python3 scripts/run_perception_demo.py --design-seed 101 --placement-seed 2
 ```
 
-MELFAシーン生成からカメラ画像の受信、全3端末の可視表面位置・平面yawの検出まで実行します。[精度評価と制約](docs/perception.md)。把持・挿入動作はまだ統合していません。
+MELFAシーン生成からカメラ画像の受信、全3端末の検出まで実行します。`--require-6d`で面識別マーカー付き試作端末の中心・立体姿勢を必須にできます。[6D姿勢・把持候補の検証](docs/grasp-candidates.md)。[精度評価と制約](docs/perception.md)。把持・挿入動作はまだ統合していません。
 
 ## 図面と認識結果からのIK計画
 
 ```bash
 python3 scripts/run_perception_demo.py --design-seed 101 --placement-seed 2 \
-  --output outputs/reach_pipeline --evaluate --plan-reach
+  --output outputs/reach_pipeline --evaluate --require-6d --plan-reach
 ```
 
-ローカルAIで今回の図面を読み、全端末の認識結果と対応させ、端末・接続先の上方へ届く腕と関節角を計算します。`--check-reach`では腕ごとの隔離シーンで到達を検証します。[到達性確認の手順と制約](docs/reachability.md)。双腕での把持・挿入と衝突回避は未実装です。
+ローカルAIで今回の図面を読み、全端末の認識結果と対応させ、把持候補と端末・接続先の上方へ届く腕と関節角を計算します。`--check-reach`では腕ごとの隔離シーンで到達を検証します。[到達性確認の手順と制約](docs/reachability.md)。双腕での把持・挿入と衝突回避は未実装です。
 
 ## これまでの基礎デモ
 

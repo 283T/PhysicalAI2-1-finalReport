@@ -21,6 +21,9 @@ from std_msgs.msg import String
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/perception")
+    parser.add_argument(
+        "--require-6d", action="store_true", help="Require complete stable coded-face 6D poses"
+    )
     parser.add_argument("--timeout", type=float, default=90)
     parser.add_argument(
         "--bridge", action="store_true", help="Start ROS-Gazebo camera bridge for this run"
@@ -33,7 +36,7 @@ def main():
     rclpy.init()
     node = rclpy.create_node("harness_connector_vision")
     frames = SyncedFrames()
-    stability = StableConnectors()
+    stability = StableConnectors(require_6d=args.require_6d)
     info = []
     prefix = calibration["topic"]
     node.create_subscription(
@@ -90,6 +93,7 @@ def main():
             cv2.imwrite(str(args.output / "camera.png"), bgr)
             cv2.imwrite(str(args.output / "detections.png"), debug)
             np.save(args.output / "depth.npy", depth)
+            (args.output / "camera_intrinsics.json").write_text(json.dumps(list(info[-1].k)) + "\n")
             (args.output / "latest.json").write_text(json.dumps(detections, indent=2) + "\n")
             if not stability.update(detections):
                 continue
@@ -99,7 +103,11 @@ def main():
                 "sensor_stamp_ns": current,
                 "stable_frames": stability.count,
                 "connectors": detections,
-                "scope": "Visible prototype housings; top surface and planar yaw, not full 6D pose",
+                "scope": (
+                    "Coded prototype housings: full pose and candidate grasp; no holding validation"
+                    if all("pose_6d" in row for row in detections)
+                    else "Visible prototype housings; top surface and planar yaw, not full 6D pose"
+                ),
             }
             publisher.publish(String(data=json.dumps(result)))
             publish_end = time.monotonic() + 0.3

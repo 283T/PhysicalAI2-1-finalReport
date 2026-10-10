@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from arm_kinematics import quaternion_rotation as rotation
+from arm_kinematics import rotation_error
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from processes import stop_process
@@ -15,6 +16,7 @@ from project_paths import ROOT
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--require-6d", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -47,6 +49,7 @@ def main():
             "--bridge",
             "--output",
             str(args.output),
+            *(["--require-6d"] if args.require_6d else []),
         ],
         start_new_session=True,
     )
@@ -93,6 +96,18 @@ def main():
                     "surface_above_center_m": detection["surface_xyz_m"][2] - center[2],
                 }
             )
+            if "pose_6d" in detection:
+                pose = detection["pose_6d"]
+                rows[-1]["center_error_m"] = float(
+                    np.linalg.norm(np.asarray(pose["center_xyz_m"]) - center)
+                )
+                rows[-1]["orientation_error_rad"] = float(
+                    np.linalg.norm(
+                        rotation_error(
+                            np.asarray(pose["rotation_world_from_connector"]), orientation
+                        )
+                    )
+                )
         result = {
             "success": len(rows) == 3
             and all(row["xy_error_m"] < 0.008 and row["yaw_error_rad"] < 0.15 for row in rows),
@@ -100,6 +115,15 @@ def main():
             "connectors": rows,
             "scope": "RGB-D XY and directed planar yaw; ideal extrinsics, colored marked prototypes; no 6D pose or robot grasp",
         }
+        if args.require_6d:
+            result["success"] = len(rows) == 3 and all(
+                row.get("center_error_m", float("inf")) < 0.005
+                and row.get("orientation_error_rad", float("inf")) < 0.12
+                for row in rows
+            )
+            result["scope"] = (
+                "Full coded-prototype RGB-D center/orientation with ideal extrinsics; no object grasp or cable control"
+            )
         (args.output / "validation.json").write_text(json.dumps(result, indent=2) + "\n")
         (args.output / "evaluation_truth.json").write_text(json.dumps(snapshot, indent=2) + "\n")
         print(json.dumps(result, indent=2))

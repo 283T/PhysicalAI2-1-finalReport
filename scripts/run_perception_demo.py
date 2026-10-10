@@ -15,6 +15,9 @@ def run(*command):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--require-6d", action="store_true", help="Require coded-face 6D observations"
+    )
     parser.add_argument("--design-seed", type=int, default=secrets.randbelow(2**31))
     parser.add_argument("--placement-seed", type=int, default=secrets.randbelow(2**31))
     parser.add_argument(
@@ -93,6 +96,8 @@ def main():
         "--output",
         str(observations),
     ]
+    if args.require_6d:
+        command.append("--require-6d")
     if not args.evaluate:
         command.append("--bridge")
     run(

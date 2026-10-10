@@ -11,6 +11,7 @@ from pathlib import Path
 from assembly_case import make_case
 from build_factory import mass
 from build_world import add_board, box, child, link, plugin
+from connector_pose import FACE_CODES
 from project_paths import ROOT
 
 
@@ -77,6 +78,10 @@ def harness_model(world, trial):
                 "1 1 1 1",
                 collision=False,
             )
+        for face, (color, normal) in FACE_CODES.items():
+            y, z = normal[1] * 0.0105, normal[2] * 0.0105
+            size = ".012 .006 .001" if normal[2] else ".012 .001 .006"
+            box(terminal, "face_code_" + face, size, f"-.01 {y} {z} 0 0 0", color, collision=False)
         for index, offset in enumerate((-0.01, 0.01)):
             for kind in ("collision", "visual"):
                 pin = child(terminal, kind, name=f"pin_{index}_{kind}")

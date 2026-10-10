@@ -180,13 +180,22 @@ def main():
                 option = connector["arms"][name]
                 if not all(result["success"] for result in option.values()):
                     continue
-                for stage in ("pickup_hover", "socket_hover"):
+                stages = (
+                    ("pickup_hover", "pickup_grasp", "socket_hover")
+                    if connector.get("grasp_candidate")
+                    else ("pickup_hover", "socket_hover")
+                )
+                for stage in stages:
                     goals.append(
                         {
                             "plug_id": connector["plug_id"],
                             "stage": stage,
                             "q_rad": option[stage]["q_rad"],
-                            "target_pose": connector[stage + "_pose"],
+                            "target_pose": (
+                                connector["grasp_candidate"]["grasp_tcp_pose"]
+                                if stage == "pickup_grasp"
+                                else connector[stage + "_pose"]
+                            ),
                         }
                     )
             if goals:

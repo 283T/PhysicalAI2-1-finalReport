@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "stages": [
+    {
+      "stage": "open",
+      "target_travel_m": 0.018,
+      "target_gap_m": 0.052,
+      "errors_m": {
+        "left_arm_left": 6.763474001806463e-05,
+        "left_arm_right": 4.201636431072284e-05,
+        "right_arm_left": 0.000424584534597313,
+        "right_arm_right": 5.645118059726534e-05
+      },
+      "success": true
+    },
+    {
+      "stage": "close",
+      "target_travel_m": 0.0,
+      "target_gap_m": 0.016,
+      "errors_m": {
+        "left_arm_left": 0.0003743042909717363,
+        "left_arm_right": 0.0003487958115353637,
+        "right_arm_left": 0.0004997944337738745,
+        "right_arm_right": 0.00034384626121015087
+      },
+      "success": true
+    },
+    {
+      "stage": "reopen",
+      "target_travel_m": 0.018,
+      "target_gap_m": 0.052,
+      "errors_m": {
+        "left_arm_left": 0.0004171207433196697,
+        "left_arm_right": 0.00044146979667065295,
+        "right_arm_left": 0.00031597412106982095,
+        "right_arm_right": 0.00046509945347286
+      },
+      "success": true
+    }
+  ],
+  "scope": "Both grippers opening/closing empty; no contact-force or object holding validation"
+}

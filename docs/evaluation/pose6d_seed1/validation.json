@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "stamp_skew_s": 0.001,
+  "connectors": [
+    {
+      "plug_id": "P1",
+      "true_center_xyz_m": [
+        -0.27324664018907746,
+        0.27806873831138346,
+        0.13176518396890846
+      ],
+      "xy_error_m": 0.003714330071648131,
+      "yaw_error_rad": 0.001943199736806678,
+      "surface_above_center_m": 0.009228196577661385,
+      "center_error_m": 0.0012510551817371336,
+      "orientation_error_rad": 0.0105975528504155
+    },
+    {
+      "plug_id": "P2",
+      "true_center_xyz_m": [
+        -0.46906815472102237,
+        -0.09664604738630009,
+        0.13176429604905188
+      ],
+      "xy_error_m": 0.004174492888051586,
+      "yaw_error_rad": 0.18464071585722586,
+      "surface_above_center_m": 0.009340366369313624,
+      "center_error_m": 0.0009366782514555709,
+      "orientation_error_rad": 0.01646093110683094
+    },
+    {
+      "plug_id": "P3",
+      "true_center_xyz_m": [
+        -0.14319340132277442,
+        -0.04395896434947828,
+        0.13337404703296135
+      ],
+      "xy_error_m": 0.0030852120923312016,
+      "yaw_error_rad": 0.015232664184116949,
+      "surface_above_center_m": 0.009387028463712255,
+      "center_error_m": 0.0010964921604519375,
+      "orientation_error_rad": 0.022457623906477663
+    }
+  ],
+  "scope": "Full coded-prototype RGB-D center/orientation with ideal extrinsics; no object grasp or cable control"
+}

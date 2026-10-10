@@ -16,7 +16,7 @@
 
 モデルはUniversal Robotsの**UR3e×2**。公式の[ROS 2 Description](https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/jazzy)をUbuntuの`ros-jazzy-ur-description`から読み込み、xacro→URDF→SDFへ変換する。公式メッシュ、関節フレーム、限界角、慣性を使用し、左右に別の名前とTopicを付ける。GazeboのJointPositionControllerで動かすため、現時点では公式ドライバやMoveItの経路計画を使っていない。
 
-先端の2本の指は自作の固定形状で、開閉・把持制御はまだない。腕の配置は暫定であり、全工程の到達性・干渉はIKと経路計画の段階で検証する。モデルのメッシュはリポジトリに複製せずインストール先を参照する。生成SDFの由来とライセンスは`THIRD_PARTY_NOTICES.md`に記載する。
+先端の2本の指は自作の対向する直動関節で、左右グリッパーの空の開閉を確認した。[6D姿勢・把持候補の検証](grasp-candidates.md)。端末の物理的な把持・保持は未検証。腕の配置は暫定であり、全工程の到達性・干渉はIKと経路計画の段階で検証する。モデルのメッシュはリポジトリに複製せずインストール先を参照する。生成SDFの由来とライセンスは`THIRD_PARTY_NOTICES.md`に記載する。
 
 ## 工程
 

@@ -2,6 +2,7 @@
 
 import cv2
 import numpy as np
+from arm_kinematics import rotation_error
 
 PLUG_IDS = frozenset(("P1", "P2", "P3"))
 
@@ -62,7 +63,9 @@ class SyncedFrames:
 class StableConnectors:
     """Require all unique terminals and consecutive small position/directed-yaw changes."""
 
-    def __init__(self, required_frames=3, position_limit=0.003, yaw_limit=0.08):
+    def __init__(self, required_frames=3, position_limit=0.003, yaw_limit=0.08, require_6d=False):
+        self.require_6d = require_6d
+        self.previous_rotations = None
         self.required_frames = required_frames
         self.position_limit = position_limit
         self.yaw_limit = yaw_limit
@@ -74,17 +77,38 @@ class StableConnectors:
         if len(detections) != len(PLUG_IDS) or {row["plug_id"] for row in detections} != PLUG_IDS:
             self.count, self.previous, self.previous_yaws = 0, None, None
             return False
+        if self.require_6d and not all("pose_6d" in row for row in detections):
+            self.count, self.previous, self.previous_rotations = 0, None, None
+            return False
         ordered = sorted(detections, key=lambda row: row["plug_id"])
-        positions = np.array([row["surface_xyz_m"] for row in ordered])
+        positions = np.array(
+            [
+                row["pose_6d"]["center_xyz_m"] if self.require_6d else row["surface_xyz_m"]
+                for row in ordered
+            ]
+        )
+        rotations = (
+            [np.asarray(row["pose_6d"]["rotation_world_from_connector"]) for row in ordered]
+            if self.require_6d
+            else None
+        )
         yaws = np.array([row["yaw_rad"] for row in ordered])
         consistent = False
         if self.previous is not None:
             yaw_delta = yaws - self.previous_yaws
-            yaw_change = np.max(np.abs(np.arctan2(np.sin(yaw_delta), np.cos(yaw_delta))))
+            yaw_change = (
+                max(
+                    np.linalg.norm(rotation_error(current, previous))
+                    for current, previous in zip(rotations, self.previous_rotations)
+                )
+                if self.require_6d
+                else np.max(np.abs(np.arctan2(np.sin(yaw_delta), np.cos(yaw_delta))))
+            )
             consistent = (
                 np.max(np.linalg.norm(positions - self.previous, axis=1)) < self.position_limit
                 and yaw_change < self.yaw_limit
             )
         self.count = self.count + 1 if consistent else 1
         self.previous, self.previous_yaws = positions, yaws
+        self.previous_rotations = rotations
         return self.count >= self.required_frames

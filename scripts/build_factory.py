@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from build_world import box, child, link, plugin
+from gripper_model import add_gripper
 from project_paths import ROOT
 
 
@@ -110,19 +111,7 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
         )
         tool_parent = prefix + "tool0"
     robot = ET.fromstring(urdf)
-    # Simple fixed fingers are only a placeholder tool, not an actuated gripper.
-    tool = child(robot, "link", name=prefix + "gripper")
-    inertial = child(tool, "inertial")
-    child(inertial, "mass", value=".05")
-    child(inertial, "inertia", ixx=".00002", iyy=".00002", izz=".00002", ixy="0", ixz="0", iyz="0")
-    for side in (-1, 1):
-        for kind in ("visual", "collision"):
-            shape = child(tool, kind, name=f"finger_{side}")
-            child(shape, "origin", xyz=f"{side * 0.025} 0 .04", rpy="0 0 0")
-            child(child(shape, "geometry"), "box", size=".012 .02 .08")
-    fixed = child(robot, "joint", name=prefix + "gripper_mount", type="fixed")
-    child(fixed, "parent", link=tool_parent)
-    child(fixed, "child", link=prefix + "gripper")
+    add_gripper(robot, prefix, tool_parent)
     if urdf_output is not None:
         ET.indent(robot)
         ET.ElementTree(robot).write(urdf_output, encoding="utf-8", xml_declaration=True)
@@ -150,6 +139,20 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
             i_min=-effort,
             cmd_max=effort,
             cmd_min=-effort,
+        )
+    for finger in ("left", "right"):
+        plugin(
+            model,
+            ("joint-position-controller", "JointPositionController"),
+            joint_name=prefix + "finger_" + finger + "_joint",
+            topic=f"/{name}/gripper/{finger}/cmd",
+            p_gain=200,
+            d_gain=5,
+            i_gain=40,
+            i_max=12,
+            i_min=-12,
+            cmd_max=12,
+            cmd_min=-12,
         )
     plugin(model, ("joint-state-publisher", "JointStatePublisher"), topic=f"/{name}/joints")
     world.append(model)

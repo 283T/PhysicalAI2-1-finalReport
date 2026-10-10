@@ -4,6 +4,7 @@ import math
 
 import cv2
 import numpy as np
+from connector_pose import estimate_pose
 
 
 def detect_connectors(bgr, depth, intrinsics, calibration):
@@ -74,6 +75,17 @@ def detect_connectors(bgr, depth, intrinsics, calibration):
                     "marker_pixels": int(len(wx)),
                 }
             )
+            pose = estimate_pose(
+                hsv,
+                depth,
+                interior,
+                white,
+                hue_mask & (hsv[:, :, 1] > 100) & (hsv[:, :, 2] > 60),
+                intrinsics,
+                calibration,
+            )
+            if pose is not None:
+                candidates[-1]["pose_6d"] = pose
             cv2.polylines(debug, [np.round(polygon).astype(np.int32)], True, (0, 255, 0), 2)
             end = np.round(np.array([u, v]) + axis * 25).astype(int)
             cv2.arrowedLine(debug, (round(u), round(v)), tuple(end), (255, 255, 255), 2)

@@ -1,4 +1,4 @@
-"""Match validated drawing rows to camera detections and calculate hover IK only."""
+"""Match validated drawing rows to camera detections and calculate geometric grasp/hover endpoint IK."""
 
 import argparse
 import json
@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 from arm_kinematics import ArmKinematics, transform
 from assembly_case import validate_connection_plan
+from grasp_poses import candidate_poses
 
 
 def load_arms(world_path, model_directory):
@@ -43,10 +44,20 @@ def plan_reach(plan, board, detections, arms):
             [row["x_mm"] / 1000, row["y_mm"] / 1000, 0.16]
         )
         socket_target = transform(goal, [math.pi, 0, math.radians(row["yaw_deg"])])
+        grasp = None
+        if "pose_6d" in observation:
+            grasp = candidate_poses(observation, goal, row["yaw_deg"])
+            target = np.asarray(grasp["pickup_hover_pose"])
+            socket_target = np.asarray(grasp["socket_hover_pose"])
         options = {
             name: {"pickup_hover": arm.inverse(target), "socket_hover": arm.inverse(socket_target)}
             for name, arm in arms.items()
         }
+        if grasp is not None:
+            for name, arm in arms.items():
+                options[name]["pickup_grasp"] = arm.inverse(
+                    np.asarray(grasp["grasp_tcp_pose"]), seed=options[name]["pickup_hover"]["q_rad"]
+                )
         available = [
             name for name, poses in options.items() if all(p["success"] for p in poses.values())
         ]
@@ -62,6 +73,7 @@ def plan_reach(plan, board, detections, arms):
                 "pickup_hover_pose": target.tolist(),
                 "socket_hover_pose": socket_target.tolist(),
                 "selected_arm": selected,
+                "grasp_candidate": grasp,
                 "arms": options,
             }
         )
@@ -72,7 +84,11 @@ def plan_reach(plan, board, detections, arms):
         "frame": "world",
         "connectors": results,
         "success": all(row["selected_arm"] is not None for row in results),
-        "scope": "Offline endpoint reachability with assumed downward tool pose; no collision path, 6D grasp, cable constraints or execution authorization",
+        "scope": (
+            "Coded-face geometric grasp/hover candidates preserving connector-to-tool transform; no contact, collision path or holding validation"
+            if all(row["grasp_candidate"] is not None for row in results)
+            else "Offline endpoint reachability with assumed downward tool pose; no collision path, 6D grasp, cable constraints or execution authorization"
+        ),
     }
 
 
