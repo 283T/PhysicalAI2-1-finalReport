@@ -1,0 +1,23 @@
+{
+  "link_count": 13,
+  "gravity_sag_m": 0.27771315402176844,
+  "samples": 283,
+  "link_z_m": [
+    -0.27771315402176844,
+    -0.2527292515122545,
+    -0.22774424092318418,
+    -0.20275726722065582,
+    -0.17776799866764087,
+    -0.152776717685911,
+    -0.12778411321199284,
+    -0.10279080836265991,
+    -0.07779580350032256,
+    -0.0277992907104449,
+    -0.0036504885745903826,
+    -0.0527975887492213,
+    0.0
+  ],
+  "reference": "model-local z=0 anchored body; link order is not assumed",
+  "success": true,
+  "scope": "jointed rigid segments with bending springs; not a calibrated continuum material"
+}

@@ -1,0 +1,862 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="cable_validation">
+    <physics name="physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+    </physics>
+    <gravity>0 0 -9.81</gravity>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <model name="wire_harness">
+      <pose>0 0 .45 0 0 0</pose>
+      <link name="body">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+          </inertia>
+        </inertial>
+        <collision name="housing_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.02 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="housing_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.6 0.1 1</diffuse>
+            <ambient>0.9 0.6 0.1 1</ambient>
+          </material>
+        </visual>
+        <collision name="pin_0_collision">
+          <pose>-0.01 0 -0.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_0_visual">
+          <pose>-0.01 0 -0.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="pin_1_collision">
+          <pose>0.01 0 -0.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_1_visual">
+          <pose>0.01 0 -0.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>false</publish_link_pose>
+        <publish_model_pose>true</publish_model_pose>
+        <publish_nested_model_pose>true</publish_nested_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>50</update_frequency>
+        <topic>/harness/pose</topic>
+      </plugin>
+      <link name="cable_0">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.0275 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_0" type="universal">
+        <parent>body</parent>
+        <child>cable_0</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_1">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.052500000000000005 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_1" type="universal">
+        <parent>cable_0</parent>
+        <child>cable_1</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_2">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.0775 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_2" type="universal">
+        <parent>cable_1</parent>
+        <child>cable_2</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_3">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.10250000000000001 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_3" type="universal">
+        <parent>cable_2</parent>
+        <child>cable_3</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_4">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.1275 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_4" type="universal">
+        <parent>cable_3</parent>
+        <child>cable_4</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_5">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.15250000000000002 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_5" type="universal">
+        <parent>cable_4</parent>
+        <child>cable_5</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_6">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.1775 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_6" type="universal">
+        <parent>cable_5</parent>
+        <child>cable_6</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_7">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.2025 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_7" type="universal">
+        <parent>cable_6</parent>
+        <child>cable_7</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_8">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.22750000000000004 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_8" type="universal">
+        <parent>cable_7</parent>
+        <child>cable_8</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_9">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.2525 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_9" type="universal">
+        <parent>cable_8</parent>
+        <child>cable_9</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_10">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.2775 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.8 .08 .04 1</diffuse>
+            <ambient>.8 .08 .04 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_10" type="universal">
+        <parent>cable_9</parent>
+        <child>cable_10</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="cable_11">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0 -0.30250000000000005 .008 0 0 0</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.008 0.025 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .1 1</diffuse>
+            <ambient>.08 .08 .1 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="bend_11" type="universal">
+        <parent>cable_10</parent>
+        <child>cable_11</child>
+        <pose>0 0.0125 0 0 0 0</pose>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <publish_model_pose>false</publish_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>30</update_frequency>
+        <topic>/cable/poses</topic>
+      </plugin>
+      <joint name="test_anchor" type="fixed">
+        <parent>world</parent>
+        <child>body</child>
+      </joint>
+    </model>
+  </world>
+</sdf>
