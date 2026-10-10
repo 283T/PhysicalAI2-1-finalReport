@@ -1,0 +1,202 @@
+{
+  "success": false,
+  "plug_id": "P1",
+  "support_plug": "P2",
+  "assignment": {
+    "left_arm": "P1",
+    "right_arm": "P2"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "0452bf2ac33a5f500f72ca8236cce925323f35b6feb0d43f8739a81c5fdb94b8",
+  "camera_rate_during_motion_hz": 0.01,
+  "contact_monitor_ready": true,
+  "error": "Inter-arm collision detected; see inter_arm_contacts",
+  "inter_arm_contacts": [
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        3.370297754458351e-05,
+        6.232898603866777e-06,
+        1.203571076473231e-05
+      ],
+      "sim_time_s": 14.051
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        3.027780314027173e-05,
+        6.291805788996574e-06,
+        7.836996082880021e-06
+      ],
+      "sim_time_s": 14.052
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        2.6978077461978223e-05,
+        6.335792580948463e-06,
+        3.7954782498711426e-06
+      ],
+      "sim_time_s": 14.053
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        2.422357971718081e-05,
+        6.151294219935988e-06,
+        5.271805415263398e-07
+      ],
+      "sim_time_s": 14.054
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        2.208662550143292e-05,
+        5.941002645823423e-06
+      ],
+      "sim_time_s": 14.055
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        2.0428603472025242e-05,
+        5.709965430707176e-06
+      ],
+      "sim_time_s": 14.056
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.914245889185484e-05,
+        5.465219602041049e-06
+      ],
+      "sim_time_s": 14.057
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.812770954770504e-05,
+        5.231131592571547e-06
+      ],
+      "sim_time_s": 14.058
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.728772678351309e-05,
+        5.049241842053354e-06
+      ],
+      "sim_time_s": 14.059
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.6582097488643255e-05,
+        4.911758615326611e-06
+      ],
+      "sim_time_s": 14.06
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.5994327784665807e-05,
+        4.8124052438036635e-06
+      ],
+      "sim_time_s": 14.061
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.5510682593228298e-05,
+        4.746224837010038e-06
+      ],
+      "sim_time_s": 14.062
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.5120570575150039e-05,
+        4.70862740187955e-06
+      ],
+      "sim_time_s": 14.063
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4907270058150957e-05,
+        4.666387620297363e-06
+      ],
+      "sim_time_s": 14.064
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4757073869275938e-05,
+        4.552292065182484e-06
+      ],
+      "sim_time_s": 14.065
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4609537508786241e-05,
+        4.4077589166427456e-06
+      ],
+      "sim_time_s": 14.066
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4463475941903225e-05,
+        4.2646694444620215e-06
+      ],
+      "sim_time_s": 14.067
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4318879649713456e-05,
+        4.123015180025613e-06
+      ],
+      "sim_time_s": 14.068
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4175731117588297e-05,
+        3.982779058261943e-06
+      ],
+      "sim_time_s": 14.069
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        1.4034015850344916e-05,
+        3.8439468802997645e-06
+      ],
+      "sim_time_s": 14.07
+    }
+  ],
+  "contact_messages": 9244,
+  "camera_rate_restored_hz": 5.0
+}

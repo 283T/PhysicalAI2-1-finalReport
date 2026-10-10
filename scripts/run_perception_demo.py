@@ -39,12 +39,21 @@ def main():
         help="Attempt one fresh RGB-D-derived pickup in the running MELFA scene",
     )
     parser.add_argument(
+        "--support-plug",
+        choices=("P1", "P2", "P3"),
+        help="Hold another terminal with the second arm during pickup",
+    )
+    parser.add_argument(
         "--keep-camera",
         action="store_true",
         help="Keep full RGB-D rendering rate during --pick-connector",
     )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     args = parser.parse_args()
+    if args.support_plug and not args.pick_connector:
+        parser.error("--support-plug requires --pick-connector")
+    if args.support_plug == args.pick_connector and args.support_plug:
+        parser.error("Choose different pickup and support terminals")
     if args.pick_connector:
         args.require_6d = True
     output = (ROOT / args.output).resolve()
@@ -122,6 +131,16 @@ def main():
         "-c",
         "source /opt/ros/jazzy/setup.bash && " + shlex.join(command),
     )
+    run(
+        "docker",
+        "compose",
+        "exec",
+        "-T",
+        "gui",
+        "bash",
+        "-c",
+        "source /opt/ros/jazzy/setup.bash && python3 scripts/set_gui_view.py",
+    )
     if args.plan_reach or args.check_reach or args.pick_connector:
         plan = relative / "connection_plan.json"
         reach = relative / "reach_plan.json"
@@ -191,6 +210,8 @@ def main():
                 "--output",
                 str(relative / "pickup"),
             ]
+            if args.support_plug:
+                pickup.extend(["--support-plug", args.support_plug])
             if args.keep_camera:
                 pickup.append("--keep-camera")
             run(

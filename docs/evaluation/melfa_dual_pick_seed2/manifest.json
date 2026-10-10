@@ -1,0 +1,16 @@
+{
+  "design_seed": 101,
+  "placement_seed": 2,
+  "world_sha256": "2e64dbb11f26b352eac8671826e830b6a5891ae1195af9c1d19d1e71e6a07a90",
+  "source": "outputs/melfa_dual_pick_final",
+  "failure_sources": {
+    "hover_failure": "outputs/melfa_dual_pick_seed2/pickup/validation.json",
+    "base_contact_diagnostic": "outputs/melfa_dual_pick_contacts_v2/pickup/validation.json",
+    "shoulder_contact_failure": "outputs/melfa_dual_pick_clear/pickup/validation.json",
+    "staggered_contact_failure": "outputs/melfa_dual_pick_staggered/pickup/validation.json",
+    "waist_contact_failure": "outputs/melfa_dual_pick_waist_first/pickup/validation.json",
+    "continuous_ik_failure": "outputs/melfa_dual_pick_opposed/pickup/validation.json",
+    "feedback_failure": "outputs/melfa_dual_pick_continuous/feedback_failure.json"
+  },
+  "scope": "P1/P3 dual contact pickup and release; indirect harness support, not direct wire handling or insertion"
+}

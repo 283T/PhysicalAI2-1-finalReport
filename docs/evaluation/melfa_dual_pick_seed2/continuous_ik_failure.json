@@ -1,0 +1,25 @@
+{
+  "success": false,
+  "plug_id": "P1",
+  "support_plug": "P3",
+  "assignment": {
+    "left_arm": "P1",
+    "right_arm": "P3"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "2e64dbb11f26b352eac8671826e830b6a5891ae1195af9c1d19d1e71e6a07a90",
+  "camera_rate_during_motion_hz": 0.01,
+  "contact_monitor_ready": true,
+  "collision_preflight": [
+    {
+      "phase": "hover",
+      "clear": true,
+      "samples": 304,
+      "margin_per_box_m": 0.005
+    }
+  ],
+  "error": "Translation has unreachable IK or a discontinuous joint step",
+  "inter_arm_contacts": [],
+  "contact_messages": 16889,
+  "camera_rate_restored_hz": 5.0
+}

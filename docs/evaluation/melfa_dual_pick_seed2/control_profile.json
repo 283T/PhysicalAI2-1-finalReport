@@ -1,0 +1,191 @@
+{
+  "world_sha256": "2e64dbb11f26b352eac8671826e830b6a5891ae1195af9c1d19d1e71e6a07a90",
+  "arms": {
+    "left_arm": {
+      "base_pose": "0.03 -0.3 .12 0 0 3.141592653589793",
+      "controllers": [
+        {
+          "joint_name": "left_arm_rv4frl_joint_1",
+          "topic": "/left_arm/joint_0/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_rv4frl_joint_2",
+          "topic": "/left_arm/joint_1/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_rv4frl_joint_3",
+          "topic": "/left_arm/joint_2/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_rv4frl_joint_4",
+          "topic": "/left_arm/joint_3/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_rv4frl_joint_5",
+          "topic": "/left_arm/joint_4/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_rv4frl_joint_6",
+          "topic": "/left_arm/joint_5/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "left_arm_finger_left_joint",
+          "topic": "/left_arm/gripper/left/cmd",
+          "p_gain": "1000",
+          "d_gain": "5",
+          "i_gain": "40",
+          "i_max": "12",
+          "i_min": "-12",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "joint_name": "left_arm_finger_right_joint",
+          "topic": "/left_arm/gripper/right/cmd",
+          "p_gain": "1000",
+          "d_gain": "5",
+          "i_gain": "40",
+          "i_max": "12",
+          "i_min": "-12",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ]
+    },
+    "right_arm": {
+      "base_pose": "0.28 0.44 .12 0 0 0",
+      "controllers": [
+        {
+          "joint_name": "right_arm_rv4frl_joint_1",
+          "topic": "/right_arm/joint_0/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_rv4frl_joint_2",
+          "topic": "/right_arm/joint_1/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_rv4frl_joint_3",
+          "topic": "/right_arm/joint_2/cmd",
+          "p_gain": "180",
+          "d_gain": "2",
+          "i_gain": "100",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_rv4frl_joint_4",
+          "topic": "/right_arm/joint_3/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_rv4frl_joint_5",
+          "topic": "/right_arm/joint_4/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_rv4frl_joint_6",
+          "topic": "/right_arm/joint_5/cmd",
+          "p_gain": "80",
+          "d_gain": "0.1",
+          "i_gain": "40",
+          "i_max": "50.0",
+          "i_min": "-50.0",
+          "cmd_max": "50.0",
+          "cmd_min": "-50.0"
+        },
+        {
+          "joint_name": "right_arm_finger_left_joint",
+          "topic": "/right_arm/gripper/left/cmd",
+          "p_gain": "1000",
+          "d_gain": "5",
+          "i_gain": "40",
+          "i_max": "12",
+          "i_min": "-12",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "joint_name": "right_arm_finger_right_joint",
+          "topic": "/right_arm/gripper/right/cmd",
+          "p_gain": "1000",
+          "d_gain": "5",
+          "i_gain": "40",
+          "i_max": "12",
+          "i_min": "-12",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ]
+    }
+  }
+}

@@ -81,3 +81,5 @@ docker compose exec gui bash -c 'source /opt/ros/jazzy/setup.bash; gz sim -r sim
 Gazeboで端末を固定し、12セグメントを重力下で15秒実行した。リンク13個の姿勢を283回受信し、端末から最下点まで約278 mm垂れることを確認。[検証結果](evaluation/cable_validation.json)を保存した。姿勢はモデル内の座標で、リンク順序には依存しない。
 
 この確認は重力下の垂れのみ。実材料に合った弾性、動的な把持・揺れ、接触摩擦、張力の妥当性は未検証。双腕版を完成済みとは扱わない。
+
+双腕の二端末支持について、対向配置のMELFAでP1・P3の接触把持、約100 mmの協調持ち上げ、4秒保持、解放を確認した。[実装と測定結果](cooperative-pickup.md)。ワイヤー自体の支持と受け側への挿入は次の工程。

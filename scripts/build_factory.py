@@ -146,6 +146,8 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
 
 
 def main():
+    from arm_contacts import add_arm_contact_sensors
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--robot", choices=["ur3e", "melfa_rv4frl"], default="ur3e")
     parser.add_argument("--output", type=Path, default=ROOT / "sim/worlds")
@@ -204,6 +206,7 @@ def main():
     child(clip, "near", 0.05)
     child(clip, "far", 3)
     plugin(world, ("sensors", "Sensors"), render_engine="ogre")
+    add_arm_contact_sensors(world)
     ET.indent(tree)
     tree.write(args.output / "factory_prototype.sdf", encoding="utf-8", xml_declaration=True)
     # Keep motor validation independent of cable contact and camera rendering.

@@ -12,7 +12,7 @@ python3 scripts/run_perception_demo.py \
 
 `--pick-connector`は全3端末の6D観測を必須にする。シーンを生成して起動し、MacのローカルQwen3-VLで今回の図面を読み、基板と照合する。続いて全端末のIK計画を作り、動作直前にRGB-D画像を再取得して指定端末の把持候補を計算する。以前の画像を再生して動作する処理ではない。
 
-画像取得後は描画負荷を減らすためRGB-Dを5 Hzから0.01 Hzへ一時的に下げ、終了時に元へ戻す。[Gazebo Sensorsの更新頻度サービス](https://github.com/gazebosim/gz-sensors/blob/gz-sensors8/src/Sensor.cc)を使う。`--keep-camera`を追加すると通常の頻度を保つ。この段階の制御は取得済みの静止画像を使い、動作中の画像追従は行わない。
+画像取得後は描画負荷を減らすためRGB-Dを5 Hzから0.5 Hzへ一時的に下げ（以下の旧検証記録では0.01 Hz）、終了時に元へ戻す。[Gazebo Sensorsの更新頻度サービス](https://github.com/gazebosim/gz-sensors/blob/gz-sensors8/src/Sensor.cc)を使う。`--keep-camera`を追加すると通常の頻度を保つ。この段階の制御は取得済みの静止画像を使い、動作中の画像追従は行わない。
 
 すでに同じシーンがGUIコンテナで動いている場合は、次のCLIで再観測してから試験できる。
 

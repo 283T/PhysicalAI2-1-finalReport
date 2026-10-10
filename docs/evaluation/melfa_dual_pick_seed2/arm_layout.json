@@ -1,0 +1,11 @@
+{
+  "left_arm": {
+    "x_m": 0.03,
+    "y_m": -0.3
+  },
+  "right_arm": {
+    "x_m": 0.28,
+    "y_m": 0.44
+  },
+  "note": "Opposed MELFA bases with separate approach sectors. All-terminal endpoint IK, enclosing-box path screening and native inter-arm contact monitoring."
+}

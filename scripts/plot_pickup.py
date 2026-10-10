@@ -12,12 +12,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def export(source, output):
+def export(source, output, arm=None):
     output.mkdir(parents=True, exist_ok=True)
     rows = json.loads((source / "trajectory.json").read_text())
     rows = [row for row in rows if row["phase"] in ("approach", "close", "lift", "hold", "release")]
     if not rows:
         raise ValueError("No pickup approach trajectory")
+    if "plug" not in rows[0]:
+        if arm is None:
+            raise ValueError("Dual-arm traces require --arm left_arm or right_arm")
+        rows = [{**row, **row["arms"][arm]} for row in rows]
     start = rows[0]["sim_time_s"]
     times = [row["sim_time_s"] - start for row in rows]
     reference_row = next((r for r in reversed(rows) if r["phase"] == "close"), None)
@@ -57,7 +61,8 @@ def export(source, output):
                 t + 0.1, 1.01, phase, transform=ax.get_xaxis_transform(), va="bottom", fontsize=8
             )
     axes[-1].set_xlabel("Simulated time since approach began (s)")
-    fig.suptitle("MELFA pickup: measured motion (approach onward)")
+    label = f" ({arm})" if arm else ""
+    fig.suptitle("MELFA pickup" + label + ": measured motion (approach onward)")
     fig.tight_layout()
     fig.savefig(output / "pickup.png", dpi=160)
     plt.close(fig)
@@ -98,8 +103,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--arm", choices=("left_arm", "right_arm"))
     args = parser.parse_args()
-    export(args.source, args.output)
+    export(args.source, args.output, args.arm)
 
 
 if __name__ == "__main__":

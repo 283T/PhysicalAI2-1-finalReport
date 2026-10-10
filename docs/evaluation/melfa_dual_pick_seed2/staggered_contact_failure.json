@@ -1,0 +1,326 @@
+{
+  "success": false,
+  "plug_id": "P1",
+  "support_plug": "P2",
+  "assignment": {
+    "left_arm": "P1",
+    "right_arm": "P2"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "2532a10b0c3a8c4139928eecf150fc9e4efcb779449009b47bb53d44365fbe4a",
+  "camera_rate_during_motion_hz": 0.01,
+  "contact_monitor_ready": true,
+  "error": "Inter-arm collision detected; see inter_arm_contacts",
+  "inter_arm_contacts": [
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.9141445236665646e-05,
+        0.00017244020587348086,
+        6.613134636346274e-05,
+        0.00013924057679182145,
+        0.00010607423535979876,
+        0.00017748822992835755,
+        0.00019114785296003856,
+        0.00013396384394492866
+      ],
+      "sim_time_s": 13.1
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.780442400382668e-05,
+        0.00017102538458613203,
+        6.339929878051986e-05,
+        0.0001371065012200079,
+        0.00010456007321246741,
+        0.00010595028214555047,
+        0.00017608465230800618,
+        0.0001897234325464181,
+        0.00013232289348219517
+      ],
+      "sim_time_s": 13.101
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.6631205479718005e-05,
+        0.00016979066840261403,
+        6.115946554874352e-05,
+        0.00013539867567313735,
+        0.00010315846928043992,
+        0.0001884688338352758,
+        0.0001311458983859204
+      ],
+      "sim_time_s": 13.102
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.5445118314123576e-05,
+        0.00016861335077078543,
+        5.950196691495435e-05,
+        0.00013404036835373834,
+        0.00010190749104210806,
+        0.00018730716393111635,
+        0.0001300453790332723
+      ],
+      "sim_time_s": 13.103
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.434948160876196e-05,
+        0.00016754636458060634,
+        3.8361232265637923e-05,
+        5.819457109967896e-05,
+        0.00013293395570534994,
+        0.0001007776361227064,
+        0.00018626035717994593,
+        0.0001291095024188449
+      ],
+      "sim_time_s": 13.104
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.325108935338996e-05,
+        0.00016649102911736602,
+        3.727300552835988e-05,
+        5.704517145943555e-05,
+        0.0001319076625627691,
+        9.968268813231873e-05,
+        0.00018523110841661694,
+        0.00012815528534249054
+      ],
+      "sim_time_s": 13.105
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.2148290743292414e-05,
+        0.00016544025375087035,
+        3.618223789170205e-05,
+        5.60079692956128e-05,
+        0.00013093288165388905,
+        9.860804808203838e-05,
+        0.00018420957585141284,
+        0.00012717472880363623
+      ],
+      "sim_time_s": 13.106
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        5.069649692623912e-05,
+        0.0001640777624140055,
+        3.4787064832841885e-05,
+        5.514319263810741e-05,
+        0.0001300834396562589,
+        9.705906029633393e-05,
+        0.0001828637848381165,
+        0.00012642050288236284
+      ],
+      "sim_time_s": 13.107
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.940516632323533e-05,
+        0.00016286203656612486,
+        3.354081082074245e-05,
+        5.4329207442860294e-05,
+        0.00012927443167531916,
+        9.569757987737404e-05,
+        0.00018166400053998277,
+        0.0001256589746728709
+      ],
+      "sim_time_s": 13.108
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.8210106930013374e-05,
+        0.0001617199746044573,
+        3.2360618389959406e-05,
+        5.329599356473924e-05,
+        0.00012824451710935492,
+        9.45230116191631e-05,
+        0.00018054627078234464,
+        0.00012454243820148037
+      ],
+      "sim_time_s": 13.109
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.7139632696313605e-05,
+        0.000160695879090067,
+        3.1306690972621176e-05,
+        5.239935163448006e-05,
+        0.00012734932369762308,
+        9.345123661852472e-05,
+        0.00017953997760977725,
+        0.00012358372848997323
+      ],
+      "sim_time_s": 13.11
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.6042180685934575e-05,
+        0.00015964399575985055,
+        3.022330171731369e-05,
+        5.144947866353444e-05,
+        0.00012640065079694285,
+        9.236137564638813e-05,
+        0.0001785072605803295,
+        0.00012255560026219747
+      ],
+      "sim_time_s": 13.111
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.494472710137032e-05,
+        0.00015859210989788153,
+        2.9139912742004448e-05,
+        5.049962018788268e-05,
+        0.00012545199218672032,
+        9.127150730858791e-05,
+        0.00017747454093275383,
+        0.00012152749461014078
+      ],
+      "sim_time_s": 13.112
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.384727447248604e-05,
+        0.0001575402232210088,
+        2.8056524877695388e-05,
+        4.9549761594769315e-05,
+        0.00012450333345837006,
+        9.018164035212717e-05,
+        9.168613406351778e-05,
+        0.00017644182123977004,
+        0.00012049938957858775
+      ],
+      "sim_time_s": 13.113
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.2749822801280146e-05,
+        0.0001564883357297875,
+        2.6973138124608553e-05,
+        4.8599902865764655e-05,
+        0.00012355467459346237,
+        8.909177478655383e-05,
+        9.059843351499897e-05,
+        0.00017540910150415367,
+        0.00011947128514000482
+      ],
+      "sim_time_s": 13.114
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.165237208764161e-05,
+        0.0001554364474243286,
+        2.5889752482299855e-05,
+        4.765004400053563e-05,
+        0.00012260601559210826,
+        8.80019106118679e-05,
+        8.951073435736756e-05,
+        0.00017437638172546066,
+        0.00011844318129416997
+      ],
+      "sim_time_s": 13.115
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        4.055492233101532e-05,
+        0.0001543845583044101,
+        2.4806367950769292e-05,
+        4.670018499863815e-05,
+        0.00012165735645330855,
+        8.69120478276253e-05,
+        8.842303659040152e-05,
+        0.00015940335566677621,
+        0.00017334366190335793,
+        0.000117415078040084
+      ],
+      "sim_time_s": 13.116
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        3.94573621321781e-05,
+        0.00015333255731697637,
+        2.372286469554119e-05,
+        4.575012981877791e-05,
+        0.00012070850239342956,
+        8.582211252483596e-05,
+        8.733525796622565e-05,
+        0.0001583511567938567,
+        0.00017231083819901905,
+        0.00011638672665992278
+      ],
+      "sim_time_s": 13.117
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        3.8359802885690186e-05,
+        0.0001522805555045359,
+        2.2639362535770147e-05,
+        4.4800074393114286e-05,
+        0.00013049820560012693,
+        8.47321786471289e-05,
+        0.00015729895708116448,
+        0.0001712780144470516,
+        0.00011535837571963192
+      ],
+      "sim_time_s": 13.118
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_shoulder::left_arm_rv4frl_shoulder_collision",
+      "collision2": "right_arm::right_arm_rv4frl_forearm::right_arm_rv4frl_forearm_collision",
+      "depth_m": [
+        3.730796336975928e-05,
+        0.0001512875330486052,
+        2.1630249463333584e-05,
+        4.4190131349264306e-05,
+        0.00012949860769909116,
+        8.358454166590423e-05,
+        0.0001562903392114956,
+        0.00017028989330492017,
+        0.00011481281248637565
+      ],
+      "sim_time_s": 13.119
+    }
+  ],
+  "contact_messages": 8748,
+  "camera_rate_restored_hz": 5.0
+}
