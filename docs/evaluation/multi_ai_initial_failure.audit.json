@@ -1,0 +1,22 @@
+{
+  "model": "qwen3-vl:2b-instruct",
+  "image_sha256": "472aa194c6e0f7fd36af0ac175ee6120e420c72b74d809adcd9c8f9e4b04ebbd",
+  "elapsed_seconds": 47.241763625,
+  "response": {
+    "model": "qwen3-vl:2b-instruct",
+    "created_at": "2026-10-10T13:17:14.617702Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"drawing_id\": \"HARNESS CONNECTION D100\",\n  \"board_id\": \"B100\",\n  \"harness_id\": \"D100\",\n  \"connections\": [\n    {\n      \"plug_id\": \"WH1\",\n      \"socket\": \"P1\",\n      \"x_mm\": 144,\n      \"y_mm\": 52,\n      \"yaw_deg\": 0\n    },\n    {\n      \"plug_id\": \"WH1\",\n      \"socket\": \"P2\",\n      \"x_mm\": 52,\n      \"y_mm\": 139,\n      \"yaw_deg\": 0\n    },\n    {\n      \"plug_id\": \"WH1\",\n      \"socket\": \"P3\",\n      \"x_mm\": 51,\n      \"y_mm\": 48,\n      \"yaw_deg\": 0\n    }\n  ]\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 47170116667,
+    "load_duration": 3735280250,
+    "prompt_eval_count": 2122,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 31790154000,
+    "eval_count": 193,
+    "eval_duration": 11592952000
+  }
+}

@@ -1,0 +1,5548 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="multi_connector_factory">
+    <physics name="physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <gravity>0 0 -9.81</gravity>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <light name="sun" type="directional">
+      <pose>0 0 3 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <direction>-0.3 -0.3 -1</direction>
+    </light>
+    <model name="fixtures">
+      <static>true</static>
+      <link name="fixture_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+          </inertia>
+        </inertial>
+        <collision name="table_collision">
+          <pose>0 0 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="table_visual">
+          <pose>0 0 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.2 0.8 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.4 0.4 0.45 1</diffuse>
+            <ambient>0.4 0.4 0.45 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_0_collision">
+          <pose>0.179 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_0_visual">
+          <pose>0.179 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_1_collision">
+          <pose>0.179 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_1_visual">
+          <pose>0.179 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_2_collision">
+          <pose>0.179 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_2_visual">
+          <pose>0.179 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_3_collision">
+          <pose>0.179 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_3_visual">
+          <pose>0.179 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_4_collision">
+          <pose>0.179 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_4_visual">
+          <pose>0.179 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_5_collision">
+          <pose>0.179 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_5_visual">
+          <pose>0.179 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_6_collision">
+          <pose>0.179 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_6_visual">
+          <pose>0.179 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_7_collision">
+          <pose>0.179 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_7_visual">
+          <pose>0.179 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_8_collision">
+          <pose>0.179 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_8_visual">
+          <pose>0.179 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_9_collision">
+          <pose>0.179 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_9_visual">
+          <pose>0.179 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_10_collision">
+          <pose>0.179 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_10_visual">
+          <pose>0.179 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.03799999999999998 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_0_collision">
+          <pose>0.20199999999999999 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_0_visual">
+          <pose>0.20199999999999999 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_1_collision">
+          <pose>0.20199999999999999 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_1_visual">
+          <pose>0.20199999999999999 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_2_collision">
+          <pose>0.20199999999999999 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_2_visual">
+          <pose>0.20199999999999999 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_3_collision">
+          <pose>0.20199999999999999 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_3_visual">
+          <pose>0.20199999999999999 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_4_collision">
+          <pose>0.20199999999999999 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_4_visual">
+          <pose>0.20199999999999999 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_5_collision">
+          <pose>0.20199999999999999 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_5_visual">
+          <pose>0.20199999999999999 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_6_collision">
+          <pose>0.20199999999999999 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_6_visual">
+          <pose>0.20199999999999999 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_8_collision">
+          <pose>0.20199999999999999 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_8_visual">
+          <pose>0.20199999999999999 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_9_collision">
+          <pose>0.20199999999999999 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_9_visual">
+          <pose>0.20199999999999999 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_10_collision">
+          <pose>0.20199999999999999 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_10_visual">
+          <pose>0.20199999999999999 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_0_collision">
+          <pose>0.208 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_0_visual">
+          <pose>0.208 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_1_collision">
+          <pose>0.208 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_1_visual">
+          <pose>0.208 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_2_collision">
+          <pose>0.208 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_2_visual">
+          <pose>0.208 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_3_collision">
+          <pose>0.208 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_3_visual">
+          <pose>0.208 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_4_collision">
+          <pose>0.208 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_4_visual">
+          <pose>0.208 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_5_collision">
+          <pose>0.208 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_5_visual">
+          <pose>0.208 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_6_collision">
+          <pose>0.208 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_6_visual">
+          <pose>0.208 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_7_collision">
+          <pose>0.208 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_7_visual">
+          <pose>0.208 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_8_collision">
+          <pose>0.208 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_8_visual">
+          <pose>0.208 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_9_collision">
+          <pose>0.208 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_9_visual">
+          <pose>0.208 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_10_collision">
+          <pose>0.208 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_10_visual">
+          <pose>0.208 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000036 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_0_collision">
+          <pose>0.214 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_0_visual">
+          <pose>0.214 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_2_collision">
+          <pose>0.214 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_2_visual">
+          <pose>0.214 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_4_collision">
+          <pose>0.214 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_4_visual">
+          <pose>0.214 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_5_collision">
+          <pose>0.214 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_5_visual">
+          <pose>0.214 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_6_collision">
+          <pose>0.214 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_6_visual">
+          <pose>0.214 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_7_collision">
+          <pose>0.214 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_7_visual">
+          <pose>0.214 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_8_collision">
+          <pose>0.214 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_8_visual">
+          <pose>0.214 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_9_collision">
+          <pose>0.214 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_9_visual">
+          <pose>0.214 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_10_collision">
+          <pose>0.214 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_10_visual">
+          <pose>0.214 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_0_collision">
+          <pose>0.222 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_0_visual">
+          <pose>0.222 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_1_collision">
+          <pose>0.222 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_1_visual">
+          <pose>0.222 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_2_collision">
+          <pose>0.222 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_2_visual">
+          <pose>0.222 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_3_collision">
+          <pose>0.222 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_3_visual">
+          <pose>0.222 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_4_collision">
+          <pose>0.222 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_4_visual">
+          <pose>0.222 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_5_collision">
+          <pose>0.222 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_5_visual">
+          <pose>0.222 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_6_collision">
+          <pose>0.222 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_6_visual">
+          <pose>0.222 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_8_collision">
+          <pose>0.222 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_8_visual">
+          <pose>0.222 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_9_collision">
+          <pose>0.222 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_9_visual">
+          <pose>0.222 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_10_collision">
+          <pose>0.222 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_10_visual">
+          <pose>0.222 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_0_collision">
+          <pose>0.273 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_0_visual">
+          <pose>0.273 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_1_collision">
+          <pose>0.273 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_1_visual">
+          <pose>0.273 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_2_collision">
+          <pose>0.273 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_2_visual">
+          <pose>0.273 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_3_collision">
+          <pose>0.273 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_3_visual">
+          <pose>0.273 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_4_collision">
+          <pose>0.273 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_4_visual">
+          <pose>0.273 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_5_collision">
+          <pose>0.273 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_5_visual">
+          <pose>0.273 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_6_collision">
+          <pose>0.273 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_6_visual">
+          <pose>0.273 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_7_collision">
+          <pose>0.273 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_7_visual">
+          <pose>0.273 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_8_collision">
+          <pose>0.273 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_8_visual">
+          <pose>0.273 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_9_collision">
+          <pose>0.273 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_9_visual">
+          <pose>0.273 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_10_collision">
+          <pose>0.273 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_10_visual">
+          <pose>0.273 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.094 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_0_collision">
+          <pose>0.324 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_0_visual">
+          <pose>0.324 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_1_collision">
+          <pose>0.324 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_1_visual">
+          <pose>0.324 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_2_collision">
+          <pose>0.324 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_2_visual">
+          <pose>0.324 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_3_collision">
+          <pose>0.324 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_3_visual">
+          <pose>0.324 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_4_collision">
+          <pose>0.324 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_4_visual">
+          <pose>0.324 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_6_collision">
+          <pose>0.324 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_6_visual">
+          <pose>0.324 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_7_collision">
+          <pose>0.324 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_7_visual">
+          <pose>0.324 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_8_collision">
+          <pose>0.324 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_8_visual">
+          <pose>0.324 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_10_collision">
+          <pose>0.324 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_10_visual">
+          <pose>0.324 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_0_collision">
+          <pose>0.354 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_0_visual">
+          <pose>0.354 0.0945 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.028999999999999998 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_1_collision">
+          <pose>0.354 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_1_visual">
+          <pose>0.354 0.113 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_2_collision">
+          <pose>0.354 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_2_visual">
+          <pose>0.354 0.123 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.011999999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_3_collision">
+          <pose>0.354 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_3_visual">
+          <pose>0.354 0.133 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_4_collision">
+          <pose>0.354 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_4_visual">
+          <pose>0.354 0.1655 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.056999999999999995 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_5_collision">
+          <pose>0.354 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_5_visual">
+          <pose>0.354 0.198 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_6_collision">
+          <pose>0.354 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_6_visual">
+          <pose>0.354 0.203 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_7_collision">
+          <pose>0.354 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_7_visual">
+          <pose>0.354 0.20800000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_8_collision">
+          <pose>0.354 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_8_visual">
+          <pose>0.354 0.21300000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.0020000000000000018 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_9_collision">
+          <pose>0.354 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_9_visual">
+          <pose>0.354 0.21800000000000003 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_10_collision">
+          <pose>0.354 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_10_visual">
+          <pose>0.354 0.23600000000000002 0.09000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05199999999999999 0.02799999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_0_0_collision">
+          <pose>0.336 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_0_0_visual">
+          <pose>0.336 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_0_1_collision">
+          <pose>0.324 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_0_1_visual">
+          <pose>0.324 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_0_2_collision">
+          <pose>0.312 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_0_2_visual">
+          <pose>0.312 0.18600000000000005 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_1_0_collision">
+          <pose>0.336 0.198 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_1_0_visual">
+          <pose>0.336 0.198 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_1_2_collision">
+          <pose>0.312 0.198 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_1_2_visual">
+          <pose>0.312 0.198 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_2_0_collision">
+          <pose>0.336 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_2_0_visual">
+          <pose>0.336 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_2_1_collision">
+          <pose>0.324 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_2_1_visual">
+          <pose>0.324 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_2_2_collision">
+          <pose>0.312 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_2_2_visual">
+          <pose>0.312 0.20800000000000002 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_3_0_collision">
+          <pose>0.336 0.21800000000000003 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_3_0_visual">
+          <pose>0.336 0.21800000000000003 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_3_2_collision">
+          <pose>0.312 0.21800000000000003 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_3_2_visual">
+          <pose>0.312 0.21800000000000003 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_4_0_collision">
+          <pose>0.336 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_4_0_visual">
+          <pose>0.336 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_4_1_collision">
+          <pose>0.324 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_4_1_visual">
+          <pose>0.324 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J1_4_2_collision">
+          <pose>0.312 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J1_4_2_visual">
+          <pose>0.312 0.22999999999999998 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01599999999999996 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_0_0_collision">
+          <pose>0.226 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.016 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_0_0_visual">
+          <pose>0.226 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.016 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_0_1_collision">
+          <pose>0.214 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_0_1_visual">
+          <pose>0.214 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_0_2_collision">
+          <pose>0.20199999999999999 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_0_2_visual">
+          <pose>0.20199999999999999 0.101 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_1_0_collision">
+          <pose>0.226 0.11299999999999999 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.016 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_1_0_visual">
+          <pose>0.226 0.11299999999999999 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.016 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_1_2_collision">
+          <pose>0.20199999999999999 0.11299999999999999 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_1_2_visual">
+          <pose>0.20199999999999999 0.11299999999999999 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_2_0_collision">
+          <pose>0.226 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.016 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_2_0_visual">
+          <pose>0.226 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.016 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_2_1_collision">
+          <pose>0.214 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_2_1_visual">
+          <pose>0.214 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_2_2_collision">
+          <pose>0.20199999999999999 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_2_2_visual">
+          <pose>0.20199999999999999 0.123 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_3_0_collision">
+          <pose>0.226 0.133 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.016 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_3_0_visual">
+          <pose>0.226 0.133 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.016 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_3_2_collision">
+          <pose>0.20199999999999999 0.133 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_3_2_visual">
+          <pose>0.20199999999999999 0.133 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_4_0_collision">
+          <pose>0.226 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.016 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_4_0_visual">
+          <pose>0.226 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.016 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_4_1_collision">
+          <pose>0.214 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_4_1_visual">
+          <pose>0.214 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J2_4_2_collision">
+          <pose>0.20199999999999999 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J2_4_2_visual">
+          <pose>0.20199999999999999 0.145 0.12000000000000001 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_0_0_collision">
+          <pose>0.19 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_0_0_visual">
+          <pose>0.19 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_0_1_collision">
+          <pose>0.19 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_0_1_visual">
+          <pose>0.19 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_0_2_collision">
+          <pose>0.19 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_0_2_visual">
+          <pose>0.19 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_1_0_collision">
+          <pose>0.20199999999999999 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_1_0_visual">
+          <pose>0.20199999999999999 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_1_2_collision">
+          <pose>0.20199999999999999 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_1_2_visual">
+          <pose>0.20199999999999999 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_2_0_collision">
+          <pose>0.212 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_2_0_visual">
+          <pose>0.212 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_2_1_collision">
+          <pose>0.212 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_2_1_visual">
+          <pose>0.212 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_2_2_collision">
+          <pose>0.212 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_2_2_visual">
+          <pose>0.212 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_3_0_collision">
+          <pose>0.222 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_3_0_visual">
+          <pose>0.222 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_3_2_collision">
+          <pose>0.222 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_3_2_visual">
+          <pose>0.222 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_4_0_collision">
+          <pose>0.23399999999999999 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_4_0_visual">
+          <pose>0.23399999999999999 0.196 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_4_1_collision">
+          <pose>0.23399999999999999 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_4_1_visual">
+          <pose>0.23399999999999999 0.20800000000000002 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.008000000000000007 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <collision name="socket_J3_4_2_collision">
+          <pose>0.23399999999999999 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="socket_J3_4_2_visual">
+          <pose>0.23399999999999999 0.22000000000000003 0.12000000000000001 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.015999999999999986 0.015999999999999986 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="left_arm">
+      <joint name="left_arm_base_joint" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
+        <parent>world</parent>
+        <child>left_arm_base_link</child>
+      </joint>
+      <link name="left_arm_base_link">
+        <pose relative_to="left_arm_base_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.0030531654453999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0030531654453999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.0056249999999999998</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_base_link_inertia_collision">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/base.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_base_link_inertia_visual">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/base.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_shoulder_pan_joint" type="revolute">
+        <pose relative_to="left_arm_base_link">0 0 0.15185000000000001 0 0 3.1415926535897931</pose>
+        <parent>left_arm_base_link</parent>
+        <child>left_arm_shoulder_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_shoulder_link">
+        <pose relative_to="left_arm_shoulder_pan_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.02 1.570796326794897 0 0</pose>
+          <mass>1.98</mass>
+          <inertia>
+            <ixx>0.0027656999999999998</ixx>
+            <ixy>9.5999999999999996e-06</ixy>
+            <ixz>-1.49e-05</ixz>
+            <iyy>0.0021500999999999998</iyy>
+            <iyz>0.0001873</iyz>
+            <izz>0.0025625999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_shoulder_link_collision">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/shoulder.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_shoulder_link_visual">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/shoulder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_shoulder_lift_joint" type="revolute">
+        <pose relative_to="left_arm_shoulder_link">0 0 0 1.5707963270000003 0 0</pose>
+        <parent>left_arm_shoulder_link</parent>
+        <child>left_arm_upper_arm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_upper_arm_link">
+        <pose relative_to="left_arm_shoulder_lift_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.11355 0 0.1157 0 0 0</pose>
+          <mass>3.4445000000000001</mass>
+          <inertia>
+            <ixx>0.0042623000000000001</ixx>
+            <ixy>-4.0899999999999998e-05</ixy>
+            <ixz>-0.0014959999999999999</ixz>
+            <iyy>0.046028399999999997</iyy>
+            <iyz>-1.29e-05</iyz>
+            <izz>0.044894700000000003</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_upper_arm_link_collision">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/upperarm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_upper_arm_link_visual">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/upperarm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_elbow_joint" type="revolute">
+        <pose relative_to="left_arm_upper_arm_link">-0.24354999999999999 0 0 0 0 0</pose>
+        <parent>left_arm_upper_arm_link</parent>
+        <child>left_arm_forearm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.1415926535897931</lower>
+            <upper>3.1415926535897931</upper>
+            <effort>28</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_forearm_link">
+        <pose relative_to="left_arm_elbow_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.16320000000000001 0 0.023800000000000002 0 0 0</pose>
+          <mass>1.4370000000000001</mass>
+          <inertia>
+            <ixx>0.0010510999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>-3.3099999999999998e-05</ixz>
+            <iyy>0.0113396</iyy>
+            <iyz>2.2000000000000001e-06</iyz>
+            <izz>0.0110895</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_forearm_link_collision">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/forearm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_forearm_link_visual">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/forearm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_1_joint" type="revolute">
+        <pose relative_to="left_arm_forearm_link">-0.2132 0 0.13105 0 0 0</pose>
+        <parent>left_arm_forearm_link</parent>
+        <child>left_arm_wrist_1_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_1_link">
+        <pose relative_to="left_arm_wrist_1_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.01 0 1.570796326794897 0 0</pose>
+          <mass>0.871</mass>
+          <inertia>
+            <ixx>0.00081740000000000003</ixx>
+            <ixy>-4.9999999999999998e-07</ixy>
+            <ixz>2.0999999999999998e-06</ixz>
+            <iyy>0.00068440000000000005</iyy>
+            <iyz>6.1699999999999995e-05</iyz>
+            <izz>0.00054969999999999997</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_1_link_collision">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_1_link_visual">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_2_joint" type="revolute">
+        <pose relative_to="left_arm_wrist_1_link">0 -0.085349999999999995 -1.750557762378351e-11 1.5707963270000003 0 0</pose>
+        <parent>left_arm_wrist_1_link</parent>
+        <child>left_arm_wrist_2_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_2_link">
+        <pose relative_to="left_arm_wrist_2_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0.01 0 -1.570796326794897 0 0</pose>
+          <mass>0.80500000000000005</mass>
+          <inertia>
+            <ixx>0.00060590000000000004</ixx>
+            <ixy>-5.9999999999999997e-07</ixy>
+            <ixz>-5.9999999999999997e-07</ixz>
+            <iyy>0.00058370000000000004</iyy>
+            <iyz>-2.7100000000000001e-05</iyz>
+            <izz>0.00038309999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_2_link_collision">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist2.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_2_link_visual">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_3_joint" type="revolute">
+        <pose relative_to="left_arm_wrist_2_link">0 0.092100000000000001 -1.8890025766261998e-11 -1.5707963270000003 1.2246467991473527e-16 -1.2246467991473527e-16</pose>
+        <parent>left_arm_wrist_2_link</parent>
+        <child>left_arm_wrist_3_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_3_link">
+        <pose relative_to="left_arm_wrist_3_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.016784565916398719 0 0 0</pose>
+          <mass>0.311</mass>
+          <inertia>
+            <ixx>0.00014478456591639869</ixx>
+            <ixy>-9.9999999999999995e-08</ixy>
+            <ixz>-9.9999999999999995e-08</ixz>
+            <iyy>0.00014538456591639871</iyy>
+            <iyz>-1.9999999999999999e-07</iyz>
+            <izz>0.0001571</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_3_link_collision">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist3.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="left_arm_wrist_3_link_fixed_joint_lump__finger_-1_collision_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="left_arm_wrist_3_link_fixed_joint_lump__finger_1_collision_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_3_link_visual">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="left_arm_wrist_3_link_fixed_joint_lump__finger_-1_visual_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="left_arm_wrist_3_link_fixed_joint_lump__finger_1_visual_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <frame name="left_arm_base_link-base_fixed_joint" attached_to="left_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="left_arm_base" attached_to="left_arm_base_link-base_fixed_joint">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_base_link-base_link_inertia" attached_to="left_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="left_arm_base_link_inertia" attached_to="left_arm_base_link-base_link_inertia">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_gripper_mount" attached_to="left_arm_tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_gripper" attached_to="left_arm_gripper_mount">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_flange-tool0" attached_to="left_arm_flange">
+        <pose>0 0 0 1.5707963267948959 -5.5511151231257827e-17 1.5707963267948959</pose>
+      </frame>
+      <frame name="left_arm_tool0" attached_to="left_arm_flange-tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_wrist_3-flange" attached_to="left_arm_wrist_3_link">
+        <pose>0 0 0 -1.5707963267948957 -1.5707963267948966 0</pose>
+      </frame>
+      <frame name="left_arm_flange" attached_to="left_arm_wrist_3-flange">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_wrist_3_link-ft_frame" attached_to="left_arm_wrist_3_link">
+        <pose>0 0 0 3.1415926535897931 0 0</pose>
+      </frame>
+      <frame name="left_arm_ft_frame" attached_to="left_arm_wrist_3_link-ft_frame">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>-0.15 -0.28 .12 0 0 3.141592653589793</pose>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_shoulder_pan_joint</joint_name>
+        <topic>/left_arm/joint_0/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_shoulder_lift_joint</joint_name>
+        <topic>/left_arm/joint_1/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_elbow_joint</joint_name>
+        <topic>/left_arm/joint_2/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>28.0</i_max>
+        <i_min>-28.0</i_min>
+        <cmd_max>28.0</cmd_max>
+        <cmd_min>-28.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_wrist_1_joint</joint_name>
+        <topic>/left_arm/joint_3/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_wrist_2_joint</joint_name>
+        <topic>/left_arm/joint_4/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>left_arm_wrist_3_joint</joint_name>
+        <topic>/left_arm/joint_5/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+        <topic>/left_arm/joints</topic>
+      </plugin>
+    </model>
+    <model name="right_arm">
+      <joint name="right_arm_base_joint" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
+        <parent>world</parent>
+        <child>right_arm_base_link</child>
+      </joint>
+      <link name="right_arm_base_link">
+        <pose relative_to="right_arm_base_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.0030531654453999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0030531654453999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.0056249999999999998</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_base_link_inertia_collision">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/base.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_base_link_inertia_visual">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/base.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_shoulder_pan_joint" type="revolute">
+        <pose relative_to="right_arm_base_link">0 0 0.15185000000000001 0 0 3.1415926535897931</pose>
+        <parent>right_arm_base_link</parent>
+        <child>right_arm_shoulder_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_shoulder_link">
+        <pose relative_to="right_arm_shoulder_pan_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.02 1.570796326794897 0 0</pose>
+          <mass>1.98</mass>
+          <inertia>
+            <ixx>0.0027656999999999998</ixx>
+            <ixy>9.5999999999999996e-06</ixy>
+            <ixz>-1.49e-05</ixz>
+            <iyy>0.0021500999999999998</iyy>
+            <iyz>0.0001873</iyz>
+            <izz>0.0025625999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_shoulder_link_collision">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/shoulder.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_shoulder_link_visual">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/shoulder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_shoulder_lift_joint" type="revolute">
+        <pose relative_to="right_arm_shoulder_link">0 0 0 1.5707963270000003 0 0</pose>
+        <parent>right_arm_shoulder_link</parent>
+        <child>right_arm_upper_arm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_upper_arm_link">
+        <pose relative_to="right_arm_shoulder_lift_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.11355 0 0.1157 0 0 0</pose>
+          <mass>3.4445000000000001</mass>
+          <inertia>
+            <ixx>0.0042623000000000001</ixx>
+            <ixy>-4.0899999999999998e-05</ixy>
+            <ixz>-0.0014959999999999999</ixz>
+            <iyy>0.046028399999999997</iyy>
+            <iyz>-1.29e-05</iyz>
+            <izz>0.044894700000000003</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_upper_arm_link_collision">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/upperarm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_upper_arm_link_visual">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/upperarm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_elbow_joint" type="revolute">
+        <pose relative_to="right_arm_upper_arm_link">-0.24354999999999999 0 0 0 0 0</pose>
+        <parent>right_arm_upper_arm_link</parent>
+        <child>right_arm_forearm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.1415926535897931</lower>
+            <upper>3.1415926535897931</upper>
+            <effort>28</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_forearm_link">
+        <pose relative_to="right_arm_elbow_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.16320000000000001 0 0.023800000000000002 0 0 0</pose>
+          <mass>1.4370000000000001</mass>
+          <inertia>
+            <ixx>0.0010510999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>-3.3099999999999998e-05</ixz>
+            <iyy>0.0113396</iyy>
+            <iyz>2.2000000000000001e-06</iyz>
+            <izz>0.0110895</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_forearm_link_collision">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/forearm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_forearm_link_visual">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/forearm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_1_joint" type="revolute">
+        <pose relative_to="right_arm_forearm_link">-0.2132 0 0.13105 0 0 0</pose>
+        <parent>right_arm_forearm_link</parent>
+        <child>right_arm_wrist_1_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_1_link">
+        <pose relative_to="right_arm_wrist_1_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.01 0 1.570796326794897 0 0</pose>
+          <mass>0.871</mass>
+          <inertia>
+            <ixx>0.00081740000000000003</ixx>
+            <ixy>-4.9999999999999998e-07</ixy>
+            <ixz>2.0999999999999998e-06</ixz>
+            <iyy>0.00068440000000000005</iyy>
+            <iyz>6.1699999999999995e-05</iyz>
+            <izz>0.00054969999999999997</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_1_link_collision">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_1_link_visual">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_2_joint" type="revolute">
+        <pose relative_to="right_arm_wrist_1_link">0 -0.085349999999999995 -1.750557762378351e-11 1.5707963270000003 0 0</pose>
+        <parent>right_arm_wrist_1_link</parent>
+        <child>right_arm_wrist_2_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_2_link">
+        <pose relative_to="right_arm_wrist_2_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0.01 0 -1.570796326794897 0 0</pose>
+          <mass>0.80500000000000005</mass>
+          <inertia>
+            <ixx>0.00060590000000000004</ixx>
+            <ixy>-5.9999999999999997e-07</ixy>
+            <ixz>-5.9999999999999997e-07</ixz>
+            <iyy>0.00058370000000000004</iyy>
+            <iyz>-2.7100000000000001e-05</iyz>
+            <izz>0.00038309999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_2_link_collision">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist2.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_2_link_visual">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_3_joint" type="revolute">
+        <pose relative_to="right_arm_wrist_2_link">0 0.092100000000000001 -1.8890025766261998e-11 -1.5707963270000003 1.2246467991473527e-16 -1.2246467991473527e-16</pose>
+        <parent>right_arm_wrist_2_link</parent>
+        <child>right_arm_wrist_3_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_3_link">
+        <pose relative_to="right_arm_wrist_3_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.016784565916398719 0 0 0</pose>
+          <mass>0.311</mass>
+          <inertia>
+            <ixx>0.00014478456591639869</ixx>
+            <ixy>-9.9999999999999995e-08</ixy>
+            <ixz>-9.9999999999999995e-08</ixz>
+            <iyy>0.00014538456591639871</iyy>
+            <iyz>-1.9999999999999999e-07</iyz>
+            <izz>0.0001571</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_3_link_collision">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist3.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="right_arm_wrist_3_link_fixed_joint_lump__finger_-1_collision_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_wrist_3_link_fixed_joint_lump__finger_1_collision_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_3_link_visual">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="right_arm_wrist_3_link_fixed_joint_lump__finger_-1_visual_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_wrist_3_link_fixed_joint_lump__finger_1_visual_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <frame name="right_arm_base_link-base_fixed_joint" attached_to="right_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="right_arm_base" attached_to="right_arm_base_link-base_fixed_joint">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_base_link-base_link_inertia" attached_to="right_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="right_arm_base_link_inertia" attached_to="right_arm_base_link-base_link_inertia">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_gripper_mount" attached_to="right_arm_tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_gripper" attached_to="right_arm_gripper_mount">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_flange-tool0" attached_to="right_arm_flange">
+        <pose>0 0 0 1.5707963267948959 -5.5511151231257827e-17 1.5707963267948959</pose>
+      </frame>
+      <frame name="right_arm_tool0" attached_to="right_arm_flange-tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_wrist_3-flange" attached_to="right_arm_wrist_3_link">
+        <pose>0 0 0 -1.5707963267948957 -1.5707963267948966 0</pose>
+      </frame>
+      <frame name="right_arm_flange" attached_to="right_arm_wrist_3-flange">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_wrist_3_link-ft_frame" attached_to="right_arm_wrist_3_link">
+        <pose>0 0 0 3.1415926535897931 0 0</pose>
+      </frame>
+      <frame name="right_arm_ft_frame" attached_to="right_arm_wrist_3_link-ft_frame">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>0.38 -0.28 .12 0 0 0</pose>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_shoulder_pan_joint</joint_name>
+        <topic>/right_arm/joint_0/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_shoulder_lift_joint</joint_name>
+        <topic>/right_arm/joint_1/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_elbow_joint</joint_name>
+        <topic>/right_arm/joint_2/cmd</topic>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>28.0</i_max>
+        <i_min>-28.0</i_min>
+        <cmd_max>28.0</cmd_max>
+        <cmd_min>-28.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_wrist_1_joint</joint_name>
+        <topic>/right_arm/joint_3/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_wrist_2_joint</joint_name>
+        <topic>/right_arm/joint_4/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_wrist_3_joint</joint_name>
+        <topic>/right_arm/joint_5/cmd</topic>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+        <topic>/right_arm/joints</topic>
+      </plugin>
+    </model>
+    <model name="conveyor_carrier">
+      <link name="carrier">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+          </inertia>
+        </inertial>
+        <collision name="pallet_collision">
+          <pose>-.30 .05 .11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.60 .65 .02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pallet_visual">
+          <pose>-.30 .05 .11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.60 .65 .02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.35 .4 .45 1</diffuse>
+            <ambient>.35 .4 .45 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="travel" type="prismatic">
+        <parent>world</parent>
+        <child>carrier</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.15</lower>
+            <upper>0.3</upper>
+          </limit>
+        </axis>
+      </joint>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>travel</joint_name>
+        <topic>/conveyor/cmd</topic>
+        <p_gain>400</p_gain>
+        <d_gain>40</d_gain>
+        <cmd_max>20</cmd_max>
+        <cmd_min>-20</cmd_min>
+      </plugin>
+    </model>
+    <model name="overhead_camera">
+      <static>true</static>
+      <link name="camera_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+          </inertia>
+        </inertial>
+        <pose>0 0 .95 0 1.57079632679 0</pose>
+        <sensor name="rgb" type="camera">
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <topic>/factory/image</topic>
+          <camera>
+            <horizontal_fov>1.4</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.05</near>
+              <far>3</far>
+            </clip>
+          </camera>
+        </sensor>
+      </link>
+    </model>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre</render_engine>
+    </plugin>
+    <model name="wire_harness_multi">
+      <pose>-0.2771982864055375 0.06791309948237398 0.177 0 0 -2.7862699307877987</pose>
+      <link name="junction">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.02</mass>
+          <inertia>
+            <ixx>1.041666666666667e-06</ixx>
+            <iyy>1.041666666666667e-06</iyy>
+            <izz>1.041666666666667e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name="bundle_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.014 .014 .014</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="bundle_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.014 .014 .014</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.08 .08 .08 1</diffuse>
+            <ambient>.08 .08 .08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <link name="P1_wire_0">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.011969839439638825 -0.0036017972998583503 0 0 0 -0.29228784051704826</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_0" type="universal">
+        <parent>junction</parent>
+        <child>P1_wire_0</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_1">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.03604999952775245 -0.010300388714785532 0 0 0 -0.2503504807508671</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_1" type="universal">
+        <parent>P1_wire_0</parent>
+        <child>P1_wire_1</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_2">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.06038982622366196 -0.015983528096008493 0 0 0 -0.2084131209846859</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_2" type="universal">
+        <parent>P1_wire_1</parent>
+        <child>P1_wire_2</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_3">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.08494651832195108 -0.020641221731612026 0 0 0 -0.16647576121850471</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_3" type="universal">
+        <parent>P1_wire_2</parent>
+        <child>P1_wire_3</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_4">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.10967689326277764 -0.02426527914002228 0 0 0 -0.1245384014523235</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_4" type="universal">
+        <parent>P1_wire_3</parent>
+        <child>P1_wire_4</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_5">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.13453746306773132 -0.026849327472840787 0 0 0 -0.08260104168614231</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_5" type="universal">
+        <parent>P1_wire_4</parent>
+        <child>P1_wire_5</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_6">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.15948451081276488 -0.028388822721398952 0 0 0 -0.040663681919961114</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_6" type="universal">
+        <parent>P1_wire_5</parent>
+        <child>P1_wire_6</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_7">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.18447416750372295 -0.02888105770732635 0 0 0 0.0012736778462200948</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_7" type="universal">
+        <parent>P1_wire_6</parent>
+        <child>P1_wire_7</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1_wire_8">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>0.2094624892192837 -0.02832516684308167 0 0 0 0.043211037612401276</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P1_bend_8" type="universal">
+        <parent>P1_wire_7</parent>
+        <child>P1_wire_8</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P1">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>1.3020833333333337e-06</ixx>
+            <iyy>1.3020833333333337e-06</iyy>
+            <izz>1.3020833333333337e-06</izz>
+          </inertia>
+        </inertial>
+        <pose>0.24193215204138602 -0.026921245114855573 0 0 0 0.043211037612401276</pose>
+        <collision name="housing_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="housing_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.9 0.25 0.08 1</diffuse>
+            <ambient>0.9 0.25 0.08 1</ambient>
+          </material>
+        </visual>
+        <visual name="orientation_mark_visual">
+          <pose>.01 0 .0105 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.012 .006 .001</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <collision name="pin_0_collision">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_0_visual">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="pin_1_collision">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_1_visual">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="P1_termination" type="fixed">
+        <parent>P1_wire_8</parent>
+        <child>P1</child>
+        <pose>-.02 0 0 0 0 0</pose>
+      </joint>
+      <link name="P2_wire_0">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.006097028302508571 0.01091220627913574 0 0 0 2.0803208983936416</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_0" type="universal">
+        <parent>junction</parent>
+        <child>P2_wire_0</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_1">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.01852121200269335 0.03260481628789389 0 0 0 2.1015371985736695</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_1" type="universal">
+        <parent>P2_wire_0</parent>
+        <child>P2_wire_1</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_2">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.031402801948769946 0.05402896878149676 0 0 0 2.122753498753697</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_2" type="universal">
+        <parent>P2_wire_1</parent>
+        <child>P2_wire_2</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_3">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.044735999950208154 0.0751750204380698 0 0 0 2.1439697989337247</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_3" type="universal">
+        <parent>P2_wire_2</parent>
+        <child>P2_wire_3</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_4">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.05851480454113982 0.09603345311296012 0 0 0 2.165186099113752</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_4" type="universal">
+        <parent>P2_wire_3</parent>
+        <child>P2_wire_4</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_5">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.07273301368170564 0.11659487812299146 0 0 0 2.1864023992937796</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_5" type="universal">
+        <parent>P2_wire_4</parent>
+        <child>P2_wire_5</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_6">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.08738422754968334 0.1368500404724467 0 0 0 2.2076186994738074</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_6" type="universal">
+        <parent>P2_wire_5</parent>
+        <child>P2_wire_6</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_7">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.1024618514211405 0.15678982301887576 0 0 0 2.228834999653835</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_7" type="universal">
+        <parent>P2_wire_6</parent>
+        <child>P2_wire_7</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2_wire_8">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.11795909863881547 0.17640525057685363 0 0 0 2.2500512998338627</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P2_bend_8" type="universal">
+        <parent>P2_wire_7</parent>
+        <child>P2_wire_8</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P2">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>1.3020833333333337e-06</ixx>
+            <iyy>1.3020833333333337e-06</iyy>
+            <izz>1.3020833333333337e-06</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.13837603858877662 0.20169158212335678 0 0 0 2.2500512998338627</pose>
+        <collision name="housing_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="housing_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.1 0.35 0.9 1</diffuse>
+            <ambient>0.1 0.35 0.9 1</ambient>
+          </material>
+        </visual>
+        <visual name="orientation_mark_visual">
+          <pose>.01 0 .0105 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.012 .006 .001</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <collision name="pin_0_collision">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_0_visual">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="pin_1_collision">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_1_visual">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="P2_termination" type="fixed">
+        <parent>P2_wire_8</parent>
+        <child>P2</child>
+        <pose>-.02 0 0 0 0 0</pose>
+      </joint>
+      <link name="P3_wire_0">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.007405960175854243 -0.01006984378596118 0 0 0 4.078259059223902</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_0" type="universal">
+        <parent>junction</parent>
+        <child>P3_wire_0</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_1">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.02208387986538377 -0.030306722775533465 0 0 0 4.09150207993371</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_1" type="universal">
+        <parent>P3_wire_0</parent>
+        <child>P3_wire_1</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_2">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.036492522910405306 -0.05073620155625676 0 0 0 4.104745100643518</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_2" type="universal">
+        <parent>P3_wire_1</parent>
+        <child>P3_wire_2</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_3">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.05062936239464879 -0.07135469730758656 0 0 0 4.117988121353325</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_3" type="universal">
+        <parent>P3_wire_2</parent>
+        <child>P3_wire_3</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_4">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.06449191906940298 -0.09215859406012065 0 0 0 4.131231142063133</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_4" type="universal">
+        <parent>P3_wire_3</parent>
+        <child>P3_wire_4</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_5">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.0780777617883138 -0.11314424332974987 0 0 0 4.144474162772942</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_5" type="universal">
+        <parent>P3_wire_4</parent>
+        <child>P3_wire_5</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_6">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.09138450793374668 -0.13430796475751106 0 0 0 4.157717183482749</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_6" type="universal">
+        <parent>P3_wire_5</parent>
+        <child>P3_wire_6</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_7">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.10440982383463829 -0.15564604675503024 0 0 0 4.170960204192557</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_7" type="universal">
+        <parent>P3_wire_6</parent>
+        <child>P3_wire_7</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3_wire_8">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.004</mass>
+          <inertia>
+            <ixx>2.0833333333333339e-07</ixx>
+            <iyy>2.0833333333333339e-07</iyy>
+            <izz>2.0833333333333339e-07</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.11715142517576407 -0.17715474715544244 0 0 0 4.184203224902364</pose>
+        <collision name="insulation_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="insulation_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.025 .008 .008</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="P3_bend_8" type="universal">
+        <parent>P3_wire_7</parent>
+        <child>P3_wire_8</child>
+        <pose>-.0125 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+          <dynamics>
+            <damping>0.002</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0.003</spring_stiffness>
+          </dynamics>
+          <limit>
+            <lower>-1.2</lower>
+            <upper>1.2</upper>
+            <effort>1</effort>
+          </limit>
+        </axis2>
+      </joint>
+      <link name="P3">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>1.3020833333333337e-06</ixx>
+            <iyy>1.3020833333333337e-06</iyy>
+            <izz>1.3020833333333337e-06</izz>
+          </inertia>
+        </inertial>
+        <pose>-0.13353035810615843 -0.20522573851773035 0 0 0 4.184203224902364</pose>
+        <collision name="housing_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="housing_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.04 .02 .02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.65 0.05 1</diffuse>
+            <ambient>0.8 0.65 0.05 1</ambient>
+          </material>
+        </visual>
+        <visual name="orientation_mark_visual">
+          <pose>.01 0 .0105 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>.012 .006 .001</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <collision name="pin_0_collision">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_0_visual">
+          <pose>-0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="pin_1_collision">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="pin_1_visual">
+          <pose>0.01 0 -.03 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.04</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="P3_termination" type="fixed">
+        <parent>P3_wire_8</parent>
+        <child>P3</child>
+        <pose>-.02 0 0 0 0 0</pose>
+      </joint>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <publish_model_pose>false</publish_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>30</update_frequency>
+        <topic>/multi_harness/poses</topic>
+      </plugin>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,22 @@
+{
+  "model": "qwen3-vl:2b-instruct",
+  "image_sha256": "353a3d5308d3043044d73ca2ae75083506be34233f458dfebcf9d09300c22ae2",
+  "elapsed_seconds": 40.12194375,
+  "response": {
+    "model": "qwen3-vl:2b-instruct",
+    "created_at": "2026-10-10T13:19:18.836773Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"drawing_id\": \"D100\",\n  \"board_id\": \"B100\",\n  \"harness_id\": \"WH1\",\n  \"connections\": [\n    {\n      \"plug_id\": \"P1\",\n      \"socket\": \"J1\",\n      \"x_mm\": 144,\n      \"y_mm\": 52,\n      \"yaw_deg\": 0\n    },\n    {\n      \"plug_id\": \"P2\",\n      \"socket\": \"J2\",\n      \"x_mm\": 52,\n      \"y_mm\": 139,\n      \"yaw_deg\": 0\n    },\n    {\n      \"plug_id\": \"P3\",\n      \"socket\": \"J3\",\n      \"x_mm\": 51,\n      \"y_mm\": 48,\n      \"yaw_deg\": 0\n    }\n  ]\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 40088655417,
+    "load_duration": 28346084,
+    "prompt_eval_count": 2192,
+    "prompt_eval_cached_count": 4,
+    "prompt_eval_duration": 30315185000,
+    "eval_count": 185,
+    "eval_duration": 9636662000
+  }
+}

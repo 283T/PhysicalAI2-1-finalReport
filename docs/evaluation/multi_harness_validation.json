@@ -1,0 +1,8 @@
+{
+  "link_count": 31,
+  "vertical_span_m": 0.04034177140572384,
+  "samples": 80,
+  "success": true,
+  "scope": "Three-plug gravity/contact deformation smoke test; no stability/material validation or robot connection",
+  "case_world": "outputs/case_b/world.sdf"
+}

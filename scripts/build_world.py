@@ -44,6 +44,50 @@ def link(model, name, gravity=True):
     return element
 
 
+def add_board(base, board):
+    """Build receptacles and matching physical board holes from one design."""
+    ox, oy, top_z = board["origin_m"]
+    panel_top = top_z - board["receptacle_depth_mm"] / 1000
+    width, height = (v / 1000 for v in board["size_mm"])
+    thickness = board["thickness_mm"] / 1000
+    half_hole = board["hole_width_mm"] / 2000
+    half_spacing = board["pin_spacing_mm"] / 2000
+    holes = []
+    for socket in board["sockets"]:
+        cx, cy = ox + socket["x_mm"] / 1000, oy + socket["y_mm"] / 1000
+        angle = math.radians(socket['yaw_deg'])
+        holes.extend((cx + offset*math.cos(angle), cy + offset*math.sin(angle))
+                     for offset in (-half_spacing, half_spacing))
+    xs = sorted({ox, ox + width, *(edge for x, y in holes for edge in (x-half_hole, x+half_hole))})
+    ys = sorted({oy, oy + height, *(edge for x, y in holes for edge in (y-half_hole, y+half_hole))})
+    for i, (left, right) in enumerate(zip(xs, xs[1:])):
+        for j, (bottom, top) in enumerate(zip(ys, ys[1:])):
+            cx, cy = (left+right)/2, (bottom+top)/2
+            if any(abs(cx-x) < half_hole and abs(cy-y) < half_hole for x, y in holes):
+                continue
+            box(base, f"pcb_{i}_{j}", f"{right-left} {top-bottom} {thickness}",
+                f"{cx} {cy} {panel_top-thickness/2} 0 0 0", "0.05 0.45 0.15 1")
+
+    # Raised female receptacles with actual empty channels; the plug seats on their rim.
+    depth = board["receptacle_depth_mm"] / 1000
+    for socket in board["sockets"]:
+        cx, cy = ox + socket["x_mm"]/1000, oy + socket["y_mm"]/1000
+        angle = math.radians(socket['yaw_deg'])
+        rx = [cx-.03, cx-.01-half_hole, cx-.01+half_hole,
+              cx+.01-half_hole, cx+.01+half_hole, cx+.03]
+        ry = [cy-.02, cy-half_hole, cy+half_hole, cy+.02]
+        for i, (left, right) in enumerate(zip(rx, rx[1:])):
+            for j, (bottom, top) in enumerate(zip(ry, ry[1:])):
+                if i in (1, 3) and j == 1:
+                    continue
+                dx, dy = (left+right)/2-cx, (bottom+top)/2-cy
+                sx = cx + dx*math.cos(angle)-dy*math.sin(angle)
+                sy = cy + dx*math.sin(angle)+dy*math.cos(angle)
+                box(base, f"socket_{socket['id']}_{i}_{j}", f"{right-left} {top-bottom} {depth}",
+                    f"{sx} {sy} {top_z-depth/2} 0 0 {angle}", socket.get("color", "0.15 0.3 0.5 1"))
+
+
+
 def main():
     root = ET.Element("sdf", version="1.9")
     world = child(root, "world", name="harness_connection")
@@ -68,39 +112,7 @@ def main():
     # Split a board into boxes, omitting actual collision/visual cells for each hole.
     root_dir = Path(__file__).resolve().parents[1]
     board = json.loads((root_dir / "configs/board.json").read_text())
-    ox, oy, top_z = board["origin_m"]
-    panel_top = top_z - board["receptacle_depth_mm"] / 1000
-    width, height = (v / 1000 for v in board["size_mm"])
-    thickness = board["thickness_mm"] / 1000
-    half_hole = board["hole_width_mm"] / 2000
-    half_spacing = board["pin_spacing_mm"] / 2000
-    holes = []
-    for socket in board["sockets"]:
-        cx, cy = ox + socket["x_mm"] / 1000, oy + socket["y_mm"] / 1000
-        holes.extend((cx + offset, cy) for offset in (-half_spacing, half_spacing))
-    xs = sorted({ox, ox + width, *(edge for x, y in holes for edge in (x-half_hole, x+half_hole))})
-    ys = sorted({oy, oy + height, *(edge for x, y in holes for edge in (y-half_hole, y+half_hole))})
-    for i, (left, right) in enumerate(zip(xs, xs[1:])):
-        for j, (bottom, top) in enumerate(zip(ys, ys[1:])):
-            cx, cy = (left+right)/2, (bottom+top)/2
-            if any(abs(cx-x) < half_hole and abs(cy-y) < half_hole for x, y in holes):
-                continue
-            box(base, f"pcb_{i}_{j}", f"{right-left} {top-bottom} {thickness}",
-                f"{cx} {cy} {panel_top-thickness/2} 0 0 0", "0.05 0.45 0.15 1")
-
-    # Raised female receptacles with actual empty channels; the plug seats on their rim.
-    depth = board["receptacle_depth_mm"] / 1000
-    for socket in board["sockets"]:
-        cx, cy = ox + socket["x_mm"]/1000, oy + socket["y_mm"]/1000
-        rx = [cx-.03, cx-.01-half_hole, cx-.01+half_hole,
-              cx+.01-half_hole, cx+.01+half_hole, cx+.03]
-        ry = [cy-.02, cy-half_hole, cy+half_hole, cy+.02]
-        for i, (left, right) in enumerate(zip(rx, rx[1:])):
-            for j, (bottom, top) in enumerate(zip(ry, ry[1:])):
-                if i in (1, 3) and j == 1:
-                    continue
-                box(base, f"socket_{socket['id']}_{i}_{j}", f"{right-left} {top-bottom} {depth}",
-                    f"{(left+right)/2} {(bottom+top)/2} {top_z-depth/2} 0 0 0", "0.15 0.3 0.5 1")
+    add_board(base, board)
 
     part = child(world, "model", name="wire_harness")
     child(part, "pose", "-0.25 0 0.17 0 0 0")

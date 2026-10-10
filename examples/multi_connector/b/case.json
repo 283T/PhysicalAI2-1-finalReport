@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "design_seed": 101,
+  "design": {
+    "drawing_id": "D101",
+    "board_id": "B101",
+    "harness_id": "WH1",
+    "origin_m": [
+      0.16,
+      0.08,
+      0.14
+    ],
+    "size_mm": [
+      220,
+      170
+    ],
+    "thickness_mm": 20,
+    "hole_width_mm": 8,
+    "pin_spacing_mm": 20,
+    "receptacle_depth_mm": 40,
+    "sockets": [
+      {
+        "id": "J1",
+        "component": "wire_harness",
+        "x_mm": 164,
+        "y_mm": 128,
+        "yaw_deg": 90,
+        "color": "0.1 0.35 0.9 1"
+      },
+      {
+        "id": "J2",
+        "component": "wire_harness",
+        "x_mm": 54,
+        "y_mm": 43,
+        "yaw_deg": 90,
+        "color": "0.9 0.25 0.08 1"
+      },
+      {
+        "id": "J3",
+        "component": "wire_harness",
+        "x_mm": 52,
+        "y_mm": 128,
+        "yaw_deg": 0,
+        "color": "0.8 0.65 0.05 1"
+      }
+    ],
+    "connections": [
+      {
+        "plug_id": "P1",
+        "socket": "J2"
+      },
+      {
+        "plug_id": "P2",
+        "socket": "J1"
+      },
+      {
+        "plug_id": "P3",
+        "socket": "J3"
+      }
+    ]
+  },
+  "simulation_initialization": {
+    "placement_seed": 2,
+    "pose_m_rad": [
+      -0.2771982864055375,
+      0.06791309948237398,
+      0.177,
+      0,
+      0,
+      -2.7862699307877987
+    ],
+    "branches": [
+      {
+        "plug_id": "P1",
+        "segments": 9,
+        "angle_rad": -0.1245384014523235,
+        "curve_rad": 0.33549887812944956,
+        "color": "0.9 0.25 0.08 1"
+      },
+      {
+        "plug_id": "P2",
+        "segments": 9,
+        "angle_rad": 2.165186099113752,
+        "curve_rad": 0.1697304014402209,
+        "color": "0.1 0.35 0.9 1"
+      },
+      {
+        "plug_id": "P3",
+        "segments": 9,
+        "angle_rad": 4.131231142063133,
+        "curve_rad": 0.10594416567846243,
+        "color": "0.8 0.65 0.05 1"
+      }
+    ]
+  }
+}
