@@ -54,7 +54,8 @@ python3 scripts/run_from_drawing.py drawings/assembly_b.png
 
 AIを使わず動作だけ確認する場合は、`docker compose run --rm dev python3 scripts/run_insertion.py`で手書きの基準指示を実行できます。[図面A・B](docs/drawing-variants.md)と[物理動作の説明](docs/insertion-demo.md)も参照してください。対応範囲は部品1種類・各1個・向き0度です。
 
-ブラウザで動作を見る方法は[GUI起動手順](docs/gui.md)に記載しています。
+図面・AI出力・動作を並べた[デモ画面の起動手順](docs/dashboard.md)を用意しています。Gazebo単体の表示は[GUI起動手順](docs/gui.md)を参照してください。
+[録画手順](docs/recording.md)で、図面・AI出力・実際のGazebo動作を並べたMP4を生成できます。約2分の録画試作を確認済みです。
 開発の順序と完了条件は [開発計画](docs/development-plan.md) に記載しています。
 
 ## 提出予定

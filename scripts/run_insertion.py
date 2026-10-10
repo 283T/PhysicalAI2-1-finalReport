@@ -47,7 +47,7 @@ class Insertion:
     def on_grasp(self, msg):
         self.grasp_state = msg.data
 
-    def wait(self, predicate, description, timeout=20):
+    def wait(self, predicate, description, timeout=45):
         deadline = time.monotonic() + timeout
         while time.monotonic() < deadline:
             rclpy.spin_once(self.node, timeout_sec=0.02)

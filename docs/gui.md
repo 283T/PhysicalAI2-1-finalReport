@@ -56,7 +56,7 @@ GUIのHTTPポートはホストの127.0.0.1だけに公開し、VNCポートは�
 python3 scripts/run_from_drawing.py drawings/assembly_b.png --gui --keep-open
 ```
 
-図面を差し替えると挿入箇所が変わる。図面とAI出力をGazebo内へ重ねる表示や動画録画は未整備。
+図面を差し替えると挿入箇所が変わる。図面とAI出力を並べる[デモ画面](dashboard.md)と、実際のGazebo画面を収録する[MP4録画](recording.md)も利用できる。
 
 ## 検証記録（2026-10-10）
 

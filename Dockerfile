@@ -17,7 +17,7 @@ FROM dev AS gui
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         xvfb x11vnc novnc websockify openbox xterm x11-utils \
-        mesa-utils scrot \
+        mesa-utils scrot ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 ENV DISPLAY=:99 \
     LIBGL_ALWAYS_SOFTWARE=1 \
