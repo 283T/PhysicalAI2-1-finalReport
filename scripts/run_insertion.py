@@ -121,6 +121,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", type=Path, default=ROOT / "examples/task_a.json")
     parser.add_argument("--world", type=Path, default=ROOT / "sim/worlds/insertion.sdf")
+    parser.add_argument("--gui", action="store_true", help="Show Gazebo on the X display")
+    parser.add_argument("--start-delay", type=float, default=0,
+                        help="Wait this many seconds before robot motion")
+    parser.add_argument("--keep-open", action="store_true",
+                        help="Keep the finished simulation open until Ctrl+C")
     args = parser.parse_args()
     task = json.loads(args.task.read_text())
     if task["component"] != "connector" or task["yaw_deg"] != 0:
@@ -138,7 +143,12 @@ def main():
                 "/grasp/attach@std_msgs/msg/Empty]gz.msgs.Empty",
                 "/grasp/detach@std_msgs/msg/Empty]gz.msgs.Empty",
                 "/grasp/state@std_msgs/msg/String[gz.msgs.StringMsg"]
-    commands = [["gz", "sim", "-s", "-r", str(args.world)],
+    gazebo = ["gz", "sim", "-r", str(args.world)]
+    if args.gui:
+        gazebo += ["--render-engine", "ogre", "--gui-config", str(ROOT / "sim/gui.config")]
+    else:
+        gazebo += ["-s"]
+    commands = [gazebo,
                 ["ros2", "run", "ros_gz_bridge", "parameter_bridge", *bridges]]
     processes = []
     rclpy.init()
@@ -152,7 +162,16 @@ def main():
             for command in commands:
                 processes.append(subprocess.Popen(command, env=env, stdout=log, stderr=log,
                                                   start_new_session=True))
+            if args.start_delay > 0:
+                print(f"Starting in {args.start_delay:g} seconds", flush=True)
+                demo.settle(args.start_delay)
             demo.run(task)
+            if args.keep_open:
+                print("Demo complete. Ctrl+C to close the simulation.", flush=True)
+                while True:
+                    rclpy.spin_once(demo.node, timeout_sec=0.2)
+        except KeyboardInterrupt:
+            pass
         except Exception as error:
             result_path.write_text(json.dumps({"success": False, "error": str(error)}, indent=2) + "\n")
             raise

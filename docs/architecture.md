@@ -6,7 +6,7 @@
 
 この課題用にROS公式Dockerイメージを使った専用環境を用意し、Ubuntu 24.04、ROS 2 Jazzy、Gazebo Harmonicを採用する。起動方法は[setup.md](setup.md)を参照。
 
-まずGUIなしでGazeboサーバーとROS連携を確認し、動画撮影に必要な表示方法は別途整備する。
+GazeboサーバーとROS連携を確認済み。追加のGUI用DockerサービスでXvfb・noVNCを使い、ブラウザから実際のGazebo画面を確認できる。動画録画は別途整備する。
 
 参考：[Gazebo公式のROS互換表](https://gazebosim.org/docs/ionic/ros_installation/)
 
