@@ -15,8 +15,9 @@ import rclpy
 from arm_kinematics import quaternion_rotation
 from build_case import harness_model
 from build_world import box, child, link, plugin
-from grasp_validation import assess_hold, world_link_positions
+from grasp_validation import assess_hold, assess_seat, world_link_positions
 from gripper_model import OPEN_TRAVEL_M, add_controllers, add_gripper
+from gz.msgs10.contacts_pb2 import Contacts
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from processes import stop_process
@@ -26,7 +27,7 @@ from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 
 
-def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False):
+def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False, pin_relief=False):
     """Reuse production fingers on a vertical test carriage, with an unanchored cable."""
     output.mkdir(parents=True, exist_ok=True)
     robot = ET.Element("robot", name="grip_fixture")
@@ -97,7 +98,7 @@ def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False
         ".3 .3 .3 1",
     )
     if regrasp_nest:
-        add_regrasp_nest(base)
+        add_regrasp_nest(base, pin_relief=pin_relief)
     if support_tail:
         box(base, "tail_support", ".35 .06 .186", "-.225 0 .133 0 0 0", ".3 .45 .5 1")
     world.append(model)
@@ -121,19 +122,53 @@ def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False
     for item in list(terminal):
         if not regrasp_nest and item.get("name", "").startswith("pin_"):
             terminal.remove(item)
+    if regrasp_nest:
+        plugin(world, ("contact", "Contact"))
+        for index, collision in enumerate(terminal.findall("collision")):
+            sensor = child(terminal, "sensor", name=f"terminal_contact_{index}", type="contact")
+            child(sensor, "always_on", "true")
+            child(sensor, "update_rate", 30)
+            child(sensor, "topic", "/grip_bench/contacts")
+            contact = child(sensor, "contact")
+            child(contact, "collision", collision.get("name"))
+            child(contact, "topic", "/grip_bench/contacts")
     ET.indent(sdf)
     path = output / "world.sdf"
     ET.ElementTree(sdf).write(path, encoding="utf-8", xml_declaration=True)
     return path
 
 
-def run_trial(output, friction, regrasp_nest=False, support_tail=False):
-    scene = build_benchmark(output, friction, regrasp_nest, support_tail)
+def run_trial(
+    output,
+    friction,
+    regrasp_nest=False,
+    support_tail=False,
+    return_mode="settled",
+    pin_relief=False,
+):
+    scene = build_benchmark(output, friction, regrasp_nest, support_tail, pin_relief)
     os.environ["GZ_PARTITION"] = f"grip-contact-{os.getpid()}-{friction}"
     transport = Node()
     harness, fixture, states = {}, {}, {}
     joint_stamp = [0.0]
     plug_rotation = []
+    phase_name, lift_command = ["startup"], [0.0]
+    contact_summary = {}
+    contact_messages = [0]
+
+    def receive_contacts(msg):
+        contact_messages[0] += 1
+        for contact in msg.contact:
+            pair = tuple(sorted((contact.collision1.name, contact.collision2.name)))
+            key = (phase_name[0], *pair)
+            entry = contact_summary.setdefault(
+                key, {"phase": key[0], "pair": list(pair), "observations": 0, "max_depth_m": 0.0}
+            )
+            entry["observations"] += 1
+            entry["max_depth_m"] = max(entry["max_depth_m"], max(contact.depth, default=0.0))
+
+    if regrasp_nest:
+        transport.subscribe(Contacts, "/grip_bench/contacts", receive_contacts)
 
     def receive(msg):
         poses = {
@@ -195,6 +230,8 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
         )
         report["split_finger_contacts"] = True
     report["passive_tail_support"] = support_tail
+    report["return_mode"] = return_mode
+    report["pin_relief"] = pin_relief
 
     def sample():
         if "P1" not in harness or "carriage" not in fixture or len(states) != 3:
@@ -208,9 +245,14 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
             "fingers": [states["bench_finger_" + f + "_joint"] for f in ("left", "right")],
             "cable_z_span_m": float(np.ptp([p[1][2] for p in list(harness.values())])),
             "plug_rotation_world": plug_rotation[0].tolist(),
+            "lift_joint_m": states["lift"],
+            "lift_command_m": lift_command[0],
+            "lift_error_m": states["lift"] - lift_command[0],
+            "cable_links_world": {name: point.tolist() for name, (_, point) in harness.items()},
         }
 
     def phase(name, lift, grip, duration, initial=None):
+        phase_name[0] = name
         start = time.monotonic()
         rows, last_stamp = [], None
         while time.monotonic() - start < duration:
@@ -222,6 +264,7 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
             )
             for pub, value in zip(pubs, (command, grip, grip)):
                 pub.publish(Float64(data=float(value)))
+            lift_command[0] = command
             rclpy.spin_once(node, timeout_sec=0.03)
             row = sample()
             stamp = harness.get("P1", (None,))[0]
@@ -237,8 +280,10 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
         )
         return rows
 
-    def settle_lift(lift, grip):
-        """Do not evaluate holding while the test carriage is still converging."""
+    def settle_lift(lift, grip, name="settle_lift", tolerance=0.002):
+        """Require fresh joint convergence before holding or opening at the nest."""
+        phase_name[0] = name
+        lift_command[0] = lift
         start, stable, last = time.monotonic(), 0, None
         while time.monotonic() - start < 30:
             for pub, value in zip(pubs, (lift, grip, grip)):
@@ -248,13 +293,19 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
             stamp = harness.get("P1", (None,))[0]
             if row is None or stamp == last:
                 continue
-            row.update(phase="settle_lift", elapsed_s=time.monotonic() - start)
+            row.update(phase=name, elapsed_s=time.monotonic() - start)
             history.append(row)
             last = stamp
-            stable = stable + 1 if abs(states.get("lift", float("inf")) - lift) < 0.002 else 0
+            stable = stable + 1 if abs(row["lift_error_m"]) < tolerance else 0
             if stable >= 10:
+                report[name] = {
+                    "success": True,
+                    "final_error_m": row["lift_error_m"],
+                    "wall_time_s": time.monotonic() - start,
+                }
                 return
-        raise RuntimeError("Test carriage did not settle before holding")
+        report[name] = {"success": False, "final_error_m": history[-1]["lift_error_m"]}
+        raise RuntimeError(f"Test carriage did not converge during {name}; refusing next phase")
 
     with (output / "simulation.log").open("w") as log:
         try:
@@ -268,22 +319,35 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
                     raise RuntimeError("Missing gripper or harness feedback")
                 rclpy.spin_once(node, timeout_sec=0.05)
             baseline = phase("open", 0, OPEN_TRAVEL_M, 5)[-1]
+            report["baseline"] = baseline
             # Nest trial uses 16 mm of the 20 mm housing height for finger contact.
             grip_height = -0.046 if regrasp_nest else -0.118
             lift_height = grip_height + 0.1
             phase("approach", grip_height, OPEN_TRAVEL_M, 8, initial=0)
             closed = phase("close", grip_height, 0, 6)[-1]
+            report["closed"] = closed
             phase("lift", lift_height, 0, 8, initial=grip_height)
             settle_lift(lift_height, 0)
             held = phase("hold", lift_height, 0, 4)
             hold_result = assess_hold(baseline, held, closed)
+            report["hold"] = hold_result
+            if not hold_result["success"]:
+                # An empty closed jaw cannot descend around the housing safely.
+                # A failed hold is a completed negative control, but never a
+                # permission to continue the positive return/release sequence.
+                report["motion_aborted"] = "hold_rejected"
+                return report
             if regrasp_nest:
                 phase("return_to_nest", grip_height, 0, 8, initial=lift_height)
+                if return_mode == "settled":
+                    settle_lift(grip_height, 0, name="settle_return", tolerance=0.001)
             released = phase(
                 "release", grip_height if regrasp_nest else lift_height, OPEN_TRAVEL_M, 5
             )
             if regrasp_nest:
                 released = phase("retract", 0, OPEN_TRAVEL_M, 6, initial=grip_height)
+                seated = phase("observe_seat", 0, OPEN_TRAVEL_M, 2)
+                released = seated
             fall = float(held[-1]["plug"][2] - released[-1]["plug"][2])
             report.update(
                 hold=hold_result,
@@ -294,18 +358,32 @@ def run_trial(output, friction, regrasp_nest=False, support_tail=False):
                 success=hold_result["success"] and fall > 0.03,
             )
             if regrasp_nest:
-                point = np.asarray(released[-1]["plug"])
-                report["reseat_success"] = bool(
-                    np.linalg.norm(point[:2]) < 0.003 and abs(point[2] - 0.23) < 0.002
-                )
+                report["reseat"] = assess_seat(seated)
+                report["reseat_success"] = report["reseat"]["success"]
                 report["success"] = report["success"] and report["reseat_success"]
         except Exception as error:
             report["error"] = str(error)
         finally:
             transport.unsubscribe(pose_topic)
+            if regrasp_nest:
+                transport.unsubscribe("/grip_bench/contacts")
             for process in reversed(processes):
                 stop_process(process, group=True)
             node.destroy_node()
+            report["terminal_contacts"] = list(contact_summary.values())
+            report["contact_messages"] = contact_messages[0]
+            report["contact_monitor_ready"] = contact_messages[0] > 0
+            if history:
+                report["last_observation"] = history[-1]
+            report["phase_endpoints"] = {
+                row["phase"]: {
+                    "plug": row["plug"],
+                    "tcp": row["tcp"],
+                    "lift_error_m": row["lift_error_m"],
+                    "plug_rotation_world": row["plug_rotation_world"],
+                }
+                for row in history
+            }
             (output / "trajectory.json").write_text(json.dumps(history, indent=2) + "\n")
             (output / "validation.json").write_text(json.dumps(report, indent=2) + "\n")
     return report
@@ -315,6 +393,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--friction", type=float, default=1.0)
+    parser.add_argument(
+        "--pin-relief",
+        action="store_true",
+        help="Experimental split nest supports with a 10 mm pin passage",
+    )
+    parser.add_argument(
+        "--return-mode",
+        choices=("timed", "settled"),
+        default="settled",
+        help="Wait for measured return convergence before release, or reproduce the old timed return",
+    )
     parser.add_argument(
         "--regrasp-nest",
         action="store_true",
@@ -333,6 +422,8 @@ def main():
     args = parser.parse_args()
     if args.support_tail and not args.regrasp_nest:
         parser.error("--support-tail requires --regrasp-nest")
+    if args.pin_relief and not args.regrasp_nest:
+        parser.error("--pin-relief requires --regrasp-nest")
     if not math.isfinite(args.friction) or args.friction < 0:
         raise ValueError("Friction must be finite and nonnegative")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -341,7 +432,14 @@ def main():
     os.environ["ROS_DOMAIN_ID"] = "175"
     rclpy.init()
     try:
-        result = run_trial(args.output, args.friction, args.regrasp_nest, args.support_tail)
+        result = run_trial(
+            args.output,
+            args.friction,
+            args.regrasp_nest,
+            args.support_tail,
+            args.return_mode,
+            args.pin_relief,
+        )
         expectation_met = (
             "error" not in result
             and not result["hold"]["success"]

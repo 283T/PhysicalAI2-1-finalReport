@@ -87,6 +87,19 @@ class RegraspTests(unittest.TestCase):
             with self.subTest(width=width), self.assertRaises(ValueError):
                 add_regrasp_nest(ET.Element("link"), channel_width=width)
 
+    def test_pin_relief_leaves_center_passage_and_housing_corner_supports(self):
+        fixture = ET.Element("link")
+        info = add_regrasp_nest(fixture, pin_relief=True)
+        self.assertTrue(info["pin_relief"])
+        supports = [c for c in fixture.findall("collision") if "end_support" in c.get("name")]
+        self.assertEqual(len(supports), 4)
+        for support in supports:
+            xyz = [float(v) for v in support.findtext("pose").split()[:3]]
+            size = [float(v) for v in support.findtext("geometry/box/size").split()]
+            self.assertAlmostEqual(abs(xyz[1]) - size[1] / 2, 0.005)
+            self.assertAlmostEqual(xyz[2] + size[2] / 2, 0.22)
+            self.assertLess(abs(xyz[1]) - size[1] / 2, 0.010)
+
 
 if __name__ == "__main__":
     unittest.main()

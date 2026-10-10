@@ -9,7 +9,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import axis_rotation
-from grasp_validation import assess_hold, world_link_positions
+from grasp_validation import assess_hold, assess_seat, world_link_positions
 
 
 class GraspValidationTests(unittest.TestCase):
@@ -96,6 +96,39 @@ class GraspValidationTests(unittest.TestCase):
             result = assess_hold(self.baseline, rows, closed)
             self.assertFalse(result["success"])
             self.assertIsNone(result["maximum_rotation_change_rad"])
+
+    def test_seat_requires_position_orientation_and_stability_after_release(self):
+        rows = [
+            {"time_s": i / 10, "plug": [0, 0, 0.23], "plug_rotation_world": np.eye(3).tolist()}
+            for i in range(12)
+        ]
+        self.assertTrue(assess_seat(rows)["success"])
+        for key, value in (
+            ("plug", [0, 0, 0.238]),
+            ("plug", [0.003, 0, 0.23]),
+            ("plug_rotation_world", axis_rotation([0, 1, 0], 0.15).tolist()),
+            ("plug_rotation_world", None),
+        ):
+            with self.subTest(key=key, value=value):
+                bad = copy.deepcopy(rows)
+                bad[-1][key] = value
+                self.assertFalse(assess_seat(bad)["success"])
+        short = copy.deepcopy(rows)
+        for row in short:
+            row["time_s"] *= 0.1
+        self.assertFalse(assess_seat(short)["success"])
+        self.assertFalse(assess_seat(rows[:2])["success"])
+
+    def test_reseat_rejects_motion_even_inside_position_tolerance(self):
+        rows = [
+            {
+                "time_s": i / 10,
+                "plug": [(-1) ** i * 0.0009, 0, 0.23],
+                "plug_rotation_world": np.eye(3).tolist(),
+            }
+            for i in range(12)
+        ]
+        self.assertFalse(assess_seat(rows)["success"])
 
 
 if __name__ == "__main__":

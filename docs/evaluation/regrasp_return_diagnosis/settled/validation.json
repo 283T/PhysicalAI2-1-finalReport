@@ -1,0 +1,22 @@
+{
+  "success": false,
+  "friction_mu": 1.0,
+  "world_sha256": "78c4830c3275f298d08dd59edb43a9859477016fa90467e47977f42bad8e676d",
+  "scope": "Cartesian test carriage, top-face contact pickup from passive nest, one pin-equipped terminal and flexible tail; no previous side-grip transition, MELFA, perception, dual-arm support or board insertion",
+  "split_finger_contacts": true,
+  "passive_tail_support": true,
+  "return_mode": "settled",
+  "settle_lift": {
+    "success": true,
+    "final_error_m": 0.0019498427410288635,
+    "wall_time_s": 12.084254921999673
+  },
+  "settle_return": {
+    "success": false,
+    "final_error_m": 0.0030431495904488515
+  },
+  "error": "Test carriage did not converge during settle_return; refusing next phase",
+  "terminal_contacts": [],
+  "expectation": "hold_and_release",
+  "expectation_met": false
+}

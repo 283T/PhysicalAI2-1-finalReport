@@ -1,0 +1,21 @@
+{
+  "contact_settled/trajectory.csv": "7ea6c885815542db0338fba6fbf3739d64130b392550e831dea5f5d3f9a42a0e",
+  "contact_settled/validation.json": "2cc831a46565165eaa50bab287f33e86ac14f85eb2fabb1007d5d708fe2bfcde",
+  "contact_settled/world.sdf": "4b1e624ffd035e006be7bbcd333d027d29084518d3e73d1c1d0544e1aad43a42",
+  "pin_relief/trajectory.csv": "0a6f7b2380db63d5912f4c6547d5b447b9ad1b6d839d35a793c912ac98765b75",
+  "pin_relief/validation.json": "8c7d698adb54276b9795e97b65059fa50a759ff37c433a19ff0eba4bcdd79889",
+  "pin_relief/world.sdf": "c8eae997b4cdefa8c0d4beb4d2573cfb7447bd4677e723aa9c67a002b8dd67e4",
+  "settled/trajectory.csv": "b85af21a44454d062adc0388797bad2e8f54872a6193312db83bdd58c8c62bf4",
+  "settled/validation.json": "f0f57fb253d14816e7e0aba810064f85f6bd6dbed7b9106635c991c1dcf5ff75",
+  "settled/world.sdf": "78c4830c3275f298d08dd59edb43a9859477016fa90467e47977f42bad8e676d",
+  "summary.json": "bc75858f40ce6d90cec26702e4b1f2ffa70b2fd53c0645b58a0c423eee9cc931",
+  "timed/trajectory.csv": "cabed90a82d4b59f03c63cbc524560e5eb31b7b4521a7fb270a5285ebaecba22",
+  "timed/validation.json": "b9d330ce086133fdac89ed28d2824d5c75b221663adb74902310f3b708878da7",
+  "timed/world.sdf": "78c4830c3275f298d08dd59edb43a9859477016fa90467e47977f42bad8e676d",
+  "zero_friction/trajectory.csv": "8f15ec499c024c74295889ad1ce3d30a5c107f601bdb03256bf833a48ab7ee36",
+  "zero_friction/validation.json": "6e515f3fd8526c601e254255d494c47c301398a4ba3cc00ed579a2bb92ef770d",
+  "zero_friction/world.sdf": "a8b13cabb11b4cea37eaaa052e0d96b75042e7184102880cf4b1c0de4369a80f",
+  "zero_guarded/trajectory.csv": "e0584396251a9fffad799990d98ff98077dcdf21c4db323228c25fdcab343875",
+  "zero_guarded/validation.json": "b1c69fcfbd739c3e0e96b1204b12cef9e32a855eb52930020aa80472092e5989",
+  "zero_guarded/world.sdf": "a8b13cabb11b4cea37eaaa052e0d96b75042e7184102880cf4b1c0de4369a80f"
+}

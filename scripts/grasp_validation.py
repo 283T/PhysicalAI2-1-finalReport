@@ -12,6 +12,49 @@ def world_link_positions(poses, model, links):
     return {name: origin + rotation @ np.asarray(poses[name]["xyz"]) for name in links}
 
 
+def assess_seat(samples, center=(0, 0, 0.23), rotation=None):
+    """Require a stable, upright seat after opening and withdrawing the fingers."""
+    if len(samples) < 10:
+        return {"success": False, "reason": "Not enough seat observations"}
+    points = np.asarray([s["plug"] for s in samples], dtype=float)
+    times = np.asarray([s["time_s"] for s in samples], dtype=float)
+    rotations = [np.asarray(s.get("plug_rotation_world"), dtype=float) for s in samples]
+    reference = np.eye(3) if rotation is None else np.asarray(rotation, dtype=float)
+    valid = (
+        points.shape == (len(samples), 3)
+        and np.isfinite(points).all()
+        and np.isfinite(times).all()
+        and np.all(np.diff(times) > 0)
+        and all(
+            r.shape == (3, 3)
+            and np.isfinite(r).all()
+            and np.allclose(r.T @ r, np.eye(3), atol=1e-6)
+            and np.isclose(np.linalg.det(r), 1)
+            for r in [reference, *rotations]
+        )
+    )
+    if not valid:
+        return {"success": False, "reason": "Invalid or missing seat pose observations"}
+    lateral = float(np.max(np.linalg.norm(points[:, :2] - np.asarray(center)[:2], axis=1)))
+    height = float(np.max(np.abs(points[:, 2] - center[2])))
+    angle = float(max(np.linalg.norm(rotation_error(r, reference)) for r in rotations))
+    movement = float(np.max(np.linalg.norm(points - points[0], axis=1)))
+    duration = float(times[-1] - times[0])
+    return {
+        "success": lateral < 0.002
+        and height < 0.001
+        and angle < 0.05
+        and movement < 0.001
+        and duration >= 1.0,
+        "maximum_lateral_error_m": lateral,
+        "maximum_height_error_m": height,
+        "maximum_angle_error_rad": angle,
+        "maximum_movement_m": movement,
+        "duration_s": duration,
+        "samples": len(samples),
+    }
+
+
 def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
     """Reject stationary objects, empty closure and slip during the hold window."""
     if len(samples) < 10:
