@@ -177,11 +177,13 @@ def build(case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf")
     tree = ET.parse(factory_world)
     world = tree.getroot().find("world")
     world.set("name", "multi_connector_factory")
-    # Keep the arm pedestals outside the incoming pallet footprint and camera view.
+    # Place bases beside the pallet; use the same layout for generated scenes and IK.
+    layout = json.loads((ROOT / "configs/arm_layout.json").read_text())
     for name in ("left_arm", "right_arm"):
         pose = world.find(f"model[@name='{name}']/pose")
         values = pose.text.split()
-        values[1] = "-.38"
+        values[0] = str(layout[name]["x_m"])
+        values[1] = str(layout[name]["y_m"])
         pose.text = " ".join(values)
     world.remove(world.find("model[@name='wire_harness']"))
     fixture = world.find("model[@name='fixtures']/link")

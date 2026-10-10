@@ -6,21 +6,11 @@ import subprocess
 from pathlib import Path
 
 import numpy as np
+from arm_kinematics import quaternion_rotation as rotation
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from processes import stop_process
 from project_paths import ROOT
-
-
-def rotation(q):
-    x, y, z, w = q
-    return np.array(
-        [
-            [1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],
-            [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
-            [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)],
-        ]
-    )
 
 
 def main():

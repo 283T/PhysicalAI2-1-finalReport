@@ -80,7 +80,7 @@ def joint_names(robot_type):
     )
 
 
-def arm(world, name, origin, yaw, robot_type="ur3e"):
+def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
     import tempfile
@@ -123,6 +123,9 @@ def arm(world, name, origin, yaw, robot_type="ur3e"):
     fixed = child(robot, "joint", name=prefix + "gripper_mount", type="fixed")
     child(fixed, "parent", link=tool_parent)
     child(fixed, "child", link=prefix + "gripper")
+    if urdf_output is not None:
+        ET.indent(robot)
+        ET.ElementTree(robot).write(urdf_output, encoding="utf-8", xml_declaration=True)
     with tempfile.TemporaryDirectory() as directory:
         source = Path(directory) / "arm.urdf"
         ET.ElementTree(robot).write(source, encoding="utf-8", xml_declaration=True)
@@ -140,9 +143,9 @@ def arm(world, name, origin, yaw, robot_type="ur3e"):
             ("joint-position-controller", "JointPositionController"),
             joint_name=prefix + joint,
             topic=f"/{name}/joint_{index}/cmd",
-            p_gain=(120 if index < 3 else 20) if melfa else (800 if index < 3 else 80),
-            d_gain=(1 if index < 3 else 0.02) if melfa else (8 if index < 3 else 0.1),
-            i_gain=(20 if index < 3 else 2) if melfa else (100 if index < 3 else 20),
+            p_gain=(120 if index < 3 else 60) if melfa else (800 if index < 3 else 80),
+            d_gain=(1 if index < 3 else 0.1) if melfa else (8 if index < 3 else 0.1),
+            i_gain=(20 if index < 3 else 10) if melfa else (100 if index < 3 else 20),
             i_max=effort,
             i_min=-effort,
             cmd_max=effort,
@@ -168,8 +171,8 @@ def main():
             fixture.remove(item)
     harness = world.find("model[@name='wire_harness']")
     flexible_cable(harness)
-    arm(world, "left_arm", (-0.15, -0.28), math.pi, args.robot)
-    arm(world, "right_arm", (0.38, -0.28), 0, args.robot)
+    arm(world, "left_arm", (-0.15, -0.28), math.pi, args.robot, args.output / "left_arm.urdf")
+    arm(world, "right_arm", (0.38, -0.28), 0, args.robot, args.output / "right_arm.urdf")
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")
     base = link(carrier, "carrier", gravity=False)

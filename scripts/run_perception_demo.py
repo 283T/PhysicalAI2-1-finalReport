@@ -22,6 +22,14 @@ def main():
         action="store_true",
         help="Use independent ground truth to measure accuracy only",
     )
+    parser.add_argument(
+        "--plan-reach", action="store_true", help="Read the drawing locally and calculate hover IK"
+    )
+    parser.add_argument(
+        "--check-reach",
+        action="store_true",
+        help="Also replay IK in isolated single-arm validation scenes",
+    )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     args = parser.parse_args()
     output = (ROOT / args.output).resolve()
@@ -97,6 +105,58 @@ def main():
         "-c",
         "source /opt/ros/jazzy/setup.bash && " + shlex.join(command),
     )
+    if args.plan_reach or args.check_reach:
+        plan = relative / "connection_plan.json"
+        reach = relative / "reach_plan.json"
+        run(
+            "python3",
+            "scripts/read_connection_plan.py",
+            str(case / "drawing.png"),
+            "--board",
+            str(case / "board.json"),
+            "--output",
+            str(plan),
+        )
+        run(
+            "docker",
+            "compose",
+            "run",
+            "--rm",
+            "dev",
+            "python3",
+            "scripts/plan_reach.py",
+            "--plan",
+            str(plan),
+            "--board",
+            str(case / "board.json"),
+            "--detections",
+            str(observations / "detections.json"),
+            "--world",
+            str(case / "world.sdf"),
+            "--models",
+            "outputs/melfa_worlds",
+            "--output",
+            str(reach),
+        )
+        if args.check_reach:
+            run(
+                "docker",
+                "compose",
+                "run",
+                "--rm",
+                "dev",
+                "python3",
+                "scripts/check_reach.py",
+                "--plan",
+                str(reach),
+                "--world",
+                str(case / "world.sdf"),
+                "--models",
+                "outputs/melfa_worlds",
+                "--output",
+                str(relative / "reach_control"),
+            )
+        print(f"Reach plan: {ROOT / reach}")
     print(f"Observations: {output / 'observations/detections.json'}")
 
 

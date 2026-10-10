@@ -1,0 +1,54 @@
+{
+  "source": "registered_rgbd_color_and_marker",
+  "frame": "world",
+  "sensor_stamp_ns": 3200000000,
+  "stable_frames": 3,
+  "connectors": [
+    {
+      "plug_id": "P1",
+      "surface_xyz_m": [
+        -0.4610661704901716,
+        -0.01573160766966078,
+        0.1431210279464722
+      ],
+      "yaw_rad": -1.9756883582007891,
+      "pixel_uv": [
+        365.3276062011719,
+        351.0690002441406
+      ],
+      "depth_m": 0.7568789720535278,
+      "marker_pixels": 40
+    },
+    {
+      "plug_id": "P2",
+      "surface_xyz_m": [
+        -0.09136702880300174,
+        -0.01830469429099535,
+        0.14225234985351565
+      ],
+      "yaw_rad": 0.35877036407407364,
+      "pixel_uv": [
+        367.0479736328125,
+        96.29452514648438
+      ],
+      "depth_m": 0.7577476501464844,
+      "marker_pixels": 52
+    },
+    {
+      "plug_id": "P3",
+      "surface_xyz_m": [
+        -0.2740678386464301,
+        0.27890755828116237,
+        0.14249285459518435
+      ],
+      "yaw_rad": 2.1112156729362748,
+      "pixel_uv": [
+        162.2794189453125,
+        222.1323699951172
+      ],
+      "depth_m": 0.7575071454048157,
+      "marker_pixels": 36
+    }
+  ],
+  "scope": "Visible prototype housings; top surface and planar yaw, not full 6D pose"
+}

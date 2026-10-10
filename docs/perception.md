@@ -29,7 +29,7 @@ python3 scripts/run_perception_demo.py --design-seed 100 --placement-seed 1 --ev
 
 ROS 2の入力は`/factory/rgbd/image`、`/factory/rgbd/depth_image`、`/factory/rgbd/camera_info`。一回取得のノードは全端末の結果をJSONとして`/factory/connector_detections`（std_msgs/String）へ一度publishして終了する。受信側は取得前から購読する。保存JSONを次の開発段階の入力として確認できるが、制御へ使う際には時刻・鮮度を再検証する必要がある。
 
-カメラは[GazeboのRGB-Dセンサ](https://gazebosim.org/api/sensors/8/classgz_1_1sensors_1_1RgbdCameraSensor.html)をOgre2で描画し、[公式ROS-Gazebo bridgeのRGB-D構成](https://github.com/gazebosim/ros_gz/blob/ros2/ros_gz_sim_demos/config/rgbd_camera_bridge.yaml)に沿って橋渡しする。搬送台にアーム基部が重なっていた配置も修正し、基部を搬送台の外へ移した。腕の到達性・干渉回避は今後のIKと経路計画で検証する。
+カメラは[GazeboのRGB-Dセンサ](https://gazebosim.org/api/sensors/8/classgz_1_1sensors_1_1RgbdCameraSensor.html)をOgre2で描画し、[公式ROS-Gazebo bridgeのRGB-D構成](https://github.com/gazebosim/ros_gz/blob/ros2/ros_gz_sim_demos/config/rgbd_camera_bridge.yaml)に沿って橋渡しする。搬送台にアーム基部が重なっていた配置も修正し、基部を搬送台の外へ移した。その後、到達性を改善するため基部配置を再調整した。[IKによる確認](reachability.md)を参照。干渉回避は今後の経路計画で検証する。
 
 ## 現時点の制約
 

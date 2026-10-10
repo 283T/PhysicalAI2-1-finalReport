@@ -1,0 +1,5 @@
+{
+  "left_arm": {"x_m": 0.06, "y_m": -0.22},
+  "right_arm": {"x_m": 0.48, "y_m": -0.22},
+  "note": "Prototype bases beside the incoming pallet; endpoint IK checked separately from collision paths."
+}

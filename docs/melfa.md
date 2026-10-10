@@ -34,7 +34,7 @@ docker compose exec gui bash -c 'source /opt/ros/jazzy/setup.bash; source output
 
 Jazzyの既存Docker環境で`melfa_description`のビルドに成功し、RV-4FRL×2のworldと複数端末worldのSDF構造検証を通過。ROS 2から左の基部関節へ+0.30 rad、右へ−0.25 rad、残り10関節へ0 radを指示した。10秒後の全12関節の最大誤差は約0.0027 radで、許容0.025 rad以内だった。[実測記録](evaluation/melfa_arms_validation.json)。既存を含めた12件の単体検証も通過した。
 
-これは基部の小さな回転と直立姿勢保持の検証。全関節の軌道追従、双腕の経路計画、把持・挿入の成功は未検証。
+これは当時の基部の小さな回転と直立姿勢保持の検証。その後の端末・接続先上方へのIKと隔離シーンの制御確認は[到達性確認](reachability.md)を参照。双腕の経路計画、把持・挿入の成功は未検証。
 
 公式の`rv4frl_macro.xacro`には質量について`These mass are INCORRECT`と記載があり、慣性も単純な円柱から計算されている。シミュレーションの形状・関節モデルとして使用するが、実機相当の慣性・トルク・接触力・ケーブル張力を再現したとは扱わない。力に関する検証には物性の校正が必要。先端の指も現時点では固定形状の試作である。
 
