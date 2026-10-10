@@ -42,7 +42,14 @@ AIの読み取りとロボット制御を分離し、読解結果を画面に表
 
 ## 開発状況
 
-リポジトリの初期準備段階です。実行可能なデモはまだありません。
+ROS 2＋Gazeboで、直交型ロボットが2ピンコネクタ1個をピックして基板の穴へ挿入する、GUIなしの基礎デモを実装しました。解放・退避後の部品位置と挿入深さを検証します。AIによる図面読解と動画用の表示はまだ接続していません。
+
+```bash
+docker compose build
+docker compose run --rm dev python3 scripts/run_insertion.py
+```
+
+部品・座標の入力は現時点では手書きの[作業指示JSON](examples/task_a.json)です。動作と簡略化の範囲は[基礎デモの説明](docs/insertion-demo.md)を参照してください。
 開発の順序と完了条件は [開発計画](docs/development-plan.md) に記載しています。
 
 ## 提出予定
