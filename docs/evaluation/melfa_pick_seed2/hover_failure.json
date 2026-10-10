@@ -1,0 +1,7 @@
+{
+  "success": false,
+  "plug_id": "P1",
+  "arm": "left_arm",
+  "scope": "One RGB-D-derived MELFA pickup attempt in the full scene; no collision planning, second-arm support or insertion",
+  "error": "hover did not converge: position 0.00915 m, angle 0.02480 rad"
+}

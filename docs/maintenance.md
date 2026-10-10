@@ -7,6 +7,7 @@
 | MELFA双腕シーンとRGB-D認識 | `scripts/run_perception_demo.py` | 現在の開発対象。`--evaluate`で精度評価も実行 |
 | 図面・認識結果のIK計画 | `scripts/plan_reach.py` | `run_perception_demo.py --plan-reach`で一括実行 |
 | IK目標の隔離シーン検証 | `scripts/check_reach.py` | 把持・挿入や衝突回避とは分けて確認 |
+| 画像由来のMELFA1端末把持 | `run_perception_demo.py --pick-connector P1` / `pick_connector.py` | 現在の到達点。支持・挿入は未実装 |
 | 接触把持の単独試験 | `scripts/grasp_benchmark.py` | 同じ指を直動治具に載せ、摩擦ゼロと比較。MELFA制御とは未統合 |
 | 図面・基板・ランダムハーネス生成 | `scripts/build_case.py` | 設計seedと配置seedを独立に指定 |
 | 全端末のローカルAI図面読解 | `scripts/read_connection_plan.py` | 読解後に基板との整合性を検証 |
@@ -21,6 +22,9 @@ CLIの名前と既存の実行コマンドは維持する。旧デモは動作�
 - `scripts/local_vision.py`：Ollamaのloopback通信、画像ハッシュ、監査ログ、不完全な出力の拒否。基板カタログは受け取らず、推論と正解による検証を分離する。新しい通信が失敗したときは古い結果と監査ログを残さない。
 - `scripts/perception_stream.py`：RGB/depthの時刻同期、画像の行パディング・エンディアン処理、全3端末の安定判定。ROSをimportしないため単体テストできる。
 - `scripts/arm_kinematics.py`：URDF由来の順運動学、数値IK、共通の回転変換。
+- `scripts/cartesian_path.py`：直線移動のIK事前計算・関節角連続性確認・補間。衝突回避を備えたプランナではない。
+- `scripts/pick_connector.py`：新しい観測からのMELFA1端末把持・保持／解放判定と記録。
+- `scripts/plot_pickup.py`：接近以降の実測グラフとCSV。
 - `scripts/connector_vision.py`：画像からの色・マーカー検出と座標変換。
 - `scripts/connector_pose.py`：面コードとRGB-D平面から試作端末の中心・6D姿勢を推定。
 - `scripts/grasp_poses.py`：端末と工具の相対姿勢を保つ幾何学的把持・上方姿勢候補。

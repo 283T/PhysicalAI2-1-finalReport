@@ -1,4 +1,5 @@
 import copy
+import json
 import math
 import sys
 import unittest
@@ -20,7 +21,22 @@ class GraspValidationTests(unittest.TestCase):
         ]
 
     def test_holding_moves_object_and_tool_together(self):
-        self.assertTrue(assess_hold(self.baseline, self.rows, self.closed)["success"])
+        result = assess_hold(self.baseline, self.rows, self.closed)
+        self.assertTrue(result["success"])
+        self.assertIs(json.loads(json.dumps(result))["success"], True)
+
+    def test_off_center_housing_uses_total_opening(self):
+        rows = copy.deepcopy(self.rows)
+        for row in rows:
+            row["fingers"] = [0.0003, 0.0037]
+        self.assertTrue(assess_hold(self.baseline, rows, self.closed)["success"])
+
+    def test_open_jaws_or_out_of_limit_fingers_are_not_a_pinch(self):
+        for fingers in ([0.018, 0.018], [-0.01, 0.014]):
+            rows = copy.deepcopy(self.rows)
+            for row in rows:
+                row["fingers"] = fingers
+            self.assertFalse(assess_hold(self.baseline, rows, self.closed)["success"])
 
     def test_reject_stationary_object_empty_fingers_and_slip(self):
         for defect in (

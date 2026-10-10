@@ -1,0 +1,53 @@
+{
+  "world_sha256": "6cd0f4c640ecbbafa4e9224a2d26f0e1ac96f24ba67d3a208ce4d4c6a208aa54",
+  "gains": {
+    "left_arm_rv4frl_joint_1": {
+      "p_gain": 180.0,
+      "d_gain": 2.0,
+      "i_gain": 100.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_rv4frl_joint_2": {
+      "p_gain": 180.0,
+      "d_gain": 2.0,
+      "i_gain": 100.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_rv4frl_joint_3": {
+      "p_gain": 180.0,
+      "d_gain": 2.0,
+      "i_gain": 100.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_rv4frl_joint_4": {
+      "p_gain": 80.0,
+      "d_gain": 0.1,
+      "i_gain": 40.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_rv4frl_joint_5": {
+      "p_gain": 80.0,
+      "d_gain": 0.1,
+      "i_gain": 40.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_rv4frl_joint_6": {
+      "p_gain": 80.0,
+      "d_gain": 0.1,
+      "i_gain": 40.0,
+      "cmd_max": 50.0
+    },
+    "left_arm_finger_left_joint": {
+      "p_gain": 1000.0,
+      "d_gain": 5.0,
+      "i_gain": 40.0,
+      "cmd_max": 12.0
+    },
+    "left_arm_finger_right_joint": {
+      "p_gain": 1000.0,
+      "d_gain": 5.0,
+      "i_gain": 40.0,
+      "cmd_max": 12.0
+    }
+  }
+}

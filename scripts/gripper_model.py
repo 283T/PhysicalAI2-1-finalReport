@@ -19,7 +19,7 @@ def add_controllers(model, prefix, topic_root):
             ("joint-position-controller", "JointPositionController"),
             joint_name=prefix + "finger_" + finger + "_joint",
             topic=f"{topic_root}/{finger}/cmd",
-            p_gain=200,
+            p_gain=1000,
             d_gain=5,
             i_gain=40,
             i_max=12,

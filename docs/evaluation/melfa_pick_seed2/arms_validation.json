@@ -1,0 +1,77 @@
+{
+  "robot": "melfa_rv4frl x 2",
+  "arms": {
+    "left_arm": {
+      "initial_rad": {
+        "left_arm_rv4frl_world_to_base": 0.0,
+        "left_arm_rv4frl_joint_1": 0.0,
+        "left_arm_rv4frl_joint_2": -1.4277732208328732e-14,
+        "left_arm_rv4frl_joint_3": -2.0843556047811518e-14,
+        "left_arm_rv4frl_joint_4": 0.0,
+        "left_arm_rv4frl_joint_5": -7.86116380324664e-14,
+        "left_arm_rv4frl_joint_6": 0.0,
+        "left_arm_finger_left_joint": 1.0897747548116455e-15,
+        "left_arm_finger_right_joint": -3.632580347634473e-16
+      },
+      "final_rad": {
+        "left_arm_rv4frl_world_to_base": 0.0,
+        "left_arm_rv4frl_joint_1": 0.29996212290076135,
+        "left_arm_rv4frl_joint_2": -4.313977268943408e-11,
+        "left_arm_rv4frl_joint_3": -2.3821196751261354e-14,
+        "left_arm_rv4frl_joint_4": 2.809704279023488e-09,
+        "left_arm_rv4frl_joint_5": -2.3749725740554227e-10,
+        "left_arm_rv4frl_joint_6": 2.2748753713904192e-09,
+        "left_arm_finger_left_joint": 3.296148046345926e-12,
+        "left_arm_finger_right_joint": -3.632582516038814e-16
+      },
+      "target_rad": {
+        "left_arm_rv4frl_joint_1": 0.3,
+        "left_arm_rv4frl_joint_2": 0.0,
+        "left_arm_rv4frl_joint_3": 0.0,
+        "left_arm_rv4frl_joint_4": 0.0,
+        "left_arm_rv4frl_joint_5": 0.0,
+        "left_arm_rv4frl_joint_6": 0.0
+      },
+      "max_error_rad": 3.78770992386368e-05,
+      "feedback_age_s": 4.416699994180817e-05,
+      "success": true
+    },
+    "right_arm": {
+      "initial_rad": {
+        "right_arm_rv4frl_world_to_base": 0.0,
+        "right_arm_rv4frl_joint_1": 0.0,
+        "right_arm_rv4frl_joint_2": -9.51849276481509e-15,
+        "right_arm_rv4frl_joint_3": -1.7865901466573852e-14,
+        "right_arm_rv4frl_joint_4": 0.0,
+        "right_arm_rv4frl_joint_5": -5.2407779504992644e-14,
+        "right_arm_rv4frl_joint_6": 0.0,
+        "right_arm_finger_left_joint": 7.265158526864602e-16,
+        "right_arm_finger_right_joint": -3.632582516038818e-16
+      },
+      "final_rad": {
+        "right_arm_rv4frl_world_to_base": 0.0,
+        "right_arm_rv4frl_joint_1": -0.24996031909955238,
+        "right_arm_rv4frl_joint_2": -4.3130006854158146e-11,
+        "right_arm_rv4frl_joint_3": -2.3821203690155162e-14,
+        "right_arm_rv4frl_joint_4": -2.8084303750767302e-09,
+        "right_arm_rv4frl_joint_5": -2.3745131208681253e-10,
+        "right_arm_rv4frl_joint_6": -2.273843959739332e-09,
+        "right_arm_finger_left_joint": 3.294346669372982e-12,
+        "right_arm_finger_right_joint": -3.6325890212518266e-16
+      },
+      "target_rad": {
+        "right_arm_rv4frl_joint_1": -0.25,
+        "right_arm_rv4frl_joint_2": 0.0,
+        "right_arm_rv4frl_joint_3": 0.0,
+        "right_arm_rv4frl_joint_4": 0.0,
+        "right_arm_rv4frl_joint_5": 0.0,
+        "right_arm_rv4frl_joint_6": 0.0
+      },
+      "max_error_rad": 3.9680900447619516e-05,
+      "feedback_age_s": 0.0005912079996051034,
+      "success": true
+    }
+  },
+  "success": true,
+  "scope": "Independent six-joint control under gravity; not grasping or insertion"
+}

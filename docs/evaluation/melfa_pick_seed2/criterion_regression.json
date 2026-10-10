@@ -1,0 +1,26 @@
+{
+  "positive": {
+    "success": true,
+    "minimum_lift_m": 0.1074008821990868,
+    "relative_slip_m": 1.0757508525598146e-06,
+    "lift_slip_m": 0.00020375016799531305,
+    "minimum_tcp_lift_m": 0.10460515715204971,
+    "minimum_finger_travel_m": 0.001982013283029258,
+    "minimum_jaw_opening_m": 0.01999989936189917,
+    "maximum_jaw_opening_m": 0.01999991951926756,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 229
+  },
+  "negative": {
+    "success": false,
+    "minimum_lift_m": 7.445591365673465e-11,
+    "relative_slip_m": 0.0005391946626804311,
+    "lift_slip_m": 0.1117001374137217,
+    "minimum_tcp_lift_m": 0.11116094275104127,
+    "minimum_finger_travel_m": -3.3642617824264596e-14,
+    "minimum_jaw_opening_m": 0.015999999999933564,
+    "maximum_jaw_opening_m": 0.015999999999933564,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 222
+  }
+}

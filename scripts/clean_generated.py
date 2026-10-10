@@ -22,6 +22,8 @@ OBSOLETE = (
     # Exploratory contact runs precede moving-frame and lifting-slip validation.
     "outputs/contact_grasp_trial1",
     "outputs/contact_grasp_trial2",
+    # Interrupted before the final, recorded MELFA pipeline run.
+    "outputs/melfa_pick_pipeline_seed2",
 )
 
 

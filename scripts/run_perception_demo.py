@@ -33,8 +33,20 @@ def main():
         action="store_true",
         help="Also replay IK in isolated single-arm validation scenes",
     )
+    parser.add_argument(
+        "--pick-connector",
+        choices=("P1", "P2", "P3"),
+        help="Attempt one fresh RGB-D-derived pickup in the running MELFA scene",
+    )
+    parser.add_argument(
+        "--keep-camera",
+        action="store_true",
+        help="Keep full RGB-D rendering rate during --pick-connector",
+    )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     args = parser.parse_args()
+    if args.pick_connector:
+        args.require_6d = True
     output = (ROOT / args.output).resolve()
     if not output.is_relative_to(ROOT):
         raise ValueError("Output must be inside the mounted project workspace")
@@ -110,7 +122,7 @@ def main():
         "-c",
         "source /opt/ros/jazzy/setup.bash && " + shlex.join(command),
     )
-    if args.plan_reach or args.check_reach:
+    if args.plan_reach or args.check_reach or args.pick_connector:
         plan = relative / "connection_plan.json"
         reach = relative / "reach_plan.json"
         run(
@@ -162,6 +174,35 @@ def main():
                 str(relative / "reach_control"),
             )
         print(f"Reach plan: {ROOT / reach}")
+        if args.pick_connector:
+            pickup = [
+                "python3",
+                "scripts/pick_connector.py",
+                "--world",
+                str(case / "world.sdf"),
+                "--board",
+                str(case / "board.json"),
+                "--plan",
+                str(plan),
+                "--models",
+                "outputs/melfa_worlds",
+                "--plug",
+                args.pick_connector,
+                "--output",
+                str(relative / "pickup"),
+            ]
+            if args.keep_camera:
+                pickup.append("--keep-camera")
+            run(
+                "docker",
+                "compose",
+                "exec",
+                "-T",
+                "gui",
+                "bash",
+                "-c",
+                "source /opt/ros/jazzy/setup.bash && " + shlex.join(pickup),
+            )
     print(f"Observations: {output / 'observations/detections.json'}")
 
 
