@@ -1,0 +1,58 @@
+{
+  "success": false,
+  "friction_mu": 0.0,
+  "scope": "Cartesian contact fixture, one pinless terminal and 12-segment cable; no arm, vision, dual-arm support or insertion",
+  "hold": {
+    "success": false,
+    "minimum_lift_m": 7.445591365673465e-11,
+    "relative_slip_m": 0.0005391946626804311,
+    "lift_slip_m": 0.1117001374137217,
+    "minimum_tcp_lift_m": 0.11116094275104127,
+    "minimum_finger_travel_m": -3.3642617824264596e-14,
+    "hold_samples": 222
+  },
+  "release_drop_m": 0.0,
+  "release_success": false,
+  "baseline": {
+    "time_s": 7641.617099195,
+    "plug": [
+      -0.00040415766771390027,
+      1.1735003066083186e-07,
+      0.14999999310838505
+    ],
+    "tcp": [
+      -3.26003491246094e-19,
+      5.662332403504982e-19,
+      0.268038375233809
+    ],
+    "fingers": [
+      0.01846901348416214,
+      0.01836022112051679
+    ],
+    "cable_z_span_m": 0.006000014063318876,
+    "phase": "open",
+    "elapsed_s": 4.9942883780004195
+  },
+  "final": {
+    "time_s": 7672.622742542,
+    "plug": [
+      -0.00040447544108423994,
+      -1.026549880598146e-05,
+      0.14999999318284096
+    ],
+    "tcp": [
+      -2.908458937177305e-18,
+      5.051682490053631e-18,
+      0.2524992515852856
+    ],
+    "fingers": [
+      0.016983057398557374,
+      0.017014315293919693
+    ],
+    "cable_z_span_m": 0.0060000141377747895,
+    "phase": "release",
+    "elapsed_s": 4.993836001999625
+  },
+  "expectation": "slip",
+  "expectation_met": true
+}

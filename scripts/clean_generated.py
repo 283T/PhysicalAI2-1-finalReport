@@ -6,7 +6,7 @@ from pathlib import Path
 
 from project_paths import ROOT
 
-# These trials were superseded by docs/evaluation/perception_seed{1,2}.
+# These trials were superseded by saved perception/contact evaluation records.
 # Keep model installs/caches, recordings and the running perception_demo_seed2 scene.
 OBSOLETE = (
     "log",
@@ -19,6 +19,9 @@ OBSOLETE = (
     "outputs/perception_initial_camera.png",
     "outputs/perception_gazebo.log",
     "outputs/melfa_gui.config",
+    # Exploratory contact runs precede moving-frame and lifting-slip validation.
+    "outputs/contact_grasp_trial1",
+    "outputs/contact_grasp_trial2",
 )
 
 

@@ -1,6 +1,6 @@
 """Small parallel-jaw prototype with two independent prismatic finger joints."""
 
-from build_world import child
+from build_world import child, plugin
 
 FINGER_REST_X_M = 0.012
 FINGER_WIDTH_M = 0.008
@@ -10,6 +10,23 @@ OPEN_TRAVEL_M = 0.018
 
 def gap_m(travel):
     return 2 * (FINGER_REST_X_M + travel) - FINGER_WIDTH_M
+
+
+def add_controllers(model, prefix, topic_root):
+    for finger in ("left", "right"):
+        plugin(
+            model,
+            ("joint-position-controller", "JointPositionController"),
+            joint_name=prefix + "finger_" + finger + "_joint",
+            topic=f"{topic_root}/{finger}/cmd",
+            p_gain=200,
+            d_gain=5,
+            i_gain=40,
+            i_max=12,
+            i_min=-12,
+            cmd_max=12,
+            cmd_min=-12,
+        )
 
 
 def add_gripper(robot, prefix, parent):

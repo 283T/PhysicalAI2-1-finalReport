@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from build_world import box, child, link, plugin
-from gripper_model import add_gripper
+from gripper_model import add_controllers, add_gripper
 from project_paths import ROOT
 
 
@@ -140,20 +140,7 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
             cmd_max=effort,
             cmd_min=-effort,
         )
-    for finger in ("left", "right"):
-        plugin(
-            model,
-            ("joint-position-controller", "JointPositionController"),
-            joint_name=prefix + "finger_" + finger + "_joint",
-            topic=f"/{name}/gripper/{finger}/cmd",
-            p_gain=200,
-            d_gain=5,
-            i_gain=40,
-            i_max=12,
-            i_min=-12,
-            cmd_max=12,
-            cmd_min=-12,
-        )
+    add_controllers(model, prefix, f"/{name}/gripper")
     plugin(model, ("joint-state-publisher", "JointStatePublisher"), topic=f"/{name}/joints")
     world.append(model)
 
