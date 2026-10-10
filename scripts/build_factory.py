@@ -1,6 +1,7 @@
 """Factory prototype: articulated arms, conveyor carrier and a jointed flexible cable."""
 
 import math
+import copy
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -52,35 +53,53 @@ def flexible_cable(model, count=12):
            update_frequency=30, topic='/cable/poses')
 
 
-def arm(world, name, origin, yaw, color):
-    model = child(world, 'model', name=name)
+JOINTS = ('shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint',
+          'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint')
+
+
+def arm(world, name, origin, yaw):
+    """Load the official UR3e geometry, joint frames, limits and inertias."""
+    import subprocess
+    import tempfile
+    from ament_index_python.packages import get_package_share_directory
+    description = Path(get_package_share_directory('ur_description'))
+    prefix = name + '_'
+    urdf = subprocess.check_output([
+        'xacro', str(description/'urdf/ur.urdf.xacro'), 'ur_type:=ur3e',
+        f'name:={name}', f'tf_prefix:={prefix}', 'force_abs_paths:=true'], text=True)
+    robot = ET.fromstring(urdf)
+    # Simple fixed fingers are only a placeholder tool, not an actuated gripper.
+    tool = child(robot, 'link', name=prefix+'gripper')
+    inertial = child(tool, 'inertial')
+    child(inertial, 'mass', value='.05')
+    child(inertial, 'inertia', ixx='.00002', iyy='.00002', izz='.00002',
+          ixy='0', ixz='0', iyz='0')
+    for side in (-1, 1):
+        for kind in ('visual', 'collision'):
+            shape = child(tool, kind, name=f'finger_{side}')
+            child(shape, 'origin', xyz=f'{side*.025} 0 .04', rpy='0 0 0')
+            child(child(shape, 'geometry'), 'box', size='.012 .02 .08')
+    fixed = child(robot, 'joint', name=prefix+'gripper_mount', type='fixed')
+    child(fixed, 'parent', link=prefix+'tool0')
+    child(fixed, 'child', link=prefix+'gripper')
+    with tempfile.TemporaryDirectory() as directory:
+        source = Path(directory)/'arm.urdf'
+        ET.ElementTree(robot).write(source, encoding='utf-8', xml_declaration=True)
+        converted = subprocess.check_output(['gz', 'sdf', '-p', str(source)], text=True)
+    model = ET.fromstring(converted).find('model')
+    if model is None:
+        raise RuntimeError('UR3e conversion produced no model')
+    model.set('name', name)
     child(model, 'pose', f'{origin[0]} {origin[1]} .12 0 0 {yaw}')
-    base = link(model, 'base', gravity=False)
-    box(base, 'pedestal', '.09 .09 .15', '0 0 .075 0 0 0', color)
-    fixed = child(model, 'joint', name='anchor', type='fixed')
-    child(fixed, 'parent', 'world'); child(fixed, 'child', 'base')
-    parent = 'base'
-    for index, (center, size, pivot, axis) in enumerate((
-        ((0,0,.20), '.06 .06 .10', (0,0,.15), '0 0 1'),
-        ((.15,0,.25), '.30 .04 .04', (0,0,.25), '0 1 0'),
-        ((.425,0,.25), '.25 .035 .035', (.30,0,.25), '0 1 0'),
-        ((.59,0,.25), '.08 .04 .04', (.55,0,.25), '0 1 0'),
-        ((.63,0,.25), '.035 .035 .035', (.63,0,.25), '1 0 0'),
-        ((.63,0,.25), '.025 .025 .025', (.63,0,.25), '0 0 1'))):
-        body = link(model, f'link_{index}', gravity=False)
-        box(body, 'arm', size, ' '.join(map(str, (*center,0,0,0))), color)
-        joint = child(model, 'joint', name=f'joint_{index}', type='revolute')
-        child(joint,'parent',parent); child(joint,'child',f'link_{index}')
-        child(joint,'pose', ' '.join(map(str, (*pivot,0,0,0))))
-        ax=child(joint,'axis'); child(ax,'xyz',axis)
-        lim=child(ax,'limit'); child(lim,'lower',-2.8); child(lim,'upper',2.8); child(lim,'effort',50)
+    for index, joint in enumerate(JOINTS):
+        effort = float(model.find(f"joint[@name='{prefix+joint}']/axis/limit/effort").text)
         plugin(model, ('joint-position-controller','JointPositionController'),
-               joint_name=f'joint_{index}', topic=f'/{name}/joint_{index}/cmd',
-               p_gain=100, d_gain=10, cmd_max=50, cmd_min=-50)
-        parent=f'link_{index}'
+               joint_name=prefix+joint, topic=f'/{name}/joint_{index}/cmd',
+               p_gain=800 if index < 3 else 80, d_gain=8 if index < 3 else .1,
+               i_gain=100 if index < 3 else 20, i_max=effort, i_min=-effort,
+               cmd_max=effort, cmd_min=-effort)
     plugin(model, ('joint-state-publisher','JointStatePublisher'), topic=f'/{name}/joints')
-    for side in (-1,1):
-        box(body, f'finger_{side}', '.02 .012 .08', f'.63 {side*.025} .21 0 0 0', color)
+    world.append(model)
 
 
 def main():
@@ -93,8 +112,8 @@ def main():
             fixture.remove(item)
     harness=world.find("model[@name='wire_harness']")
     flexible_cable(harness)
-    arm(world,'left_arm',(-.45,-.2),0,'.9 .4 .05 1')
-    arm(world,'right_arm',(.45,-.2),math.pi,'.1 .35 .75 1')
+    arm(world,'left_arm',(-.15,-.28),math.pi)
+    arm(world,'right_arm',(.38,-.28),0)
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier=child(world,'model',name='conveyor_carrier')
     base=link(carrier,'carrier',gravity=False)
@@ -117,12 +136,23 @@ def main():
     plugin(world,('sensors','Sensors'),render_engine='ogre')
     ET.indent(tree)
     tree.write(ROOT/'sim/worlds/factory_prototype.sdf',encoding='utf-8',xml_declaration=True)
+    # Keep motor validation independent of cable contact and camera rendering.
+    arm_test=ET.Element('sdf', version='1.9')
+    arm_world=child(arm_test, 'world', name='dual_ur3e_validation')
+    arm_physics=child(arm_world, 'physics', name='physics', type='ignored')
+    child(arm_physics, 'max_step_size', .001)
+    child(arm_world, 'gravity', '0 0 -9.81')
+    plugin(arm_world, ('physics','Physics'))
+    plugin(arm_world, ('scene-broadcaster','SceneBroadcaster'))
+    for name in ('left_arm', 'right_arm'):
+        arm_world.append(copy.deepcopy(world.find(f"model[@name='{name}']")))
+    ET.indent(arm_test)
+    ET.ElementTree(arm_test).write(ROOT/'sim/worlds/arms_test.sdf', encoding='utf-8', xml_declaration=True)
     # Independent cable test: anchor plug and let the cable droop freely beyond the table edge.
     test=ET.Element('sdf',version='1.9'); scene=child(test,'world',name='cable_validation')
     physics=child(scene,'physics',name='physics',type='ignored'); child(physics,'max_step_size',.001)
     child(scene,'gravity','0 0 -9.81')
     plugin(scene,('physics','Physics')); plugin(scene,('scene-broadcaster','SceneBroadcaster'))
-    import copy
     cable=copy.deepcopy(harness); cable.find('pose').text='0 0 .45 0 0 0'
     anchor=child(cable,'joint',name='test_anchor',type='fixed'); child(anchor,'parent','world'); child(anchor,'child','body')
     scene.append(cable)

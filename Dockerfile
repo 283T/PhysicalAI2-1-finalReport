@@ -10,6 +10,11 @@ RUN apt-get update \
         python3-colcon-common-extensions \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ros-jazzy-ur-description ros-jazzy-xacro \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
 CMD ["bash"]
 

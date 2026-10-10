@@ -2236,786 +2236,992 @@
       </plugin>
     </model>
     <model name="left_arm">
-      <pose>-0.45 -0.2 .12 0 0 0</pose>
-      <link name="base">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="pedestal_collision">
-          <pose>0 0 .075 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.09 .09 .15</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="pedestal_visual">
-          <pose>0 0 .075 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.09 .09 .15</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="anchor" type="fixed">
+      <joint name="left_arm_base_joint" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
         <parent>world</parent>
-        <child>base</child>
+        <child>left_arm_base_link</child>
       </joint>
-      <link name="link_0">
-        <gravity>false</gravity>
+      <link name="left_arm_base_link">
+        <pose relative_to="left_arm_base_joint">0 0 0 0 0 0</pose>
         <inertial>
-          <mass>0.1</mass>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>2</mass>
           <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
+            <ixx>0.0030531654453999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0030531654453999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.0056249999999999998</izz>
           </inertia>
         </inertial>
-        <collision name="arm_collision">
-          <pose>0 0 0.2 0 0 0</pose>
+        <collision name="left_arm_base_link_inertia_collision">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
           <geometry>
-            <box>
-              <size>.06 .06 .10</size>
-            </box>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/base.stl</uri>
+            </mesh>
           </geometry>
         </collision>
-        <visual name="arm_visual">
-          <pose>0 0 0.2 0 0 0</pose>
+        <visual name="left_arm_base_link_inertia_visual">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
           <geometry>
-            <box>
-              <size>.06 .06 .10</size>
-            </box>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/base.dae</uri>
+            </mesh>
           </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
         </visual>
       </link>
-      <joint name="joint_0" type="revolute">
-        <parent>base</parent>
-        <child>link_0</child>
-        <pose>0 0 0.15 0 0 0</pose>
+      <joint name="left_arm_shoulder_pan_joint" type="revolute">
+        <pose relative_to="left_arm_base_link">0 0 0.15185000000000001 0 0 3.1415926535897931</pose>
+        <parent>left_arm_base_link</parent>
+        <child>left_arm_shoulder_link</child>
         <axis>
           <xyz>0 0 1</xyz>
           <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
           </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
         </axis>
       </joint>
+      <link name="left_arm_shoulder_link">
+        <pose relative_to="left_arm_shoulder_pan_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.02 1.570796326794897 0 0</pose>
+          <mass>1.98</mass>
+          <inertia>
+            <ixx>0.0027656999999999998</ixx>
+            <ixy>9.5999999999999996e-06</ixy>
+            <ixz>-1.49e-05</ixz>
+            <iyy>0.0021500999999999998</iyy>
+            <iyz>0.0001873</iyz>
+            <izz>0.0025625999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_shoulder_link_collision">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/shoulder.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_shoulder_link_visual">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/shoulder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_shoulder_lift_joint" type="revolute">
+        <pose relative_to="left_arm_shoulder_link">0 0 0 1.5707963270000003 0 0</pose>
+        <parent>left_arm_shoulder_link</parent>
+        <child>left_arm_upper_arm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_upper_arm_link">
+        <pose relative_to="left_arm_shoulder_lift_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.11355 0 0.1157 0 0 0</pose>
+          <mass>3.4445000000000001</mass>
+          <inertia>
+            <ixx>0.0042623000000000001</ixx>
+            <ixy>-4.0899999999999998e-05</ixy>
+            <ixz>-0.0014959999999999999</ixz>
+            <iyy>0.046028399999999997</iyy>
+            <iyz>-1.29e-05</iyz>
+            <izz>0.044894700000000003</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_upper_arm_link_collision">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/upperarm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_upper_arm_link_visual">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/upperarm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_elbow_joint" type="revolute">
+        <pose relative_to="left_arm_upper_arm_link">-0.24354999999999999 0 0 0 0 0</pose>
+        <parent>left_arm_upper_arm_link</parent>
+        <child>left_arm_forearm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.1415926535897931</lower>
+            <upper>3.1415926535897931</upper>
+            <effort>28</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_forearm_link">
+        <pose relative_to="left_arm_elbow_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.16320000000000001 0 0.023800000000000002 0 0 0</pose>
+          <mass>1.4370000000000001</mass>
+          <inertia>
+            <ixx>0.0010510999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>-3.3099999999999998e-05</ixz>
+            <iyy>0.0113396</iyy>
+            <iyz>2.2000000000000001e-06</iyz>
+            <izz>0.0110895</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_forearm_link_collision">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/forearm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_forearm_link_visual">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/forearm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_1_joint" type="revolute">
+        <pose relative_to="left_arm_forearm_link">-0.2132 0 0.13105 0 0 0</pose>
+        <parent>left_arm_forearm_link</parent>
+        <child>left_arm_wrist_1_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_1_link">
+        <pose relative_to="left_arm_wrist_1_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.01 0 1.570796326794897 0 0</pose>
+          <mass>0.871</mass>
+          <inertia>
+            <ixx>0.00081740000000000003</ixx>
+            <ixy>-4.9999999999999998e-07</ixy>
+            <ixz>2.0999999999999998e-06</ixz>
+            <iyy>0.00068440000000000005</iyy>
+            <iyz>6.1699999999999995e-05</iyz>
+            <izz>0.00054969999999999997</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_1_link_collision">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_1_link_visual">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_2_joint" type="revolute">
+        <pose relative_to="left_arm_wrist_1_link">0 -0.085349999999999995 -1.750557762378351e-11 1.5707963270000003 0 0</pose>
+        <parent>left_arm_wrist_1_link</parent>
+        <child>left_arm_wrist_2_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_2_link">
+        <pose relative_to="left_arm_wrist_2_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0.01 0 -1.570796326794897 0 0</pose>
+          <mass>0.80500000000000005</mass>
+          <inertia>
+            <ixx>0.00060590000000000004</ixx>
+            <ixy>-5.9999999999999997e-07</ixy>
+            <ixz>-5.9999999999999997e-07</ixz>
+            <iyy>0.00058370000000000004</iyy>
+            <iyz>-2.7100000000000001e-05</iyz>
+            <izz>0.00038309999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_2_link_collision">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist2.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_2_link_visual">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="left_arm_wrist_3_joint" type="revolute">
+        <pose relative_to="left_arm_wrist_2_link">0 0.092100000000000001 -1.8890025766261998e-11 -1.5707963270000003 1.2246467991473527e-16 -1.2246467991473527e-16</pose>
+        <parent>left_arm_wrist_2_link</parent>
+        <child>left_arm_wrist_3_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="left_arm_wrist_3_link">
+        <pose relative_to="left_arm_wrist_3_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.016784565916398719 0 0 0</pose>
+          <mass>0.311</mass>
+          <inertia>
+            <ixx>0.00014478456591639869</ixx>
+            <ixy>-9.9999999999999995e-08</ixy>
+            <ixz>-9.9999999999999995e-08</ixz>
+            <iyy>0.00014538456591639871</iyy>
+            <iyz>-1.9999999999999999e-07</iyz>
+            <izz>0.0001571</izz>
+          </inertia>
+        </inertial>
+        <collision name="left_arm_wrist_3_link_collision">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist3.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="left_arm_wrist_3_link_fixed_joint_lump__finger_-1_collision_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="left_arm_wrist_3_link_fixed_joint_lump__finger_1_collision_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="left_arm_wrist_3_link_visual">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="left_arm_wrist_3_link_fixed_joint_lump__finger_-1_visual_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="left_arm_wrist_3_link_fixed_joint_lump__finger_1_visual_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <frame name="left_arm_base_link-base_fixed_joint" attached_to="left_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="left_arm_base" attached_to="left_arm_base_link-base_fixed_joint">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_base_link-base_link_inertia" attached_to="left_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="left_arm_base_link_inertia" attached_to="left_arm_base_link-base_link_inertia">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_gripper_mount" attached_to="left_arm_tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_gripper" attached_to="left_arm_gripper_mount">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_flange-tool0" attached_to="left_arm_flange">
+        <pose>0 0 0 1.5707963267948959 -5.5511151231257827e-17 1.5707963267948959</pose>
+      </frame>
+      <frame name="left_arm_tool0" attached_to="left_arm_flange-tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_wrist_3-flange" attached_to="left_arm_wrist_3_link">
+        <pose>0 0 0 -1.5707963267948957 -1.5707963267948966 0</pose>
+      </frame>
+      <frame name="left_arm_flange" attached_to="left_arm_wrist_3-flange">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="left_arm_wrist_3_link-ft_frame" attached_to="left_arm_wrist_3_link">
+        <pose>0 0 0 3.1415926535897931 0 0</pose>
+      </frame>
+      <frame name="left_arm_ft_frame" attached_to="left_arm_wrist_3_link-ft_frame">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>-0.15 -0.28 .12 0 0 3.141592653589793</pose>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_0</joint_name>
+        <joint_name>left_arm_shoulder_pan_joint</joint_name>
         <topic>/left_arm/joint_0/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
       </plugin>
-      <link name="link_1">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.15 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.30 .04 .04</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.15 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.30 .04 .04</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_1" type="revolute">
-        <parent>link_0</parent>
-        <child>link_1</child>
-        <pose>0 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_1</joint_name>
+        <joint_name>left_arm_shoulder_lift_joint</joint_name>
         <topic>/left_arm/joint_1/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
       </plugin>
-      <link name="link_2">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.425 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.25 .035 .035</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.425 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.25 .035 .035</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_2" type="revolute">
-        <parent>link_1</parent>
-        <child>link_2</child>
-        <pose>0.3 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_2</joint_name>
+        <joint_name>left_arm_elbow_joint</joint_name>
         <topic>/left_arm/joint_2/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>28.0</i_max>
+        <i_min>-28.0</i_min>
+        <cmd_max>28.0</cmd_max>
+        <cmd_min>-28.0</cmd_min>
       </plugin>
-      <link name="link_3">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.59 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.08 .04 .04</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.59 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.08 .04 .04</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_3" type="revolute">
-        <parent>link_2</parent>
-        <child>link_3</child>
-        <pose>0.55 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_3</joint_name>
+        <joint_name>left_arm_wrist_1_joint</joint_name>
         <topic>/left_arm/joint_3/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
-      <link name="link_4">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.035 .035 .035</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.035 .035 .035</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_4" type="revolute">
-        <parent>link_3</parent>
-        <child>link_4</child>
-        <pose>0.63 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>1 0 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_4</joint_name>
+        <joint_name>left_arm_wrist_2_joint</joint_name>
         <topic>/left_arm/joint_4/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
-      <link name="link_5">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.025 .025 .025</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.025 .025 .025</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-        <collision name="finger_-1_collision">
-          <pose>.63 -0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="finger_-1_visual">
-          <pose>.63 -0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-        <collision name="finger_1_collision">
-          <pose>.63 0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="finger_1_visual">
-          <pose>.63 0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.9 .4 .05 1</diffuse>
-            <ambient>.9 .4 .05 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_5" type="revolute">
-        <parent>link_4</parent>
-        <child>link_5</child>
-        <pose>0.63 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_5</joint_name>
+        <joint_name>left_arm_wrist_3_joint</joint_name>
         <topic>/left_arm/joint_5/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
       <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
         <topic>/left_arm/joints</topic>
       </plugin>
     </model>
     <model name="right_arm">
-      <pose>0.45 -0.2 .12 0 0 3.141592653589793</pose>
-      <link name="base">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="pedestal_collision">
-          <pose>0 0 .075 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.09 .09 .15</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="pedestal_visual">
-          <pose>0 0 .075 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.09 .09 .15</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="anchor" type="fixed">
+      <joint name="right_arm_base_joint" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
         <parent>world</parent>
-        <child>base</child>
+        <child>right_arm_base_link</child>
       </joint>
-      <link name="link_0">
-        <gravity>false</gravity>
+      <link name="right_arm_base_link">
+        <pose relative_to="right_arm_base_joint">0 0 0 0 0 0</pose>
         <inertial>
-          <mass>0.1</mass>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>2</mass>
           <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
+            <ixx>0.0030531654453999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0030531654453999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.0056249999999999998</izz>
           </inertia>
         </inertial>
-        <collision name="arm_collision">
-          <pose>0 0 0.2 0 0 0</pose>
+        <collision name="right_arm_base_link_inertia_collision">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
           <geometry>
-            <box>
-              <size>.06 .06 .10</size>
-            </box>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/base.stl</uri>
+            </mesh>
           </geometry>
         </collision>
-        <visual name="arm_visual">
-          <pose>0 0 0.2 0 0 0</pose>
+        <visual name="right_arm_base_link_inertia_visual">
+          <pose>0 0 0 0 0 -2.4492935982947059e-16</pose>
           <geometry>
-            <box>
-              <size>.06 .06 .10</size>
-            </box>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/base.dae</uri>
+            </mesh>
           </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
         </visual>
       </link>
-      <joint name="joint_0" type="revolute">
-        <parent>base</parent>
-        <child>link_0</child>
-        <pose>0 0 0.15 0 0 0</pose>
+      <joint name="right_arm_shoulder_pan_joint" type="revolute">
+        <pose relative_to="right_arm_base_link">0 0 0.15185000000000001 0 0 3.1415926535897931</pose>
+        <parent>right_arm_base_link</parent>
+        <child>right_arm_shoulder_link</child>
         <axis>
           <xyz>0 0 1</xyz>
           <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
           </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
         </axis>
       </joint>
+      <link name="right_arm_shoulder_link">
+        <pose relative_to="right_arm_shoulder_pan_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.02 1.570796326794897 0 0</pose>
+          <mass>1.98</mass>
+          <inertia>
+            <ixx>0.0027656999999999998</ixx>
+            <ixy>9.5999999999999996e-06</ixy>
+            <ixz>-1.49e-05</ixz>
+            <iyy>0.0021500999999999998</iyy>
+            <iyz>0.0001873</iyz>
+            <izz>0.0025625999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_shoulder_link_collision">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/shoulder.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_shoulder_link_visual">
+          <pose>0 0 0 0 0 3.1415926535897931</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/shoulder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_shoulder_lift_joint" type="revolute">
+        <pose relative_to="right_arm_shoulder_link">0 0 0 1.5707963270000003 0 0</pose>
+        <parent>right_arm_shoulder_link</parent>
+        <child>right_arm_upper_arm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>54</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_upper_arm_link">
+        <pose relative_to="right_arm_shoulder_lift_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.11355 0 0.1157 0 0 0</pose>
+          <mass>3.4445000000000001</mass>
+          <inertia>
+            <ixx>0.0042623000000000001</ixx>
+            <ixy>-4.0899999999999998e-05</ixy>
+            <ixz>-0.0014959999999999999</ixz>
+            <iyy>0.046028399999999997</iyy>
+            <iyz>-1.29e-05</iyz>
+            <izz>0.044894700000000003</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_upper_arm_link_collision">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/upperarm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_upper_arm_link_visual">
+          <pose>0 0 0.12 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/upperarm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_elbow_joint" type="revolute">
+        <pose relative_to="right_arm_upper_arm_link">-0.24354999999999999 0 0 0 0 0</pose>
+        <parent>right_arm_upper_arm_link</parent>
+        <child>right_arm_forearm_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.1415926535897931</lower>
+            <upper>3.1415926535897931</upper>
+            <effort>28</effort>
+            <velocity>3.1415926535897931</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_forearm_link">
+        <pose relative_to="right_arm_elbow_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.16320000000000001 0 0.023800000000000002 0 0 0</pose>
+          <mass>1.4370000000000001</mass>
+          <inertia>
+            <ixx>0.0010510999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>-3.3099999999999998e-05</ixz>
+            <iyy>0.0113396</iyy>
+            <iyz>2.2000000000000001e-06</iyz>
+            <izz>0.0110895</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_forearm_link_collision">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/forearm.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_forearm_link_visual">
+          <pose>0 0 0.027 1.5707963267948959 5.5511151231257827e-17 -1.5707963267948959</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/forearm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_1_joint" type="revolute">
+        <pose relative_to="right_arm_forearm_link">-0.2132 0 0.13105 0 0 0</pose>
+        <parent>right_arm_forearm_link</parent>
+        <child>right_arm_wrist_1_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_1_link">
+        <pose relative_to="right_arm_wrist_1_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.01 0 1.570796326794897 0 0</pose>
+          <mass>0.871</mass>
+          <inertia>
+            <ixx>0.00081740000000000003</ixx>
+            <ixy>-4.9999999999999998e-07</ixy>
+            <ixz>2.0999999999999998e-06</ixz>
+            <iyy>0.00068440000000000005</iyy>
+            <iyz>6.1699999999999995e-05</iyz>
+            <izz>0.00054969999999999997</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_1_link_collision">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_1_link_visual">
+          <pose>0 0 -0.104 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_2_joint" type="revolute">
+        <pose relative_to="right_arm_wrist_1_link">0 -0.085349999999999995 -1.750557762378351e-11 1.5707963270000003 0 0</pose>
+        <parent>right_arm_wrist_1_link</parent>
+        <child>right_arm_wrist_2_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_2_link">
+        <pose relative_to="right_arm_wrist_2_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0.01 0 -1.570796326794897 0 0</pose>
+          <mass>0.80500000000000005</mass>
+          <inertia>
+            <ixx>0.00060590000000000004</ixx>
+            <ixy>-5.9999999999999997e-07</ixy>
+            <ixz>-5.9999999999999997e-07</ixz>
+            <iyy>0.00058370000000000004</iyy>
+            <iyz>-2.7100000000000001e-05</iyz>
+            <izz>0.00038309999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_2_link_collision">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist2.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_2_link_visual">
+          <pose>0 0 -0.085349999999999995 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="right_arm_wrist_3_joint" type="revolute">
+        <pose relative_to="right_arm_wrist_2_link">0 0.092100000000000001 -1.8890025766261998e-11 -1.5707963270000003 1.2246467991473527e-16 -1.2246467991473527e-16</pose>
+        <parent>right_arm_wrist_2_link</parent>
+        <child>right_arm_wrist_3_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <effort>9</effort>
+            <velocity>6.2831853071795862</velocity>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_wrist_3_link">
+        <pose relative_to="right_arm_wrist_3_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 -0.016784565916398719 0 0 0</pose>
+          <mass>0.311</mass>
+          <inertia>
+            <ixx>0.00014478456591639869</ixx>
+            <ixy>-9.9999999999999995e-08</ixy>
+            <ixz>-9.9999999999999995e-08</ixz>
+            <iyy>0.00014538456591639871</iyy>
+            <iyz>-1.9999999999999999e-07</iyz>
+            <izz>0.0001571</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_wrist_3_link_collision">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/collision/wrist3.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="right_arm_wrist_3_link_fixed_joint_lump__finger_-1_collision_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_wrist_3_link_fixed_joint_lump__finger_1_collision_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_arm_wrist_3_link_visual">
+          <pose>0 0 -0.092100000000000001 1.5707963267948959 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///opt/ros/jazzy/share/ur_description/meshes/ur3e/visual/wrist3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="right_arm_wrist_3_link_fixed_joint_lump__finger_-1_visual_1">
+          <pose>-0.025000000000000008 -1.387778780781446e-17 0.040000000000000001 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_wrist_3_link_fixed_joint_lump__finger_1_visual_2">
+          <pose>0.024999999999999991 3.4694469519536142e-18 0.040000000000000008 -2.4651903288156619e-32 -2.2204460492503131e-16 2.2204460492503131e-16</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.02 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <frame name="right_arm_base_link-base_fixed_joint" attached_to="right_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="right_arm_base" attached_to="right_arm_base_link-base_fixed_joint">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_base_link-base_link_inertia" attached_to="right_arm_base_link">
+        <pose>0 0 0 0 0 3.1415926535897931</pose>
+      </frame>
+      <frame name="right_arm_base_link_inertia" attached_to="right_arm_base_link-base_link_inertia">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_gripper_mount" attached_to="right_arm_tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_gripper" attached_to="right_arm_gripper_mount">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_flange-tool0" attached_to="right_arm_flange">
+        <pose>0 0 0 1.5707963267948959 -5.5511151231257827e-17 1.5707963267948959</pose>
+      </frame>
+      <frame name="right_arm_tool0" attached_to="right_arm_flange-tool0">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_wrist_3-flange" attached_to="right_arm_wrist_3_link">
+        <pose>0 0 0 -1.5707963267948957 -1.5707963267948966 0</pose>
+      </frame>
+      <frame name="right_arm_flange" attached_to="right_arm_wrist_3-flange">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_wrist_3_link-ft_frame" attached_to="right_arm_wrist_3_link">
+        <pose>0 0 0 3.1415926535897931 0 0</pose>
+      </frame>
+      <frame name="right_arm_ft_frame" attached_to="right_arm_wrist_3_link-ft_frame">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>0.38 -0.28 .12 0 0 0</pose>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_0</joint_name>
+        <joint_name>right_arm_shoulder_pan_joint</joint_name>
         <topic>/right_arm/joint_0/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
       </plugin>
-      <link name="link_1">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.15 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.30 .04 .04</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.15 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.30 .04 .04</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_1" type="revolute">
-        <parent>link_0</parent>
-        <child>link_1</child>
-        <pose>0 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_1</joint_name>
+        <joint_name>right_arm_shoulder_lift_joint</joint_name>
         <topic>/right_arm/joint_1/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>54.0</i_max>
+        <i_min>-54.0</i_min>
+        <cmd_max>54.0</cmd_max>
+        <cmd_min>-54.0</cmd_min>
       </plugin>
-      <link name="link_2">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.425 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.25 .035 .035</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.425 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.25 .035 .035</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_2" type="revolute">
-        <parent>link_1</parent>
-        <child>link_2</child>
-        <pose>0.3 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_2</joint_name>
+        <joint_name>right_arm_elbow_joint</joint_name>
         <topic>/right_arm/joint_2/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>800</p_gain>
+        <d_gain>8</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>28.0</i_max>
+        <i_min>-28.0</i_min>
+        <cmd_max>28.0</cmd_max>
+        <cmd_min>-28.0</cmd_min>
       </plugin>
-      <link name="link_3">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.59 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.08 .04 .04</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.59 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.08 .04 .04</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_3" type="revolute">
-        <parent>link_2</parent>
-        <child>link_3</child>
-        <pose>0.55 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_3</joint_name>
+        <joint_name>right_arm_wrist_1_joint</joint_name>
         <topic>/right_arm/joint_3/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
-      <link name="link_4">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.035 .035 .035</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.035 .035 .035</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_4" type="revolute">
-        <parent>link_3</parent>
-        <child>link_4</child>
-        <pose>0.63 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>1 0 0</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_4</joint_name>
+        <joint_name>right_arm_wrist_2_joint</joint_name>
         <topic>/right_arm/joint_4/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
-      <link name="link_5">
-        <gravity>false</gravity>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.0001</ixx>
-            <iyy>0.0001</iyy>
-            <izz>0.0001</izz>
-          </inertia>
-        </inertial>
-        <collision name="arm_collision">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.025 .025 .025</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="arm_visual">
-          <pose>0.63 0 0.25 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.025 .025 .025</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-        <collision name="finger_-1_collision">
-          <pose>.63 -0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="finger_-1_visual">
-          <pose>.63 -0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-        <collision name="finger_1_collision">
-          <pose>.63 0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="finger_1_visual">
-          <pose>.63 0.025 .21 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>.02 .012 .08</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>.1 .35 .75 1</diffuse>
-            <ambient>.1 .35 .75 1</ambient>
-          </material>
-        </visual>
-      </link>
-      <joint name="joint_5" type="revolute">
-        <parent>link_4</parent>
-        <child>link_5</child>
-        <pose>0.63 0 0.25 0 0 0</pose>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <limit>
-            <lower>-2.8</lower>
-            <upper>2.8</upper>
-            <effort>50</effort>
-          </limit>
-        </axis>
-      </joint>
       <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
-        <joint_name>joint_5</joint_name>
+        <joint_name>right_arm_wrist_3_joint</joint_name>
         <topic>/right_arm/joint_5/cmd</topic>
-        <p_gain>100</p_gain>
-        <d_gain>10</d_gain>
-        <cmd_max>50</cmd_max>
-        <cmd_min>-50</cmd_min>
+        <p_gain>80</p_gain>
+        <d_gain>0.1</d_gain>
+        <i_gain>20</i_gain>
+        <i_max>9.0</i_max>
+        <i_min>-9.0</i_min>
+        <cmd_max>9.0</cmd_max>
+        <cmd_min>-9.0</cmd_min>
       </plugin>
       <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
         <topic>/right_arm/joints</topic>

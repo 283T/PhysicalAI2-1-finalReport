@@ -1,0 +1,69 @@
+{
+  "robot": "UR3e x 2",
+  "arms": {
+    "left_arm": {
+      "initial_rad": {
+        "left_arm_base_joint": 0.0,
+        "left_arm_shoulder_pan_joint": 2.2968529355275687e-09,
+        "left_arm_shoulder_lift_joint": 0.000116170376558408,
+        "left_arm_elbow_joint": -0.00010797449862241299,
+        "left_arm_wrist_1_joint": -8.277230194190944e-06,
+        "left_arm_wrist_2_joint": -6.887514094632823e-08,
+        "left_arm_wrist_3_joint": 8.033932487422261e-08
+      },
+      "final_rad": {
+        "left_arm_base_joint": 0.0,
+        "left_arm_shoulder_pan_joint": 0.29999836938652225,
+        "left_arm_shoulder_lift_joint": 0.00665135093841077,
+        "left_arm_elbow_joint": 0.002326538894171185,
+        "left_arm_wrist_1_joint": 4.864942288249692e-05,
+        "left_arm_wrist_2_joint": -1.4700960420145253e-05,
+        "left_arm_wrist_3_joint": -3.51962397719101e-10
+      },
+      "target_rad": {
+        "left_arm_shoulder_pan_joint": 0.3,
+        "left_arm_shoulder_lift_joint": 0.0,
+        "left_arm_elbow_joint": 0.0,
+        "left_arm_wrist_1_joint": 0.0,
+        "left_arm_wrist_2_joint": 0.0,
+        "left_arm_wrist_3_joint": 0.0
+      },
+      "max_error_rad": 0.00665135093841077,
+      "feedback_age_s": 2.1583000005875874e-05,
+      "success": true
+    },
+    "right_arm": {
+      "initial_rad": {
+        "right_arm_base_joint": 0.0,
+        "right_arm_shoulder_pan_joint": 2.2968529354957148e-09,
+        "right_arm_shoulder_lift_joint": 0.00011617037655840802,
+        "right_arm_elbow_joint": -0.00010797449862241307,
+        "right_arm_wrist_1_joint": -8.277230194190854e-06,
+        "right_arm_wrist_2_joint": -6.887514094634639e-08,
+        "right_arm_wrist_3_joint": 8.033932487419136e-08
+      },
+      "final_rad": {
+        "right_arm_base_joint": 0.0,
+        "right_arm_shoulder_pan_joint": -0.2499986508450298,
+        "right_arm_shoulder_lift_joint": 0.006652244440853646,
+        "right_arm_elbow_joint": 0.0023268671559534665,
+        "right_arm_wrist_1_joint": 4.9157311690142714e-05,
+        "right_arm_wrist_2_joint": -1.4936269693786091e-05,
+        "right_arm_wrist_3_joint": -3.625616109178518e-10
+      },
+      "target_rad": {
+        "right_arm_shoulder_pan_joint": -0.25,
+        "right_arm_shoulder_lift_joint": 0.0,
+        "right_arm_elbow_joint": 0.0,
+        "right_arm_wrist_1_joint": 0.0,
+        "right_arm_wrist_2_joint": 0.0,
+        "right_arm_wrist_3_joint": 0.0
+      },
+      "max_error_rad": 0.006652244440853646,
+      "feedback_age_s": 0.0009509589999936452,
+      "success": true
+    }
+  },
+  "success": true,
+  "scope": "Independent six-joint control under gravity; not grasping or insertion"
+}
