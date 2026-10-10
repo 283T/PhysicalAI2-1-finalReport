@@ -48,6 +48,11 @@ def main():
         action="store_true",
         help="Keep full RGB-D rendering rate during --pick-connector",
     )
+    parser.add_argument(
+        "--regrasp-nest",
+        action="store_true",
+        help="Add a passive nest and split finger pads; no regrasp motion is enabled",
+    )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     args = parser.parse_args()
     if args.support_plug and not args.pick_connector:
@@ -62,13 +67,14 @@ def main():
     relative = output.relative_to(ROOT)
     case = relative / "case"
     observations = relative / "observations"
+    models = "outputs/melfa_regrasp_worlds" if args.regrasp_nest else "outputs/melfa_worlds"
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
         "python3",
         "scripts/build_case.py",
         "--factory-world",
-        "outputs/melfa_worlds/factory_prototype.sdf",
+        models + "/factory_prototype.sdf",
         "--design-seed",
         str(args.design_seed),
         "--placement-seed",
@@ -76,6 +82,11 @@ def main():
         "--output",
         str(case),
     ]
+    if args.regrasp_nest:
+        generate.append("--regrasp-nest")
+    factory = ["python3", "scripts/build_factory.py", "--robot", "melfa_rv4frl", "--output", models]
+    if args.regrasp_nest:
+        factory.append("--split-finger-contacts")
     run(
         "docker",
         "compose",
@@ -85,7 +96,8 @@ def main():
         "bash",
         "-c",
         "source outputs/melfa_install/setup.bash && "
-        "python3 scripts/build_factory.py --robot melfa_rv4frl --output outputs/melfa_worlds && "
+        + shlex.join(factory)
+        + " && "
         + shlex.join(generate),
     )
     run("docker", "compose", "--profile", "gui", "up", "-d", "gui")
@@ -170,7 +182,7 @@ def main():
             "--world",
             str(case / "world.sdf"),
             "--models",
-            "outputs/melfa_worlds",
+            models,
             "--output",
             str(reach),
         )
@@ -188,7 +200,7 @@ def main():
                 "--world",
                 str(case / "world.sdf"),
                 "--models",
-                "outputs/melfa_worlds",
+                models,
                 "--output",
                 str(relative / "reach_control"),
             )
@@ -204,7 +216,7 @@ def main():
                 "--plan",
                 str(plan),
                 "--models",
-                "outputs/melfa_worlds",
+                models,
                 "--plug",
                 args.pick_connector,
                 "--output",

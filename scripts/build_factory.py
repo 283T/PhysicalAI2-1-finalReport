@@ -81,7 +81,7 @@ def joint_names(robot_type):
     )
 
 
-def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
+def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None, *, split_contacts=False):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
     import tempfile
@@ -111,7 +111,7 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None):
         )
         tool_parent = prefix + "tool0"
     robot = ET.fromstring(urdf)
-    add_gripper(robot, prefix, tool_parent)
+    add_gripper(robot, prefix, tool_parent, split_contacts=split_contacts)
     if urdf_output is not None:
         ET.indent(robot)
         ET.ElementTree(robot).write(urdf_output, encoding="utf-8", xml_declaration=True)
@@ -151,6 +151,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--robot", choices=["ur3e", "melfa_rv4frl"], default="ur3e")
     parser.add_argument("--output", type=Path, default=ROOT / "sim/worlds")
+    parser.add_argument(
+        "--split-finger-contacts",
+        action="store_true",
+        help="Use two separated contact pads per finger",
+    )
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     tree = ET.parse(ROOT / "sim/worlds/insertion.sdf")
@@ -163,8 +168,24 @@ def main():
             fixture.remove(item)
     harness = world.find("model[@name='wire_harness']")
     flexible_cable(harness)
-    arm(world, "left_arm", (-0.15, -0.28), math.pi, args.robot, args.output / "left_arm.urdf")
-    arm(world, "right_arm", (0.38, -0.28), 0, args.robot, args.output / "right_arm.urdf")
+    arm(
+        world,
+        "left_arm",
+        (-0.15, -0.28),
+        math.pi,
+        args.robot,
+        args.output / "left_arm.urdf",
+        split_contacts=args.split_finger_contacts,
+    )
+    arm(
+        world,
+        "right_arm",
+        (0.38, -0.28),
+        0,
+        args.robot,
+        args.output / "right_arm.urdf",
+        split_contacts=args.split_finger_contacts,
+    )
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")
     base = link(carrier, "carrier", gravity=False)

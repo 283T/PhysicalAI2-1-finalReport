@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "trials": [
+    {
+      "success": true,
+      "with_nest": true,
+      "scope": "Single pin-equipped terminal with a 12-link flexible tail, released initial condition; no robot, perception, regrasp transition, dual-arm support or insertion",
+      "world_sha256": "3170b3cf3ab79cb79b5a8e4ccff2e34c3aa25b0075292dc8f05adbeb24ea3db9",
+      "maximum_lateral_offset_m": 0.0010001997409294083,
+      "maximum_seat_height_error_m": 2.2063907662017712e-07,
+      "maximum_angle_error_rad": 9.709148988182433e-07,
+      "minimum_drop_m": 0.005000220639076597,
+      "minimum_cable_z_span_m": 0.1851698058754172,
+      "settled_samples": 212
+    },
+    {
+      "success": true,
+      "with_nest": false,
+      "scope": "Single pin-equipped terminal with a 12-link flexible tail, released initial condition; no robot, perception, regrasp transition, dual-arm support or insertion",
+      "world_sha256": "576fb37e925f237f434ccdf5902e6375a446e46ad36d194e9f429b224a24d329",
+      "maximum_lateral_offset_m": 0.01726901396532816,
+      "maximum_seat_height_error_m": 0.15018155520877058,
+      "maximum_angle_error_rad": 0.920608077168036,
+      "minimum_drop_m": 0.15518155520877056,
+      "minimum_cable_z_span_m": 0.03581846489111025,
+      "settled_samples": 310
+    }
+  ]
+}

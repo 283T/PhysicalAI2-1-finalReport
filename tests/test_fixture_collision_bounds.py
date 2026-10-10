@@ -44,6 +44,17 @@ class FixtureTests(unittest.TestCase):
                     f'<sdf><world><model name="fixtures"><static>true</static><link name="base"><collision name="wall">{pose}<geometry>{geometry}</geometry></collision></link></model></world></sdf>'
                 )
 
+    def test_explicit_small_margin_keeps_actual_gap_and_rejects_invalid_limits(self):
+        fixture = self.fixture(
+            '<sdf><world><model name="fixtures"><static>true</static><link name="base"><collision name="rim"><pose>0.4 0 0 0 0 0</pose><geometry><box><size>0.1 0.1 0.1</size></box></geometry></collision></link></model></world></sdf>'
+        )
+        paths = {"a": np.array([[0.473], [0.48]])}
+        self.assertFalse(fixture.screen({"a": MovingBox()}, paths)["clear"])
+        self.assertTrue(fixture.screen({"a": MovingBox()}, paths, margin=0.001)["clear"])
+        for margin in (-1, float("nan"), 0.006):
+            with self.subTest(margin=margin), self.assertRaises(ValueError):
+                fixture.screen({"a": MovingBox()}, paths, margin=margin)
+
 
 if __name__ == "__main__":
     unittest.main()

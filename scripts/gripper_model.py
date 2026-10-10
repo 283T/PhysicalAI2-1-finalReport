@@ -29,7 +29,7 @@ def add_controllers(model, prefix, topic_root):
         )
 
 
-def add_gripper(robot, prefix, parent):
+def add_gripper(robot, prefix, parent, *, split_contacts=False):
     tool = child(robot, "link", name=prefix + "gripper")
     inertial = child(tool, "inertial")
     child(inertial, "mass", value=".05")
@@ -56,10 +56,19 @@ def add_gripper(robot, prefix, parent):
             ixz="0",
             iyz="0",
         )
-        for kind in ("visual", "collision"):
-            shape = child(finger, kind)
-            child(shape, "origin", xyz="0 0 .04", rpy="0 0 0")
-            child(child(shape, "geometry"), "box", size=".008 .020 .080")
+        visual = child(finger, "visual")
+        child(visual, "origin", xyz="0 0 .04", rpy="0 0 0")
+        child(child(visual, "geometry"), "box", size=".008 .020 .080")
+        # Two separated contact pads provide friction at distinct points along
+        # the housing's long axis, rather than a single central contact pair.
+        for index, y in enumerate((-0.006, 0.006) if split_contacts else (0,)):
+            shape = child(finger, "collision", name=f"contact_pad_{index}")
+            child(shape, "origin", xyz=f"0 {y} .04", rpy="0 0 0")
+            child(
+                child(shape, "geometry"),
+                "box",
+                size=".008 .008 .080" if split_contacts else ".008 .020 .080",
+            )
         joint = child(robot, "joint", name=prefix + "finger_" + name + "_joint", type="prismatic")
         child(joint, "origin", xyz=f"{side * FINGER_REST_X_M} 0 0", rpy="0 0 0")
         child(joint, "parent", link=prefix + "gripper")

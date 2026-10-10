@@ -1,7 +1,7 @@
 """Pure geometry and acceptance criteria for the isolated contact benchmark."""
 
 import numpy as np
-from arm_kinematics import quaternion_rotation
+from arm_kinematics import quaternion_rotation, rotation_error
 from gripper_model import MAX_TRAVEL_M, gap_m
 
 
@@ -34,12 +34,33 @@ def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
         and fingers.max() <= MAX_TRAVEL_M + 0.0005
         and np.max(np.abs(openings - housing_width)) < 0.001
     )
+    rotation_validated = "plug_rotation_world" in grip_reference
+    maximum_rotation = None
+    rotation_ok = True
+    if rotation_validated:
+        matrices = [
+            np.asarray(s.get("plug_rotation_world"), dtype=float)
+            for s in [grip_reference, *samples]
+        ]
+        valid = all(
+            matrix.shape == (3, 3)
+            and np.isfinite(matrix).all()
+            and np.allclose(matrix.T @ matrix, np.eye(3), atol=1e-6)
+            and np.isclose(np.linalg.det(matrix), 1)
+            for matrix in matrices
+        )
+        if valid:
+            maximum_rotation = float(
+                max(np.linalg.norm(rotation_error(matrix, matrices[0])) for matrix in matrices[1:])
+            )
+        rotation_ok = bool(valid and maximum_rotation < 0.05)
     return {
         "success": rise > 0.07
         and tcp_rise > 0.07
         and slip < 0.005
         and lift_slip < 0.005
-        and contact_opening,
+        and contact_opening
+        and rotation_ok,
         "minimum_lift_m": rise,
         "relative_slip_m": slip,
         "lift_slip_m": lift_slip,
@@ -49,4 +70,6 @@ def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
         "maximum_jaw_opening_m": float(openings.max()),
         "expected_housing_width_m": housing_width,
         "hold_samples": len(samples),
+        "rotation_validated": rotation_validated,
+        "maximum_rotation_change_rad": maximum_rotation,
     }

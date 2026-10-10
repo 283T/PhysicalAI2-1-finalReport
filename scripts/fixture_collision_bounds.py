@@ -40,7 +40,7 @@ class FixtureBounds:
         self.centers = np.array([box[0] for _, box in self.shapes])
         self.radii = np.array([np.linalg.norm(box[2] + 0.005) for _, box in self.shapes])
 
-    def first_overlap(self, bounds, joints):
+    def first_overlap(self, bounds, joints, margin=0.005):
         for name, arm_bounds in bounds.items():
             for link, box in arm_bounds.boxes(joints[name]):
                 nearby = np.linalg.norm(
@@ -48,11 +48,13 @@ class FixtureBounds:
                 ) <= self.radii + np.linalg.norm(box[2] + 0.005)
                 for index in np.flatnonzero(nearby):
                     fixture, shape = self.shapes[index]
-                    if intersects(box, shape):
+                    if intersects(box, shape, margin=margin):
                         return [name + "/" + link, fixture]
         return None
 
-    def screen(self, bounds, paths):
+    def screen(self, bounds, paths, margin=0.005):
+        if not np.isfinite(margin) or margin < 0 or margin > 0.005:
+            raise ValueError("Fixture margin must be finite and between 0 and 5 mm")
         samples = max(
             81,
             1
@@ -63,7 +65,7 @@ class FixtureBounds:
         )
         for fraction in np.linspace(0, 1, samples):
             joints = {name: interpolate_joints(path, fraction) for name, path in paths.items()}
-            overlap = self.first_overlap(bounds, joints)
+            overlap = self.first_overlap(bounds, joints, margin)
             if overlap:
                 return {"clear": False, "fraction": float(fraction), "shapes": overlap}
-        return {"clear": True, "samples": samples, "margin_per_box_m": 0.005}
+        return {"clear": True, "samples": samples, "margin_per_box_m": margin}

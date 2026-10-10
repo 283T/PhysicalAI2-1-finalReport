@@ -13,6 +13,7 @@ from build_factory import mass
 from build_world import add_board, box, child, link, plugin
 from connector_pose import FACE_CODES
 from project_paths import ROOT
+from regrasp_fixture import add_nest_to_world
 
 
 def harness_model(world, trial):
@@ -176,7 +177,9 @@ def draw(design, output):
     plt.close(fig)
 
 
-def build(case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf"):
+def build(
+    case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf", *, regrasp_nest=False
+):
     output.mkdir(parents=True, exist_ok=True)
     design = case["design"]
     tree = ET.parse(factory_world)
@@ -196,6 +199,11 @@ def build(case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf")
         if item.get("name", "").startswith(("pcb_", "socket_")):
             fixture.remove(item)
     add_board(fixture, design)
+    nest_path = output / "regrasp_nest.json"
+    nest_path.unlink(missing_ok=True)
+    if regrasp_nest:
+        nest = add_nest_to_world(world)
+        nest_path.write_text(json.dumps(nest, indent=2) + "\n")
     for kind in ("collision", "visual"):
         fixture.find(f"{kind}[@name='table_{kind}']/geometry/box/size").text = "1.2 1.0 .04"
     pallet = world.find("model[@name='conveyor_carrier']/link")
@@ -224,6 +232,8 @@ def build(case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf")
         name: hashlib.sha256((output / name).read_bytes()).hexdigest()
         for name in ("case.json", "board.json", "drawing.png", "world.sdf")
     }
+    if regrasp_nest:
+        manifest["regrasp_nest.json"] = hashlib.sha256(nest_path.read_bytes()).hexdigest()
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     return output
 
@@ -236,8 +246,20 @@ def main():
     parser.add_argument(
         "--factory-world", type=Path, default=ROOT / "sim/worlds/factory_prototype.sdf"
     )
+    parser.add_argument(
+        "--regrasp-nest",
+        action="store_true",
+        help="Add the passive regrasp nest; no regrasp motion is enabled",
+    )
     args = parser.parse_args()
-    print(build(make_case(args.design_seed, args.placement_seed), args.output, args.factory_world))
+    print(
+        build(
+            make_case(args.design_seed, args.placement_seed),
+            args.output,
+            args.factory_world,
+            regrasp_nest=args.regrasp_nest,
+        )
+    )
 
 
 if __name__ == "__main__":

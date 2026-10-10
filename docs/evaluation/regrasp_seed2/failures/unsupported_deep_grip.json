@@ -1,0 +1,99 @@
+{
+  "success": false,
+  "friction_mu": 1.0,
+  "scope": "Cartesian test carriage, top-face contact pickup from passive nest, one pin-equipped terminal and flexible tail; no previous side-grip transition, MELFA, perception, dual-arm support or board insertion",
+  "hold": {
+    "success": false,
+    "minimum_lift_m": 0.09883338179613682,
+    "relative_slip_m": 8.165709284348643e-07,
+    "lift_slip_m": 0.003438316620415657,
+    "minimum_tcp_lift_m": 0.09992448605450777,
+    "minimum_finger_travel_m": 0.0019953688895114033,
+    "minimum_jaw_opening_m": 0.01999978378195605,
+    "maximum_jaw_opening_m": 0.019999787912936412,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 228,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 0.7120358258583883
+  },
+  "release_drop_m": 0.08286243599573159,
+  "release_success": true,
+  "baseline": {
+    "time_s": 25203.954897316,
+    "plug": [
+      -0.0009470257904637402,
+      3.7644151094641016e-06,
+      0.23068746058869521
+    ],
+    "tcp": [
+      -2.483764865564598e-19,
+      4.3140342538103347e-19,
+      0.26850547162698674
+    ],
+    "fingers": [
+      0.01809620794143368,
+      0.018073838226183143
+    ],
+    "cable_z_span_m": 0.18520212132574385,
+    "plug_rotation_world": [
+      [
+        0.9998831923168883,
+        2.020305509591116e-06,
+        -0.015284034745665013
+      ],
+      [
+        -1.0877434895661304e-06,
+        0.9999999981374595,
+        6.102374723555266e-05
+      ],
+      [
+        0.015284034840484493,
+        -6.099999408373438e-05,
+        0.9998831904567631
+      ]
+    ],
+    "phase": "open",
+    "elapsed_s": 4.988142086000153
+  },
+  "final": {
+    "time_s": 25248.979672378,
+    "plug": [
+      0.0003870204262038379,
+      -2.113848303872878e-06,
+      0.24688692135888438
+    ],
+    "tcp": [
+      -1.290047983458739e-19,
+      2.240675543348917e-19,
+      0.2692237536891845
+    ],
+    "fingers": [
+      0.016877438971042293,
+      0.016877336917763323
+    ],
+    "cable_z_span_m": 0.2014719705014406,
+    "plug_rotation_world": [
+      [
+        0.9258695917623272,
+        -2.97605620470157e-07,
+        -0.3778432201982368
+      ],
+      [
+        2.9215938352616975e-06,
+        0.9999999999754344,
+        6.371450226957245e-06
+      ],
+      [
+        0.3778432201870587,
+        -7.003036443389998e-06,
+        0.925869591740452
+      ]
+    ],
+    "phase": "retract",
+    "elapsed_s": 5.983913252999628
+  },
+  "reseat_success": false,
+  "expectation": "hold_and_release",
+  "expectation_met": false,
+  "world_sha256": "752456560774b3e8d5293ffa430d987193facc740e9feb7587650345d1609926"
+}

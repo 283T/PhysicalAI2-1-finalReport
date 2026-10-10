@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from arm_kinematics import axis_rotation
 from grasp_validation import assess_hold, world_link_positions
 
 
@@ -75,6 +76,26 @@ class GraspValidationTests(unittest.TestCase):
         poses["harness"]["xyz"][2] += 0.1
         result = world_link_positions(poses, "harness", ["terminal"])
         np.testing.assert_allclose(result["terminal"], [1, 3, 3.1])
+
+    def test_orientation_change_is_checked_when_observed(self):
+        closed = {**self.closed, "plug_rotation_world": np.eye(3).tolist()}
+        for angle, success in ((0.02, True), (0.7, False)):
+            rows = [
+                {**row, "plug_rotation_world": axis_rotation([0, 1, 0], angle).tolist()}
+                for row in self.rows
+            ]
+            result = assess_hold(self.baseline, rows, closed)
+            self.assertEqual(result["success"], success)
+            self.assertTrue(result["rotation_validated"])
+            self.assertAlmostEqual(result["maximum_rotation_change_rad"], angle)
+
+    def test_missing_or_invalid_orientation_cannot_pass_a_pose_hold(self):
+        closed = {**self.closed, "plug_rotation_world": np.eye(3).tolist()}
+        for matrix in (None, [[float("nan")] * 3] * 3, np.ones((3, 3)).tolist()):
+            rows = [{**row, "plug_rotation_world": matrix} for row in self.rows]
+            result = assess_hold(self.baseline, rows, closed)
+            self.assertFalse(result["success"])
+            self.assertIsNone(result["maximum_rotation_change_rad"])
 
 
 if __name__ == "__main__":

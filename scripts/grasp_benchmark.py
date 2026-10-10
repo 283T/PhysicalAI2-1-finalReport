@@ -1,6 +1,7 @@
 """Contact-only cable grip benchmark; Cartesian test fixture, not a MELFA motion."""
 
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -11,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 import rclpy
+from arm_kinematics import quaternion_rotation
 from build_case import harness_model
 from build_world import box, child, link, plugin
 from grasp_validation import assess_hold, world_link_positions
@@ -19,11 +21,12 @@ from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
+from regrasp_fixture import add_regrasp_nest
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 
 
-def build_benchmark(output, friction=1.0):
+def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False):
     """Reuse production fingers on a vertical test carriage, with an unanchored cable."""
     output.mkdir(parents=True, exist_ok=True)
     robot = ET.Element("robot", name="grip_fixture")
@@ -38,7 +41,7 @@ def build_benchmark(output, friction=1.0):
     child(lift, "origin", xyz="0 0 .35", rpy=f"{math.pi} 0 {math.pi / 2}")
     child(lift, "axis", xyz="0 0 -1")
     child(lift, "limit", lower="-.15", upper=".15", effort="100", velocity=".03")
-    add_gripper(robot, "bench_", "carriage")
+    add_gripper(robot, "bench_", "carriage", split_contacts=regrasp_nest)
     urdf = output / "gripper.urdf"
     ET.ElementTree(robot).write(urdf, encoding="utf-8", xml_declaration=True)
     converted = subprocess.run(
@@ -85,12 +88,23 @@ def build_benchmark(output, friction=1.0):
     plugin(world, ("scene-broadcaster", "SceneBroadcaster"))
     platform = child(world, "model", name="platform")
     child(platform, "static", "true")
-    box(link(platform, "base"), "support", ".8 .5 .04", "-.15 0 .12 0 0 0", ".3 .3 .3 1")
+    base = link(platform, "base")
+    box(
+        base,
+        "support",
+        ".8 .5 .04",
+        "-.15 0 .02 0 0 0" if regrasp_nest else "-.15 0 .12 0 0 0",
+        ".3 .3 .3 1",
+    )
+    if regrasp_nest:
+        add_regrasp_nest(base)
+    if support_tail:
+        box(base, "tail_support", ".35 .06 .186", "-.225 0 .133 0 0 0", ".3 .45 .5 1")
     world.append(model)
     harness = harness_model(
         world,
         {
-            "pose_m_rad": [-0.32, 0, 0.15, 0, 0, 0],
+            "pose_m_rad": [-0.32, 0, 0.235 if regrasp_nest else 0.15, 0, 0, 0],
             "branches": [
                 {
                     "plug_id": "P1",
@@ -102,10 +116,10 @@ def build_benchmark(output, friction=1.0):
             ],
         },
     )
-    # Pin contact/insertion is excluded: this benchmark tests housing friction only.
+    # The original friction trial excludes pins; the nest trial retains them.
     terminal = harness.find("link[@name='P1']")
     for item in list(terminal):
-        if item.get("name", "").startswith("pin_"):
+        if not regrasp_nest and item.get("name", "").startswith("pin_"):
             terminal.remove(item)
     ET.indent(sdf)
     path = output / "world.sdf"
@@ -113,12 +127,13 @@ def build_benchmark(output, friction=1.0):
     return path
 
 
-def run_trial(output, friction):
-    scene = build_benchmark(output, friction)
+def run_trial(output, friction, regrasp_nest=False, support_tail=False):
+    scene = build_benchmark(output, friction, regrasp_nest, support_tail)
     os.environ["GZ_PARTITION"] = f"grip-contact-{os.getpid()}-{friction}"
     transport = Node()
     harness, fixture, states = {}, {}, {}
     joint_stamp = [0.0]
+    plug_rotation = []
 
     def receive(msg):
         poses = {
@@ -137,6 +152,10 @@ def run_trial(output, friction):
         cable = world_link_positions(poses, "wire_harness_multi", cable_names)
         tcp = world_link_positions(poses, "grip_fixture", ["carriage"])
         harness.update({name: (stamp, point) for name, point in cable.items()})
+        plug_rotation[:] = [
+            quaternion_rotation(poses["wire_harness_multi"]["q"])
+            @ quaternion_rotation(poses["P1"]["q"])
+        ]
         fixture.update({name: (stamp, point) for name, point in tcp.items()})
 
     pose_topic = "/world/grip_contact_benchmark/dynamic_pose/info"
@@ -167,8 +186,15 @@ def run_trial(output, friction):
     report = {
         "success": False,
         "friction_mu": friction,
+        "world_sha256": hashlib.sha256(scene.read_bytes()).hexdigest(),
         "scope": "Cartesian contact fixture, one pinless terminal and 12-segment cable; no arm, vision, dual-arm support or insertion",
     }
+    if regrasp_nest:
+        report["scope"] = (
+            "Cartesian test carriage, top-face contact pickup from passive nest, one pin-equipped terminal and flexible tail; no previous side-grip transition, MELFA, perception, dual-arm support or board insertion"
+        )
+        report["split_finger_contacts"] = True
+    report["passive_tail_support"] = support_tail
 
     def sample():
         if "P1" not in harness or "carriage" not in fixture or len(states) != 3:
@@ -181,6 +207,7 @@ def run_trial(output, friction):
             "tcp": (fixture["carriage"][1] + [0, 0, -0.08]).tolist(),
             "fingers": [states["bench_finger_" + f + "_joint"] for f in ("left", "right")],
             "cable_z_span_m": float(np.ptp([p[1][2] for p in list(harness.values())])),
+            "plug_rotation_world": plug_rotation[0].tolist(),
         }
 
     def phase(name, lift, grip, duration, initial=None):
@@ -210,6 +237,25 @@ def run_trial(output, friction):
         )
         return rows
 
+    def settle_lift(lift, grip):
+        """Do not evaluate holding while the test carriage is still converging."""
+        start, stable, last = time.monotonic(), 0, None
+        while time.monotonic() - start < 30:
+            for pub, value in zip(pubs, (lift, grip, grip)):
+                pub.publish(Float64(data=float(value)))
+            rclpy.spin_once(node, timeout_sec=0.03)
+            row = sample()
+            stamp = harness.get("P1", (None,))[0]
+            if row is None or stamp == last:
+                continue
+            row.update(phase="settle_lift", elapsed_s=time.monotonic() - start)
+            history.append(row)
+            last = stamp
+            stable = stable + 1 if abs(states.get("lift", float("inf")) - lift) < 0.002 else 0
+            if stable >= 10:
+                return
+        raise RuntimeError("Test carriage did not settle before holding")
+
     with (output / "simulation.log").open("w") as log:
         try:
             for cmd in (["gz", "sim", "-s", "-r", str(scene)], bridge):
@@ -222,12 +268,22 @@ def run_trial(output, friction):
                     raise RuntimeError("Missing gripper or harness feedback")
                 rclpy.spin_once(node, timeout_sec=0.05)
             baseline = phase("open", 0, OPEN_TRAVEL_M, 5)[-1]
-            phase("approach", -0.118, OPEN_TRAVEL_M, 8, initial=0)
-            closed = phase("close", -0.118, 0, 6)[-1]
-            phase("lift", -0.018, 0, 8, initial=-0.118)
-            held = phase("hold", -0.018, 0, 4)
+            # Nest trial uses 16 mm of the 20 mm housing height for finger contact.
+            grip_height = -0.046 if regrasp_nest else -0.118
+            lift_height = grip_height + 0.1
+            phase("approach", grip_height, OPEN_TRAVEL_M, 8, initial=0)
+            closed = phase("close", grip_height, 0, 6)[-1]
+            phase("lift", lift_height, 0, 8, initial=grip_height)
+            settle_lift(lift_height, 0)
+            held = phase("hold", lift_height, 0, 4)
             hold_result = assess_hold(baseline, held, closed)
-            released = phase("release", -0.018, OPEN_TRAVEL_M, 5)
+            if regrasp_nest:
+                phase("return_to_nest", grip_height, 0, 8, initial=lift_height)
+            released = phase(
+                "release", grip_height if regrasp_nest else lift_height, OPEN_TRAVEL_M, 5
+            )
+            if regrasp_nest:
+                released = phase("retract", 0, OPEN_TRAVEL_M, 6, initial=grip_height)
             fall = float(held[-1]["plug"][2] - released[-1]["plug"][2])
             report.update(
                 hold=hold_result,
@@ -237,6 +293,12 @@ def run_trial(output, friction):
                 final=released[-1],
                 success=hold_result["success"] and fall > 0.03,
             )
+            if regrasp_nest:
+                point = np.asarray(released[-1]["plug"])
+                report["reseat_success"] = bool(
+                    np.linalg.norm(point[:2]) < 0.003 and abs(point[2] - 0.23) < 0.002
+                )
+                report["success"] = report["success"] and report["reseat_success"]
         except Exception as error:
             report["error"] = str(error)
         finally:
@@ -254,11 +316,23 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--friction", type=float, default=1.0)
     parser.add_argument(
+        "--regrasp-nest",
+        action="store_true",
+        help="Pick a pin-equipped terminal from the passive nest and return it",
+    )
+    parser.add_argument(
+        "--support-tail",
+        action="store_true",
+        help="Add a passive cable support tray to the nest trial; this is not a second arm",
+    )
+    parser.add_argument(
         "--expect-slip",
         action="store_true",
         help="Negative control: require completed lifting with failed holding",
     )
     args = parser.parse_args()
+    if args.support_tail and not args.regrasp_nest:
+        parser.error("--support-tail requires --regrasp-nest")
     if not math.isfinite(args.friction) or args.friction < 0:
         raise ValueError("Friction must be finite and nonnegative")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -267,7 +341,7 @@ def main():
     os.environ["ROS_DOMAIN_ID"] = "175"
     rclpy.init()
     try:
-        result = run_trial(args.output, args.friction)
+        result = run_trial(args.output, args.friction, args.regrasp_nest, args.support_tail)
         expectation_met = (
             "error" not in result
             and not result["hold"]["success"]

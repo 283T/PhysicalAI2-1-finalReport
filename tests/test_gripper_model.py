@@ -21,3 +21,15 @@ class GripperModelTest(unittest.TestCase):
             self.assertGreater(float(joint.find("limit").get("upper")), OPEN_TRAVEL_M)
         self.assertAlmostEqual(gap_m(0), 0.016)
         self.assertAlmostEqual(gap_m(OPEN_TRAVEL_M), 0.052)
+
+    def test_split_pads_are_separated_inside_original_finger_envelope(self):
+        robot = ET.Element("robot")
+        add_gripper(robot, "test_", "flange", split_contacts=True)
+        for name in ("left", "right"):
+            pads = robot.findall(f"link[@name='test_finger_{name}']/collision")
+            self.assertEqual(len(pads), 2)
+            centers = [float(pad.find("origin").get("xyz").split()[1]) for pad in pads]
+            self.assertAlmostEqual(centers[1] - centers[0], 0.012)
+            for pad, center in zip(pads, centers):
+                size = [float(v) for v in pad.find("geometry/box").get("size").split()]
+                self.assertLessEqual(abs(center) + size[1] / 2, 0.01)
