@@ -1,0 +1,25 @@
+{
+  "task_source": "local_vision_model",
+  "drawing_id": "B",
+  "socket": "J2",
+  "position_m": [
+    0.29000000000000004,
+    0.19,
+    0.1299997359595136
+  ],
+  "target_m": [
+    0.29000000000000004,
+    0.19,
+    0.13
+  ],
+  "pin_insertion_depth_m": 0.040000264040486386,
+  "grasp_state": "detached",
+  "simplifications": [
+    "fixed-joint grasp",
+    "enlarged pins and holes",
+    "fixed supply and board"
+  ],
+  "model": "qwen3-vl:2b-instruct",
+  "image_sha256": "8f5575536175666ea33aead23109d087d98e8fc877ff7ec460be7dbfe09344f2",
+  "success": true
+}

@@ -67,18 +67,18 @@
           </material>
         </visual>
         <collision name="pcb_0_0_collision">
-          <pose>0.213 0.123 0.11 0 0 0</pose>
+          <pose>0.213 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.045999999999999985 0.02</size>
+              <size>0.045999999999999985 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_0_0_visual">
-          <pose>0.213 0.123 0.11 0 0 0</pose>
+          <pose>0.213 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.045999999999999985 0.02</size>
+              <size>0.045999999999999985 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>
@@ -87,7 +87,7 @@
           </material>
         </visual>
         <collision name="pcb_0_1_collision">
-          <pose>0.213 0.15 0.11 0 0 0</pose>
+          <pose>0.213 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.045999999999999985 0.008000000000000007 0.02</size>
@@ -95,7 +95,7 @@
           </geometry>
         </collision>
         <visual name="pcb_0_1_visual">
-          <pose>0.213 0.15 0.11 0 0 0</pose>
+          <pose>0.213 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.045999999999999985 0.008000000000000007 0.02</size>
@@ -107,15 +107,55 @@
           </material>
         </visual>
         <collision name="pcb_0_2_collision">
-          <pose>0.213 0.177 0.11 0 0 0</pose>
+          <pose>0.213 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045999999999999985 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_2_visual">
+          <pose>0.213 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045999999999999985 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_3_collision">
+          <pose>0.213 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045999999999999985 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_0_3_visual">
+          <pose>0.213 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045999999999999985 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_0_4_collision">
+          <pose>0.213 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.045999999999999985 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
-        <visual name="pcb_0_2_visual">
-          <pose>0.213 0.177 0.11 0 0 0</pose>
+        <visual name="pcb_0_4_visual">
+          <pose>0.213 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.045999999999999985 0.04600000000000001 0.02</size>
@@ -127,18 +167,18 @@
           </material>
         </visual>
         <collision name="pcb_1_0_collision">
-          <pose>0.24 0.123 0.11 0 0 0</pose>
+          <pose>0.24 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.008000000000000007 0.045999999999999985 0.02</size>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_1_0_visual">
-          <pose>0.24 0.123 0.11 0 0 0</pose>
+          <pose>0.24 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.008000000000000007 0.045999999999999985 0.02</size>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>
@@ -147,15 +187,55 @@
           </material>
         </visual>
         <collision name="pcb_1_2_collision">
-          <pose>0.24 0.177 0.11 0 0 0</pose>
+          <pose>0.24 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_2_visual">
+          <pose>0.24 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_3_collision">
+          <pose>0.24 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_1_3_visual">
+          <pose>0.24 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_1_4_collision">
+          <pose>0.24 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
-        <visual name="pcb_1_2_visual">
-          <pose>0.24 0.177 0.11 0 0 0</pose>
+        <visual name="pcb_1_4_visual">
+          <pose>0.24 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.008000000000000007 0.04600000000000001 0.02</size>
@@ -167,18 +247,18 @@
           </material>
         </visual>
         <collision name="pcb_2_0_collision">
-          <pose>0.25 0.123 0.11 0 0 0</pose>
+          <pose>0.25 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.01200000000000001 0.045999999999999985 0.02</size>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_2_0_visual">
-          <pose>0.25 0.123 0.11 0 0 0</pose>
+          <pose>0.25 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.01200000000000001 0.045999999999999985 0.02</size>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>
@@ -187,7 +267,7 @@
           </material>
         </visual>
         <collision name="pcb_2_1_collision">
-          <pose>0.25 0.15 0.11 0 0 0</pose>
+          <pose>0.25 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.01200000000000001 0.008000000000000007 0.02</size>
@@ -195,7 +275,7 @@
           </geometry>
         </collision>
         <visual name="pcb_2_1_visual">
-          <pose>0.25 0.15 0.11 0 0 0</pose>
+          <pose>0.25 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.01200000000000001 0.008000000000000007 0.02</size>
@@ -207,15 +287,55 @@
           </material>
         </visual>
         <collision name="pcb_2_2_collision">
-          <pose>0.25 0.177 0.11 0 0 0</pose>
+          <pose>0.25 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_2_visual">
+          <pose>0.25 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_3_collision">
+          <pose>0.25 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_2_3_visual">
+          <pose>0.25 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_2_4_collision">
+          <pose>0.25 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.01200000000000001 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
-        <visual name="pcb_2_2_visual">
-          <pose>0.25 0.177 0.11 0 0 0</pose>
+        <visual name="pcb_2_4_visual">
+          <pose>0.25 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.01200000000000001 0.04600000000000001 0.02</size>
@@ -227,18 +347,18 @@
           </material>
         </visual>
         <collision name="pcb_3_0_collision">
-          <pose>0.26 0.123 0.11 0 0 0</pose>
+          <pose>0.26 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.008000000000000007 0.045999999999999985 0.02</size>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_3_0_visual">
-          <pose>0.26 0.123 0.11 0 0 0</pose>
+          <pose>0.26 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.008000000000000007 0.045999999999999985 0.02</size>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>
@@ -247,15 +367,55 @@
           </material>
         </visual>
         <collision name="pcb_3_2_collision">
-          <pose>0.26 0.177 0.11 0 0 0</pose>
+          <pose>0.26 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_2_visual">
+          <pose>0.26 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_3_collision">
+          <pose>0.26 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_3_3_visual">
+          <pose>0.26 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_3_4_collision">
+          <pose>0.26 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.008000000000000007 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
-        <visual name="pcb_3_2_visual">
-          <pose>0.26 0.177 0.11 0 0 0</pose>
+        <visual name="pcb_3_4_visual">
+          <pose>0.26 0.21700000000000003 0.11 0 0 0</pose>
           <geometry>
             <box>
               <size>0.008000000000000007 0.04600000000000001 0.02</size>
@@ -267,18 +427,18 @@
           </material>
         </visual>
         <collision name="pcb_4_0_collision">
-          <pose>0.28700000000000003 0.123 0.11 0 0 0</pose>
+          <pose>0.27 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.045999999999999985 0.02</size>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_4_0_visual">
-          <pose>0.28700000000000003 0.123 0.11 0 0 0</pose>
+          <pose>0.27 0.12300000000000001 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.045999999999999985 0.02</size>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>
@@ -287,18 +447,18 @@
           </material>
         </visual>
         <collision name="pcb_4_1_collision">
-          <pose>0.28700000000000003 0.15 0.11 0 0 0</pose>
+          <pose>0.27 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.008000000000000007 0.02</size>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_4_1_visual">
-          <pose>0.28700000000000003 0.15 0.11 0 0 0</pose>
+          <pose>0.27 0.15000000000000002 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.008000000000000007 0.02</size>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
             </box>
           </geometry>
           <material>
@@ -307,18 +467,418 @@
           </material>
         </visual>
         <collision name="pcb_4_2_collision">
-          <pose>0.28700000000000003 0.177 0.11 0 0 0</pose>
+          <pose>0.27 0.17 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.04600000000000001 0.02</size>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
             </box>
           </geometry>
         </collision>
         <visual name="pcb_4_2_visual">
-          <pose>0.28700000000000003 0.177 0.11 0 0 0</pose>
+          <pose>0.27 0.17 0.11 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.045999999999999985 0.04600000000000001 0.02</size>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_3_collision">
+          <pose>0.27 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_3_visual">
+          <pose>0.27 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_4_4_collision">
+          <pose>0.27 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_4_4_visual">
+          <pose>0.27 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_0_collision">
+          <pose>0.28 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_0_visual">
+          <pose>0.28 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_1_collision">
+          <pose>0.28 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_1_visual">
+          <pose>0.28 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_2_collision">
+          <pose>0.28 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_2_visual">
+          <pose>0.28 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_5_4_collision">
+          <pose>0.28 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_5_4_visual">
+          <pose>0.28 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_0_collision">
+          <pose>0.29000000000000004 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_0_visual">
+          <pose>0.29000000000000004 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_1_collision">
+          <pose>0.29000000000000004 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_1_visual">
+          <pose>0.29000000000000004 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_2_collision">
+          <pose>0.29000000000000004 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_2_visual">
+          <pose>0.29000000000000004 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_3_collision">
+          <pose>0.29000000000000004 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_3_visual">
+          <pose>0.29000000000000004 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_6_4_collision">
+          <pose>0.29000000000000004 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_6_4_visual">
+          <pose>0.29000000000000004 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01200000000000001 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_0_collision">
+          <pose>0.30000000000000004 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_0_visual">
+          <pose>0.30000000000000004 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_1_collision">
+          <pose>0.30000000000000004 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_1_visual">
+          <pose>0.30000000000000004 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_2_collision">
+          <pose>0.30000000000000004 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_2_visual">
+          <pose>0.30000000000000004 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_7_4_collision">
+          <pose>0.30000000000000004 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_7_4_visual">
+          <pose>0.30000000000000004 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008000000000000007 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_8_0_collision">
+          <pose>0.327 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_8_0_visual">
+          <pose>0.327 0.12300000000000001 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_8_1_collision">
+          <pose>0.327 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_8_1_visual">
+          <pose>0.327 0.15000000000000002 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_8_2_collision">
+          <pose>0.327 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_8_2_visual">
+          <pose>0.327 0.17 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.03199999999999997 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_8_3_collision">
+          <pose>0.327 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_8_3_visual">
+          <pose>0.327 0.19 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.008000000000000007 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.05 0.45 0.15 1</diffuse>
+            <ambient>0.05 0.45 0.15 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_8_4_collision">
+          <pose>0.327 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.04600000000000001 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_8_4_visual">
+          <pose>0.327 0.21700000000000003 0.11 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04599999999999993 0.04600000000000001 0.02</size>
             </box>
           </geometry>
           <material>

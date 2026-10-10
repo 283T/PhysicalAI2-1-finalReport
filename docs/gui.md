@@ -50,7 +50,13 @@ GUIのHTTPポートはホストの127.0.0.1だけに公開し、VNCポートは�
 - Gazebo・ROSブリッジ：`outputs/simulation.log`。
 - 挿入結果：`outputs/insertion_result.json`。
 
-GUIは動作の確認用。現時点ではAIによる図面読解は未実装。
+画像からの読解も含めて実行する場合は、Mac上で[ローカルAI](local-ai.md)を起動し、空いているGUIコンテナに対して次を実行する。
+
+```bash
+python3 scripts/run_from_drawing.py drawings/assembly_b.png --gui --keep-open
+```
+
+図面を差し替えると挿入箇所が変わる。図面とAI出力をGazebo内へ重ねる表示や動画録画は未整備。
 
 ## 検証記録（2026-10-10）
 

@@ -1,4 +1,4 @@
-"""ROS 2 controlled pick-and-insert baseline; AI is not connected yet."""
+"""ROS 2 controlled pick-and-insert using a validated assembly instruction."""
 
 import argparse
 import json
@@ -6,6 +6,7 @@ import math
 import os
 from pathlib import Path
 import signal
+import secrets
 import subprocess
 import time
 
@@ -14,6 +15,7 @@ from geometry_msgs.msg import PoseArray
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Empty, Float64, String
+from task_schema import validate_task
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -99,11 +101,15 @@ class Insertion:
         p = self.pose.position
         q = self.pose.orientation
         depth = origin[2] - (p.z - 0.05)
-        result = {"task_source": task["source"], "position_m": [p.x, p.y, p.z],
+        result = {"task_source": task["source"], "drawing_id": task.get("drawing_id"),
+                  "socket": task.get("socket"), "position_m": [p.x, p.y, p.z],
                   "target_m": [x, y, origin[2] + 0.01], "pin_insertion_depth_m": depth,
                   "grasp_state": self.grasp_state,
                   "simplifications": ["fixed-joint grasp", "enlarged pins and holes",
-                                      "fixed supply and board", "no AI yet"]}
+                                      "fixed supply and board"]}
+        if task["source"] == "local_vision_model":
+            result["model"] = task.get("model")
+            result["image_sha256"] = task.get("image_sha256")
         result["success"] = (abs(p.x-x) < 0.001 and abs(p.y-y) < 0.001
                              and abs(p.z-(origin[2]+0.01)) < 0.001
                              and abs(q.x) < 0.02 and abs(q.y) < 0.02
@@ -111,7 +117,8 @@ class Insertion:
                              and self.grasp_state == "detached")
         output = ROOT / "outputs"
         output.mkdir(exist_ok=True)
-        (output / "insertion_result.json").write_text(json.dumps(result, indent=2) + "\n")
+        text = json.dumps(result, indent=2) + "\n"
+        (output / "insertion_result.json").write_text(text)
         print(json.dumps(result, indent=2), flush=True)
         if not result["success"]:
             raise RuntimeError("Released connector is not seated in the PCB holes")
@@ -128,13 +135,12 @@ def main():
                         help="Keep the finished simulation open until Ctrl+C")
     args = parser.parse_args()
     task = json.loads(args.task.read_text())
-    if task["component"] != "connector" or task["yaw_deg"] != 0:
-        raise ValueError("Baseline supports one connector with yaw=0 only")
-    if any(not math.isfinite(v) for v in (*task["board_origin_m"], task["x_mm"], task["y_mm"])):
-        raise ValueError("Task coordinates must be finite")
-    # This scene currently has a single known socket. Reject any other target.
-    if task["board_origin_m"] != [0.19, 0.10, 0.12] or (task["x_mm"], task["y_mm"]) != (60, 50):
-        raise ValueError("Target does not match the baseline PCB socket")
+    board = json.loads((ROOT / "configs/board.json").read_text())
+    socket = validate_task(task, board)
+    task["socket"] = socket["id"]
+    if not math.isfinite(args.start_delay) or args.start_delay < 0:
+        raise ValueError("Start delay must be finite and nonnegative")
+    os.environ.setdefault("ROS_DOMAIN_ID", str(secrets.randbelow(200) + 1))
     env = os.environ.copy()
     env["GZ_PARTITION"] = f"pai-insertion-{os.getpid()}"
     bridges = [f"/gantry/{axis}/cmd@std_msgs/msg/Float64]gz.msgs.Double" for axis in "xyz"]
@@ -166,6 +172,7 @@ def main():
                 print(f"Starting in {args.start_delay:g} seconds", flush=True)
                 demo.settle(args.start_delay)
             demo.run(task)
+            (output / f"result_{socket['id']}.json").write_text(result_path.read_text())
             if args.keep_open:
                 print("Demo complete. Ctrl+C to close the simulation.", flush=True)
                 while True:

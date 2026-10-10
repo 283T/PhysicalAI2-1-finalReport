@@ -18,6 +18,7 @@ venv/
 outputs/
 recordings/
 logs/
+.cache/
 
 # Editor and OS
 .DS_Store

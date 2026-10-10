@@ -1,6 +1,7 @@
 """Generate a self-contained Cartesian robot and two-pin insertion scene."""
 
 from pathlib import Path
+import json
 import xml.etree.ElementTree as ET
 
 
@@ -63,16 +64,27 @@ def main():
     box(base, "table", "1.2 0.8 0.04", "0 0 0.02 0 0 0", "0.4 0.4 0.45 1")
     box(base, "supply", "0.1 0.1 0.08", "-0.25 0 0.08 0 0 0", "0.4 0.5 0.7 1")
 
-    # Board is a union of boxes; the missing cells are two real square holes.
-    # Hole centers: x=0.24,0.26; y=0.15. Hole width=8 mm; pins diameter=4 mm.
-    xs = [0.19, 0.236, 0.244, 0.256, 0.264, 0.31]
-    ys = [0.10, 0.146, 0.154, 0.20]
+    # Split a board into boxes, omitting actual collision/visual cells for each hole.
+    root_dir = Path(__file__).resolve().parents[1]
+    board = json.loads((root_dir / "configs/board.json").read_text())
+    ox, oy, top_z = board["origin_m"]
+    width, height = (v / 1000 for v in board["size_mm"])
+    thickness = board["thickness_mm"] / 1000
+    half_hole = board["hole_width_mm"] / 2000
+    half_spacing = board["pin_spacing_mm"] / 2000
+    holes = []
+    for socket in board["sockets"]:
+        cx, cy = ox + socket["x_mm"] / 1000, oy + socket["y_mm"] / 1000
+        holes.extend((cx + offset, cy) for offset in (-half_spacing, half_spacing))
+    xs = sorted({ox, ox + width, *(edge for x, y in holes for edge in (x-half_hole, x+half_hole))})
+    ys = sorted({oy, oy + height, *(edge for x, y in holes for edge in (y-half_hole, y+half_hole))})
     for i, (left, right) in enumerate(zip(xs, xs[1:])):
         for j, (bottom, top) in enumerate(zip(ys, ys[1:])):
-            if i in (1, 3) and j == 1:
+            cx, cy = (left+right)/2, (bottom+top)/2
+            if any(abs(cx-x) < half_hole and abs(cy-y) < half_hole for x, y in holes):
                 continue
-            box(base, f"pcb_{i}_{j}", f"{right-left} {top-bottom} 0.02",
-                f"{(left+right)/2} {(bottom+top)/2} 0.11 0 0 0", "0.05 0.45 0.15 1")
+            box(base, f"pcb_{i}_{j}", f"{right-left} {top-bottom} {thickness}",
+                f"{cx} {cy} {top_z-thickness/2} 0 0 0", "0.05 0.45 0.15 1")
 
     part = child(world, "model", name="connector")
     child(part, "pose", "-0.25 0 0.17 0 0 0")

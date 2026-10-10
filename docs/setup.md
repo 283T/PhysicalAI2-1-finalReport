@@ -2,7 +2,7 @@
 
 ## 採用環境
 
-Ubuntu 24.04ベースのROS 2 Jazzy公式Dockerイメージに、Gazebo Harmonicとros_gzを追加します。Apple SiliconではDockerが対応するネイティブアーキテクチャを選択します。まずGUIなしでサーバーとROS連携を確認し、動画用の表示環境は後から追加します。
+Ubuntu 24.04ベースのROS 2 Jazzy公式Dockerイメージに、Gazebo Harmonicとros_gzを追加します。Apple SiliconではDockerが対応するネイティブアーキテクチャを選択します。サーバーのみの実行と、noVNC経由のGUI表示に対応します。
 
 指定された講義教材はDebian Bookworm＋Python 3.12のPushT/RoboOps環境でした。ROS 2・Gazeboのインストール設定はないため、この課題用に別のDockerイメージを作ります。
 
@@ -55,4 +55,4 @@ docker compose run --rm dev
 - Dockerイメージのビルド：成功。
 - `scripts/check_sim.py`：成功。GazeboからROS 2へ届いた時刻が進むことを確認。
 
-直交型ロボットによる部品1個のピック・挿入も実装・確認済みです。詳細は[基礎デモ](insertion-demo.md)を参照してください。[ブラウザ経由のGUI表示](gui.md)も確認済みです。ロボットのカメラセンサー、動画録画、AIによる図面読解は未実装・未確認です。
+直交型ロボットによる部品1個のピック・挿入も実装・確認済みです。詳細は[基礎デモ](insertion-demo.md)を参照してください。[ブラウザ経由のGUI表示](gui.md)も確認済みです。[ローカルAIによる図面読解](local-ai.md)も接続・検証済みです。ロボットのカメラセンサーと動画録画は未実装です。

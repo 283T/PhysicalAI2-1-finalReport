@@ -10,7 +10,7 @@ docker compose run --rm dev python3 scripts/run_insertion.py
 
 スクリプトはGazeboサーバーとROSブリッジを起動し、位置指令・関節状態・部品姿勢・把持状態をROS 2でやり取りする。動作後、確認用プロセスを終了する。結果は`outputs/insertion_result.json`、Gazeboとブリッジのログは`outputs/simulation.log`に保存する。失敗時は終了コードが非ゼロになり、以前の成功結果を残さず失敗理由を書き込む。
 
-現在は手書きの`examples/task_a.json`を入力する。部品1種類・挿入箇所1か所・向き0度に対応し、範囲外の指示は実行前に拒否する。AIによる図面読解は未実装。
+既定では手書きの`examples/task_a.json`を入力する。`--task`で[ローカルAI](local-ai.md)が生成した指示を入力できる。部品1種類・挿入箇所J1/J2・向き0度に対応し、未登録の部品・座標・向きは実行前に拒否する。
 
 ## 動作
 
@@ -32,7 +32,7 @@ docker compose run --rm dev python3 scripts/run_insertion.py
 | 部品中心の目標 | (0.25, 0.15, 0.13) m |
 | 基板の厚み | 20 mm |
 | 穴の中心間隔 | 20 mm |
-| 穴 | 8 mm角の隙間2個 |
+| 穴 | 各ソケットに8 mm角の隙間2個、計4個 |
 | ピン | 直径4 mm、長さ40 mm、2本 |
 
 基板は複数の直方体で構成する。穴の領域には視覚形状・衝突形状を作らないため、ピンが実際の隙間を通る。部品本体の下面が基板上面に乗る構成で、挿入後に部品位置を直接書き換える処理はない。
@@ -54,12 +54,12 @@ docker compose run --rm dev python3 scripts/run_insertion.py
 - 部品把持はDetachableJointによる理想的な固定。指の摩擦把持と開閉は再現しておらず、グリッパの指は視覚形状のみ。
 - 部品と穴を拡大し、穴のクリアランスを大きくしている。
 - 基板・供給トレイは固定。位置情報はシミュレータの真値。
-- 回転軸、複数部品、図面読解、カメラによる認識、力制御は未実装。
+- 回転軸、複数部品の連続挿入、カメラによる認識、力制御は未実装。図面読解はローカルモデルを接続済み。
 - ブラウザ経由のGUI表示は利用可能（[起動手順](gui.md)）。動画録画は未整備。既定ではサーバーのみを起動する。
 
 ## モデルの変更
 
-worldの生成元は`scripts/build_world.py`。モデルを変更する場合は生成元を編集し、次でSDFを再生成する。
+worldの生成元は`scripts/build_world.py`。基板配置は`configs/board.json`で管理する。モデルを変更する場合は設定または生成元を編集し、次でSDFを再生成する。
 
 ```bash
 python3 scripts/build_world.py

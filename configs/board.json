@@ -1,0 +1,12 @@
+{
+  "board_id": "demo_pcb",
+  "origin_m": [0.19, 0.10, 0.12],
+  "size_mm": [160, 140],
+  "thickness_mm": 20,
+  "hole_width_mm": 8,
+  "pin_spacing_mm": 20,
+  "sockets": [
+    {"id": "J1", "component": "connector", "x_mm": 60, "y_mm": 50, "yaw_deg": 0},
+    {"id": "J2", "component": "connector", "x_mm": 100, "y_mm": 90, "yaw_deg": 0}
+  ]
+}
