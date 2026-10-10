@@ -2,11 +2,11 @@
 
 ## 実行環境
 
-講義で利用したUbuntu環境を使用する。現在のMacはApple Siliconで、PATH上にros2・gzはなく、既定のPythonにはrclpy・genesisがない。Docker CLIはあるが、確認時にはDockerデーモンへ接続できなかった。
+現在のMacはApple Siliconで、PATH上にros2・gzはなく、既定のPythonにはrclpy・genesisがない。指定された講義教材はDebian BookwormベースのPushT/RoboOps用Docker環境で、ROS 2・Gazeboの設定は含まれていなかった。
 
-Ubuntu側のバージョンと接続方法は確認待ち。まず既存の講義環境を使い、新規インストールやバージョン変更は互換性確認後に判断する。
+この課題用にROS公式Dockerイメージを使った専用環境を用意し、Ubuntu 24.04、ROS 2 Jazzy、Gazebo Harmonicを採用する。起動方法は[setup.md](setup.md)を参照。
 
-新規環境が必要な場合の候補はUbuntu 24.04、ROS 2 Jazzy、Gazebo Harmonic。既存環境がHumble＋Fortressなら、その組み合わせを優先する。
+まずGUIなしでGazeboサーバーとROS連携を確認し、動画撮影に必要な表示方法は別途整備する。
 
 参考：[Gazebo公式のROS互換表](https://gazebosim.org/docs/ionic/ros_installation/)
 

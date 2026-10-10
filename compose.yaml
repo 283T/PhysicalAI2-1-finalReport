@@ -1,0 +1,11 @@
+services:
+  dev:
+    build: .
+    image: pai-pcb-assembly:jazzy
+    init: true
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspace
+    command: ["bash"]

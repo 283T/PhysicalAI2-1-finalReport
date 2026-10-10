@@ -2,9 +2,9 @@
 
 ## 1. 開発環境と挿入動作
 
-- [x] 実行先として講義で利用したUbuntu環境を選ぶ。
-- [ ] Ubuntu、ROS 2、Gazebo、Python、GPUのバージョンと接続方法を確認する。
-- [ ] 既存環境でROS 2とGazeboの連携を確認する。
+- [x] 指定された講義教材の環境を確認する（DebianベースのPushT用Docker、ROS 2・Gazebo設定なし）。
+- [x] 課題用のUbuntu 24.04＋ROS 2 Jazzy＋Gazebo HarmonicのDocker設定を用意する。
+- [x] 課題用Docker環境でGazeboサーバーを起動し、ROS 2へのシミュレーション時刻の受信を確認する。
 - [ ] アーム、供給トレイ、簡略基板、2ピンコネクタを配置する。
 - [ ] AIを接続する前に、指定座標で部品1個のピック・挿入を動かす。
 
