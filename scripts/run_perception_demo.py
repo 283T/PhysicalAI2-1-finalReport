@@ -1,6 +1,7 @@
 """Start the MELFA RGB-D scene and acquire randomized harness connector observations."""
 
 import argparse
+import math
 import secrets
 import shlex
 import subprocess
@@ -54,7 +55,36 @@ def main():
         help="Add a passive nest and split finger pads; no regrasp motion is enabled",
     )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
+    parser.add_argument(
+        "--capture-gripper",
+        action="store_true",
+        help="Experimental fore/aft finger fences around a 21 mm housing slot",
+    )
+    parser.add_argument(
+        "--backstop-gripper",
+        action="store_true",
+        help="Experimental rear-face finger fences to resist rotation",
+    )
+    parser.add_argument(
+        "--gripper-p-gain",
+        type=float,
+        default=1000,
+        help="Prototype jaw position gain; force limits remain 12 N per finger",
+    )
+    parser.add_argument(
+        "--place-in-nest",
+        action="store_true",
+        help="After paired pickup, attempt a continuously planned placement and primary release in the nest",
+    )
     args = parser.parse_args()
+    if args.capture_gripper and args.backstop_gripper:
+        parser.error("Choose one experimental finger profile")
+    if not math.isfinite(args.gripper_p_gain) or args.gripper_p_gain <= 0:
+        parser.error("--gripper-p-gain must be finite and positive")
+    if args.place_in_nest and (
+        not args.regrasp_nest or not args.support_plug or not args.pick_connector
+    ):
+        parser.error("--place-in-nest requires --regrasp-nest, --pick-connector and --support-plug")
     if args.support_plug and not args.pick_connector:
         parser.error("--support-plug requires --pick-connector")
     if args.support_plug == args.pick_connector and args.support_plug:
@@ -68,6 +98,12 @@ def main():
     case = relative / "case"
     observations = relative / "observations"
     models = "outputs/melfa_regrasp_worlds" if args.regrasp_nest else "outputs/melfa_worlds"
+    if args.gripper_p_gain != 1000:
+        models += "_g" + format(args.gripper_p_gain, "g").replace(".", "p")
+    if args.backstop_gripper:
+        models += "_backstop"
+    if args.capture_gripper:
+        models += "_capture"
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -85,6 +121,11 @@ def main():
     if args.regrasp_nest:
         generate.append("--regrasp-nest")
     factory = ["python3", "scripts/build_factory.py", "--robot", "melfa_rv4frl", "--output", models]
+    factory.extend(["--gripper-p-gain", str(args.gripper_p_gain)])
+    if args.backstop_gripper:
+        factory.append("--backstop-gripper")
+    if args.capture_gripper:
+        factory.append("--capture-gripper")
     if args.regrasp_nest:
         factory.append("--split-finger-contacts")
     run(
@@ -226,6 +267,8 @@ def main():
                 pickup.extend(["--support-plug", args.support_plug])
             if args.keep_camera:
                 pickup.append("--keep-camera")
+            if args.place_in_nest:
+                pickup.append("--place-in-nest")
             run(
                 "docker",
                 "compose",

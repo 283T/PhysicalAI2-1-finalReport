@@ -81,7 +81,19 @@ def joint_names(robot_type):
     )
 
 
-def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None, *, split_contacts=False):
+def arm(
+    world,
+    name,
+    origin,
+    yaw,
+    robot_type="ur3e",
+    urdf_output=None,
+    *,
+    split_contacts=False,
+    gripper_p_gain=1000,
+    backstop=False,
+    capture_fences=False,
+):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
     import tempfile
@@ -111,7 +123,14 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None, *, split_
         )
         tool_parent = prefix + "tool0"
     robot = ET.fromstring(urdf)
-    add_gripper(robot, prefix, tool_parent, split_contacts=split_contacts)
+    add_gripper(
+        robot,
+        prefix,
+        tool_parent,
+        split_contacts=split_contacts,
+        backstop=backstop,
+        capture_fences=capture_fences,
+    )
     if urdf_output is not None:
         ET.indent(robot)
         ET.ElementTree(robot).write(urdf_output, encoding="utf-8", xml_declaration=True)
@@ -140,7 +159,7 @@ def arm(world, name, origin, yaw, robot_type="ur3e", urdf_output=None, *, split_
             cmd_max=effort,
             cmd_min=-effort,
         )
-    add_controllers(model, prefix, f"/{name}/gripper")
+    add_controllers(model, prefix, f"/{name}/gripper", p_gain=gripper_p_gain)
     plugin(model, ("joint-state-publisher", "JointStatePublisher"), topic=f"/{name}/joints")
     world.append(model)
 
@@ -151,12 +170,19 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--robot", choices=["ur3e", "melfa_rv4frl"], default="ur3e")
     parser.add_argument("--output", type=Path, default=ROOT / "sim/worlds")
+    parser.add_argument("--gripper-p-gain", type=float, default=1000)
+    parser.add_argument("--backstop-gripper", action="store_true")
+    parser.add_argument("--capture-gripper", action="store_true")
     parser.add_argument(
         "--split-finger-contacts",
         action="store_true",
         help="Use two separated contact pads per finger",
     )
     args = parser.parse_args()
+    if args.capture_gripper and args.backstop_gripper:
+        parser.error("Choose one experimental finger profile")
+    if not math.isfinite(args.gripper_p_gain) or args.gripper_p_gain <= 0:
+        parser.error("Positive finite gripper gain required")
     args.output.mkdir(parents=True, exist_ok=True)
     tree = ET.parse(ROOT / "sim/worlds/insertion.sdf")
     world = tree.getroot().find("world")
@@ -176,6 +202,9 @@ def main():
         args.robot,
         args.output / "left_arm.urdf",
         split_contacts=args.split_finger_contacts,
+        gripper_p_gain=args.gripper_p_gain,
+        backstop=args.backstop_gripper,
+        capture_fences=args.capture_gripper,
     )
     arm(
         world,
@@ -185,6 +214,9 @@ def main():
         args.robot,
         args.output / "right_arm.urdf",
         split_contacts=args.split_finger_contacts,
+        gripper_p_gain=args.gripper_p_gain,
+        backstop=args.backstop_gripper,
+        capture_fences=args.capture_gripper,
     )
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")

@@ -1,0 +1,6 @@
+{
+  "left_arm.urdf": "8e00d79c780e5692277fa6d20d8565a3ae8814b73cb8d562765ab09c9ee17545",
+  "right_arm.urdf": "ed62b4e7338ace0a99987d23dc540bc8ef23757a573840c758c9077c5dde3e92",
+  "validation.json": "06cc1004fb57d975a9dbd73a43e8bc715e0dcbefe9e466d88440d28884de4373",
+  "world.sdf": "34ecb43e7130275f0b872ae8b1b6bc0a78d6b6fec907ddecfe83a3cb2707eac5"
+}

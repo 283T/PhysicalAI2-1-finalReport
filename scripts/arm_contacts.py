@@ -5,6 +5,27 @@ from build_world import child, plugin
 CONTACT_TOPIC = "/factory/arm_contacts"
 
 
+def accumulate_contact(records, phase, first, second, depths, sim_time):
+    """Aggregate diagnostic contacts without treating penetration as force."""
+    pair = tuple(sorted((first, second)))
+    key = (phase, *pair)
+    record = records.setdefault(
+        key,
+        {
+            "phase": phase,
+            "collision1": pair[0],
+            "collision2": pair[1],
+            "messages": 0,
+            "first_sim_time_s": sim_time,
+            "last_sim_time_s": sim_time,
+            "max_depth_m": 0.0,
+        },
+    )
+    record["messages"] += 1
+    record["last_sim_time_s"] = sim_time
+    record["max_depth_m"] = max(record["max_depth_m"], max(depths, default=0.0))
+
+
 def add_arm_contact_sensors(world):
     plugin(world, ("contact", "Contact"))
     # Monitoring every left-arm collision is sufficient to observe both sides

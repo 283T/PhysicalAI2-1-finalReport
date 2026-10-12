@@ -21,6 +21,22 @@ class PoseArm:
 
 
 class TransferTests(unittest.TestCase):
+    def test_elevated_support_preserves_distance_while_primary_descends(self):
+        arms = {"a": PoseArm(), "b": PoseArm()}
+        state = {"a": [0, 0, 0.4, 0], "b": [0.3, 0, 0.4, 0]}
+        paths = paired_path(
+            arms, state, "a", transform([0, 0, 0.3]), support_orbit=0, support_rise=0.1
+        )
+        self.assertTrue(assess_pair_path(arms, paths, rigid=False)["success"])
+        np.testing.assert_allclose(paths["b"][-1][:3], [math.sqrt(0.08), 0, 0.4], atol=1e-8)
+        for rise in (0.31, float("nan")):
+            with self.assertRaises(ValueError):
+                paired_path(
+                    arms, state, "a", transform([0, 0, 0.3]), support_orbit=0, support_rise=rise
+                )
+        with self.assertRaises(ValueError):
+            paired_path(arms, state, "a", transform([0, 0, 0.3]), support_rise=0.1)
+
     def test_half_turn_reaches_goal_with_small_rotation_steps(self):
         start, goal = transform([0, 0, 0]), transform([0.2, 0, 0], [math.pi, 0, 0])
         poses = pose_samples(start, goal)

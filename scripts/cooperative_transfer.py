@@ -35,12 +35,16 @@ def pose_samples(start, goal, spacing=0.005, angular_spacing=0.025):
     return [intermediate_pose(start, goal, fraction) for fraction in np.linspace(0, 1, steps + 1)]
 
 
-def paired_path(arms, current, primary, goal, max_joint_step=0.15, support_orbit=None):
+def paired_path(
+    arms, current, primary, goal, max_joint_step=0.15, support_orbit=None, support_rise=0.0
+):
     """Rigid transport, or a world-Z support orbit with unchanged support orientation."""
     if len(arms) != 2 or set(arms) != set(current) or primary not in arms:
         raise ValueError("Need two current arm states and a primary arm")
     if not math.isfinite(max_joint_step) or max_joint_step <= 0:
         raise ValueError("Positive finite joint step required")
+    if not math.isfinite(support_rise) or (support_rise != 0 and support_orbit is None):
+        raise ValueError("Finite support rise requires an independent support orbit")
     starts = {name: rigid_pose(arm.forward(current[name])) for name, arm in arms.items()}
     paths = {name: [np.asarray(current[name], dtype=float)] for name in arms}
     reference_inverse = np.linalg.inv(starts[primary])
@@ -50,7 +54,19 @@ def paired_path(arms, current, primary, goal, max_joint_step=0.15, support_orbit
             raise ValueError("Support orbit must be finite")
         # Orbit spacing also limits displacement of the more distant support endpoint.
         radius = max(np.linalg.norm(p[:3, 3] - starts[primary][:3, 3]) for p in starts.values())
-        count = max(len(poses) - 1, math.ceil(abs(support_orbit) * radius / 0.005))
+        offset = (
+            starts[next(name for name in arms if name != primary)][:3, 3] - starts[primary][:3, 3]
+        )
+        if support_rise != 0 and (
+            abs(offset[2] + support_rise) >= radius or np.linalg.norm(offset[:2]) < 1e-8
+        ):
+            raise ValueError("Support rise exceeds the preserved endpoint sphere")
+        polar = (
+            0
+            if support_rise == 0
+            else abs(math.asin((offset[2] + support_rise) / radius) - math.asin(offset[2] / radius))
+        )
+        count = max(len(poses) - 1, math.ceil((abs(support_orbit) + polar) * radius / 0.005))
         # Reuse SO(3) interpolation with a fixed sample count via fractional poses.
         poses = [intermediate_pose(starts[primary], goal, f) for f in np.linspace(0, 1, count + 1)]
     for index, pose in enumerate(poses[1:], 1):
@@ -60,6 +76,11 @@ def paired_path(arms, current, primary, goal, max_joint_step=0.15, support_orbit
             if support_orbit is not None and name != primary:
                 target = starts[name].copy()
                 offset = starts[name][:3, 3] - starts[primary][:3, 3]
+                if support_rise != 0:
+                    distance = np.linalg.norm(offset)
+                    z = offset[2] + support_rise * index / (len(poses) - 1)
+                    offset[:2] *= math.sqrt(distance**2 - z**2) / np.linalg.norm(offset[:2])
+                    offset[2] = z
                 target[:3, 3] = (
                     pose[:3, 3]
                     + axis_rotation([0, 0, 1], support_orbit * index / (len(poses) - 1)) @ offset

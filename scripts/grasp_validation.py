@@ -55,6 +55,40 @@ def assess_seat(samples, center=(0, 0, 0.23), rotation=None):
     }
 
 
+def assess_relative_grasp(reference, observation):
+    """Measure slip in the moving tool frame, allowing intentional world rotation."""
+    points, rotations = [], []
+    for row in (reference, observation):
+        plug, tcp = np.asarray(row["plug"]), np.asarray(row["tcp"])
+        matrices = [
+            np.asarray(row.get(key), dtype=float)
+            for key in ("plug_rotation_world", "tcp_rotation_world")
+        ]
+        if (
+            plug.shape != (3,)
+            or tcp.shape != (3,)
+            or not np.isfinite([plug, tcp]).all()
+            or any(
+                r.shape != (3, 3)
+                or not np.isfinite(r).all()
+                or not np.allclose(r.T @ r, np.eye(3), atol=1e-6)
+                or not np.isclose(np.linalg.det(r), 1)
+                for r in matrices
+            )
+        ):
+            return {"success": False, "reason": "Invalid tool-relative pose observations"}
+        body, tool = matrices
+        points.append(tool.T @ (plug - tcp))
+        rotations.append(tool.T @ body)
+    displacement = float(np.linalg.norm(points[1] - points[0]))
+    angle = float(np.linalg.norm(rotation_error(rotations[1], rotations[0])))
+    return {
+        "success": displacement < 0.005 and angle < 0.05,
+        "position_shift_m": displacement,
+        "angle_shift_rad": angle,
+    }
+
+
 def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
     """Reject stationary objects, empty closure and slip during the hold window."""
     if len(samples) < 10:

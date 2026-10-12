@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 import rclpy
 from arm_collision_bounds import ArmCollisionBounds, screen_paths
-from arm_contacts import CONTACT_TOPIC, inter_arm_pair
+from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints, translation_path
 from cooperative_pick import (
@@ -22,11 +22,13 @@ from cooperative_pick import (
     shared_lift,
     upright_waist_path,
 )
-from grasp_validation import assess_hold, world_link_positions
+from fixture_collision_bounds import FixtureBounds
+from grasp_validation import assess_hold, assess_relative_grasp, assess_seat, world_link_positions
 from gripper_model import OPEN_TRAVEL_M
 from gz.msgs10.contacts_pb2 import Contacts
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
+from plan_nest_transfer import plan_to_nest
 from plan_reach import load_arms, plan_reach
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
@@ -48,11 +50,18 @@ def main():
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
+        "--place-in-nest",
+        action="store_true",
+        help="After paired pickup, plan from live joints, place the primary terminal in the passive nest and retreat",
+    )
+    parser.add_argument(
         "--keep-camera",
         action="store_true",
         help="Keep full RGB-D rendering rate after the accepted static observation",
     )
     args = parser.parse_args()
+    if args.place_in_nest and not args.support_plug:
+        parser.error("--place-in-nest requires --support-plug")
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "validation.json").unlink(missing_ok=True)
     observations = args.output / "observations"
@@ -154,16 +163,31 @@ def main():
         cable_names = [key for key in poses if "_wire_" in key]
         cable = world_link_positions(poses, "wire_harness_multi", cable_names)
         sim_time = msg.header.stamp.sec + msg.header.stamp.nsec / 1e9
-        truth[:] = [(time.monotonic(), tools, plugs, cable, sim_time)]
+        rotations = {
+            plug: quaternion_rotation(poses["wire_harness_multi"]["q"])
+            @ quaternion_rotation(poses[plug]["q"])
+            for plug in ("P1", "P2", "P3")
+        }
+        truth[:] = [(time.monotonic(), tools, plugs, cable, sim_time, rotations)]
 
     transport.subscribe(Pose_V, pose_topic, receive)
     contacts = []
+    contact_diagnostics = {}
+    current_phase = ["initialization"]
     contact_updates = [0]
 
     def receive_contacts(msg):
         contact_updates[0] += 1
         for contact in msg.contact:
             first, second = contact.collision1.name, contact.collision2.name
+            accumulate_contact(
+                contact_diagnostics,
+                current_phase[0],
+                first,
+                second,
+                contact.depth,
+                msg.header.stamp.sec + msg.header.stamp.nsec / 1e9,
+            )
             if inter_arm_pair(first, second):
                 contacts.append(
                     {
@@ -203,6 +227,8 @@ def main():
     last_saved = [-1.0, -1.0]
     target_q = None
     target_grip = {name: OPEN_TRAVEL_M for name in selected}
+    transport_reference = None
+    fixtures = FixtureBounds(args.world) if args.place_in_nest else None
 
     def sample():
         if (
@@ -223,6 +249,8 @@ def main():
                 "tcp": truth[0][1][name][0].tolist(),
                 "fingers": [positions[key] for key in finger_names],
                 "q_rad": [positions[key] for key in arm.names],
+                "plug_rotation_world": truth[0][5][assigned[name]["plug_id"]].tolist(),
+                "tcp_rotation_world": truth[0][1][name][1].tolist(),
             }
         result = {
             "time_s": time.monotonic(),
@@ -245,6 +273,7 @@ def main():
         rclpy.spin_once(node, timeout_sec=0.03)
 
     def record(phase):
+        current_phase[0] = phase
         row = sample()
         if row is not None:
             row["phase"] = phase
@@ -266,6 +295,7 @@ def main():
         return row
 
     def dwell(phase, duration):
+        current_phase[0] = phase
         print(f"{phase}: start ({duration:g} simulated seconds)", flush=True)
         rows, last = [], None
         start = truth[0][4]
@@ -285,6 +315,7 @@ def main():
         return rows
 
     def move(phase, targets, *, straight=False, ready_paths=None, joint_motion=False):
+        current_phase[0] = phase
         nonlocal target_q
         print(f"{phase}: preflight and move", flush=True)
         deadline = time.monotonic() + 5
@@ -324,6 +355,12 @@ def main():
                     sum(np.max(np.abs(b - a)) for a, b in zip(paths[name][:-1], paths[name][1:]))
                     / 0.5,
                 )
+            if args.place_in_nest and ready_paths is not None:
+                duration = max(
+                    duration,
+                    sum(np.max(np.abs(b - a)) for a, b in zip(paths[name][:-1], paths[name][1:]))
+                    / 0.35,
+                )
         check_tool_clearance(selected, paths)
         if collision_bounds is not None:
             screening = screen_paths(collision_bounds, paths)
@@ -334,6 +371,13 @@ def main():
                     + phase
                     + ": "
                     + str(screening["links"])
+                )
+        if fixtures is not None:
+            screening = fixtures.screen(collision_bounds, paths, margin=0.001)
+            report.setdefault("fixture_preflight", []).append({"phase": phase, **screening})
+            if not screening["clear"]:
+                raise RuntimeError(
+                    "Fixed fixture box rejected " + phase + ": " + str(screening["shapes"])
                 )
         start = truth[0][4]
         wall_start = time.monotonic()
@@ -346,6 +390,18 @@ def main():
             }
             publish()
             observation = record(phase)
+            if (
+                transport_reference is not None
+                and phase.startswith("nest_")
+                and observation is not None
+            ):
+                checks = {
+                    name: assess_relative_grasp(reference, observation["arms"][name])
+                    for name, reference in transport_reference.items()
+                }
+                report["last_transport_grasp_check"] = {"phase": phase, "arms": checks}
+                if not all(check["success"] for check in checks.values()):
+                    raise RuntimeError("Tool-relative slip detected in " + phase)
             if observation is None or t < 1:
                 continue
             valid = True
@@ -461,6 +517,84 @@ def main():
                 )
                 for name in selected
             }
+            report.update(
+                holds=holds,
+                baseline=baseline,
+                closed=closed,
+                pickup_hold_success=all(h["success"] for h in holds.values()),
+            )
+            report["model_sha256"] = {
+                name: hashlib.sha256((args.models / (name + ".urdf")).read_bytes()).hexdigest()
+                for name in selected
+            }
+            if args.place_in_nest:
+                if not report["pickup_hold_success"]:
+                    raise RuntimeError("Holding failed; refusing nest transfer")
+                primary = next(
+                    name
+                    for name, assigned_row in assigned.items()
+                    if assigned_row["plug_id"] == args.plug
+                )
+                transport_reference = held[-1]["arms"]
+                current = {name: np.asarray(held[-1]["arms"][name]["q_rad"]) for name in selected}
+                nest_plan = plan_to_nest(
+                    selected,
+                    collision_bounds,
+                    args.world,
+                    current,
+                    primary,
+                    assigned[primary]["grasp_candidate"]["connector_from_tool"],
+                )
+                report["nest_plan"] = nest_plan
+                if not nest_plan["success"]:
+                    raise RuntimeError("No continuous collision-screened nest transfer")
+                for phase in nest_plan["attempts"][nest_plan["selected_attempt"]]["phases"]:
+                    paths = {name: np.asarray(path) for name, path in phase["joint_paths"].items()}
+                    targets = {
+                        name: selected[name].forward(path[-1]) for name, path in paths.items()
+                    }
+                    move("nest_transfer_" + str(phase["index"]), targets, ready_paths=paths)
+                target_grip[primary] = OPEN_TRAVEL_M
+                dwell("nest_primary_open", 3)
+                transport_reference = {
+                    name: reference
+                    for name, reference in transport_reference.items()
+                    if name != primary
+                }
+                live = sample()
+                start_q = {name: np.asarray(live["arms"][name]["q_rad"]) for name in selected}
+                retreat = selected[primary].forward(start_q[primary])
+                retreat[:3, 3] -= retreat[:3, 2] * 0.08
+                primary_path = translation_path(selected[primary], start_q[primary], retreat)
+                paths = {
+                    name: primary_path
+                    if name == primary
+                    else np.repeat([start_q[name]], len(primary_path), axis=0)
+                    for name in selected
+                }
+                move(
+                    "nest_retreat",
+                    {name: selected[name].forward(path[-1]) for name, path in paths.items()},
+                    ready_paths=paths,
+                )
+                seated = dwell("nest_observe_seat", 2)
+                goal = np.asarray(nest_plan["goal_connector_pose"])
+                report["nest_seat"] = assess_seat(
+                    [{**row["arms"][primary], "time_s": row["sim_time_s"]} for row in seated],
+                    center=goal[:3, 3],
+                    rotation=goal[:3, :3],
+                )
+                report.update(
+                    success=report["nest_seat"]["success"],
+                    stage="paired_pickup_and_nest_placement",
+                    final=seated[-1],
+                    scope="Fresh RGB-D paired contact pickup, continuous nest transfer and primary release/retreat; support holds another terminal. No top regrasp or board insertion",
+                )
+                if not report["success"]:
+                    raise RuntimeError("Nest seat did not remain stable after primary retreat")
+                # Supporting arm remains closed until the trial cleanup; final_open
+                # is a separate teardown phase, not part of the seated window.
+                return
             target_grip = {name: OPEN_TRAVEL_M for name in selected}
             released = dwell("release", 3)[-1]
             falls = {
@@ -498,6 +632,11 @@ def main():
                     pass
             report["inter_arm_contacts"] = contacts
             report["contact_messages"] = contact_updates[0]
+            report["contact_diagnostics"] = list(contact_diagnostics.copy().values())
+            report["contact_diagnostics_scope"] = (
+                "Left-arm sensors only; message counts may include duplicate sensors. "
+                "Penetration depth is not measured contact force."
+            )
             transport.unsubscribe(CONTACT_TOPIC)
             transport.unsubscribe(pose_topic)
             if bridge:

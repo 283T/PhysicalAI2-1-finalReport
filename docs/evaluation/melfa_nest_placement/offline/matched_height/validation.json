@@ -1,0 +1,3707 @@
+{
+  "success": false,
+  "nest_connector_pose": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.08
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      -0.04
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.23000000000000004
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "attempts": [
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": 0.0,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.064900090111072e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014062750030545334,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 55"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": 0.0,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 3.811664144598437e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 2.1903129066044342,
+            "minimum_tool_separation_m": 0.355411269889727
+          },
+          "collision": {
+            "clear": true,
+            "samples": 99,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 99,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 91"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": -1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.064900090111072e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014062750030545334,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 70"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": -1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 91"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": 1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.064900090111072e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014062750030545334,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 70"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": 1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 24"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": null,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.933659767190024e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8290928922401686e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 0.00011350594101426162,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 0.0001349653844038005,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 227,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 1"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.35,
+      "orbit_rad": null,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.933659767190024e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8290928922401686e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 11"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": 0.0,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.281516485259989e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001459080461002304,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 54"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": 0.0,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 3.7102754996520826e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 2.190336080569185,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 97,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 97,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 80"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": -1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.281516485259989e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001459080461002304,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 69"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": -1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 88"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": 1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.281516485259989e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001459080461002304,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 69"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": 1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 21"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": null,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.581539860969204e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8072966284878703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.041999999999999975
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 0.00013032902833582988,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 0.00013476981628649675,
+            "minimum_tool_separation_m": 0.3554167017400285
+          },
+          "collision": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 244,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              0.08
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.041999999999999975
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 48"
+        }
+      ]
+    },
+    {
+      "flipped": false,
+      "height_m": 0.45,
+      "orbit_rad": null,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.581539860969204e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8072966284878703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              8.018107478719524e-17,
+              1.0,
+              -1.63100853820903e-17,
+              -0.4635513238731774
+            ],
+            [
+              -2.7386546342020103e-17,
+              -1.516330722575273e-17,
+              0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 8"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": 0.0,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 8.988900252576704e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014653490934587811,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 6.394947927979011e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.7792361967460677,
+            "minimum_tool_separation_m": 0.3554400150783092
+          },
+          "collision": {
+            "clear": true,
+            "samples": 89,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 89,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 3,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.33000000000000007
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 0.00025358462374330815,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0013724670902246078,
+            "minimum_tool_separation_m": 0.3554400150783092
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 4,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.23000000000000004
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 6"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": 0.0,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 19"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": -1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 8.988900252576704e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014653490934587811,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 110"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": -1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 29"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": 1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 8.988900252576704e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.00014653490934587811,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 10"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": 1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.780307954690752e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8290928922449703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 24"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": null,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.933659767190024e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8290928922401686e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 0.0001143262042258841,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 0.00014087966360483412,
+            "minimum_tool_separation_m": 0.35541407555506316
+          },
+          "collision": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 230,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 8"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.35,
+      "orbit_rad": null,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 1.933659767190024e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8290928922401686e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.35
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 19"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": 0.0,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.22646663665816e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001499458522267605,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 69"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": 0.0,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 13"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": -1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.22646663665816e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001499458522267605,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 107"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": -1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 20"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": 1.5707963267948966,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 9.22646663665816e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 0.0001499458522267605,
+            "minimum_tool_separation_m": 0.3554167017400284
+          },
+          "collision": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 107"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": 1.5707963267948966,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.0429264512122902e-05,
+            "constraint": "endpoint_distance",
+            "maximum_relative_angle_error_rad": 1.8072966284950484e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 20"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": null,
+      "order": "translate_then_rotate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.581539860969204e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8072966284878703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              0.08
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.03800000000000003
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 0.00012916406626379558,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 0.0001388503148235776,
+            "minimum_tool_separation_m": 0.3554167017400285
+          },
+          "collision": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 243,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 2,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              0.08
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.03800000000000003
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "right_arm: unreachable/discontinuous coordinated waypoint 28"
+        }
+      ]
+    },
+    {
+      "flipped": true,
+      "height_m": 0.45,
+      "orbit_rad": null,
+      "order": "rotate_then_translate",
+      "success": false,
+      "phases": [
+        {
+          "index": 0,
+          "target": [
+            [
+              0.8990546288963758,
+              -0.37283942632653966,
+              0.22954637099395997,
+              -0.4635513238731774
+            ],
+            [
+              -0.3828945047395223,
+              -0.9237917315884387,
+              -0.0007967992906593098,
+              -0.01742973291723163
+            ],
+            [
+              0.21235011773077928,
+              -0.08717567794591834,
+              -0.9732973999114524,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pair": {
+            "success": true,
+            "maximum_relative_position_error_m": 2.581539860969204e-05,
+            "constraint": "relative_frame",
+            "maximum_relative_angle_error_rad": 1.8072966284878703e-05,
+            "minimum_tool_separation_m": 0.35539627247551614
+          },
+          "collision": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "fixtures": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.001
+          }
+        },
+        {
+          "index": 1,
+          "target": [
+            [
+              -8.018107478719524e-17,
+              -1.0,
+              -1.0615459453264501e-16,
+              -0.4635513238731774
+            ],
+            [
+              2.7386546342020112e-17,
+              1.3762798714048805e-16,
+              -0.9999999999999999,
+              -0.01742973291723163
+            ],
+            [
+              0.9999999999999998,
+              3.1536863272300115e-17,
+              7.246466190160437e-18,
+              0.45
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "reason": "left_arm: unreachable/discontinuous coordinated waypoint 13"
+        }
+      ]
+    }
+  ],
+  "scope": "Continuous IK from the supplied lift state; inter-arm and static fixture box screening only. No physical placement, self/cable/object collision or force validation",
+  "primary": "left_arm",
+  "assignment": {
+    "left_arm": "P1",
+    "right_arm": "P3"
+  },
+  "start_joints": {
+    "left_arm": [
+      -0.48889354238162486,
+      1.3127872201494235,
+      0.874736819546665,
+      -0.11697581005385563,
+      1.1622256754107512,
+      -0.03813599560155612
+    ],
+    "right_arm": [
+      -2.8977167382900033,
+      1.1244770469092107,
+      1.2533742720452745,
+      0.19650187359819274,
+      0.5997801132648881,
+      2.7212866856402553
+    ]
+  },
+  "world_sha256": "34ecb43e7130275f0b872ae8b1b6bc0a78d6b6fec907ddecfe83a3cb2707eac5",
+  "model_sha256": {
+    "left_arm": "8e00d79c780e5692277fa6d20d8565a3ae8814b73cb8d562765ab09c9ee17545",
+    "right_arm": "ed62b4e7338ace0a99987d23dc540bc8ef23757a573840c758c9077c5dde3e92"
+  },
+  "input_sha256": {
+    "world.sdf": "2e64dbb11f26b352eac8671826e830b6a5891ae1195af9c1d19d1e71e6a07a90",
+    "validation.json": "63c14f280cd180cd23c7764bdcd82f42b9082d83503a71a5852c1928a28392a9",
+    "board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+    "grasp_plan.json": "2856363c9da9a38d4ca878264231bbfed34016f5ca7a3ac1bfce46232730a9a9",
+    "connection_plan.json": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637"
+  }
+}

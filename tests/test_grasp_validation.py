@@ -9,10 +9,33 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import axis_rotation
-from grasp_validation import assess_hold, assess_seat, world_link_positions
+from grasp_validation import assess_hold, assess_relative_grasp, assess_seat, world_link_positions
 
 
 class GraspValidationTests(unittest.TestCase):
+    def test_relative_grasp_allows_transport_rotation_but_rejects_local_slip(self):
+        reference = {
+            "tcp": [0, 0, 0],
+            "plug": [0.02, 0, 0],
+            "tcp_rotation_world": np.eye(3).tolist(),
+            "plug_rotation_world": np.eye(3).tolist(),
+        }
+        r = axis_rotation([0, 0, 1], math.pi / 2)
+        observation = {
+            "tcp": [0.1, 0.2, 0.3],
+            "plug": [0.1, 0.22, 0.3],
+            "tcp_rotation_world": r.tolist(),
+            "plug_rotation_world": r.tolist(),
+        }
+        self.assertTrue(assess_relative_grasp(reference, observation)["success"])
+        observation["plug"][2] += 0.01
+        self.assertFalse(assess_relative_grasp(reference, observation)["success"])
+        observation["plug"][2] -= 0.01
+        observation["plug_rotation_world"] = np.eye(3).tolist()
+        self.assertFalse(assess_relative_grasp(reference, observation)["success"])
+        observation.pop("plug_rotation_world")
+        self.assertFalse(assess_relative_grasp(reference, observation)["success"])
+
     def setUp(self):
         self.baseline = {"plug": [0, 0, 0.15]}
         self.closed = {"plug": [0, 0, 0.15], "tcp": [0, 0, 0.152]}

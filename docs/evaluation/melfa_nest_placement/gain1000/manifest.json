@@ -1,0 +1,18 @@
+{
+  "board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "camera.png": "971244fc6428051e57ef0ab490c219e4ad175df2f6be4230b3ce2cfa5b44a3f5",
+  "camera_intrinsics.json": "6ac1322eba336bb64eda25842a775c4b12ec13fe7c208bbbf85347b11fde8ec8",
+  "case.json": "e6014ed5fd9bb8057b9a594e151349c001aec4b7b26299d87819f8a026f353da",
+  "case_manifest.json": "4d293be487c9c4ad4c308d978817e091b97465fcb73bba718851d3fe6d41580a",
+  "connection_plan.audit.json": "7cff2f791c22528aaddce4e115833cb919d6d0063042dd3d677c7472b4882c77",
+  "connection_plan.json": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+  "depth.npz": "31b07245cc727b5179c5bf80586b2b4d93b46766f1438c8300b934b9ecf61ac9",
+  "detections.json": "4a269599a15c6b2572b7658668c09edbae0ced50e22b0864e82583ff81aa7a85",
+  "drawing.png": "deac4945efd41d660646fd72e1aad0bfdb699f3256f7ae45f4b45ad27d8e1eba",
+  "grasp_plan.json": "1e62d9f5b613374846f759dd9fc503df89e6a8e8a30e7c54e6bbf2b3b9b184ea",
+  "regrasp_nest.json": "b723cf4a9b5b048325f5ef213d80212bfedb6f32c5040caed2a660eb93f5bd15",
+  "summary.json": "0f364952a4d590635d17e46c2aefcb79fc2bdf1292e87f8bb95392de390bd176",
+  "trajectory.csv": "07c5be8386702519b83d1235b4b7d7fef022fb70016d3a04b971b36504bc6d39",
+  "validation.json": "d274104260bbe59bb53b33375b163310cf09b9d9c66160eba1a553e03c65460d",
+  "world.sdf": "34ecb43e7130275f0b872ae8b1b6bc0a78d6b6fec907ddecfe83a3cb2707eac5"
+}
