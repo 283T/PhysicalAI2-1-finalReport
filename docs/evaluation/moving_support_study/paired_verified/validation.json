@@ -1,0 +1,2244 @@
+{
+  "success": true,
+  "friction_mu": 1.0,
+  "world_sha256": "577e20bf1198d8b9222a0ff6064d07b3e6653927cd33e09654f064e0a94a5bdc",
+  "scope": "Two independent vertical test stages: terminal contact gripper and moving contact tray supporting the tail; no harness attachment, MELFA, perception, side-to-top transition or board insertion",
+  "split_finger_contacts": true,
+  "passive_tail_support": false,
+  "moving_tail_support": true,
+  "return_mode": "settled",
+  "pin_relief": false,
+  "return_reference": "closed",
+  "baseline": {
+    "time_s": 97258.808240886,
+    "plug": [
+      -5.6369524651878056e-05,
+      -8.161539140759462e-16,
+      0.2299998437755454
+    ],
+    "tcp": [
+      -4.7146342299396325e-19,
+      8.188816036546252e-19,
+      0.2671631152679896
+    ],
+    "fingers": [
+      0.01809620791148435,
+      0.018073838195821045
+    ],
+    "cable_z_span_m": 0.003000138025329252,
+    "plug_rotation_world": [
+      [
+        0.9999999999999241,
+        2.6964730694834346e-15,
+        3.895311534813722e-07
+      ],
+      [
+        -2.696474934090958e-15,
+        1.0,
+        4.786793121894008e-15
+      ],
+      [
+        -3.895311534813721e-07,
+        -4.786794172254636e-15,
+        0.9999999999999241
+      ]
+    ],
+    "lift_joint_m": -0.002836312865273726,
+    "lift_command_m": 0,
+    "lift_error_m": -0.002836312865273726,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.3074660462927066,
+        -1.3658405452191181e-13,
+        0.23149999173101032
+      ],
+      "P1_wire_1": [
+        -0.28255636951135077,
+        -7.660981420816887e-13,
+        0.22999998980857186
+      ],
+      "P1_wire_2": [
+        -0.257556371811256,
+        -5.204677022069504e-13,
+        0.22999997134644842
+      ],
+      "P1_wire_3": [
+        -0.2325563719452073,
+        1.770809429312896e-14,
+        0.22999991910986584
+      ],
+      "P1_wire_4": [
+        -0.20755637193397897,
+        -5.457827988948497e-15,
+        0.22999993615243064
+      ],
+      "P1_wire_5": [
+        -0.18255637143363754,
+        -3.062516924736393e-16,
+        0.2299999903717294
+      ],
+      "P1_wire_6": [
+        -0.15755637216200793,
+        4.978370372493302e-15,
+        0.22999991540601963
+      ],
+      "P1_wire_7": [
+        -0.13255637217076824,
+        3.602048215884335e-15,
+        0.22999988377210595
+      ],
+      "P1_wire_8": [
+        -0.10755637042402508,
+        -1.331103299310049e-15,
+        0.22999983353713907
+      ],
+      "P1_wire_9": [
+        -0.08255636952463277,
+        8.425708871420473e-16,
+        0.22999983508184663
+      ],
+      "P1_wire_10": [
+        -0.05755636952464799,
+        2.7554902887747113e-16,
+        0.22999985778351045
+      ],
+      "P1_wire_11": [
+        -0.032556369524649464,
+        -7.285184787180716e-16,
+        0.22999985643530788
+      ],
+      "P1": [
+        -5.6369524651878056e-05,
+        -8.161539140759462e-16,
+        0.2299998437755454
+      ],
+      "junction": [
+        -0.3198757195894089,
+        1.7197930721408367e-13,
+        0.23299997156246832
+      ]
+    },
+    "support_height_m": -9.797718192317006e-15,
+    "support_command_m": 0.0,
+    "support_error_m": -9.797718192317006e-15,
+    "phase": "open",
+    "elapsed_s": 4.997302376999869
+  },
+  "closed": {
+    "time_s": 97272.819687851,
+    "plug": [
+      -5.639318332856247e-05,
+      -3.7429971148874483e-05,
+      0.22999999809789332
+    ],
+    "tcp": [
+      -8.094250849753114e-18,
+      1.4058849091912332e-17,
+      0.22129535923082483
+    ],
+    "fingers": [
+      0.0020371997946556975,
+      0.0019625072043975653
+    ],
+    "cable_z_span_m": 0.0029999831581769554,
+    "plug_rotation_world": [
+      [
+        0.9999999999999997,
+        -1.9326532301323952e-08,
+        1.701142311955476e-08
+      ],
+      [
+        1.9326532003046597e-08,
+        0.9999999999999996,
+        1.7533944918865396e-08
+      ],
+      [
+        -1.7011423458425142e-08,
+        -1.7533944590093575e-08,
+        0.9999999999999998
+      ]
+    ],
+    "lift_joint_m": -0.048704637078990975,
+    "lift_command_m": -0.046,
+    "lift_error_m": -0.0027046370789909763,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.30746603944878304,
+        1.1084799303562171e-10,
+        0.23149997939917982
+      ],
+      "P1_wire_1": [
+        -0.2825563651424137,
+        7.687618212268266e-11,
+        0.22999999077759478
+      ],
+      "P1_wire_2": [
+        -0.2575563651424152,
+        6.967024088108049e-11,
+        0.2299999961619811
+      ],
+      "P1_wire_3": [
+        -0.2325563651424152,
+        7.072661122625252e-11,
+        0.22999999561090326
+      ],
+      "P1_wire_4": [
+        -0.2075563651424152,
+        7.178023543492024e-11,
+        0.2299999956078319
+      ],
+      "P1_wire_5": [
+        -0.18255636514241522,
+        7.411981080640145e-11,
+        0.22999999564117576
+      ],
+      "P1_wire_6": [
+        -0.15755636514241522,
+        7.683047474674359e-11,
+        0.22999999566415116
+      ],
+      "P1_wire_7": [
+        -0.13255636514241523,
+        7.504696440437274e-11,
+        0.2299999956727126
+      ],
+      "P1_wire_8": [
+        -0.10755636514241529,
+        6.437785681220146e-11,
+        0.22999999598091936
+      ],
+      "P1_wire_9": [
+        -0.08255636514241693,
+        6.551616811226521e-09,
+        0.22999999633894802
+      ],
+      "P1_wire_10": [
+        -0.05755637916287365,
+        -1.8708897147377412e-05,
+        0.22999999762686055
+      ],
+      "P1_wire_11": [
+        -0.03255639318332865,
+        -3.743059926116458e-05,
+        0.2299999986507646
+      ],
+      "P1": [
+        -5.639318332856247e-05,
+        -3.7429971148874483e-05,
+        0.22999999809789332
+      ],
+      "junction": [
+        -0.31987571375515367,
+        1.3678890205574918e-10,
+        0.23299997393577174
+      ]
+    },
+    "support_height_m": -9.797718192317006e-15,
+    "support_command_m": 0.0,
+    "support_error_m": -9.797718192317006e-15,
+    "phase": "close",
+    "elapsed_s": 6.002421002995106
+  },
+  "reference_seat": {
+    "success": true,
+    "maximum_lateral_error_m": 6.768493684173578e-05,
+    "maximum_height_error_m": 2.7492378651405858e-09,
+    "maximum_angle_error_rad": 3.563176011118315e-08,
+    "maximum_movement_m": 1.5577986696341434e-09,
+    "duration_s": 1.9980564170109574,
+    "samples": 96
+  },
+  "return_target_m": -0.048704637078990975,
+  "settle_lift": {
+    "success": true,
+    "final_error_m": 0.0015984720837437308,
+    "wall_time_s": 2.1633477510040393,
+    "support_error_m": -0.00015789039831587415
+  },
+  "hold": {
+    "success": true,
+    "minimum_lift_m": 0.10164084433356824,
+    "relative_slip_m": 2.1132769671906856e-07,
+    "lift_slip_m": 4.2369349983824555e-05,
+    "minimum_tcp_lift_m": 0.10159847577392789,
+    "minimum_finger_travel_m": 0.0019626282002565255,
+    "minimum_jaw_opening_m": 0.01999991921911559,
+    "maximum_jaw_opening_m": 0.019999923062708366,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 215,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 1.9690570172753265e-06
+  },
+  "settle_return": {
+    "success": true,
+    "final_error_m": -8.25869210448471e-05,
+    "wall_time_s": 0.6252687509986572,
+    "support_error_m": -2.0872192862952943e-14
+  },
+  "release_drop_m": 0.11016631487685394,
+  "release_success": true,
+  "final": {
+    "time_s": 97308.663294034,
+    "plug": [
+      -5.757329988625992e-05,
+      -3.728992138555541e-05,
+      0.22999999552543346
+    ],
+    "tcp": [
+      -1.4711517796031907e-18,
+      2.5552334916047835e-18,
+      0.2611478010414402
+    ],
+    "fingers": [
+      0.017333611486470092,
+      0.01734242111707537
+    ],
+    "cable_z_span_m": 0.0030045664431044283,
+    "plug_rotation_world": [
+      [
+        0.9999999999999818,
+        -1.9015435768818155e-07,
+        2.2269740760390616e-08
+      ],
+      [
+        1.901543611293123e-07,
+        0.99999999999997,
+        -1.5455341553668295e-07
+      ],
+      [
+        -2.2269711371384968e-08,
+        1.5455341977142618e-07,
+        0.9999999999999878
+      ]
+    ],
+    "lift_joint_m": -0.00885219895855978,
+    "lift_command_m": 0,
+    "lift_error_m": -0.00885219895855978,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.3074669415500555,
+        -2.635830922375501e-05,
+        0.23150227726651965
+      ],
+      "P1_wire_1": [
+        -0.28255755631321267,
+        -4.858373057707962e-06,
+        0.22999999466816579
+      ],
+      "P1_wire_2": [
+        -0.25755755724237933,
+        -1.6847284400790146e-08,
+        0.22999999576952626
+      ],
+      "P1_wire_3": [
+        -0.23255755724239996,
+        1.112263438696312e-08,
+        0.22999999560748793
+      ],
+      "P1_wire_4": [
+        -0.20755755724240238,
+        2.1973296878427875e-08,
+        0.22999999560807685
+      ],
+      "P1_wire_5": [
+        -0.18255755724240416,
+        3.1514248086761214e-08,
+        0.22999999564151746
+      ],
+      "P1_wire_6": [
+        -0.15755755724240628,
+        4.1789611878095205e-08,
+        0.22999999566445956
+      ],
+      "P1_wire_7": [
+        -0.1325575572424158,
+        6.167099347992707e-08,
+        0.2299999956734144
+      ],
+      "P1_wire_8": [
+        -0.10755755724267435,
+        1.551347521461626e-07,
+        0.22999999598126464
+      ],
+      "P1_wire_9": [
+        -0.08255755862324332,
+        -5.640104369128039e-06,
+        0.22999999635777368
+      ],
+      "P1_wire_10": [
+        -0.057557566651723735,
+        -2.4406465323155285e-05,
+        0.22999999647793273
+      ],
+      "P1_wire_11": [
+        -0.032557573299885734,
+        -3.729610140229202e-05,
+        0.22999999624919912
+      ],
+      "P1": [
+        -5.757329988625992e-05,
+        -3.728992138555541e-05,
+        0.22999999552543346
+      ],
+      "junction": [
+        -0.3198763277160457,
+        -4.303863090724635e-05,
+        0.23300456111127021
+      ]
+    },
+    "support_height_m": -2.0872192862952943e-14,
+    "support_command_m": 0.0,
+    "support_error_m": -2.0872192862952943e-14,
+    "phase": "observe_seat",
+    "elapsed_s": 1.9898475849913666
+  },
+  "reseat": {
+    "success": true,
+    "maximum_lateral_error_m": 6.859462877466515e-05,
+    "maximum_height_error_m": 4.474566550616288e-09,
+    "maximum_angle_error_rad": 2.4605157997816066e-07,
+    "maximum_movement_m": 0.0,
+    "duration_s": 1.9881249590107473,
+    "samples": 90
+  },
+  "reseat_success": true,
+  "terminal_contacts": [
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 886,
+      "max_depth_m": 6.0099999990198376e-05
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 875,
+      "max_depth_m": 0.0002582574904918238
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 875,
+      "max_depth_m": 2.6508193605177637e-05
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 875,
+      "max_depth_m": 0.00031562085723442143
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.00017392136696982828
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.00018250781418237966
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.0002580511374688189
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.00031589337496150654
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.00022873083387694136
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 874,
+      "max_depth_m": 0.00019439771671341238
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 873,
+      "max_depth_m": 0.00015850974460359865
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 863,
+      "max_depth_m": 1.6062943850392655e-05
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 3.469966798792801e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 3.924517921055637e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 2.0793258128336267e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 6.390726324002893e-09
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 3.21317253967196e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 8.048419343834046e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 8.048418423996923e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 8.311268162412844e-09
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 1.3935069072441852e-07
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 1.3935072867843346e-07
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 6.005958102552056e-08
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 2040,
+      "max_depth_m": 4.340036835297212e-08
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 2.5939653532786044e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.326759443784578e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 5.258609283659288e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 1.7160401293648056e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.444197250659532e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.482604006733615e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.482604018876679e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.447869583930342e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.4159332622875636e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.401874410114859e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 4.3987590549188216e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 1081,
+      "max_depth_m": 3.7854983080468085e-09
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 543,
+      "max_depth_m": 6.162169274481245e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 543,
+      "max_depth_m": 6.162169274454357e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 542,
+      "max_depth_m": 4.3853843355121797e-05
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 542,
+      "max_depth_m": 4.385389200243367e-05
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 2.2647790445459726e-07
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 2.262223093938559e-07
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 6.267539937130501e-08
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 70,
+      "max_depth_m": 7.704379051013538e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 6.293099442944428e-08
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 70,
+      "max_depth_m": 7.706509039223652e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 5.255979057235474e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 4.12524934305554e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 8.715803679476553e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 8.816264274180696e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 8.81626427591542e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 8.763497870087344e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 8.772625868791462e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 9.049455265870698e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 9.400513398087618e-09
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 2706,
+      "max_depth_m": 4.610997252320435e-07
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 4.1754624364835624e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 4.262503210117341e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 4.2618269656402585e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 4.1747868096547736e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 1.2316359166916757e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 1.416628360537825e-08
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 8.713702167803539e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 8.81507449066593e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 8.815074502808995e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 8.763213730188235e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 8.770648492195665e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 9.040611705438129e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 9.399704604083625e-09
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 824,
+      "max_depth_m": 1.3261793592058683e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1546,
+      "max_depth_m": 4.2578513870933365e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1546,
+      "max_depth_m": 4.310725829331091e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1546,
+      "max_depth_m": 6.707472662622477e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1546,
+      "max_depth_m": 6.758095310189366e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 5.821944511384507e-06
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 2.461283171457246e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.1587432036455625e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.1911038481915437e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.209608876517193e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.228342836733648e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.2533277148757405e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.324013770235416e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 1.44816630440886e-08
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 1545,
+      "max_depth_m": 2.2678823202312417e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 5.985513611982823e-06
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 3.9942744290708335e-06
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 9.753071510132383e-09
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 9.937307205408474e-09
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 9.983391845852507e-09
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 1.0040475567282825e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 1.013083043756996e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 1.0298147692239246e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 1.1340350083467732e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 3588,
+      "max_depth_m": 1.4079949125014868e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3587,
+      "max_depth_m": 4.871628606507167e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3587,
+      "max_depth_m": 4.905681829942693e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3587,
+      "max_depth_m": 4.89960383584509e-08
+    },
+    {
+      "phase": "return_to_nest",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3587,
+      "max_depth_m": 4.8655520680160325e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 4.8977600138749855e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 4.9322548256562626e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.0505639122613403e-07
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.0672275116332258e-07
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.8301330875309003e-05
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 2.1238279272403626e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.5709692370753647e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.6476840152684913e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.7084325752703133e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.7701510527344533e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.836448907180377e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 1.9139112524858837e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 2.1478386669042393e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 225,
+      "max_depth_m": 2.472188297044514e-08
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 14,
+      "max_depth_m": 1.7269489626898366e-05
+    },
+    {
+      "phase": "settle_return",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 14,
+      "max_depth_m": 1.7144492362565836e-05
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2,
+      "max_depth_m": 2.1130682594308614e-08
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2,
+      "max_depth_m": 1.9567457928276744e-08
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2,
+      "max_depth_m": 8.711661429912365e-08
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 1.5007516870842175e-05
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 2,
+      "max_depth_m": 8.868734359401831e-08
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 1.4898478830653247e-05
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 4.173585107286083e-06
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 6.998196000994328e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 5.052295088368852e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 5.069828301965118e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 5.06982830283248e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 5.0362459575944984e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 5.431465476164743e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 6.095940419982571e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 6.095942621346662e-09
+    },
+    {
+      "phase": "release",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 4.421030045526075e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 5.6475936774381615e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 6.495638533998704e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 1.2277773277225013e-08
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 7.202709580676758e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.994577226628827e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 5.028379717816889e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 5.028379704806463e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.993261580252262e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.961548645023017e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.947306643347804e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.9436524101817425e-09
+    },
+    {
+      "phase": "retract",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 1232,
+      "max_depth_m": 4.361018583580456e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 339,
+      "max_depth_m": 5.625271977394251e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 339,
+      "max_depth_m": 6.466536212751395e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::junction::bundle_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 1.2270034881363412e-08
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_1::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 7.202832499712819e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_2::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.994593107154888e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_3::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 5.028038281736091e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_4::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 5.028038293011794e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_5::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.992900060410421e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_6::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.961202862592551e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_7::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.94698239664193e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_8::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.9436599943927795e-09
+    },
+    {
+      "phase": "observe_seat",
+      "pair": [
+        "tail_support_stage::tray::tail_support_collision",
+        "wire_harness_multi::P1_wire_9::insulation_collision"
+      ],
+      "observations": 338,
+      "max_depth_m": 4.3298946867179056e-09
+    }
+  ],
+  "contact_messages": 31181,
+  "contact_monitor_ready": true,
+  "last_observation": {
+    "time_s": 97308.663294034,
+    "plug": [
+      -5.757329988625992e-05,
+      -3.728992138555541e-05,
+      0.22999999552543346
+    ],
+    "tcp": [
+      -1.4711517796031907e-18,
+      2.5552334916047835e-18,
+      0.2611478010414402
+    ],
+    "fingers": [
+      0.017333611486470092,
+      0.01734242111707537
+    ],
+    "cable_z_span_m": 0.0030045664431044283,
+    "plug_rotation_world": [
+      [
+        0.9999999999999818,
+        -1.9015435768818155e-07,
+        2.2269740760390616e-08
+      ],
+      [
+        1.901543611293123e-07,
+        0.99999999999997,
+        -1.5455341553668295e-07
+      ],
+      [
+        -2.2269711371384968e-08,
+        1.5455341977142618e-07,
+        0.9999999999999878
+      ]
+    ],
+    "lift_joint_m": -0.00885219895855978,
+    "lift_command_m": 0,
+    "lift_error_m": -0.00885219895855978,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.3074669415500555,
+        -2.635830922375501e-05,
+        0.23150227726651965
+      ],
+      "P1_wire_1": [
+        -0.28255755631321267,
+        -4.858373057707962e-06,
+        0.22999999466816579
+      ],
+      "P1_wire_2": [
+        -0.25755755724237933,
+        -1.6847284400790146e-08,
+        0.22999999576952626
+      ],
+      "P1_wire_3": [
+        -0.23255755724239996,
+        1.112263438696312e-08,
+        0.22999999560748793
+      ],
+      "P1_wire_4": [
+        -0.20755755724240238,
+        2.1973296878427875e-08,
+        0.22999999560807685
+      ],
+      "P1_wire_5": [
+        -0.18255755724240416,
+        3.1514248086761214e-08,
+        0.22999999564151746
+      ],
+      "P1_wire_6": [
+        -0.15755755724240628,
+        4.1789611878095205e-08,
+        0.22999999566445956
+      ],
+      "P1_wire_7": [
+        -0.1325575572424158,
+        6.167099347992707e-08,
+        0.2299999956734144
+      ],
+      "P1_wire_8": [
+        -0.10755755724267435,
+        1.551347521461626e-07,
+        0.22999999598126464
+      ],
+      "P1_wire_9": [
+        -0.08255755862324332,
+        -5.640104369128039e-06,
+        0.22999999635777368
+      ],
+      "P1_wire_10": [
+        -0.057557566651723735,
+        -2.4406465323155285e-05,
+        0.22999999647793273
+      ],
+      "P1_wire_11": [
+        -0.032557573299885734,
+        -3.729610140229202e-05,
+        0.22999999624919912
+      ],
+      "P1": [
+        -5.757329988625992e-05,
+        -3.728992138555541e-05,
+        0.22999999552543346
+      ],
+      "junction": [
+        -0.3198763277160457,
+        -4.303863090724635e-05,
+        0.23300456111127021
+      ]
+    },
+    "support_height_m": -2.0872192862952943e-14,
+    "support_command_m": 0.0,
+    "support_error_m": -2.0872192862952943e-14,
+    "phase": "observe_seat",
+    "elapsed_s": 1.9898475849913666
+  },
+  "phase_endpoints": {
+    "open": {
+      "plug": [
+        -5.6369524651878056e-05,
+        -8.161539140759462e-16,
+        0.2299998437755454
+      ],
+      "tcp": [
+        -4.7146342299396325e-19,
+        8.188816036546252e-19,
+        0.2671631152679896
+      ],
+      "lift_error_m": -0.002836312865273726,
+      "plug_rotation_world": [
+        [
+          0.9999999999999241,
+          2.6964730694834346e-15,
+          3.895311534813722e-07
+        ],
+        [
+          -2.696474934090958e-15,
+          1.0,
+          4.786793121894008e-15
+        ],
+        [
+          -3.895311534813721e-07,
+          -4.786794172254636e-15,
+          0.9999999999999241
+        ]
+      ]
+    },
+    "approach": {
+      "plug": [
+        -5.6372474180776955e-05,
+        -8.194297506478883e-16,
+        0.22999997307160566
+      ],
+      "tcp": [
+        -8.146149017062657e-18,
+        1.4148990664726803e-17,
+        0.2209830781263336
+      ],
+      "lift_error_m": -0.0030169218736663603,
+      "plug_rotation_world": [
+        [
+          0.9999999999999951,
+          2.7190867822583545e-15,
+          9.866523435451737e-08
+        ],
+        [
+          -2.7190872204160597e-15,
+          1.0,
+          4.4408915524122885e-15
+        ],
+        [
+          -9.866523435451723e-08,
+          -4.440891820691643e-15,
+          0.9999999999999951
+        ]
+      ]
+    },
+    "close": {
+      "plug": [
+        -5.639318332856247e-05,
+        -3.7429971148874483e-05,
+        0.22999999809789332
+      ],
+      "tcp": [
+        -8.094250849753114e-18,
+        1.4058849091912332e-17,
+        0.22129535923082483
+      ],
+      "lift_error_m": -0.0027046370789909763,
+      "plug_rotation_world": [
+        [
+          0.9999999999999997,
+          -1.9326532301323952e-08,
+          1.701142311955476e-08
+        ],
+        [
+          1.9326532003046597e-08,
+          0.9999999999999996,
+          1.7533944918865396e-08
+        ],
+        [
+          -1.7011423458425142e-08,
+          -1.7533944590093575e-08,
+          0.9999999999999998
+        ]
+      ]
+    },
+    "lift": {
+      "plug": [
+        -5.697405333321415e-05,
+        -3.7334019978375655e-05,
+        0.30692069881079004
+      ],
+      "tcp": [
+        4.682225017774395e-18,
+        -8.132524696992127e-18,
+        0.298173834950779
+      ],
+      "lift_error_m": -0.023121527970230024,
+      "plug_rotation_world": [
+        [
+          0.9999999999994317,
+          6.825349514590995e-08,
+          -1.0639713153301433e-06
+        ],
+        [
+          -6.825388390924444e-08,
+          0.9999999999999309,
+          -3.653888923335276e-07
+        ],
+        [
+          1.0639712903910011e-06,
+          3.653889649534901e-07,
+          0.9999999999993672
+        ]
+      ]
+    },
+    "settle_lift": {
+      "plug": [
+        -5.69728367206257e-05,
+        -3.7333096663707546e-05,
+        0.3316406881091136
+      ],
+      "tcp": [
+        8.790455327716641e-18,
+        -1.5268081901036502e-17,
+        0.3228938350047527
+      ],
+      "lift_error_m": 0.0015984720837437308,
+      "plug_rotation_world": [
+        [
+          0.9999999999990076,
+          7.25367317119369e-08,
+          -1.4070008850273255e-06
+        ],
+        [
+          -7.25372466402805e-08,
+          0.9999999999999304,
+          -3.6597580208346834e-07
+        ],
+        [
+          1.407000858480539e-06,
+          3.659759041430785e-07,
+          0.9999999999989432
+        ]
+      ]
+    },
+    "hold": {
+      "plug": [
+        -5.7121672512816524e-05,
+        -3.733084927883722e-05,
+        0.3401663104022874
+      ],
+      "tcp": [
+        1.0207339051490037e-17,
+        -1.772905757662045e-17,
+        0.33141949279063415
+      ],
+      "lift_error_m": 0.010122111412285119,
+      "plug_rotation_world": [
+        [
+          0.999999999998133,
+          -1.2250755731682132e-08,
+          -1.9323127775223925e-06
+        ],
+        [
+          1.2250252476395169e-08,
+          0.9999999999999661,
+          -2.604420031174435e-07
+        ],
+        [
+          1.932312780712945e-06,
+          2.6044197944544303e-07,
+          0.9999999999980992
+        ]
+      ]
+    },
+    "return_to_nest": {
+      "plug": [
+        -5.7128828918284746e-05,
+        -3.7326256732169643e-05,
+        0.2364328200429541
+      ],
+      "tcp": [
+        -7.032178210360164e-18,
+        1.2214142368703999e-17,
+        0.22768605150520382
+      ],
+      "lift_error_m": 0.006390688584194837,
+      "plug_rotation_world": [
+        [
+          0.9999999999943492,
+          2.8370017472479766e-08,
+          -3.3616533105198506e-06
+        ],
+        [
+          -2.8371230076609243e-08,
+          0.9999999999999346,
+          -3.607168701057178e-07
+        ],
+        [
+          3.361653300286086e-06,
+          3.607169654778916e-07,
+          0.9999999999942846
+        ]
+      ]
+    },
+    "settle_return": {
+      "plug": [
+        -5.7578160886473384e-05,
+        -3.728533026303427e-05,
+        0.22998490427578386
+      ],
+      "tcp": [
+        -8.108102966679703e-18,
+        1.4082908739320012e-17,
+        0.22121200841907884
+      ],
+      "lift_error_m": -8.25869210448471e-05,
+      "plug_rotation_world": [
+        [
+          0.9999999999957975,
+          -1.3151812374520844e-07,
+          -2.8961868582578172e-06
+        ],
+        [
+          1.3151965374328262e-07,
+          0.9999999999998517,
+          5.282805246241357e-07
+        ],
+        [
+          2.896186788778853e-06,
+          -5.282809055273426e-07,
+          0.9999999999956665
+        ]
+      ]
+    },
+    "release": {
+      "plug": [
+        -5.757327580280247e-05,
+        -3.729002670402831e-05,
+        0.22999996747278942
+      ],
+      "tcp": [
+        -9.002691765477837e-18,
+        1.563671392216801e-17,
+        0.21582909814234585
+      ],
+      "lift_error_m": -0.005466264778663139,
+      "plug_rotation_world": [
+        [
+          0.9999999999999813,
+          -1.9179952246864453e-07,
+          1.9987376444368684e-08
+        ],
+        [
+          1.9179952574163355e-07,
+          0.9999999999999682,
+          -1.6372473039907522e-07
+        ],
+        [
+          -1.998734504204338e-08,
+          1.637247342325746e-07,
+          0.9999999999999863
+        ]
+      ]
+    },
+    "retract": {
+      "plug": [
+        -5.757329988625992e-05,
+        -3.728992138555541e-05,
+        0.22999999552543346
+      ],
+      "tcp": [
+        -3.1463524868986256e-18,
+        5.464878173947405e-18,
+        0.2510678010291375
+      ],
+      "lift_error_m": -0.01890219897081262,
+      "plug_rotation_world": [
+        [
+          0.9999999999999818,
+          -1.9015435768818155e-07,
+          2.2269740760390616e-08
+        ],
+        [
+          1.901543611293123e-07,
+          0.99999999999997,
+          -1.5455341553668295e-07
+        ],
+        [
+          -2.2269711371384968e-08,
+          1.5455341977142618e-07,
+          0.9999999999999878
+        ]
+      ]
+    },
+    "observe_seat": {
+      "plug": [
+        -5.757329988625992e-05,
+        -3.728992138555541e-05,
+        0.22999999552543346
+      ],
+      "tcp": [
+        -1.4711517796031907e-18,
+        2.5552334916047835e-18,
+        0.2611478010414402
+      ],
+      "lift_error_m": -0.00885219895855978,
+      "plug_rotation_world": [
+        [
+          0.9999999999999818,
+          -1.9015435768818155e-07,
+          2.2269740760390616e-08
+        ],
+        [
+          1.901543611293123e-07,
+          0.99999999999997,
+          -1.5455341553668295e-07
+        ],
+        [
+          -2.2269711371384968e-08,
+          1.5455341977142618e-07,
+          0.9999999999999878
+        ]
+      ]
+    }
+  },
+  "expectation": "hold_and_release",
+  "expectation_met": true
+}

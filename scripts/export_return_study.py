@@ -31,7 +31,16 @@ def export(sources, output):
             "motion_aborted": report.get("motion_aborted"),
             "expectation_met": report.get("expectation_met"),
             "return_mode": report["return_mode"],
+            "return_reference": report.get("return_reference", "command"),
+            "return_target_m": report.get("return_target_m"),
+            "reference_seat": report.get("reference_seat"),
             "pin_relief": report.get("pin_relief", False),
+            "moving_tail_support": report.get("moving_tail_support", False),
+            "matched_static_support": report.get("matched_static_support", False),
+            "hold_maximum_support_error_m": max(
+                (abs(row["support_error_m"]) for row in held if "support_error_m" in row),
+                default=None,
+            ),
             "contact_monitor_ready": report.get("contact_monitor_ready", False),
             "contact_messages": report.get("contact_messages"),
             "hold_from_trajectory": assess_hold(phases["open"], held, phases["close"]),
@@ -55,6 +64,9 @@ def export(sources, output):
                     "wire_tip_x_m",
                     "wire_tip_y_m",
                     "wire_tip_z_m",
+                    "support_command_m",
+                    "support_height_m",
+                    "support_error_m",
                 ]
             )
             start, previous = rows[0]["time_s"], -1.0
@@ -78,6 +90,9 @@ def export(sources, output):
                         row["lift_error_m"],
                         angle,
                         *row["cable_links_world"]["P1_wire_11"],
+                        row.get("support_command_m"),
+                        row.get("support_height_m"),
+                        row.get("support_error_m"),
                     ]
                 )
                 previous = elapsed

@@ -1,0 +1,780 @@
+{
+  "success": false,
+  "friction_mu": 1.0,
+  "world_sha256": "7dc970eb345bba3b056526b3cc70113058c7f55a8a8bad551385dccbb381154a",
+  "scope": "Cartesian test carriage, top-face contact pickup from passive nest, one pin-equipped terminal and flexible tail; no previous side-grip transition, MELFA, perception, dual-arm support or board insertion",
+  "split_finger_contacts": true,
+  "passive_tail_support": false,
+  "moving_tail_support": true,
+  "return_mode": "settled",
+  "pin_relief": false,
+  "baseline": {
+    "time_s": 96704.376698051,
+    "plug": [
+      -0.000307377013296084,
+      4.288004508200837e-15,
+      0.26757993192872276
+    ],
+    "tcp": [
+      -4.143933416264196e-19,
+      7.197569685892467e-19,
+      0.2675065167591552
+    ],
+    "fingers": [
+      0.018096207917815747,
+      0.01807383820217505
+    ],
+    "cable_z_span_m": 0.011635410601004814,
+    "plug_rotation_world": [
+      [
+        0.9834252624795786,
+        1.0604942387264798e-13,
+        0.18131396282959564
+      ],
+      [
+        -9.356633750754148e-14,
+        1.0,
+        -7.740123061140558e-14
+      ],
+      [
+        -0.18131396282959564,
+        5.915344208932012e-14,
+        0.9834252624795786
+      ]
+    ],
+    "lift_joint_m": -0.002492478056259455,
+    "lift_command_m": 0,
+    "lift_error_m": -0.002492478056259455,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.30680233026444315,
+        -9.625638082953118e-15,
+        0.2777174979912579
+      ],
+      "P1_wire_1": [
+        -0.28189239627967544,
+        -4.517351379453093e-14,
+        0.2762201371599079
+      ],
+      "P1_wire_2": [
+        -0.2568923962890344,
+        -3.1908116153827414e-14,
+        0.2762206204837797
+      ],
+      "P1_wire_3": [
+        -0.2318923962890344,
+        8.138292076423734e-16,
+        0.27622062006613274
+      ],
+      "P1_wire_4": [
+        -0.20689239628903439,
+        8.560895733460192e-17,
+        0.2762206200223759
+      ],
+      "P1_wire_5": [
+        -0.1818923962890344,
+        9.272839733998048e-17,
+        0.2762206200481877
+      ],
+      "P1_wire_6": [
+        -0.1568923962890344,
+        1.0424126164933151e-16,
+        0.2762206201909372
+      ],
+      "P1_wire_7": [
+        -0.13189239628903443,
+        -6.46804583016864e-14,
+        0.276220620896897
+      ],
+      "P1_wire_8": [
+        -0.1068923962911231,
+        -7.830094292773758e-14,
+        0.2762203929860494
+      ],
+      "P1_wire_9": [
+        -0.08192482673524101,
+        -1.9218363273506246e-14,
+        0.2771200029718644
+      ],
+      "P1_wire_10": [
+        -0.057009385501073706,
+        -1.4008953145190556e-15,
+        0.27687945086148075
+      ],
+      "P1_wire_11": [
+        -0.03226869804388244,
+        7.328910477196459e-15,
+        0.27347263572068464
+      ],
+      "P1": [
+        -0.000307377013296084,
+        4.288004508200837e-15,
+        0.26757993192872276
+      ],
+      "junction": [
+        -0.3192122642585697,
+        5.7415813133347386e-15,
+        0.2792153425297276
+      ]
+    },
+    "support_height_m": 0.04622062413798081,
+    "support_command_m": 0.046,
+    "support_error_m": 0.00022062413798080993,
+    "phase": "open",
+    "elapsed_s": 4.9936749180051265
+  },
+  "closed": {
+    "time_s": 96718.371794557,
+    "plug": [
+      -0.009463951192909215,
+      -1.277126222193834e-05,
+      0.2698176927324101
+    ],
+    "tcp": [
+      -7.857187038187915e-18,
+      1.364709457456251e-17,
+      0.2227218170952986
+    ],
+    "fingers": [
+      0.0020116138883647687,
+      0.0019839813646252763
+    ],
+    "cable_z_span_m": 0.028521029239789997,
+    "plug_rotation_world": [
+      [
+        0.9997732652277618,
+        0.00014412673228042164,
+        0.021293129485925464
+      ],
+      [
+        -0.0001440020562461127,
+        0.9999999896044086,
+        -7.3885245264222196e-06
+      ],
+      [
+        -0.02129313032945469,
+        4.3205948611085435e-06,
+        0.9997732755890735
+      ]
+    ],
+    "lift_joint_m": -0.04727772128038757,
+    "lift_command_m": -0.046,
+    "lift_error_m": -0.0012777212803875698,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.3068124692877639,
+        -5.75924913325898e-06,
+        0.24349883067472736
+      ],
+      "P1_wire_1": [
+        -0.2819027981021696,
+        2.60611225067855e-07,
+        0.2419986117129511
+      ],
+      "P1_wire_2": [
+        -0.2569027917501218,
+        4.973036543277904e-06,
+        0.24199765865641007
+      ],
+      "P1_wire_3": [
+        -0.23190279971572827,
+        5.443247232567495e-06,
+        0.24199843670804677
+      ],
+      "P1_wire_4": [
+        -0.20690280063254785,
+        5.638475982889613e-06,
+        0.24199808700074596
+      ],
+      "P1_wire_5": [
+        -0.18190280102898984,
+        5.120685674798596e-06,
+        0.24199427920187747
+      ],
+      "P1_wire_6": [
+        -0.1569028016574214,
+        5.1449307350409226e-06,
+        0.24198869022832736
+      ],
+      "P1_wire_7": [
+        -0.13190280357002915,
+        4.59127591729535e-06,
+        0.24199249057000224
+      ],
+      "P1_wire_8": [
+        -0.10690328676106622,
+        0.00011392075781668752,
+        0.24199891838592583
+      ],
+      "P1_wire_9": [
+        -0.08314449118484424,
+        0.00010486486310017379,
+        0.24742727557119687
+      ],
+      "P1_wire_10": [
+        -0.06316947735925821,
+        -1.022154427639871e-05,
+        0.26181562912646456
+      ],
+      "P1_wire_11": [
+        -0.04195658231281152,
+        -8.091195393939604e-06,
+        0.27050971946811736
+      ],
+      "P1": [
+        -0.009463951192909215,
+        -1.277126222193834e-05,
+        0.2698176927324101
+      ],
+      "junction": [
+        -0.3192221488092832,
+        -6.829169112898823e-06,
+        0.24499878168341307
+      ]
+    },
+    "support_height_m": 0.011999093293999258,
+    "support_command_m": 0.0,
+    "support_error_m": 0.011999093293999258,
+    "phase": "close",
+    "elapsed_s": 5.983258961001411
+  },
+  "settle_lift": {
+    "success": true,
+    "final_error_m": 0.001981369116245059,
+    "wall_time_s": 22.99120742699597
+  },
+  "hold": {
+    "success": false,
+    "minimum_lift_m": 0.10029173560211735,
+    "relative_slip_m": 0.00031194857041658196,
+    "lift_slip_m": 0.006181486752798165,
+    "minimum_tcp_lift_m": 0.10277425059056788,
+    "minimum_finger_travel_m": 0.001950253086018175,
+    "minimum_jaw_opening_m": 0.019910071190114988,
+    "maximum_jaw_opening_m": 0.019970759870398036,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 217,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 0.30454909964009913
+  },
+  "motion_aborted": "hold_rejected",
+  "terminal_contacts": [
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_support_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 62,
+      "max_depth_m": 0.00015293565885667743
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_pin_1_x_-1_collision",
+        "wire_harness_multi::P1::pin_1_collision"
+      ],
+      "observations": 300,
+      "max_depth_m": 8.905951137189866e-06
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_stop_-1_-1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 37,
+      "max_depth_m": 5.953416875351895e-06
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_stop_-1_1_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 37,
+      "max_depth_m": 5.953416874566499e-06
+    },
+    {
+      "phase": "open",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::pin_0_collision"
+      ],
+      "observations": 1126,
+      "max_depth_m": 9.357593006440595e-06
+    },
+    {
+      "phase": "approach",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::pin_0_collision"
+      ],
+      "observations": 2767,
+      "max_depth_m": 9.55930221748294e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::pin_0_collision"
+      ],
+      "observations": 1608,
+      "max_depth_m": 9.481336827384113e-06
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 483,
+      "max_depth_m": 2.433719741876031e-05
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1131,
+      "max_depth_m": 1.3997949427833397e-05
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1111,
+      "max_depth_m": 1.7176117258679637e-05
+    },
+    {
+      "phase": "close",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1111,
+      "max_depth_m": 5.3332702068519325e-05
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "platform::base::regrasp_end_support_-1_collision",
+        "wire_harness_multi::P1::pin_0_collision"
+      ],
+      "observations": 31,
+      "max_depth_m": 8.614087507741175e-07
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3461,
+      "max_depth_m": 2.5594152229137867e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3461,
+      "max_depth_m": 4.077464965725544e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3461,
+      "max_depth_m": 3.4130205859746188e-06
+    },
+    {
+      "phase": "lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 3461,
+      "max_depth_m": 3.7743846659941613e-06
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 8890,
+      "max_depth_m": 6.093268626750168e-05
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 8889,
+      "max_depth_m": 6.095483966202589e-05
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 8890,
+      "max_depth_m": 6.0895086973836166e-05
+    },
+    {
+      "phase": "settle_lift",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 8890,
+      "max_depth_m": 6.091662197153184e-05
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1422,
+      "max_depth_m": 6.0516831199414894e-05
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_left::bench_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1422,
+      "max_depth_m": 6.0521884359424245e-05
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_0_collision",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1422,
+      "max_depth_m": 6.0530389423696027e-05
+    },
+    {
+      "phase": "hold",
+      "pair": [
+        "grip_fixture::bench_finger_right::bench_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+        "wire_harness_multi::P1::housing_collision"
+      ],
+      "observations": 1422,
+      "max_depth_m": 6.052946993770781e-05
+    }
+  ],
+  "contact_messages": 20841,
+  "contact_monitor_ready": true,
+  "last_observation": {
+    "time_s": 96753.375900323,
+    "plug": [
+      -0.005472746697366304,
+      -4.9229544563618915e-06,
+      0.3678716675308401
+    ],
+    "tcp": [
+      9.222921798215505e-18,
+      -1.6019229963891633e-17,
+      0.3254960676858665
+    ],
+    "fingers": [
+      0.001987510526927099,
+      0.0019781948269326625
+    ],
+    "cable_z_span_m": 0.03716322542537692,
+    "plug_rotation_world": [
+      [
+        0.9633535075829904,
+        -0.0004076163827340991,
+        -0.268234698121689
+      ],
+      [
+        3.0440069799949897e-06,
+        0.9999988619193891,
+        -0.0015086917049371453
+      ],
+      [
+        0.26823500781643533,
+        0.0014525869375192008,
+        0.9633524124498293
+      ]
+    ],
+    "lift_joint_m": 0.05549517307843906,
+    "lift_command_m": 0.054000000000000006,
+    "lift_error_m": 0.0014951730784390563,
+    "cable_links_world": {
+      "P1_wire_0": [
+        -0.305227769242639,
+        3.4148593338809684e-05,
+        0.33220856913780267
+      ],
+      "P1_wire_1": [
+        -0.2803191063668218,
+        0.00015614222013096896,
+        0.3307084952846349
+      ],
+      "P1_wire_2": [
+        -0.2553191686064667,
+        0.00014611685174743675,
+        0.3307084780037537
+      ],
+      "P1_wire_3": [
+        -0.2303191890874654,
+        0.00017156095659712109,
+        0.3307084706303217
+      ],
+      "P1_wire_4": [
+        -0.20531918960952011,
+        0.0001725941580020002,
+        0.3307084656756594
+      ],
+      "P1_wire_5": [
+        -0.18031918977927822,
+        0.00017115951723183055,
+        0.3307084581324919
+      ],
+      "P1_wire_6": [
+        -0.15531963380846,
+        6.63524093638366e-05,
+        0.33070845183271186
+      ],
+      "P1_wire_7": [
+        -0.13032008700131026,
+        -2.3859436229671597e-05,
+        0.3307084421054632
+      ],
+      "P1_wire_8": [
+        -0.10537318629064976,
+        2.3940543032894223e-06,
+        0.33185922157744463
+      ],
+      "P1_wire_9": [
+        -0.08121663923463365,
+        3.5703498733845014e-05,
+        0.33738424052334287
+      ],
+      "P1_wire_10": [
+        -0.05916532830183546,
+        2.6422649003423552e-05,
+        0.3487797822855161
+      ],
+      "P1_wire_11": [
+        -0.036781735693813544,
+        -5.021884683212299e-06,
+        0.359154029776806
+      ],
+      "P1": [
+        -0.005472746697366304,
+        -4.9229544563618915e-06,
+        0.3678716675308401
+      ],
+      "junction": [
+        -0.3176364742415224,
+        -0.000120296146640127,
+        0.3337086314941668
+      ]
+    },
+    "support_height_m": 0.10070978563448471,
+    "support_command_m": 0.1,
+    "support_error_m": 0.0007097856344847053,
+    "phase": "hold",
+    "elapsed_s": 3.9917431689973455
+  },
+  "phase_endpoints": {
+    "open": {
+      "plug": [
+        -0.000307377013296084,
+        4.288004508200837e-15,
+        0.26757993192872276
+      ],
+      "tcp": [
+        -4.143933416264196e-19,
+        7.197569685892467e-19,
+        0.2675065167591552
+      ],
+      "lift_error_m": -0.002492478056259455,
+      "plug_rotation_world": [
+        [
+          0.9834252624795786,
+          1.0604942387264798e-13,
+          0.18131396282959564
+        ],
+        [
+          -9.356633750754148e-14,
+          1.0,
+          -7.740123061140558e-14
+        ],
+        [
+          -0.18131396282959564,
+          5.915344208932012e-14,
+          0.9834252624795786
+        ]
+      ]
+    },
+    "approach": {
+      "plug": [
+        -0.009441167709585196,
+        0.0006125433084445211,
+        0.2697571187433373
+      ],
+      "tcp": [
+        -7.910367469912473e-18,
+        1.3739463303693377e-17,
+        0.22240182036290512
+      ],
+      "lift_error_m": -0.0015978574718114244,
+      "plug_rotation_world": [
+        [
+          0.9996189253371158,
+          -0.005227858409686662,
+          0.027104863111955906
+        ],
+        [
+          0.004922901824128794,
+          0.999923972010907,
+          0.011305540038443874
+        ],
+        [
+          -0.027161906146284893,
+          -0.011167797203528392,
+          0.9995686625540645
+        ]
+      ]
+    },
+    "close": {
+      "plug": [
+        -0.009463951192909215,
+        -1.277126222193834e-05,
+        0.2698176927324101
+      ],
+      "tcp": [
+        -7.857187038187915e-18,
+        1.364709457456251e-17,
+        0.2227218170952986
+      ],
+      "lift_error_m": -0.0012777212803875698,
+      "plug_rotation_world": [
+        [
+          0.9997732652277618,
+          0.00014412673228042164,
+          0.021293129485925464
+        ],
+        [
+          -0.0001440020562461127,
+          0.9999999896044086,
+          -7.3885245264222196e-06
+        ],
+        [
+          -0.02129313032945469,
+          4.3205948611085435e-06,
+          0.9997732755890735
+        ]
+      ]
+    },
+    "lift": {
+      "plug": [
+        -0.00946570736499669,
+        -1.0765803465542389e-05,
+        0.3709908507029306
+      ],
+      "tcp": [
+        8.958703240672167e-18,
+        -1.5560310553468638e-17,
+        0.32390621457054203
+      ],
+      "lift_error_m": -9.37854294579682e-05,
+      "plug_rotation_world": [
+        [
+          0.9997903822244205,
+          -5.226998546776367e-07,
+          0.02047416936713184
+        ],
+        [
+          5.228029847664183e-07,
+          0.9999999999998634,
+          3.1545650561454004e-10
+        ],
+        [
+          -0.020474169367129202,
+          1.0388566475423515e-08,
+          0.9997903822245572
+        ]
+      ]
+    },
+    "settle_lift": {
+      "plug": [
+        -0.005461258541356373,
+        -4.71326832157406e-06,
+        0.3686690886636266
+      ],
+      "tcp": [
+        9.30363792770316e-18,
+        -1.6159425258652582e-17,
+        0.3259817519281697
+      ],
+      "lift_error_m": 0.001981369116245059,
+      "plug_rotation_world": [
+        [
+          0.9601520582798558,
+          -0.0004260720722480125,
+          -0.27947780492115226
+        ],
+        [
+          4.399680186914878e-06,
+          0.9999988608269885,
+          -0.0015094122590879144
+        ],
+        [
+          0.27947812966598873,
+          0.001448035674395114,
+          0.960150966375125
+        ]
+      ]
+    },
+    "hold": {
+      "plug": [
+        -0.005472746697366304,
+        -4.9229544563618915e-06,
+        0.3678716675308401
+      ],
+      "tcp": [
+        9.222921798215505e-18,
+        -1.6019229963891633e-17,
+        0.3254960676858665
+      ],
+      "lift_error_m": 0.0014951730784390563,
+      "plug_rotation_world": [
+        [
+          0.9633535075829904,
+          -0.0004076163827340991,
+          -0.268234698121689
+        ],
+        [
+          3.0440069799949897e-06,
+          0.9999988619193891,
+          -0.0015086917049371453
+        ],
+        [
+          0.26823500781643533,
+          0.0014525869375192008,
+          0.9633524124498293
+        ]
+      ]
+    }
+  },
+  "expectation": "hold_and_release",
+  "expectation_met": false
+}

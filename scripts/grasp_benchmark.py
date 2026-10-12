@@ -25,9 +25,20 @@ from rclpy.qos import qos_profile_sensor_data
 from regrasp_fixture import add_regrasp_nest
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
+from tail_support_stage import LINK as TAIL_LINK
+from tail_support_stage import MODEL as TAIL_MODEL
+from tail_support_stage import ORIGIN_Z_M, TOPIC, add_tail_stage, support_height
 
 
-def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False, pin_relief=False):
+def build_benchmark(
+    output,
+    friction=1.0,
+    regrasp_nest=False,
+    support_tail=False,
+    pin_relief=False,
+    moving_support=False,
+    matched_static_support=False,
+):
     """Reuse production fingers on a vertical test carriage, with an unanchored cable."""
     output.mkdir(parents=True, exist_ok=True)
     robot = ET.Element("robot", name="grip_fixture")
@@ -99,7 +110,11 @@ def build_benchmark(output, friction=1.0, regrasp_nest=False, support_tail=False
     )
     if regrasp_nest:
         add_regrasp_nest(base, pin_relief=pin_relief)
-    if support_tail:
+    if moving_support:
+        add_tail_stage(world)
+    elif matched_static_support:
+        add_tail_stage(world, moving=False)
+    elif support_tail:
         box(base, "tail_support", ".35 .06 .186", "-.225 0 .133 0 0 0", ".3 .45 .5 1")
     world.append(model)
     harness = harness_model(
@@ -145,8 +160,19 @@ def run_trial(
     support_tail=False,
     return_mode="settled",
     pin_relief=False,
+    moving_support=False,
+    return_reference="command",
+    matched_static_support=False,
 ):
-    scene = build_benchmark(output, friction, regrasp_nest, support_tail, pin_relief)
+    scene = build_benchmark(
+        output,
+        friction,
+        regrasp_nest,
+        support_tail,
+        pin_relief,
+        moving_support,
+        matched_static_support,
+    )
     os.environ["GZ_PARTITION"] = f"grip-contact-{os.getpid()}-{friction}"
     transport = Node()
     harness, fixture, states = {}, {}, {}
@@ -192,6 +218,9 @@ def run_trial(
             @ quaternion_rotation(poses["P1"]["q"])
         ]
         fixture.update({name: (stamp, point) for name, point in tcp.items()})
+        if moving_support and TAIL_MODEL in poses and TAIL_LINK in poses:
+            tray = world_link_positions(poses, TAIL_MODEL, [TAIL_LINK])[TAIL_LINK]
+            fixture[TAIL_LINK] = (stamp, tray)
 
     pose_topic = "/world/grip_contact_benchmark/dynamic_pose/info"
     transport.subscribe(Pose_V, pose_topic, receive)
@@ -208,6 +237,8 @@ def run_trial(
         "/grip_bench/gripper/left/cmd",
         "/grip_bench/gripper/right/cmd",
     ]
+    if moving_support:
+        topics.append(TOPIC)
     pubs = [node.create_publisher(Float64, topic, 10) for topic in topics]
     bridge = [
         "ros2",
@@ -229,16 +260,37 @@ def run_trial(
             "Cartesian test carriage, top-face contact pickup from passive nest, one pin-equipped terminal and flexible tail; no previous side-grip transition, MELFA, perception, dual-arm support or board insertion"
         )
         report["split_finger_contacts"] = True
-    report["passive_tail_support"] = support_tail
+    report["passive_tail_support"] = (support_tail or matched_static_support) and not moving_support
+    report["matched_static_support"] = matched_static_support
+    report["moving_tail_support"] = moving_support
+    if moving_support:
+        report["scope"] = (
+            "Two independent vertical test stages: terminal contact gripper and moving contact tray supporting the tail; no harness attachment, MELFA, perception, side-to-top transition or board insertion"
+        )
     report["return_mode"] = return_mode
     report["pin_relief"] = pin_relief
+    report["return_reference"] = return_reference
+    grip_height = -0.046 if regrasp_nest else -0.118
+    support_origin = [grip_height]
+
+    def publish_commands(lift, grip):
+        values = [lift, grip, grip]
+        if moving_support:
+            values.append(support_height(lift, support_origin[0], phase_name[0]))
+        for pub, value in zip(pubs, values):
+            pub.publish(Float64(data=float(value)))
+        lift_command[0] = lift
 
     def sample():
         if "P1" not in harness or "carriage" not in fixture or len(states) != 3:
             return None
         if min(harness["P1"][0], fixture["carriage"][0], joint_stamp[0]) < time.monotonic() - 0.5:
             return None
-        return {
+        if moving_support and (
+            TAIL_LINK not in fixture or fixture[TAIL_LINK][0] < time.monotonic() - 0.5
+        ):
+            return None
+        row = {
             "time_s": time.monotonic(),
             "plug": harness["P1"][1].tolist(),
             "tcp": (fixture["carriage"][1] + [0, 0, -0.08]).tolist(),
@@ -250,6 +302,13 @@ def run_trial(
             "lift_error_m": states["lift"] - lift_command[0],
             "cable_links_world": {name: point.tolist() for name, (_, point) in harness.items()},
         }
+        if moving_support:
+            row["support_height_m"] = float(fixture[TAIL_LINK][1][2] - ORIGIN_Z_M)
+            row["support_command_m"] = support_height(
+                lift_command[0], support_origin[0], phase_name[0]
+            )
+            row["support_error_m"] = row["support_height_m"] - row["support_command_m"]
+        return row
 
     def phase(name, lift, grip, duration, initial=None):
         phase_name[0] = name
@@ -262,9 +321,7 @@ def run_trial(
                 if initial is None
                 else initial + (lift - initial) * (3 * t * t - 2 * t * t * t)
             )
-            for pub, value in zip(pubs, (command, grip, grip)):
-                pub.publish(Float64(data=float(value)))
-            lift_command[0] = command
+            publish_commands(command, grip)
             rclpy.spin_once(node, timeout_sec=0.03)
             row = sample()
             stamp = harness.get("P1", (None,))[0]
@@ -286,8 +343,7 @@ def run_trial(
         lift_command[0] = lift
         start, stable, last = time.monotonic(), 0, None
         while time.monotonic() - start < 30:
-            for pub, value in zip(pubs, (lift, grip, grip)):
-                pub.publish(Float64(data=float(value)))
+            publish_commands(lift, grip)
             rclpy.spin_once(node, timeout_sec=0.03)
             row = sample()
             stamp = harness.get("P1", (None,))[0]
@@ -296,15 +352,24 @@ def run_trial(
             row.update(phase=name, elapsed_s=time.monotonic() - start)
             history.append(row)
             last = stamp
-            stable = stable + 1 if abs(row["lift_error_m"]) < tolerance else 0
+            stable = (
+                stable + 1
+                if max(abs(row["lift_error_m"]), abs(row.get("support_error_m", 0))) < tolerance
+                else 0
+            )
             if stable >= 10:
                 report[name] = {
                     "success": True,
                     "final_error_m": row["lift_error_m"],
                     "wall_time_s": time.monotonic() - start,
+                    "support_error_m": row.get("support_error_m"),
                 }
                 return
-        report[name] = {"success": False, "final_error_m": history[-1]["lift_error_m"]}
+        report[name] = {
+            "success": False,
+            "final_error_m": history[-1]["lift_error_m"],
+            "support_error_m": history[-1].get("support_error_m"),
+        }
         raise RuntimeError(f"Test carriage did not converge during {name}; refusing next phase")
 
     with (output / "simulation.log").open("w") as log:
@@ -321,12 +386,24 @@ def run_trial(
             baseline = phase("open", 0, OPEN_TRAVEL_M, 5)[-1]
             report["baseline"] = baseline
             # Nest trial uses 16 mm of the 20 mm housing height for finger contact.
-            grip_height = -0.046 if regrasp_nest else -0.118
-            lift_height = grip_height + 0.1
             phase("approach", grip_height, OPEN_TRAVEL_M, 8, initial=0)
-            closed = phase("close", grip_height, 0, 6)[-1]
+            close_rows = phase("close", grip_height, 0, 6)
+            closed = close_rows[-1]
             report["closed"] = closed
-            phase("lift", lift_height, 0, 8, initial=grip_height)
+            if return_reference == "closed":
+                window = [row for row in close_rows if row["time_s"] >= closed["time_s"] - 2]
+                report["reference_seat"] = assess_seat(window)
+                if not report["reference_seat"]["success"]:
+                    raise RuntimeError(
+                        "Cannot calibrate return from an unstable or unseated closed grip"
+                    )
+            return_target = closed["lift_joint_m"] if return_reference == "closed" else grip_height
+            if not math.isfinite(return_target) or not -0.15 <= return_target <= 0.05:
+                raise RuntimeError("Return reference would exceed the lift joint travel")
+            report["return_target_m"] = return_target
+            support_origin[0] = return_target
+            lift_height = return_target + 0.1
+            phase("lift", lift_height, 0, 8, initial=return_target)
             settle_lift(lift_height, 0)
             held = phase("hold", lift_height, 0, 4)
             hold_result = assess_hold(baseline, held, closed)
@@ -338,14 +415,14 @@ def run_trial(
                 report["motion_aborted"] = "hold_rejected"
                 return report
             if regrasp_nest:
-                phase("return_to_nest", grip_height, 0, 8, initial=lift_height)
+                phase("return_to_nest", return_target, 0, 8, initial=lift_height)
                 if return_mode == "settled":
-                    settle_lift(grip_height, 0, name="settle_return", tolerance=0.001)
+                    settle_lift(return_target, 0, name="settle_return", tolerance=0.001)
             released = phase(
-                "release", grip_height if regrasp_nest else lift_height, OPEN_TRAVEL_M, 5
+                "release", return_target if regrasp_nest else lift_height, OPEN_TRAVEL_M, 5
             )
             if regrasp_nest:
-                released = phase("retract", 0, OPEN_TRAVEL_M, 6, initial=grip_height)
+                released = phase("retract", 0, OPEN_TRAVEL_M, 6, initial=return_target)
                 seated = phase("observe_seat", 0, OPEN_TRAVEL_M, 2)
                 released = seated
             fall = float(held[-1]["plug"][2] - released[-1]["plug"][2])
@@ -394,6 +471,22 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--friction", type=float, default=1.0)
     parser.add_argument(
+        "--matched-static-support",
+        action="store_true",
+        help="Use the moving tray geometry as a static support for a matched comparison",
+    )
+    parser.add_argument(
+        "--return-reference",
+        choices=("command", "closed"),
+        default="command",
+        help="Return to the nominal command or the joint position observed when the grip closed",
+    )
+    parser.add_argument(
+        "--moving-support",
+        action="store_true",
+        help="Use an independently driven contact support tray; not a second robot arm",
+    )
+    parser.add_argument(
         "--pin-relief",
         action="store_true",
         help="Experimental split nest supports with a 10 mm pin passage",
@@ -424,6 +517,16 @@ def main():
         parser.error("--support-tail requires --regrasp-nest")
     if args.pin_relief and not args.regrasp_nest:
         parser.error("--pin-relief requires --regrasp-nest")
+    if args.moving_support and not args.regrasp_nest:
+        parser.error("--moving-support requires --regrasp-nest")
+    if args.return_reference == "closed" and not args.regrasp_nest:
+        parser.error("--return-reference closed requires --regrasp-nest")
+    if args.matched_static_support and (
+        not args.regrasp_nest or args.moving_support or args.support_tail
+    ):
+        parser.error(
+            "--matched-static-support requires a nest and cannot combine with other support options"
+        )
     if not math.isfinite(args.friction) or args.friction < 0:
         raise ValueError("Friction must be finite and nonnegative")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -439,6 +542,9 @@ def main():
             args.support_tail,
             args.return_mode,
             args.pin_relief,
+            args.moving_support,
+            args.return_reference,
+            args.matched_static_support,
         )
         expectation_met = (
             "error" not in result
