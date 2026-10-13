@@ -7,6 +7,7 @@ import shlex
 import subprocess
 from pathlib import Path
 
+from local_vision import MODEL
 from project_paths import ROOT
 
 
@@ -55,6 +56,14 @@ def main():
         help="Add a passive nest and split finger pads; no regrasp motion is enabled",
     )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
+    parser.add_argument("--verify-held-pose", action="store_true")
+    parser.add_argument("--headless", action="store_true", help="Run Gazebo server without its GUI")
+    parser.add_argument(
+        "--release-ai-memory",
+        action="store_true",
+        help="Use the local Ollama CLI to unload the drawing model before robot control",
+    )
+    parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
         "--capture-gripper",
         action="store_true",
@@ -79,6 +88,8 @@ def main():
     args = parser.parse_args()
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
+    if args.front_fence_side != "both" and not args.capture_gripper:
+        parser.error("--front-fence-side requires --capture-gripper")
     if not math.isfinite(args.gripper_p_gain) or args.gripper_p_gain <= 0:
         parser.error("--gripper-p-gain must be finite and positive")
     if args.place_in_nest and (
@@ -87,6 +98,8 @@ def main():
         parser.error("--place-in-nest requires --regrasp-nest, --pick-connector and --support-plug")
     if args.support_plug and not args.pick_connector:
         parser.error("--support-plug requires --pick-connector")
+    if args.verify_held_pose and not args.pick_connector:
+        parser.error("--verify-held-pose requires --pick-connector")
     if args.support_plug == args.pick_connector and args.support_plug:
         parser.error("Choose different pickup and support terminals")
     if args.pick_connector:
@@ -104,6 +117,8 @@ def main():
         models += "_backstop"
     if args.capture_gripper:
         models += "_capture"
+        if args.front_fence_side != "both":
+            models += "_front_" + args.front_fence_side
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -126,6 +141,7 @@ def main():
         factory.append("--backstop-gripper")
     if args.capture_gripper:
         factory.append("--capture-gripper")
+        factory.extend(["--front-fence-side", args.front_fence_side])
     if args.regrasp_nest:
         factory.append("--split-finger-contacts")
     run(
@@ -157,7 +173,8 @@ def main():
     start = (
         "source /opt/ros/jazzy/setup.bash && source outputs/melfa_install/setup.bash && "
         + shlex.join(
-            ["gz", "sim", "-r", str(case / "world.sdf"), "--gui-config", "sim/melfa_gui.config"]
+            ["gz", "sim", "-r", str(case / "world.sdf")]
+            + (["-s"] if args.headless else ["--gui-config", "sim/melfa_gui.config"])
         )
         + " > "
         + shlex.quote(str(case / "gazebo.log"))
@@ -184,16 +201,17 @@ def main():
         "-c",
         "source /opt/ros/jazzy/setup.bash && " + shlex.join(command),
     )
-    run(
-        "docker",
-        "compose",
-        "exec",
-        "-T",
-        "gui",
-        "bash",
-        "-c",
-        "source /opt/ros/jazzy/setup.bash && python3 scripts/set_gui_view.py",
-    )
+    if not args.headless:
+        run(
+            "docker",
+            "compose",
+            "exec",
+            "-T",
+            "gui",
+            "bash",
+            "-c",
+            "source /opt/ros/jazzy/setup.bash && python3 scripts/set_gui_view.py",
+        )
     if args.plan_reach or args.check_reach or args.pick_connector:
         plan = relative / "connection_plan.json"
         reach = relative / "reach_plan.json"
@@ -206,6 +224,8 @@ def main():
             "--output",
             str(plan),
         )
+        if args.release_ai_memory:
+            run("ollama", "stop", MODEL)
         run(
             "docker",
             "compose",
@@ -269,6 +289,8 @@ def main():
                 pickup.append("--keep-camera")
             if args.place_in_nest:
                 pickup.append("--place-in-nest")
+            if args.verify_held_pose:
+                pickup.append("--verify-held-pose")
             run(
                 "docker",
                 "compose",

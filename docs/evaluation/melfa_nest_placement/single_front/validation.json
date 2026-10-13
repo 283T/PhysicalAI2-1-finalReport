@@ -1,0 +1,1190 @@
+{
+  "success": false,
+  "plug_id": "P1",
+  "support_plug": "P3",
+  "assignment": {
+    "left_arm": "P1",
+    "right_arm": "P3"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "1836aca6b2edbaf88f2b7295034818d25509a6d8b7ea207111ba356a8dd0c804",
+  "camera_rate_during_motion_hz": 0.5,
+  "contact_monitor_ready": true,
+  "path_preparation": {
+    "seeds": {
+      "left_arm": 0,
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 293,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "left_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "prepared_joint_paths": {
+    "hover": {
+      "left_arm": [
+        [
+          0.0,
+          -5.223579329167477e-05,
+          1.8756302309327804e-05,
+          0.0,
+          -3.2684678179760475e-10,
+          0.0
+        ],
+        [
+          -0.4736224341872524,
+          -5.223579329167477e-05,
+          1.8756302309327804e-05,
+          0.0,
+          -3.2684678179760475e-10,
+          0.0
+        ],
+        [
+          -0.4736224341872524,
+          1.406604281130347,
+          0.6955615461259457,
+          -0.10512448915678423,
+          1.2389838599895027,
+          -0.036507306396706074
+        ]
+      ],
+      "right_arm": [
+        [
+          0.0,
+          -5.223579328735188e-05,
+          1.8756302334062927e-05,
+          0.0,
+          -3.268144546627143e-10,
+          0.0
+        ],
+        [
+          -2.9190040579113354,
+          -5.223579328735188e-05,
+          1.8756302334062927e-05,
+          0.0,
+          -3.268144546627143e-10,
+          0.0
+        ],
+        [
+          -2.9190040579113354,
+          1.0810359141408772,
+          1.351011340525382,
+          0.2246744098590388,
+          0.5454646134507367,
+          2.6701122120767384
+        ]
+      ]
+    },
+    "approach": {
+      "left_arm": [
+        [
+          -0.4736224341872524,
+          1.406604281130347,
+          0.6955615461259457,
+          -0.10512448915678423,
+          1.2389838599895027,
+          -0.036507306396706074
+        ],
+        [
+          -0.4751973806221548,
+          1.4182249639940772,
+          0.7037051978705441,
+          -0.10628949859103909,
+          1.219302842528807,
+          -0.035543160167065685
+        ],
+        [
+          -0.47681786565624074,
+          1.4312734032577903,
+          0.7092114795641471,
+          -0.10738543680826068,
+          1.2007057902369203,
+          -0.03488379560511638
+        ],
+        [
+          -0.4784484930235541,
+          1.4452904212058375,
+          0.7129054259777664,
+          -0.10849793333550481,
+          1.1829495601524052,
+          -0.03428996039168089
+        ],
+        [
+          -0.4800893953478382,
+          1.4602561809493377,
+          0.7148126391450588,
+          -0.10962392241284896,
+          1.1660277887247534,
+          -0.03376153110687507
+        ],
+        [
+          -0.4817406598766427,
+          1.4761542364398377,
+          0.7149488423025733,
+          -0.11075858411106075,
+          1.1499409864323555,
+          -0.033301652498812936
+        ],
+        [
+          -0.48340237580374823,
+          1.4929757243648338,
+          0.7133151568859118,
+          -0.11189666478797165,
+          1.1346966203425637,
+          -0.032914622625512084
+        ],
+        [
+          -0.48507463333551254,
+          1.51071943169089,
+          0.7098980021349514,
+          -0.11303240715604002,
+          1.120309146459553,
+          -0.03260591470251355
+        ],
+        [
+          -0.4867575236586624,
+          1.5293921568930409,
+          0.7046684511310684,
+          -0.1141594672724873,
+          1.106800286294885,
+          -0.032382256441218685
+        ],
+        [
+          -0.4884511389577032,
+          1.5490094713792373,
+          0.6975808202453797,
+          -0.11527081872083852,
+          1.0941996672293297,
+          -0.03225175388527628
+        ],
+        [
+          -0.4901555724405252,
+          1.5695969624369208,
+          0.6885703351066816,
+          -0.1163586372693441,
+          1.0825459015474619,
+          -0.032224070683412674
+        ]
+      ],
+      "right_arm": [
+        [
+          -2.9190040579113354,
+          1.0810359141408772,
+          1.351011340525382,
+          0.2246744098590388,
+          0.5454646134507367,
+          2.6701122120767384
+        ],
+        [
+          -2.916704572388167,
+          1.105914976301571,
+          1.333999249742665,
+          0.22400090070675438,
+          0.5392913303214013,
+          2.672346920535833
+        ],
+        [
+          -2.9147735681113227,
+          1.130594303557608,
+          1.3172871965941828,
+          0.22640134631892228,
+          0.5312502378478478,
+          2.6712762749313717
+        ],
+        [
+          -2.912852710137972,
+          1.1556086629484112,
+          1.299608705236076,
+          0.22868380528857518,
+          0.5238274533285944,
+          2.6703502539057085
+        ],
+        [
+          -2.9109430273948664,
+          1.180969016596113,
+          1.2809211973684473,
+          0.23077478611320915,
+          0.5170552719630751,
+          2.6696486017187495
+        ],
+        [
+          -2.909044428371129,
+          1.2066875076592793,
+          1.2611921363000251,
+          0.23264784180237225,
+          0.5109526558035132,
+          2.669198572491213
+        ],
+        [
+          -2.9071568303481095,
+          1.232779445753662,
+          1.2403838911653604,
+          0.23427674041995175,
+          0.5055404902036231,
+          2.669027233621855
+        ],
+        [
+          -2.905280151377708,
+          1.2592636604700203,
+          1.2184529407395936,
+          0.23563485379528712,
+          0.5008420156075128,
+          2.6691621982589955
+        ],
+        [
+          -2.903414309959779,
+          1.286163056327993,
+          1.1953487906948541,
+          0.23669535837740258,
+          0.4968833659298335,
+          2.6696314559519583
+        ],
+        [
+          -2.901559225009745,
+          1.313505306142767,
+          1.1710126208236071,
+          0.23743145008759028,
+          0.4936942384634277,
+          2.6704631951010547
+        ],
+        [
+          -2.899714815832932,
+          1.3413237267177311,
+          1.1453755796904783,
+          0.23781655012591105,
+          0.4913087327470959,
+          2.6716856443657884
+        ],
+        [
+          -2.89788100210018,
+          1.3696583999713268,
+          1.1183566061576025,
+          0.23782448544587134,
+          0.4897664147022596,
+          2.673326952731738
+        ]
+      ]
+    },
+    "lift": {
+      "left_arm": [
+        [
+          -0.4901555724405252,
+          1.5695969624369208,
+          0.6885703351066816,
+          -0.1163586372693441,
+          1.0825459015474619,
+          -0.032224070683412674
+        ],
+        [
+          -0.4901554685081223,
+          1.537455142587988,
+          0.7205968511772768,
+          -0.11635065065192668,
+          1.0826811228454212,
+          -0.03223953438721656
+        ],
+        [
+          -0.4901554702876793,
+          1.5076860046437723,
+          0.7476857045817937,
+          -0.11618571954745645,
+          1.0853386377214107,
+          -0.032591619479234016
+        ],
+        [
+          -0.4901554731766046,
+          1.4791276917774023,
+          0.7722248386931093,
+          -0.11594069822350442,
+          1.0893282722472832,
+          -0.033117808562054575
+        ],
+        [
+          -0.4901554746726083,
+          1.4516907677869497,
+          0.7943906764160796,
+          -0.115623671444914,
+          1.094561906011725,
+          -0.03380459438993369
+        ],
+        [
+          -0.4901554754375174,
+          1.4252704994012086,
+          0.8143979769008889,
+          -0.11524459348278882,
+          1.1009303442710783,
+          -0.03463512531365027
+        ],
+        [
+          -0.49015547575289553,
+          1.3997871457686988,
+          0.8324137316812388,
+          -0.11481222352505847,
+          1.108346977860151,
+          -0.035595424244581376
+        ],
+        [
+          -0.49015547580826613,
+          1.3751785065621578,
+          0.84857185847305,
+          -0.11433449185062794,
+          1.1167406526872832,
+          -0.036673509535070536
+        ],
+        [
+          -0.4901554757241054,
+          1.3513959815905023,
+          0.8629807084249558,
+          -0.11381864725861474,
+          1.1260521133979453,
+          -0.03785899235210015
+        ],
+        [
+          -0.49015547557408595,
+          1.3284017125670777,
+          0.8757285111393562,
+          -0.11327136636123133,
+          1.136231427085879,
+          -0.03914278484572567
+        ],
+        [
+          -0.4901554753989757,
+          1.3061664946147975,
+          0.8868873392676296,
+          -0.11269883404774206,
+          1.147236115072244,
+          -0.0405168895570321
+        ]
+      ],
+      "right_arm": [
+        [
+          -2.89788100210018,
+          1.3696583999713268,
+          1.1183566061576025,
+          0.23782448544587134,
+          0.4897664147022596,
+          2.673326952731738
+        ],
+        [
+          -2.8978821976568536,
+          1.342473993455421,
+          1.1383850348032662,
+          0.2346683400422943,
+          0.49672500539680137,
+          2.6769031619517993
+        ],
+        [
+          -2.897882296597722,
+          1.3161240658529971,
+          1.1563231752070886,
+          0.23110751893434597,
+          0.5049078642911902,
+          2.680960305956943
+        ],
+        [
+          -2.8978823268259752,
+          1.2903013469199482,
+          1.1729556086487585,
+          0.22735994133068835,
+          0.5138565977305485,
+          2.685251496477113
+        ],
+        [
+          -2.8978823452860323,
+          1.2649916529946617,
+          1.188319998547614,
+          0.22345752074352648,
+          0.5235492133938788,
+          2.6897436538945794
+        ],
+        [
+          -2.8978823508334393,
+          1.2401840895650271,
+          1.2024540352196234,
+          0.2194369623005731,
+          0.5339610580954391,
+          2.694398848177581
+        ],
+        [
+          -2.8978823450412015,
+          1.215870994709374,
+          1.21539007050165,
+          0.21533163051472,
+          0.5450693749253022,
+          2.69918264924132
+        ],
+        [
+          -2.897882329425844,
+          1.1920475707847649,
+          1.2271558155525841,
+          0.21117171227513276,
+          0.5568529952777149,
+          2.7040639360059617
+        ],
+        [
+          -2.897882305458704,
+          1.1687115266191224,
+          1.237774981879135,
+          0.2069842888666705,
+          0.5692920606777628,
+          2.709014809033606
+        ],
+        [
+          -2.8978822745368493,
+          1.1458627763670532,
+          1.2472678056759747,
+          0.20279344709602298,
+          0.5823678068447344,
+          2.7140104673484964
+        ],
+        [
+          -2.897882237962466,
+          1.1235031831201898,
+          1.2556514795327527,
+          0.1986204208396144,
+          0.596062397199749,
+          2.719029057736769
+        ]
+      ]
+    }
+  },
+  "collision_preflight": [
+    {
+      "phase": "hover",
+      "clear": true,
+      "samples": 293,
+      "margin_per_box_m": 0.005
+    },
+    {
+      "phase": "approach",
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.005
+    },
+    {
+      "phase": "lift",
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.005
+    }
+  ],
+  "fixture_preflight": [
+    {
+      "phase": "hover",
+      "clear": true,
+      "samples": 293,
+      "margin_per_box_m": 0.001
+    },
+    {
+      "phase": "approach",
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.001
+    },
+    {
+      "phase": "lift",
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.001
+    }
+  ],
+  "holds": {
+    "left_arm": {
+      "success": false,
+      "minimum_lift_m": 0.09936425954726633,
+      "relative_slip_m": 0.0001175397427265378,
+      "lift_slip_m": 0.0003408025601533631,
+      "minimum_tcp_lift_m": 0.09957815502821707,
+      "minimum_finger_travel_m": 0.001850308091892437,
+      "minimum_jaw_opening_m": 0.020019993794973504,
+      "maximum_jaw_opening_m": 0.020031856608212818,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 675,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.07897043303011356
+    },
+    "right_arm": {
+      "success": false,
+      "minimum_lift_m": 0.09744350763698817,
+      "relative_slip_m": 0.00018223921947566141,
+      "lift_slip_m": 0.0020997090650065713,
+      "minimum_tcp_lift_m": 0.0999123550828287,
+      "minimum_finger_travel_m": 0.0029394798354628296,
+      "minimum_jaw_opening_m": 0.02738676487425646,
+      "maximum_jaw_opening_m": 0.02742564228474153,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 675,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.06040994926354046
+    }
+  },
+  "baseline": {
+    "time_s": 824.561747,
+    "sim_time_s": 11.181,
+    "arms": {
+      "left_arm": {
+        "plug_id": "P1",
+        "plug": [
+          -0.46352625375485323,
+          -0.018233508487464578,
+          0.13350284834522255
+        ],
+        "tcp": [
+          0.08003293283162291,
+          -0.3,
+          1.279998325324482
+        ],
+        "fingers": [
+          0.018040956885898362,
+          0.018053692636085587
+        ],
+        "q_rad": [
+          0.0,
+          -5.223579329167477e-05,
+          1.8756302309327804e-05,
+          0.0,
+          -3.2684678179760475e-10,
+          0.0
+        ],
+        "plug_rotation_world": [
+          [
+            -0.36323267011885385,
+            0.2299315831593021,
+            0.902880664553161
+          ],
+          [
+            -0.9281586285773379,
+            -0.004906854284272489,
+            -0.37215249962653985
+          ],
+          [
+            -0.08113930955889447,
+            -0.973194425511442,
+            0.21519531267536504
+          ]
+        ],
+        "tcp_rotation_world": [
+          [
+            -0.9999999994395548,
+            -1.2246467991473537e-16,
+            3.3479702437196635e-05
+          ],
+          [
+            1.2246467984610063e-16,
+            -1.0,
+            -4.1000810426118706e-21
+          ],
+          [
+            3.3479702437196635e-05,
+            1.2014965789241001e-36,
+            0.9999999994395548
+          ]
+        ],
+        "command_q_rad": [
+          0.0,
+          -4.643959549766385e-11,
+          -2.4001552481611766e-14,
+          0.0,
+          -2.545353091198276e-10,
+          0.0
+        ],
+        "command_tcp_xyz_m": [
+          0.0800000000796264,
+          -0.3,
+          1.279999999997677
+        ]
+      },
+      "right_arm": {
+        "plug_id": "P3",
+        "plug": [
+          -0.27555309483328155,
+          0.2817784869002093,
+          0.13297522824098224
+        ],
+        "tcp": [
+          0.22996706716837712,
+          0.44,
+          1.279998325324482
+        ],
+        "fingers": [
+          0.018040956885889317,
+          0.01805369263608282
+        ],
+        "q_rad": [
+          0.0,
+          -5.223579328735188e-05,
+          1.8756302334062927e-05,
+          0.0,
+          -3.268144546627143e-10,
+          0.0
+        ],
+        "plug_rotation_world": [
+          [
+            -0.49714374393712896,
+            -0.1543799167937541,
+            -0.8538237166739275
+          ],
+          [
+            0.8658430181116045,
+            -0.1520618105652975,
+            -0.4766477459874261
+          ],
+          [
+            -0.0562491408955269,
+            -0.9762397487596417,
+            0.20926535090685766
+          ]
+        ],
+        "tcp_rotation_world": [
+          [
+            0.9999999994395548,
+            0.0,
+            -3.347970243719596e-05
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            3.347970243719596e-05,
+            0.0,
+            0.9999999994395548
+          ]
+        ],
+        "command_q_rad": [
+          0.0,
+          -4.6439595551873756e-11,
+          -2.4001538603824044e-14,
+          0.0,
+          -2.545353087694145e-10,
+          0.0
+        ],
+        "command_tcp_xyz_m": [
+          0.22999999992037368,
+          0.44,
+          1.279999999997677
+        ]
+      }
+    },
+    "cable_z_span_m": 0.012045513120363269,
+    "phase": "open"
+  },
+  "closed": {
+    "time_s": 997.184937121,
+    "sim_time_s": 43.216,
+    "arms": {
+      "left_arm": {
+        "plug_id": "P1",
+        "plug": [
+          -0.4622780122726926,
+          -0.016095225195263047,
+          0.13331324699124586
+        ],
+        "tcp": [
+          -0.4634198396353759,
+          -0.017062994293562145,
+          0.13540593741768062
+        ],
+        "fingers": [
+          0.0023864086241606043,
+          0.002391733132829492
+        ],
+        "q_rad": [
+          -0.4906243787696568,
+          1.5701146550923997,
+          0.6879039543299184,
+          -0.11736930454877177,
+          1.0836075647164534,
+          -0.03163385840174495
+        ],
+        "plug_rotation_world": [
+          [
+            -0.31112555924179547,
+            0.22123756645058482,
+            0.9242590684311549
+          ],
+          [
+            -0.9474508446164609,
+            0.003946367444844725,
+            -0.31987704390816657
+          ],
+          [
+            -0.07441628465600221,
+            -0.9752119592040764,
+            0.2083839034162708
+          ]
+        ],
+        "tcp_rotation_world": [
+          [
+            0.9007615982204751,
+            -0.37410808589775163,
+            0.22061659782803103
+          ],
+          [
+            -0.3834464999533265,
+            -0.9235629341113748,
+            -0.0005370373656301614
+          ],
+          [
+            0.20395422242463693,
+            -0.08411091963300002,
+            -0.9753604607290844
+          ]
+        ],
+        "command_q_rad": [
+          -0.4901555724405252,
+          1.5695969624369208,
+          0.6885703351066816,
+          -0.1163586372693441,
+          1.0825459015474619,
+          -0.032224070683412674
+        ],
+        "command_tcp_xyz_m": [
+          -0.46372330637936743,
+          -0.01737985127281254,
+          0.13547953463478515
+        ]
+      },
+      "right_arm": {
+        "plug_id": "P3",
+        "plug": [
+          -0.2715417844993049,
+          0.2834109966084098,
+          0.1318199416912818
+        ],
+        "tcp": [
+          -0.2754331227425876,
+          0.28196144488240565,
+          0.1356581453883443
+        ],
+        "fingers": [
+          0.00680109387559112,
+          0.00476210137529841
+        ],
+        "q_rad": [
+          -2.8960676456423005,
+          1.3702602410273987,
+          1.1143669994016736,
+          0.2379823397772549,
+          0.4895949847727831,
+          2.672988998147898
+        ],
+        "plug_rotation_world": [
+          [
+            -0.4876450717933439,
+            -0.1735012192752968,
+            -0.8556281966284137
+          ],
+          [
+            0.8730401919021753,
+            -0.09493158076879518,
+            -0.4783187413179944
+          ],
+          [
+            0.0017627475646422976,
+            -0.9802475819315447,
+            0.19776645529088158
+          ]
+        ],
+        "tcp_rotation_world": [
+          [
+            -0.856517410260556,
+            -0.49538154851593125,
+            -0.14482764691352443
+          ],
+          [
+            -0.4757490176800348,
+            0.8665958128024429,
+            -0.15058077370552708
+          ],
+          [
+            0.20010196924826193,
+            -0.06007344357726871,
+            -0.9779316864074588
+          ]
+        ],
+        "command_q_rad": [
+          -2.89788100210018,
+          1.3696583999713268,
+          1.1183566061576025,
+          0.23782448544587134,
+          0.4897664147022596,
+          2.673326952731738
+        ],
+        "command_tcp_xyz_m": [
+          -0.27435153094842507,
+          0.28331508089814295,
+          0.13491093850861946
+        ]
+      }
+    },
+    "cable_z_span_m": 0.01162795949081609,
+    "phase": "close"
+  },
+  "pickup_hold_success": false,
+  "model_sha256": {
+    "left_arm": "cc3f6ba27a773ef761edb95c3b55a2a86fe5129f0b0c46c85790b6fecd71c38b",
+    "right_arm": "b3a0761e727050fe831a3ef8d436b8518286cf9c6ed133a307442bd75dc6b81a"
+  },
+  "held_pose_check": {
+    "success": false,
+    "reason": "No independent pose result"
+  },
+  "error": "Held RGB-D pose check failed; refusing transport",
+  "inter_arm_contacts": [],
+  "contact_messages": 189431,
+  "contact_diagnostics": [
+    {
+      "phase": "initialization",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1000,
+      "first_sim_time_s": 8.684,
+      "last_sim_time_s": 9.683,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1867,
+      "first_sim_time_s": 9.684,
+      "last_sim_time_s": 11.55,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "hover",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 21452,
+      "first_sim_time_s": 11.551,
+      "last_sim_time_s": 33.002,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "approach",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 6213,
+      "first_sim_time_s": 33.003,
+      "last_sim_time_s": 39.215,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "approach",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 575,
+      "first_sim_time_s": 37.886,
+      "last_sim_time_s": 38.46,
+      "max_depth_m": 0.00018331229304290736
+    },
+    {
+      "phase": "close",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 4009,
+      "first_sim_time_s": 39.216,
+      "last_sim_time_s": 43.224,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3375,
+      "first_sim_time_s": 39.424,
+      "last_sim_time_s": 42.798,
+      "max_depth_m": 0.0004637128062567716
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 718,
+      "first_sim_time_s": 39.465,
+      "last_sim_time_s": 41.595,
+      "max_depth_m": 0.00021638206323109505
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3612,
+      "first_sim_time_s": 39.61,
+      "last_sim_time_s": 43.224,
+      "max_depth_m": 0.0003488523347766389
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 1249,
+      "first_sim_time_s": 41.976,
+      "last_sim_time_s": 43.224,
+      "max_depth_m": 0.0007153817158819292
+    },
+    {
+      "phase": "lift",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 6892,
+      "first_sim_time_s": 43.225,
+      "last_sim_time_s": 50.116,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 6886,
+      "first_sim_time_s": 43.225,
+      "last_sim_time_s": 50.116,
+      "max_depth_m": 4.8972943061000376e-05
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3883,
+      "first_sim_time_s": 43.225,
+      "last_sim_time_s": 47.107,
+      "max_depth_m": 0.0006259265144857222
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 6131,
+      "first_sim_time_s": 43.917,
+      "last_sim_time_s": 50.116,
+      "max_depth_m": 2.0596752020943243e-05
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 2066,
+      "first_sim_time_s": 44.129,
+      "last_sim_time_s": 46.209,
+      "max_depth_m": 7.354746425247694e-05
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4209,
+      "first_sim_time_s": 45.515,
+      "last_sim_time_s": 50.116,
+      "max_depth_m": 1.4964032833153854e-05
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3713,
+      "first_sim_time_s": 45.814,
+      "last_sim_time_s": 50.116,
+      "max_depth_m": 2.9427853893719026e-05
+    },
+    {
+      "phase": "hold",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4031,
+      "first_sim_time_s": 50.117,
+      "last_sim_time_s": 54.147,
+      "max_depth_m": 1.4476963551153174e-05
+    },
+    {
+      "phase": "hold",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 4031,
+      "first_sim_time_s": 50.117,
+      "last_sim_time_s": 54.147,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "hold",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4030,
+      "first_sim_time_s": 50.117,
+      "last_sim_time_s": 54.147,
+      "max_depth_m": 5.02178195859248e-06
+    },
+    {
+      "phase": "hold",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4031,
+      "first_sim_time_s": 50.117,
+      "last_sim_time_s": 54.147,
+      "max_depth_m": 3.36783152277995e-05
+    },
+    {
+      "phase": "hold",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4031,
+      "first_sim_time_s": 50.117,
+      "last_sim_time_s": 54.147,
+      "max_depth_m": 5.293587621690854e-06
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 17629,
+      "first_sim_time_s": 54.148,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 0.0007877034567063956
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 17629,
+      "first_sim_time_s": 54.148,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 14243,
+      "first_sim_time_s": 54.148,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 3.627941703012863e-05
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 17628,
+      "first_sim_time_s": 54.148,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 6.91849091288249e-05
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 17629,
+      "first_sim_time_s": 54.148,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 5.7361837319771375e-05
+    },
+    {
+      "phase": "held_pose_check",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 2901,
+      "first_sim_time_s": 63.12,
+      "last_sim_time_s": 71.776,
+      "max_depth_m": 2.9255060732837762e-05
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 1001,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 72.777,
+      "max_depth_m": 0.0007890182641861997
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1001,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 72.777,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 14,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 71.802,
+      "max_depth_m": 3.435802143382516e-06
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 2,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 71.778,
+      "max_depth_m": 1.8424436410706687e-05
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 71.78,
+      "max_depth_m": 2.6086799174032324e-05
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3,
+      "first_sim_time_s": 71.777,
+      "last_sim_time_s": 71.779,
+      "max_depth_m": 4.110375720273217e-05
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__rear_fence_collision_2",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 974,
+      "first_sim_time_s": 71.802,
+      "last_sim_time_s": 72.777,
+      "max_depth_m": 9.483126590839922e-05
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 780,
+      "first_sim_time_s": 71.931,
+      "last_sim_time_s": 72.777,
+      "max_depth_m": 2.581770496183633e-05
+    }
+  ],
+  "contact_diagnostics_scope": "Left-arm sensors only; message counts may include duplicate sensors. Penetration depth is not measured contact force.",
+  "camera_rate_restored_hz": 5.0
+}

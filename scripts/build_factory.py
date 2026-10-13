@@ -93,6 +93,7 @@ def arm(
     gripper_p_gain=1000,
     backstop=False,
     capture_fences=False,
+    front_fence_side="both",
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -130,6 +131,7 @@ def arm(
         split_contacts=split_contacts,
         backstop=backstop,
         capture_fences=capture_fences,
+        front_fence_side=front_fence_side,
     )
     if urdf_output is not None:
         ET.indent(robot)
@@ -173,6 +175,7 @@ def main():
     parser.add_argument("--gripper-p-gain", type=float, default=1000)
     parser.add_argument("--backstop-gripper", action="store_true")
     parser.add_argument("--capture-gripper", action="store_true")
+    parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
         "--split-finger-contacts",
         action="store_true",
@@ -181,6 +184,8 @@ def main():
     args = parser.parse_args()
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
+    if args.front_fence_side != "both" and not args.capture_gripper:
+        parser.error("--front-fence-side requires --capture-gripper")
     if not math.isfinite(args.gripper_p_gain) or args.gripper_p_gain <= 0:
         parser.error("Positive finite gripper gain required")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -205,6 +210,7 @@ def main():
         gripper_p_gain=args.gripper_p_gain,
         backstop=args.backstop_gripper,
         capture_fences=args.capture_gripper,
+        front_fence_side=args.front_fence_side,
     )
     arm(
         world,
@@ -217,6 +223,7 @@ def main():
         gripper_p_gain=args.gripper_p_gain,
         backstop=args.backstop_gripper,
         capture_fences=args.capture_gripper,
+        front_fence_side=args.front_fence_side,
     )
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")

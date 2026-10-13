@@ -46,6 +46,20 @@ class ArmContactsTests(unittest.TestCase):
         self.assertTrue(all(s.findtext("contact/topic") == CONTACT_TOPIC for s in sensors))
         self.assertEqual(world.find("plugin").get("name"), "gz::sim::systems::Contact")
 
+    def test_right_only_object_contacts_can_be_monitored(self):
+        world = ET.fromstring(
+            '<world><model name="left_arm"><link name="finger">'
+            '<collision name="left"/></link></model>'
+            '<model name="right_arm"><link name="finger">'
+            '<collision name="right"/></link></model></world>'
+        )
+        add_arm_contact_sensors(world)
+        for name, collision in (("left_arm", "left"), ("right_arm", "right")):
+            sensors = world.findall(f"model[@name='{name}']/link/sensor")
+            self.assertEqual(len(sensors), 1)
+            self.assertEqual(sensors[0].findtext("contact/collision"), collision)
+            self.assertEqual(sensors[0].findtext("topic"), CONTACT_TOPIC)
+
 
 if __name__ == "__main__":
     unittest.main()

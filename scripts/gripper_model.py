@@ -34,8 +34,19 @@ def add_controllers(model, prefix, topic_root, p_gain=1000):
 
 
 def add_gripper(
-    robot, prefix, parent, *, split_contacts=False, backstop=False, capture_fences=False
+    robot,
+    prefix,
+    parent,
+    *,
+    split_contacts=False,
+    backstop=False,
+    capture_fences=False,
+    front_fence_side="both",
 ):
+    if front_fence_side not in ("both", "left", "right"):
+        raise ValueError("Unknown front fence side")
+    if front_fence_side != "both" and not capture_fences:
+        raise ValueError("A single front fence requires capture fences")
     tool = child(robot, "link", name=prefix + "gripper")
     inertial = child(tool, "inertial")
     child(inertial, "mass", value=".05")
@@ -51,7 +62,12 @@ def add_gripper(
         finger = child(robot, "link", name=prefix + "finger_" + name)
         inertial = child(finger, "inertial")
         child(inertial, "origin", xyz="0 0 .04")
-        child(inertial, "mass", value=".012" if capture_fences else ".011" if backstop else ".01")
+        has_front = capture_fences and front_fence_side in ("both", name)
+        child(
+            inertial,
+            "mass",
+            value=".012" if has_front else ".011" if backstop or capture_fences else ".01",
+        )
         child(
             inertial,
             "inertia",
@@ -87,6 +103,8 @@ def add_gripper(
                 else (("backstop", 0.0712),)
             )
             for fence_name, z in fences:
+                if fence_name == "front_fence" and not has_front:
+                    continue
                 for kind in ("collision", "visual"):
                     fence = child(finger, kind, name=fence_name)
                     child(fence, "origin", xyz=f"{-side * 0.006} 0 {z}", rpy="0 0 0")

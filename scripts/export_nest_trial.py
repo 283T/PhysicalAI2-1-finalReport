@@ -37,6 +37,25 @@ def export(source, output):
         shutil.copyfile(pickup / "observations" / name, output / name)
     depth = np.load(pickup / "observations/depth.npy")
     np.savez_compressed(output / "depth.npz", depth=depth)
+    pose_check = pickup / "held_pose_check"
+    if pose_check.exists():
+        target = output / "held_pose_check"
+        target.mkdir(exist_ok=True)
+        for name in (
+            "validation.json",
+            "evaluation_truth.json",
+            "camera.png",
+            "camera_intrinsics.json",
+            "detections.json",
+            "detections.png",
+            "latest.json",
+        ):
+            if (pose_check / name).exists():
+                shutil.copyfile(pose_check / name, target / name)
+        if (pose_check / "depth.npy").exists():
+            np.savez_compressed(target / "depth.npz", depth=np.load(pose_check / "depth.npy"))
+        if (pickup / "held_pose_check.log").exists():
+            shutil.copyfile(pickup / "held_pose_check.log", target / "evaluation.log")
     rows = json.loads((pickup / "trajectory.json").read_text())
     references = next((row["arms"] for row in reversed(rows) if row["phase"] == "close"), None)
     transport_references = next(

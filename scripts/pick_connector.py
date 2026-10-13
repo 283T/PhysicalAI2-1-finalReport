@@ -50,6 +50,11 @@ def main():
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
+        "--verify-held-pose",
+        action="store_true",
+        help="Independently compare RGB-D and Gazebo poses while holding; failure stops transport",
+    )
+    parser.add_argument(
         "--place-in-nest",
         action="store_true",
         help="After paired pickup, plan from live joints, place the primary terminal in the passive nest and retreat",
@@ -527,6 +532,59 @@ def main():
                 name: hashlib.sha256((args.models / (name + ".urdf")).read_bytes()).hexdigest()
                 for name in selected
             }
+            if args.verify_held_pose:
+                check_output = args.output / "held_pose_check"
+                current_phase[0] = "held_pose_check"
+                check_rows = []
+                with (args.output / "held_pose_check.log").open("w") as check_log:
+                    check = subprocess.Popen(
+                        [
+                            "python3",
+                            "scripts/evaluate_perception.py",
+                            "--require-6d",
+                            "--output",
+                            str(check_output),
+                        ],
+                        stdout=check_log,
+                        stderr=subprocess.STDOUT,
+                        start_new_session=True,
+                    )
+                    try:
+                        deadline = time.monotonic() + 130
+                        while check.poll() is None:
+                            if time.monotonic() > deadline:
+                                raise RuntimeError("Held RGB-D pose check timed out")
+                            publish()
+                            if sample() is None:
+                                raise RuntimeError("Lost feedback during held pose check")
+                            observation = record("held_pose_check")
+                            if observation is not None and (
+                                not check_rows
+                                or observation["sim_time_s"] != check_rows[-1]["sim_time_s"]
+                            ):
+                                check_rows.append(observation)
+                        validation = check_output / "validation.json"
+                        report["held_pose_check"] = (
+                            json.loads(validation.read_text())
+                            if validation.exists()
+                            else {"success": False, "reason": "No independent pose result"}
+                        )
+                        if check.returncode or not report["held_pose_check"]["success"]:
+                            raise RuntimeError("Held RGB-D pose check failed; refusing transport")
+                    finally:
+                        stop_process(check, group=True)
+                        holds = {
+                            name: assess_hold(
+                                baseline["arms"][name],
+                                [s["arms"][name] for s in [*held, *check_rows]],
+                                closed["arms"][name],
+                            )
+                            for name in selected
+                        }
+                        report.update(
+                            holds=holds,
+                            pickup_hold_success=all(h["success"] for h in holds.values()),
+                        )
             if args.place_in_nest:
                 if not report["pickup_hold_success"]:
                     raise RuntimeError("Holding failed; refusing nest transfer")
@@ -536,7 +594,10 @@ def main():
                     if assigned_row["plug_id"] == args.plug
                 )
                 transport_reference = held[-1]["arms"]
-                current = {name: np.asarray(held[-1]["arms"][name]["q_rad"]) for name in selected}
+                live = sample()
+                if live is None:
+                    raise RuntimeError("No fresh feedback after held pose check")
+                current = {name: np.asarray(live["arms"][name]["q_rad"]) for name in selected}
                 nest_plan = plan_to_nest(
                     selected,
                     collision_bounds,
@@ -633,8 +694,19 @@ def main():
             report["inter_arm_contacts"] = contacts
             report["contact_messages"] = contact_updates[0]
             report["contact_diagnostics"] = list(contact_diagnostics.copy().values())
+            world_root = ET.parse(args.world).getroot()
+            report["contact_sensor_arms"] = [
+                name
+                for name in ("left_arm", "right_arm")
+                if any(
+                    sensor.findtext("topic") == CONTACT_TOPIC
+                    for sensor in world_root.findall(
+                        f"world/model[@name='{name}']/link/sensor[@type='contact']"
+                    )
+                )
+            ]
             report["contact_diagnostics_scope"] = (
-                "Left-arm sensors only; message counts may include duplicate sensors. "
+                "Sensors on contact_sensor_arms only; counts may include duplicate sensors. "
                 "Penetration depth is not measured contact force."
             )
             transport.unsubscribe(CONTACT_TOPIC)

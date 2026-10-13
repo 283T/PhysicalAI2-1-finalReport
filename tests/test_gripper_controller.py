@@ -9,6 +9,26 @@ from gripper_model import OPEN_TRAVEL_M, add_controllers, add_gripper
 
 
 class GripperControllerTests(unittest.TestCase):
+    def test_single_front_fence_keeps_both_rear_fences_and_updates_mass(self):
+        for side in ("left", "right"):
+            robot = ET.fromstring('<robot><link name="root"/></robot>')
+            add_gripper(robot, "test_", "root", capture_fences=True, front_fence_side=side)
+            for name in ("left", "right"):
+                finger = robot.find(f"link[@name='test_finger_{name}']")
+                self.assertIsNotNone(finger.find("collision[@name='rear_fence']"))
+                self.assertEqual(
+                    finger.find("collision[@name='front_fence']") is not None, name == side
+                )
+                self.assertAlmostEqual(
+                    float(finger.find("inertial/mass").get("value")),
+                    0.012 if name == side else 0.011,
+                )
+
+    def test_invalid_or_inactive_single_fence_configuration_is_rejected(self):
+        for options in ({"front_fence_side": "top"}, {"front_fence_side": "right"}):
+            with self.assertRaises(ValueError):
+                add_gripper(ET.Element("robot"), "test_", "root", **options)
+
     def test_capture_slot_matches_housing_and_retracts_with_the_jaws(self):
         robot = ET.fromstring('<robot><link name="root"/></robot>')
         add_gripper(robot, "test_", "root", split_contacts=True, capture_fences=True)
