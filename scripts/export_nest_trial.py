@@ -29,12 +29,16 @@ def export(source, output):
     for name in ("world.sdf", "board.json", "drawing.png", "regrasp_nest.json", "case.json"):
         shutil.copyfile(source / "case" / name, output / name)
     shutil.copyfile(source / "case/manifest.json", output / "case_manifest.json")
+    if (source / "case/inspection_camera.json").exists():
+        shutil.copyfile(source / "case/inspection_camera.json", output / "inspection_camera.json")
     for name in ("connection_plan.json", "connection_plan.audit.json"):
         shutil.copyfile(source / name, output / name)
     for name in ("validation.json", "grasp_plan.json"):
         shutil.copyfile(pickup / name, output / name)
     for name in ("detections.json", "camera_intrinsics.json", "camera.png"):
         shutil.copyfile(pickup / "observations" / name, output / name)
+    if (pickup / "observations/calibration.json").exists():
+        shutil.copyfile(pickup / "observations/calibration.json", output / "calibration.json")
     depth = np.load(pickup / "observations/depth.npy")
     np.savez_compressed(output / "depth.npz", depth=depth)
     pose_check = pickup / "held_pose_check"
@@ -49,6 +53,7 @@ def export(source, output):
             "detections.json",
             "detections.png",
             "latest.json",
+            "calibration.json",
         ):
             if (pose_check / name).exists():
                 shutil.copyfile(pose_check / name, target / name)

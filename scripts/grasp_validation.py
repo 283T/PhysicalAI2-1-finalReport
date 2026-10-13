@@ -89,6 +89,30 @@ def assess_relative_grasp(reference, observation):
     }
 
 
+def assess_opening(fingers, housing_width=0.020):
+    """Reject empty closure or a jammed wide opening using measured joint travel."""
+    values = np.asarray(fingers, dtype=float)
+    if (
+        values.ndim != 2
+        or values.shape[1] != 2
+        or len(values) == 0
+        or not np.isfinite(values).all()
+        or not np.isfinite(housing_width)
+        or housing_width <= 0
+        or values.min() < -0.0005
+        or values.max() > MAX_TRAVEL_M + 0.0005
+    ):
+        return {"success": False, "reason": "Invalid measured finger travel or housing width"}
+    openings = gap_m(values.mean(axis=1))
+    return {
+        "success": bool(np.max(np.abs(openings - housing_width)) < 0.001),
+        "minimum_jaw_opening_m": float(openings.min()),
+        "maximum_jaw_opening_m": float(openings.max()),
+        "expected_housing_width_m": housing_width,
+        "scope": "Joint opening only; not proof of housing contact or stable grasp",
+    }
+
+
 def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
     """Reject stationary objects, empty closure and slip during the hold window."""
     if len(samples) < 10:
@@ -105,12 +129,7 @@ def assess_hold(baseline, samples, grip_reference, housing_width=0.020):
     openings = gap_m(fingers.mean(axis=1))
     # Off-center housings stop the two fingers at different travels. Their sum
     # determines the actual opening, which must match the known short-side width.
-    contact_opening = bool(
-        np.isfinite(fingers).all()
-        and fingers.min() >= -0.0005
-        and fingers.max() <= MAX_TRAVEL_M + 0.0005
-        and np.max(np.abs(openings - housing_width)) < 0.001
-    )
+    contact_opening = assess_opening(fingers, housing_width)["success"]
     rotation_validated = "plug_rotation_world" in grip_reference
     maximum_rotation = None
     rotation_ok = True

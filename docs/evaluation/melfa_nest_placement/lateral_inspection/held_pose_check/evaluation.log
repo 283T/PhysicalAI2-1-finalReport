@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspace/scripts/observe_connectors.py", line 133, in <module>
+    main()
+  File "/workspace/scripts/observe_connectors.py", line 122, in main
+    raise RuntimeError("No complete stable three-connector detection within timeout")
+RuntimeError: No complete stable three-connector detection within timeout
+Traceback (most recent call last):
+  File "/workspace/scripts/evaluate_perception.py", line 143, in <module>
+    main()
+  File "/workspace/scripts/evaluate_perception.py", line 62, in main
+    raise RuntimeError("Perception run failed")
+RuntimeError: Perception run failed

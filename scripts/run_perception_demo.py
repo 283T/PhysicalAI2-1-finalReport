@@ -57,6 +57,7 @@ def main():
     )
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     parser.add_argument("--verify-held-pose", action="store_true")
+    parser.add_argument("--inspection-calibration", type=Path)
     parser.add_argument("--headless", action="store_true", help="Run Gazebo server without its GUI")
     parser.add_argument(
         "--release-ai-memory",
@@ -135,6 +136,8 @@ def main():
     ]
     if args.regrasp_nest:
         generate.append("--regrasp-nest")
+    if args.inspection_calibration is not None:
+        generate.extend(["--inspection-calibration", str(args.inspection_calibration)])
     factory = ["python3", "scripts/build_factory.py", "--robot", "melfa_rv4frl", "--output", models]
     factory.extend(["--gripper-p-gain", str(args.gripper_p_gain)])
     if args.backstop_gripper:
@@ -291,6 +294,8 @@ def main():
                 pickup.append("--place-in-nest")
             if args.verify_held_pose:
                 pickup.append("--verify-held-pose")
+                if args.inspection_calibration is not None:
+                    pickup.extend(["--held-calibration", str(case / "inspection_camera.json")])
             run(
                 "docker",
                 "compose",

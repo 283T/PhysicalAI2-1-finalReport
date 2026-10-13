@@ -12,6 +12,7 @@ from assembly_case import make_case
 from build_factory import mass
 from build_world import add_board, box, child, link, plugin
 from connector_pose import FACE_CODES
+from inspection_camera import add_inspection_camera
 from project_paths import ROOT
 from regrasp_fixture import add_nest_to_world
 
@@ -178,7 +179,12 @@ def draw(design, output):
 
 
 def build(
-    case, output, factory_world=ROOT / "sim/worlds/factory_prototype.sdf", *, regrasp_nest=False
+    case,
+    output,
+    factory_world=ROOT / "sim/worlds/factory_prototype.sdf",
+    *,
+    regrasp_nest=False,
+    inspection_calibration=None,
 ):
     output.mkdir(parents=True, exist_ok=True)
     design = case["design"]
@@ -222,6 +228,12 @@ def build(
     sensor.find("update_rate").text = "5"
     sensor.find("camera/horizontal_fov").text = str(calibration["horizontal_fov_rad"])
     world.find("plugin[@name='gz::sim::systems::Sensors']/render_engine").text = "ogre2"
+    if inspection_calibration is not None:
+        calibration = json.loads(inspection_calibration.read_text())
+        add_inspection_camera(world, calibration)
+        (output / "inspection_camera.json").write_text(json.dumps(calibration, indent=2) + "\n")
+    else:
+        (output / "inspection_camera.json").unlink(missing_ok=True)
     ET.indent(tree)
     tree.write(output / "world.sdf", encoding="utf-8", xml_declaration=True)
     (output / "case.json").write_text(json.dumps(case, indent=2) + "\n")
@@ -234,6 +246,10 @@ def build(
     }
     if regrasp_nest:
         manifest["regrasp_nest.json"] = hashlib.sha256(nest_path.read_bytes()).hexdigest()
+    if inspection_calibration is not None:
+        manifest["inspection_camera.json"] = hashlib.sha256(
+            (output / "inspection_camera.json").read_bytes()
+        ).hexdigest()
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     return output
 
@@ -243,6 +259,7 @@ def main():
     parser.add_argument("--design-seed", type=int, default=secrets.randbelow(2**31))
     parser.add_argument("--placement-seed", type=int, default=secrets.randbelow(2**31))
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/multi_connector")
+    parser.add_argument("--inspection-calibration", type=Path)
     parser.add_argument(
         "--factory-world", type=Path, default=ROOT / "sim/worlds/factory_prototype.sdf"
     )
@@ -258,6 +275,7 @@ def main():
             args.output,
             args.factory_world,
             regrasp_nest=args.regrasp_nest,
+            inspection_calibration=args.inspection_calibration,
         )
     )
 

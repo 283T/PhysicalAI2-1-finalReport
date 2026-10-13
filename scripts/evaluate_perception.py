@@ -18,6 +18,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--require-6d", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     for name in ("validation.json", "evaluation_truth.json"):
@@ -49,6 +50,8 @@ def main():
             "--bridge",
             "--output",
             str(args.output),
+            "--calibration",
+            str(args.calibration),
             *(["--require-6d"] if args.require_6d else []),
         ],
         start_new_session=True,

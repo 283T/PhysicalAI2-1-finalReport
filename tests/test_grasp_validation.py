@@ -9,10 +9,28 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import axis_rotation
-from grasp_validation import assess_hold, assess_relative_grasp, assess_seat, world_link_positions
+from grasp_validation import (
+    assess_hold,
+    assess_opening,
+    assess_relative_grasp,
+    assess_seat,
+    world_link_positions,
+)
 
 
 class GraspValidationTests(unittest.TestCase):
+    def test_opening_accepts_asymmetric_housing_but_rejects_empty_or_jammed_jaws(self):
+        self.assertTrue(assess_opening([[0.002, 0.002], [0, 0.004]])["success"])
+        self.assertFalse(assess_opening([[0, 0]])["success"])
+        jammed = assess_opening([[0.006, 0.007]])
+        self.assertFalse(jammed["success"])
+        self.assertAlmostEqual(jammed["maximum_jaw_opening_m"], 0.029)
+
+    def test_opening_rejects_missing_nonfinite_or_out_of_stroke_joint_values(self):
+        for values in ([], [[0.002]], [[0.002, math.nan]], [[-0.002, 0.006]], [[0.03, 0]]):
+            with self.subTest(values=values):
+                self.assertFalse(assess_opening(values)["success"])
+
     def test_relative_grasp_allows_transport_rotation_but_rejects_local_slip(self):
         reference = {
             "tcp": [0, 0, 0],

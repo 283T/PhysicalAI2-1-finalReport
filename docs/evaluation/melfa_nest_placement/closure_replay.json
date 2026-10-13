@@ -1,0 +1,48 @@
+{
+  "scope": "Replay of recorded closure samples only; not a physical run of the new pre-lift guard",
+  "validator_sha256": "ab51550f4f5a4ec65f079fb552b1538c824be2f9f975f08d1c0301adf5de8f9b",
+  "trials": [
+    {
+      "trial": "bilateral",
+      "validation_sha256": "5739f22f8b48362a019807fcd0ece7ffea3185127069984bf483220d90150bfc",
+      "arms": {
+        "left_arm": {
+          "success": false,
+          "minimum_jaw_opening_m": 0.0298327336001283,
+          "maximum_jaw_opening_m": 0.0298327336001283,
+          "expected_housing_width_m": 0.02,
+          "scope": "Joint opening only; not proof of housing contact or stable grasp"
+        },
+        "right_arm": {
+          "success": true,
+          "minimum_jaw_opening_m": 0.020274339600330336,
+          "maximum_jaw_opening_m": 0.020274339600330336,
+          "expected_housing_width_m": 0.02,
+          "scope": "Joint opening only; not proof of housing contact or stable grasp"
+        }
+      },
+      "lift_permitted": false
+    },
+    {
+      "trial": "lateral_inspection",
+      "validation_sha256": "aff8efc9482ffdd74a48793d21fbc6651c3adbde54fa36ab0c3fab431ef81bbc",
+      "arms": {
+        "left_arm": {
+          "success": true,
+          "minimum_jaw_opening_m": 0.020985644598723804,
+          "maximum_jaw_opening_m": 0.020985644598723804,
+          "expected_housing_width_m": 0.02,
+          "scope": "Joint opening only; not proof of housing contact or stable grasp"
+        },
+        "right_arm": {
+          "success": false,
+          "minimum_jaw_opening_m": 0.027460647746744234,
+          "maximum_jaw_opening_m": 0.027460647746744234,
+          "expected_housing_width_m": 0.02,
+          "scope": "Joint opening only; not proof of housing contact or stable grasp"
+        }
+      },
+      "lift_permitted": false
+    }
+  ]
+}

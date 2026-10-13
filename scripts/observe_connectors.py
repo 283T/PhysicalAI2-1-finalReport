@@ -10,6 +10,7 @@ import cv2
 import numpy as np
 import rclpy
 from connector_vision import detect_connectors
+from inspection_camera import validate_calibration
 from perception_stream import StableConnectors, SyncedFrames, image_array
 from processes import stop_process
 from project_paths import ROOT
@@ -21,6 +22,7 @@ from std_msgs.msg import String
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/perception")
+    parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
     parser.add_argument(
         "--require-6d", action="store_true", help="Require complete stable coded-face 6D poses"
     )
@@ -32,7 +34,8 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     # Never leave old detections available after a failed new acquisition.
     (args.output / "detections.json").unlink(missing_ok=True)
-    calibration = json.loads((ROOT / "configs/infeed_camera.json").read_text())
+    calibration = validate_calibration(json.loads(args.calibration.read_text()))
+    (args.output / "calibration.json").write_text(json.dumps(calibration, indent=2) + "\n")
     rclpy.init()
     node = rclpy.create_node("harness_connector_vision")
     frames = SyncedFrames()

@@ -23,7 +23,13 @@ from cooperative_pick import (
     upright_waist_path,
 )
 from fixture_collision_bounds import FixtureBounds
-from grasp_validation import assess_hold, assess_relative_grasp, assess_seat, world_link_positions
+from grasp_validation import (
+    assess_hold,
+    assess_opening,
+    assess_relative_grasp,
+    assess_seat,
+    world_link_positions,
+)
 from gripper_model import OPEN_TRAVEL_M
 from gz.msgs10.contacts_pb2 import Contacts
 from gz.msgs10.pose_v_pb2 import Pose_V
@@ -49,6 +55,7 @@ def main():
         help="Hold a second terminal with the other arm and lift together",
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--held-calibration", type=Path)
     parser.add_argument(
         "--verify-held-pose",
         action="store_true",
@@ -112,6 +119,10 @@ def main():
         "assignment": {name: row["plug_id"] for name, row in assigned.items()},
         "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
+        "model_sha256": {
+            name: hashlib.sha256((args.models / (name + ".urdf")).read_bytes()).hexdigest()
+            for name in selected
+        },
     }
     sensor = ET.parse(args.world).getroot().find("world/model[@name='overhead_camera']/link/sensor")
     camera_service = sensor.findtext("topic") + "/set_rate"
@@ -509,6 +520,13 @@ def main():
             move("approach", grips, ready_paths=prepared["approach"])
             target_grip = {name: 0.0 for name in selected}
             closed = dwell("close", 4)[-1]
+            report.update(baseline=baseline, closed=closed, pickup_hold_success=False)
+            report["closure"] = {
+                name: assess_opening([closed["arms"][name]["fingers"]]) for name in selected
+            }
+            if not all(check["success"] for check in report["closure"].values()):
+                report["motion_aborted"] = "closure_rejected"
+                raise RuntimeError("Jaw opening rejected before lift; see closure")
             # Start the shared translation from the measured closed poses rather
             # than independently changing the distance between held endpoints.
             lifts, paths = shared_lift(
@@ -528,10 +546,6 @@ def main():
                 closed=closed,
                 pickup_hold_success=all(h["success"] for h in holds.values()),
             )
-            report["model_sha256"] = {
-                name: hashlib.sha256((args.models / (name + ".urdf")).read_bytes()).hexdigest()
-                for name in selected
-            }
             if args.verify_held_pose:
                 check_output = args.output / "held_pose_check"
                 current_phase[0] = "held_pose_check"
@@ -544,6 +558,11 @@ def main():
                             "--require-6d",
                             "--output",
                             str(check_output),
+                            *(
+                                ["--calibration", str(args.held_calibration)]
+                                if args.held_calibration is not None
+                                else []
+                            ),
                         ],
                         stdout=check_log,
                         stderr=subprocess.STDOUT,
