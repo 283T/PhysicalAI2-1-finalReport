@@ -1,0 +1,35 @@
+{
+  "frame": "world",
+  "position_m": [
+    -0.3,
+    0.7,
+    0.5
+  ],
+  "pose_rpy_rad": [
+    0,
+    0.43240777557053783,
+    -1.5707963267948966
+  ],
+  "optical_to_world_rotation": [
+    [
+      -1.0,
+      -4.6524803727548624e-17,
+      1.0080374140968869e-16
+    ],
+    [
+      -1.1102230246251565e-16,
+      0.4190581774617469,
+      -0.9079593845004517
+    ],
+    [
+      0.0,
+      -0.9079593845004517,
+      -0.4190581774617469
+    ]
+  ],
+  "horizontal_fov_rad": 1.1,
+  "width": 960,
+  "height": 720,
+  "topic": "/factory/inspection_rgbd",
+  "note": "Experimental end-face inspection view. Ideal extrinsics; no visibility or accuracy guarantee."
+}

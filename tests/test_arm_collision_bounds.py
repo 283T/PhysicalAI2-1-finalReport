@@ -6,10 +6,24 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from arm_collision_bounds import intersects, screen_paths
+from arm_collision_bounds import intersects, screen_paths, with_parked_arms
 
 
 class BoundsTests(unittest.TestCase):
+    def test_single_arm_path_is_checked_against_observed_parked_arm(self):
+        class BoxArm:
+            def boxes(self, q):
+                return [("body", (np.asarray(q), np.eye(3), np.ones(3) * 0.02))]
+
+        active = {"right": np.array([[0, 0, 0], [0.4, 0, 0]])}
+        paths = with_parked_arms(active, {"left": [0.2, 0, 0]})
+        self.assertFalse(screen_paths({"left": BoxArm(), "right": BoxArm()}, paths)["clear"])
+        paths = with_parked_arms(active, {"left": [0.2, 0.2, 0]})
+        self.assertTrue(screen_paths({"left": BoxArm(), "right": BoxArm()}, paths)["clear"])
+        np.testing.assert_array_equal(paths["left"], [[0.2, 0.2, 0], [0.2, 0.2, 0]])
+        with self.assertRaises(ValueError):
+            with_parked_arms(active, {"right": [0, 0, 0]})
+
     def test_margin_rejects_nearly_touching_boxes(self):
         a = (np.zeros(3), np.eye(3), np.ones(3) * 0.1)
         b = (np.array([0.209, 0, 0]), np.eye(3), np.ones(3) * 0.1)

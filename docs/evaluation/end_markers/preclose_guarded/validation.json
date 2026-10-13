@@ -1,0 +1,366 @@
+{
+  "success": false,
+  "plug_id": "P3",
+  "support_plug": null,
+  "assignment": {
+    "right_arm": "P3"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "26ec43a7aa1e6819519fe6c4e14b0a976057a8627c8a7c06da2cba735eb12250",
+  "model_sha256": {
+    "right_arm": "b3a0761e727050fe831a3ef8d436b8518286cf9c6ed133a307442bd75dc6b81a"
+  },
+  "camera_rate_during_motion_hz": 0.5,
+  "contact_monitor_ready": true,
+  "path_preparation": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 292,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "prepared_joint_paths": {
+    "hover": {
+      "right_arm": [
+        [
+          0.0,
+          -5.223586079136015e-05,
+          1.875630276389861e-05,
+          0.0,
+          -6.95234862315572e-10,
+          0.0
+        ],
+        [
+          -2.905385759245703,
+          -5.223586079136015e-05,
+          1.875630276389861e-05,
+          0.0,
+          -6.95234862315572e-10,
+          0.0
+        ],
+        [
+          -2.905385759245703,
+          1.0858648256897632,
+          1.3386484615362049,
+          0.17171968395363157,
+          0.5551366121019561,
+          2.7221666443822876
+        ]
+      ]
+    },
+    "approach": {
+      "right_arm": [
+        [
+          -2.905385759245703,
+          1.0858648256897632,
+          1.3386484615362049,
+          0.17171968395363157,
+          0.5551366121019561,
+          2.7221666443822876
+        ],
+        [
+          -2.9033581821110026,
+          1.1110447789780484,
+          1.320916906261359,
+          0.16901519792942876,
+          0.5505098752443381,
+          2.7262534991860647
+        ],
+        [
+          -2.9018862759823403,
+          1.1356110444368392,
+          1.3044657988086696,
+          0.1708002301999963,
+          0.5423562609395849,
+          2.7254770539343327
+        ],
+        [
+          -2.90042074465111,
+          1.1605187209900572,
+          1.287053388270968,
+          0.17251684570387066,
+          0.5348100178824574,
+          2.724786357681117
+        ],
+        [
+          -2.8989633212820087,
+          1.185780660319064,
+          1.2686258699131612,
+          0.17409417537754404,
+          0.5279175772201748,
+          2.724260767327767
+        ],
+        [
+          -2.897513937140678,
+          1.2114089792597917,
+          1.2491503746017443,
+          0.17551229759706746,
+          0.5216988733207534,
+          2.7239208811367996
+        ],
+        [
+          -2.896072531786476,
+          1.2374190486189014,
+          1.2285888308141988,
+          0.17675168656148021,
+          0.5161757808698889,
+          2.7237868955619837
+        ],
+        [
+          -2.894639045511268,
+          1.2638297917077606,
+          1.2068971982324204,
+          0.17779246629373047,
+          0.5113725784030707,
+          2.723879475074864
+        ],
+        [
+          -2.8932134189943244,
+          1.2906642504844408,
+          1.1840243671614203,
+          0.17861454895799,
+          0.507316488121558,
+          2.724219639310176
+        ],
+        [
+          -2.8917955932722266,
+          1.3179502946199158,
+          1.1599107783262856,
+          0.17919778743364995,
+          0.5040383523985698,
+          2.7248286400528894
+        ],
+        [
+          -2.8903855097159386,
+          1.345721517897966,
+          1.1344866803568805,
+          0.17952212141218923,
+          0.5015734844729418,
+          2.725727852619549
+        ],
+        [
+          -2.888983110008623,
+          1.3740183872094622,
+          1.1076699002860833,
+          0.17956770466447902,
+          0.4999627520590427,
+          2.726938696742811
+        ]
+      ]
+    },
+    "lift": {
+      "right_arm": [
+        [
+          -2.888983110008623,
+          1.3740183872094622,
+          1.1076699002860833,
+          0.17956770466447902,
+          0.4999627520590427,
+          2.726938696742811
+        ],
+        [
+          -2.888983980061026,
+          1.3468119326662986,
+          1.1278206359180898,
+          0.17726509089894926,
+          0.5069092854236894,
+          2.729562148366056
+        ],
+        [
+          -2.8889840534551374,
+          1.320455497434847,
+          1.1458559675315396,
+          0.17465671192829857,
+          0.5151003986611978,
+          2.7325508435918127
+        ],
+        [
+          -2.8889840761467513,
+          1.2946347614666376,
+          1.1625721539622063,
+          0.17190596313845796,
+          0.5240676728807742,
+          2.735718774798239
+        ],
+        [
+          -2.888984090197516,
+          1.2693348802656848,
+          1.1780080235881247,
+          0.16903662773754946,
+          0.5337878147901689,
+          2.739041242245074
+        ],
+        [
+          -2.888984094763612,
+          1.2445442036727743,
+          1.1922026174735643,
+          0.16607607437407107,
+          0.5442346598296405,
+          2.7424899087267613
+        ],
+        [
+          -2.888984091000818,
+          1.2202544214576525,
+          1.2051894147970972,
+          0.16304919562929654,
+          0.5553841454308606,
+          2.746039041804081
+        ],
+        [
+          -2.8889840800222952,
+          1.1964601734403264,
+          1.21699707610943,
+          0.15997853370819928,
+          0.5672139714835508,
+          2.749665365714628
+        ],
+        [
+          -2.8889840629074213,
+          1.1731586765607458,
+          1.2276501136570448,
+          0.15688433491970843,
+          0.579703305746249,
+          2.7533479943520063
+        ],
+        [
+          -2.888984040680375,
+          1.1503494121047164,
+          1.2371694385342293,
+          0.15378463245790427,
+          0.5928325534856409,
+          2.7570683386472483
+        ],
+        [
+          -2.888984014295125,
+          1.128033860335216,
+          1.245572810256621,
+          0.150695351095755,
+          0.6065831781558291,
+          2.760809994398571
+        ]
+      ]
+    }
+  },
+  "collision_preflight": [
+    {
+      "phase": "hover",
+      "clear": true,
+      "samples": 292,
+      "margin_per_box_m": 0.005
+    },
+    {
+      "phase": "approach",
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.005
+    }
+  ],
+  "preclose_check": {
+    "success": false,
+    "stamp_skew_s": 0.10900000000000176,
+    "arms": {
+      "right_arm": {
+        "success": false,
+        "position_error_m": 0.0032867548286234336,
+        "angle_error_rad": 0.048387875017443724,
+        "scope": "RGB-D-derived alignment only; no force or contact validation"
+      }
+    }
+  },
+  "error": "Pre-close RGB-D alignment rejected; refusing closure",
+  "inter_arm_contacts": [],
+  "contact_messages": 36058,
+  "contact_diagnostics": [
+    {
+      "phase": "initialization",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 767,
+      "first_sim_time_s": 22.923000000000002,
+      "last_sim_time_s": 23.689,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1846,
+      "first_sim_time_s": 23.69,
+      "last_sim_time_s": 25.535,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "hover",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 11514,
+      "first_sim_time_s": 25.536,
+      "last_sim_time_s": 37.049,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "approach",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 6755,
+      "first_sim_time_s": 37.05,
+      "last_sim_time_s": 43.804,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "approach",
+      "collision1": "right_arm::right_arm_finger_right::right_arm_finger_right_fixed_joint_lump__front_fence_collision_3",
+      "collision2": "wire_harness_multi::P3::housing_collision",
+      "messages": 868,
+      "first_sim_time_s": 40.562,
+      "last_sim_time_s": 41.435,
+      "max_depth_m": 0.0006099444476665317
+    },
+    {
+      "phase": "preclose_observations",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 13306,
+      "first_sim_time_s": 43.805,
+      "last_sim_time_s": 57.11,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1003,
+      "first_sim_time_s": 57.111,
+      "last_sim_time_s": 58.113,
+      "max_depth_m": 9.905271047827569e-16
+    }
+  ],
+  "contact_sensor_arms": [
+    "left_arm",
+    "right_arm"
+  ],
+  "contact_diagnostics_scope": "Sensors on contact_sensor_arms only; counts may include duplicate sensors. Penetration depth is not measured contact force.",
+  "camera_rate_restored_hz": 5.0
+}

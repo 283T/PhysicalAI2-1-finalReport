@@ -1,0 +1,15 @@
+{
+  "board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "calibration.json": "116e4b8c93ae7e13146a8d226dae1ee84f53edc46cba023570668abcd6bed71c",
+  "camera.png": "524b42545b21426379a368014b5b70a0e2374533079d39dce1aa0666d7dbaf0a",
+  "camera_intrinsics.json": "2d882c2f76a40e6630f99689293e770c9a180d90cbdedb47b0dd1245e6d8636d",
+  "case.json": "e6014ed5fd9bb8057b9a594e151349c001aec4b7b26299d87819f8a026f353da",
+  "depth.npz": "c4e96da024af6802f75a157ca5147aa60eb5dddb2fc967458cfb52c223bed90e",
+  "detections.json": "734006148f23eb16825d359fbe950b1508a8d53bb9a415b1855f002c96cf2274",
+  "detections.png": "fca24ce7820765e340c36917e8dcfcaca7c1b4ca57604f656bc89b9e1d0f5969",
+  "drawing.png": "deac4945efd41d660646fd72e1aad0bfdb699f3256f7ae45f4b45ad27d8e1eba",
+  "evaluation_truth.json": "f332a8626276ccaceb5e56d217aaac48c5dee5f6024ba4729ea97c0902bde542",
+  "inspection_camera.json": "116e4b8c93ae7e13146a8d226dae1ee84f53edc46cba023570668abcd6bed71c",
+  "validation.json": "d2f1ac694d3f4d8b32d074b820003a5c80ddcda50232a25e52ce9149c7ebe08f",
+  "world.sdf": "065b3973e03bd177cfb6d3f2b7677017c83f0f4d9b7984cbfe4bfd0ccfbb5c7b"
+}

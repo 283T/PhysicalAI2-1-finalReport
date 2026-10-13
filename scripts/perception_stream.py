@@ -63,7 +63,17 @@ class SyncedFrames:
 class StableConnectors:
     """Require all unique terminals and consecutive small position/directed-yaw changes."""
 
-    def __init__(self, required_frames=3, position_limit=0.003, yaw_limit=0.08, require_6d=False):
+    def __init__(
+        self,
+        required_frames=3,
+        position_limit=0.003,
+        yaw_limit=0.08,
+        require_6d=False,
+        required_ids=PLUG_IDS,
+    ):
+        self.required_ids = frozenset(required_ids)
+        if not self.required_ids or not self.required_ids <= PLUG_IDS:
+            raise ValueError("Known nonempty required terminal IDs needed")
         self.require_6d = require_6d
         self.previous_rotations = None
         self.required_frames = required_frames
@@ -74,7 +84,10 @@ class StableConnectors:
         self.previous_yaws = None
 
     def update(self, detections):
-        if len(detections) != len(PLUG_IDS) or {row["plug_id"] for row in detections} != PLUG_IDS:
+        if (
+            len(detections) != len(self.required_ids)
+            or {row["plug_id"] for row in detections} != self.required_ids
+        ):
             self.count, self.previous, self.previous_yaws = 0, None, None
             return False
         if self.require_6d and not all("pose_6d" in row for row in detections):

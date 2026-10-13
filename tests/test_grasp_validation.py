@@ -8,10 +8,11 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from arm_kinematics import axis_rotation
+from arm_kinematics import axis_rotation, transform
 from grasp_validation import (
     assess_hold,
     assess_opening,
+    assess_preclose_pose,
     assess_relative_grasp,
     assess_seat,
     world_link_positions,
@@ -19,6 +20,25 @@ from grasp_validation import (
 
 
 class GraspValidationTests(unittest.TestCase):
+    def test_preclose_alignment_uses_camera_body_pose_and_rejects_offset_or_twist(self):
+        body = transform([0.2, -0.1, 0.13], [0.12, -0.3, 0.7])
+        relation = transform([0, -0.002, 0], [0.1, 0.2, 0.3])
+        detection = {
+            "center_xyz_m": body[:3, 3].tolist(),
+            "rotation_world_from_connector": body[:3, :3].tolist(),
+        }
+        tool = body @ relation
+        self.assertTrue(assess_preclose_pose(detection, tool, relation)["success"])
+        displaced = tool.copy()
+        displaced[0, 3] += 0.003
+        self.assertFalse(assess_preclose_pose(detection, displaced, relation)["success"])
+        twisted = tool @ transform(rpy=[0.04, 0, 0])
+        self.assertFalse(assess_preclose_pose(detection, twisted, relation)["success"])
+        invalid = tool.copy()
+        invalid[:3, :3] = 0
+        with self.assertRaises(ValueError):
+            assess_preclose_pose(detection, invalid, relation)
+
     def test_opening_accepts_asymmetric_housing_but_rejects_empty_or_jammed_jaws(self):
         self.assertTrue(assess_opening([[0.002, 0.002], [0, 0.004]])["success"])
         self.assertFalse(assess_opening([[0, 0]])["success"])

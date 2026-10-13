@@ -10,6 +10,7 @@ import cv2
 import numpy as np
 import rclpy
 from connector_vision import detect_connectors
+from end_markers import detect_end_markers
 from inspection_camera import validate_calibration
 from perception_stream import StableConnectors, SyncedFrames, image_array
 from processes import stop_process
@@ -23,6 +24,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/perception")
     parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
+    parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument(
+        "--plugs", choices=("P1", "P2", "P3"), nargs="+", default=["P1", "P2", "P3"]
+    )
     parser.add_argument(
         "--require-6d", action="store_true", help="Require complete stable coded-face 6D poses"
     )
@@ -31,6 +36,8 @@ def main():
         "--bridge", action="store_true", help="Start ROS-Gazebo camera bridge for this run"
     )
     args = parser.parse_args()
+    if args.end_markers:
+        args.require_6d = True
     args.output.mkdir(parents=True, exist_ok=True)
     # Never leave old detections available after a failed new acquisition.
     (args.output / "detections.json").unlink(missing_ok=True)
@@ -39,7 +46,7 @@ def main():
     rclpy.init()
     node = rclpy.create_node("harness_connector_vision")
     frames = SyncedFrames()
-    stability = StableConnectors(require_6d=args.require_6d)
+    stability = StableConnectors(require_6d=args.require_6d, required_ids=args.plugs)
     info = []
     prefix = calibration["topic"]
     node.create_subscription(
@@ -92,7 +99,9 @@ def main():
             ) != (rgb_msg.width, rgb_msg.height):
                 raise ValueError("Camera stream frames or CameraInfo resolution disagree")
             bgr, depth = image_array(rgb_msg), image_array(depth_msg)
-            detections, debug = detect_connectors(bgr, depth, info[-1].k, calibration)
+            detector = detect_end_markers if args.end_markers else detect_connectors
+            detections, debug = detector(bgr, depth, info[-1].k, calibration)
+            detections = [row for row in detections if row["plug_id"] in args.plugs]
             cv2.imwrite(str(args.output / "camera.png"), bgr)
             cv2.imwrite(str(args.output / "detections.png"), debug)
             np.save(args.output / "depth.npy", depth)
@@ -101,7 +110,10 @@ def main():
             if not stability.update(detections):
                 continue
             result = {
-                "source": "registered_rgbd_color_and_marker",
+                "source": "registered_rgbd_end_tags"
+                if args.end_markers
+                else "registered_rgbd_color_and_marker",
+                "required_plugs": sorted(set(args.plugs)),
                 "frame": calibration["frame"],
                 "sensor_stamp_ns": current,
                 "stable_frames": stability.count,
@@ -119,7 +131,7 @@ def main():
             (args.output / "detections.json").write_text(json.dumps(result, indent=2) + "\n")
             print(json.dumps(result, indent=2), flush=True)
             return
-        raise RuntimeError("No complete stable three-connector detection within timeout")
+        raise RuntimeError("No complete stable detection of required plugs within timeout")
     finally:
         if bridge:
             stop_process(bridge, group=True)

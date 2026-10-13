@@ -17,7 +17,7 @@ class InspectionCameraTests(unittest.TestCase):
         return json.loads((ROOT / "configs/inspection_camera.json").read_text())
 
     def test_both_configs_have_matching_native_and_optical_axes(self):
-        for name in ("infeed_camera", "inspection_camera"):
+        for name in ("infeed_camera", "inspection_camera", "end_inspection_camera"):
             validate_calibration(json.loads((ROOT / f"configs/{name}.json").read_text()))
         data = self.calibration()
         forward = np.asarray(data["optical_to_world_rotation"])[:, 2]

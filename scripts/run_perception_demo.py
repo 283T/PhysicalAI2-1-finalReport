@@ -58,6 +58,8 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("outputs/perception_demo"))
     parser.add_argument("--verify-held-pose", action="store_true")
     parser.add_argument("--inspection-calibration", type=Path)
+    parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument("--verify-before-close", action="store_true")
     parser.add_argument("--headless", action="store_true", help="Run Gazebo server without its GUI")
     parser.add_argument(
         "--release-ai-memory",
@@ -101,6 +103,12 @@ def main():
         parser.error("--support-plug requires --pick-connector")
     if args.verify_held_pose and not args.pick_connector:
         parser.error("--verify-held-pose requires --pick-connector")
+    if args.verify_before_close and (
+        not args.pick_connector or not args.inspection_calibration or not args.end_markers
+    ):
+        parser.error(
+            "--verify-before-close requires pickup, inspection calibration and end markers"
+        )
     if args.support_plug == args.pick_connector and args.support_plug:
         parser.error("Choose different pickup and support terminals")
     if args.pick_connector:
@@ -136,6 +144,8 @@ def main():
     ]
     if args.regrasp_nest:
         generate.append("--regrasp-nest")
+    if args.end_markers:
+        generate.append("--end-markers")
     if args.inspection_calibration is not None:
         generate.extend(["--inspection-calibration", str(args.inspection_calibration)])
     factory = ["python3", "scripts/build_factory.py", "--robot", "melfa_rv4frl", "--output", models]
@@ -292,8 +302,13 @@ def main():
                 pickup.append("--keep-camera")
             if args.place_in_nest:
                 pickup.append("--place-in-nest")
+            if args.verify_before_close:
+                pickup.append("--verify-before-close")
             if args.verify_held_pose:
                 pickup.append("--verify-held-pose")
+            if args.verify_held_pose or args.verify_before_close:
+                if args.end_markers:
+                    pickup.append("--held-end-markers")
                 if args.inspection_calibration is not None:
                     pickup.extend(["--held-calibration", str(case / "inspection_camera.json")])
             run(

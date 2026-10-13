@@ -88,12 +88,12 @@ def upright_waist_path(current, goal):
     return np.asarray([current, waypoint, goal])
 
 
-def prepare_pickup_paths(arms, current, hovers, grips, bounds=None):
+def prepare_pickup_paths(arms, current, hovers, grips, bounds=None, *, parked=None):
     """Select IK branches with contiguous descent/lift before moving any arm."""
     import itertools
     import math
 
-    from arm_collision_bounds import screen_paths
+    from arm_collision_bounds import screen_paths, with_parked_arms
 
     choices = {}
     rejected = []
@@ -119,11 +119,7 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None):
                 lift_target = arm.forward(descent[-1])
                 lift_target[2, 3] += 0.10
                 lift = translation_path(arm, descent[-1], lift_target)
-                hover_path = (
-                    upright_waist_path(current[name], hover_q)
-                    if len(arms) == 2
-                    else np.asarray([current[name], hover_q])
-                )
+                hover_path = upright_waist_path(current[name], hover_q)
                 choices[name].append(
                     {
                         "hover": hover_path,
@@ -143,7 +139,12 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None):
             for phase in ("hover", "approach", "lift")
         }
         screens = (
-            {phase: screen_paths(bounds, path) for phase, path in paths.items()} if bounds else {}
+            {
+                phase: screen_paths(bounds, with_parked_arms(path, parked or {}))
+                for phase, path in paths.items()
+            }
+            if bounds
+            else {}
         )
         if all(screen["clear"] for screen in screens.values()):
             return paths, {
@@ -151,4 +152,4 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None):
                 "screens": screens,
                 "rejected_individual_candidates": rejected,
             }
-    raise ValueError("No pair of continuous IK branches passed inter-arm enclosing-box screening")
+    raise ValueError("No continuous IK branches passed active/parked arm box screening")

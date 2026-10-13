@@ -150,6 +150,19 @@ def first_overlap(bounds, joints):
     return None
 
 
+def with_parked_arms(paths, parked):
+    """Include measured idle joints as constant paths during collision screening."""
+    if set(paths) & set(parked):
+        raise ValueError("An arm cannot be moving and parked")
+    result = dict(paths)
+    for name, values in parked.items():
+        q = np.asarray(values, dtype=float)
+        if q.ndim != 1 or not len(q) or not np.isfinite(q).all():
+            raise ValueError("Finite parked joint observations required")
+        result[name] = np.repeat(q[None, :], 2, axis=0)
+    return result
+
+
 def screen_paths(bounds, paths, samples=81):
     # Bound the commanded joint change between samples to 0.02 rad.
     samples = max(

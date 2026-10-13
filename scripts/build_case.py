@@ -12,12 +12,13 @@ from assembly_case import make_case
 from build_factory import mass
 from build_world import add_board, box, child, link, plugin
 from connector_pose import FACE_CODES
+from end_markers import add_end_markers
 from inspection_camera import add_inspection_camera
 from project_paths import ROOT
 from regrasp_fixture import add_nest_to_world
 
 
-def harness_model(world, trial):
+def harness_model(world, trial, *, end_markers=False):
     model = child(world, "model", name="wire_harness_multi")
     child(model, "pose", " ".join(map(str, trial["pose_m_rad"])))
     hub = link(model, "junction")
@@ -91,6 +92,8 @@ def harness_model(world, trial):
                 cylinder = child(child(pin, "geometry"), "cylinder")
                 child(cylinder, "radius", 0.002)
                 child(cylinder, "length", 0.04)
+        if end_markers:
+            add_end_markers(terminal, plug)
         fixed = child(model, "joint", name=f"{plug}_termination", type="fixed")
         child(fixed, "parent", previous)
         child(fixed, "child", plug)
@@ -185,6 +188,7 @@ def build(
     *,
     regrasp_nest=False,
     inspection_calibration=None,
+    end_markers=False,
 ):
     output.mkdir(parents=True, exist_ok=True)
     design = case["design"]
@@ -216,7 +220,7 @@ def build(
     for shape in ("collision", "visual"):
         pallet.find(f"{shape}/geometry/box/size").text = ".60 .65 .02"
         pallet.find(f"{shape}/pose").text = "-.30 .05 .11 0 0 0"
-    harness_model(world, case["simulation_initialization"])
+    harness_model(world, case["simulation_initialization"], end_markers=end_markers)
     calibration = json.loads((ROOT / "configs/infeed_camera.json").read_text())
     camera = world.find("model[@name='overhead_camera']/link")
     camera.find("pose").text = " ".join(
@@ -260,6 +264,7 @@ def main():
     parser.add_argument("--placement-seed", type=int, default=secrets.randbelow(2**31))
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/multi_connector")
     parser.add_argument("--inspection-calibration", type=Path)
+    parser.add_argument("--end-markers", action="store_true")
     parser.add_argument(
         "--factory-world", type=Path, default=ROOT / "sim/worlds/factory_prototype.sdf"
     )
@@ -276,6 +281,7 @@ def main():
             args.factory_world,
             regrasp_nest=args.regrasp_nest,
             inspection_calibration=args.inspection_calibration,
+            end_markers=args.end_markers,
         )
     )
 

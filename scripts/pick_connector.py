@@ -10,7 +10,7 @@ from pathlib import Path
 
 import numpy as np
 import rclpy
-from arm_collision_bounds import ArmCollisionBounds, screen_paths
+from arm_collision_bounds import ArmCollisionBounds, screen_paths, with_parked_arms
 from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints, translation_path
@@ -26,6 +26,7 @@ from fixture_collision_bounds import FixtureBounds
 from grasp_validation import (
     assess_hold,
     assess_opening,
+    assess_preclose_pose,
     assess_relative_grasp,
     assess_seat,
     world_link_positions,
@@ -56,6 +57,8 @@ def main():
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--held-calibration", type=Path)
+    parser.add_argument("--held-end-markers", action="store_true")
+    parser.add_argument("--verify-before-close", action="store_true")
     parser.add_argument(
         "--verify-held-pose",
         action="store_true",
@@ -72,6 +75,8 @@ def main():
         help="Keep full RGB-D rendering rate after the accepted static observation",
     )
     args = parser.parse_args()
+    if args.verify_before_close and (not args.held_calibration or not args.held_end_markers):
+        parser.error("--verify-before-close requires an inspection calibration and end markers")
     if args.place_in_nest and not args.support_plug:
         parser.error("--place-in-nest requires --support-plug")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -107,9 +112,9 @@ def main():
     collision_bounds = (
         {
             name: ArmCollisionBounds(args.models / (name + ".urdf"), arm)
-            for name, arm in selected.items()
+            for name, arm in arms.items()
         }
-        if len(selected) == 2
+        if len(arms) == 2
         else None
     )
     report = {
@@ -219,24 +224,26 @@ def main():
 
     def receive_joints(name, msg):
         positions = dict(zip(msg.name, msg.position))
-        if all(key in positions for key in selected[name].names):
+        if all(key in positions for key in arms[name].names):
             joints[name] = (time.monotonic(), positions)
 
     joints = {}
     pubs = {}
     bridge_command = ["ros2", "run", "ros_gz_bridge", "parameter_bridge"]
-    for name in selected:
+    for name in arms:
         node.create_subscription(
             JointState,
             f"/{name}/joints",
             lambda msg, name=name: receive_joints(name, msg),
             qos_profile_sensor_data,
         )
+        bridge_command.append(f"/{name}/joints@sensor_msgs/msg/JointState[gz.msgs.Model")
+        if name not in selected:
+            continue
         topics = [f"/{name}/joint_{i}/cmd" for i in range(6)] + [
             f"/{name}/gripper/{f}/cmd" for f in ("left", "right")
         ]
         pubs[name] = [node.create_publisher(Float64, topic, 10) for topic in topics]
-        bridge_command.append(f"/{name}/joints@sensor_msgs/msg/JointState[gz.msgs.Model")
         bridge_command += [topic + "@std_msgs/msg/Float64]gz.msgs.Double" for topic in topics]
     bridge = None
     history = []
@@ -244,13 +251,14 @@ def main():
     target_q = None
     target_grip = {name: OPEN_TRAVEL_M for name in selected}
     transport_reference = None
+    parked_reference = {}
     fixtures = FixtureBounds(args.world) if args.place_in_nest else None
 
     def sample():
         if (
             not truth
-            or any(name not in joints for name in selected)
-            or min([truth[0][0]] + [joints[name][0] for name in selected]) < time.monotonic() - 0.5
+            or any(name not in joints for name in arms)
+            or min([truth[0][0]] + [joints[name][0] for name in arms]) < time.monotonic() - 0.5
         ):
             return None
         states = {}
@@ -272,6 +280,11 @@ def main():
             "time_s": time.monotonic(),
             "sim_time_s": truth[0][4],
             "arms": states,
+            "parked_joints_rad": {
+                name: [joints[name][1][key] for key in arm.names]
+                for name, arm in arms.items()
+                if name not in selected
+            },
             "cable_z_span_m": float(np.ptp([point[2] for point in truth[0][3].values()])),
         }
         if len(states) == 1:
@@ -281,6 +294,20 @@ def main():
     def publish(*, allow_contact_release=False):
         if contacts and not allow_contact_release:
             raise RuntimeError("Inter-arm collision detected; see inter_arm_contacts")
+        if not allow_contact_release:
+            # IK and box screening can take longer than the feedback freshness
+            # window. Process incoming idle-arm feedback before sending motion.
+            deadline = time.monotonic() + 2
+            while any(joints[name][0] < time.monotonic() - 0.5 for name in parked_reference):
+                if time.monotonic() > deadline:
+                    raise RuntimeError("Lost parked arm feedback")
+                rclpy.spin_once(node, timeout_sec=0.01)
+            for name, reference in parked_reference.items():
+                if joints[name][0] < time.monotonic() - 0.5:
+                    raise RuntimeError("Lost parked arm feedback")
+                actual = np.asarray([joints[name][1][key] for key in arms[name].names])
+                if np.max(np.abs(actual - reference)) > 0.01:
+                    raise RuntimeError("Parked arm moved; refusing planned motion")
         for name in selected:
             for pub, value in zip(
                 pubs[name], [*target_q[name], target_grip[name], target_grip[name]]
@@ -329,6 +356,51 @@ def main():
         if len(rows) < 10:
             raise RuntimeError("Insufficient fresh observations in " + phase)
         return rows
+
+    def inspect_pose(phase, rows, *, evaluate=False):
+        current_phase[0] = phase
+        output = args.output / phase
+        command = [
+            "python3",
+            "scripts/evaluate_perception.py" if evaluate else "scripts/observe_connectors.py",
+            "--require-6d",
+            "--output",
+            str(output),
+            "--plugs",
+            *[assigned[name]["plug_id"] for name in selected],
+        ]
+        if not evaluate:
+            command.append("--bridge")
+        if args.held_end_markers:
+            command.append("--end-markers")
+        if args.held_calibration:
+            command.extend(["--calibration", str(args.held_calibration)])
+        with (args.output / (phase + ".log")).open("w") as log:
+            process = subprocess.Popen(
+                command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True
+            )
+            try:
+                deadline = time.monotonic() + 130
+                while process.poll() is None:
+                    if time.monotonic() > deadline:
+                        raise RuntimeError("Inspection timed out in " + phase)
+                    publish()
+                    if sample() is None:
+                        raise RuntimeError("Lost feedback in " + phase)
+                    observation = record(phase)
+                    if observation is not None and (
+                        not rows or observation["sim_time_s"] != rows[-1]["sim_time_s"]
+                    ):
+                        rows.append(observation)
+                result = output / ("validation.json" if evaluate else "detections.json")
+                data = (
+                    json.loads(result.read_text())
+                    if result.exists()
+                    else {"success": False, "reason": "No inspection result"}
+                )
+                return data, process.returncode
+            finally:
+                stop_process(process, group=True)
 
     def move(phase, targets, *, straight=False, ready_paths=None, joint_motion=False):
         current_phase[0] = phase
@@ -379,7 +451,9 @@ def main():
                 )
         check_tool_clearance(selected, paths)
         if collision_bounds is not None:
-            screening = screen_paths(collision_bounds, paths)
+            screening = screen_paths(
+                collision_bounds, with_parked_arms(paths, observation["parked_joints_rad"])
+            )
             report.setdefault("collision_preflight", []).append({"phase": phase, **screening})
             if not screening["clear"]:
                 raise RuntimeError(
@@ -453,7 +527,7 @@ def main():
             bridge = subprocess.Popen(
                 bridge_command, stdout=log, stderr=log, start_new_session=True
             )
-            if len(selected) == 2:
+            if len(arms) == 2:
                 info = subprocess.run(
                     ["gz", "topic", "-i", "-t", CONTACT_TOPIC],
                     capture_output=True,
@@ -478,6 +552,9 @@ def main():
                     "Inter-arm collision detected before motion; see inter_arm_contacts"
                 )
             target_q = {name: np.asarray(sample()["arms"][name]["q_rad"]) for name in selected}
+            parked_reference = {
+                name: np.asarray(q) for name, q in sample()["parked_joints_rad"].items()
+            }
             for name, arm in selected.items():
                 measured_fk = arm.forward(target_q[name])
                 actual, rotation = truth[0][1][name]
@@ -501,6 +578,7 @@ def main():
                 hovers,
                 grips,
                 collision_bounds,
+                parked=baseline["parked_joints_rad"],
             )
             report["path_preparation"] = preparation
             report["prepared_joint_paths"] = {
@@ -518,6 +596,36 @@ def main():
                 ):
                     raise RuntimeError("Terminal moved before descent; need new image")
             move("approach", grips, ready_paths=prepared["approach"])
+            if args.verify_before_close:
+                observed, code = inspect_pose("preclose_observations", [])
+                report["preclose_check"] = {"success": False, "reason": "Missing inspection"}
+                if code or "connectors" not in observed:
+                    raise RuntimeError("Pre-close RGB-D observation failed; refusing closure")
+                live = sample()
+                skew = (
+                    abs(live["sim_time_s"] - observed["sensor_stamp_ns"] / 1e9)
+                    if live is not None
+                    else float("inf")
+                )
+                if skew > 0.5:
+                    raise RuntimeError("Stale pre-close observation; refusing closure")
+                by_plug = {row["plug_id"]: row for row in observed["connectors"]}
+                checks = {}
+                for name in selected:
+                    body = by_plug[assigned[name]["plug_id"]]["pose_6d"]
+                    tool = np.eye(4)
+                    tool[:3, :3] = live["arms"][name]["tcp_rotation_world"]
+                    tool[:3, 3] = live["arms"][name]["tcp"]
+                    checks[name] = assess_preclose_pose(
+                        body, tool, assigned[name]["grasp_candidate"]["connector_from_tool"]
+                    )
+                report["preclose_check"] = {
+                    "success": all(check["success"] for check in checks.values()),
+                    "stamp_skew_s": skew,
+                    "arms": checks,
+                }
+                if not report["preclose_check"]["success"]:
+                    raise RuntimeError("Pre-close RGB-D alignment rejected; refusing closure")
             target_grip = {name: 0.0 for name in selected}
             closed = dwell("close", 4)[-1]
             report.update(baseline=baseline, closed=closed, pickup_hold_success=False)
@@ -547,63 +655,25 @@ def main():
                 pickup_hold_success=all(h["success"] for h in holds.values()),
             )
             if args.verify_held_pose:
-                check_output = args.output / "held_pose_check"
-                current_phase[0] = "held_pose_check"
                 check_rows = []
-                with (args.output / "held_pose_check.log").open("w") as check_log:
-                    check = subprocess.Popen(
-                        [
-                            "python3",
-                            "scripts/evaluate_perception.py",
-                            "--require-6d",
-                            "--output",
-                            str(check_output),
-                            *(
-                                ["--calibration", str(args.held_calibration)]
-                                if args.held_calibration is not None
-                                else []
-                            ),
-                        ],
-                        stdout=check_log,
-                        stderr=subprocess.STDOUT,
-                        start_new_session=True,
+                try:
+                    result, code = inspect_pose("held_pose_check", check_rows, evaluate=True)
+                    report["held_pose_check"] = result
+                    if code or not result.get("success", False):
+                        raise RuntimeError("Held RGB-D pose check failed; refusing transport")
+                finally:
+                    holds = {
+                        name: assess_hold(
+                            baseline["arms"][name],
+                            [s["arms"][name] for s in [*held, *check_rows]],
+                            closed["arms"][name],
+                        )
+                        for name in selected
+                    }
+                    report.update(
+                        holds=holds,
+                        pickup_hold_success=all(h["success"] for h in holds.values()),
                     )
-                    try:
-                        deadline = time.monotonic() + 130
-                        while check.poll() is None:
-                            if time.monotonic() > deadline:
-                                raise RuntimeError("Held RGB-D pose check timed out")
-                            publish()
-                            if sample() is None:
-                                raise RuntimeError("Lost feedback during held pose check")
-                            observation = record("held_pose_check")
-                            if observation is not None and (
-                                not check_rows
-                                or observation["sim_time_s"] != check_rows[-1]["sim_time_s"]
-                            ):
-                                check_rows.append(observation)
-                        validation = check_output / "validation.json"
-                        report["held_pose_check"] = (
-                            json.loads(validation.read_text())
-                            if validation.exists()
-                            else {"success": False, "reason": "No independent pose result"}
-                        )
-                        if check.returncode or not report["held_pose_check"]["success"]:
-                            raise RuntimeError("Held RGB-D pose check failed; refusing transport")
-                    finally:
-                        stop_process(check, group=True)
-                        holds = {
-                            name: assess_hold(
-                                baseline["arms"][name],
-                                [s["arms"][name] for s in [*held, *check_rows]],
-                                closed["arms"][name],
-                            )
-                            for name in selected
-                        }
-                        report.update(
-                            holds=holds,
-                            pickup_hold_success=all(h["success"] for h in holds.values()),
-                        )
             if args.place_in_nest:
                 if not report["pickup_hold_success"]:
                     raise RuntimeError("Holding failed; refusing nest transfer")

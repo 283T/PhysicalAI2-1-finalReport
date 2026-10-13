@@ -19,7 +19,13 @@ def main():
     parser.add_argument("--require-6d", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
+    parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument(
+        "--plugs", choices=("P1", "P2", "P3"), nargs="+", default=["P1", "P2", "P3"]
+    )
     args = parser.parse_args()
+    if args.end_markers:
+        args.require_6d = True
     args.output.mkdir(parents=True, exist_ok=True)
     for name in ("validation.json", "evaluation_truth.json"):
         (args.output / name).unlink(missing_ok=True)
@@ -52,6 +58,9 @@ def main():
             str(args.output),
             "--calibration",
             str(args.calibration),
+            *(["--end-markers"] if args.end_markers else []),
+            "--plugs",
+            *args.plugs,
             *(["--require-6d"] if args.require_6d else []),
         ],
         start_new_session=True,
@@ -80,9 +89,12 @@ def main():
             direction = orientation[:, 0]
             yaw = float(np.arctan2(direction[1], direction[0]))
             # Compare XY to the housing center; perceived Z is the visible top face, not center.
-            xy_error = float(
-                np.linalg.norm(center[:2] - np.asarray(detection["surface_xyz_m"])[:2])
+            measured = (
+                detection["pose_6d"]["center_xyz_m"]
+                if args.end_markers
+                else detection["surface_xyz_m"]
             )
+            xy_error = float(np.linalg.norm(center[:2] - np.asarray(measured)[:2]))
             angle_error = abs(
                 float(
                     np.arctan2(
@@ -112,17 +124,24 @@ def main():
                     )
                 )
         result = {
-            "success": len(rows) == 3
+            "success": {row["plug_id"] for row in rows} == set(args.plugs)
+            and len(rows) == len(set(args.plugs))
             and all(row["xy_error_m"] < 0.008 and row["yaw_error_rad"] < 0.15 for row in rows),
             "stamp_skew_s": skew,
             "connectors": rows,
+            "required_plugs": sorted(set(args.plugs)),
+            "measurement_method": "end_tags" if args.end_markers else "colored_face_codes",
             "scope": "RGB-D XY and directed planar yaw; ideal extrinsics, colored marked prototypes; no 6D pose or robot grasp",
         }
         if args.require_6d:
-            result["success"] = len(rows) == 3 and all(
-                row.get("center_error_m", float("inf")) < 0.005
-                and row.get("orientation_error_rad", float("inf")) < 0.12
-                for row in rows
+            result["success"] = (
+                {row["plug_id"] for row in rows} == set(args.plugs)
+                and len(rows) == len(set(args.plugs))
+                and all(
+                    row.get("center_error_m", float("inf")) < 0.005
+                    and row.get("orientation_error_rad", float("inf")) < 0.12
+                    for row in rows
+                )
             )
             result["scope"] = (
                 "Full coded-prototype RGB-D center/orientation with ideal extrinsics; no object grasp or cable control"

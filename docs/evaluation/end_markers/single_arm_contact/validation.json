@@ -1,0 +1,501 @@
+{
+  "success": false,
+  "plug_id": "P3",
+  "support_plug": null,
+  "assignment": {
+    "right_arm": "P3"
+  },
+  "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
+  "world_sha256": "26ec43a7aa1e6819519fe6c4e14b0a976057a8627c8a7c06da2cba735eb12250",
+  "model_sha256": {
+    "right_arm": "b3a0761e727050fe831a3ef8d436b8518286cf9c6ed133a307442bd75dc6b81a"
+  },
+  "camera_rate_during_motion_hz": 0.5,
+  "path_preparation": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {},
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "prepared_joint_paths": {
+    "hover": {
+      "right_arm": [
+        [
+          0.0,
+          -5.2235786976698384e-05,
+          1.8756302280906216e-05,
+          0.0,
+          -2.925727421538794e-10,
+          0.0
+        ],
+        [
+          -2.920047716647533,
+          1.0807461649988919,
+          1.351918648604621,
+          0.2295721282814473,
+          0.5447236038558307,
+          2.665159097598296
+        ]
+      ]
+    },
+    "approach": {
+      "right_arm": [
+        [
+          -2.920047716647533,
+          1.0807461649988919,
+          1.351918648604621,
+          0.2295721282814473,
+          0.5447236038558307,
+          2.665159097598296
+        ],
+        [
+          -2.9177242977478572,
+          1.1056007201243736,
+          1.3349635727235576,
+          0.2291039580356171,
+          0.5384243457877571,
+          2.6672044800697274
+        ],
+        [
+          -2.9157512155835716,
+          1.130289917271623,
+          1.3182247093028874,
+          0.23156097374331952,
+          0.5303965330143788,
+          2.666107014467993
+        ],
+        [
+          -2.9137886396174886,
+          1.1553136280546479,
+          1.3005188546053335,
+          0.23389428729529083,
+          0.5229878850209774,
+          2.6651607676015483
+        ],
+        [
+          -2.9118375309389743,
+          1.1806827282163475,
+          1.2818043063925546,
+          0.236031076372604,
+          0.5162295375111955,
+          2.664444577967443
+        ],
+        [
+          -2.9098977961577916,
+          1.2064093810547871,
+          1.2620485260847216,
+          0.23794430739473044,
+          0.5101403700164454,
+          2.6639862964678853
+        ],
+        [
+          -2.907969350515962,
+          1.232508910777884,
+          1.2412138869555116,
+          0.23960713224080823,
+          0.5047411845987461,
+          2.663813621994171
+        ],
+        [
+          -2.9060521100185195,
+          1.259000161863126,
+          1.2192568725228368,
+          0.2409923043426135,
+          0.5000551374084327,
+          2.663954804443826
+        ],
+        [
+          -2.9041459911196537,
+          1.2859060538026679,
+          1.1961269938702592,
+          0.24207238537973672,
+          0.49610827777770217,
+          2.664438470079861
+        ],
+        [
+          -2.9022509106904515,
+          1.3132542741260744,
+          1.1717654372914759,
+          0.24281996562867586,
+          0.49293021859680625,
+          2.665293439231587
+        ],
+        [
+          -2.9003667859932114,
+          1.3410781536585592,
+          1.1461033595513586,
+          0.24320787490392984,
+          0.49055497549315896,
+          2.666548563511401
+        ],
+        [
+          -2.8984935346570633,
+          1.369417787079283,
+          1.1190597102916493,
+          0.2432093674358178,
+          0.4890220310336287,
+          2.66823260268275
+        ]
+      ]
+    },
+    "lift": {
+      "right_arm": [
+        [
+          -2.8984935346570633,
+          1.369417787079283,
+          1.1190597102916493,
+          0.2432093674358178,
+          0.4890220310336287,
+          2.66823260268275
+        ],
+        [
+          -2.8984947596429644,
+          1.342233445451137,
+          1.1390831419241705,
+          0.2399751658158603,
+          0.49597621294980465,
+          2.67189580703066
+        ],
+        [
+          -2.8984948609901116,
+          1.315882601295771,
+          1.1570177764939513,
+          0.23632696577652296,
+          0.5041530011769216,
+          2.6760508083003844
+        ],
+        [
+          -2.8984948919782245,
+          1.2900584148442509,
+          1.1736475211527257,
+          0.2324877813039321,
+          0.5130948299771216,
+          2.680445038958526
+        ],
+        [
+          -2.898494910914528,
+          1.2647467397860754,
+          1.1890099729851678,
+          0.22849027918313972,
+          0.5227798205825588,
+          2.6850446428594488
+        ],
+        [
+          -2.898494916625257,
+          1.2399367252440914,
+          1.203142743444492,
+          0.22437202947653154,
+          0.5331834527183562,
+          2.6898108010498136
+        ],
+        [
+          -2.8984949107190303,
+          1.2156207467522269,
+          1.2160781186878475,
+          0.22016718405358532,
+          0.5442830858874167,
+          2.694708274947773
+        ],
+        [
+          -2.8984948947472766,
+          1.1917940391984312,
+          1.2278437546994145,
+          0.21590664246152103,
+          0.5560576536232715,
+          2.6997052120042233
+        ],
+        [
+          -2.8984948702156825,
+          1.168454339895228,
+          1.2384633166273817,
+          0.21161812516795941,
+          0.5684873863505578,
+          2.7047730568497226
+        ],
+        [
+          -2.89849483855438,
+          1.1456015881079407,
+          1.2479570018150385,
+          0.20732628691199495,
+          0.5815535964169009,
+          2.709886425678791
+        ],
+        [
+          -2.8984948010967777,
+          1.1232376691804522,
+          1.256341970489276,
+          0.20305286129237693,
+          0.5952385125123292,
+          2.715022952349229
+        ]
+      ]
+    }
+  },
+  "error": "Inter-arm collision detected; see inter_arm_contacts",
+  "inter_arm_contacts": [
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        1.6249938216664098e-05,
+        0.0002550867141530488,
+        0.00010279218760540612
+      ],
+      "sim_time_s": 13.283
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        1.6249938216664098e-05,
+        0.0002550867141530488,
+        0.00010279218760540612
+      ],
+      "sim_time_s": 13.283
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        1.530710191503149e-05,
+        0.0002541319879359826,
+        0.00010206026089352454
+      ],
+      "sim_time_s": 13.284
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        1.530710191503149e-05,
+        0.0002541319879359826,
+        0.00010206026089352454
+      ],
+      "sim_time_s": 13.284
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        1.3980441252429377e-05,
+        0.0002531431065057998,
+        0.00010101649783767466
+      ],
+      "sim_time_s": 13.285
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        1.3980441252429377e-05,
+        0.0002531431065057998,
+        0.00010101649783767466
+      ],
+      "sim_time_s": 13.285
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        4.1566386200450825e-06,
+        0.00025214721209419495,
+        9.12649192540203e-05
+      ],
+      "sim_time_s": 13.286
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        4.1566386200450825e-06,
+        0.00025214721209419495,
+        9.12649192540203e-05
+      ],
+      "sim_time_s": 13.286
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.0002511515166918044,
+        8.484395207758408e-05
+      ],
+      "sim_time_s": 13.287
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.0002511515166918044,
+        8.484395207758408e-05
+      ],
+      "sim_time_s": 13.287
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.00025015560477661123,
+        7.888875919116148e-05,
+        7.888875919116148e-05
+      ],
+      "sim_time_s": 13.288
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.00025015560477661123,
+        7.888875919116148e-05,
+        7.888875919116148e-05
+      ],
+      "sim_time_s": 13.288
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.0002491595278839223,
+        7.330480164610148e-05,
+        7.330480164608675e-05
+      ],
+      "sim_time_s": 13.289
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.0002491595278839223,
+        7.330480164610148e-05,
+        7.330480164608675e-05
+      ],
+      "sim_time_s": 13.289
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.0002481632928592171,
+        6.804452383801017e-05
+      ],
+      "sim_time_s": 13.29
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.0002481632928592171,
+        6.804452383801017e-05
+      ],
+      "sim_time_s": 13.29
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.00024716690743285526,
+        6.309183106953141e-05
+      ],
+      "sim_time_s": 13.291
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.00024716690743285526,
+        6.309183106953141e-05
+      ],
+      "sim_time_s": 13.291
+    },
+    {
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "depth_m": [
+        0.00024617038046442877,
+        5.8450438668433905e-05,
+        0.00024617038046442785
+      ],
+      "sim_time_s": 13.292
+    },
+    {
+      "collision1": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "depth_m": [
+        0.00024617038046442877,
+        5.8450438668433905e-05,
+        0.00024617038046442785
+      ],
+      "sim_time_s": 13.292
+    }
+  ],
+  "contact_messages": 8191,
+  "contact_diagnostics": [
+    {
+      "phase": "initialization",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 288,
+      "first_sim_time_s": 8.089,
+      "last_sim_time_s": 8.376,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1519,
+      "first_sim_time_s": 8.377,
+      "last_sim_time_s": 9.895,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "hover",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 3388,
+      "first_sim_time_s": 9.896,
+      "last_sim_time_s": 13.283,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "hover",
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "messages": 2,
+      "first_sim_time_s": 13.283,
+      "last_sim_time_s": 13.283,
+      "max_depth_m": 0.0002550867141530488
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_rv4frl_upper_arm::left_arm_rv4frl_upper_arm_collision",
+      "collision2": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "messages": 1998,
+      "first_sim_time_s": 13.284,
+      "last_sim_time_s": 14.282,
+      "max_depth_m": 0.0002541319879359826
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 999,
+      "first_sim_time_s": 13.284,
+      "last_sim_time_s": 14.282,
+      "max_depth_m": 9.905271047827569e-16
+    }
+  ],
+  "contact_sensor_arms": [
+    "left_arm",
+    "right_arm"
+  ],
+  "contact_diagnostics_scope": "Sensors on contact_sensor_arms only; counts may include duplicate sensors. Penetration depth is not measured contact force.",
+  "camera_rate_restored_hz": 5.0
+}

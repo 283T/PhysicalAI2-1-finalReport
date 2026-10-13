@@ -23,6 +23,19 @@ def detections(yaw=0):
 
 
 class PerceptionStreamTest(unittest.TestCase):
+    def test_diagnostic_subset_requires_every_selected_plug(self):
+        stable = StableConnectors(required_ids=["P1", "P3"])
+        rows = [row for row in detections() if row["plug_id"] != "P2"]
+        self.assertFalse(stable.update(rows))
+        self.assertFalse(stable.update(rows))
+        self.assertTrue(stable.update(rows))
+        self.assertFalse(stable.update(rows[:1]))
+        self.assertFalse(stable.update([rows[0], rows[0]]))
+        self.assertFalse(StableConnectors().update(rows))
+        for ids in ([], ["P4"]):
+            with self.assertRaises(ValueError):
+                StableConnectors(required_ids=ids)
+
     def test_pairing_rejects_skew_and_replays_and_bounds_memory(self):
         frames = SyncedFrames(capacity=2)
         frames.add(message(1), "rgb")

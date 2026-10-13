@@ -41,9 +41,11 @@ def export(source, output):
         shutil.copyfile(pickup / "observations/calibration.json", output / "calibration.json")
     depth = np.load(pickup / "observations/depth.npy")
     np.savez_compressed(output / "depth.npz", depth=depth)
-    pose_check = pickup / "held_pose_check"
-    if pose_check.exists():
-        target = output / "held_pose_check"
+    for phase in ("preclose_observations", "held_pose_check"):
+        pose_check = pickup / phase
+        if not pose_check.exists():
+            continue
+        target = output / phase
         target.mkdir(exist_ok=True)
         for name in (
             "validation.json",
@@ -59,8 +61,8 @@ def export(source, output):
                 shutil.copyfile(pose_check / name, target / name)
         if (pose_check / "depth.npy").exists():
             np.savez_compressed(target / "depth.npz", depth=np.load(pose_check / "depth.npy"))
-        if (pickup / "held_pose_check.log").exists():
-            shutil.copyfile(pickup / "held_pose_check.log", target / "evaluation.log")
+        if (pickup / (phase + ".log")).exists():
+            shutil.copyfile(pickup / (phase + ".log"), target / "evaluation.log")
     rows = json.loads((pickup / "trajectory.json").read_text())
     references = next((row["arms"] for row in reversed(rows) if row["phase"] == "close"), None)
     transport_references = next(
