@@ -41,7 +41,8 @@ def export(source, output):
         shutil.copyfile(pickup / "observations/calibration.json", output / "calibration.json")
     depth = np.load(pickup / "observations/depth.npy")
     np.savez_compressed(output / "depth.npz", depth=depth)
-    for phase in ("preclose_observations", "held_pose_check"):
+    phases = [p.name for p in sorted(pickup.glob("preclose_observations*")) if p.is_dir()]
+    for phase in [*phases, "held_pose_check"]:
         pose_check = pickup / phase
         if not pose_check.exists():
             continue

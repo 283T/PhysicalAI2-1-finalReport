@@ -60,6 +60,7 @@ def main():
     parser.add_argument("--inspection-calibration", type=Path)
     parser.add_argument("--end-markers", action="store_true")
     parser.add_argument("--verify-before-close", action="store_true")
+    parser.add_argument("--correct-before-close", action="store_true")
     parser.add_argument("--headless", action="store_true", help="Run Gazebo server without its GUI")
     parser.add_argument(
         "--release-ai-memory",
@@ -101,6 +102,8 @@ def main():
         parser.error("--place-in-nest requires --regrasp-nest, --pick-connector and --support-plug")
     if args.support_plug and not args.pick_connector:
         parser.error("--support-plug requires --pick-connector")
+    if args.correct_before_close and not args.verify_before_close:
+        parser.error("--correct-before-close requires --verify-before-close")
     if args.verify_held_pose and not args.pick_connector:
         parser.error("--verify-held-pose requires --pick-connector")
     if args.verify_before_close and (
@@ -304,6 +307,8 @@ def main():
                 pickup.append("--place-in-nest")
             if args.verify_before_close:
                 pickup.append("--verify-before-close")
+            if args.correct_before_close:
+                pickup.append("--correct-before-close")
             if args.verify_held_pose:
                 pickup.append("--verify-held-pose")
             if args.verify_held_pose or args.verify_before_close:

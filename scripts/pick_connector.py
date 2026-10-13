@@ -37,6 +37,7 @@ from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from plan_nest_transfer import plan_to_nest
 from plan_reach import load_arms, plan_reach
+from preclose_alignment import correction_path, desired_tool_pose
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
@@ -59,6 +60,7 @@ def main():
     parser.add_argument("--held-calibration", type=Path)
     parser.add_argument("--held-end-markers", action="store_true")
     parser.add_argument("--verify-before-close", action="store_true")
+    parser.add_argument("--correct-before-close", action="store_true")
     parser.add_argument(
         "--verify-held-pose",
         action="store_true",
@@ -77,6 +79,8 @@ def main():
     args = parser.parse_args()
     if args.verify_before_close and (not args.held_calibration or not args.held_end_markers):
         parser.error("--verify-before-close requires an inspection calibration and end markers")
+    if args.correct_before_close and not args.verify_before_close:
+        parser.error("--correct-before-close requires --verify-before-close")
     if args.place_in_nest and not args.support_plug:
         parser.error("--place-in-nest requires --support-plug")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -597,35 +601,57 @@ def main():
                     raise RuntimeError("Terminal moved before descent; need new image")
             move("approach", grips, ready_paths=prepared["approach"])
             if args.verify_before_close:
-                observed, code = inspect_pose("preclose_observations", [])
-                report["preclose_check"] = {"success": False, "reason": "Missing inspection"}
-                if code or "connectors" not in observed:
-                    raise RuntimeError("Pre-close RGB-D observation failed; refusing closure")
-                live = sample()
-                skew = (
-                    abs(live["sim_time_s"] - observed["sensor_stamp_ns"] / 1e9)
-                    if live is not None
-                    else float("inf")
-                )
-                if skew > 0.5:
-                    raise RuntimeError("Stale pre-close observation; refusing closure")
-                by_plug = {row["plug_id"]: row for row in observed["connectors"]}
-                checks = {}
-                for name in selected:
-                    body = by_plug[assigned[name]["plug_id"]]["pose_6d"]
-                    tool = np.eye(4)
-                    tool[:3, :3] = live["arms"][name]["tcp_rotation_world"]
-                    tool[:3, 3] = live["arms"][name]["tcp"]
-                    checks[name] = assess_preclose_pose(
-                        body, tool, assigned[name]["grasp_candidate"]["connector_from_tool"]
+                report["preclose_iterations"] = []
+                # One bounded correction; every attempt needs a new stable RGB-D observation.
+                for iteration in range(2 if args.correct_before_close else 1):
+                    phase = "preclose_observations" + (f"_{iteration}" if iteration else "")
+                    report["preclose_check"] = {"success": False, "reason": "Missing inspection"}
+                    observed, code = inspect_pose(phase, [])
+                    if code or "connectors" not in observed:
+                        raise RuntimeError("Pre-close RGB-D observation failed; refusing closure")
+                    live = sample()
+                    skew = (
+                        abs(live["sim_time_s"] - observed["sensor_stamp_ns"] / 1e9)
+                        if live is not None
+                        else float("inf")
                     )
-                report["preclose_check"] = {
-                    "success": all(check["success"] for check in checks.values()),
-                    "stamp_skew_s": skew,
-                    "arms": checks,
-                }
-                if not report["preclose_check"]["success"]:
-                    raise RuntimeError("Pre-close RGB-D alignment rejected; refusing closure")
+                    if skew > 0.5:
+                        raise RuntimeError("Stale pre-close observation; refusing closure")
+                    by_plug = {row["plug_id"]: row for row in observed["connectors"]}
+                    checks, goals = {}, {}
+                    for name in selected:
+                        body = by_plug[assigned[name]["plug_id"]]["pose_6d"]
+                        relation = assigned[name]["grasp_candidate"]["connector_from_tool"]
+                        tool = np.eye(4)
+                        tool[:3, :3] = live["arms"][name]["tcp_rotation_world"]
+                        tool[:3, 3] = live["arms"][name]["tcp"]
+                        checks[name] = assess_preclose_pose(body, tool, relation)
+                        goals[name] = desired_tool_pose(body, relation)
+                    report["preclose_check"] = {
+                        "success": all(check["success"] for check in checks.values()),
+                        "stamp_skew_s": skew,
+                        "arms": checks,
+                    }
+                    report["preclose_iterations"].append(
+                        {"phase": phase, **report["preclose_check"]}
+                    )
+                    if report["preclose_check"]["success"]:
+                        break
+                    if iteration or not args.correct_before_close:
+                        raise RuntimeError("Pre-close RGB-D alignment rejected; refusing closure")
+                    paths = {
+                        name: correction_path(arm, live["arms"][name]["q_rad"], goals[name])
+                        for name, arm in selected.items()
+                    }
+                    report["preclose_correction"] = {
+                        "goals": {name: pose.tolist() for name, pose in goals.items()},
+                        "source_phase": phase,
+                        "maximum_translation_m": 0.005,
+                        "maximum_rotation_rad": 0.10,
+                    }
+                    if any(value != OPEN_TRAVEL_M for value in target_grip.values()):
+                        raise RuntimeError("Pre-close correction requires open jaw commands")
+                    move("preclose_correction", goals, ready_paths=paths)
             target_grip = {name: 0.0 for name in selected}
             closed = dwell("close", 4)[-1]
             report.update(baseline=baseline, closed=closed, pickup_hold_success=False)

@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "stamp_skew_s": 0.001,
+  "connectors": [
+    {
+      "plug_id": "P3",
+      "true_center_xyz_m": [
+        -0.2776588730693821,
+        0.2803648942478118,
+        0.2317835589117181
+      ],
+      "xy_error_m": 0.0002241303257364905,
+      "yaw_error_rad": 0.0008534323346096607,
+      "surface_above_center_m": 0.00047912855287485234,
+      "center_error_m": 0.00022879077061922076,
+      "orientation_error_rad": 0.024000598730090583
+    }
+  ],
+  "required_plugs": [
+    "P3"
+  ],
+  "measurement_method": "end_tags",
+  "scope": "Full coded-prototype RGB-D center/orientation with ideal extrinsics; no object grasp or cable control"
+}

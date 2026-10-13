@@ -4,6 +4,7 @@ import numpy as np
 from arm_kinematics import quaternion_rotation, rotation_error
 from cooperative_transfer import rigid_pose
 from gripper_model import MAX_TRAVEL_M, gap_m
+from preclose_alignment import desired_tool_pose
 
 
 def world_link_positions(poses, model, links):
@@ -116,10 +117,7 @@ def assess_opening(fingers, housing_width=0.020):
 
 def assess_preclose_pose(detection, tool, connector_from_tool):
     """Check RGB-D connector pose against the stationary tool before closure."""
-    body = np.eye(4)
-    body[:3, :3] = detection["rotation_world_from_connector"]
-    body[:3, 3] = detection["center_xyz_m"]
-    desired = rigid_pose(body) @ rigid_pose(connector_from_tool)
+    desired = desired_tool_pose(detection, connector_from_tool)
     tool = rigid_pose(tool)
     distance = float(np.linalg.norm(desired[:3, 3] - tool[:3, 3]))
     angle = float(np.linalg.norm(rotation_error(desired[:3, :3], tool[:3, :3])))
