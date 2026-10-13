@@ -1,0 +1,24 @@
+{
+  "processed_frames": 2,
+  "frames": [
+    {
+      "sensor_stamp_ns": 70000000000,
+      "elapsed_wall_s": 29.62267342999985,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 1
+    },
+    {
+      "sensor_stamp_ns": 78000000000,
+      "elapsed_wall_s": 88.73052774899952,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 2
+    }
+  ],
+  "success": false,
+  "timeout_s": 90.0,
+  "elapsed_wall_s": 90.004427416
+}

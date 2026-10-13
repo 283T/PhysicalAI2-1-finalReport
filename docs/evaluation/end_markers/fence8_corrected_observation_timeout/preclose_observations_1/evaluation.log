@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/workspace/scripts/observe_connectors.py", line 161, in <module>
+    main()
+  File "/workspace/scripts/observe_connectors.py", line 148, in main
+    raise RuntimeError("No complete stable detection of required plugs within timeout")
+RuntimeError: No complete stable detection of required plugs within timeout

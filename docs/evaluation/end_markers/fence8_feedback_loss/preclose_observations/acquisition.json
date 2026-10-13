@@ -1,0 +1,32 @@
+{
+  "processed_frames": 3,
+  "frames": [
+    {
+      "sensor_stamp_ns": 27000000000,
+      "elapsed_wall_s": 12.040162338999835,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 1
+    },
+    {
+      "sensor_stamp_ns": 28000000000,
+      "elapsed_wall_s": 15.818654173999676,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 2
+    },
+    {
+      "sensor_stamp_ns": 30000000000,
+      "elapsed_wall_s": 22.695584551999673,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 3
+    }
+  ],
+  "success": true,
+  "timeout_s": 180.0,
+  "elapsed_wall_s": 23.0011115519992
+}

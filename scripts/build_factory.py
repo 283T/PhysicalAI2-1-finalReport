@@ -94,6 +94,7 @@ def arm(
     backstop=False,
     capture_fences=False,
     front_fence_side="both",
+    fence_width_m=0.012,
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -132,6 +133,7 @@ def arm(
         backstop=backstop,
         capture_fences=capture_fences,
         front_fence_side=front_fence_side,
+        fence_width_m=fence_width_m,
     )
     if urdf_output is not None:
         ET.indent(robot)
@@ -175,6 +177,7 @@ def main():
     parser.add_argument("--gripper-p-gain", type=float, default=1000)
     parser.add_argument("--backstop-gripper", action="store_true")
     parser.add_argument("--capture-gripper", action="store_true")
+    parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
         "--split-finger-contacts",
@@ -182,6 +185,10 @@ def main():
         help="Use two separated contact pads per finger",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.fence_width_mm) or not 4 <= args.fence_width_mm <= 12:
+        parser.error("--fence-width-mm must be finite and between 4 and 12")
+    if args.fence_width_mm != 12 and not (args.capture_gripper or args.backstop_gripper):
+        parser.error("--fence-width-mm requires capture or backstop gripper")
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
     if args.front_fence_side != "both" and not args.capture_gripper:
@@ -211,6 +218,7 @@ def main():
         backstop=args.backstop_gripper,
         capture_fences=args.capture_gripper,
         front_fence_side=args.front_fence_side,
+        fence_width_m=args.fence_width_mm / 1000,
     )
     arm(
         world,
@@ -224,6 +232,7 @@ def main():
         backstop=args.backstop_gripper,
         capture_fences=args.capture_gripper,
         front_fence_side=args.front_fence_side,
+        fence_width_m=args.fence_width_mm / 1000,
     )
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")

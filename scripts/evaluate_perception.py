@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 import subprocess
 from pathlib import Path
 
@@ -20,10 +21,13 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
     parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument("--timeout", type=float, default=90)
     parser.add_argument(
         "--plugs", choices=("P1", "P2", "P3"), nargs="+", default=["P1", "P2", "P3"]
     )
     args = parser.parse_args()
+    if not math.isfinite(args.timeout) or not 5 <= args.timeout <= 300:
+        parser.error("--timeout must be finite and between 5 and 300 seconds")
     if args.end_markers:
         args.require_6d = True
     args.output.mkdir(parents=True, exist_ok=True)
@@ -58,6 +62,8 @@ def main():
             str(args.output),
             "--calibration",
             str(args.calibration),
+            "--timeout",
+            str(args.timeout),
             *(["--end-markers"] if args.end_markers else []),
             "--plugs",
             *args.plugs,
@@ -66,7 +72,7 @@ def main():
         start_new_session=True,
     )
     try:
-        process.wait(timeout=105)
+        process.wait(timeout=args.timeout + 15)
         if process.returncode:
             raise RuntimeError("Perception run failed")
         detections = json.loads((args.output / "detections.json").read_text())

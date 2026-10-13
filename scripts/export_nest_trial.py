@@ -37,6 +37,8 @@ def export(source, output):
         shutil.copyfile(pickup / name, output / name)
     for name in ("detections.json", "camera_intrinsics.json", "camera.png"):
         shutil.copyfile(pickup / "observations" / name, output / name)
+    if (pickup / "observations/acquisition.json").exists():
+        shutil.copyfile(pickup / "observations/acquisition.json", output / "acquisition.json")
     if (pickup / "observations/calibration.json").exists():
         shutil.copyfile(pickup / "observations/calibration.json", output / "calibration.json")
     depth = np.load(pickup / "observations/depth.npy")
@@ -50,6 +52,7 @@ def export(source, output):
         target.mkdir(exist_ok=True)
         for name in (
             "validation.json",
+            "acquisition.json",
             "evaluation_truth.json",
             "camera.png",
             "camera_intrinsics.json",

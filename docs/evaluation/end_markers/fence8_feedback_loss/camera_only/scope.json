@@ -1,0 +1,6 @@
+{
+  "scope": "Camera-only acquisition after failed trial cleanup; no arm commands from pickup controller, no independent pose evaluation",
+  "overhead_camera_rate_hz": 5,
+  "inspection_camera_rate_hz": 1,
+  "world_sha256": "a8e9100c6c5fdc078b7ed92d542349d22cdf9adee15a5523dc0eb72ffa8d9857"
+}

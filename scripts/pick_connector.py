@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 import time
 import xml.etree.ElementTree as ET
@@ -57,6 +58,7 @@ def main():
         help="Hold a second terminal with the other arm and lift together",
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--inspection-timeout", type=float, default=90)
     parser.add_argument("--held-calibration", type=Path)
     parser.add_argument("--held-end-markers", action="store_true")
     parser.add_argument("--verify-before-close", action="store_true")
@@ -77,6 +79,8 @@ def main():
         help="Keep full RGB-D rendering rate after the accepted static observation",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.inspection_timeout) or not 5 <= args.inspection_timeout <= 300:
+        parser.error("--inspection-timeout must be finite and between 5 and 300 seconds")
     if args.verify_before_close and (not args.held_calibration or not args.held_end_markers):
         parser.error("--verify-before-close requires an inspection calibration and end markers")
     if args.correct_before_close and not args.verify_before_close:
@@ -125,6 +129,7 @@ def main():
         "success": False,
         "plug_id": args.plug,
         "support_plug": args.support_plug,
+        "inspection_timeout_s": args.inspection_timeout,
         "assignment": {name: row["plug_id"] for name, row in assigned.items()},
         "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
@@ -372,6 +377,8 @@ def main():
             str(output),
             "--plugs",
             *[assigned[name]["plug_id"] for name in selected],
+            "--timeout",
+            str(args.inspection_timeout),
         ]
         if not evaluate:
             command.append("--bridge")
@@ -384,7 +391,7 @@ def main():
                 command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True
             )
             try:
-                deadline = time.monotonic() + 130
+                deadline = time.monotonic() + args.inspection_timeout + 40
                 while process.poll() is None:
                     if time.monotonic() > deadline:
                         raise RuntimeError("Inspection timed out in " + phase)

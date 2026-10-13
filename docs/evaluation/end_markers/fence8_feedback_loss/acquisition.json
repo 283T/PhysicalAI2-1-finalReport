@@ -1,0 +1,57 @@
+{
+  "processed_frames": 5,
+  "frames": [
+    {
+      "sensor_stamp_ns": 600000000,
+      "elapsed_wall_s": 1.6989899179998247,
+      "detected_plugs": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "stable_frames": 0
+    },
+    {
+      "sensor_stamp_ns": 1000000000,
+      "elapsed_wall_s": 3.1224735440000586,
+      "detected_plugs": [
+        "P1",
+        "P3"
+      ],
+      "stable_frames": 0
+    },
+    {
+      "sensor_stamp_ns": 1600000000,
+      "elapsed_wall_s": 5.303228544999911,
+      "detected_plugs": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "stable_frames": 1
+    },
+    {
+      "sensor_stamp_ns": 1800000000,
+      "elapsed_wall_s": 6.191051586999492,
+      "detected_plugs": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "stable_frames": 2
+    },
+    {
+      "sensor_stamp_ns": 2000000000,
+      "elapsed_wall_s": 6.929379586999858,
+      "detected_plugs": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "stable_frames": 3
+    }
+  ],
+  "success": true,
+  "timeout_s": 90,
+  "elapsed_wall_s": 7.234461670999735
+}

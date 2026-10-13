@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 import subprocess
 import time
 from pathlib import Path
@@ -36,6 +37,8 @@ def main():
         "--bridge", action="store_true", help="Start ROS-Gazebo camera bridge for this run"
     )
     args = parser.parse_args()
+    if not math.isfinite(args.timeout) or not 5 <= args.timeout <= 300:
+        parser.error("--timeout must be finite and between 5 and 300 seconds")
     if args.end_markers:
         args.require_6d = True
     args.output.mkdir(parents=True, exist_ok=True)
@@ -65,7 +68,9 @@ def main():
         qos_profile_sensor_data,
     )
     publisher = node.create_publisher(String, "/factory/connector_detections", 10)
-    end = time.monotonic() + args.timeout
+    started = time.monotonic()
+    acquisition = {"processed_frames": 0, "frames": [], "success": False, "timeout_s": args.timeout}
+    end = started + args.timeout
     bridge = None
     bridge_log = None
     try:
@@ -107,7 +112,19 @@ def main():
             np.save(args.output / "depth.npy", depth)
             (args.output / "camera_intrinsics.json").write_text(json.dumps(list(info[-1].k)) + "\n")
             (args.output / "latest.json").write_text(json.dumps(detections, indent=2) + "\n")
-            if not stability.update(detections):
+            accepted = stability.update(detections)
+            acquisition["processed_frames"] += 1
+            acquisition["frames"].append(
+                {
+                    "sensor_stamp_ns": current,
+                    "elapsed_wall_s": time.monotonic() - started,
+                    "detected_plugs": [row["plug_id"] for row in detections],
+                    "stable_frames": stability.count,
+                }
+            )
+            acquisition["success"] = accepted
+            (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
+            if not accepted:
                 continue
             result = {
                 "source": "registered_rgbd_end_tags"
@@ -132,13 +149,18 @@ def main():
             print(json.dumps(result, indent=2), flush=True)
             return
         raise RuntimeError("No complete stable detection of required plugs within timeout")
+    except Exception as error:
+        acquisition["error"] = {"type": type(error).__name__, "message": str(error)}
+        raise
     finally:
+        acquisition["elapsed_wall_s"] = time.monotonic() - started
+        (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
         if bridge:
             stop_process(bridge, group=True)
         if bridge_log:
             bridge_log.close()
         node.destroy_node()
-        rclpy.shutdown()
+        rclpy.try_shutdown()
 
 
 if __name__ == "__main__":

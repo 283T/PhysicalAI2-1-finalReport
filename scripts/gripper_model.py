@@ -42,7 +42,10 @@ def add_gripper(
     backstop=False,
     capture_fences=False,
     front_fence_side="both",
+    fence_width_m=0.012,
 ):
+    if not math.isfinite(fence_width_m) or not 0.004 <= fence_width_m <= 0.012:
+        raise ValueError("Fence width must be finite and between 4 and 12 mm")
     if front_fence_side not in ("both", "left", "right"):
         raise ValueError("Unknown front fence side")
     if front_fence_side != "both" and not capture_fences:
@@ -93,7 +96,8 @@ def add_gripper(
             )
         if backstop or capture_fences:
             # A back-face fence resists yaw around the jaw closing axis. It
-            # retracts with the finger; the open jaw leaves the housing clear.
+            # retracts with the finger. Width controls inward ledge reach; opening
+            # alone does not guarantee release of a housing that follows a ledge.
             # TCP is 80 mm from the root, housing rear face is TCP-Z=-8 mm.
             # Leave 0.3 mm nominal clearance and keep the fence inside +/-13 mm
             # along tool-Y, clear of the nest's housing-end supports and corners.
@@ -107,8 +111,8 @@ def add_gripper(
                     continue
                 for kind in ("collision", "visual"):
                     fence = child(finger, kind, name=fence_name)
-                    child(fence, "origin", xyz=f"{-side * 0.006} 0 {z}", rpy="0 0 0")
-                    child(child(fence, "geometry"), "box", size=".012 .026 .001")
+                    child(fence, "origin", xyz=f"{-side * fence_width_m / 2} 0 {z}", rpy="0 0 0")
+                    child(child(fence, "geometry"), "box", size=f"{fence_width_m} .026 .001")
         joint = child(robot, "joint", name=prefix + "finger_" + name + "_joint", type="prismatic")
         child(joint, "origin", xyz=f"{side * FINGER_REST_X_M} 0 0", rpy="0 0 0")
         child(joint, "parent", link=prefix + "gripper")

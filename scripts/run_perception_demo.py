@@ -67,6 +67,8 @@ def main():
         action="store_true",
         help="Use the local Ollama CLI to unload the drawing model before robot control",
     )
+    parser.add_argument("--inspection-timeout", type=float, default=90)
+    parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
         "--capture-gripper",
@@ -90,6 +92,12 @@ def main():
         help="After paired pickup, attempt a continuously planned placement and primary release in the nest",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.inspection_timeout) or not 5 <= args.inspection_timeout <= 300:
+        parser.error("--inspection-timeout must be finite and between 5 and 300 seconds")
+    if not math.isfinite(args.fence_width_mm) or not 4 <= args.fence_width_mm <= 12:
+        parser.error("--fence-width-mm must be finite and between 4 and 12")
+    if args.fence_width_mm != 12 and not (args.capture_gripper or args.backstop_gripper):
+        parser.error("--fence-width-mm requires capture or backstop gripper")
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
     if args.front_fence_side != "both" and not args.capture_gripper:
@@ -131,6 +139,8 @@ def main():
         models += "_capture"
         if args.front_fence_side != "both":
             models += "_front_" + args.front_fence_side
+    if args.fence_width_mm != 12:
+        models += "_fence" + format(args.fence_width_mm, "g").replace(".", "p")
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -152,7 +162,9 @@ def main():
     if args.inspection_calibration is not None:
         generate.extend(["--inspection-calibration", str(args.inspection_calibration)])
     factory = ["python3", "scripts/build_factory.py", "--robot", "melfa_rv4frl", "--output", models]
-    factory.extend(["--gripper-p-gain", str(args.gripper_p_gain)])
+    factory.extend(
+        ["--gripper-p-gain", str(args.gripper_p_gain), "--fence-width-mm", str(args.fence_width_mm)]
+    )
     if args.backstop_gripper:
         factory.append("--backstop-gripper")
     if args.capture_gripper:
@@ -311,6 +323,7 @@ def main():
                 pickup.append("--correct-before-close")
             if args.verify_held_pose:
                 pickup.append("--verify-held-pose")
+            pickup.extend(["--inspection-timeout", str(args.inspection_timeout)])
             if args.verify_held_pose or args.verify_before_close:
                 if args.end_markers:
                     pickup.append("--held-end-markers")
