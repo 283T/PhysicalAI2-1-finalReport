@@ -57,6 +57,9 @@ def plan_to_nest(
     *,
     parked=None,
     include_carrier=False,
+    support_orbits=(0.0, -math.pi / 2, math.pi / 2, None),
+    path_resolution_scale=1.0,
+    intermediate_rotations=(),
 ):
     """Plan from supplied current joints; never replace them with a new IK branch."""
     relation = rigid_pose(relation)
@@ -71,23 +74,35 @@ def plan_to_nest(
         raise ValueError("Every arm must have a current moving or parked joint observation")
     if not support_rises or not np.isfinite(support_rises).all() or min(support_rises) < 0:
         raise ValueError("Finite nonnegative support rises required")
+    if not support_orbits or any(o is not None and not math.isfinite(o) for o in support_orbits):
+        raise ValueError("A nonempty set of finite support orbits or rigid None is required")
+    if not math.isfinite(path_resolution_scale) or not 0.125 <= path_resolution_scale <= 1:
+        raise ValueError("Path resolution scale must be within [0.125, 1]")
+    if any(not math.isfinite(f) or not 0 < f < 1 for f in intermediate_rotations):
+        raise ValueError("Intermediate rotation fractions must be within (0, 1)")
     seat = nest_connector_pose(world)
     fixtures = FixtureBounds(world, include_carrier=include_carrier)
     start = arms[primary].forward(current[primary])
     report = {
         "success": False,
         "includes_stopped_carrier": include_carrier,
+        "support_orbit_candidates_rad": list(support_orbits),
+        "path_resolution_scale": path_resolution_scale,
+        "intermediate_rotation_fractions": list(intermediate_rotations),
         "mode": "single_with_parked_arm" if single else "paired",
         "parked_joints_rad": {name: np.asarray(q).tolist() for name, q in parked.items()},
         "nest_connector_pose": seat.tolist(),
         "attempts": [],
         "scope": "Continuous IK from the supplied lift state; inter-arm and static fixture box screening only. No physical placement, self/cable/object collision or force validation",
     }
-    for flipped, height, orbit, order, rise in itertools.product(
+    orders = [("translate_then_rotate", None), ("rotate_then_translate", None)]
+    if not single:
+        orders += [("intermediate_rotation", f) for f in intermediate_rotations]
+    for flipped, height, orbit, (order, rotation_fraction), rise in itertools.product(
         (False, True) if single else (True, False),
         (0.35, 0.45),
-        (None,) if single else (0.0, -math.pi / 2, math.pi / 2, None),
-        ("translate_then_rotate", "rotate_then_translate"),
+        (None,) if single else support_orbits,
+        orders,
         (0.0,) if single else support_rises,
     ):
         if orbit is None and rise != 0:
@@ -103,23 +118,31 @@ def plan_to_nest(
         intermediate = raised.copy()
         if order == "translate_then_rotate":
             intermediate[:3, 3] = elevated[:3, 3]
-        else:
+        elif order == "rotate_then_translate":
             intermediate[:3, :3] = elevated[:3, :3]
+        targets = (raised, intermediate, elevated, hover, goal)
+        rotation_phase = 2 if order == "translate_then_rotate" else 1
+        if order == "intermediate_rotation":
+            intermediate[:3, 3] += rotation_fraction * (elevated[:3, 3] - raised[:3, 3])
+            turned = intermediate.copy()
+            turned[:3, :3] = elevated[:3, :3]
+            targets = (raised, intermediate, turned, elevated, hover, goal)
+            rotation_phase = 2
         attempt = {
             "flipped": flipped,
             "height_m": height,
             "orbit_rad": orbit,
             "order": order,
+            "rotation_translation_fraction": rotation_fraction,
             "support_rise_m": rise,
             "success": False,
             "phases": [],
         }
         state = {name: np.asarray(q).copy() for name, q in current.items()}
-        for index, target in enumerate((raised, intermediate, elevated, hover, goal)):
+        for index, target in enumerate(targets):
             phase = {"index": index, "target": target.tolist()}
             attempt["phases"].append(phase)
             try:
-                rotation_phase = 2 if order == "translate_then_rotate" else 1
                 if single:
                     paths = {primary: single_arm_path(arms[primary], state[primary], target)}
                 else:
@@ -133,7 +156,9 @@ def plan_to_nest(
                         else orbit
                         if index == rotation_phase
                         else 0.0,
-                        support_rise=rise if index == 4 else 0.0,
+                        support_rise=rise if index == len(targets) - 1 else 0.0,
+                        spacing=0.005 * path_resolution_scale,
+                        angular_spacing=0.025 * path_resolution_scale,
                     )
                     phase["pair"] = assess_pair_path(arms, paths, rigid=orbit is None)
                 screened = with_parked_arms(paths, parked)
@@ -150,6 +175,7 @@ def plan_to_nest(
                 state = {name: path[-1] for name, path in paths.items()}
             except ValueError as error:
                 phase["reason"] = str(error)
+                phase["ik_diagnostics"] = getattr(error, "diagnostics", None)
                 break
         else:
             attempt["success"] = True

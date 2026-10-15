@@ -34,17 +34,21 @@ def validate_calibration(calibration):
     return calibration
 
 
-def add_inspection_camera(world, calibration):
+def add_inspection_camera(world, calibration, *, model_name="inspection_camera"):
     validate_calibration(calibration)
+    if not isinstance(model_name, str) or not model_name.isidentifier():
+        raise ValueError("A valid new camera model name is required")
     template = world.find("model[@name='overhead_camera']")
-    if template is None or world.find("model[@name='inspection_camera']") is not None:
-        raise ValueError("Need one overhead camera and no existing inspection camera")
+    if template is None or world.find(f"model[@name='{model_name}']") is not None:
+        raise ValueError("Need an overhead camera and an unused camera model name")
+    if any(s.findtext("topic") == calibration["topic"] for s in world.findall(".//sensor")):
+        raise ValueError("Additional camera requires an unused sensor topic")
     camera = copy.deepcopy(template)
-    camera.set("name", "inspection_camera")
+    camera.set("name", model_name)
     for pose in camera.findall("pose"):
         camera.remove(pose)
     camera_link = camera.find("link")
-    camera_link.set("name", "inspection_camera_link")
+    camera_link.set("name", model_name + "_link")
     camera_link.find("pose").text = " ".join(
         map(str, calibration["position_m"] + calibration["pose_rpy_rad"])
     )
@@ -53,7 +57,9 @@ def add_inspection_camera(world, calibration):
         sensor.remove(pose)
     if sensor.get("type") != "rgbd_camera" or sensor.findtext("topic") == calibration["topic"]:
         raise ValueError("Inspection RGB-D camera needs a distinct topic")
-    sensor.set("name", "inspection_rgbd")
+    sensor.set(
+        "name", "inspection_rgbd" if model_name == "inspection_camera" else model_name + "_rgbd"
+    )
     sensor.find("topic").text = calibration["topic"]
     sensor.find("update_rate").text = "1"
     sensor.find("camera/horizontal_fov").text = str(calibration["horizontal_fov_rad"])

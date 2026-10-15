@@ -1,0 +1,8 @@
+{
+  "scope": "Static XML and calibration checks only; no camera image visibility or physics trial",
+  "existing_world_unchanged_except_new_camera": true,
+  "drawing_board_case_identical": true,
+  "source_world_sha256": "d71be2eb5049db40f7187ea15690865a50925d528c8471733b6cef06bd38f457",
+  "new_world_sha256": "739d45869f61c3ad9787a42d64ff86e58de71d02f118bd119a02098681e57d71",
+  "camera_config_sha256": "63e56d0a7f993314b52f2a113b1f96bc757c16aeacb3afc0fb1ae88aa0a51871"
+}

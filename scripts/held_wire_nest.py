@@ -24,6 +24,7 @@ def live_plan(session, args, row, relation):
             "robot_feedback": {"sim_time_s": row["sim_time_s"], "arms": row["arms"]},
             "vision_connector_from_tool": relation.tolist(),
             "full_finger_stroke": True,
+            "rigid_transfer": args.rigid_nest_transfer,
         },
     )
     with (args.output / "nest_planner.log").open("w") as log:

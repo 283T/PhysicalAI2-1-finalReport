@@ -2,6 +2,26 @@
   "scope": "Development nest-transfer trials; no final acceptance trials or board insertion",
   "trials": [
     {
+      "archive": "full_stroke_support_rotation_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "nest_transfer_1",
+      "error": "support grip changed beyond the closure reference limits",
+      "dual_pickup_success": true,
+      "grip_guard_summaries": {
+        "primary": {
+          "samples": 14252,
+          "maximum_position_shift_m": 0.0012161796447584163,
+          "maximum_angle_shift_rad": 0.01930691306002068
+        },
+        "support": {
+          "samples": 6154,
+          "maximum_position_shift_m": 0.0006254588524903512,
+          "maximum_angle_shift_rad": 0.05172615247389593
+        }
+      }
+    },
+    {
       "archive": "rotation_finger_interval_rejected",
       "trial_state": "finished",
       "success": false,

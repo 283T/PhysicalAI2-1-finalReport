@@ -7,6 +7,12 @@ from arm_kinematics import axis_rotation, rotation_error, transform
 from cartesian_path import interpolate_joints
 
 
+class CoordinatedPathError(ValueError):
+    def __init__(self, message, diagnostics):
+        super().__init__(message)
+        self.diagnostics = diagnostics
+
+
 def rigid_pose(pose):
     pose = np.asarray(pose, dtype=float)
     if (
@@ -70,7 +76,15 @@ def single_arm_path(arm, current, goal, max_joint_step=0.15):
 
 
 def paired_path(
-    arms, current, primary, goal, max_joint_step=0.15, support_orbit=None, support_rise=0.0
+    arms,
+    current,
+    primary,
+    goal,
+    max_joint_step=0.15,
+    support_orbit=None,
+    support_rise=0.0,
+    spacing=0.005,
+    angular_spacing=0.025,
 ):
     """Rigid transport, or a world-Z support orbit with unchanged support orientation."""
     if len(arms) != 2 or set(arms) != set(current) or primary not in arms:
@@ -82,7 +96,7 @@ def paired_path(
     starts = {name: rigid_pose(arm.forward(current[name])) for name, arm in arms.items()}
     paths = {name: [np.asarray(current[name], dtype=float)] for name in arms}
     reference_inverse = np.linalg.inv(starts[primary])
-    poses = pose_samples(starts[primary], goal)
+    poses = pose_samples(starts[primary], goal, spacing=spacing, angular_spacing=angular_spacing)
     if support_orbit is not None:
         if not math.isfinite(support_orbit):
             raise ValueError("Support orbit must be finite")
@@ -100,7 +114,7 @@ def paired_path(
             if support_rise == 0
             else abs(math.asin((offset[2] + support_rise) / radius) - math.asin(offset[2] / radius))
         )
-        count = max(len(poses) - 1, math.ceil((abs(support_orbit) + polar) * radius / 0.005))
+        count = max(len(poses) - 1, math.ceil((abs(support_orbit) + polar) * radius / spacing))
         # Reuse SO(3) interpolation with a fixed sample count via fractional poses.
         poses = [intermediate_pose(starts[primary], goal, f) for f in np.linspace(0, 1, count + 1)]
     for index, pose in enumerate(poses[1:], 1):
@@ -127,7 +141,17 @@ def paired_path(
                 or not np.isfinite(q).all()
                 or np.max(np.abs(q - paths[name][-1])) > max_joint_step
             ):
-                raise ValueError(f"{name}: unreachable/discontinuous coordinated waypoint {index}")
+                raise CoordinatedPathError(
+                    f"{name}: unreachable/discontinuous coordinated waypoint {index}",
+                    {
+                        "arm": name,
+                        "waypoint": index,
+                        "target": target.tolist(),
+                        "seed_rad": paths[name][-1].tolist(),
+                        "ik_result": result,
+                        "maximum_allowed_joint_step_rad": max_joint_step,
+                    },
+                )
             paths[name].append(q)
     return {name: np.asarray(path) for name, path in paths.items()}
 

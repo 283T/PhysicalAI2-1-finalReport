@@ -17,7 +17,7 @@ class InspectionCameraTests(unittest.TestCase):
         return json.loads((ROOT / "configs/inspection_camera.json").read_text())
 
     def test_both_configs_have_matching_native_and_optical_axes(self):
-        for name in ("infeed_camera", "inspection_camera", "end_inspection_camera"):
+        for name in ("infeed_camera", "inspection_camera", "end_inspection_camera", "nest_camera"):
             validate_calibration(json.loads((ROOT / f"configs/{name}.json").read_text()))
         data = self.calibration()
         forward = np.asarray(data["optical_to_world_rotation"])[:, 2]
@@ -57,6 +57,17 @@ class InspectionCameraTests(unittest.TestCase):
         self.assertEqual(sensor.findtext("update_rate"), "1")
         with self.assertRaises(ValueError):
             add_inspection_camera(world, self.calibration())
+        other = json.loads((ROOT / "configs/nest_camera.json").read_text())
+        add_inspection_camera(world, other, model_name="nest_camera")
+        self.assertEqual(
+            world.findtext("model[@name='inspection_camera']/link/sensor/topic"),
+            "/factory/inspection_rgbd",
+        )
+        self.assertEqual(
+            world.findtext("model[@name='nest_camera']/link/sensor/topic"), "/factory/nest_rgbd"
+        )
+        with self.assertRaisesRegex(ValueError, "unused sensor topic"):
+            add_inspection_camera(world, other, model_name="duplicate_view")
 
 
 if __name__ == "__main__":

@@ -13,7 +13,9 @@ from plan_nest_transfer import plan_to_nest
 from plan_reach import load_arms
 
 
-def plan_from_feedback(world, arms, bounds, row, relation, *, full_finger_stroke=False):
+def plan_from_feedback(
+    world, arms, bounds, row, relation, *, full_finger_stroke=False, rigid_transfer=False
+):
     """Screen from supplied robot feedback; relation must originate in vision."""
     intervals = {
         name: {
@@ -35,11 +37,21 @@ def plan_from_feedback(world, arms, bounds, row, relation, *, full_finger_stroke
         "right_arm",
         relation,
         include_carrier=True,
+        **(
+            {
+                "support_orbits": (None,),
+                "path_resolution_scale": 0.5,
+                "intermediate_rotations": (0.5, 0.25, 0.75),
+            }
+            if rigid_transfer
+            else {}
+        ),
     )
     result.update(
         starting_sim_time_s=row["sim_time_s"],
         starting_joints_rad={name: q.tolist() for name, q in current.items()},
         finger_intervals_m=intervals,
+        transfer_policy="rigid_grasp_frames" if rigid_transfer else "screened_support_orbits",
         finger_envelope_mode="full_mechanical_stroke"
         if full_finger_stroke
         else "measured_plus_minus_0.5mm",
@@ -105,6 +117,7 @@ def main():
             request["robot_feedback"],
             np.array(request["vision_connector_from_tool"]),
             full_finger_stroke=request.get("full_finger_stroke", False),
+            rigid_transfer=request.get("rigid_transfer", False),
         )
     write_json_atomic(args.output, result)
     print(json.dumps({"success": result["success"], "attempts": len(result["attempts"])}, indent=2))

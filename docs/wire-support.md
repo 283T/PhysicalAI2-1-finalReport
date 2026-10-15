@@ -121,3 +121,11 @@ docker compose exec -T gui bash -lc 'source /opt/ros/jazzy/setup.bash && python3
 進行状況と確定結果は [goal-status.md](goal-status.md) を参照。出力先の上書きは拒否する。観測のタイムアウトだけでは実験を再起動せず、コントローラの終了を確認してからGazeboを初期化する。
 
 最初の統合試験は関節限界の浮動小数点丸めで経路を拒否。修正後の試験では双腕保持・保持画像の照合・新規計画を通過し、搬送の回転中に右指の再中心化が実測±0.5 mmの箱を約6.95 µm外れて停止した。把持の滑り・回転は基準内。治具搬送では、計画・実行とも指の全ストロークを含む大きな箱で検査する方式へ変更した。閉指前の接近と開放後の退避は従来の実測範囲を使う。保存した要求では大きな箱でも全5工程が通過し、次の物理試験を実施中。結果は [比較記録](evaluation/cooperative_nest_20261016/README.md) を参照。
+
+全ストロークの物理比較では、支持側ワイヤーの角度変化0.051726 radで回転中に停止した。その後、両工具の相対位置・姿勢を保ち、中間位置で回転する6工程を追加した。`--rigid-nest-transfer` を `--place-in-nest` と一緒に使う。既定の回転を開始位置または治具位置で行う候補に加えて、中間25%・50%・75%の位置も有限探索する。連続性・相対工具枠・衝突の基準を維持し、新しいRGB-Dと実測関節から再計画する。ワイヤー自体は引き続き接触・曲げばね付きの関節モデル。
+
+次の上面持ち替えに使う視点は、既存のworldを上書きせず追加できる。まだ実画像での認識・精度は検証していない。
+
+```bash
+docker compose run --rm dev python3 scripts/add_workcell_camera.py --case docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/case --calibration configs/nest_camera.json --output outputs/dual_nest_view_new/case
+```

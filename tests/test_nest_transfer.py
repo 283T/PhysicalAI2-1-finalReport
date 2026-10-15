@@ -15,6 +15,39 @@ from test_cooperative_transfer import PoseArm
 
 
 class NestTransferTests(unittest.TestCase):
+    def test_intermediate_rotation_avoids_rejected_endpoint_rotation_with_rigid_frames(self):
+        class RotationRegionArm(PoseArm):
+            def inverse(self, target, seed, attempts=1, **kwargs):
+                result = super().inverse(target, seed, attempts=attempts, **kwargs)
+                if abs(result["q_rad"][3] - seed[3]) > 1e-6 and not 0.15 <= target[0, 3] <= 0.25:
+                    result["success"] = False
+                return result
+
+        class PointBounds:
+            def boxes(self, q):
+                return [("tool", (np.asarray(q[:3]), np.eye(3), np.full(3, 0.001)))]
+
+        with tempfile.TemporaryDirectory() as directory:
+            world = self.write_world(directory, center=(0.4, 0))
+            plan = plan_to_nest(
+                {"a": RotationRegionArm(), "b": PoseArm()},
+                {"a": PointBounds(), "b": PointBounds()},
+                world,
+                {"a": [0, 0, 0.4, 0], "b": [0, 0.2, 0.4, 0]},
+                "a",
+                np.eye(4),
+                support_orbits=(None,),
+                intermediate_rotations=(0.5,),
+            )
+            self.assertTrue(plan["success"])
+            chosen = plan["attempts"][plan["selected_attempt"]]
+            self.assertEqual(chosen["order"], "intermediate_rotation")
+            self.assertEqual(len(chosen["phases"]), 6)
+            self.assertTrue(all(p["pair"]["success"] for p in chosen["phases"]))
+            self.assertTrue(
+                all(p["pair"]["constraint"] == "relative_frame" for p in chosen["phases"])
+            )
+
     def write_world(self, folder, center=(0.08, -0.04), yaw=0, split=False):
         root = ET.fromstring(
             '<sdf><world><model name="fixtures"><static>true</static><link name="base"/></model></world></sdf>'
