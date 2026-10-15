@@ -1,0 +1,168 @@
+{
+  "scope": "Development dual pickup trials; no insertion or final acceptance trials",
+  "trials": [
+    {
+      "archive": "both_grasped_separation_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "shared_lift",
+      "error": "Tool-origin separation below conservative 120 mm screen",
+      "primary_hold": {
+        "success": true,
+        "minimum_lift_m": 0.09980381138498862,
+        "relative_slip_m": 1.1636520357823831e-05,
+        "lift_slip_m": 0.00025088327607660963,
+        "minimum_tcp_lift_m": 0.09995422850256769,
+        "minimum_finger_travel_m": 0.0018245374813650648,
+        "minimum_jaw_opening_m": 0.020044704853959205,
+        "maximum_jaw_opening_m": 0.020047182896319075,
+        "expected_housing_width_m": 0.02,
+        "hold_samples": 336,
+        "rotation_validated": true,
+        "maximum_rotation_change_rad": 0.01822893962620329
+      },
+      "support_closure": {
+        "success": true,
+        "minimum_jaw_opening_m": 0.007999311012996651,
+        "maximum_jaw_opening_m": 0.007999311012996651,
+        "expected_housing_width_m": 0.008,
+        "scope": "Joint opening only; not proof of housing contact or stable grasp"
+      },
+      "dual_holds": null,
+      "grip_guard_summaries": null
+    },
+    {
+      "archive": "compensated_servo_tracking_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_preclose_1",
+      "error": "Robot tracking did not converge in primary_correction",
+      "primary_hold": null,
+      "support_closure": null,
+      "dual_holds": null,
+      "grip_guard_summaries": null
+    },
+    {
+      "archive": "full_stroke_preflight_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_approach",
+      "error": "Motion preflight rejected: {'phase': 'primary_approach', 'arms': {'clear': True, 'samples': 81, 'margin_per_box_m': 0.005}, 'fixtures': {'clear': False, 'fraction': 1.0, 'shapes': ['right_arm/right_arm_finger_right', 'carrier/pallet_main_collision']}}",
+      "primary_hold": null,
+      "support_closure": null,
+      "dual_holds": null,
+      "grip_guard_summaries": null
+    },
+    {
+      "archive": "primary_rear_fence_closure_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_close",
+      "error": "Primary closure rejected",
+      "primary_hold": null,
+      "support_closure": null,
+      "dual_holds": null,
+      "grip_guard_summaries": null
+    },
+    {
+      "archive": "support140_settle30_dual_hold",
+      "trial_state": "finished",
+      "success": true,
+      "phase": "dual_hold",
+      "error": null,
+      "primary_hold": {
+        "success": true,
+        "minimum_lift_m": 0.09994480779226561,
+        "relative_slip_m": 1.2657431499962495e-05,
+        "lift_slip_m": 0.0001892423198172189,
+        "minimum_tcp_lift_m": 0.09996512008295444,
+        "minimum_finger_travel_m": 0.0018081007746214685,
+        "minimum_jaw_opening_m": 0.020000333291924022,
+        "maximum_jaw_opening_m": 0.020003943931963,
+        "expected_housing_width_m": 0.02,
+        "hold_samples": 568,
+        "rotation_validated": true,
+        "maximum_rotation_change_rad": 0.015747465518987192
+      },
+      "support_closure": {
+        "success": true,
+        "minimum_jaw_opening_m": 0.007999623060102039,
+        "maximum_jaw_opening_m": 0.007999623060102039,
+        "expected_housing_width_m": 0.008,
+        "scope": "Joint opening only; not proof of housing contact or stable grasp"
+      },
+      "dual_holds": {
+        "left_arm": {
+          "success": true,
+          "minimum_lift_m": 0.09973526561581522,
+          "relative_slip_m": 5.562895364670021e-06,
+          "lift_slip_m": 2.396480732044567e-05,
+          "minimum_tcp_lift_m": 0.10002251827756009,
+          "minimum_finger_travel_m": 0.0009716230979475738,
+          "minimum_jaw_opening_m": 0.007999630172535414,
+          "maximum_jaw_opening_m": 0.0079996325086404,
+          "expected_housing_width_m": 0.008,
+          "hold_samples": 1042,
+          "rotation_validated": true,
+          "maximum_rotation_change_rad": 0.005410448091711703
+        },
+        "right_arm": {
+          "success": true,
+          "minimum_lift_m": 0.09998367308803396,
+          "relative_slip_m": 5.008895698397766e-05,
+          "lift_slip_m": 0.00018849004678104668,
+          "minimum_tcp_lift_m": 0.09997433424267188,
+          "minimum_finger_travel_m": 0.0016927257843350673,
+          "minimum_jaw_opening_m": 0.019999617803631364,
+          "maximum_jaw_opening_m": 0.019999623617440725,
+          "expected_housing_width_m": 0.02,
+          "hold_samples": 1042,
+          "rotation_validated": true,
+          "maximum_rotation_change_rad": 0.002260857328733352
+        }
+      },
+      "grip_guard_summaries": {
+        "primary": {
+          "samples": 12200,
+          "maximum_position_shift_m": 0.00032290926254098556,
+          "maximum_angle_shift_rad": 0.010241769329899592
+        },
+        "support": {
+          "samples": 3438,
+          "maximum_position_shift_m": 1.2928137153551925e-05,
+          "maximum_angle_shift_rad": 0.000199339044711561
+        }
+      }
+    },
+    {
+      "archive": "support140_tracking_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "support_approach",
+      "error": "Robot tracking did not converge in support_approach",
+      "primary_hold": {
+        "success": true,
+        "minimum_lift_m": 0.09986531934305737,
+        "relative_slip_m": 1.2838156620067386e-05,
+        "lift_slip_m": 0.00020449500898872487,
+        "minimum_tcp_lift_m": 0.09996655163672347,
+        "minimum_finger_travel_m": 0.0018136061909289308,
+        "minimum_jaw_opening_m": 0.020013846142853634,
+        "maximum_jaw_opening_m": 0.020017332418852965,
+        "expected_housing_width_m": 0.02,
+        "hold_samples": 488,
+        "rotation_validated": true,
+        "maximum_rotation_change_rad": 0.01578289000835596
+      },
+      "support_closure": null,
+      "dual_holds": null,
+      "grip_guard_summaries": {
+        "primary": {
+          "samples": 6319,
+          "maximum_position_shift_m": 0.0002780828452741602,
+          "maximum_angle_shift_rad": 0.00867366321007054
+        }
+      }
+    }
+  ]
+}

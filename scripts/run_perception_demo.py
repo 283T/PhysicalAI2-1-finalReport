@@ -73,6 +73,7 @@ def main():
     parser.add_argument("--housing-end-stops", action="store_true")
     parser.add_argument("--left-wire-gripper", action="store_true")
     parser.add_argument("--left-gripper-p-gain", type=float)
+    parser.add_argument("--arm-gain-scale", type=float, default=1)
     parser.add_argument("--conveyor-p-gain", type=float, default=400)
     parser.add_argument("--wire-contact-length-mm", type=float, default=20)
     parser.add_argument("--fence-width-mm", type=float, default=12)
@@ -99,6 +100,8 @@ def main():
         help="After paired pickup, attempt a continuously planned placement and primary release in the nest",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.arm_gain_scale) or args.arm_gain_scale <= 0:
+        parser.error("--arm-gain-scale must be positive and finite")
     if not math.isfinite(args.conveyor_p_gain) or args.conveyor_p_gain <= 0:
         parser.error("--conveyor-p-gain must be positive and finite")
     if args.left_gripper_p_gain is not None and (
@@ -184,6 +187,8 @@ def main():
         models += "_left_g" + format(args.left_gripper_p_gain, "g").replace(".", "p")
     if args.conveyor_p_gain != 400:
         models += "_conveyor" + format(args.conveyor_p_gain, "g").replace(".", "p")
+    if args.arm_gain_scale != 1:
+        models += "_arm" + format(args.arm_gain_scale, "g").replace(".", "p")
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -216,7 +221,14 @@ def main():
             str(args.housing_end_clearance_mm),
         ]
     )
-    factory.extend(["--conveyor-p-gain", str(args.conveyor_p_gain)])
+    factory.extend(
+        [
+            "--conveyor-p-gain",
+            str(args.conveyor_p_gain),
+            "--arm-gain-scale",
+            str(args.arm_gain_scale),
+        ]
+    )
     if args.left_gripper_p_gain is not None:
         factory.extend(["--left-gripper-p-gain", str(args.left_gripper_p_gain)])
     if args.housing_end_stops:

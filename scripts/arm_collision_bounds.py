@@ -96,7 +96,9 @@ class ArmCollisionBounds:
                 center[:3, 3] += local[:3, :3] @ ((high + low) / 2)
                 self.shapes.append((link.get("name"), center, (high - low) / 2))
 
-    def boxes(self, q, finger_travel=MAX_TRAVEL_M / 2):
+    def boxes(self, q, finger_travel=MAX_TRAVEL_M / 2, *, finger_intervals=None):
+        intervals = {} if finger_intervals is None else finger_intervals
+        finger_expansion = {}
         coordinates = dict(zip(self.arm.names, q))
         frames = {name: self.arm.base for name in self.roots}
         pending = list(self.joints)
@@ -115,7 +117,27 @@ class ArmCollisionBounds:
                     if kind == "revolute":
                         motion[:3, :3] = axis_rotation(axis, coordinates[joint.get("name")])
                     elif kind == "prismatic":
-                        motion[:3, 3] = axis * finger_travel
+                        interval = np.asarray(
+                            intervals.get(joint.get("name"), [0, MAX_TRAVEL_M]), dtype=float
+                        )
+                        if (
+                            interval.shape != (2,)
+                            or not np.isfinite(interval).all()
+                            or interval[0] > interval[1]
+                            or interval[0] < -0.0005
+                            or interval[1] > MAX_TRAVEL_M + 0.0005
+                        ):
+                            raise ValueError("Bounded measured finger interval required")
+                        midpoint = (
+                            float(interval.mean())
+                            if joint.get("name") in intervals
+                            else finger_travel
+                        )
+                        motion[:3, 3] = axis * midpoint
+                        finger_expansion[joint.find("child").get("link")] = (
+                            axis,
+                            (interval[1] - interval[0]) / 2,
+                        )
                     else:
                         raise ValueError("Unsupported arm joint type")
                     pose = pose @ motion
@@ -129,9 +151,20 @@ class ArmCollisionBounds:
             pose = frames[name] @ local
             if name in self.prismatic_links:
                 # The midpoint box encloses the whole 0..20 mm finger stroke.
-                half = half + np.abs(local[:3, :3].T @ np.array([1, 0, 0])) * MAX_TRAVEL_M / 2
+                axis, expansion = finger_expansion[name]
+                half = half + np.abs(local[:3, :3].T @ axis) * expansion
             result.append((name, (pose[:3, 3], pose[:3, :3], half)))
         return result
+
+
+class FingerStateBounds:
+    """A measured interval; execution must stop if a finger leaves it."""
+
+    def __init__(self, bounds, intervals):
+        self.bounds, self.intervals = bounds, intervals
+
+    def boxes(self, q):
+        return self.bounds.boxes(q, finger_intervals=self.intervals)
 
 
 def first_overlap(bounds, joints):

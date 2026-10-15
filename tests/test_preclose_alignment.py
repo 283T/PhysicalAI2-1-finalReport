@@ -12,6 +12,7 @@ from preclose_alignment import (
     correction_path,
     correction_tracking,
     desired_tool_pose,
+    tracking_compensated_goal,
 )
 
 
@@ -25,6 +26,15 @@ class LocalArm:
 
 
 class PrecloseAlignmentTests(unittest.TestCase):
+    def test_visual_servo_compensates_a_fixed_tool_tracking_bias(self):
+        bias = transform([0.0008, -0.0004, 0], [0, 0, 0.008])
+        commanded = transform([0.1, 0.2, 0.3], [0, 0, 0.1])
+        observed = commanded @ bias
+        desired = transform([0.101, 0.2, 0.3], [0, 0, 0.11])
+        corrected = tracking_compensated_goal(desired, observed, commanded)
+        # A plant with the same fixed hand-frame bias must now reach the target.
+        np.testing.assert_allclose(corrected @ bias, desired, atol=1e-10)
+
     def test_image_frame_offset_is_rotated_into_world(self):
         body_rotation = axis_rotation([0, 0, 1], np.pi / 2)
         pose = desired_tool_pose(

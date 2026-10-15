@@ -1,0 +1,8 @@
+{
+  "rgbd_diagnostic": "docs/evaluation/wire_contact_length_20261016/raised_primary_rgbd_diagnostic.json",
+  "rgbd_sha256": "0425abf2fa4cbe696077c728b25d38b4fb8ce6ab851178b32d76a6175161c209",
+  "historical_robot_joint_reference": "docs/evaluation/single_nest_20261015/pin_clearance_transport_slip/summary.json",
+  "joint_reference_sha256": "54bd04826ffdb81d8c1f707431891efe0c23e1924c812d8f1277bfc7e7ea0037",
+  "fixture_world_sha256": "5d9e00569a37e3199d70c6a603d8d74c19e6c410c251846f2d8ece9dce6bf713",
+  "scope": "Saved single-frame geometry only. The successful 110 mm transit used direct simultaneous joint interpolation after screening; random-tree expansion was not needed for this candidate. Default waist-first transit was blocked. No physical success claim."
+}

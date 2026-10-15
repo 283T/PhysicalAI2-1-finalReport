@@ -1,15 +1,41 @@
 import math
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from arm_collision_bounds import intersects, screen_paths, with_parked_arms
+from arm_collision_bounds import ArmCollisionBounds, intersects, screen_paths, with_parked_arms
 
 
 class BoundsTests(unittest.TestCase):
+    def test_measured_interval_encloses_every_finger_position_in_that_interval(self):
+        source = '<robot><link name="world"/><link name="finger"><collision><origin xyz="0 0 .04" rpy="0 0 .4"/><geometry><box size=".008 .02 .08"/></geometry></collision></link><joint name="jaw" type="prismatic"><parent link="world"/><child link="finger"/><origin xyz=".012 0 0"/><axis xyz="1 0 0"/></joint></robot>'
+
+        class Arm:
+            names = []
+            base = np.eye(4)
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "robot.urdf"
+            path.write_text(source)
+            bounds = ArmCollisionBounds(path, Arm())
+            _, (center, axes, half) = bounds.boxes([], finger_intervals={"jaw": [0.0175, 0.0185]})[
+                0
+            ]
+            for travel in np.linspace(0.0175, 0.0185, 11):
+                _, (point, rotation, actual_half) = bounds.boxes(
+                    [], finger_intervals={"jaw": [travel, travel]}
+                )[0]
+                for signs in np.ndindex(2, 2, 2):
+                    corner = point + rotation @ ((np.array(signs) * 2 - 1) * actual_half)
+                    self.assertTrue(np.all(np.abs(axes.T @ (corner - center)) <= half + 1e-10))
+            for interval in ([0.019, 0.018], [0, 0.03], [0, float("nan")]):
+                with self.assertRaises(ValueError):
+                    bounds.boxes([], finger_intervals={"jaw": interval})
+
     def test_single_arm_path_is_checked_against_observed_parked_arm(self):
         class BoxArm:
             def boxes(self, q):

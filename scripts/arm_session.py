@@ -10,7 +10,12 @@ import xml.etree.ElementTree as ET
 
 import numpy as np
 import rclpy
-from arm_collision_bounds import ArmCollisionBounds, screen_paths, with_parked_arms
+from arm_collision_bounds import (
+    ArmCollisionBounds,
+    FingerStateBounds,
+    screen_paths,
+    with_parked_arms,
+)
 from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints
@@ -41,6 +46,8 @@ class ArmSession:
         self.phase = "startup"
         self.contacts, self.contact_count, self.unintended = {}, 0, []
         self.stop_diagnostics = None
+        self.evaluation_guards = []
+        self.motion_fingers = None
         self.expected_contact_publishers = sum(
             s.findtext("topic") == CONTACT_TOPIC
             for s in ET.parse(world).getroot().findall(".//sensor[@type='contact']")
@@ -161,6 +168,10 @@ class ArmSession:
                 "tcp": position.tolist(),
                 "tcp_rotation_world": tool_r.tolist(),
                 "fk_native_error_m": fk_error,
+                "command_q_rad": self.targets[name].tolist() if self.targets is not None else None,
+                "command_tcp_pose": self.arms[name].forward(self.targets[name]).tolist()
+                if self.targets is not None
+                else None,
             }
         return {
             "time_s": now,
@@ -191,6 +202,20 @@ class ArmSession:
                 return row
         raise RuntimeError("Missing fresh joint, native robot pose, contact or command feedback")
 
+    def check_finger_intervals(self, row):
+        if self.motion_fingers is not None and row:
+            for name, intervals in self.motion_fingers.items():
+                values = np.array(row["arms"][name]["fingers"])
+                if np.any(values < intervals[:, 0]) or np.any(values > intervals[:, 1]):
+                    self.stop_diagnostics = {
+                        "phase": self.phase,
+                        "sim_time_s": row["sim_time_s"],
+                        "arm": name,
+                        "finger_positions_m": values.tolist(),
+                        "planned_finger_intervals_m": intervals.tolist(),
+                    }
+                    raise RuntimeError("Finger left its measured collision interval")
+
     def tick(self, *, teardown=False):
         if not teardown and not self.contact_monitor_ready():
             raise RuntimeError("Lost arm contact publishers")
@@ -203,6 +228,8 @@ class ArmSession:
                 rclpy.spin_once(self.node, timeout_sec=0.01)
             if self.snapshot() is None:
                 raise RuntimeError("Lost feedback")
+        if not teardown:
+            self.check_finger_intervals(self.snapshot())
         for n, pubs in self.pubs.items():
             for pub, value in zip(pubs, [*self.targets[n], self.grips[n], self.grips[n]]):
                 pub.publish(Float64(data=float(value)))
@@ -214,6 +241,10 @@ class ArmSession:
             or row["phase"] != self.history[-1]["phase"]
         ):
             self.history.append(row)
+        if row and not teardown:
+            self.check_finger_intervals(row)
+            for guard in self.evaluation_guards:
+                guard(row)
         return row
 
     def dwell(self, phase, duration, *, teardown=False):
@@ -231,7 +262,13 @@ class ArmSession:
             raise RuntimeError("Insufficient fresh observations")
         return rows
 
-    def move(self, phase, paths):
+    def move(self, phase, paths, *, cartesian_speed_m_s=None, settle_time_s=20):
+        if not np.isfinite(settle_time_s) or not 0 < settle_time_s <= 60:
+            raise ValueError("Settling time must be finite and within (0, 60] seconds")
+        if cartesian_speed_m_s is not None and (
+            not np.isfinite(cartesian_speed_m_s) or cartesian_speed_m_s <= 0
+        ):
+            raise ValueError("Positive finite Cartesian speed required")
         self.phase = phase
         self.tick()
         row = self.snapshot()
@@ -241,10 +278,31 @@ class ArmSession:
             if np.max(np.abs(path[0] - row["arms"][n]["q_rad"])) > 0.02:
                 raise RuntimeError("Prepared path start does not match feedback")
         full = with_parked_arms(paths, parked)
+        self.motion_fingers = {
+            n: np.column_stack(
+                (
+                    np.maximum(np.array(s["fingers"]) - 0.0005, -0.0005),
+                    np.minimum(np.array(s["fingers"]) + 0.0005, 0.0205),
+                )
+            )
+            for n, s in row["arms"].items()
+        }
+        state_bounds = {
+            n: FingerStateBounds(
+                b,
+                {
+                    n + "_finger_" + f + "_joint": self.motion_fingers[n][i]
+                    for i, f in enumerate(("left", "right"))
+                },
+            )
+            for n, b in self.bounds.items()
+        }
         checks = {
             "phase": phase,
-            "arms": screen_paths(self.bounds, full),
-            "fixtures": self.fixtures.screen(self.bounds, full, margin=0.001),
+            "settle_time_s": float(settle_time_s),
+            "arms": screen_paths(state_bounds, full),
+            "fixtures": self.fixtures.screen(state_bounds, full, margin=0.001),
+            "measured_finger_intervals_m": {n: v.tolist() for n, v in self.motion_fingers.items()},
         }
         self.preflights.append(checks)
         if not all(checks[k]["clear"] for k in ("arms", "fixtures")):
@@ -258,9 +316,17 @@ class ArmSession:
                 ],
             ]
         )
+        if cartesian_speed_m_s is not None:
+            for name, path in paths.items():
+                positions = [self.arms[name].forward(q)[:3, 3] for q in path]
+                duration = max(
+                    duration,
+                    sum(np.linalg.norm(b - a) for a, b in zip(positions[:-1], positions[1:]))
+                    / cartesian_speed_m_s,
+                )
         start, wall, stable, previous = row["sim_time_s"], time.monotonic(), 0, None
         goals = {n: self.arms[n].forward(p[-1]) for n, p in paths.items()}
-        while self.poses[1] - start < duration + 20 and time.monotonic() - wall < 240:
+        while self.poses[1] - start < duration + settle_time_s and time.monotonic() - wall < 240:
             t = min(1, (self.poses[1] - start) / duration)
             self.targets.update(
                 {n: interpolate_joints(p, t * t * (3 - 2 * t)) for n, p in paths.items()}
@@ -287,7 +353,15 @@ class ArmSession:
                 stable = stable + 1 if valid else 0
                 previous = actual["sim_time_s"]
             if stable >= 5:
+                self.motion_fingers = None
                 return actual
+        self.stop_diagnostics = {
+            "phase": phase,
+            "sim_time_s": self.poses[1],
+            "command_targets_rad": {n: q.tolist() for n, q in self.targets.items()},
+            "goal_tcp_poses": {n: g.tolist() for n, g in goals.items()},
+            "last_observation": actual,
+        }
         raise RuntimeError("Robot tracking did not converge in " + phase)
 
     def close(self):

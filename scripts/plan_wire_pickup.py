@@ -1,11 +1,12 @@
 """Plan a visible wire pickup while the other arm remains at measured joints."""
 
 import numpy as np
-from arm_collision_bounds import with_parked_arms
+from arm_collision_bounds import first_overlap, with_parked_arms
 from arm_kinematics import axis_rotation
-from cooperative_pick import prepare_pickup_paths
+from cooperative_pick import PickupPathError, prepare_pickup_paths
 from cooperative_transfer import rigid_pose
 from fixture_collision_bounds import FixtureBounds
+from joint_route import joint_route
 
 
 def upright_wire_target(proposal):
@@ -26,6 +27,29 @@ def upright_wire_target(proposal):
     return tool, float(width)
 
 
+def wire_grasp_target(
+    proposal, *, upright=False, tip_depth_m=None, face_quarter_turns=0, half_turn=False
+):
+    if face_quarter_turns not in (0, 1, 2, 3) or (upright and face_quarter_turns):
+        raise ValueError("Square-wire face index 0..3 requires the full wire frame")
+    if tip_depth_m is not None and (not np.isfinite(tip_depth_m) or not 0 < tip_depth_m <= 0.012):
+        raise ValueError("Finite positive tip depth up to 12 mm required")
+    grip, expected_width = (
+        upright_wire_target(proposal)
+        if upright
+        else (rigid_pose(proposal["grasp_tcp_pose"]), 0.008)
+    )
+    if face_quarter_turns:
+        grip[:3, :3] = grip[:3, :3] @ axis_rotation([0, 1, 0], face_quarter_turns * np.pi / 2)
+    if tip_depth_m is not None or face_quarter_turns:
+        depth = 0.002 if tip_depth_m is None else tip_depth_m
+        grip[:3, 3] = np.asarray(proposal["wire_center_xyz_m"]) + grip[:3, 2] * depth
+        grip = rigid_pose(grip)
+    if half_turn:
+        grip = grip @ np.diag([-1.0, -1.0, 1.0, 1.0])
+    return grip, expected_width
+
+
 def plan_wire_pickup(
     arms,
     bounds,
@@ -42,6 +66,7 @@ def plan_wire_pickup(
     include_carrier=False,
     tip_depth_m=None,
     face_quarter_turns=0,
+    route_transit=False,
 ):
     if face_quarter_turns not in (0, 1, 2, 3) or (upright and face_quarter_turns):
         raise ValueError("A square-wire face index 0..3 requires the full wire frame")
@@ -60,39 +85,59 @@ def plan_wire_pickup(
     matching = [row for row in observation.get("wire_supports", []) if row["plug_id"] == plug_id]
     if len(matching) != 1:
         raise ValueError("Exactly one support proposal required for the branch")
-    grip, expected_width = (
-        upright_wire_target(matching[0])
-        if upright
-        else (rigid_pose(matching[0]["grasp_tcp_pose"]), 0.008)
+    grip, expected_width = wire_grasp_target(
+        matching[0],
+        upright=upright,
+        tip_depth_m=tip_depth_m,
+        face_quarter_turns=face_quarter_turns,
+        half_turn=half_turn,
     )
-    if face_quarter_turns:
-        grip[:3, :3] = grip[:3, :3] @ axis_rotation([0, 1, 0], face_quarter_turns * np.pi / 2)
-    if tip_depth_m is not None or face_quarter_turns:
-        depth = 0.002 if tip_depth_m is None else tip_depth_m
-        grip[:3, 3] = np.asarray(matching[0]["wire_center_xyz_m"]) + grip[:3, 2] * depth
-        grip = rigid_pose(grip)
-    if half_turn:
-        grip = grip @ np.diag([-1.0, -1.0, 1.0, 1.0])
     hover = grip.copy()
     hover[:3, 3] -= 0.10 * grip[:3, 2]
     parked = {name: np.asarray(q) for name, q in current.items() if name != support_arm}
-    paths, selection = prepare_pickup_paths(
-        {support_arm: arms[support_arm]},
-        {support_arm: current[support_arm]},
-        {support_arm: hover},
-        {support_arm: grip},
-        bounds,
-        parked=parked,
-        include_lift=include_lift,
-        precise_endpoints=True,
-    )
     fixtures = FixtureBounds(world, include_carrier=include_carrier)
+    transit_reports = []
+    validity_cache = {}
+
+    def route(name, start, goal):
+        def valid(q):
+            key = tuple(np.round(q, 9))
+            if key not in validity_cache:
+                states = {name: q, **parked}
+                validity_cache[key] = (
+                    first_overlap(bounds, states) is None
+                    and fixtures.first_overlap(bounds, states, margin=0.001) is None
+                )
+            return validity_cache[key]
+
+        report = joint_route(start, goal, arms[name].limits, valid, max_nodes=600)
+        transit_reports.append(report)
+        if not report["success"]:
+            raise ValueError("Joint transit: " + report["reason"])
+        return np.asarray(report["path"])
+
+    try:
+        paths, selection = prepare_pickup_paths(
+            {support_arm: arms[support_arm]},
+            {support_arm: current[support_arm]},
+            {support_arm: hover},
+            {support_arm: grip},
+            bounds,
+            parked=parked,
+            include_lift=include_lift,
+            precise_endpoints=True,
+            transit_router=route if route_transit else None,
+        )
+    except PickupPathError as error:
+        error.diagnostics["transit_routes"] = transit_reports
+        raise
     screens = {
         phase: fixtures.screen(bounds, with_parked_arms(path, parked), margin=0.001)
         for phase, path in paths.items()
     }
     return {
         "success": all(row["clear"] for row in screens.values()),
+        "transit_routes": transit_reports,
         "support_arm": support_arm,
         "branch": plug_id,
         "half_turn": half_turn,

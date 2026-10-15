@@ -1,0 +1,135 @@
+{
+  "success": false,
+  "trial_state": "running",
+  "world_sha256": "d71be2eb5049db40f7187ea15690865a50925d528c8471733b6cef06bd38f457",
+  "model_sha256": {
+    "left_arm": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "phase": "shared_lift",
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 294,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "primary_preclose_checks": [
+    {
+      "success": false,
+      "position_error_m": 0.0025359301042386004,
+      "angle_error_rad": 0.022679101612974085,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0006718302213493654,
+      "angle_error_rad": 0.0025749798927518783,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0004110077316967591,
+      "angle_error_rad": 0.0020373397736808876,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": true
+    }
+  ],
+  "primary_correction_budget": {
+    "right_arm": {
+      "translation_m": 0.00444416795616164,
+      "rotation_rad": 0.029941249166492098
+    }
+  },
+  "primary_closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.02001017144922479,
+    "maximum_jaw_opening_m": 0.02001017144922479,
+    "expected_housing_width_m": 0.02,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  },
+  "primary_hold": {
+    "success": true,
+    "minimum_lift_m": 0.09980381138498862,
+    "relative_slip_m": 1.1636520357823831e-05,
+    "lift_slip_m": 0.00025088327607660963,
+    "minimum_tcp_lift_m": 0.09995422850256769,
+    "minimum_finger_travel_m": 0.0018245374813650648,
+    "minimum_jaw_opening_m": 0.020044704853959205,
+    "maximum_jaw_opening_m": 0.020047182896319075,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 336,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 0.01822893962620329
+  },
+  "primary_connector_from_tool": [
+    [
+      1.4759232192276395e-16,
+      0.9999999999999999,
+      9.320509629372353e-18,
+      -5.551115123125783e-17
+    ],
+    [
+      3.0673796412843282e-18,
+      9.100048484628946e-18,
+      1.0,
+      -0.0020000000000000018
+    ],
+    [
+      1.0000000000000002,
+      -1.0395508874302598e-16,
+      9.683122251917053e-18,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "support_preclose": {
+    "center_change_m": 0.0004149255991193425,
+    "tangent_change_rad": 0.0028564343738981765,
+    "tool_position_error_m": 0.0008799366041837635,
+    "tool_angle_error_rad": 0.007480908913461312,
+    "success": true
+  },
+  "support_evaluation_link": "P3_wire_4",
+  "support_closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.007999311012996651,
+    "maximum_jaw_opening_m": 0.007999311012996651,
+    "expected_housing_width_m": 0.008,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  }
+}

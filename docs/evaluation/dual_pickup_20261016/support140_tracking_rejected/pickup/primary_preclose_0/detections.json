@@ -1,0 +1,54 @@
+{
+  "source": "registered_rgbd_end_tags",
+  "required_plugs": [
+    "P3"
+  ],
+  "frame": "world",
+  "sensor_stamp_ns": 36000000000,
+  "stable_frames": 3,
+  "connectors": [
+    {
+      "plug_id": "P3",
+      "surface_xyz_m": [
+        -0.28526873600860664,
+        0.3024991312694332,
+        0.13185199436687195
+      ],
+      "yaw_rad": 2.0780535223347885,
+      "pixel_uv": [
+        453.12890625,
+        519.2548217773438
+      ],
+      "pose_6d": {
+        "center_xyz_m": [
+          -0.27539914525836345,
+          0.2847405067814314,
+          0.13301170757144343
+        ],
+        "rotation_world_from_connector": [
+          [
+            -0.48499217445912496,
+            -0.15502986120393075,
+            -0.8606673764286057
+          ],
+          [
+            0.8726596800000871,
+            -0.14992731032013745,
+            -0.46474389132328997
+          ],
+          [
+            -0.0569883638610058,
+            -0.9764668677201795,
+            0.20800188131165198
+          ]
+        ],
+        "marker_id": 4,
+        "plane_rms_m": 4.31329406130851e-05,
+        "plane_inliers": 571,
+        "maximum_corner_fit_error_m": 0.000372881226008381,
+        "method": "Known 16 mm ArUco end tag, RGB-D plane and corner-ray intersections; ideal calibration"
+      }
+    }
+  ],
+  "scope": "Coded prototype housings: full pose and candidate grasp; no holding validation"
+}

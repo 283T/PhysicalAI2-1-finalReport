@@ -100,6 +100,7 @@ def arm(
     housing_end_clearance_m=0.0003,
     pad_inward_extension_m=0.0,
     wire_contact_length_m=0.020,
+    joint_gain_scale=1.0,
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -107,6 +108,8 @@ def arm(
 
     from ament_index_python.packages import get_package_share_directory
 
+    if not math.isfinite(joint_gain_scale) or joint_gain_scale <= 0:
+        raise ValueError("Positive finite arm gain scale required")
     prefix = name + "_"
     if robot_type == "melfa_rv4frl":
         description = Path(get_package_share_directory("melfa_description"))
@@ -165,8 +168,10 @@ def arm(
             ("joint-position-controller", "JointPositionController"),
             joint_name=prefix + joint,
             topic=f"/{name}/joint_{index}/cmd",
-            p_gain=(180 if index < 3 else 80) if melfa else (800 if index < 3 else 80),
-            d_gain=(2 if index < 3 else 0.1) if melfa else (8 if index < 3 else 0.1),
+            p_gain=joint_gain_scale
+            * ((180 if index < 3 else 80) if melfa else (800 if index < 3 else 80)),
+            d_gain=math.sqrt(joint_gain_scale)
+            * ((2 if index < 3 else 0.1) if melfa else (8 if index < 3 else 0.1)),
             i_gain=(100 if index < 3 else 40) if melfa else (100 if index < 3 else 20),
             i_max=effort,
             i_min=-effort,
@@ -184,6 +189,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--robot", choices=["ur3e", "melfa_rv4frl"], default="ur3e")
     parser.add_argument("--output", type=Path, default=ROOT / "sim/worlds")
+    parser.add_argument("--arm-gain-scale", type=float, default=1)
     parser.add_argument("--conveyor-p-gain", type=float, default=400)
     parser.add_argument("--wire-contact-length-mm", type=float, default=20)
     parser.add_argument("--gripper-p-gain", type=float, default=1000)
@@ -206,6 +212,8 @@ def main():
         help="Use two separated contact pads per finger",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.arm_gain_scale) or args.arm_gain_scale <= 0:
+        parser.error("--arm-gain-scale must be positive and finite")
     if not math.isfinite(args.conveyor_p_gain) or args.conveyor_p_gain <= 0:
         parser.error("--conveyor-p-gain must be positive and finite")
     if args.left_gripper_p_gain is not None and (
@@ -259,6 +267,7 @@ def main():
         args.robot,
         args.output / "left_arm.urdf",
         split_contacts=args.split_finger_contacts,
+        joint_gain_scale=args.arm_gain_scale,
         gripper_p_gain=args.left_gripper_p_gain
         if args.left_gripper_p_gain is not None
         else args.gripper_p_gain,
@@ -282,6 +291,7 @@ def main():
         args.robot,
         args.output / "right_arm.urdf",
         split_contacts=args.split_finger_contacts,
+        joint_gain_scale=args.arm_gain_scale,
         gripper_p_gain=args.gripper_p_gain,
         backstop=args.backstop_gripper,
         capture_fences=args.capture_gripper,

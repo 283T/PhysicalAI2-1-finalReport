@@ -4,51 +4,22 @@ import argparse
 import gzip
 import hashlib
 import json
-import subprocess
-import time
 from pathlib import Path
 
 import numpy as np
 import rclpy
 from arm_kinematics import quaternion_rotation, rotation_error
+from arm_observation import acquire_observation
 from arm_session import ArmSession
 from cartesian_path import translation_path
 from evidence_io import write_json_atomic
 from grasp_validation import assess_hold, assess_opening, world_link_positions
 from gripper_model import measured_rest_gap
 from plan_wire_pickup import plan_wire_pickup, upright_wire_target
-from processes import stop_process
 
 
 def acquire(session, output, distance, calibration=None):
-    output.mkdir(parents=True, exist_ok=True)
-    command = [
-        "python3",
-        "scripts/observe_connectors.py",
-        "--bridge",
-        "--wire-supports",
-        "--plugs",
-        "P3",
-        "--wire-distance-mm",
-        str(distance),
-        "--output",
-        str(output),
-    ]
-    if calibration:
-        command += ["--calibration", str(calibration), "--end-markers"]
-    with (output / "run.log").open("w") as log:
-        process = subprocess.Popen(command, stdout=log, stderr=log, start_new_session=True)
-        try:
-            end = time.monotonic() + 120
-            while process.poll() is None:
-                if time.monotonic() > end:
-                    raise RuntimeError("Fresh wire observation timed out")
-                session.tick()
-            if process.returncode:
-                raise RuntimeError("Fresh wire observation rejected; see " + str(output))
-            return json.loads((output / "wire_supports.json").read_text())
-        finally:
-            stop_process(process, group=True)
+    return acquire_observation(session, output, wire_distance_mm=distance, calibration=calibration)
 
 
 def evaluation_state(row, arm, link):

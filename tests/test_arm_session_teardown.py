@@ -10,6 +10,15 @@ from arm_session import ArmSession
 
 
 class ArmSessionTeardownTest(unittest.TestCase):
+    def test_measured_collision_interval_is_enforced_at_runtime(self):
+        session = ArmSession.__new__(ArmSession)
+        session.motion_fingers = {"right_arm": np.array([[0.0175, 0.0185], [0.0175, 0.0185]])}
+        session.phase = "approach"
+        row = {"sim_time_s": 3, "arms": {"right_arm": {"fingers": [0.018, 0.019]}}}
+        with self.assertRaisesRegex(RuntimeError, "Finger left"):
+            session.check_finger_intervals(row)
+        self.assertEqual(session.stop_diagnostics["finger_positions_m"], [0.018, 0.019])
+
     def test_carrier_threshold_failure_preserves_the_offending_sample(self):
         session = ArmSession.__new__(ArmSession)
         session.arms, session.joints = {}, {}

@@ -1,0 +1,213 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "world_sha256": "5d9e00569a37e3199d70c6a603d8d74c19e6c410c251846f2d8ece9dce6bf713",
+  "model_sha256": {
+    "left_arm": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "phase": "primary_preclose_1",
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 294,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "primary_preclose_checks": [
+    {
+      "success": false,
+      "position_error_m": 0.0020166640444115487,
+      "angle_error_rad": 0.016399013905148276,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0007627743862402191,
+      "angle_error_rad": 0.00522465841161202,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    }
+  ],
+  "primary_correction_budget": {
+    "right_arm": {
+      "translation_m": 0.0034952261100108972,
+      "rotation_rad": 0.031098085436635232
+    }
+  },
+  "error": "Robot tracking did not converge in primary_correction",
+  "planning_diagnostics": null,
+  "contacts": [],
+  "unintended_contacts": [],
+  "stop_diagnostics": null,
+  "preflights": [
+    {
+      "phase": "primary_hover",
+      "arms": {
+        "clear": true,
+        "samples": 294,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 294,
+        "margin_per_box_m": 0.001
+      },
+      "measured_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017519502217485716,
+            0.018519502217485717
+          ],
+          [
+            0.017515130157664805,
+            0.018515130157664806
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017540740374424484,
+            0.018540740374424484
+          ],
+          [
+            0.017564288137490714,
+            0.018564288137490715
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_approach",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "measured_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017519502230678958,
+            0.01851950223067896
+          ],
+          [
+            0.017515130189936702,
+            0.018515130189936703
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017627971968372735,
+            0.018627971968372736
+          ],
+          [
+            0.017469031222144885,
+            0.018469031222144886
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_correction",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "measured_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.01751950223431768,
+            0.01851950223431768
+          ],
+          [
+            0.01751513020412539,
+            0.01851513020412539
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017495629294185897,
+            0.018495629294185897
+          ],
+          [
+            0.017620771004815728,
+            0.01862077100481573
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_correction",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "measured_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017519502235516612,
+            0.018519502235516613
+          ],
+          [
+            0.017515130213028276,
+            0.018515130213028277
+          ]
+        ],
+        "right_arm": [
+          [
+            0.01749562924840555,
+            0.018495629248405553
+          ],
+          [
+            0.017620771025393216,
+            0.018620771025393217
+          ]
+        ]
+      }
+    }
+  ]
+}

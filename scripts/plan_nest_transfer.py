@@ -47,7 +47,16 @@ def nest_connector_pose(world):
 
 
 def plan_to_nest(
-    arms, bounds, world, current, primary, relation, support_rises=(0.0, 0.1, 0.15), *, parked=None
+    arms,
+    bounds,
+    world,
+    current,
+    primary,
+    relation,
+    support_rises=(0.0, 0.1, 0.15),
+    *,
+    parked=None,
+    include_carrier=False,
 ):
     """Plan from supplied current joints; never replace them with a new IK branch."""
     relation = rigid_pose(relation)
@@ -63,10 +72,11 @@ def plan_to_nest(
     if not support_rises or not np.isfinite(support_rises).all() or min(support_rises) < 0:
         raise ValueError("Finite nonnegative support rises required")
     seat = nest_connector_pose(world)
-    fixtures = FixtureBounds(world)
+    fixtures = FixtureBounds(world, include_carrier=include_carrier)
     start = arms[primary].forward(current[primary])
     report = {
         "success": False,
+        "includes_stopped_carrier": include_carrier,
         "mode": "single_with_parked_arm" if single else "paired",
         "parked_joints_rad": {name: np.asarray(q).tolist() for name, q in parked.items()},
         "nest_connector_pose": seat.tolist(),

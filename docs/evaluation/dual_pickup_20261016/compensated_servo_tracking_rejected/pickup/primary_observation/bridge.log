@@ -1,0 +1,4 @@
+[INFO] [1792083246.931552210] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/image (gz.msgs.Image) -> /factory/rgbd/image (sensor_msgs/msg/Image)] (Lazy 0)
+[INFO] [1792083246.933766418] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/depth_image (gz.msgs.Image) -> /factory/rgbd/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[INFO] [1792083246.934155918] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/camera_info (gz.msgs.CameraInfo) -> /factory/rgbd/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[INFO] [1792083248.279652127] [rclcpp]: signal_handler(SIGINT/SIGTERM)

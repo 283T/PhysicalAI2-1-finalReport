@@ -104,6 +104,7 @@ def prepare_pickup_paths(
     parked=None,
     include_lift=True,
     precise_endpoints=False,
+    transit_router=None,
 ):
     """Select IK branches with contiguous descent/lift before moving any arm."""
     import itertools
@@ -140,7 +141,11 @@ def prepare_pickup_paths(
                     lift_target = arm.forward(descent[-1])
                     lift_target[2, 3] += 0.10
                     lift = translation_path(arm, descent[-1], lift_target)
-                hover_path = upright_waist_path(current[name], hover_q)
+                hover_path = (
+                    transit_router(name, current[name], hover_q)
+                    if transit_router is not None
+                    else upright_waist_path(current[name], hover_q)
+                )
                 choices[name].append(
                     {
                         "hover": hover_path,

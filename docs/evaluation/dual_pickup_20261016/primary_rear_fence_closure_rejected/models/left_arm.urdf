@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="melfa_rv4frl">
+  <link name="world" />
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+  <joint name="left_arm_rv4frl_world_to_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+    <parent link="world" />
+    <child link="left_arm_rv4frl_base" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_1" type="revolute">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+    <parent link="left_arm_rv4frl_base" />
+    <child link="left_arm_rv4frl_shoulder" />
+    <axis xyz="0 0 1" />
+    <limit effort="50" lower="-4.1887902047863905" upper="4.1887902047863905" velocity="7.3303828583761845" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_2" type="revolute">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.35" />
+    <parent link="left_arm_rv4frl_shoulder" />
+    <child link="left_arm_rv4frl_upper_arm" />
+    <axis xyz="0 1 0" />
+    <limit effort="50" lower="-2.0943951023931953" upper="2.0943951023931953" velocity="5.8643062867009474" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_3" type="revolute">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.31" />
+    <parent link="left_arm_rv4frl_upper_arm" />
+    <child link="left_arm_rv4frl_elbow" />
+    <axis xyz="0 1 0" />
+    <limit effort="50" lower="0.0" upper="2.8623399732707" velocity="4.363323129985823" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_4" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.05 0.0 0.0" />
+    <parent link="left_arm_rv4frl_elbow" />
+    <child link="left_arm_rv4frl_forearm" />
+    <axis xyz="0 0 1" />
+    <limit effort="50" lower="-3.490658503988659" upper="3.490658503988659" velocity="9.42477796076938" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_5" type="revolute">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.335" />
+    <parent link="left_arm_rv4frl_forearm" />
+    <child link="left_arm_rv4frl_wrist" />
+    <axis xyz="0 1 0" />
+    <limit effort="50" lower="-2.0943951023931953" upper="2.0943951023931953" velocity="10.873401239924673" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_joint_6" type="revolute">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.085" />
+    <parent link="left_arm_rv4frl_wrist" />
+    <child link="left_arm_rv4frl_hand_flange" />
+    <axis xyz="0 0 1" />
+    <limit effort="50" lower="-6.283185307179586" upper="6.283185307179586" velocity="12.566370614359172" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <joint name="left_arm_rv4frl_hand_tcp" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+    <parent link="left_arm_rv4frl_hand_flange" />
+    <child link="left_arm_rv4frl_default_tcp" />
+    <dynamics damping="1.0" friction="1.0" />
+  </joint>
+  <link name="left_arm_rv4frl_base">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.4" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.000443333156" ixy="0.0" ixz="0.0" iyy="0.000443333156" iyz="0.0" izz="0.0007199999999999999" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_shoulder">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.37" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.00041008316929999996" ixy="0.0" ixz="0.0" iyy="0.00041008316929999996" iyz="0.0" izz="0.0006659999999999999" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_upper_arm">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3393" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.00037605734957699995" ixy="0.0" ixz="0.0" iyy="0.00037605734957699995" iyz="0.0" izz="0.0006107399999999999" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_elbow">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2275" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.000252145732475" ixy="0.0" ixz="0.0" iyy="0.000252145732475" iyz="0.0" izz="0.0004095" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_forearm">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1219" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.00013510577929099998" ixy="0.0" ixz="0.0" iyy="0.00013510577929099998" iyz="0.0" izz="0.00021941999999999998" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_wrist">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1219" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.00013510577929099998" ixy="0.0" ixz="0.0" iyy="0.00013510577929099998" iyz="0.0" izz="0.00021941999999999998" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_hand_flange">
+    <visual>
+      <material name="white" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01879" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="2.08255750031e-05" ixy="0.0" ixz="0.0" iyy="2.08255750031e-05" iyz="0.0" izz="3.3821999999999996e-05" />
+    </inertial>
+  </link>
+  <link name="left_arm_rv4frl_default_tcp" />
+  <link name="left_arm_gripper">
+    <inertial>
+      <mass value=".05" />
+      <inertia ixx=".00002" iyy=".00002" izz=".00002" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -.006" rpy="0 0 0" />
+      <geometry>
+        <box size=".070 .04 .012" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -.006" rpy="0 0 0" />
+      <geometry>
+        <box size=".070 .04 .012" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_gripper_mount" type="fixed">
+    <parent link="left_arm_rv4frl_default_tcp" />
+    <child link="left_arm_gripper" />
+  </joint>
+  <link name="left_arm_finger_left">
+    <inertial>
+      <origin xyz="0.0025 0 0.04" />
+      <mass value="0.040625" />
+      <inertia ixx="3.013020833333334e-05" iyy="2.2238802083333334e-05" izz="9.035677083333335e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0025 0 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.05 0.08" />
+      </geometry>
+    </visual>
+    <collision name="contact_pad_0">
+      <origin xyz="0.0025 -0.015 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.020000000000000004 0.08" />
+      </geometry>
+    </collision>
+    <collision name="contact_pad_1">
+      <origin xyz="0.0025 0.015 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.020000000000000004 0.08" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_finger_left_joint" type="prismatic">
+    <origin xyz="-0.012 0 0" rpy="0 0 0" />
+    <parent link="left_arm_gripper" />
+    <child link="left_arm_finger_left" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0.02" effort="12" velocity=".03" />
+    <dynamics damping="2" friction=".1" />
+  </joint>
+  <link name="left_arm_finger_right">
+    <inertial>
+      <origin xyz="-0.0025 0 0.04" />
+      <mass value="0.040625" />
+      <inertia ixx="3.013020833333334e-05" iyy="2.2238802083333334e-05" izz="9.035677083333335e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0025 0 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.05 0.08" />
+      </geometry>
+    </visual>
+    <collision name="contact_pad_0">
+      <origin xyz="-0.0025 -0.015 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.020000000000000004 0.08" />
+      </geometry>
+    </collision>
+    <collision name="contact_pad_1">
+      <origin xyz="-0.0025 0.015 0.04" rpy="0 0 0" />
+      <geometry>
+        <box size="0.013000000000000001 0.020000000000000004 0.08" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_finger_right_joint" type="prismatic">
+    <origin xyz="0.012 0 0" rpy="0 0 0" />
+    <parent link="left_arm_gripper" />
+    <child link="left_arm_finger_right" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.02" effort="12" velocity=".03" />
+    <dynamics damping="2" friction=".1" />
+  </joint>
+</robot>

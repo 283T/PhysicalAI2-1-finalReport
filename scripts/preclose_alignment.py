@@ -12,6 +12,11 @@ def desired_tool_pose(detection, connector_from_tool):
     return rigid_pose(body) @ rigid_pose(connector_from_tool)
 
 
+def tracking_compensated_goal(desired, observed, commanded):
+    """Apply image/tool error to the current command, compensating static tracking bias."""
+    return rigid_pose(desired) @ np.linalg.inv(rigid_pose(observed)) @ rigid_pose(commanded)
+
+
 def correction_path(arm, current, goal):
     """Limit one correction to 5 mm / 0.10 rad, without changing IK branches."""
     current = np.asarray(current, dtype=float)
