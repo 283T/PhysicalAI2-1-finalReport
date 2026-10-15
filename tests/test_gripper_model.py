@@ -64,3 +64,103 @@ class FenceClearanceTest(unittest.TestCase):
         for width in (float("nan"), float("inf"), 0.003, 0.013):
             with self.subTest(width=width), self.assertRaises(ValueError):
                 add_gripper(ET.Element("robot"), "test_", "flange", fence_width_m=width)
+
+
+class HousingEndStopTest(unittest.TestCase):
+    def test_end_stops_leave_marker_and_cable_clear_with_small_housing_end_gap(self):
+        robot = ET.Element("robot")
+        add_gripper(
+            robot,
+            "test_",
+            "flange",
+            split_contacts=True,
+            capture_fences=True,
+            front_fence_side="right",
+            fence_width_m=0.008,
+            housing_end_stops=True,
+        )
+        finger = robot.find("link[@name='test_finger_right']")
+        self.assertIsNone(
+            robot.find("link[@name='test_finger_left']/collision[@name='housing_end_plus']")
+        )
+        for name in ("housing_end_minus", "housing_end_plus"):
+            shape = finger.find(f"collision[@name='{name}']")
+            center = [float(v) for v in shape.find("origin").get("xyz").split()]
+            size = [float(v) for v in shape.find("geometry/box").get("size").split()]
+            inner_x = 0.012 + 0.002 + center[0] - size[0] / 2
+            self.assertGreater(inner_x, 0.008)  # Half of the visual marker is 8 mm.
+            self.assertGreater(inner_x, 0.004)  # Half of the cable cross section is 4 mm.
+            self.assertAlmostEqual(abs(center[1]) - size[1] / 2 - 0.020, 0.0003)
+        centers = [
+            abs(float(p.find("origin").get("xyz").split()[1]))
+            for p in finger.findall("collision")
+            if p.get("name", "").startswith("contact_pad")
+        ]
+        self.assertTrue(all(0.006 < value < 0.010 for value in centers))
+        self.assertGreater(float(finger.find("inertial/mass").get("value")), 0.012)
+        with self.assertRaises(ValueError):
+            add_gripper(ET.Element("robot"), "test_", "flange", housing_end_stops=True)
+
+
+class PinSideClearanceTest(unittest.TestCase):
+    def test_pin_side_pads_and_visual_end_before_nominal_tcp(self):
+        robot = ET.Element("robot")
+        add_gripper(
+            robot,
+            "test_",
+            "flange",
+            split_contacts=True,
+            capture_fences=True,
+            front_fence_side="right",
+            housing_end_stops=True,
+            pin_side_tip_recess_m=0.002,
+        )
+        for name, end in (("left", 0.078), ("right", 0.080)):
+            finger = robot.find(f"link[@name='test_finger_{name}']")
+            shapes = [
+                finger.find("visual"),
+                *[
+                    p
+                    for p in finger.findall("collision")
+                    if p.get("name", "").startswith("contact_pad")
+                ],
+            ]
+            for shape in shapes:
+                z = float(shape.find("origin").get("xyz").split()[2])
+                length = float(shape.find("geometry/box").get("size").split()[2])
+                self.assertAlmostEqual(z + length / 2, end)
+        for value in (-0.001, 0.004, float("nan")):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                add_gripper(ET.Element("robot"), "test_", "flange", pin_side_tip_recess_m=value)
+
+
+class EndClearanceTest(unittest.TestCase):
+    def test_custom_clearance_keeps_finite_physical_gap(self):
+        robot = ET.Element("robot")
+        add_gripper(
+            robot,
+            "test_",
+            "flange",
+            capture_fences=True,
+            housing_end_stops=True,
+            housing_end_clearance_m=0.0001,
+        )
+        for sign, name in ((-1, "minus"), (1, "plus")):
+            shape = robot.find(
+                f"link[@name='test_finger_right']/collision[@name='housing_end_{name}']"
+            )
+            y = float(shape.find("origin").get("xyz").split()[1])
+            width = float(shape.find("geometry/box").get("size").split()[1])
+            self.assertAlmostEqual(sign * y - width / 2 - 0.020, 0.0001)
+        for clearance in (0, 0.002, float("nan")):
+            with self.subTest(clearance=clearance), self.assertRaises(ValueError):
+                add_gripper(
+                    ET.Element("robot"),
+                    "test_",
+                    "flange",
+                    capture_fences=True,
+                    housing_end_stops=True,
+                    housing_end_clearance_m=clearance,
+                )
+        with self.assertRaises(ValueError):
+            add_gripper(ET.Element("robot"), "test_", "flange", housing_end_clearance_m=0.0001)

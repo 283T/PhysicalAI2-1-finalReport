@@ -14,6 +14,18 @@ from regrasp_plan import top_grasp_relation
 
 
 class RegraspTests(unittest.TestCase):
+    def test_factory_nest_supports_cable_on_both_flipped_housing_exits(self):
+        world = ET.fromstring('<world><model name="fixtures"><link name="base"/></model></world>')
+        info = add_nest_to_world(world)
+        self.assertEqual(info["supported_cable_exits"], [-1, 1])
+        link = world.find("model/link")
+        centres = []
+        for name in ("cable_cradle", "cable_cradle_positive"):
+            pose = link.find(f"collision[@name='regrasp_{name}_collision']/pose")
+            centres.append(float(pose.text.split()[0]))
+        self.assertAlmostEqual(sum(centres) / 2, 0.08)
+        self.assertAlmostEqual(centres[1] - centres[0], 0.1)
+
     def test_top_grip_closes_across_short_side_in_both_symmetric_orientations(self):
         for flipped in (False, True):
             relation = top_grasp_relation(flipped)

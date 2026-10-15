@@ -1,0 +1,10 @@
+{
+  "stable_count_sequence_reproduced": true,
+  "counts": [
+    1,
+    1,
+    2,
+    3
+  ],
+  "scope": "Frame-window stability replay only; no independent point accuracy or physical grasp validation"
+}

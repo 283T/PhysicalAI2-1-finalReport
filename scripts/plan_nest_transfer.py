@@ -9,10 +9,10 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import numpy as np
-from arm_collision_bounds import ArmCollisionBounds, screen_paths
+from arm_collision_bounds import ArmCollisionBounds, screen_paths, with_parked_arms
 from arm_kinematics import transform
 from assembly_case import validate_connection_plan
-from cooperative_transfer import assess_pair_path, paired_path, rigid_pose
+from cooperative_transfer import assess_pair_path, paired_path, rigid_pose, single_arm_path
 from fixture_collision_bounds import FixtureBounds, sdf_pose
 from plan_reach import load_arms
 
@@ -46,9 +46,20 @@ def nest_connector_pose(world):
     return pose
 
 
-def plan_to_nest(arms, bounds, world, current, primary, relation, support_rises=(0.0, 0.1, 0.15)):
+def plan_to_nest(
+    arms, bounds, world, current, primary, relation, support_rises=(0.0, 0.1, 0.15), *, parked=None
+):
     """Plan from supplied current joints; never replace them with a new IK branch."""
     relation = rigid_pose(relation)
+    if primary not in arms or set(current) != set(arms) or len(arms) not in (1, 2):
+        raise ValueError("One or two active arms with matching current joints required")
+    single = len(arms) == 1
+    parked = {} if parked is None else parked
+    initial_paths = with_parked_arms(
+        {name: np.repeat(np.asarray(q)[None, :], 2, axis=0) for name, q in current.items()}, parked
+    )
+    if len(bounds) != 2 or set(initial_paths) != set(bounds):
+        raise ValueError("Every arm must have a current moving or parked joint observation")
     if not support_rises or not np.isfinite(support_rises).all() or min(support_rises) < 0:
         raise ValueError("Finite nonnegative support rises required")
     seat = nest_connector_pose(world)
@@ -56,16 +67,18 @@ def plan_to_nest(arms, bounds, world, current, primary, relation, support_rises=
     start = arms[primary].forward(current[primary])
     report = {
         "success": False,
+        "mode": "single_with_parked_arm" if single else "paired",
+        "parked_joints_rad": {name: np.asarray(q).tolist() for name, q in parked.items()},
         "nest_connector_pose": seat.tolist(),
         "attempts": [],
         "scope": "Continuous IK from the supplied lift state; inter-arm and static fixture box screening only. No physical placement, self/cable/object collision or force validation",
     }
     for flipped, height, orbit, order, rise in itertools.product(
-        (True, False),
+        (False, True) if single else (True, False),
         (0.35, 0.45),
-        (0.0, -math.pi / 2, math.pi / 2, None),
+        (None,) if single else (0.0, -math.pi / 2, math.pi / 2, None),
         ("translate_then_rotate", "rotate_then_translate"),
-        support_rises,
+        (0.0,) if single else support_rises,
     ):
         if orbit is None and rise != 0:
             continue
@@ -97,27 +110,31 @@ def plan_to_nest(arms, bounds, world, current, primary, relation, support_rises=
             attempt["phases"].append(phase)
             try:
                 rotation_phase = 2 if order == "translate_then_rotate" else 1
-                paths = paired_path(
-                    arms,
-                    state,
-                    primary,
-                    target,
-                    support_orbit=None
-                    if orbit is None
-                    else orbit
-                    if index == rotation_phase
-                    else 0.0,
-                    support_rise=rise if index == 4 else 0.0,
-                )
-                phase["pair"] = assess_pair_path(arms, paths, rigid=orbit is None)
-                phase["collision"] = screen_paths(bounds, paths)
-                phase["fixtures"] = fixtures.screen(bounds, paths, margin=0.001)
+                if single:
+                    paths = {primary: single_arm_path(arms[primary], state[primary], target)}
+                else:
+                    paths = paired_path(
+                        arms,
+                        state,
+                        primary,
+                        target,
+                        support_orbit=None
+                        if orbit is None
+                        else orbit
+                        if index == rotation_phase
+                        else 0.0,
+                        support_rise=rise if index == 4 else 0.0,
+                    )
+                    phase["pair"] = assess_pair_path(arms, paths, rigid=orbit is None)
+                screened = with_parked_arms(paths, parked)
+                phase["collision"] = screen_paths(bounds, screened)
+                phase["fixtures"] = fixtures.screen(bounds, screened, margin=0.001)
                 if (
-                    not phase["pair"]["success"]
+                    not phase.get("pair", {"success": True})["success"]
                     or not phase["collision"]["clear"]
                     or not phase["fixtures"]["clear"]
                 ):
-                    phase["reason"] = "Pair or collision screening rejected"
+                    phase["reason"] = "Kinematics or collision screening rejected"
                     break
                 phase["joint_paths"] = {name: path.tolist() for name, path in paths.items()}
                 state = {name: path[-1] for name, path in paths.items()}

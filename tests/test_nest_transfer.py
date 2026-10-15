@@ -9,8 +9,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import transform
-from plan_nest_transfer import nest_connector_pose
+from plan_nest_transfer import nest_connector_pose, plan_to_nest
 from regrasp_fixture import add_regrasp_nest
+from test_cooperative_transfer import PoseArm
 
 
 class NestTransferTests(unittest.TestCase):
@@ -33,6 +34,30 @@ class NestTransferTests(unittest.TestCase):
                         transform([-0.1, 0.2, 0.23], [0, 0, yaw]),
                         atol=1e-10,
                     )
+
+    def test_single_transfer_screens_parked_arm_and_keeps_its_joints_constant(self):
+        class PointBounds:
+            def boxes(self, q):
+                return [("tool", (np.asarray(q[:3]), np.eye(3), np.full(3, 0.001)))]
+
+        with tempfile.TemporaryDirectory() as directory:
+            world = self.write_world(directory)
+            args = (
+                {"active": PoseArm()},
+                {"active": PointBounds(), "idle": PointBounds()},
+                world,
+                {"active": [0.1, -0.3, 0.4, 0]},
+                "active",
+                np.eye(4),
+            )
+            plan = plan_to_nest(*args, parked={"idle": [2, 2, 2, 0]})
+            self.assertTrue(plan["success"])
+            self.assertEqual(plan["mode"], "single_with_parked_arm")
+            np.testing.assert_allclose(plan["goal_connector_pose"], transform([0.08, -0.04, 0.23]))
+            blocked = plan_to_nest(*args, parked={"idle": [0.08, -0.04, 0.23, 0]})
+            self.assertFalse(blocked["success"])
+            with self.assertRaises(ValueError):
+                plan_to_nest(*args)
 
     def test_missing_or_uneven_supports_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:

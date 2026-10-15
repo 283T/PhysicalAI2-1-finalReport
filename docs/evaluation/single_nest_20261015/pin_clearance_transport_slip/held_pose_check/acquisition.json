@@ -1,0 +1,72 @@
+{
+  "processed_frames": 3,
+  "frames": [
+    {
+      "sensor_stamp_ns": 71000000000,
+      "elapsed_wall_s": 1.8685895420003362,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 1,
+      "decode_wall_s": 0.005147249999936321,
+      "detector_wall_s": 0.017581791000338853,
+      "save_and_validation_wall_s": 0.024853959000211034
+    },
+    {
+      "sensor_stamp_ns": 72000000000,
+      "elapsed_wall_s": 6.239480127999741,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 2,
+      "decode_wall_s": 0.0022497910003949073,
+      "detector_wall_s": 0.016143541999554145,
+      "save_and_validation_wall_s": 0.02721404200019606
+    },
+    {
+      "sensor_stamp_ns": 73000000000,
+      "elapsed_wall_s": 9.62854587899983,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0005404589992394904,
+      "detector_wall_s": 0.013173416000427096,
+      "save_and_validation_wall_s": 0.020733624999593303
+    }
+  ],
+  "success": true,
+  "timeout_s": 90.0,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd.xml",
+    "sha256": "2c03acf4be4d6d216c61346beefe2fb3799d164cf702f6f386628971a1f525d7"
+  },
+  "elapsed_wall_s": 9.932832587999656,
+  "transport": {
+    "received_messages": {
+      "rgb": 3,
+      "depth": 3
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 3,
+    "last_paired_stamp_ns": 73000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.3387597509999978
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.33943062600064877
+      }
+    }
+  },
+  "camera_info_messages": 3
+}

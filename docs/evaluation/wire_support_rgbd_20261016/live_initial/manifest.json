@@ -1,0 +1,11 @@
+{
+  "acquisition.json": "d4c347f2a4e87c3a5973e886b4482424270f029bb22e1c8c08c9e83d3f9553be",
+  "calibration.json": "367fc6c29073ae46d482b8f1f180bae443df2fd8c50c4b42f44e774770ba46b2",
+  "camera.png": "89120d5f9c9cc1c8b0f3d1ef13c4e0f6f1ef03301a6934ef18e0847a1e18272f",
+  "camera_intrinsics.json": "6ac1322eba336bb64eda25842a775c4b12ec13fe7c208bbbf85347b11fde8ec8",
+  "depth.npz": "d4482ef33b2f619e9d996b8e8e335865bd97ddecd8ff92349cd88b46ecc7225c",
+  "detections.json": "3bf5ecc006310dcc6483aa14a9b424e1cffe58f52c8f7a375ef493b6968fa9b3",
+  "scene.json": "985460550f3073cf071b30d57f55b32228fed49aa8b29c18d2750cffad6a2e34",
+  "wire_supports.json": "a300248afffe470dd44fde18bfb9d8150bdc25af59a39bc8ee627685aba4e684",
+  "wire_supports.png": "b0f47f58f8492a8a00b9204293adec3aa1edaf2552baada5071fb09c8b81c9d4"
+}

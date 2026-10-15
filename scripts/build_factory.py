@@ -95,6 +95,9 @@ def arm(
     capture_fences=False,
     front_fence_side="both",
     fence_width_m=0.012,
+    housing_end_stops=False,
+    pin_side_tip_recess_m=0.0,
+    housing_end_clearance_m=0.0003,
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -134,6 +137,9 @@ def arm(
         capture_fences=capture_fences,
         front_fence_side=front_fence_side,
         fence_width_m=fence_width_m,
+        housing_end_stops=housing_end_stops,
+        pin_side_tip_recess_m=pin_side_tip_recess_m,
+        housing_end_clearance_m=housing_end_clearance_m,
     )
     if urdf_output is not None:
         ET.indent(robot)
@@ -177,6 +183,9 @@ def main():
     parser.add_argument("--gripper-p-gain", type=float, default=1000)
     parser.add_argument("--backstop-gripper", action="store_true")
     parser.add_argument("--capture-gripper", action="store_true")
+    parser.add_argument("--pin-side-tip-recess-mm", type=float, default=0)
+    parser.add_argument("--housing-end-clearance-mm", type=float, default=0.3)
+    parser.add_argument("--housing-end-stops", action="store_true")
     parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
@@ -189,6 +198,17 @@ def main():
         parser.error("--fence-width-mm must be finite and between 4 and 12")
     if args.fence_width_mm != 12 and not (args.capture_gripper or args.backstop_gripper):
         parser.error("--fence-width-mm requires capture or backstop gripper")
+    if not math.isfinite(args.pin_side_tip_recess_mm) or not 0 <= args.pin_side_tip_recess_mm <= 3:
+        parser.error("--pin-side-tip-recess-mm must be finite and between 0 and 3")
+    if (
+        not math.isfinite(args.housing_end_clearance_mm)
+        or not 0.05 <= args.housing_end_clearance_mm <= 1
+    ):
+        parser.error("--housing-end-clearance-mm must be finite and between 0.05 and 1")
+    if args.housing_end_clearance_mm != 0.3 and not args.housing_end_stops:
+        parser.error("--housing-end-clearance-mm requires --housing-end-stops")
+    if args.housing_end_stops and not args.capture_gripper:
+        parser.error("--housing-end-stops requires --capture-gripper")
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
     if args.front_fence_side != "both" and not args.capture_gripper:
@@ -219,6 +239,9 @@ def main():
         capture_fences=args.capture_gripper,
         front_fence_side=args.front_fence_side,
         fence_width_m=args.fence_width_mm / 1000,
+        housing_end_stops=args.housing_end_stops,
+        pin_side_tip_recess_m=args.pin_side_tip_recess_mm / 1000,
+        housing_end_clearance_m=args.housing_end_clearance_mm / 1000,
     )
     arm(
         world,
@@ -233,6 +256,9 @@ def main():
         capture_fences=args.capture_gripper,
         front_fence_side=args.front_fence_side,
         fence_width_m=args.fence_width_mm / 1000,
+        housing_end_stops=args.housing_end_stops,
+        pin_side_tip_recess_m=args.pin_side_tip_recess_mm / 1000,
+        housing_end_clearance_m=args.housing_end_clearance_mm / 1000,
     )
     # A moving carrier approximates a conveyor pallet. Transport control is a separate stage.
     carrier = child(world, "model", name="conveyor_carrier")

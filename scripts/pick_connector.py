@@ -77,7 +77,7 @@ def main():
     parser.add_argument(
         "--place-in-nest",
         action="store_true",
-        help="After paired pickup, plan from live joints, place the primary terminal in the passive nest and retreat",
+        help="After pickup, plan from live joints, place the primary terminal in the passive nest and retreat",
     )
     parser.add_argument(
         "--keep-camera",
@@ -91,8 +91,6 @@ def main():
         parser.error("--verify-before-close requires an inspection calibration and end markers")
     if args.correct_before_close and not args.verify_before_close:
         parser.error("--correct-before-close requires --verify-before-close")
-    if args.place_in_nest and not args.support_plug:
-        parser.error("--place-in-nest requires --support-plug")
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "validation.json").unlink(missing_ok=True)
     observations = args.output / "observations"
@@ -496,7 +494,11 @@ def main():
                     + str(screening["links"])
                 )
         if fixtures is not None:
-            screening = fixtures.screen(collision_bounds, paths, margin=0.001)
+            screening = fixtures.screen(
+                collision_bounds,
+                with_parked_arms(paths, observation["parked_joints_rad"]),
+                margin=0.001,
+            )
             report.setdefault("fixture_preflight", []).append({"phase": phase, **screening})
             if not screening["clear"]:
                 raise RuntimeError(
@@ -791,6 +793,7 @@ def main():
                     current,
                     primary,
                     assigned[primary]["grasp_candidate"]["connector_from_tool"],
+                    parked=live["parked_joints_rad"],
                 )
                 report["nest_plan"] = nest_plan
                 if not nest_plan["success"]:
@@ -833,9 +836,11 @@ def main():
                 )
                 report.update(
                     success=report["nest_seat"]["success"],
-                    stage="paired_pickup_and_nest_placement",
+                    stage="paired_pickup_and_nest_placement"
+                    if len(selected) == 2
+                    else "single_pickup_and_nest_placement",
                     final=seated[-1],
-                    scope="Fresh RGB-D paired contact pickup, continuous nest transfer and primary release/retreat; support holds another terminal. No top regrasp or board insertion",
+                    scope="Fresh RGB-D contact pickup, continuous nest transfer and primary release/retreat; optional support holds another terminal, otherwise the other arm is parked and screened. No top regrasp or board insertion",
                 )
                 if not report["success"]:
                     raise RuntimeError("Nest seat did not remain stable after primary retreat")

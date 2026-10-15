@@ -7,20 +7,47 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import rotation_error, transform
-from cooperative_transfer import assess_pair_path, paired_path, pose_samples, socket_poses
+from cooperative_transfer import (
+    assess_pair_path,
+    paired_path,
+    pose_samples,
+    single_arm_path,
+    socket_poses,
+)
 
 
 class PoseArm:
     def forward(self, q):
         return transform(q[:3], [0, 0, q[3]])
 
-    def inverse(self, target, seed, attempts=1):
+    def inverse(self, target, seed, attempts=1, **kwargs):
         yaw = math.atan2(target[1, 0], target[0, 0])
         yaw += round((seed[3] - yaw) / (2 * math.pi)) * 2 * math.pi
         return {"success": True, "q_rad": [*target[:3, 3], yaw]}
 
 
 class TransferTests(unittest.TestCase):
+    def test_single_arm_path_interpolates_rotation_and_retains_seeded_branch(self):
+        start = np.array([0, 0, 0.3, 0])
+        goal = transform([0.2, 0.1, 0.4], [0, 0, math.pi / 2])
+        path = single_arm_path(PoseArm(), start, goal)
+        np.testing.assert_allclose(path[0], start)
+        np.testing.assert_allclose(PoseArm().forward(path[-1]), goal, atol=1e-10)
+        self.assertLess(np.max(np.abs(np.diff(path, axis=0))), 0.15)
+
+    def test_single_arm_path_rejects_false_ik_success_and_joint_jump(self):
+        class WrongArm(PoseArm):
+            def inverse(self, target, seed, attempts=1, **kwargs):
+                return {"success": True, "q_rad": seed}
+
+        class JumpArm(PoseArm):
+            def inverse(self, target, seed, attempts=1, **kwargs):
+                return {"success": True, "q_rad": [3, 0, 0, 0]}
+
+        for arm in (WrongArm(), JumpArm()):
+            with self.subTest(arm=type(arm).__name__), self.assertRaises(ValueError):
+                single_arm_path(arm, [0, 0, 0.3, 0], transform([0.2, 0, 0.3]))
+
     def test_elevated_support_preserves_distance_while_primary_descends(self):
         arms = {"a": PoseArm(), "b": PoseArm()}
         state = {"a": [0, 0, 0.4, 0], "b": [0.3, 0, 0.4, 0]}
@@ -58,11 +85,11 @@ class TransferTests(unittest.TestCase):
 
     def test_reject_unreachable_support_and_joint_jump(self):
         class BrokenArm(PoseArm):
-            def inverse(self, target, seed, attempts=1):
+            def inverse(self, target, seed, attempts=1, **kwargs):
                 return {"success": True, "q_rad": [5, 0, 0, 0]}
 
         class UnreachableArm(PoseArm):
-            def inverse(self, target, seed, attempts=1):
+            def inverse(self, target, seed, attempts=1, **kwargs):
                 return {"success": False, "q_rad": seed}
 
         for arm in (BrokenArm(), UnreachableArm()):

@@ -68,6 +68,9 @@ def main():
         help="Use the local Ollama CLI to unload the drawing model before robot control",
     )
     parser.add_argument("--inspection-timeout", type=float, default=90)
+    parser.add_argument("--pin-side-tip-recess-mm", type=float, default=0)
+    parser.add_argument("--housing-end-clearance-mm", type=float, default=0.3)
+    parser.add_argument("--housing-end-stops", action="store_true")
     parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
@@ -98,16 +101,25 @@ def main():
         parser.error("--fence-width-mm must be finite and between 4 and 12")
     if args.fence_width_mm != 12 and not (args.capture_gripper or args.backstop_gripper):
         parser.error("--fence-width-mm requires capture or backstop gripper")
+    if not math.isfinite(args.pin_side_tip_recess_mm) or not 0 <= args.pin_side_tip_recess_mm <= 3:
+        parser.error("--pin-side-tip-recess-mm must be finite and between 0 and 3")
+    if (
+        not math.isfinite(args.housing_end_clearance_mm)
+        or not 0.05 <= args.housing_end_clearance_mm <= 1
+    ):
+        parser.error("--housing-end-clearance-mm must be finite and between 0.05 and 1")
+    if args.housing_end_clearance_mm != 0.3 and not args.housing_end_stops:
+        parser.error("--housing-end-clearance-mm requires --housing-end-stops")
+    if args.housing_end_stops and not args.capture_gripper:
+        parser.error("--housing-end-stops requires --capture-gripper")
     if args.capture_gripper and args.backstop_gripper:
         parser.error("Choose one experimental finger profile")
     if args.front_fence_side != "both" and not args.capture_gripper:
         parser.error("--front-fence-side requires --capture-gripper")
     if not math.isfinite(args.gripper_p_gain) or args.gripper_p_gain <= 0:
         parser.error("--gripper-p-gain must be finite and positive")
-    if args.place_in_nest and (
-        not args.regrasp_nest or not args.support_plug or not args.pick_connector
-    ):
-        parser.error("--place-in-nest requires --regrasp-nest, --pick-connector and --support-plug")
+    if args.place_in_nest and (not args.regrasp_nest or not args.pick_connector):
+        parser.error("--place-in-nest requires --regrasp-nest and --pick-connector")
     if args.support_plug and not args.pick_connector:
         parser.error("--support-plug requires --pick-connector")
     if args.correct_before_close and not args.verify_before_close:
@@ -141,6 +153,12 @@ def main():
             models += "_front_" + args.front_fence_side
     if args.fence_width_mm != 12:
         models += "_fence" + format(args.fence_width_mm, "g").replace(".", "p")
+    if args.housing_end_stops:
+        models += "_end_stops"
+    if args.housing_end_clearance_mm != 0.3:
+        models += "_gap" + format(args.housing_end_clearance_mm, "g").replace(".", "p")
+    if args.pin_side_tip_recess_mm:
+        models += "_tip" + format(args.pin_side_tip_recess_mm, "g").replace(".", "p")
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -165,6 +183,16 @@ def main():
     factory.extend(
         ["--gripper-p-gain", str(args.gripper_p_gain), "--fence-width-mm", str(args.fence_width_mm)]
     )
+    factory.extend(
+        [
+            "--pin-side-tip-recess-mm",
+            str(args.pin_side_tip_recess_mm),
+            "--housing-end-clearance-mm",
+            str(args.housing_end_clearance_mm),
+        ]
+    )
+    if args.housing_end_stops:
+        factory.append("--housing-end-stops")
     if args.backstop_gripper:
         factory.append("--backstop-gripper")
     if args.capture_gripper:

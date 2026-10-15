@@ -35,6 +35,40 @@ def pose_samples(start, goal, spacing=0.005, angular_spacing=0.025):
     return [intermediate_pose(start, goal, fraction) for fraction in np.linspace(0, 1, steps + 1)]
 
 
+def single_arm_path(arm, current, goal, max_joint_step=0.15):
+    """Continuous 6D IK for a single active arm; final waypoint uses precise IK."""
+    current = np.asarray(current, dtype=float)
+    if current.ndim != 1 or not len(current) or not np.isfinite(current).all():
+        raise ValueError("Finite current joints required")
+    if not math.isfinite(max_joint_step) or max_joint_step <= 0:
+        raise ValueError("Positive finite joint step required")
+    poses = pose_samples(arm.forward(current), goal)
+    path = [current.copy()]
+    for index, pose in enumerate(poses[1:], 1):
+        options = (
+            {"position_tolerance": 0.0001, "angle_tolerance": 0.002}
+            if index == len(poses) - 1
+            else {}
+        )
+        result = arm.inverse(pose, seed=path[-1], attempts=1, **options)
+        joints = np.asarray(result["q_rad"], dtype=float)
+        if (
+            not result["success"]
+            or joints.shape != current.shape
+            or not np.isfinite(joints).all()
+            or np.max(np.abs(joints - path[-1])) > max_joint_step
+        ):
+            raise ValueError(f"Unreachable or discontinuous single-arm waypoint {index}")
+        path.append(joints)
+    achieved, goal = rigid_pose(arm.forward(path[-1])), rigid_pose(goal)
+    if (
+        np.linalg.norm(achieved[:3, 3] - goal[:3, 3]) >= 0.0001
+        or np.linalg.norm(rotation_error(achieved[:3, :3], goal[:3, :3])) >= 0.002
+    ):
+        raise ValueError("Single-arm endpoint did not meet precise IK tolerances")
+    return np.asarray(path)
+
+
 def paired_path(
     arms, current, primary, goal, max_joint_step=0.15, support_orbit=None, support_rise=0.0
 ):

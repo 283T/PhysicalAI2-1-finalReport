@@ -7,7 +7,13 @@ from build_world import box
 
 
 def add_regrasp_nest(
-    fixtures_link, center=(0, 0), rim=0.22, yaw=0.0, channel_width=0.008, pin_relief=False
+    fixtures_link,
+    center=(0, 0),
+    rim=0.22,
+    yaw=0.0,
+    channel_width=0.008,
+    pin_relief=False,
+    both_cable_exits=False,
 ):
     """Support housing ends outside the central 20 mm finger contact band."""
     if len(center) != 2 or not np.isfinite([*center, rim, yaw]).all() or rim <= 0.10:
@@ -35,6 +41,12 @@ def add_regrasp_nest(
     # The open upper surface allows the cable to leave with a vertical lift.
     cradle_top = rim + 0.006
     shape("cable_cradle", [0.04, 0.016, cradle_top - 0.04], [-0.05, 0, (cradle_top + 0.04) / 2])
+    if both_cable_exits:
+        shape(
+            "cable_cradle_positive",
+            [0.04, 0.016, cradle_top - 0.04],
+            [0.05, 0, (cradle_top + 0.04) / 2],
+        )
     for sign in (-1, 1):
         if pin_relief:
             # Keep the housing supported at both corners; let a tilted pin pass
@@ -89,6 +101,7 @@ def add_regrasp_nest(
         "cable_outlet_width_m": 0.010,
         "cable_cradle_top_m": cradle_top,
         "pin_relief": pin_relief,
+        "supported_cable_exits": [-1, 1] if both_cable_exits else [-1],
         "scope": "Passive prototype nest; no latch, clamp or grasp transition",
     }
 
@@ -99,4 +112,4 @@ def add_nest_to_world(world, center=(0.08, -0.04), rim=0.22, yaw=0.0):
         raise ValueError("Missing factory fixtures link")
     if any(c.get("name", "").startswith("regrasp_") for c in fixtures):
         raise ValueError("Regrasp nest already present")
-    return add_regrasp_nest(fixtures, center, rim, yaw)
+    return add_regrasp_nest(fixtures, center, rim, yaw, both_cable_exits=True)

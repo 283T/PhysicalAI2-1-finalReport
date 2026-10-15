@@ -1,0 +1,7 @@
+{
+  "world": "docs/evaluation/single_nest_20261015/narrow_end_gap_raise_slip/world.sdf",
+  "world_sha256": "876db5b3ac741ca88b01d3bb7db4ddf653768ba38d17498620c028fada730984",
+  "scene_restarted": false,
+  "robot_motion_executed": false,
+  "scope": "Second acquisition in the same settled scene; not an independent physical assembly trial"
+}

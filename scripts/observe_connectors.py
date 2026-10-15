@@ -21,6 +21,7 @@ from project_paths import ROOT
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import CameraInfo, Image
 from std_msgs.msg import String
+from wire_support_vision import StableWireSupports, annotate_supports, propose_wire_supports
 
 
 def main():
@@ -28,6 +29,11 @@ def main():
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/perception")
     parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
     parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument(
+        "--wire-supports",
+        action="store_true",
+        help="Also require three stable RGB-D wire support proposals",
+    )
     parser.add_argument(
         "--plugs", choices=("P1", "P2", "P3"), nargs="+", default=["P1", "P2", "P3"]
     )
@@ -46,17 +52,20 @@ def main():
     args = parser.parse_args()
     if not math.isfinite(args.timeout) or not 5 <= args.timeout <= 300:
         parser.error("--timeout must be finite and between 5 and 300 seconds")
-    if args.end_markers:
+    if args.end_markers or args.wire_supports:
         args.require_6d = True
     args.output.mkdir(parents=True, exist_ok=True)
     # Never leave old detections available after a failed new acquisition.
     (args.output / "detections.json").unlink(missing_ok=True)
+    (args.output / "wire_supports.json").unlink(missing_ok=True)
+    (args.output / "wire_supports.png").unlink(missing_ok=True)
     calibration = validate_calibration(json.loads(args.calibration.read_text()))
     (args.output / "calibration.json").write_text(json.dumps(calibration, indent=2) + "\n")
     rclpy.init()
     node = rclpy.create_node("harness_connector_vision")
     frames = SyncedFrames()
     stability = StableConnectors(require_6d=args.require_6d, required_ids=args.plugs)
+    wire_stability = StableWireSupports(args.plugs)
     info = []
     info_count = [0]
 
@@ -172,12 +181,23 @@ def main():
             (args.output / "camera_intrinsics.json").write_text(json.dumps(list(info[-1].k)) + "\n")
             (args.output / "latest.json").write_text(json.dumps(detections, indent=2) + "\n")
             accepted = stability.update(detections)
+            wire_rows = []
+            if args.wire_supports:
+                wire_rows = propose_wire_supports(bgr, depth, info[-1].k, calibration, detections)
+                wire_accepted = wire_stability.update(wire_rows)
+                cv2.imwrite(
+                    str(args.output / "wire_supports.png"), annotate_supports(bgr, wire_rows)
+                )
+                accepted = accepted and wire_accepted
             acquisition["processed_frames"] += 1
             acquisition["frames"].append(
                 {
                     "sensor_stamp_ns": current,
                     "elapsed_wall_s": time.monotonic() - started,
                     "detected_plugs": [row["plug_id"] for row in detections],
+                    "wire_proposals": [row["plug_id"] for row in wire_rows],
+                    "wire_stable_frames": wire_stability.count,
+                    "wire_supports": wire_rows,
                     "stable_frames": stability.count,
                     "decode_wall_s": decoded - processing_started,
                     "detector_wall_s": detected - decoded,
@@ -208,6 +228,21 @@ def main():
             while time.monotonic() < publish_end:
                 rclpy.spin_once(node, timeout_sec=0.05)
             (args.output / "detections.json").write_text(json.dumps(result, indent=2) + "\n")
+            if args.wire_supports:
+                (args.output / "wire_supports.json").write_text(
+                    json.dumps(
+                        {
+                            "source": "registered_rgbd_color_and_plane",
+                            "frame": calibration["frame"],
+                            "sensor_stamp_ns": current,
+                            "stable_frames": wire_stability.count,
+                            "wire_supports": wire_rows,
+                            "scope": "Visible 8 mm prototype wire proposals; reach, collision and physical grasp not validated",
+                        },
+                        indent=2,
+                    )
+                    + "\n"
+                )
             print(json.dumps(result, indent=2), flush=True)
             return
         raise RuntimeError("No complete stable detection of required plugs within timeout")

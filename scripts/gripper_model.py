@@ -43,9 +43,23 @@ def add_gripper(
     capture_fences=False,
     front_fence_side="both",
     fence_width_m=0.012,
+    housing_end_stops=False,
+    pin_side_tip_recess_m=0.0,
+    housing_end_clearance_m=0.0003,
 ):
+    if (
+        not math.isfinite(housing_end_clearance_m)
+        or not 0.00005 <= housing_end_clearance_m <= 0.001
+    ):
+        raise ValueError("Housing end clearance must be finite and between 0.05 and 1 mm")
+    if housing_end_clearance_m != 0.0003 and not housing_end_stops:
+        raise ValueError("A custom housing clearance requires end stops")
+    if not math.isfinite(pin_side_tip_recess_m) or not 0 <= pin_side_tip_recess_m <= 0.003:
+        raise ValueError("Pin-side tip recess must be finite and between 0 and 3 mm")
     if not math.isfinite(fence_width_m) or not 0.004 <= fence_width_m <= 0.012:
         raise ValueError("Fence width must be finite and between 4 and 12 mm")
+    if housing_end_stops and not capture_fences:
+        raise ValueError("Housing end stops require capture fences")
     if front_fence_side not in ("both", "left", "right"):
         raise ValueError("Unknown front fence side")
     if front_fence_side != "both" and not capture_fences:
@@ -63,36 +77,49 @@ def add_gripper(
     child(fixed, "child", link=prefix + "gripper")
     for name, side in (("left", -1), ("right", 1)):
         finger = child(robot, "link", name=prefix + "finger_" + name)
+        length = 0.080 - (pin_side_tip_recess_m if name == "left" else 0.0)
         inertial = child(finger, "inertial")
-        child(inertial, "origin", xyz="0 0 .04")
+        has_ends = housing_end_stops and name == "right"
+        child(inertial, "origin", xyz=".0004 0 .0505" if has_ends else f"0 0 {length / 2}")
         has_front = capture_fences and front_fence_side in ("both", name)
         child(
             inertial,
             "mass",
-            value=".012" if has_front else ".011" if backstop or capture_fences else ".01",
+            value=".016"
+            if has_ends
+            else ".012"
+            if has_front
+            else ".011"
+            if backstop or capture_fences
+            else ".01",
         )
         child(
             inertial,
             "inertia",
-            ixx=".000006",
-            iyy=".000006",
-            izz=".000001",
+            ixx=".000012" if has_ends else ".000006",
+            iyy=".000012" if has_ends else ".000006",
+            izz=".000002" if has_ends else ".000001",
             ixy="0",
-            ixz="0",
+            ixz="-.00000025" if has_ends else "0",
             iyz="0",
         )
         visual = child(finger, "visual")
-        child(visual, "origin", xyz="0 0 .04", rpy="0 0 0")
-        child(child(visual, "geometry"), "box", size=".008 .020 .080")
+        child(visual, "origin", xyz=f"0 0 {length / 2}", rpy="0 0 0")
+        child(
+            child(visual, "geometry"),
+            "box",
+            size=f".008 {0.026 if housing_end_stops else 0.020} {length}",
+        )
         # Two separated contact pads provide friction at distinct points along
         # the housing's long axis, rather than a single central contact pair.
-        for index, y in enumerate((-0.006, 0.006) if split_contacts else (0,)):
+        pad_offset = 0.009 if housing_end_stops else 0.006
+        for index, y in enumerate((-pad_offset, pad_offset) if split_contacts else (0,)):
             shape = child(finger, "collision", name=f"contact_pad_{index}")
-            child(shape, "origin", xyz=f"0 {y} .04", rpy="0 0 0")
+            child(shape, "origin", xyz=f"0 {y} {length / 2}", rpy="0 0 0")
             child(
                 child(shape, "geometry"),
                 "box",
-                size=".008 .008 .080" if split_contacts else ".008 .020 .080",
+                size=f".008 {0.008 if split_contacts else 0.026 if housing_end_stops else 0.020} {length}",
             )
         if backstop or capture_fences:
             # A back-face fence resists yaw around the jaw closing axis. It
@@ -113,6 +140,20 @@ def add_gripper(
                     fence = child(finger, kind, name=fence_name)
                     child(fence, "origin", xyz=f"{-side * fence_width_m / 2} 0 {z}", rpy="0 0 0")
                     child(child(fence, "geometry"), "box", size=f"{fence_width_m} .026 .001")
+        if has_ends:
+            # Wrap the housing's long-axis corners on the upper finger. Keep the
+            # central cable outlet and the 16 mm end-face tag clear.
+            end_y = 0.021 + housing_end_clearance_m
+            pieces = [
+                ("end_stop_spine", ".004 .045 .020", ".002 0 .082"),
+                ("housing_end_minus", ".005 .002 .020", f"-.0025 {-end_y} .082"),
+                ("housing_end_plus", ".005 .002 .020", f"-.0025 {end_y} .082"),
+            ]
+            for piece, size, xyz in pieces:
+                for kind in ("collision", "visual"):
+                    shape = child(finger, kind, name=piece)
+                    child(shape, "origin", xyz=xyz, rpy="0 0 0")
+                    child(child(shape, "geometry"), "box", size=size)
         joint = child(robot, "joint", name=prefix + "finger_" + name + "_joint", type="prismatic")
         child(joint, "origin", xyz=f"{side * FINGER_REST_X_M} 0 0", rpy="0 0 0")
         child(joint, "parent", link=prefix + "gripper")
