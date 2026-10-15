@@ -7,6 +7,7 @@ from cooperative_pick import PickupPathError, prepare_pickup_paths
 from cooperative_transfer import rigid_pose
 from fixture_collision_bounds import FixtureBounds
 from joint_route import joint_route
+from wire_contact_profile import validate_deep_wire_profile
 
 
 def upright_wire_target(proposal):
@@ -28,12 +29,26 @@ def upright_wire_target(proposal):
 
 
 def wire_grasp_target(
-    proposal, *, upright=False, tip_depth_m=None, face_quarter_turns=0, half_turn=False
+    proposal,
+    *,
+    upright=False,
+    tip_depth_m=None,
+    face_quarter_turns=0,
+    half_turn=False,
+    wire_profile=None,
+    profile_prefix=None,
 ):
     if face_quarter_turns not in (0, 1, 2, 3) or (upright and face_quarter_turns):
         raise ValueError("Square-wire face index 0..3 requires the full wire frame")
-    if tip_depth_m is not None and (not np.isfinite(tip_depth_m) or not 0 < tip_depth_m <= 0.012):
-        raise ValueError("Finite positive tip depth up to 12 mm required")
+    if tip_depth_m is not None:
+        if not np.isfinite(tip_depth_m) or not 0 < tip_depth_m <= 0.024:
+            raise ValueError("Finite positive tip depth up to 24 mm required")
+        if tip_depth_m > 0.012:
+            if upright:
+                raise ValueError("Deep support requires alignment to the square wire face")
+            if wire_profile is None or profile_prefix is None:
+                raise ValueError("Beyond 12 mm, actual broad contact geometry must be checked")
+            validate_deep_wire_profile(wire_profile, profile_prefix, tip_depth_m)
     grip, expected_width = (
         upright_wire_target(proposal)
         if upright
@@ -67,11 +82,10 @@ def plan_wire_pickup(
     tip_depth_m=None,
     face_quarter_turns=0,
     route_transit=False,
+    wire_profile=None,
 ):
     if face_quarter_turns not in (0, 1, 2, 3) or (upright and face_quarter_turns):
         raise ValueError("A square-wire face index 0..3 requires the full wire frame")
-    if tip_depth_m is not None and (not np.isfinite(tip_depth_m) or not 0 < tip_depth_m <= 0.012):
-        raise ValueError("Finite positive tip depth up to 12 mm required")
     if set(arms) != set(bounds) or set(arms) != set(current) or len(arms) != 2:
         raise ValueError("Both arms require observed joints and collision geometry")
     if support_arm not in arms or plug_id not in {"P1", "P2", "P3"}:
@@ -91,6 +105,8 @@ def plan_wire_pickup(
         tip_depth_m=tip_depth_m,
         face_quarter_turns=face_quarter_turns,
         half_turn=half_turn,
+        wire_profile=wire_profile,
+        profile_prefix=support_arm + "_",
     )
     hover = grip.copy()
     hover[:3, 3] -= 0.10 * grip[:3, 2]
@@ -145,6 +161,11 @@ def plan_wire_pickup(
         "upright": upright,
         "expected_wire_width_m": expected_width,
         "tip_depth_m": tip_depth_m if tip_depth_m is not None else 0.001 if upright else 0.002,
+        "deep_contact_profile": validate_deep_wire_profile(
+            wire_profile, support_arm + "_", tip_depth_m
+        )
+        if tip_depth_m is not None and tip_depth_m > 0.012
+        else None,
         "includes_independent_support_lift": include_lift,
         "stable_observation_required": require_stable,
         "sensor_stamp_ns": observation.get("sensor_stamp_ns"),

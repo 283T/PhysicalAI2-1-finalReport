@@ -133,6 +133,15 @@
       "error": "Primary preclose rejected after bounded corrections",
       "dual_pickup_success": null,
       "grip_guard_summaries": null
+    },
+    {
+      "archive": "hd_initial_transport_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_observation",
+      "error": "Fresh observation rejected; see outputs/dual_nest_flat_tags_hd_dt01_20261016/pickup/primary_observation",
+      "dual_pickup_success": null,
+      "grip_guard_summaries": null
     }
   ]
 }

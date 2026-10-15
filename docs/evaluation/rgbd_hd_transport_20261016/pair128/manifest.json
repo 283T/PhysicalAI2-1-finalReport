@@ -1,0 +1,11 @@
+{
+  "latest.json": "76b9f094c0f6d16f711b26c00653f3cdfb8bf73764774d4fc47abee60d4622e6",
+  "acquisition.json": "acfb0d99f207ce9d4cfe0d33ced688948a502f7587f413a39489aa1cfbca89fe",
+  "depth.npz": "be6557c1fe379d2aa03ce44e574b03412aeb77f9850c02a370dc78afe2c9073a",
+  "calibration.json": "367fc6c29073ae46d482b8f1f180bae443df2fd8c50c4b42f44e774770ba46b2",
+  "camera_intrinsics.json": "6ac1322eba336bb64eda25842a775c4b12ec13fe7c208bbbf85347b11fde8ec8",
+  "bridge.log": "a4600ad572f1e20a4e07afdcc22e62405a716d55cc7f9d052e5f4bb681d4b5fa",
+  "camera.png": "b4f2fd3ec5372f6dea0570b7cd82c2e1a097a4d648c20857d4aeb3f3d50010a2",
+  "detections.json": "621661000afd6584f035494033fa724abfa9af818f67b22bd1669747440f84a0",
+  "detections.png": "2360ac9d82a5865d4afc35fccbc959866373038bb32446d189d01600448f4e25"
+}

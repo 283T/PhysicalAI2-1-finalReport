@@ -8,7 +8,7 @@ The original right C-shaped cage overlaps the nest during closing, even when its
 
 `validation.json` passes left hover, approach, full mechanical closing stroke and post-close lift checks. It assumes both arms start at zero, the right arm remains parked, both fingers are open for approach, and the connector is at the **nominal** nest seat from an earlier offline prediction. It is not a measurement of an actual seated connector. Arm-box margin remains 5 mm; fixture margin remains 1 mm. Closing stroke includes [-0.5,20.5] mm for each jaw.
 
-The existing wire grasp is only 6 mm deep and would use the narrow tip. To use the broad wire-support region, a deeper grasp (approximately 19 mm) must first pass fresh RGB-D, continuous IK, collision, closure and physical holding checks; the existing controller permits at most 12 mm. No depth limit or success criterion has been changed in this experiment. Actual right release/retreat and left parking are also still unverified. The current live experiment retains the original fingers.
+The default wire grasp is 6 mm deep and would use the narrow tip. To use the broad wire-support region, a deeper grasp (approximately 19 mm) must first pass fresh RGB-D, continuous IK, collision, closure and physical holding checks. Requests beyond 12 mm now require model-derived broad-pad coverage and face alignment, as described below. No physical deeper grasp has been run; success criteria are unchanged. Actual right release/retreat and left parking are also still unverified. The current live experiment retains the original fingers.
 
 Reproduce from the repository root using a new output directory:
 
@@ -24,3 +24,14 @@ The generated URDFs, validation and SHA manifest are preserved here. Before phys
 ```sh
 docker compose exec -T gui bash -lc 'source /opt/ros/jazzy/setup.bash && python3 scripts/prepare_stepped_case.py --case docs/evaluation/cooperative_nest_20261016/left_wrist640_pacing_stalled/case --models docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/models --output outputs/reproduce_stepped_scene'
 ```
+
+
+A deeper support-grasp candidate is now screened in `deep_support_preflight.json`, using archived suspended-wire RGB-D and the closest robot feedback sample (time difference 0.053 s). With the permanently stepped URDF, a 19 mm depth puts the wire section entirely in both broad split pads, including 1 mm nominal normal margin. `wire_contact_profile.py` checks the actual URDF, its SHA, rest gap and both contact intervals. Depths beyond 12 mm require this model check and square-face alignment; an upright approximation or unspecified geometry is rejected. Broad-pad coverage is a nominal static check, not a physical holding guarantee.
+
+The support hover/approach and the following 100 mm shared lift pass the existing arm/fixture checks. The lift uses each finger's full mechanical stroke envelope, not merely its nominal closed position. No actual closure, wire support or loaded motion with these fingers has been executed. Reproduce:
+
+```sh
+docker compose run --rm dev python3 docs/evaluation/stepped_regrasp_20261016/deep_support_preflight.py --output outputs/reproduce_deep_support.json
+```
+
+`dual_pickup.py --wire-tip-depth-mm 19` can request this depth only with a compatible actual model. Its default stays 6 mm. A combined candidate with flat tags and 1920×1440 inspection is prepared at `outputs/stepped_hd_shm64_20261016`, but has not been started. The live high-resolution DDS comparison uses the original fingers and default 6 mm depth.

@@ -27,6 +27,7 @@ from held_wire_nest import place_in_nest
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
+from wire_contact_profile import validate_deep_wire_profile
 
 
 def primary_pickup(session, output, calibration, report, checkpoint, guard_stream):
@@ -142,7 +143,8 @@ def run(session, args, report, checkpoint, guard_stream):
         "P3",
         include_lift=False,
         include_carrier=True,
-        tip_depth_m=0.006,
+        tip_depth_m=args.wire_tip_depth_mm / 1000,
+        wire_profile=args.models / "left_arm.urdf",
         face_quarter_turns=2,
         route_transit=True,
     )
@@ -171,7 +173,13 @@ def run(session, args, report, checkpoint, guard_stream):
     tangent_error = float(
         np.arccos(np.clip(abs(np.dot(before["tangent_world"], after["tangent_world"])), 0, 1))
     )
-    desired, _ = wire_grasp_target(after, tip_depth_m=0.006, face_quarter_turns=2)
+    desired, _ = wire_grasp_target(
+        after,
+        tip_depth_m=args.wire_tip_depth_mm / 1000,
+        face_quarter_turns=2,
+        wire_profile=args.models / "left_arm.urdf",
+        profile_prefix="left_arm_",
+    )
     tool_state = session.snapshot()["arms"]["left_arm"]
     tool_error = float(np.linalg.norm(np.array(tool_state["tcp"]) - desired[:3, 3]))
     tool_angle = float(
@@ -249,6 +257,7 @@ def main():
         "--inspection-calibration", type=Path, default=Path("configs/end_inspection_camera.json")
     )
     parser.add_argument("--wire-distance-mm", type=float, default=110)
+    parser.add_argument("--wire-tip-depth-mm", type=float, default=6)
     parser.add_argument("--place-in-nest", action="store_true")
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
@@ -259,6 +268,15 @@ def main():
         parser.error("--feedback-paced-transfer requires --rigid-nest-transfer")
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
         parser.error("Wire distance must be finite and between 75 and 200 mm")
+    if not np.isfinite(args.wire_tip_depth_mm) or not 0 < args.wire_tip_depth_mm <= 24:
+        parser.error("Wire tip depth must be finite and within (0, 24] mm")
+    deep_profile = (
+        validate_deep_wire_profile(
+            args.models / "left_arm.urdf", "left_arm_", args.wire_tip_depth_mm / 1000
+        )
+        if args.wire_tip_depth_mm > 12
+        else None
+    )
     case = args.world.parent
     drawing_plan = json.loads(args.drawing_plan.read_text())
     validate_connection_plan(drawing_plan, json.loads((case / "board.json").read_text()))
@@ -281,6 +299,8 @@ def main():
         "trial_state": "running",
         "parameters": {
             "wire_distance_mm": args.wire_distance_mm,
+            "wire_tip_depth_mm": args.wire_tip_depth_mm,
+            "deep_contact_profile": deep_profile,
             "place_in_nest": args.place_in_nest,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,

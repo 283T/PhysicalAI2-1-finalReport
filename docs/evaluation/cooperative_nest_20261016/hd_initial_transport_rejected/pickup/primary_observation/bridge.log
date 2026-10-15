@@ -1,0 +1,7 @@
+[37;1m2026-10-15 20:10:18.281 [31;1m[[37;1mRTPS_TRANSPORT_SHM[31;1m Error] [37mFailed to create segment fastrtps_224bd0e3ee2af09b: No such file or directory[34;1m -> Function [36mSegment[m
+[37;1m2026-10-15 20:10:18.282 [31;1m[[37;1mRTPS_MSG_OUT[31;1m Error] [37mNo such file or directory[34;1m -> Function [36minit[m
+[37;1m2026-10-15 20:10:18.282 [31;1m[[37;1mRTPS_PARTICIPANT[31;1m Error] [37mUnable to Register SHM Transport. SHM Transport is not supported in the current platform.[34;1m -> Function [36mRTPSParticipantImpl[m
+[INFO] [1792095018.290099217] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/image (gz.msgs.Image) -> /factory/rgbd/image (sensor_msgs/msg/Image)] (Lazy 0)
+[INFO] [1792095018.292324467] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/depth_image (gz.msgs.Image) -> /factory/rgbd/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[INFO] [1792095018.293124676] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/factory/rgbd/camera_info (gz.msgs.CameraInfo) -> /factory/rgbd/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[INFO] [1792095108.166187092] [rclcpp]: signal_handler(SIGINT/SIGTERM)

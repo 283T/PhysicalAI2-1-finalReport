@@ -60,3 +60,13 @@ class CameraResolutionTests(unittest.TestCase):
         values = {e.tag.rsplit("}", 1)[-1]: e.text for e in root.iter()}
         self.assertGreater(int(values["maxMessageSize"]), 1920 * 1440 * 4 + 1024)
         self.assertGreaterEqual(int(values["segment_size"]), 3 * 1920 * 1440 * (3 + 4))
+
+    def test_four_participant_hd_profile_fits_container_shared_memory(self):
+        root = ET.parse(Path(__file__).resolve().parents[1] / "configs/fastdds_rgbd_hd64.xml")
+        values = {e.tag.rsplit("}", 1)[-1]: e.text for e in root.iter()}
+        self.assertGreater(int(values["maxMessageSize"]), 1920 * 1440 * 4 + 1024)
+        segment = int(values["segment_size"])
+        self.assertGreaterEqual(segment, 3 * 1920 * 1440 * (3 + 4))
+        # Owning arm node, arm bridge, image observer and image bridge. Leave
+        # room for transport bookkeeping in addition to all four segments.
+        self.assertLess(4 * (segment + 8 * 1024**2), 512 * 1024**2)
