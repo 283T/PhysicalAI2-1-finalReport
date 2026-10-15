@@ -23,6 +23,7 @@ def live_plan(session, args, row, relation):
         {
             "robot_feedback": {"sim_time_s": row["sim_time_s"], "arms": row["arms"]},
             "vision_connector_from_tool": relation.tolist(),
+            "full_finger_stroke": True,
         },
     )
     with (args.output / "nest_planner.log").open("w") as log:
@@ -105,6 +106,7 @@ def place_in_nest(session, args, report, checkpoint, guards):
             label,
             {name: np.array(path) for name, path in phase["joint_paths"].items()},
             cartesian_speed_m_s=0.02,
+            full_finger_stroke=True,
         )
     goal = np.array(plan["goal_connector_pose"])
     checkpoint("nest_before_release")

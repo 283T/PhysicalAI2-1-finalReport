@@ -277,6 +277,7 @@ def main():
             "wire_distance_mm": args.wire_distance_mm,
             "place_in_nest": args.place_in_nest,
             "support_approach_settle_time_s": 30,
+            "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
         },
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
         "model_sha256": {

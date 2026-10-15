@@ -13,6 +13,7 @@ import rclpy
 from arm_collision_bounds import (
     ArmCollisionBounds,
     FingerStateBounds,
+    finger_collision_intervals,
     screen_paths,
     with_parked_arms,
 )
@@ -262,7 +263,9 @@ class ArmSession:
             raise RuntimeError("Insufficient fresh observations")
         return rows
 
-    def move(self, phase, paths, *, cartesian_speed_m_s=None, settle_time_s=20):
+    def move(
+        self, phase, paths, *, cartesian_speed_m_s=None, settle_time_s=20, full_finger_stroke=False
+    ):
         if not np.isfinite(settle_time_s) or not 0 < settle_time_s <= 60:
             raise ValueError("Settling time must be finite and within (0, 60] seconds")
         if cartesian_speed_m_s is not None and (
@@ -279,12 +282,7 @@ class ArmSession:
                 raise RuntimeError("Prepared path start does not match feedback")
         full = with_parked_arms(paths, parked)
         self.motion_fingers = {
-            n: np.column_stack(
-                (
-                    np.maximum(np.array(s["fingers"]) - 0.0005, -0.0005),
-                    np.minimum(np.array(s["fingers"]) + 0.0005, 0.0205),
-                )
-            )
+            n: finger_collision_intervals(s["fingers"], full_stroke=full_finger_stroke)
             for n, s in row["arms"].items()
         }
         state_bounds = {
@@ -302,7 +300,10 @@ class ArmSession:
             "settle_time_s": float(settle_time_s),
             "arms": screen_paths(state_bounds, full),
             "fixtures": self.fixtures.screen(state_bounds, full, margin=0.001),
-            "measured_finger_intervals_m": {n: v.tolist() for n, v in self.motion_fingers.items()},
+            "finger_envelope_mode": "full_mechanical_stroke"
+            if full_finger_stroke
+            else "measured_plus_minus_0.5mm",
+            "planned_finger_intervals_m": {n: v.tolist() for n, v in self.motion_fingers.items()},
         }
         self.preflights.append(checks)
         if not all(checks[k]["clear"] for k in ("arms", "fixtures")):

@@ -7,18 +7,21 @@ import json
 from pathlib import Path
 
 import numpy as np
-from arm_collision_bounds import ArmCollisionBounds, FingerStateBounds
+from arm_collision_bounds import ArmCollisionBounds, FingerStateBounds, finger_collision_intervals
 from evidence_io import write_json_atomic
 from plan_nest_transfer import plan_to_nest
 from plan_reach import load_arms
 
 
-def plan_from_feedback(world, arms, bounds, row, relation):
+def plan_from_feedback(world, arms, bounds, row, relation, *, full_finger_stroke=False):
     """Screen from supplied robot feedback; relation must originate in vision."""
     intervals = {
         name: {
-            name + "_finger_" + side + "_joint": [max(-0.0005, q - 0.0005), min(0.0205, q + 0.0005)]
-            for side, q in zip(("left", "right"), state["fingers"])
+            name + "_finger_" + side + "_joint": interval.tolist()
+            for side, interval in zip(
+                ("left", "right"),
+                finger_collision_intervals(state["fingers"], full_stroke=full_finger_stroke),
+            )
         }
         for name, state in row["arms"].items()
     }
@@ -37,6 +40,9 @@ def plan_from_feedback(world, arms, bounds, row, relation):
         starting_sim_time_s=row["sim_time_s"],
         starting_joints_rad={name: q.tolist() for name, q in current.items()},
         finger_intervals_m=intervals,
+        finger_envelope_mode="full_mechanical_stroke"
+        if full_finger_stroke
+        else "measured_plus_minus_0.5mm",
     )
     return result
 
@@ -98,6 +104,7 @@ def main():
             bounds,
             request["robot_feedback"],
             np.array(request["vision_connector_from_tool"]),
+            full_finger_stroke=request.get("full_finger_stroke", False),
         )
     write_json_atomic(args.output, result)
     print(json.dumps({"success": result["success"], "attempts": len(result["attempts"])}, indent=2))

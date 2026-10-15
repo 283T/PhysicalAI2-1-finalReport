@@ -7,10 +7,28 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from arm_collision_bounds import ArmCollisionBounds, intersects, screen_paths, with_parked_arms
+from arm_collision_bounds import (
+    ArmCollisionBounds,
+    finger_collision_intervals,
+    intersects,
+    screen_paths,
+    with_parked_arms,
+)
 
 
 class BoundsTests(unittest.TestCase):
+    def test_full_stroke_envelope_includes_recentering_without_changing_grasp_limits(self):
+        measured = finger_collision_intervals([0.0025126, 0.0014870])
+        recentered = np.array([0.0020056, 0.0019862])
+        self.assertTrue(np.any(recentered < measured[:, 0]))
+        swept = finger_collision_intervals([0.0025126, 0.0014870], full_stroke=True)
+        self.assertTrue(np.all(recentered >= swept[:, 0]))
+        self.assertTrue(np.all(recentered <= swept[:, 1]))
+        self.assertTrue(np.all(swept[:, 0] <= measured[:, 0]))
+        self.assertTrue(np.all(swept[:, 1] >= measured[:, 1]))
+        with self.assertRaises(ValueError):
+            finger_collision_intervals([0.03, 0.002], full_stroke=True)
+
     def test_measured_interval_encloses_every_finger_position_in_that_interval(self):
         source = '<robot><link name="world"/><link name="finger"><collision><origin xyz="0 0 .04" rpy="0 0 .4"/><geometry><box size=".008 .02 .08"/></geometry></collision></link><joint name="jaw" type="prismatic"><parent link="world"/><child link="finger"/><origin xyz=".012 0 0"/><axis xyz="1 0 0"/></joint></robot>'
 

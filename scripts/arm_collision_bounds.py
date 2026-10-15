@@ -158,13 +158,29 @@ class ArmCollisionBounds:
 
 
 class FingerStateBounds:
-    """A measured interval; execution must stop if a finger leaves it."""
+    """A screened interval; execution must stop if a finger leaves it."""
 
     def __init__(self, bounds, intervals):
         self.bounds, self.intervals = bounds, intervals
 
     def boxes(self, q):
         return self.bounds.boxes(q, finger_intervals=self.intervals)
+
+
+def finger_collision_intervals(fingers, *, full_stroke=False):
+    values = np.asarray(fingers, dtype=float)
+    if (
+        values.shape != (2,)
+        or not np.isfinite(values).all()
+        or np.any(values < -0.0005)
+        or np.any(values > 0.0205)
+    ):
+        raise ValueError("Two finite finger observations within mechanical tolerances required")
+    if full_stroke:
+        return np.tile([-0.0005, 0.0205], (2, 1))
+    return np.column_stack(
+        (np.maximum(values - 0.0005, -0.0005), np.minimum(values + 0.0005, 0.0205))
+    )
 
 
 def first_overlap(bounds, joints):
