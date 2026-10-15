@@ -25,6 +25,7 @@ from grasp_validation import (
 from grip_guard import register_grip_guard
 from gripper_model import measured_rest_gap
 from held_wire_nest import place_in_nest
+from nest_aftercare import release_support_and_park
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
@@ -289,11 +290,14 @@ def main():
     parser.add_argument("--wire-distance-mm", type=float, default=110)
     parser.add_argument("--wire-tip-depth-mm", type=float, default=6)
     parser.add_argument("--place-in-nest", action="store_true")
+    parser.add_argument("--after-nest-parking", action="store_true")
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
     if args.rigid_nest_transfer and not args.place_in_nest:
         parser.error("--rigid-nest-transfer requires --place-in-nest")
+    if args.after_nest_parking and not args.place_in_nest:
+        parser.error("--after-nest-parking requires --place-in-nest")
     if args.feedback_paced_transfer and not args.rigid_nest_transfer:
         parser.error("--feedback-paced-transfer requires --rigid-nest-transfer")
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
@@ -334,6 +338,7 @@ def main():
             "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
             "deep_contact_profile": deep_profile,
             "place_in_nest": args.place_in_nest,
+            "after_nest_parking": args.after_nest_parking,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
             "rigid_nest_transfer": args.rigid_nest_transfer,
@@ -345,6 +350,7 @@ def main():
             for n in ["left_arm", "right_arm"]
         },
         "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+        "final_acceptance_eligible": False,
     }
 
     def checkpoint(phase):
@@ -359,16 +365,24 @@ def main():
         with (
             (args.output / "bridge.log").open("w") as log,
             gzip.open(args.output / "grip_observations.jsonl.gz", "wt") as guard_stream,
+            gzip.open(args.output / "seat_observations.jsonl.gz", "wt") as seat_stream,
         ):
             session = ArmSession(args.world, args.models, log)
             session.wait_ready()
             guards = run(session, args, report, checkpoint, guard_stream)
             if args.place_in_nest:
                 place_in_nest(session, args, report, checkpoint, guards)
+            if args.after_nest_parking:
+                release_support_and_park(session, args, report, checkpoint, guards, seat_stream)
+                report["success"] = bool(report.get("nest_aftercare_complete"))
     except Exception as error:
         if session:
             report["phase"] = session.phase
-        report.update(error=str(error), planning_diagnostics=getattr(error, "diagnostics", None))
+        report.update(
+            success=False,
+            error=str(error),
+            planning_diagnostics=getattr(error, "diagnostics", None),
+        )
     finally:
         try:
             if session:

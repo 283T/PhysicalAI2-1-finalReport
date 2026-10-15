@@ -1,0 +1,212 @@
+{
+  "success": true,
+  "scope": "Nominal endpoint assumptions from earlier offline plans, both arms assumed physically released and open. Candidate URDFs; world supplies bases and fixtures. No actual seat, release, parking or regrasp proof",
+  "plans": [
+    {
+      "success": true,
+      "moving_arm": "left_arm",
+      "starting_sim_time_s": 0,
+      "starting_joints_rad": {
+        "left_arm": [
+          -2.3295618948468593,
+          1.2219715905467508,
+          1.7305598778194242,
+          0.052283603955585914,
+          1.8078088335946434,
+          0.38198853845778974
+        ],
+        "right_arm": [
+          -2.2831645309610695,
+          1.2529506980836744,
+          1.9985704338491834,
+          2.4213485299300395,
+          1.6606111187981776,
+          -0.0729822848470259
+        ]
+      },
+      "route": {
+        "success": true,
+        "path": [
+          [
+            -2.3295618948468593,
+            1.2219715905467508,
+            1.7305598778194242,
+            0.052283603955585914,
+            1.8078088335946434,
+            0.38198853845778974
+          ],
+          [
+            -1.9712902424917913,
+            0.03349418641209853,
+            1.0998003995340881,
+            0.06329021825371339,
+            0.20665722213446241,
+            2.2188133432289763
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "reason": null,
+        "state_checks": 5407,
+        "seed": 0,
+        "resolution_rad": 0.01,
+        "maximum_nodes": 600,
+        "start_roundoff_correction_rad": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+      },
+      "scope": "Robot-only static parking check after physical release. Full finger strokes; no cable collision or passive-seat stability proof",
+      "checks": {
+        "arms": {
+          "clear": true,
+          "samples": 223,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": true,
+          "samples": 223,
+          "margin_per_box_m": 0.001
+        }
+      },
+      "paths": {
+        "left_arm": [
+          [
+            -2.3295618948468593,
+            1.2219715905467508,
+            1.7305598778194242,
+            0.052283603955585914,
+            1.8078088335946434,
+            0.38198853845778974
+          ],
+          [
+            -1.9712902424917913,
+            0.03349418641209853,
+            1.0998003995340881,
+            0.06329021825371339,
+            0.20665722213446241,
+            2.2188133432289763
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    {
+      "success": true,
+      "moving_arm": "right_arm",
+      "starting_sim_time_s": 0,
+      "starting_joints_rad": {
+        "left_arm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "right_arm": [
+          -2.2831645309610695,
+          1.2529506980836744,
+          1.9985704338491834,
+          2.4213485299300395,
+          1.6606111187981776,
+          -0.0729822848470259
+        ]
+      },
+      "route": {
+        "success": true,
+        "path": [
+          [
+            -2.2831645309610695,
+            1.2529506980836744,
+            1.9985704338491834,
+            2.4213485299300395,
+            1.6606111187981776,
+            -0.0729822848470259
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "reason": null,
+        "state_checks": 246,
+        "seed": 0,
+        "resolution_rad": 0.01,
+        "maximum_nodes": 600,
+        "start_roundoff_correction_rad": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+      },
+      "scope": "Robot-only static parking check after physical release. Full finger strokes; no cable collision or passive-seat stability proof",
+      "checks": {
+        "arms": {
+          "clear": true,
+          "samples": 123,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": true,
+          "samples": 123,
+          "margin_per_box_m": 0.001
+        }
+      },
+      "paths": {
+        "right_arm": [
+          [
+            -2.2831645309610695,
+            1.2529506980836744,
+            1.9985704338491834,
+            2.4213485299300395,
+            1.6606111187981776,
+            -0.0729822848470259
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    }
+  ],
+  "input_sha256": {
+    "docs/evaluation/cooperative_nest_20261016/rigid_midpoint_plan.json": "8aa2db544a6d627e0dfc5162a8bf8caeeb49f917d1c960dcb616006731ffe733",
+    "docs/evaluation/cooperative_nest_20261016/top_regrasp_parked_left.json": "d606fc6dd293d3c56a1d3a14d524745edb638afd47545169a4dfd946245a30ae",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/case/world.sdf": "00d0c6011ffeb24fe587721086a0cf3e1c47480cc4359b66b8b47031168d267e",
+    "docs/evaluation/stepped_regrasp_20261016/left_arm.urdf": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "docs/evaluation/stepped_regrasp_20261016/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+    "scripts/park_arm_plan.py": "1f7dd1b081ad05ee0ba12cb9f916b932f9dbda69cae221b5e798ce59fa1667b2"
+  }
+}
