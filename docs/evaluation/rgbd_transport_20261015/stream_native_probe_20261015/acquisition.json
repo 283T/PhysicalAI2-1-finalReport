@@ -1,0 +1,71 @@
+{
+  "processed_frames": 2,
+  "frames": [
+    {
+      "sensor_stamp_ns": 36000000000,
+      "elapsed_wall_s": 34.68968609999999,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 1,
+      "decode_wall_s": 0.01573779199998171,
+      "detector_wall_s": 0.029464458000006744,
+      "save_and_validation_wall_s": 0.0376568330000282
+    },
+    {
+      "sensor_stamp_ns": 37000000000,
+      "elapsed_wall_s": 38.85704431000002,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 2,
+      "decode_wall_s": 0.002854624999997668,
+      "detector_wall_s": 0.018601541000009547,
+      "save_and_validation_wall_s": 0.030829625000023952
+    }
+  ],
+  "success": false,
+  "timeout_s": 60.0,
+  "elapsed_wall_s": 60.01058773600002,
+  "transport": {
+    "received_messages": {
+      "rgb": 6,
+      "depth": 2
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 2,
+    "last_paired_stamp_ns": 37000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 4,
+        "oldest_pending_stamp_ns": 38000000000,
+        "newest_pending_stamp_ns": 41000000000,
+        "last_arrival_age_s": 4.164528834999999
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 21.206882300000018
+      }
+    }
+  },
+  "camera_info_messages": 13,
+  "gazebo_camera_messages": {
+    "depth": {
+      "count": 12,
+      "last_stamp_ns": 41000000000
+    },
+    "rgb": {
+      "count": 12,
+      "last_stamp_ns": 41000000000
+    }
+  },
+  "error": {
+    "type": "RuntimeError",
+    "message": "No complete stable detection of required plugs within timeout"
+  }
+}

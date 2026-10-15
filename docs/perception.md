@@ -53,3 +53,33 @@ MELFA双腕を含むGazeboシーンで、配置seed1/2の双方で3端末を検�
 既存12件に加え、画像認識5件（全端末の識別・座標変換、マーカー欠落、深度欠落/同色複数候補、RGB/深度寸法不一致、校正値不正）を通過した。2配置の確認であり、未知の置き方すべてへの成功率や挿入精度は示していない。
 
 ![RGB-Dカメラ画像から検出した3端末](evaluation/perception_seed2/detections.png)
+
+
+## 2026-10-15 RGB-D欠落の診断とDDS設定
+
+960×720の深度1枚は2,764,800 bytes、RGBは2,073,600 bytesです。実行中のコンテナでFast DDSの共有メモリファイルは `ls -lh` で約537Kと表示されました。Fast DDS 2.14の文書上の既定セグメントは512 KiBで、データに対して小さい共有メモリは欠落リスクがあるとされています。[公式資料](https://fast-dds.docs.eprosima.com/en/2.14.x/fastdds/transport/shared_memory/shared_memory.html)
+
+新しい観測診断では、RGB・深度の個別受信、厳密な時刻一致で成立した組、バッファ廃棄、CameraInfo受信数、認識・画像保存の処理時間を分けて保存します。`--probe-native` ではGazebo Transport側の画像も独立に数え、ROSの取得数と比較します。時刻の厳密一致、3回連続の安定性、画像の鮮度と把持基準は緩めていません。
+
+同じ実行中シーンで順次実施したカメラ単独試験：
+
+| 通信条件 | Gazebo RGB／深度 | ROS RGB／深度 | 結果 |
+|---|---:|---:|---|
+| 既定設定 | 12／12 | 6／2 | 60秒で安定認識未成立 |
+| SHM 32 MiB | 4／4 | 3／3 | 約13.38秒で安定認識成立 |
+| SHM 32 MiB・再確認 | 4／4 | 3／3 | 約13.54秒で安定認識成立 |
+
+受信開始・DDS discoveryのタイミングが違うため、GazeboとROSの差分をそのままパケット損失率とは呼びません。最初の既定設定では受信バッファ廃棄0件、認識処理約10 msでした。画像生成・認識計算より通信経路に問題があることと、共有メモリ設定変更による改善を支持する限定的な記録です。制御とカメラを併用した全工程の信頼性は別途評価します。
+
+`configs/fastdds_rgbd.xml` は共有メモリを32 MiB、1メッセージ上限を4 MiBとし、UDPv4をdiscoveryと互換用に残します。Composeのdev・guiへ `FASTRTPS_DEFAULT_PROFILES_FILE` を設定します。設定変更後は `docker compose --profile gui up -d gui` でコンテナを再生成して適用します。コンテナ全体の `/dev/shm` は512 MiBのままです。カメラ解像度に対して1メッセージと5組分の画像が収まることをテストします。
+
+[入力画像、深度、配信・受信数、設定、ログ、ハッシュ](evaluation/rgbd_transport_20261015/manifest.json)を保存しています。保存画像での処理だけを再測定するには：
+
+```bash
+docker compose run --rm dev python3 scripts/benchmark_end_markers.py \
+  --input docs/evaluation/end_markers/preclose_corrected/preclose_observations_1 \
+  --output outputs/end_marker_timing.json
+```
+
+
+通信修正後の[制御併用試験](evaluation/end_markers/fence8_shm32_alignment_rejected/validation.json)では、補正前後の画像取得が17.61秒／13.10秒で成立しました。補正後の位置ずれ1.39 mmは基準内ですが、角度ずれ2.83°で閉指を拒否しています。[独立した軌跡照合](evaluation/end_markers/fence8_shm32_alignment_rejected/preclose_trace_analysis.json)で、端子自体の角度変化2.09°、補正後の画像姿勢誤差0.87°、工具と指令目標との差0.60°を記録しました。新設定による全工程の成功を示すものではなく、次は小補正の精度と端子の落ち着きを検証します。

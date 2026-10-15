@@ -6,6 +6,8 @@ services:
     image: pai-pcb-assembly:jazzy
     init: true
     working_dir: /workspace
+    environment:
+      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/configs/fastdds_rgbd.xml
     stdin_open: true
     tty: true
     volumes:
@@ -19,6 +21,8 @@ services:
     image: pai-pcb-assembly:gui
     init: true
     working_dir: /workspace
+    environment:
+      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/configs/fastdds_rgbd.xml
     shm_size: "512mb"
     ports:
       - "127.0.0.1:${GUI_PORT:-6080}:6080"

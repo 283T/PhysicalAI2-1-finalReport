@@ -1,5 +1,7 @@
 """ROS-independent RGB-D decoding, timestamp pairing and stability checks."""
 
+import time
+
 import cv2
 import numpy as np
 from arm_kinematics import rotation_error
@@ -39,12 +41,19 @@ class SyncedFrames:
         self.capacity = capacity
         self.images = {"rgb": {}, "depth": {}}
         self.last_stamp = -1
+        self.received = {"rgb": 0, "depth": 0}
+        self.evicted = {"rgb": 0, "depth": 0}
+        self.last_arrival = {}
+        self.paired = 0
 
     def add(self, message, kind):
         images = self.images[kind]
+        self.received[kind] += 1
+        self.last_arrival[kind] = time.monotonic()
         images[stamp_ns(message)] = message
         while len(images) > self.capacity:
             del images[min(images)]
+            self.evicted[kind] += 1
 
     def take_latest(self):
         shared = set(self.images["rgb"]) & set(self.images["depth"])
@@ -53,11 +62,33 @@ class SyncedFrames:
         current = max(shared)
         rgb, depth = self.images["rgb"][current], self.images["depth"][current]
         self.last_stamp = current
+        self.paired += 1
         for images in self.images.values():
             for key in list(images):
                 if key <= current:
                     del images[key]
         return current, rgb, depth
+
+    def diagnostics(self):
+        """Metadata only: distinguish absent streams, skew and bounded-buffer eviction."""
+        now = time.monotonic()
+        return {
+            "received_messages": dict(self.received),
+            "evicted_messages": dict(self.evicted),
+            "paired_frames": self.paired,
+            "last_paired_stamp_ns": self.last_stamp,
+            "streams": {
+                kind: {
+                    "pending_messages": len(images),
+                    "oldest_pending_stamp_ns": min(images) if images else None,
+                    "newest_pending_stamp_ns": max(images) if images else None,
+                    "last_arrival_age_s": now - self.last_arrival[kind]
+                    if kind in self.last_arrival
+                    else None,
+                }
+                for kind, images in self.images.items()
+            },
+        }
 
 
 class StableConnectors:

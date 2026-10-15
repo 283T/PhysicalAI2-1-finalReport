@@ -1,0 +1,22 @@
+{
+  "scope": "Sequential live camera-only probes in the same running D101 placement2 world; no pickup motion; first repeat uses default DDS, final two use 32 MiB SHM; native and ROS subscriber discovery intervals differ, so counts include startup effects",
+  "image_resolution": [
+    960,
+    720
+  ],
+  "rgb_payload_bytes": 2073600,
+  "depth_payload_bytes": 2764800,
+  "default_profile_probe": "stream_native_probe_20261015",
+  "profile_32mib_probes": [
+    "stream_shm32_probe_20261015",
+    "stream_shm32_repeat_20261015"
+  ],
+  "all_probe_names": [
+    "stream_diagnostic_20261015",
+    "stream_native_probe_20261015",
+    "stream_shm32_probe_20261015",
+    "stream_shm32_repeat_20261015"
+  ],
+  "default_segment_file_size_observed": "537K in ls -lh (rounded; includes file overhead)",
+  "documented_default_payload_segment_bytes": 524288
+}

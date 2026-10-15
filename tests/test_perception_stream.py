@@ -50,6 +50,24 @@ class PerceptionStreamTest(unittest.TestCase):
             frames.add(message(stamp), "rgb")
         self.assertEqual(set(frames.images["rgb"]), {18, 19})
 
+    def test_transport_diagnostics_distinguish_missing_depth_skew_and_eviction(self):
+        frames = SyncedFrames(capacity=2)
+        for stamp in (1, 2, 3):
+            frames.add(message(stamp), "rgb")
+        report = frames.diagnostics()
+        self.assertEqual(report["received_messages"], {"rgb": 3, "depth": 0})
+        self.assertEqual(report["evicted_messages"]["rgb"], 1)
+        self.assertIsNone(report["streams"]["depth"]["last_arrival_age_s"])
+        frames.add(message(4), "depth")
+        self.assertIsNone(frames.take_latest())
+        self.assertEqual(frames.diagnostics()["paired_frames"], 0)
+        frames.add(message(3), "depth")
+        self.assertEqual(frames.take_latest()[0], 3)
+        report = frames.diagnostics()
+        self.assertEqual(report["paired_frames"], 1)
+        self.assertEqual(report["last_paired_stamp_ns"], 3)
+        self.assertEqual(report["streams"]["depth"]["newest_pending_stamp_ns"], 4)
+
     def test_decodes_padded_rgb_and_big_endian_depth(self):
         rgb = SimpleNamespace(
             height=2,

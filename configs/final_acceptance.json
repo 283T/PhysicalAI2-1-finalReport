@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-15",
+  "design_seeds": [101, 202],
+  "placement_seeds": [2, 7, 11],
+  "repetitions_per_case": 2,
+  "required_plugs": ["P1", "P2", "P3"],
+  "milestones": ["single_connector_fixed_case", "all_connectors_fixed_case", "full_matrix"],
+  "single_connector_case": {"design_seed": 101, "placement_seed": 2, "plug_id": "P3"},
+  "preclose": {"position_error_m_exclusive": 0.002, "angle_error_rad_exclusive": 0.025},
+  "holding": {"minimum_lift_m_exclusive": 0.07, "maximum_position_slip_m_exclusive": 0.005, "maximum_rotation_change_rad_exclusive": 0.05},
+  "connected_after_release": {"maximum_lateral_error_m_exclusive": 0.002, "maximum_height_error_m_exclusive": 0.001, "maximum_angle_error_rad_exclusive": 0.05, "maximum_movement_m_exclusive": 0.001, "minimum_observation_duration_s": 2.0, "minimum_samples": 10},
+  "required_artifacts": ["reproducible_public_repository", "video_60_to_180_seconds", "pdf_report", "all_trial_results_including_failures"],
+  "rules": ["Every full-matrix run must connect all three plugs to the drawing-specified sockets", "Use fresh sensor images; never use object ground truth for perception or action goals", "Robot joint feedback and tool pose may be used for control; object ground truth is independent evaluation only", "No teleportation, hidden attachment, cable deletion, or success-threshold relaxation", "Require real simulated contact insertion, release and withdrawal; reject unintended arm or fixture collision and disconnects of previously connected plugs", "Archive every attempt; do not cherry-pick failures out of the reported success rate", "On changes to seeds or acceptance criteria, retain the old specification and request user approval for scope changes", "YouTube publishing and course submission require final user confirmation"],
+  "scope": "Finite seeded prototype benchmark, not arbitrary harness topology, real hardware, latch operation or electrical continuity"
+}

@@ -1,0 +1,78 @@
+{
+  "processed_frames": 3,
+  "frames": [
+    {
+      "sensor_stamp_ns": 54000000000,
+      "elapsed_wall_s": 3.966293710000002,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 1,
+      "decode_wall_s": 0.004915125000025,
+      "detector_wall_s": 0.016651165999974182,
+      "save_and_validation_wall_s": 0.023139458999992257
+    },
+    {
+      "sensor_stamp_ns": 55000000000,
+      "elapsed_wall_s": 8.097407294999982,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 2,
+      "decode_wall_s": 0.0017761670000027152,
+      "detector_wall_s": 0.025541166999971665,
+      "save_and_validation_wall_s": 0.106996458000026
+    },
+    {
+      "sensor_stamp_ns": 56000000000,
+      "elapsed_wall_s": 13.066831713999989,
+      "detected_plugs": [
+        "P3"
+      ],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0017783750000148757,
+      "detector_wall_s": 0.01728795799999716,
+      "save_and_validation_wall_s": 0.020386166999969646
+    }
+  ],
+  "success": true,
+  "timeout_s": 60.0,
+  "elapsed_wall_s": 13.376913922999961,
+  "transport": {
+    "received_messages": {
+      "rgb": 3,
+      "depth": 3
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 3,
+    "last_paired_stamp_ns": 56000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.34956012499998224
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.3510558340000216
+      }
+    }
+  },
+  "camera_info_messages": 3,
+  "gazebo_camera_messages": {
+    "depth": {
+      "count": 4,
+      "last_stamp_ns": 56000000000
+    },
+    "rgb": {
+      "count": 4,
+      "last_stamp_ns": 56000000000
+    }
+  }
+}

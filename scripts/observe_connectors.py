@@ -1,8 +1,10 @@
 """ROS 2 RGB-D perception node. Publishes all three stable detections in world frame."""
 
 import argparse
+import hashlib
 import json
 import math
+import os
 import subprocess
 import time
 from pathlib import Path
@@ -34,6 +36,11 @@ def main():
     )
     parser.add_argument("--timeout", type=float, default=90)
     parser.add_argument(
+        "--probe-native",
+        action="store_true",
+        help="Count Gazebo camera messages independently of the ROS bridge",
+    )
+    parser.add_argument(
         "--bridge", action="store_true", help="Start ROS-Gazebo camera bridge for this run"
     )
     args = parser.parse_args()
@@ -51,6 +58,12 @@ def main():
     frames = SyncedFrames()
     stability = StableConnectors(require_6d=args.require_6d, required_ids=args.plugs)
     info = []
+    info_count = [0]
+
+    def receive_info(message):
+        info_count[0] += 1
+        info[:] = [message]
+
     prefix = calibration["topic"]
     node.create_subscription(
         Image, prefix + "/image", lambda msg: frames.add(msg, "rgb"), qos_profile_sensor_data
@@ -64,16 +77,56 @@ def main():
     node.create_subscription(
         CameraInfo,
         prefix + "/camera_info",
-        lambda msg: info.__setitem__(slice(None), [msg]),
+        receive_info,
         qos_profile_sensor_data,
     )
     publisher = node.create_publisher(String, "/factory/connector_detections", 10)
     started = time.monotonic()
     acquisition = {"processed_frames": 0, "frames": [], "success": False, "timeout_s": args.timeout}
+    profile = os.environ.get("FASTRTPS_DEFAULT_PROFILES_FILE")
+    acquisition["dds_profile"] = {
+        "path": profile,
+        "sha256": hashlib.sha256(Path(profile).read_bytes()).hexdigest()
+        if profile and Path(profile).is_file()
+        else None,
+    }
     end = started + args.timeout
+    last_progress = -float("inf")
+
+    def save_progress():
+        acquisition["elapsed_wall_s"] = time.monotonic() - started
+        acquisition["transport"] = frames.diagnostics()
+        acquisition["camera_info_messages"] = info_count[0]
+        if args.probe_native:
+            acquisition["gazebo_camera_messages"] = dict(native_counts)
+        (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
+
+    native = None
+    native_counts = {}
+    native_topics = []
     bridge = None
     bridge_log = None
     try:
+        if args.probe_native:
+            from gz.msgs10.image_pb2 import Image as GazeboImage
+            from gz.transport13 import Node as GazeboNode
+
+            native = GazeboNode()
+
+            def receive_native(kind, message):
+                previous = native_counts.get(kind, {})
+                native_counts[kind] = {
+                    "count": previous.get("count", 0) + 1,
+                    "last_stamp_ns": message.header.stamp.sec * 10**9 + message.header.stamp.nsec,
+                }
+
+            for kind, suffix in (("rgb", "/image"), ("depth", "/depth_image")):
+                topic = prefix + suffix
+                if not native.subscribe(
+                    GazeboImage, topic, lambda msg, key=kind: receive_native(key, msg)
+                ):
+                    raise RuntimeError("Could not subscribe to native camera diagnostic")
+                native_topics.append(topic)
         if args.bridge:
             bridge_log = (args.output / "bridge.log").open("w")
             bridge = subprocess.Popen(
@@ -92,6 +145,9 @@ def main():
             )
         while time.monotonic() < end:
             rclpy.spin_once(node, timeout_sec=0.05)
+            if time.monotonic() - last_progress >= 1:
+                save_progress()
+                last_progress = time.monotonic()
             if not info:
                 continue
             pair = frames.take_latest()
@@ -103,9 +159,12 @@ def main():
                 info[-1].height,
             ) != (rgb_msg.width, rgb_msg.height):
                 raise ValueError("Camera stream frames or CameraInfo resolution disagree")
+            processing_started = time.monotonic()
             bgr, depth = image_array(rgb_msg), image_array(depth_msg)
+            decoded = time.monotonic()
             detector = detect_end_markers if args.end_markers else detect_connectors
             detections, debug = detector(bgr, depth, info[-1].k, calibration)
+            detected = time.monotonic()
             detections = [row for row in detections if row["plug_id"] in args.plugs]
             cv2.imwrite(str(args.output / "camera.png"), bgr)
             cv2.imwrite(str(args.output / "detections.png"), debug)
@@ -120,10 +179,13 @@ def main():
                     "elapsed_wall_s": time.monotonic() - started,
                     "detected_plugs": [row["plug_id"] for row in detections],
                     "stable_frames": stability.count,
+                    "decode_wall_s": decoded - processing_started,
+                    "detector_wall_s": detected - decoded,
+                    "save_and_validation_wall_s": time.monotonic() - detected,
                 }
             )
             acquisition["success"] = accepted
-            (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
+            save_progress()
             if not accepted:
                 continue
             result = {
@@ -153,8 +215,10 @@ def main():
         acquisition["error"] = {"type": type(error).__name__, "message": str(error)}
         raise
     finally:
-        acquisition["elapsed_wall_s"] = time.monotonic() - started
-        (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
+        save_progress()
+        if native is not None:
+            for topic in native_topics:
+                native.unsubscribe(topic)
         if bridge:
             stop_process(bridge, group=True)
         if bridge_log:

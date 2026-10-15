@@ -1,0 +1,44 @@
+{
+  "scope": "Archived end-tag detector timing only; no transport, physics or accuracy evaluation",
+  "input_sha256": {
+    "camera.png": "a316847c64e76055cfb3be7ef9d80a3aee4e5134749d6a7cc6cade7a3bfee958",
+    "depth.npz": "fa8421eac4f8e42062f6bb97ffe8c2a6aa1b008deef047014eea23aecb1265ee",
+    "camera_intrinsics.json": "2d882c2f76a40e6630f99689293e770c9a180d90cbdedb47b0dd1245e6d8636d",
+    "calibration.json": "215f975baf85a505513de000981512c80f4b5ebee8687666eca311568cd6f74e"
+  },
+  "source_sha256": "6dcba1e36f23c6d2577e1389c041f493770467321069d5164ad7c57ecc4c91c5",
+  "opencv_version": "4.6.0",
+  "opencv_threads": 8,
+  "iterations": [
+    {
+      "wall_s": 0.014965374999974301,
+      "detected_plugs": [
+        "P3"
+      ]
+    },
+    {
+      "wall_s": 0.011050791999991816,
+      "detected_plugs": [
+        "P3"
+      ]
+    },
+    {
+      "wall_s": 0.011212916999966183,
+      "detected_plugs": [
+        "P3"
+      ]
+    },
+    {
+      "wall_s": 0.01001108299999487,
+      "detected_plugs": [
+        "P3"
+      ]
+    },
+    {
+      "wall_s": 0.009793124999987413,
+      "detected_plugs": [
+        "P3"
+      ]
+    }
+  ]
+}
