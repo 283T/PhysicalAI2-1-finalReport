@@ -1,0 +1,16 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "phase": "startup",
+  "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+  "model_sha256": {
+    "left_arm": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fresh RGB-D P3 wire pickup by left MELFA, right arm parked; no connector pickup, dual-arm holding, transport, insertion or release validation",
+  "error": "Missing fresh joint, native robot pose, contact or command feedback",
+  "planning_diagnostics": null,
+  "contacts": [],
+  "unintended_contacts": [],
+  "preflights": []
+}

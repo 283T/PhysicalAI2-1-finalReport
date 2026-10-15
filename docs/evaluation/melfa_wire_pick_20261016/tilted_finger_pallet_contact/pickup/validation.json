@@ -1,0 +1,146 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "phase": "approach",
+  "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+  "model_sha256": {
+    "left_arm": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fresh RGB-D P3 wire pickup by left MELFA, right arm parked; no connector pickup, dual-arm holding, transport, insertion or release validation",
+  "error": "Unintended arm/fixture contact",
+  "planning_diagnostics": null,
+  "contact_publishers": 30,
+  "expected_contact_publishers": 30,
+  "contact_messages": 879,
+  "contacts": [
+    {
+      "phase": "approach",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "messages": 1,
+      "first_sim_time_s": 273.966,
+      "last_sim_time_s": 273.966,
+      "max_depth_m": 3.4597248897705324e-07
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "messages": 878,
+      "first_sim_time_s": 273.967,
+      "last_sim_time_s": 274.846,
+      "max_depth_m": 5.809918819897619e-07
+    }
+  ],
+  "unintended_contacts": [
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ],
+    [
+      "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "conveyor_carrier::carrier::pallet_main_collision"
+    ]
+  ],
+  "preflights": [
+    {
+      "phase": "hover",
+      "arms": {
+        "clear": true,
+        "samples": 257,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 257,
+        "margin_per_box_m": 0.001
+      }
+    },
+    {
+      "phase": "approach",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      }
+    }
+  ]
+}

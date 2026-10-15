@@ -88,12 +88,29 @@ def upright_waist_path(current, goal):
     return np.asarray([current, waypoint, goal])
 
 
-def prepare_pickup_paths(arms, current, hovers, grips, bounds=None, *, parked=None):
+class PickupPathError(ValueError):
+    def __init__(self, message, diagnostics):
+        super().__init__(message)
+        self.diagnostics = diagnostics
+
+
+def prepare_pickup_paths(
+    arms,
+    current,
+    hovers,
+    grips,
+    bounds=None,
+    *,
+    parked=None,
+    include_lift=True,
+    precise_endpoints=False,
+):
     """Select IK branches with contiguous descent/lift before moving any arm."""
     import itertools
     import math
 
     from arm_collision_bounds import screen_paths, with_parked_arms
+    from cooperative_transfer import single_arm_path
 
     choices = {}
     rejected = []
@@ -115,10 +132,14 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None, *, parked=No
                 continue
             try:
                 hover_q = np.asarray(result["q_rad"])
-                descent = translation_path(arm, hover_q, grips[name])
-                lift_target = arm.forward(descent[-1])
-                lift_target[2, 3] += 0.10
-                lift = translation_path(arm, descent[-1], lift_target)
+                descent = (single_arm_path if precise_endpoints else translation_path)(
+                    arm, hover_q, grips[name]
+                )
+                lift = None
+                if include_lift:
+                    lift_target = arm.forward(descent[-1])
+                    lift_target[2, 3] += 0.10
+                    lift = translation_path(arm, descent[-1], lift_target)
                 hover_path = upright_waist_path(current[name], hover_q)
                 choices[name].append(
                     {
@@ -131,12 +152,15 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None, *, parked=No
             except ValueError as error:
                 rejected.append({"arm": name, "seed": seed_index, "reason": str(error)})
         if not choices[name]:
-            raise ValueError("No continuous hover/grasp/lift branch for " + name)
+            raise PickupPathError(
+                "No continuous pickup branch for " + name, {"individual": rejected}
+            )
     names = list(arms)
+    combinations = []
     for combination in itertools.product(*(choices[name] for name in names)):
         paths = {
             phase: {name: choice[phase] for name, choice in zip(names, combination)}
-            for phase in ("hover", "approach", "lift")
+            for phase in (("hover", "approach", "lift") if include_lift else ("hover", "approach"))
         }
         screens = (
             {
@@ -146,10 +170,19 @@ def prepare_pickup_paths(arms, current, hovers, grips, bounds=None, *, parked=No
             if bounds
             else {}
         )
+        combinations.append(
+            {
+                "seeds": {name: choice["seed_index"] for name, choice in zip(names, combination)},
+                "screens": screens,
+            }
+        )
         if all(screen["clear"] for screen in screens.values()):
             return paths, {
                 "seeds": {name: choice["seed_index"] for name, choice in zip(names, combination)},
                 "screens": screens,
                 "rejected_individual_candidates": rejected,
             }
-    raise ValueError("No continuous IK branches passed active/parked arm box screening")
+    raise PickupPathError(
+        "No continuous IK branches passed active/parked arm box screening",
+        {"individual": rejected, "combinations": combinations},
+    )

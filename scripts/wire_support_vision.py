@@ -5,12 +5,36 @@ cross-section. These are proposals for subsequent stable observation and path
 checks, not evidence of a grasp or of free space around hidden cable sections.
 """
 
+import math
+
 import cv2
 import numpy as np
 from arm_kinematics import rotation_error
 
 
-def propose_wire_supports(bgr, depth, intrinsics, calibration, connectors):
+def visible_plane_points(points):
+    """Exclude depth edges/adjacent faces; retain a dominant measured plane."""
+    rng = np.random.default_rng(0)
+    best = None
+    for _ in range(32):
+        a, b, c = points[rng.choice(len(points), 3, replace=False)]
+        normal = np.cross(b - a, c - a)
+        norm = np.linalg.norm(normal)
+        if norm < 1e-9:
+            continue
+        mask = np.abs((points - a) @ (normal / norm)) < 0.0005
+        if best is None or mask.sum() > best.sum():
+            best = mask
+    if best is None or best.sum() < max(24, 0.60 * len(points)):
+        return None
+    return points[best]
+
+
+def propose_wire_supports(
+    bgr, depth, intrinsics, calibration, connectors, *, preferred_distance_m=0.11
+):
+    if not math.isfinite(preferred_distance_m) or not 0.075 <= preferred_distance_m <= 0.20:
+        raise ValueError("Preferred support distance must be finite and between 75 and 200 mm")
     if depth.shape != bgr.shape[:2]:
         raise ValueError("RGB and depth must be registered")
     matrix = np.asarray(intrinsics, dtype=float).reshape(3, 3)
@@ -59,13 +83,19 @@ def propose_wire_supports(bgr, depth, intrinsics, calibration, connectors):
         points = optical @ rotation.T + origin
         distance = np.linalg.norm(points - center, axis=1)
         # Exclude the housing, junction and distant same-colour board sockets.
-        eligible = (distance >= 0.075) & (distance <= 0.145)
+        eligible = (distance >= preferred_distance_m - 0.035) & (
+            distance <= preferred_distance_m + 0.035
+        )
         points, u, v = points[eligible], u[eligible], v[eligible]
         candidates = []
         for index in range(0, len(points), 4):
             near = np.linalg.norm(points - points[index], axis=1) < 0.014
             local = points[near]
             if len(local) < 24:
+                continue
+            source_count = len(local)
+            local = visible_plane_points(local)
+            if local is None:
                 continue
             mean = local.mean(axis=0)
             _, singular, axes = np.linalg.svd(local - mean, full_matrices=False)
@@ -103,6 +133,7 @@ def propose_wire_supports(bgr, depth, intrinsics, calibration, connectors):
                     "observed_length_m": float(length),
                     "planar_rms_m": float(planar_rms),
                     "points": len(local),
+                    "source_points": source_count,
                     "distance_from_connector_m": float(np.linalg.norm(wire_center - center)),
                 }
             )
@@ -110,7 +141,8 @@ def propose_wire_supports(bgr, depth, intrinsics, calibration, connectors):
             best = min(
                 candidates,
                 key=lambda row: (
-                    abs(row["distance_from_connector_m"] - 0.11) + 10 * row["planar_rms_m"]
+                    abs(row["distance_from_connector_m"] - preferred_distance_m)
+                    + 10 * row["planar_rms_m"]
                 ),
             )
             output.append(best)

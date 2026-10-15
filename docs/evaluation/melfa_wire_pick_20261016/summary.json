@@ -1,0 +1,116 @@
+{
+  "base_envelope_preflight_rejected": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "observe_wire",
+    "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+    "error": "Wire pickup preflight rejected",
+    "preclose": null,
+    "closure": null,
+    "hold": null,
+    "teardown_error": null
+  },
+  "base_pallet_contact": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "observe_wire",
+    "world_sha256": "388a6f01ebb17fc64a482f9a3635b86d6eb35458e4ad3be1514adcdcbe598c06",
+    "error": "Unintended arm/fixture contact",
+    "preclose": null,
+    "closure": null,
+    "hold": null,
+    "teardown_error": null
+  },
+  "closed_lift_clearance_rejected": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "lift",
+    "world_sha256": "6127a99cd8a74c50e4e1d8415a316b2c405b64a736b9eb5c5fbc0e61f10244c2",
+    "error": "Motion preflight rejected: {'phase': 'lift', 'arms': {'clear': True, 'samples': 81, 'margin_per_box_m': 0.005}, 'fixtures': {'clear': False, 'fraction': 0.0, 'shapes': ['left_arm/left_arm_finger_left', 'carrier/pallet_main_collision']}}",
+    "preclose": {
+      "wire_center_change_m": 0.0018635851579774764,
+      "wire_tangent_change_rad": 0.0032504227035420946,
+      "tool_position_error_m": 0.0009104964247491347,
+      "tool_angle_error_rad": 0.002488910896717807,
+      "success": true
+    },
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.008773361287578357,
+      "maximum_jaw_opening_m": 0.008773361287578357,
+      "expected_housing_width_m": 0.008973501657288023,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": null,
+    "teardown_error": null
+  },
+  "empty_contact_startup_rejected": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "startup",
+    "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+    "error": "Missing fresh joint, native robot pose, contact or command feedback",
+    "preclose": null,
+    "closure": null,
+    "hold": null,
+    "teardown_error": null
+  },
+  "lifted_wire_rotation_rejected": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "hold",
+    "world_sha256": "6127a99cd8a74c50e4e1d8415a316b2c405b64a736b9eb5c5fbc0e61f10244c2",
+    "error": "Wire hold rejected",
+    "preclose": {
+      "wire_center_change_m": 0.0018636544981702743,
+      "wire_tangent_change_rad": 0.003251550758743045,
+      "tool_position_error_m": 0.0008175888722404882,
+      "tool_angle_error_rad": 0.002339519705227593,
+      "success": true
+    },
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.00864590050869049,
+      "maximum_jaw_opening_m": 0.00864590050869049,
+      "expected_housing_width_m": 0.008973460004549278,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": false,
+      "minimum_lift_m": 0.0956532679857088,
+      "relative_slip_m": 6.388145020038897e-05,
+      "lift_slip_m": 0.004523620694953026,
+      "minimum_tcp_lift_m": 0.09975371709317413,
+      "minimum_finger_travel_m": 0.0009598738033663273,
+      "minimum_jaw_opening_m": 0.008123608367210882,
+      "maximum_jaw_opening_m": 0.008130801601535276,
+      "expected_housing_width_m": 0.008973460004549278,
+      "hold_samples": 306,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.4140448440552426
+    },
+    "teardown_error": null
+  },
+  "tilted_finger_pallet_contact": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "approach",
+    "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+    "error": "Unintended arm/fixture contact",
+    "preclose": null,
+    "closure": null,
+    "hold": null,
+    "teardown_error": null
+  },
+  "wire_depth_edge_rejected": {
+    "success": false,
+    "trial_state": "finished",
+    "phase": "observe_wire",
+    "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+    "error": "Fresh wire observation rejected; see outputs/melfa_wire_pick_monitor_20261016/pickup/observations",
+    "preclose": null,
+    "closure": null,
+    "hold": null,
+    "teardown_error": null
+  }
+}

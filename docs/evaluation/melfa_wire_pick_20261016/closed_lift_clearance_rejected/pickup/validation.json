@@ -1,0 +1,187 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "phase": "lift",
+  "world_sha256": "6127a99cd8a74c50e4e1d8415a316b2c405b64a736b9eb5c5fbc0e61f10244c2",
+  "model_sha256": {
+    "left_arm": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fresh RGB-D P3 wire pickup by left MELFA, right arm parked; no connector pickup, dual-arm holding, transport, insertion or release validation",
+  "preclose": {
+    "wire_center_change_m": 0.0018635851579774764,
+    "wire_tangent_change_rad": 0.0032504227035420946,
+    "tool_position_error_m": 0.0009104964247491347,
+    "tool_angle_error_rad": 0.002488910896717807,
+    "success": true
+  },
+  "evaluation_link": "P3_wire_2",
+  "expected_wire_width_m": 0.008973501657288023,
+  "closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.008773361287578357,
+    "maximum_jaw_opening_m": 0.008773361287578357,
+    "expected_housing_width_m": 0.008973501657288023,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  },
+  "error": "Motion preflight rejected: {'phase': 'lift', 'arms': {'clear': True, 'samples': 81, 'margin_per_box_m': 0.005}, 'fixtures': {'clear': False, 'fraction': 0.0, 'shapes': ['left_arm/left_arm_finger_left', 'carrier/pallet_main_collision']}}",
+  "planning_diagnostics": null,
+  "contact_publishers": 30,
+  "expected_contact_publishers": 30,
+  "contact_messages": 14302,
+  "contacts": [
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 3491,
+      "first_sim_time_s": 28.001,
+      "last_sim_time_s": 31.491,
+      "max_depth_m": 2.4749947554127514e-05
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 3479,
+      "first_sim_time_s": 28.001,
+      "last_sim_time_s": 31.491,
+      "max_depth_m": 1.7531150084742203e-05
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 3458,
+      "first_sim_time_s": 28.034,
+      "last_sim_time_s": 31.491,
+      "max_depth_m": 3.830140390015911e-05
+    },
+    {
+      "phase": "close",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 3458,
+      "first_sim_time_s": 28.034,
+      "last_sim_time_s": 31.491,
+      "max_depth_m": 4.473240964568241e-05
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 102,
+      "first_sim_time_s": 31.492,
+      "last_sim_time_s": 31.593,
+      "max_depth_m": 1.513283835316223e-07
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 102,
+      "first_sim_time_s": 31.492,
+      "last_sim_time_s": 31.593,
+      "max_depth_m": 5.549914986633861e-07
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 102,
+      "first_sim_time_s": 31.492,
+      "last_sim_time_s": 31.593,
+      "max_depth_m": 1.1823433445233349e-07
+    },
+    {
+      "phase": "lift",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 102,
+      "first_sim_time_s": 31.492,
+      "last_sim_time_s": 31.593,
+      "max_depth_m": 6.334951724532717e-07
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 2,
+      "first_sim_time_s": 31.594,
+      "last_sim_time_s": 31.595,
+      "max_depth_m": 1.4983327881797764e-07
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_left::left_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 2,
+      "first_sim_time_s": 31.594,
+      "last_sim_time_s": 31.595,
+      "max_depth_m": 5.551073430877171e-07
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "collision2": "wire_harness_multi::P3_wire_1::insulation_collision",
+      "messages": 2,
+      "first_sim_time_s": 31.594,
+      "last_sim_time_s": 31.595,
+      "max_depth_m": 1.1667957577379884e-07
+    },
+    {
+      "phase": "final_open",
+      "collision1": "left_arm::left_arm_finger_right::left_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "collision2": "wire_harness_multi::P3_wire_2::insulation_collision",
+      "messages": 2,
+      "first_sim_time_s": 31.594,
+      "last_sim_time_s": 31.595,
+      "max_depth_m": 6.334317101787737e-07
+    }
+  ],
+  "unintended_contacts": [],
+  "preflights": [
+    {
+      "phase": "hover",
+      "arms": {
+        "clear": true,
+        "samples": 245,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 245,
+        "margin_per_box_m": 0.001
+      }
+    },
+    {
+      "phase": "approach",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      }
+    },
+    {
+      "phase": "lift",
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": false,
+        "fraction": 0.0,
+        "shapes": [
+          "left_arm/left_arm_finger_left",
+          "carrier/pallet_main_collision"
+        ]
+      }
+    }
+  ]
+}

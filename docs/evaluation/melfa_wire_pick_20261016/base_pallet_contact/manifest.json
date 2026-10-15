@@ -1,0 +1,11 @@
+{
+  "left_arm.urdf": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+  "trajectory.json.gz": "9fd297ed65918c528b939e7433baf9ea5c4fab8c71b46584a14d5ea947a40207",
+  "right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+  "case_manifest.json": "d8b59f4824fb0fd2bbf69ce64b99542ef94a6bc9d5113ef9a879c176ba33d225",
+  "board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "world.sdf": "388a6f01ebb17fc64a482f9a3635b86d6eb35458e4ad3be1514adcdcbe598c06",
+  "drawing.png": "deac4945efd41d660646fd72e1aad0bfdb699f3256f7ae45f4b45ad27d8e1eba",
+  "validation.json": "f9dc345a075c32a953065fdf6cbb6428a958ca4f0f2d7dbc22f37c02e735765d",
+  "case.json": "e6014ed5fd9bb8057b9a594e151349c001aec4b7b26299d87819f8a026f353da"
+}

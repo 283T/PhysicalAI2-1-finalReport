@@ -1,0 +1,10 @@
+{
+  "source_rgbd": "docs/evaluation/wire_support_rgbd_20261016/live_settled_repeat",
+  "hypothetical_joint_reference": "docs/evaluation/single_nest_20261015/pin_clearance_transport_slip/validation.json",
+  "world_sha256": "a8fe425fee430314a5823e5f980ab584754320029184bb0eef50ed2d6c67c2c5",
+  "models": {
+    "left_arm.urdf": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+    "right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "note": "Historical right robot joint snapshot only; object truth is not an action goal input; left initial joints are zero"
+}

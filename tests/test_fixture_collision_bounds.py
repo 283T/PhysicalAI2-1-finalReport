@@ -15,12 +15,20 @@ class MovingBox:
 
 
 class FixtureTests(unittest.TestCase):
-    def fixture(self, source):
+    def fixture(self, source, **kwargs):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         path = Path(temporary.name) / "world.sdf"
         path.write_text(source)
-        return FixtureBounds(path)
+        return FixtureBounds(path, **kwargs)
+
+    def test_stopped_carrier_is_included_when_execution_checks_its_pose(self):
+        source = '<sdf><world><model name="fixtures"><static>true</static><link name="base"><collision name="distant"><pose>10 0 0 0 0 0</pose><geometry><box><size>.1 .1 .1</size></box></geometry></collision></link></model><model name="conveyor_carrier"><link name="carrier"><collision name="pallet"><pose>.4 0 0 0 0 0</pose><geometry><box><size>.1 .1 .1</size></box></geometry></collision></link></model></world></sdf>'
+        path = {"arm": np.array([[0.1], [0.7]])}
+        self.assertTrue(self.fixture(source).screen({"arm": MovingBox()}, path)["clear"])
+        result = self.fixture(source, include_carrier=True).screen({"arm": MovingBox()}, path)
+        self.assertFalse(result["clear"])
+        self.assertEqual(result["shapes"], ["arm/tool", "carrier/pallet"])
 
     def test_collision_uses_model_link_and_shape_transforms(self):
         fixture = self.fixture(

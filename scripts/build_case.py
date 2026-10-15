@@ -18,6 +18,15 @@ from project_paths import ROOT
 from regrasp_fixture import add_nest_to_world
 
 
+def configure_case_pallet(pallet):
+    """Retain the work area, cutting the corner beside the fixed left-arm base."""
+    for shape in list(pallet):
+        if shape.tag in ("collision", "visual"):
+            pallet.remove(shape)
+    box(pallet, "pallet_main", ".50 .65 .02", "-.35 .05 .11 0 0 0", ".35 .4 .45 1")
+    box(pallet, "pallet_upper", ".10 .535 .02", "-.05 .1075 .11 0 0 0", ".35 .4 .45 1")
+
+
 def harness_model(world, trial, *, end_markers=False):
     model = child(world, "model", name="wire_harness_multi")
     child(model, "pose", " ".join(map(str, trial["pose_m_rad"])))
@@ -217,9 +226,7 @@ def build(
     for kind in ("collision", "visual"):
         fixture.find(f"{kind}[@name='table_{kind}']/geometry/box/size").text = "1.2 1.0 .04"
     pallet = world.find("model[@name='conveyor_carrier']/link")
-    for shape in ("collision", "visual"):
-        pallet.find(f"{shape}/geometry/box/size").text = ".60 .65 .02"
-        pallet.find(f"{shape}/pose").text = "-.30 .05 .11 0 0 0"
+    configure_case_pallet(pallet)
     harness_model(world, case["simulation_initialization"], end_markers=end_markers)
     calibration = json.loads((ROOT / "configs/infeed_camera.json").read_text())
     camera = world.find("model[@name='overhead_camera']/link")

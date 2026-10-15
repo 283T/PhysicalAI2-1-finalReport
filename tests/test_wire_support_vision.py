@@ -62,6 +62,28 @@ class WireSupportVisionTest(unittest.TestCase):
                 scene[4][0].pop("pose_6d")
             self.assertEqual(propose_wire_supports(*scene), [])
 
+    def test_selected_distance_changes_observation_region_without_moving_the_wire(self):
+        scene = list(self.scene())
+        scene[4][0]["pose_6d"]["center_xyz_m"] = [0.17, 0, 0.504]
+        rows = propose_wire_supports(*scene, preferred_distance_m=0.17)
+        self.assertEqual(len(rows), 1)
+        self.assertLess(abs(rows[0]["distance_from_connector_m"] - 0.17), 0.001)
+        self.assertAlmostEqual(rows[0]["wire_center_xyz_m"][2], 0.504, places=5)
+        for distance in (0.01, 0.21, float("nan")):
+            with self.assertRaises(ValueError):
+                propose_wire_supports(*scene, preferred_distance_m=distance)
+
+    def test_depth_edge_outliers_are_excluded_without_relaxing_plane_residual(self):
+        scene = list(self.scene())
+        mask = scene[1] < 0.6
+        columns = np.indices(mask.shape)[1]
+        scene[1][mask & (columns % 4 == 0)] += 0.008
+        rows = propose_wire_supports(*scene)
+        self.assertEqual(len(rows), 1)
+        self.assertLess(rows[0]["planar_rms_m"], 0.0006)
+        self.assertLess(rows[0]["points"], rows[0]["source_points"])
+        self.assertAlmostEqual(rows[0]["wire_center_xyz_m"][2], 0.504, places=5)
+
     def test_housing_width_blob_and_wrong_calibration_are_rejected(self):
         scene = list(self.scene())
         scene[0][180:221, 160:341] = [10, 170, 210]

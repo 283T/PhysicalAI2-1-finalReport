@@ -1,0 +1,17 @@
+{
+  "trajectory_sha256": "b08b8f4cfab8056ed529b568b590b9d4cf614fa2aa8e6a3b955ed9e2fed57f49",
+  "evaluation_link": "P3_wire_2",
+  "reference_phase": "close",
+  "comparison_phase": "hold",
+  "world_rotation_vector_rad": [
+    -0.3673503253038669,
+    0.1900202237523354,
+    -0.020465714130647662
+  ],
+  "rotation_vector_in_reference_wire_axes_rad": [
+    0.09259247712517224,
+    0.40262922442997956,
+    0.028091514828492693
+  ],
+  "scope": "Endpoint diagnostic only; original hold failure remains unchanged"
+}

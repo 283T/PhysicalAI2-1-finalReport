@@ -1,0 +1,116 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "phase": "observe_wire",
+  "world_sha256": "388a6f01ebb17fc64a482f9a3635b86d6eb35458e4ad3be1514adcdcbe598c06",
+  "model_sha256": {
+    "left_arm": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fresh RGB-D P3 wire pickup by left MELFA, right arm parked; no connector pickup, dual-arm holding, transport, insertion or release validation",
+  "error": "Unintended arm/fixture contact",
+  "planning_diagnostics": null,
+  "contacts": [
+    {
+      "phase": "startup",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 95,
+      "first_sim_time_s": 2.9210000000000003,
+      "last_sim_time_s": 3.015,
+      "max_depth_m": 9.905271047827569e-16
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_collision",
+      "collision2": "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "messages": 1004,
+      "first_sim_time_s": 3.016,
+      "last_sim_time_s": 4.019,
+      "max_depth_m": 9.905271047827569e-16
+    }
+  ],
+  "unintended_contacts": [
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ],
+    [
+      "left_arm::left_arm_rv4frl_base::left_arm_rv4frl_base_collision",
+      "conveyor_carrier::carrier::pallet_collision"
+    ]
+  ],
+  "preflights": []
+}

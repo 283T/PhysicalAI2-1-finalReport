@@ -29,6 +29,7 @@ def main():
     parser.add_argument("--output", type=Path, default=ROOT / "outputs/perception")
     parser.add_argument("--calibration", type=Path, default=ROOT / "configs/infeed_camera.json")
     parser.add_argument("--end-markers", action="store_true")
+    parser.add_argument("--wire-distance-mm", type=float, default=110)
     parser.add_argument(
         "--wire-supports",
         action="store_true",
@@ -50,6 +51,8 @@ def main():
         "--bridge", action="store_true", help="Start ROS-Gazebo camera bridge for this run"
     )
     args = parser.parse_args()
+    if not math.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
+        parser.error("--wire-distance-mm must be finite and between 75 and 200")
     if not math.isfinite(args.timeout) or not 5 <= args.timeout <= 300:
         parser.error("--timeout must be finite and between 5 and 300 seconds")
     if args.end_markers or args.wire_supports:
@@ -183,7 +186,14 @@ def main():
             accepted = stability.update(detections)
             wire_rows = []
             if args.wire_supports:
-                wire_rows = propose_wire_supports(bgr, depth, info[-1].k, calibration, detections)
+                wire_rows = propose_wire_supports(
+                    bgr,
+                    depth,
+                    info[-1].k,
+                    calibration,
+                    detections,
+                    preferred_distance_m=args.wire_distance_mm / 1000,
+                )
                 wire_accepted = wire_stability.update(wire_rows)
                 cv2.imwrite(
                     str(args.output / "wire_supports.png"), annotate_supports(bgr, wire_rows)
@@ -233,6 +243,7 @@ def main():
                     json.dumps(
                         {
                             "source": "registered_rgbd_color_and_plane",
+                            "preferred_distance_m": args.wire_distance_mm / 1000,
                             "frame": calibration["frame"],
                             "sensor_stamp_ns": current,
                             "stable_frames": wire_stability.count,

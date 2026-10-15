@@ -51,3 +51,35 @@ python3 scripts/export_wire_grip_trial.py --source outputs/wire_grip --output ou
 
 
 同じPD設定での独立した再起動・再試験も通過した。最小上昇99.60 mm、持ち上げからの位置関係の変化0.297 mm、回転0.02556 rad、開放後落下99.52 mm。正の試験2回と摩擦ゼロ1回、途中4失敗の計7試験を保存した。結果一覧は [summary.json](evaluation/wire_grip_contact_20261016/summary.json)。136件の単体テストと保存ファイルのハッシュ・圧縮軌跡の読出しも検証した。
+
+
+## MELFAの直接支持試験（2026-10-16）
+
+現在の入口は `scripts/pick_wire.py`。左腕の支持点を新しい上面RGB-Dから選び、側面の新しいRGB-Dでワイヤー中心・接線と工具の位置・姿勢を再判定してから閉じる。両腕と固定設備の検査に停止中の搬送パレットも加え、実行中のパレットの移動を0.5 mm／0.002 rad以内へ制限する。自己衝突やケーブル全体の絡みの予測は未実装。
+
+接触メッセージは接触のない状態では届かないため、起動時には実衝突を待たず、SDFに記載した30個の接触センサーの配信元接続を確認する。接続消失・腕同士や設備との接触は停止する。失敗時の指開放は、通常の幾何・鮮度検査が例外になっていても送信し、腕への新しい移動指令は送らない。開放時の物体の落下は、この試験の成功条件には含めていない。
+
+保存した以前の画像を使う幾何探索で、110 mm候補は右腕のP3保持姿勢と前腕が干渉、170／200 mm候補は接近経路を通過した。これらは一枚の画像の探索であり、観測安定数を0として扱い、物理試験とは区別した。実行用プランナーは既定で3回の安定観測を要求する。
+
+新規の170 mm観測では、色の境界に台の奥行きが混ざり、単一平面への全点当てはめが失敗した。0.5 mmの距離内にある支配的平面をRANSACで選び、24点かつ60%以上の実測点を要求する。平面残差0.6 mm以下、幅5–11 mm、長さ20 mm以上の条件は維持。外れ値の人工的な補完や判定値の拡大は行わない。
+
+ワイヤー面が傾いている場合は、指を世界Zに対して垂直に保つ。8 mm正方形断面の二つの横軸を実際の顎方向へ投影し、予測開口を求める。閉指差1 mm未満の条件はそのまま使用する。これは幅の測定モデルを姿勢へ対応させる変更であり、ワイヤーを円筒へ置き換えたり、保持の回転基準を緩めたりするものではない。
+
+[7件の試験一覧](evaluation/melfa_wire_pick_20261016/summary.json)を保存した。全件失敗。初期パレットとの重なり、接触のない起動時の待機、深度境界、傾けた指と台の接触、包絡箱の重なり、閉指後の隙間不足を順に検出・修正した。最後の試験は画像再確認と閉指を通過し、約95.65 mm上昇したが、保持中の回転0.414 radで拒否した。位置関係の最大変化4.52 mm、実接触による腕同士・設備の衝突は0件。
+
+回転を分解するとワイヤー軸回り0.093 rad、曲げ方向0.403 radが主で、隣り合う2節の端へ指が接触していた。現行の接触長20 mmでは荷重を受けて曲がる余地が残る。次は接触長の拡大を試し、質量・慣性と経路検査を更新する。MELFAの保持、双腕協調搬送、基板挿入はまだ通過していない。
+
+```bash
+# 事前に新しい非対称モデルと対応シーンを生成・起動しておく。
+docker compose exec -T gui bash -lc \
+  'source /opt/ros/jazzy/setup.bash && python3 scripts/pick_wire.py --world outputs/melfa_wire_pick_notch16_20261016/case/world.sdf --models outputs/melfa_regrasp_worlds_g3000_capture_front_right_fence8_end_stops_tip2_left_wire --output outputs/wire_pick_new'
+
+# 終了した試験だけを、コード・画像・深度・全軌跡と一緒に新規ディレクトリへ保存。
+docker compose run --rm dev python3 scripts/export_wire_pick_trial.py \
+  --case outputs/melfa_wire_pick_notch16_20261016/case \
+  --pickup outputs/wire_pick_new \
+  --models outputs/melfa_regrasp_worlds_g3000_capture_front_right_fence8_end_stops_tip2_left_wire \
+  --output outputs/wire_pick_new_archive
+```
+
+初期状態への再起動が必要。途中姿勢から開始する経路は現在の入口では未実装。アーカイブの `validation.json` が終了結果の正本で、途中の `progress.json` より優先する。

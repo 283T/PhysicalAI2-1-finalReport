@@ -5,8 +5,10 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import numpy as np
+from arm_collision_bounds import intersects
 from assembly_case import make_case, validate_connection_plan
-from build_case import harness_model
+from build_case import configure_case_pallet, harness_model
 
 
 def prediction(design):
@@ -20,6 +22,21 @@ def prediction(design):
 
 
 class AssemblyCaseTest(unittest.TestCase):
+    def test_pallet_retains_wire_support_area_and_clears_left_robot_base(self):
+        pallet = ET.Element("link")
+        configure_case_pallet(pallet)
+        boxes = []
+        for shape in pallet.findall("collision"):
+            center = np.array([float(v) for v in shape.findtext("pose").split()[:3]])
+            half = np.array([float(v) for v in shape.findtext("geometry/box/size").split()]) / 2
+            boxes.append((center, np.eye(3), half))
+        base = (np.array([0.09325, -0.287, 0.2165]), np.eye(3), np.array([0.16525, 0.115, 0.0965]))
+        self.assertFalse(any(intersects(b, base, margin=0.005) for b in boxes))
+        for point in ([-0.25, 0.17, 0.12], [-0.46, -0.02, 0.12], [-0.05, 0.28, 0.12]):
+            self.assertTrue(
+                any(np.all(np.abs(np.array(point) - b[0]) <= b[2] + 1e-9) for b in boxes)
+            )
+
     def test_design_and_placement_are_independent(self):
         a, b = make_case(100, 1), make_case(100, 2)
         self.assertEqual(a["design"], b["design"])

@@ -1,0 +1,2969 @@
+{
+  "processed_frames": 209,
+  "frames": [
+    {
+      "sensor_stamp_ns": 102400000000,
+      "elapsed_wall_s": 0.47031675099970016,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.002801665999868419,
+      "detector_wall_s": 0.03983320900078979,
+      "save_and_validation_wall_s": 0.024606957999822043
+    },
+    {
+      "sensor_stamp_ns": 102600000000,
+      "elapsed_wall_s": 0.6337308339998344,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 2,
+      "decode_wall_s": 0.0006897909997860552,
+      "detector_wall_s": 0.03271991700057697,
+      "save_and_validation_wall_s": 0.016993291999824578
+    },
+    {
+      "sensor_stamp_ns": 102800000000,
+      "elapsed_wall_s": 0.9122805839997454,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 3,
+      "decode_wall_s": 0.00044458399952418404,
+      "detector_wall_s": 0.03457816600075603,
+      "save_and_validation_wall_s": 0.018093874999976833
+    },
+    {
+      "sensor_stamp_ns": 103000000000,
+      "elapsed_wall_s": 1.183198333999826,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 4,
+      "decode_wall_s": 0.00020287499955884414,
+      "detector_wall_s": 0.033379208000042127,
+      "save_and_validation_wall_s": 0.01656516700040811
+    },
+    {
+      "sensor_stamp_ns": 103200000000,
+      "elapsed_wall_s": 1.4583217509998576,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 5,
+      "decode_wall_s": 0.00019233299917686963,
+      "detector_wall_s": 0.03323637500034238,
+      "save_and_validation_wall_s": 0.015942334000101255
+    },
+    {
+      "sensor_stamp_ns": 103400000000,
+      "elapsed_wall_s": 1.7538019180001356,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 6,
+      "decode_wall_s": 0.00019945900021411944,
+      "detector_wall_s": 0.0350096250003844,
+      "save_and_validation_wall_s": 0.017452125000090746
+    },
+    {
+      "sensor_stamp_ns": 103600000000,
+      "elapsed_wall_s": 2.0202795850000257,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 7,
+      "decode_wall_s": 0.00020150000000285218,
+      "detector_wall_s": 0.03493837499991059,
+      "save_and_validation_wall_s": 0.017256833999454102
+    },
+    {
+      "sensor_stamp_ns": 103800000000,
+      "elapsed_wall_s": 2.290654667999661,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 8,
+      "decode_wall_s": 0.0001964170005521737,
+      "detector_wall_s": 0.0324552499996571,
+      "save_and_validation_wall_s": 0.016927249999753258
+    },
+    {
+      "sensor_stamp_ns": 104000000000,
+      "elapsed_wall_s": 2.570581293000032,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 9,
+      "decode_wall_s": 0.0001902920002976316,
+      "detector_wall_s": 0.034561624999696505,
+      "save_and_validation_wall_s": 0.01661908299956849
+    },
+    {
+      "sensor_stamp_ns": 104200000000,
+      "elapsed_wall_s": 2.8492741270001716,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 10,
+      "decode_wall_s": 0.00019262500063632615,
+      "detector_wall_s": 0.033286082999438804,
+      "save_and_validation_wall_s": 0.018786375000672706
+    },
+    {
+      "sensor_stamp_ns": 104400000000,
+      "elapsed_wall_s": 3.1290731270000833,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 11,
+      "decode_wall_s": 0.0002009999998335843,
+      "detector_wall_s": 0.03614437500073109,
+      "save_and_validation_wall_s": 0.015384249999442545
+    },
+    {
+      "sensor_stamp_ns": 104600000000,
+      "elapsed_wall_s": 3.4013690020001377,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 12,
+      "decode_wall_s": 0.0004436669996721321,
+      "detector_wall_s": 0.03538300000036543,
+      "save_and_validation_wall_s": 0.01622679199954291
+    },
+    {
+      "sensor_stamp_ns": 104800000000,
+      "elapsed_wall_s": 3.68178650200025,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 13,
+      "decode_wall_s": 0.00022329100011120318,
+      "detector_wall_s": 0.03509133399984421,
+      "save_and_validation_wall_s": 0.01746900000034657
+    },
+    {
+      "sensor_stamp_ns": 105000000000,
+      "elapsed_wall_s": 3.958441460999893,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 14,
+      "decode_wall_s": 0.00019704200076375855,
+      "detector_wall_s": 0.03487700000005134,
+      "save_and_validation_wall_s": 0.015378165999209159
+    },
+    {
+      "sensor_stamp_ns": 105200000000,
+      "elapsed_wall_s": 4.24765091900008,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 15,
+      "decode_wall_s": 0.00022383299983630423,
+      "detector_wall_s": 0.03636962500058871,
+      "save_and_validation_wall_s": 0.01991937499951746
+    },
+    {
+      "sensor_stamp_ns": 105400000000,
+      "elapsed_wall_s": 4.5274967939994895,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 16,
+      "decode_wall_s": 0.0002103750002788729,
+      "detector_wall_s": 0.034334375000071304,
+      "save_and_validation_wall_s": 0.017740166999828944
+    },
+    {
+      "sensor_stamp_ns": 105600000000,
+      "elapsed_wall_s": 4.811387668999487,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 17,
+      "decode_wall_s": 0.0002235000001746812,
+      "detector_wall_s": 0.0336366250003266,
+      "save_and_validation_wall_s": 0.018028874999799882
+    },
+    {
+      "sensor_stamp_ns": 105800000000,
+      "elapsed_wall_s": 5.088105253000322,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 18,
+      "decode_wall_s": 0.00019545800023479387,
+      "detector_wall_s": 0.03546000099959201,
+      "save_and_validation_wall_s": 0.016122041000016907
+    },
+    {
+      "sensor_stamp_ns": 106000000000,
+      "elapsed_wall_s": 5.367590586000006,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 19,
+      "decode_wall_s": 0.0001842499996200786,
+      "detector_wall_s": 0.03604300000006333,
+      "save_and_validation_wall_s": 0.015975624999555293
+    },
+    {
+      "sensor_stamp_ns": 106200000000,
+      "elapsed_wall_s": 5.644359502999578,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 20,
+      "decode_wall_s": 0.00020362500072224066,
+      "detector_wall_s": 0.03305779199945391,
+      "save_and_validation_wall_s": 0.016202791000068828
+    },
+    {
+      "sensor_stamp_ns": 106400000000,
+      "elapsed_wall_s": 5.921192044999771,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 21,
+      "decode_wall_s": 0.00021962499977234984,
+      "detector_wall_s": 0.03543424999952549,
+      "save_and_validation_wall_s": 0.015889500000412227
+    },
+    {
+      "sensor_stamp_ns": 106600000000,
+      "elapsed_wall_s": 6.204175502999533,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 22,
+      "decode_wall_s": 0.0004319579993534717,
+      "detector_wall_s": 0.036644959000113886,
+      "save_and_validation_wall_s": 0.016515125000296393
+    },
+    {
+      "sensor_stamp_ns": 106800000000,
+      "elapsed_wall_s": 6.486114837000059,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 23,
+      "decode_wall_s": 0.00021775000004709,
+      "detector_wall_s": 0.03595516699988366,
+      "save_and_validation_wall_s": 0.016340042000592803
+    },
+    {
+      "sensor_stamp_ns": 107000000000,
+      "elapsed_wall_s": 6.762578128999849,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 24,
+      "decode_wall_s": 0.00019541700021363795,
+      "detector_wall_s": 0.03576012499979697,
+      "save_and_validation_wall_s": 0.01656645799994294
+    },
+    {
+      "sensor_stamp_ns": 107200000000,
+      "elapsed_wall_s": 7.03848608699991,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 25,
+      "decode_wall_s": 0.0002352920000703307,
+      "detector_wall_s": 0.03344383300009213,
+      "save_and_validation_wall_s": 0.016533582999727514
+    },
+    {
+      "sensor_stamp_ns": 107400000000,
+      "elapsed_wall_s": 7.317249628999889,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 26,
+      "decode_wall_s": 0.00019145799979014555,
+      "detector_wall_s": 0.03553666700008762,
+      "save_and_validation_wall_s": 0.0180502079992948
+    },
+    {
+      "sensor_stamp_ns": 107600000000,
+      "elapsed_wall_s": 7.593704046000312,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 27,
+      "decode_wall_s": 0.00020208299974910915,
+      "detector_wall_s": 0.03551645800052938,
+      "save_and_validation_wall_s": 0.016183166999326204
+    },
+    {
+      "sensor_stamp_ns": 107800000000,
+      "elapsed_wall_s": 7.878629337999882,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 28,
+      "decode_wall_s": 0.00019466600042505888,
+      "detector_wall_s": 0.03528991699931794,
+      "save_and_validation_wall_s": 0.01682620900010079
+    },
+    {
+      "sensor_stamp_ns": 108000000000,
+      "elapsed_wall_s": 8.155744920999496,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 29,
+      "decode_wall_s": 0.0006849999999758438,
+      "detector_wall_s": 0.0348863330000313,
+      "save_and_validation_wall_s": 0.016891708999537514
+    },
+    {
+      "sensor_stamp_ns": 108200000000,
+      "elapsed_wall_s": 8.44048479599951,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 30,
+      "decode_wall_s": 0.00020204199972795323,
+      "detector_wall_s": 0.03354445800050598,
+      "save_and_validation_wall_s": 0.019352958999661496
+    },
+    {
+      "sensor_stamp_ns": 108400000000,
+      "elapsed_wall_s": 8.726814796000326,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 31,
+      "decode_wall_s": 0.0004614589997800067,
+      "detector_wall_s": 0.03654379100044025,
+      "save_and_validation_wall_s": 0.01718504199925519
+    },
+    {
+      "sensor_stamp_ns": 108600000000,
+      "elapsed_wall_s": 9.000668754999424,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 32,
+      "decode_wall_s": 0.00019645900010800688,
+      "detector_wall_s": 0.03426137499991455,
+      "save_and_validation_wall_s": 0.01717075000033219
+    },
+    {
+      "sensor_stamp_ns": 108800000000,
+      "elapsed_wall_s": 9.288853754999764,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 33,
+      "decode_wall_s": 0.00020708300053229323,
+      "detector_wall_s": 0.03475987499950861,
+      "save_and_validation_wall_s": 0.017119584000283794
+    },
+    {
+      "sensor_stamp_ns": 109000000000,
+      "elapsed_wall_s": 9.565767922000305,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 34,
+      "decode_wall_s": 0.0002045840001301258,
+      "detector_wall_s": 0.03586875000019063,
+      "save_and_validation_wall_s": 0.016461874999549764
+    },
+    {
+      "sensor_stamp_ns": 109200000000,
+      "elapsed_wall_s": 9.858240630000182,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 35,
+      "decode_wall_s": 0.0004788329997609253,
+      "detector_wall_s": 0.03634620799948607,
+      "save_and_validation_wall_s": 0.018587292000120215
+    },
+    {
+      "sensor_stamp_ns": 109400000000,
+      "elapsed_wall_s": 10.141003171999728,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 36,
+      "decode_wall_s": 0.00028700000075332355,
+      "detector_wall_s": 0.03562479199990776,
+      "save_and_validation_wall_s": 0.018194999999650463
+    },
+    {
+      "sensor_stamp_ns": 109600000000,
+      "elapsed_wall_s": 10.470100214000013,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 37,
+      "decode_wall_s": 0.00025683300009404775,
+      "detector_wall_s": 0.035202334000132396,
+      "save_and_validation_wall_s": 0.060328790999847115
+    },
+    {
+      "sensor_stamp_ns": 109800000000,
+      "elapsed_wall_s": 10.718003631000101,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 38,
+      "decode_wall_s": 0.00019608300044637872,
+      "detector_wall_s": 0.03467241699945589,
+      "save_and_validation_wall_s": 0.017381208000188053
+    },
+    {
+      "sensor_stamp_ns": 110000000000,
+      "elapsed_wall_s": 11.004070547000083,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 39,
+      "decode_wall_s": 0.0007113749998097774,
+      "detector_wall_s": 0.03599766700062901,
+      "save_and_validation_wall_s": 0.018645582999852195
+    },
+    {
+      "sensor_stamp_ns": 110200000000,
+      "elapsed_wall_s": 11.272122006000245,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 40,
+      "decode_wall_s": 0.00022316700051305816,
+      "detector_wall_s": 0.03363804199943843,
+      "save_and_validation_wall_s": 0.016012458000659535
+    },
+    {
+      "sensor_stamp_ns": 110400000000,
+      "elapsed_wall_s": 11.554339047999747,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 41,
+      "decode_wall_s": 0.0004707080006483011,
+      "detector_wall_s": 0.032688332999896375,
+      "save_and_validation_wall_s": 0.017084291999708512
+    },
+    {
+      "sensor_stamp_ns": 110600000000,
+      "elapsed_wall_s": 11.82548950599994,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 42,
+      "decode_wall_s": 0.0002046250001512817,
+      "detector_wall_s": 0.034259292000569985,
+      "save_and_validation_wall_s": 0.015487165999729768
+    },
+    {
+      "sensor_stamp_ns": 110800000000,
+      "elapsed_wall_s": 12.093193380999764,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 43,
+      "decode_wall_s": 0.00020275000042602187,
+      "detector_wall_s": 0.032521499999347725,
+      "save_and_validation_wall_s": 0.01619512500019482
+    },
+    {
+      "sensor_stamp_ns": 111000000000,
+      "elapsed_wall_s": 12.380093464999845,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 44,
+      "decode_wall_s": 0.00020175000008748611,
+      "detector_wall_s": 0.035884083000382816,
+      "save_and_validation_wall_s": 0.017016041999340814
+    },
+    {
+      "sensor_stamp_ns": 111200000000,
+      "elapsed_wall_s": 12.659159380999881,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 45,
+      "decode_wall_s": 0.0004220000000714208,
+      "detector_wall_s": 0.035630916999252804,
+      "save_and_validation_wall_s": 0.017670625000391738
+    },
+    {
+      "sensor_stamp_ns": 111400000000,
+      "elapsed_wall_s": 12.933602715000234,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 46,
+      "decode_wall_s": 0.00020412499998201383,
+      "detector_wall_s": 0.03465299999970739,
+      "save_and_validation_wall_s": 0.015991375000339758
+    },
+    {
+      "sensor_stamp_ns": 111600000000,
+      "elapsed_wall_s": 13.211506007000025,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 47,
+      "decode_wall_s": 0.0001960419995157281,
+      "detector_wall_s": 0.036026083000251674,
+      "save_and_validation_wall_s": 0.018731457999820122
+    },
+    {
+      "sensor_stamp_ns": 111800000000,
+      "elapsed_wall_s": 13.487795840000217,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 48,
+      "decode_wall_s": 0.00020562500048981747,
+      "detector_wall_s": 0.03181995900013135,
+      "save_and_validation_wall_s": 0.018234874999507156
+    },
+    {
+      "sensor_stamp_ns": 112000000000,
+      "elapsed_wall_s": 13.76242767399981,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 49,
+      "decode_wall_s": 0.00021724999987782212,
+      "detector_wall_s": 0.03459695799938345,
+      "save_and_validation_wall_s": 0.016151334000824136
+    },
+    {
+      "sensor_stamp_ns": 112200000000,
+      "elapsed_wall_s": 14.04314996499943,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 50,
+      "decode_wall_s": 0.00039158300023700576,
+      "detector_wall_s": 0.033638999999311636,
+      "save_and_validation_wall_s": 0.01834262500051409
+    },
+    {
+      "sensor_stamp_ns": 112400000000,
+      "elapsed_wall_s": 14.316632799000217,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 51,
+      "decode_wall_s": 0.00019233300008636434,
+      "detector_wall_s": 0.03507695899952523,
+      "save_and_validation_wall_s": 0.0185338330002196
+    },
+    {
+      "sensor_stamp_ns": 112600000000,
+      "elapsed_wall_s": 14.591192881999632,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 52,
+      "decode_wall_s": 0.00041899999996530823,
+      "detector_wall_s": 0.03590083299968683,
+      "save_and_validation_wall_s": 0.01637658400068176
+    },
+    {
+      "sensor_stamp_ns": 112800000000,
+      "elapsed_wall_s": 14.867264423999586,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 53,
+      "decode_wall_s": 0.00019595800040406175,
+      "detector_wall_s": 0.03647254200041061,
+      "save_and_validation_wall_s": 0.017503624999335443
+    },
+    {
+      "sensor_stamp_ns": 113000000000,
+      "elapsed_wall_s": 15.145896215999528,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 54,
+      "decode_wall_s": 0.0002005420001296443,
+      "detector_wall_s": 0.03282012499948905,
+      "save_and_validation_wall_s": 0.017704208000395738
+    },
+    {
+      "sensor_stamp_ns": 113200000000,
+      "elapsed_wall_s": 15.421230465999543,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 55,
+      "decode_wall_s": 0.0004391669999677106,
+      "detector_wall_s": 0.037949292000121204,
+      "save_and_validation_wall_s": 0.016583790999902703
+    },
+    {
+      "sensor_stamp_ns": 113400000000,
+      "elapsed_wall_s": 15.700636966000275,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 56,
+      "decode_wall_s": 0.00021595799989881925,
+      "detector_wall_s": 0.03407416699974419,
+      "save_and_validation_wall_s": 0.016984374999992724
+    },
+    {
+      "sensor_stamp_ns": 113600000000,
+      "elapsed_wall_s": 15.989005340999938,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 57,
+      "decode_wall_s": 0.0001937910001288401,
+      "detector_wall_s": 0.03635879200010095,
+      "save_and_validation_wall_s": 0.01574104199971771
+    },
+    {
+      "sensor_stamp_ns": 113800000000,
+      "elapsed_wall_s": 16.2638751329996,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 58,
+      "decode_wall_s": 0.00019183299991709646,
+      "detector_wall_s": 0.034026416999950015,
+      "save_and_validation_wall_s": 0.018345958999816503
+    },
+    {
+      "sensor_stamp_ns": 114000000000,
+      "elapsed_wall_s": 16.54853442500007,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 59,
+      "decode_wall_s": 0.0001934160000018892,
+      "detector_wall_s": 0.0345880839995516,
+      "save_and_validation_wall_s": 0.016512958000021172
+    },
+    {
+      "sensor_stamp_ns": 114200000000,
+      "elapsed_wall_s": 16.82688134199998,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 60,
+      "decode_wall_s": 0.00019437500031926902,
+      "detector_wall_s": 0.03559904199937591,
+      "save_and_validation_wall_s": 0.0167469580001125
+    },
+    {
+      "sensor_stamp_ns": 114400000000,
+      "elapsed_wall_s": 17.10727550899992,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 61,
+      "decode_wall_s": 0.0002001250004468602,
+      "detector_wall_s": 0.034018207999906735,
+      "save_and_validation_wall_s": 0.016321291999702225
+    },
+    {
+      "sensor_stamp_ns": 114600000000,
+      "elapsed_wall_s": 17.38488234200031,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 62,
+      "decode_wall_s": 0.00020516700078587746,
+      "detector_wall_s": 0.03449583299970982,
+      "save_and_validation_wall_s": 0.01656391699998494
+    },
+    {
+      "sensor_stamp_ns": 114800000000,
+      "elapsed_wall_s": 17.668752133999988,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 63,
+      "decode_wall_s": 0.00045124999996914994,
+      "detector_wall_s": 0.03437729200049944,
+      "save_and_validation_wall_s": 0.017191334000017378
+    },
+    {
+      "sensor_stamp_ns": 115000000000,
+      "elapsed_wall_s": 17.951731883999855,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 64,
+      "decode_wall_s": 0.00020066699926246656,
+      "detector_wall_s": 0.035905916000047,
+      "save_and_validation_wall_s": 0.01689933400029986
+    },
+    {
+      "sensor_stamp_ns": 115200000000,
+      "elapsed_wall_s": 18.22738146699976,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 65,
+      "decode_wall_s": 0.00020412499998201383,
+      "detector_wall_s": 0.03313141600028757,
+      "save_and_validation_wall_s": 0.016952375000073516
+    },
+    {
+      "sensor_stamp_ns": 115400000000,
+      "elapsed_wall_s": 18.509187925999868,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 66,
+      "decode_wall_s": 0.00022491700019600103,
+      "detector_wall_s": 0.03505254099945887,
+      "save_and_validation_wall_s": 0.0175233340005434
+    },
+    {
+      "sensor_stamp_ns": 115600000000,
+      "elapsed_wall_s": 18.783010467999702,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 67,
+      "decode_wall_s": 0.00019420799981162418,
+      "detector_wall_s": 0.03404579200014268,
+      "save_and_validation_wall_s": 0.01596937500016793
+    },
+    {
+      "sensor_stamp_ns": 115800000000,
+      "elapsed_wall_s": 19.061726467999506,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 68,
+      "decode_wall_s": 0.0002148749999832944,
+      "detector_wall_s": 0.035030083000492596,
+      "save_and_validation_wall_s": 0.016496749999532767
+    },
+    {
+      "sensor_stamp_ns": 116000000000,
+      "elapsed_wall_s": 19.34483484300017,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 69,
+      "decode_wall_s": 0.00021062499945401214,
+      "detector_wall_s": 0.03593416600051569,
+      "save_and_validation_wall_s": 0.018844000000171945
+    },
+    {
+      "sensor_stamp_ns": 116200000000,
+      "elapsed_wall_s": 19.627636635000272,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 70,
+      "decode_wall_s": 0.0005110419997436111,
+      "detector_wall_s": 0.034545124999567633,
+      "save_and_validation_wall_s": 0.01811391600040224
+    },
+    {
+      "sensor_stamp_ns": 116400000000,
+      "elapsed_wall_s": 19.917364592999547,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 71,
+      "decode_wall_s": 0.0002059580001514405,
+      "detector_wall_s": 0.03697754199947667,
+      "save_and_validation_wall_s": 0.01734691700039548
+    },
+    {
+      "sensor_stamp_ns": 116600000000,
+      "elapsed_wall_s": 20.20111580199955,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 72,
+      "decode_wall_s": 0.00019545799932529917,
+      "detector_wall_s": 0.03475470900048094,
+      "save_and_validation_wall_s": 0.01605504100007238
+    },
+    {
+      "sensor_stamp_ns": 116800000000,
+      "elapsed_wall_s": 20.484465134999482,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 73,
+      "decode_wall_s": 0.0004537920003713225,
+      "detector_wall_s": 0.038841708000290964,
+      "save_and_validation_wall_s": 0.016392666999308858
+    },
+    {
+      "sensor_stamp_ns": 117000000000,
+      "elapsed_wall_s": 20.775776259999475,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 74,
+      "decode_wall_s": 0.0004456669994397089,
+      "detector_wall_s": 0.03328787500049657,
+      "save_and_validation_wall_s": 0.017496665999715333
+    },
+    {
+      "sensor_stamp_ns": 117200000000,
+      "elapsed_wall_s": 21.060539801999766,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 75,
+      "decode_wall_s": 0.0004729590000351891,
+      "detector_wall_s": 0.032424541000182217,
+      "save_and_validation_wall_s": 0.019291749999865715
+    },
+    {
+      "sensor_stamp_ns": 117400000000,
+      "elapsed_wall_s": 21.343088718999752,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 76,
+      "decode_wall_s": 0.0005066669991720119,
+      "detector_wall_s": 0.036233833000551385,
+      "save_and_validation_wall_s": 0.015601666999828012
+    },
+    {
+      "sensor_stamp_ns": 117600000000,
+      "elapsed_wall_s": 21.62971542699961,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 77,
+      "decode_wall_s": 0.00028333299997029826,
+      "detector_wall_s": 0.03260200000022451,
+      "save_and_validation_wall_s": 0.016959958000370534
+    },
+    {
+      "sensor_stamp_ns": 117800000000,
+      "elapsed_wall_s": 21.9147830109996,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 78,
+      "decode_wall_s": 0.0008910000005926122,
+      "detector_wall_s": 0.0350386250001975,
+      "save_and_validation_wall_s": 0.019757916999878944
+    },
+    {
+      "sensor_stamp_ns": 118000000000,
+      "elapsed_wall_s": 22.19528313599949,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 79,
+      "decode_wall_s": 0.0002025419998972211,
+      "detector_wall_s": 0.035594541000136815,
+      "save_and_validation_wall_s": 0.016524833999937982
+    },
+    {
+      "sensor_stamp_ns": 118200000000,
+      "elapsed_wall_s": 22.477398760999677,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 80,
+      "decode_wall_s": 0.00019283300025563221,
+      "detector_wall_s": 0.03261479200045869,
+      "save_and_validation_wall_s": 0.01889270799983933
+    },
+    {
+      "sensor_stamp_ns": 118400000000,
+      "elapsed_wall_s": 22.765349594000327,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 81,
+      "decode_wall_s": 0.00019279100069979904,
+      "detector_wall_s": 0.03277758399963204,
+      "save_and_validation_wall_s": 0.016745082999477745
+    },
+    {
+      "sensor_stamp_ns": 118600000000,
+      "elapsed_wall_s": 23.057139677999658,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 82,
+      "decode_wall_s": 0.0001976670000658487,
+      "detector_wall_s": 0.04056941699946037,
+      "save_and_validation_wall_s": 0.016419541000686877
+    },
+    {
+      "sensor_stamp_ns": 118800000000,
+      "elapsed_wall_s": 23.33525630300028,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 83,
+      "decode_wall_s": 0.0004669580002882867,
+      "detector_wall_s": 0.03513341699999728,
+      "save_and_validation_wall_s": 0.01725695799996174
+    },
+    {
+      "sensor_stamp_ns": 119000000000,
+      "elapsed_wall_s": 23.61804717799987,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 84,
+      "decode_wall_s": 0.00039566699979332043,
+      "detector_wall_s": 0.036615707999771985,
+      "save_and_validation_wall_s": 0.018148166999708337
+    },
+    {
+      "sensor_stamp_ns": 119200000000,
+      "elapsed_wall_s": 23.901852637000047,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 85,
+      "decode_wall_s": 0.0003840419994958211,
+      "detector_wall_s": 0.038362083000720304,
+      "save_and_validation_wall_s": 0.018075708999276685
+    },
+    {
+      "sensor_stamp_ns": 119400000000,
+      "elapsed_wall_s": 24.18184117799956,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 86,
+      "decode_wall_s": 0.00021187499987718184,
+      "detector_wall_s": 0.03662529199937126,
+      "save_and_validation_wall_s": 0.016525375000128406
+    },
+    {
+      "sensor_stamp_ns": 119600000000,
+      "elapsed_wall_s": 24.46646926199992,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 87,
+      "decode_wall_s": 0.00020383300034154672,
+      "detector_wall_s": 0.036825208999289316,
+      "save_and_validation_wall_s": 0.016360958000404935
+    },
+    {
+      "sensor_stamp_ns": 119800000000,
+      "elapsed_wall_s": 24.742891011999745,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 88,
+      "decode_wall_s": 0.00022012499994161772,
+      "detector_wall_s": 0.03578108300007443,
+      "save_and_validation_wall_s": 0.017168792000120447
+    },
+    {
+      "sensor_stamp_ns": 120000000000,
+      "elapsed_wall_s": 25.03183917899969,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 89,
+      "decode_wall_s": 0.0002192920001107268,
+      "detector_wall_s": 0.03580279200014047,
+      "save_and_validation_wall_s": 0.016191207999327162
+    },
+    {
+      "sensor_stamp_ns": 120200000000,
+      "elapsed_wall_s": 25.318910220999896,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 90,
+      "decode_wall_s": 0.00020141699951636838,
+      "detector_wall_s": 0.03664850000041042,
+      "save_and_validation_wall_s": 0.016769332999501785
+    },
+    {
+      "sensor_stamp_ns": 120400000000,
+      "elapsed_wall_s": 25.600214721000157,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 91,
+      "decode_wall_s": 0.00021104200004629092,
+      "detector_wall_s": 0.03646329200000764,
+      "save_and_validation_wall_s": 0.018041665999589895
+    },
+    {
+      "sensor_stamp_ns": 120600000000,
+      "elapsed_wall_s": 25.885834804000297,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 92,
+      "decode_wall_s": 0.00021412499972939258,
+      "detector_wall_s": 0.03766491700025654,
+      "save_and_validation_wall_s": 0.01647608300027059
+    },
+    {
+      "sensor_stamp_ns": 120800000000,
+      "elapsed_wall_s": 26.174763553999583,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 93,
+      "decode_wall_s": 0.0005679999994754326,
+      "detector_wall_s": 0.03712041600010707,
+      "save_and_validation_wall_s": 0.017305125000348198
+    },
+    {
+      "sensor_stamp_ns": 121000000000,
+      "elapsed_wall_s": 26.467221720999987,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 94,
+      "decode_wall_s": 0.0004469579998840345,
+      "detector_wall_s": 0.037905625000348664,
+      "save_and_validation_wall_s": 0.017884500000036496
+    },
+    {
+      "sensor_stamp_ns": 121200000000,
+      "elapsed_wall_s": 26.76420367999981,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 95,
+      "decode_wall_s": 0.00020120800036238506,
+      "detector_wall_s": 0.037635832999512786,
+      "save_and_validation_wall_s": 0.01733537499967497
+    },
+    {
+      "sensor_stamp_ns": 121400000000,
+      "elapsed_wall_s": 27.05878055499943,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 96,
+      "decode_wall_s": 0.0004412499993122765,
+      "detector_wall_s": 0.03559225000026345,
+      "save_and_validation_wall_s": 0.016496250000272994
+    },
+    {
+      "sensor_stamp_ns": 121600000000,
+      "elapsed_wall_s": 27.352727638000033,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 97,
+      "decode_wall_s": 0.0001952499997059931,
+      "detector_wall_s": 0.036725332999594684,
+      "save_and_validation_wall_s": 0.017676667000159796
+    },
+    {
+      "sensor_stamp_ns": 121800000000,
+      "elapsed_wall_s": 27.641878346999874,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 98,
+      "decode_wall_s": 0.00021958399975119391,
+      "detector_wall_s": 0.0367675830002554,
+      "save_and_validation_wall_s": 0.01752366699929553
+    },
+    {
+      "sensor_stamp_ns": 122000000000,
+      "elapsed_wall_s": 27.93641072199989,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 99,
+      "decode_wall_s": 0.00020525000036286656,
+      "detector_wall_s": 0.037481792000107816,
+      "save_and_validation_wall_s": 0.01751216599950567
+    },
+    {
+      "sensor_stamp_ns": 122200000000,
+      "elapsed_wall_s": 28.225095971999508,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 100,
+      "decode_wall_s": 0.0006994160003159777,
+      "detector_wall_s": 0.0365543340003569,
+      "save_and_validation_wall_s": 0.017224457999873266
+    },
+    {
+      "sensor_stamp_ns": 122400000000,
+      "elapsed_wall_s": 28.517976846999773,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 101,
+      "decode_wall_s": 0.00021875000038562575,
+      "detector_wall_s": 0.03661762499996257,
+      "save_and_validation_wall_s": 0.021194624999225198
+    },
+    {
+      "sensor_stamp_ns": 122600000000,
+      "elapsed_wall_s": 28.803762972000186,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 102,
+      "decode_wall_s": 0.0007029999997030245,
+      "detector_wall_s": 0.03512220900029206,
+      "save_and_validation_wall_s": 0.019685915999616554
+    },
+    {
+      "sensor_stamp_ns": 122800000000,
+      "elapsed_wall_s": 29.094276638999872,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 103,
+      "decode_wall_s": 0.00021212499996181577,
+      "detector_wall_s": 0.03679466700032208,
+      "save_and_validation_wall_s": 0.01764237499992305
+    },
+    {
+      "sensor_stamp_ns": 123000000000,
+      "elapsed_wall_s": 29.38325909699961,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 104,
+      "decode_wall_s": 0.0002001250004468602,
+      "detector_wall_s": 0.034214708999570576,
+      "save_and_validation_wall_s": 0.016960832999757258
+    },
+    {
+      "sensor_stamp_ns": 123200000000,
+      "elapsed_wall_s": 29.668808597999487,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 105,
+      "decode_wall_s": 0.00020429199958016397,
+      "detector_wall_s": 0.036270499999773165,
+      "save_and_validation_wall_s": 0.018248625000524044
+    },
+    {
+      "sensor_stamp_ns": 123400000000,
+      "elapsed_wall_s": 29.95969218099981,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 106,
+      "decode_wall_s": 0.00046587499946326716,
+      "detector_wall_s": 0.03699100000085309,
+      "save_and_validation_wall_s": 0.020844874999966123
+    },
+    {
+      "sensor_stamp_ns": 123600000000,
+      "elapsed_wall_s": 30.26228434800032,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 107,
+      "decode_wall_s": 0.00021870900036446983,
+      "detector_wall_s": 0.036090708000301674,
+      "save_and_validation_wall_s": 0.016878957999324484
+    },
+    {
+      "sensor_stamp_ns": 123800000000,
+      "elapsed_wall_s": 30.5604845150001,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 108,
+      "decode_wall_s": 0.00026450000041222665,
+      "detector_wall_s": 0.037639999999555585,
+      "save_and_validation_wall_s": 0.01759304200004408
+    },
+    {
+      "sensor_stamp_ns": 124000000000,
+      "elapsed_wall_s": 30.853260140000202,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 109,
+      "decode_wall_s": 0.0008814999991955119,
+      "detector_wall_s": 0.03658612500021263,
+      "save_and_validation_wall_s": 0.017334042000584304
+    },
+    {
+      "sensor_stamp_ns": 124200000000,
+      "elapsed_wall_s": 31.138863098,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 110,
+      "decode_wall_s": 0.00020379099987621885,
+      "detector_wall_s": 0.03334520899989002,
+      "save_and_validation_wall_s": 0.019548666000446246
+    },
+    {
+      "sensor_stamp_ns": 124400000000,
+      "elapsed_wall_s": 31.437971514999845,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 111,
+      "decode_wall_s": 0.0002155840002160403,
+      "detector_wall_s": 0.040508165999199264,
+      "save_and_validation_wall_s": 0.020628834000490315
+    },
+    {
+      "sensor_stamp_ns": 124600000000,
+      "elapsed_wall_s": 31.72600480700021,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 112,
+      "decode_wall_s": 0.00021600000036414713,
+      "detector_wall_s": 0.036731666999912704,
+      "save_and_validation_wall_s": 0.017424374999791326
+    },
+    {
+      "sensor_stamp_ns": 124800000000,
+      "elapsed_wall_s": 32.02263672400022,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 113,
+      "decode_wall_s": 0.0005802499999845168,
+      "detector_wall_s": 0.03853683299985278,
+      "save_and_validation_wall_s": 0.018083750000187138
+    },
+    {
+      "sensor_stamp_ns": 125000000000,
+      "elapsed_wall_s": 32.32854080699963,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 114,
+      "decode_wall_s": 0.00022375000025931513,
+      "detector_wall_s": 0.039333666999482375,
+      "save_and_validation_wall_s": 0.018187125000622473
+    },
+    {
+      "sensor_stamp_ns": 125200000000,
+      "elapsed_wall_s": 32.64193968200016,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 115,
+      "decode_wall_s": 0.0003550000001268927,
+      "detector_wall_s": 0.04095312499975989,
+      "save_and_validation_wall_s": 0.01921200000015233
+    },
+    {
+      "sensor_stamp_ns": 125400000000,
+      "elapsed_wall_s": 32.974454432999664,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 116,
+      "decode_wall_s": 0.0005222919999141595,
+      "detector_wall_s": 0.039865957999609236,
+      "save_and_validation_wall_s": 0.021881542000301124
+    },
+    {
+      "sensor_stamp_ns": 125600000000,
+      "elapsed_wall_s": 33.30266509899957,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 117,
+      "decode_wall_s": 0.0002479999993738602,
+      "detector_wall_s": 0.0426257090002764,
+      "save_and_validation_wall_s": 0.02168175000042538
+    },
+    {
+      "sensor_stamp_ns": 125800000000,
+      "elapsed_wall_s": 33.63253859900033,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 118,
+      "decode_wall_s": 0.0008360829997400288,
+      "detector_wall_s": 0.041614959000071394,
+      "save_and_validation_wall_s": 0.02228312500028551
+    },
+    {
+      "sensor_stamp_ns": 126000000000,
+      "elapsed_wall_s": 33.95802022499993,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 119,
+      "decode_wall_s": 0.0005659159996866947,
+      "detector_wall_s": 0.04378725000060513,
+      "save_and_validation_wall_s": 0.020840791999944486
+    },
+    {
+      "sensor_stamp_ns": 126200000000,
+      "elapsed_wall_s": 34.29261880800004,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 120,
+      "decode_wall_s": 0.0002325000004930189,
+      "detector_wall_s": 0.042856250000113505,
+      "save_and_validation_wall_s": 0.02473095799996372
+    },
+    {
+      "sensor_stamp_ns": 126400000000,
+      "elapsed_wall_s": 34.64203772499968,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 121,
+      "decode_wall_s": 0.00031745899923407706,
+      "detector_wall_s": 0.04637350000029983,
+      "save_and_validation_wall_s": 0.025729541000146128
+    },
+    {
+      "sensor_stamp_ns": 126600000000,
+      "elapsed_wall_s": 34.9599519329995,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 122,
+      "decode_wall_s": 0.00028970899984415155,
+      "detector_wall_s": 0.04561991599985049,
+      "save_and_validation_wall_s": 0.02031425000041054
+    },
+    {
+      "sensor_stamp_ns": 126800000000,
+      "elapsed_wall_s": 35.298574225000266,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 123,
+      "decode_wall_s": 0.0002533329998186673,
+      "detector_wall_s": 0.038855583000440674,
+      "save_and_validation_wall_s": 0.019856625000102213
+    },
+    {
+      "sensor_stamp_ns": 127000000000,
+      "elapsed_wall_s": 35.63675039200007,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 124,
+      "decode_wall_s": 0.0006653339996773866,
+      "detector_wall_s": 0.03988929100069072,
+      "save_and_validation_wall_s": 0.022266541999670153
+    },
+    {
+      "sensor_stamp_ns": 127200000000,
+      "elapsed_wall_s": 35.976640476000284,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 125,
+      "decode_wall_s": 0.0002358330002607545,
+      "detector_wall_s": 0.043929250000473985,
+      "save_and_validation_wall_s": 0.02120170899979712
+    },
+    {
+      "sensor_stamp_ns": 127400000000,
+      "elapsed_wall_s": 36.31901597599972,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 126,
+      "decode_wall_s": 0.0005762909995610244,
+      "detector_wall_s": 0.043194792000576854,
+      "save_and_validation_wall_s": 0.025852541999483947
+    },
+    {
+      "sensor_stamp_ns": 127600000000,
+      "elapsed_wall_s": 36.65533547599989,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 127,
+      "decode_wall_s": 0.00025708399971335893,
+      "detector_wall_s": 0.0431129160006094,
+      "save_and_validation_wall_s": 0.022332874999847263
+    },
+    {
+      "sensor_stamp_ns": 127800000000,
+      "elapsed_wall_s": 36.99777664300018,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 128,
+      "decode_wall_s": 0.00025795799956540577,
+      "detector_wall_s": 0.04267800000070565,
+      "save_and_validation_wall_s": 0.0213631249998798
+    },
+    {
+      "sensor_stamp_ns": 128000000000,
+      "elapsed_wall_s": 37.34329785099999,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 129,
+      "decode_wall_s": 0.0002717500001381268,
+      "detector_wall_s": 0.045068166999953974,
+      "save_and_validation_wall_s": 0.02174525000009453
+    },
+    {
+      "sensor_stamp_ns": 128200000000,
+      "elapsed_wall_s": 37.68339201799972,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 130,
+      "decode_wall_s": 0.0002671669999472215,
+      "detector_wall_s": 0.04183429200020328,
+      "save_and_validation_wall_s": 0.02023837500018999
+    },
+    {
+      "sensor_stamp_ns": 128400000000,
+      "elapsed_wall_s": 38.04629651799951,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 131,
+      "decode_wall_s": 0.00026716600041254424,
+      "detector_wall_s": 0.04567724999924394,
+      "save_and_validation_wall_s": 0.021486750000804022
+    },
+    {
+      "sensor_stamp_ns": 128600000000,
+      "elapsed_wall_s": 38.40314368500003,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 132,
+      "decode_wall_s": 0.00027779099946201313,
+      "detector_wall_s": 0.046187916999770096,
+      "save_and_validation_wall_s": 0.022806667000622838
+    },
+    {
+      "sensor_stamp_ns": 128800000000,
+      "elapsed_wall_s": 38.76095114399959,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 133,
+      "decode_wall_s": 0.0006150409999463591,
+      "detector_wall_s": 0.05127249999986816,
+      "save_and_validation_wall_s": 0.021158500000638014
+    },
+    {
+      "sensor_stamp_ns": 129000000000,
+      "elapsed_wall_s": 39.10647468499974,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 134,
+      "decode_wall_s": 0.00027616600073088193,
+      "detector_wall_s": 0.04190841699983139,
+      "save_and_validation_wall_s": 0.023526500000116357
+    },
+    {
+      "sensor_stamp_ns": 129200000000,
+      "elapsed_wall_s": 39.47931722700014,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 135,
+      "decode_wall_s": 0.0004324159999669064,
+      "detector_wall_s": 0.04740825000044424,
+      "save_and_validation_wall_s": 0.020903708999867376
+    },
+    {
+      "sensor_stamp_ns": 129400000000,
+      "elapsed_wall_s": 39.84842060200026,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 136,
+      "decode_wall_s": 0.0003035420004380285,
+      "detector_wall_s": 0.04822641600003408,
+      "save_and_validation_wall_s": 0.024137499999596912
+    },
+    {
+      "sensor_stamp_ns": 129600000000,
+      "elapsed_wall_s": 40.228236685999946,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 137,
+      "decode_wall_s": 0.0012772499994753161,
+      "detector_wall_s": 0.05153545800021675,
+      "save_and_validation_wall_s": 0.02337987500050076
+    },
+    {
+      "sensor_stamp_ns": 129800000000,
+      "elapsed_wall_s": 40.6416977279996,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 138,
+      "decode_wall_s": 0.000285250000160886,
+      "detector_wall_s": 0.05112820899921644,
+      "save_and_validation_wall_s": 0.025904125000124623
+    },
+    {
+      "sensor_stamp_ns": 130000000000,
+      "elapsed_wall_s": 41.02438243599954,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 139,
+      "decode_wall_s": 0.0005247920007604989,
+      "detector_wall_s": 0.05153041699941241,
+      "save_and_validation_wall_s": 0.02611537499979022
+    },
+    {
+      "sensor_stamp_ns": 130200000000,
+      "elapsed_wall_s": 41.41790293699978,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 140,
+      "decode_wall_s": 0.0002839170001607272,
+      "detector_wall_s": 0.05616483299945685,
+      "save_and_validation_wall_s": 0.026965584000208764
+    },
+    {
+      "sensor_stamp_ns": 130400000000,
+      "elapsed_wall_s": 41.81146614499994,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 141,
+      "decode_wall_s": 0.0002900829995269305,
+      "detector_wall_s": 0.054533583000193175,
+      "save_and_validation_wall_s": 0.024163834000319184
+    },
+    {
+      "sensor_stamp_ns": 130600000000,
+      "elapsed_wall_s": 42.21170597899982,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 142,
+      "decode_wall_s": 0.0003724170001078164,
+      "detector_wall_s": 0.050917833000312385,
+      "save_and_validation_wall_s": 0.026946666999720037
+    },
+    {
+      "sensor_stamp_ns": 130800000000,
+      "elapsed_wall_s": 42.61320660399997,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 143,
+      "decode_wall_s": 0.0006842909997430979,
+      "detector_wall_s": 0.046225875000345695,
+      "save_and_validation_wall_s": 0.02428129199961404
+    },
+    {
+      "sensor_stamp_ns": 131000000000,
+      "elapsed_wall_s": 43.02834552100012,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 144,
+      "decode_wall_s": 0.0002880830006688484,
+      "detector_wall_s": 0.05055416699997295,
+      "save_and_validation_wall_s": 0.023503207999965525
+    },
+    {
+      "sensor_stamp_ns": 131200000000,
+      "elapsed_wall_s": 43.44181656299952,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 145,
+      "decode_wall_s": 0.0003289579999545822,
+      "detector_wall_s": 0.051515417000700836,
+      "save_and_validation_wall_s": 0.025966333999349445
+    },
+    {
+      "sensor_stamp_ns": 131400000000,
+      "elapsed_wall_s": 43.86686227100017,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 146,
+      "decode_wall_s": 0.00032049999936134554,
+      "detector_wall_s": 0.05452108300050895,
+      "save_and_validation_wall_s": 0.028748708999955852
+    },
+    {
+      "sensor_stamp_ns": 131600000000,
+      "elapsed_wall_s": 44.29829027100004,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 147,
+      "decode_wall_s": 0.0007625420003023464,
+      "detector_wall_s": 0.05932283299989649,
+      "save_and_validation_wall_s": 0.027525041999979294
+    },
+    {
+      "sensor_stamp_ns": 131800000000,
+      "elapsed_wall_s": 44.71905081299974,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 148,
+      "decode_wall_s": 0.00034220800080220215,
+      "detector_wall_s": 0.05853720799950679,
+      "save_and_validation_wall_s": 0.027524916999936977
+    },
+    {
+      "sensor_stamp_ns": 132000000000,
+      "elapsed_wall_s": 45.157136937999894,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 149,
+      "decode_wall_s": 0.0007367500002146699,
+      "detector_wall_s": 0.053479166999750305,
+      "save_and_validation_wall_s": 0.028642500000387372
+    },
+    {
+      "sensor_stamp_ns": 132200000000,
+      "elapsed_wall_s": 45.62834735500019,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 150,
+      "decode_wall_s": 0.0003398749995540129,
+      "detector_wall_s": 0.060719500000232074,
+      "save_and_validation_wall_s": 0.0323117080006341
+    },
+    {
+      "sensor_stamp_ns": 132400000000,
+      "elapsed_wall_s": 46.10103893900032,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 151,
+      "decode_wall_s": 0.0003669580000860151,
+      "detector_wall_s": 0.06370725000033417,
+      "save_and_validation_wall_s": 0.028278916999624926
+    },
+    {
+      "sensor_stamp_ns": 132600000000,
+      "elapsed_wall_s": 46.573953230999905,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 152,
+      "decode_wall_s": 0.00039775000004738104,
+      "detector_wall_s": 0.06392041599974618,
+      "save_and_validation_wall_s": 0.029904042000453046
+    },
+    {
+      "sensor_stamp_ns": 132800000000,
+      "elapsed_wall_s": 47.0611728140002,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 153,
+      "decode_wall_s": 0.0004377919995022239,
+      "detector_wall_s": 0.0647582080000575,
+      "save_and_validation_wall_s": 0.032070875000499655
+    },
+    {
+      "sensor_stamp_ns": 133000000000,
+      "elapsed_wall_s": 47.58190818899948,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 154,
+      "decode_wall_s": 0.00042270799985999474,
+      "detector_wall_s": 0.07334175000050891,
+      "save_and_validation_wall_s": 0.0356472079993182
+    },
+    {
+      "sensor_stamp_ns": 133200000000,
+      "elapsed_wall_s": 48.09731560599994,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 155,
+      "decode_wall_s": 0.00038366700027836487,
+      "detector_wall_s": 0.06937787500010018,
+      "save_and_validation_wall_s": 0.03048758299973997
+    },
+    {
+      "sensor_stamp_ns": 133400000000,
+      "elapsed_wall_s": 48.63489914799993,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 156,
+      "decode_wall_s": 0.00045033399965177523,
+      "detector_wall_s": 0.0683818750003411,
+      "save_and_validation_wall_s": 0.03544079099992814
+    },
+    {
+      "sensor_stamp_ns": 133600000000,
+      "elapsed_wall_s": 49.283810398999776,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 157,
+      "decode_wall_s": 0.0005282500005705515,
+      "detector_wall_s": 0.0799517499999638,
+      "save_and_validation_wall_s": 0.059026165999966906
+    },
+    {
+      "sensor_stamp_ns": 133800000000,
+      "elapsed_wall_s": 50.101406732000214,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 158,
+      "decode_wall_s": 0.00045287499960977584,
+      "detector_wall_s": 0.09281487499993091,
+      "save_and_validation_wall_s": 0.0490105830003813
+    },
+    {
+      "sensor_stamp_ns": 134000000000,
+      "elapsed_wall_s": 50.81852664899998,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 159,
+      "decode_wall_s": 0.0009610839997549192,
+      "detector_wall_s": 0.08310629100014921,
+      "save_and_validation_wall_s": 0.04118508400006249
+    },
+    {
+      "sensor_stamp_ns": 134200000000,
+      "elapsed_wall_s": 51.485780107999744,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 160,
+      "decode_wall_s": 0.00046462500085908687,
+      "detector_wall_s": 0.08364874999915628,
+      "save_and_validation_wall_s": 0.04095637499995064
+    },
+    {
+      "sensor_stamp_ns": 134400000000,
+      "elapsed_wall_s": 52.164010899999994,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 161,
+      "decode_wall_s": 0.0004444579999471898,
+      "detector_wall_s": 0.07959924999977375,
+      "save_and_validation_wall_s": 0.04128220799975679
+    },
+    {
+      "sensor_stamp_ns": 134600000000,
+      "elapsed_wall_s": 52.9371396079996,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 162,
+      "decode_wall_s": 0.0005110000001877779,
+      "detector_wall_s": 0.08766941700014286,
+      "save_and_validation_wall_s": 0.09080720799920527
+    },
+    {
+      "sensor_stamp_ns": 134800000000,
+      "elapsed_wall_s": 53.73832994199984,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 163,
+      "decode_wall_s": 0.00046966599984443747,
+      "detector_wall_s": 0.08523470900036045,
+      "save_and_validation_wall_s": 0.05185912499928236
+    },
+    {
+      "sensor_stamp_ns": 135000000000,
+      "elapsed_wall_s": 54.58719348399973,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 164,
+      "decode_wall_s": 0.0016881250003280002,
+      "detector_wall_s": 0.08098566700027732,
+      "save_and_validation_wall_s": 0.055488416999651236
+    },
+    {
+      "sensor_stamp_ns": 135200000000,
+      "elapsed_wall_s": 55.55359890099953,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 165,
+      "decode_wall_s": 0.00048045899984572316,
+      "detector_wall_s": 0.0975117500001943,
+      "save_and_validation_wall_s": 0.15687779099971522
+    },
+    {
+      "sensor_stamp_ns": 135400000000,
+      "elapsed_wall_s": 56.28438894299961,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 166,
+      "decode_wall_s": 0.0005581659997915267,
+      "detector_wall_s": 0.0797027500002514,
+      "save_and_validation_wall_s": 0.04835099999945669
+    },
+    {
+      "sensor_stamp_ns": 135600000000,
+      "elapsed_wall_s": 57.07187777699983,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 167,
+      "decode_wall_s": 0.0008314589995279675,
+      "detector_wall_s": 0.08085404099983862,
+      "save_and_validation_wall_s": 0.05195700000058423
+    },
+    {
+      "sensor_stamp_ns": 135800000000,
+      "elapsed_wall_s": 57.87137923499995,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 168,
+      "decode_wall_s": 0.00114783300068666,
+      "detector_wall_s": 0.08548233399960736,
+      "save_and_validation_wall_s": 0.05221766599970579
+    },
+    {
+      "sensor_stamp_ns": 136000000000,
+      "elapsed_wall_s": 58.754559735999464,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 169,
+      "decode_wall_s": 0.0015659999999115826,
+      "detector_wall_s": 0.08486562500002037,
+      "save_and_validation_wall_s": 0.10016054100015026
+    },
+    {
+      "sensor_stamp_ns": 136200000000,
+      "elapsed_wall_s": 59.555146110999885,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 170,
+      "decode_wall_s": 0.0005563750000874279,
+      "detector_wall_s": 0.07629866699971899,
+      "save_and_validation_wall_s": 0.05479616699994949
+    },
+    {
+      "sensor_stamp_ns": 136400000000,
+      "elapsed_wall_s": 60.40999248699973,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 171,
+      "decode_wall_s": 0.0010642090001056204,
+      "detector_wall_s": 0.08107291600026656,
+      "save_and_validation_wall_s": 0.07854995900015638
+    },
+    {
+      "sensor_stamp_ns": 136600000000,
+      "elapsed_wall_s": 61.207048653999664,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 172,
+      "decode_wall_s": 0.0008991670001705643,
+      "detector_wall_s": 0.0810899160005647,
+      "save_and_validation_wall_s": 0.04975849999937054
+    },
+    {
+      "sensor_stamp_ns": 136800000000,
+      "elapsed_wall_s": 62.07786227900033,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 173,
+      "decode_wall_s": 0.0004121249994568643,
+      "detector_wall_s": 0.0844176669997978,
+      "save_and_validation_wall_s": 0.11104849999992439
+    },
+    {
+      "sensor_stamp_ns": 137000000000,
+      "elapsed_wall_s": 62.90810111300016,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 174,
+      "decode_wall_s": 0.000841041000057885,
+      "detector_wall_s": 0.08839533399986976,
+      "save_and_validation_wall_s": 0.0595414580002398
+    },
+    {
+      "sensor_stamp_ns": 137200000000,
+      "elapsed_wall_s": 63.73395273799997,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 175,
+      "decode_wall_s": 0.0007462500007022754,
+      "detector_wall_s": 0.08355595800003357,
+      "save_and_validation_wall_s": 0.05133741699955863
+    },
+    {
+      "sensor_stamp_ns": 137400000000,
+      "elapsed_wall_s": 64.49430711399964,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 176,
+      "decode_wall_s": 0.0005377090001275064,
+      "detector_wall_s": 0.07703591599965876,
+      "save_and_validation_wall_s": 0.050748958999975
+    },
+    {
+      "sensor_stamp_ns": 137600000000,
+      "elapsed_wall_s": 65.35042303099999,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 177,
+      "decode_wall_s": 0.000998999999865191,
+      "detector_wall_s": 0.09241245900011563,
+      "save_and_validation_wall_s": 0.0804984999995213
+    },
+    {
+      "sensor_stamp_ns": 137800000000,
+      "elapsed_wall_s": 66.15296732299976,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 178,
+      "decode_wall_s": 0.0015474169995286502,
+      "detector_wall_s": 0.08256691600035992,
+      "save_and_validation_wall_s": 0.049674416999550886
+    },
+    {
+      "sensor_stamp_ns": 138000000000,
+      "elapsed_wall_s": 66.96648644800007,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 179,
+      "decode_wall_s": 0.00044108300062362105,
+      "detector_wall_s": 0.08502999999927852,
+      "save_and_validation_wall_s": 0.07645041700016009
+    },
+    {
+      "sensor_stamp_ns": 138200000000,
+      "elapsed_wall_s": 67.79632728199977,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 180,
+      "decode_wall_s": 0.0008394169999519363,
+      "detector_wall_s": 0.08302483300030872,
+      "save_and_validation_wall_s": 0.0652742499996748
+    },
+    {
+      "sensor_stamp_ns": 138400000000,
+      "elapsed_wall_s": 68.55794578199948,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 181,
+      "decode_wall_s": 0.0005222499994488317,
+      "detector_wall_s": 0.07994687500013242,
+      "save_and_validation_wall_s": 0.04638845800036506
+    },
+    {
+      "sensor_stamp_ns": 138600000000,
+      "elapsed_wall_s": 69.28676794900002,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 182,
+      "decode_wall_s": 0.0005014999997001723,
+      "detector_wall_s": 0.07826341700001649,
+      "save_and_validation_wall_s": 0.039215000000695
+    },
+    {
+      "sensor_stamp_ns": 138800000000,
+      "elapsed_wall_s": 70.04287603299963,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 183,
+      "decode_wall_s": 0.0004123329999856651,
+      "detector_wall_s": 0.07856287499998871,
+      "save_and_validation_wall_s": 0.04599154199968325
+    },
+    {
+      "sensor_stamp_ns": 139000000000,
+      "elapsed_wall_s": 70.84042278299967,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 184,
+      "decode_wall_s": 0.00042679099988163216,
+      "detector_wall_s": 0.07776474999991478,
+      "save_and_validation_wall_s": 0.0648334170000453
+    },
+    {
+      "sensor_stamp_ns": 139200000000,
+      "elapsed_wall_s": 71.62669615899995,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 185,
+      "decode_wall_s": 0.00045179100015957374,
+      "detector_wall_s": 0.08326433399997768,
+      "save_and_validation_wall_s": 0.044113624999226886
+    },
+    {
+      "sensor_stamp_ns": 139400000000,
+      "elapsed_wall_s": 72.40759520099982,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 186,
+      "decode_wall_s": 0.0007128329998522531,
+      "detector_wall_s": 0.08260558399979345,
+      "save_and_validation_wall_s": 0.047386416000335885
+    },
+    {
+      "sensor_stamp_ns": 139600000000,
+      "elapsed_wall_s": 73.22383111799991,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 187,
+      "decode_wall_s": 0.00041933300053642597,
+      "detector_wall_s": 0.08378908399936336,
+      "save_and_validation_wall_s": 0.04989341600048647
+    },
+    {
+      "sensor_stamp_ns": 139800000000,
+      "elapsed_wall_s": 74.06665328500003,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 188,
+      "decode_wall_s": 0.0005104170004415209,
+      "detector_wall_s": 0.07713512499958597,
+      "save_and_validation_wall_s": 0.06644649999998364
+    },
+    {
+      "sensor_stamp_ns": 140000000000,
+      "elapsed_wall_s": 74.83287390999976,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 189,
+      "decode_wall_s": 0.0005364580001696595,
+      "detector_wall_s": 0.08623704199999338,
+      "save_and_validation_wall_s": 0.04100508300052752
+    },
+    {
+      "sensor_stamp_ns": 140200000000,
+      "elapsed_wall_s": 75.58637291099967,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 190,
+      "decode_wall_s": 0.0006350000003294554,
+      "detector_wall_s": 0.08790879200023483,
+      "save_and_validation_wall_s": 0.04131029199925251
+    },
+    {
+      "sensor_stamp_ns": 140400000000,
+      "elapsed_wall_s": 76.33048928599965,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 191,
+      "decode_wall_s": 0.001636542000596819,
+      "detector_wall_s": 0.08415220799997769,
+      "save_and_validation_wall_s": 0.04563108399997873
+    },
+    {
+      "sensor_stamp_ns": 140600000000,
+      "elapsed_wall_s": 77.07575807800004,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 192,
+      "decode_wall_s": 0.00041370800045115175,
+      "detector_wall_s": 0.08647333399949275,
+      "save_and_validation_wall_s": 0.04259891600031551
+    },
+    {
+      "sensor_stamp_ns": 140800000000,
+      "elapsed_wall_s": 77.80381612000019,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 193,
+      "decode_wall_s": 0.0004980419998901198,
+      "detector_wall_s": 0.08456570799990004,
+      "save_and_validation_wall_s": 0.04093929200007551
+    },
+    {
+      "sensor_stamp_ns": 141000000000,
+      "elapsed_wall_s": 78.5365956200003,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 194,
+      "decode_wall_s": 0.0004292499997973209,
+      "detector_wall_s": 0.0972307500005627,
+      "save_and_validation_wall_s": 0.04255208299946389
+    },
+    {
+      "sensor_stamp_ns": 141200000000,
+      "elapsed_wall_s": 79.26438824599973,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 195,
+      "decode_wall_s": 0.0004440000002432498,
+      "detector_wall_s": 0.08236808399942674,
+      "save_and_validation_wall_s": 0.04197095800009265
+    },
+    {
+      "sensor_stamp_ns": 141400000000,
+      "elapsed_wall_s": 80.0522463289999,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 196,
+      "decode_wall_s": 0.0006960829996387474,
+      "detector_wall_s": 0.09065841700066812,
+      "save_and_validation_wall_s": 0.049634415999207704
+    },
+    {
+      "sensor_stamp_ns": 141600000000,
+      "elapsed_wall_s": 80.81983224600026,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 197,
+      "decode_wall_s": 0.0007970420001583989,
+      "detector_wall_s": 0.0956480830000146,
+      "save_and_validation_wall_s": 0.047353541999655135
+    },
+    {
+      "sensor_stamp_ns": 141800000000,
+      "elapsed_wall_s": 81.7163332049995,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 198,
+      "decode_wall_s": 0.0006797500000175205,
+      "detector_wall_s": 0.09251599999970495,
+      "save_and_validation_wall_s": 0.06868291699993279
+    },
+    {
+      "sensor_stamp_ns": 142000000000,
+      "elapsed_wall_s": 82.52904374700029,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 199,
+      "decode_wall_s": 0.001494666999860783,
+      "detector_wall_s": 0.08565712500057998,
+      "save_and_validation_wall_s": 0.06005687399920134
+    },
+    {
+      "sensor_stamp_ns": 142200000000,
+      "elapsed_wall_s": 83.48923374700007,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 200,
+      "decode_wall_s": 0.0007989160003489815,
+      "detector_wall_s": 0.08958816699941963,
+      "save_and_validation_wall_s": 0.07730416699996567
+    },
+    {
+      "sensor_stamp_ns": 142400000000,
+      "elapsed_wall_s": 84.42461199700028,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 201,
+      "decode_wall_s": 0.002149457999621518,
+      "detector_wall_s": 0.08671429200057901,
+      "save_and_validation_wall_s": 0.16640104099951714
+    },
+    {
+      "sensor_stamp_ns": 142600000000,
+      "elapsed_wall_s": 85.19287637300022,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 202,
+      "decode_wall_s": 0.0006446249999498832,
+      "detector_wall_s": 0.085571708000316,
+      "save_and_validation_wall_s": 0.06067141699986678
+    },
+    {
+      "sensor_stamp_ns": 142800000000,
+      "elapsed_wall_s": 85.93406887299989,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 203,
+      "decode_wall_s": 0.0016570409998166724,
+      "detector_wall_s": 0.08355949999986478,
+      "save_and_validation_wall_s": 0.05435483400015073
+    },
+    {
+      "sensor_stamp_ns": 143000000000,
+      "elapsed_wall_s": 86.70270149899989,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 204,
+      "decode_wall_s": 0.0006187079998198897,
+      "detector_wall_s": 0.08642837499974121,
+      "save_and_validation_wall_s": 0.04756504200031486
+    },
+    {
+      "sensor_stamp_ns": 143200000000,
+      "elapsed_wall_s": 87.41762316599943,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 205,
+      "decode_wall_s": 0.0009800829993764637,
+      "detector_wall_s": 0.08832595900003071,
+      "save_and_validation_wall_s": 0.045910583000477345
+    },
+    {
+      "sensor_stamp_ns": 143400000000,
+      "elapsed_wall_s": 88.11360312400029,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 206,
+      "decode_wall_s": 0.0005958750007266644,
+      "detector_wall_s": 0.08740129199941293,
+      "save_and_validation_wall_s": 0.042220375000397325
+    },
+    {
+      "sensor_stamp_ns": 143600000000,
+      "elapsed_wall_s": 88.77172908299963,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 207,
+      "decode_wall_s": 0.0005000829996788525,
+      "detector_wall_s": 0.08272616700014623,
+      "save_and_validation_wall_s": 0.03755029199965065
+    },
+    {
+      "sensor_stamp_ns": 143800000000,
+      "elapsed_wall_s": 89.4112681659999,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 208,
+      "decode_wall_s": 0.0006012909998389659,
+      "detector_wall_s": 0.08431554199978564,
+      "save_and_validation_wall_s": 0.03589904199998273
+    },
+    {
+      "sensor_stamp_ns": 144000000000,
+      "elapsed_wall_s": 90.0369298329997,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 209,
+      "decode_wall_s": 0.0003843750000669388,
+      "detector_wall_s": 0.07090054099990084,
+      "save_and_validation_wall_s": 0.04437733400027355
+    }
+  ],
+  "success": false,
+  "timeout_s": 90,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd.xml",
+    "sha256": "2c03acf4be4d6d216c61346beefe2fb3799d164cf702f6f386628971a1f525d7"
+  },
+  "elapsed_wall_s": 90.04169804199955,
+  "transport": {
+    "received_messages": {
+      "rgb": 209,
+      "depth": 209
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 209,
+    "last_paired_stamp_ns": 144000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.12046112500047457
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.12147554100010893
+      }
+    }
+  },
+  "camera_info_messages": 209,
+  "error": {
+    "type": "RuntimeError",
+    "message": "No complete stable detection of required plugs within timeout"
+  }
+}

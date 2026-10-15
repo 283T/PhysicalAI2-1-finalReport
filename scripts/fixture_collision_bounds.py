@@ -19,22 +19,36 @@ def sdf_pose(element):
 
 
 class FixtureBounds:
-    def __init__(self, world):
-        model = ET.parse(world).getroot().find("world/model[@name='fixtures']")
+    def __init__(self, world, *, include_carrier=False):
+        root = ET.parse(world).getroot().find("world")
+        model = root.find("model[@name='fixtures']")
         if model is None or model.findtext("static") != "true":
             raise ValueError("A static fixtures model is required")
         self.shapes = []
-        for link in model.findall("link"):
-            parent = sdf_pose(model) @ sdf_pose(link)
-            for collision in link.findall("collision"):
-                box = collision.find("geometry/box/size")
-                if box is None:
-                    raise ValueError("Unsupported fixture collision shape")
-                half = np.asarray([float(v) for v in box.text.split()]) / 2
-                if half.shape != (3,) or not np.isfinite(half).all() or min(half) <= 0:
-                    raise ValueError("Invalid fixture box")
-                pose = parent @ sdf_pose(collision)
-                self.shapes.append((collision.get("name"), (pose[:3, 3], pose[:3, :3], half)))
+        models = [model]
+        if include_carrier:
+            carrier = root.find("model[@name='conveyor_carrier']")
+            if carrier is None:
+                raise ValueError("Stopped conveyor carrier required")
+            models.append(carrier)
+        for model in models:
+            for link in model.findall("link"):
+                parent = sdf_pose(model) @ sdf_pose(link)
+                for collision in link.findall("collision"):
+                    box = collision.find("geometry/box/size")
+                    if box is None:
+                        raise ValueError("Unsupported fixture collision shape")
+                    half = np.asarray([float(v) for v in box.text.split()]) / 2
+                    if half.shape != (3,) or not np.isfinite(half).all() or min(half) <= 0:
+                        raise ValueError("Invalid fixture box")
+                    pose = parent @ sdf_pose(collision)
+                    self.shapes.append(
+                        (
+                            ("carrier/" if model.get("name") == "conveyor_carrier" else "")
+                            + collision.get("name"),
+                            (pose[:3, 3], pose[:3, :3], half),
+                        )
+                    )
         if not self.shapes:
             raise ValueError("No fixture collision boxes")
         self.centers = np.array([box[0] for _, box in self.shapes])
