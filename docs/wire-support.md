@@ -131,3 +131,11 @@ docker compose run --rm dev python3 scripts/add_workcell_camera.py --case docs/e
 ```
 
 両工具の相対枠を保つ物理比較でも、回転中の実測工具間関係が指令から15 mm／0.098 radずれ、支持側の相対回転0.0564 radで停止した。計画だけで同期が成立したと扱わず、`--feedback-paced-transfer` を追加して比較する。両腕の工具と関節が追従するまで経路進行を待ち、更新量も制限する。入力はロボットの工具・関節だけ。物体真値は従来どおり独立評価に使う。待機を含む有限の時間予算と追従統計をpreflightへ残し、保持・衝突・着座の判定は維持する。現時点の結果は [goal-status.md](goal-status.md) を参照。
+
+追従待ちの試験は把持の記録を全て基準内に保ったが、回転1.047%でゲートを満たせず時間上限となり、全体は失敗だった。ゲートを広げず、左手首1軸のP/Dのみを変えたcaseで比較を進める。`retune_joint_controller.py` は新規ディレクトリへ複製し、I・出力上限・形状・初期条件を保存する。
+
+長い試験の読取り専用の進捗確認には次を使える。書込み途中のgzipなので末尾は不完全な場合がある。プロセスが生きていることはセッションやpsで別途確認する。経路割合は指令の割合であり、タスク成功率ではない。
+
+```bash
+python3 scripts/inspect_grip_progress.py --pickup outputs/dual_nest_wrist640_20261016/pickup --output outputs/grip_progress.json
+```

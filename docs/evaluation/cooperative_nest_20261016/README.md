@@ -39,3 +39,11 @@
 この結果から次の比較は `--feedback-paced-transfer` を追加する。各工具1 mm／0.01 rad・関節0.01 rad・相対工具枠1.5 mm／0.015 radまで追従してから小さい指令更新を許す。指令の上限は0.5 mm／0.003 rad／関節0.01 rad。最初の閉指参照と保持の5 mm／0.05 rad、接触・包絡、着座の条件は変更しない。停止による所要時間の増加を含めた有限の実行予算と、進行／待機の統計を各preflightに保存する。過去の失敗を再判定しない。
 
 `predicted_top_regrasp.json` は保存した予定の治具姿勢から、開指後の80 mm退避と上面ホバーを検査した予備結果。退避は通過したが、上面ホバーは右前腕と左上腕の干渉で拒否された。実際の着座や開放後画像ではなく、指位置も仮定しているため実行目標に使わない。前提と参照計画のハッシュは `predicted_top_regrasp_inputs.json`。
+
+## feedback_pacing_stalled（失敗）
+
+工具・関節の追従を待つ制御で中間への並進を完了。回転工程2は指令経路の1.047%で進行ゲートを満たせず、規定の95.472シミュレーション秒で終了した。右65033／左55179観測を再計算し、把持は全て基準内（右最大2.010 mm／0.00973 rad、左0.454 mm／0.00854 rad）だったが、回転・配置が未達成なので全体は失敗。`feedback_pacing_grip_replay.json` に保存。各工程の進行・待機数、ゲート、更新上限、時間予算、最大追従差、到達した経路割合は `pickup/validation.json` のpreflightsに残る。
+
+同じ指令がGazeboへ届いていることを別のネイティブ購読で確認した。公式 [JointPositionControllerの実装](https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/joint_position_controller/JointPositionController.cc) も調査したが、今回の内部積分値・実トルクを測ったものではない。制御ゲートを広げる代わりに、次は左joint6だけP/Dを変更して比較する。`wrist640_controller_tuning.json` と `wrist640_model_validation.json` は、P320→640、D0.2→0.2828427以外のworld要素と図面・基板・初期配置が変わっていないことを確認した記録。物理結果は次の試験で確定する。
+
+`top_regrasp_parked_left.json` は `regrasp_plan.plan_top_pickup` の予備検査。左を直立・開指、右の退避と治具着座が完了した予定状態を仮定すると、右のホバー・接近・上昇が箱検査を通過した。参照計画のハッシュと仮定を含める。実際の着座、新しい画像、開放・退避・閉指を示す結果ではなく、実行用の目標へ転用しない。

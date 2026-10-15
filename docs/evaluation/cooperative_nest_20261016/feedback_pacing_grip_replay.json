@@ -1,0 +1,21 @@
+{
+  "evidence_consistent": true,
+  "all_recorded_grips_within_limits": true,
+  "trial_success": false,
+  "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+  "summaries": {
+    "primary": {
+      "samples": 65033,
+      "maximum_position_shift_m": 0.002010051594999376,
+      "maximum_angle_shift_rad": 0.009730082492606793
+    },
+    "support": {
+      "samples": 55179,
+      "maximum_position_shift_m": 0.0004537224444223595,
+      "maximum_angle_shift_rad": 0.008544749349383268
+    }
+  },
+  "intentional_release_boundaries": {},
+  "failed_observations": [],
+  "errors": []
+}

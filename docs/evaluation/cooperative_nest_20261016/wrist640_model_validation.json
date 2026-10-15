@@ -1,0 +1,8 @@
+{
+  "only_selected_P_D_changed": true,
+  "geometry_initial_state_I_and_force_caps_unchanged": true,
+  "drawing_board_case_identical": true,
+  "source_world_sha256": "d71be2eb5049db40f7187ea15690865a50925d528c8471733b6cef06bd38f457",
+  "new_world_sha256": "018fbd40610e9ac88a665c02740a833d32c46393255c38ea37309581cbacee94",
+  "scope": "Static file comparison only; no physical improvement claim"
+}

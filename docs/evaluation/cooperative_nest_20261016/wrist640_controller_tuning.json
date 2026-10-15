@@ -1,0 +1,16 @@
+{
+  "source_world_sha256": "d71be2eb5049db40f7187ea15690865a50925d528c8471733b6cef06bd38f457",
+  "arm": "left_arm",
+  "joint_index": 6,
+  "changes": {
+    "p_gain": {
+      "old": 320.0,
+      "new": 640.0
+    },
+    "d_gain": {
+      "old": 0.2,
+      "new": 0.282842712474619
+    }
+  },
+  "scope": "Only selected P/D gains changed. Geometry, initial placement, I gain, force caps and task acceptance unchanged"
+}

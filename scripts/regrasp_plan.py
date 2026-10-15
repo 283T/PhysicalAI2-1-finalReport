@@ -7,10 +7,12 @@ import math
 from pathlib import Path
 
 import numpy as np
-from arm_collision_bounds import ArmCollisionBounds, screen_paths
+from arm_collision_bounds import ArmCollisionBounds, first_overlap, screen_paths, with_parked_arms
 from assembly_case import validate_connection_plan
-from cooperative_transfer import assess_pair_path, paired_path, socket_poses
+from cooperative_pick import prepare_pickup_paths
+from cooperative_transfer import assess_pair_path, paired_path, rigid_pose, socket_poses
 from fixture_collision_bounds import FixtureBounds
+from joint_route import joint_route
 from plan_reach import load_arms
 
 
@@ -22,6 +24,87 @@ def top_grasp_relation(flipped=False):
         pose[:3, :2] *= -1
     pose[2, 3] = -0.006
     return pose
+
+
+def plan_top_pickup(arms, bounds, world, current, primary, vision_connector_pose):
+    """Geometric screening only; live callers must supply a fresh RGB-D pose."""
+    body = np.asarray(vision_connector_pose, dtype=float)
+    if (
+        len(arms) != 2
+        or set(current) != set(arms)
+        or set(bounds) != set(arms)
+        or primary not in arms
+    ):
+        raise ValueError("Two arms with moving/parked feedback and collision bounds required")
+    body = rigid_pose(body)
+    parked = {name: np.asarray(q) for name, q in current.items() if name != primary}
+    fixtures = FixtureBounds(world, include_carrier=True)
+    report = {
+        "success": False,
+        "attempts": [],
+        "connector_pose": body.tolist(),
+        "scope": "Top pickup IK, screened joint transit and fixture checks only. No regrasp contact, grip or insertion proof; live execution requires fresh RGB-D, measured finger bounds and independent seat/grip evaluation",
+    }
+    for flipped in (False, True):
+        relation = top_grasp_relation(flipped)
+        grip = body @ relation
+        hover = grip.copy()
+        hover[:3, 3] -= grip[:3, 2] * 0.10
+        attempt = {"flipped": flipped, "transit_routes": []}
+
+        def transit(name, start, goal):
+            def valid(q):
+                state = {name: q, **parked}
+                return (
+                    first_overlap(bounds, state) is None
+                    and fixtures.first_overlap(bounds, state, margin=0.001) is None
+                )
+
+            route = joint_route(start, goal, arms[name].limits, valid, max_nodes=600)
+            attempt["transit_routes"].append(route)
+            if not route["success"]:
+                raise ValueError("Top pickup transit: " + route["reason"])
+            return np.asarray(route["path"])
+
+        try:
+            paths, selection = prepare_pickup_paths(
+                {primary: arms[primary]},
+                {primary: np.asarray(current[primary])},
+                {primary: hover},
+                {primary: grip},
+                bounds,
+                parked=parked,
+                include_lift=True,
+                precise_endpoints=True,
+                transit_router=transit,
+            )
+            screens = {
+                phase: fixtures.screen(bounds, with_parked_arms(path, parked), margin=0.001)
+                for phase, path in paths.items()
+            }
+            attempt.update(
+                success=all(s["clear"] for s in screens.values()),
+                fixtures=screens,
+                branch_selection=selection,
+            )
+            if attempt["success"]:
+                report.update(
+                    success=True,
+                    connector_from_tool=relation.tolist(),
+                    selected_attempt=len(report["attempts"]),
+                    paths={
+                        phase: {n: p.tolist() for n, p in path.items()}
+                        for phase, path in paths.items()
+                    },
+                )
+        except ValueError as error:
+            attempt.update(
+                success=False, reason=str(error), diagnostics=getattr(error, "diagnostics", None)
+            )
+        report["attempts"].append(attempt)
+        if report["success"]:
+            break
+    return report
 
 
 def evaluate_descent(arms, bounds, fixtures, current, primary, board, row):
