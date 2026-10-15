@@ -44,3 +44,18 @@ def register_grip_guard(session, report, prefix, reference, extract, stream):
 
     session.evaluation_guards.append(guard)
     return guard
+
+
+def end_grip_for_release(session, report, prefix, guard):
+    """End this grip only for an explicit physical opening; preserve its evidence."""
+    if guard not in session.evaluation_guards or prefix + "_guard_failure" in report:
+        raise RuntimeError("Cannot release an inactive or failed monitored grip")
+    row = session.tick()
+    if row is None:
+        raise RuntimeError("Fresh observation required before planned release")
+    report.setdefault("grip_guard_endings", {})[prefix] = {
+        "sim_time_s": row["sim_time_s"],
+        "phase": row["phase"],
+        "reason": "intentional physical opening",
+    }
+    session.evaluation_guards.remove(guard)

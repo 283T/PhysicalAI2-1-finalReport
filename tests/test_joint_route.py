@@ -9,6 +9,15 @@ from joint_route import joint_route
 
 
 class JointRouteTest(unittest.TestCase):
+    def test_hard_stop_roundoff_is_normalized_but_real_limit_excess_is_rejected(self):
+        tiny = joint_route([-2.8e-14], [0.5], [[0, 1]], lambda q: True)
+        self.assertTrue(tiny["success"])
+        self.assertEqual(tiny["path"][0], [0.0])
+        self.assertEqual(tiny["start_roundoff_correction_rad"], [2.8e-14])
+        outside = joint_route([-1e-6], [0.5], [[0, 1]], lambda q: True)
+        self.assertFalse(outside["success"])
+        self.assertIsNone(outside["path"])
+
     def test_routes_around_obstacle_and_checks_shortcuts(self):
         def valid(q):
             return not (0.4 <= q[0] <= 0.6 and -0.25 <= q[1] <= 0.25)

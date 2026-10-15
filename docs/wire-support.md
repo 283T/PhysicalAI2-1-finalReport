@@ -106,3 +106,16 @@ docker compose run --rm dev python3 scripts/export_wire_pick_trial.py \
 [試験記録と再実行手順](evaluation/dual_pickup_20261016/README.md)を参照。110 mm試験では実際に右コネクタと左ワイヤーを把持したが、工具間距離で協調上昇を拒否。140 mm試験は左の関節追従時間切れで閉指前に停止した。この時点では双腕支持での保持を達成していなかった。最初の閉指からの相対移動5 mm／回転0.05 rad未満を連続監視し、工程間で参照をリセットしない。`replay_grip_evidence.py` で保存した観測から検証できる。
 
 その後、左接近の到達後待機のみ20→30秒にした140 mm試験で、両腕約100 mm上昇・4秒保持を通過した。到達・保持の判定値は維持。左／右の上昇99.735／99.984 mm、滑り0.024／0.188 mm、姿勢変化0.00541／0.00226 rad。右12200・左3438の連続観測も閉指からの共通参照に対してすべて基準内で、ログ再計算と一致した。固定条件一試行の双腕支持であり、治具着座や基板接続は未達成。保存した実測関節による治具への5工程は箱検査を通過したため、次に新規画像と実測関節から再計画する物理搬送へ進む。
+
+## 協調した治具配置の入口
+
+`dual_pickup.py --place-in-nest` は、双腕保持を通過した後、保持中のコネクタを新しい側面RGB-Dで確認する。初期の画像由来の工具関係と2 mm／0.025 rad以内で一致する場合だけ、新しい画像と実測工具から関係を更新し、その時点の関節から治具経路を作る。経路計算は子プロセスで実行し、親は両腕の指令と接触・把持監視を継続する。保存した成功経路や物体真値を目標生成へ転用しない。
+
+治具への到達後、開放前に2.5秒の位置・姿勢を独立評価する。条件を満たすと、右の把持監視の終了時刻を記録し、右指を開いて80 mm退避する。左のワイヤー把持監視は継続。開放・退避後の2.5秒を新たに観測し、横2 mm／高さ1 mm／角度0.05 rad／移動1 mm未満、2秒以上・10観測以上を要求する。左支持を保持したままの治具配置であり、上面持ち替え・基板接続・全端子接続の成功とは区別する。後続工程に失敗した場合は全体を失敗として記録し、`dual_pickup_success` だけを別項目に残す。
+
+```bash
+# 保存した物理モデルを用い、先に初期worldを一つだけ起動する。
+docker compose exec -T gui bash -lc 'source /opt/ros/jazzy/setup.bash && python3 scripts/dual_pickup.py --world docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/case/world.sdf --models docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/models --drawing-plan docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/pickup/connection_plan.json --wire-distance-mm 140 --place-in-nest --output outputs/dual_nest_new/pickup'
+```
+
+進行状況と確定結果は [goal-status.md](goal-status.md) を参照。出力先の上書きは拒否する。観測のタイムアウトだけでは実験を再起動せず、コントローラの終了を確認してからGazeboを初期化する。

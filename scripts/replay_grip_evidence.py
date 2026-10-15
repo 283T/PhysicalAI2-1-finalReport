@@ -18,6 +18,7 @@ def replay(report, records):
         for name in references
     }
     previous, failures = {}, []
+    endings = report.get("grip_guard_endings", {})
     for index, record in enumerate(records):
         name, stamp = record["grip"], record["sim_time_s"]
         if name not in references:
@@ -26,6 +27,8 @@ def replay(report, records):
         if not math.isfinite(stamp) or stamp <= previous.get(name, references[name]["time_s"]):
             errors.append(f"Record {index}: non-increasing observation time")
         previous[name] = stamp
+        if name in endings and stamp > endings[name]["sim_time_s"]:
+            errors.append(f"Record {index}: grip observation follows its recorded release")
         if record["observed"]["time_s"] != stamp:
             errors.append(f"Record {index}: observation timestamp mismatch")
         check = assess_relative_grasp(references[name], record["observed"])
@@ -59,12 +62,23 @@ def replay(report, records):
             errors.append(name + ": summary/count does not match complete evidence")
     if not references:
         errors.append("No closure references; this trial did not reach guarded holding")
+    for name, ending in endings.items():
+        stamp = ending.get("sim_time_s")
+        if (
+            name not in references
+            or not isinstance(stamp, (int, float))
+            or not math.isfinite(stamp)
+            or stamp < previous.get(name, float("inf"))
+            or ending.get("reason") != "intentional physical opening"
+        ):
+            errors.append(name + ": invalid planned release boundary")
     return {
         "evidence_consistent": not errors,
         "all_recorded_grips_within_limits": bool(references) and not errors and not failures,
         "trial_success": report.get("success", False),
         "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
         "summaries": summaries,
+        "intentional_release_boundaries": endings,
         "failed_observations": failures,
         "errors": errors,
     }

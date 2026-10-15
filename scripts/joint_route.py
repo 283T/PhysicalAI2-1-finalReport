@@ -17,6 +17,15 @@ def joint_route(start, goal, limits, valid, *, seed=0, max_nodes=800, step=0.25,
         or min(step, resolution) <= 0
     ):
         raise ValueError("Finite joints, limits and positive search bounds required")
+    # Physics feedback at a hard stop can differ from the limit by floating
+    # point roundoff (observed: -2.8e-14 rad at a zero lower limit). Normalize
+    # only that representation error; every planned waypoint remains in bounds.
+    bounded_start = np.clip(start, limits[:, 0], limits[:, 1])
+    correction = bounded_start - start
+    if np.max(np.abs(correction)) <= 1e-12:
+        start = bounded_start
+    else:
+        correction = np.zeros_like(start)
     checks = 0
 
     def state(q):
@@ -37,6 +46,7 @@ def joint_route(start, goal, limits, valid, *, seed=0, max_nodes=800, step=0.25,
             "seed": seed,
             "resolution_rad": resolution,
             "maximum_nodes": max_nodes,
+            "start_roundoff_correction_rad": correction.tolist(),
             "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee",
         }
 

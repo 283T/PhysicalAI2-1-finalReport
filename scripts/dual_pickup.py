@@ -23,6 +23,7 @@ from grasp_validation import (
 )
 from grip_guard import register_grip_guard
 from gripper_model import measured_rest_gap
+from held_wire_nest import place_in_nest
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
@@ -99,7 +100,7 @@ def primary_pickup(session, output, calibration, report, checkpoint, guard_strea
     report["primary_closure"] = assess_opening([closed["fingers"]], rest_gap_m=rest)
     if not report["primary_closure"]["success"]:
         raise RuntimeError("Primary closure rejected")
-    register_grip_guard(
+    guard = register_grip_guard(
         session, report, "primary", closed, lambda r: evaluation_state(r, name, "P3"), guard_stream
     )
     _, lifts = shared_lift({name: session.arms[name]}, {name: np.array(closed["q_rad"])})
@@ -112,16 +113,17 @@ def primary_pickup(session, output, calibration, report, checkpoint, guard_strea
     )
     if not report["primary_hold"]["success"]:
         raise RuntimeError("Primary holding rejected")
-    return relation
+    return relation, guard
 
 
 def run(session, args, report, checkpoint, guard_stream):
     report["rest_gaps_m"] = {
         n: measured_rest_gap(args.models / (n + ".urdf"), n + "_") for n in session.arms
     }
-    report["primary_connector_from_tool"] = primary_pickup(
+    relation, primary_guard = primary_pickup(
         session, args.output, args.inspection_calibration, report, checkpoint, guard_stream
-    ).tolist()
+    )
+    report["primary_connector_from_tool"] = relation.tolist()
     checkpoint("suspended_wire_observation")
     observation = acquire_observation(
         session,
@@ -208,7 +210,7 @@ def run(session, args, report, checkpoint, guard_stream):
     )
     if not report["support_closure"]["success"]:
         raise RuntimeError("Support closure rejected")
-    register_grip_guard(
+    support_guard = register_grip_guard(
         session,
         report,
         "support",
@@ -236,6 +238,7 @@ def run(session, args, report, checkpoint, guard_stream):
     report["success"] = all(h["success"] for h in report["dual_holds"].values())
     if not report["success"]:
         raise RuntimeError("Dual holding rejected")
+    return {"primary": primary_guard, "support": support_guard}
 
 
 def main():
@@ -246,6 +249,7 @@ def main():
         "--inspection-calibration", type=Path, default=Path("configs/end_inspection_camera.json")
     )
     parser.add_argument("--wire-distance-mm", type=float, default=110)
+    parser.add_argument("--place-in-nest", action="store_true")
     args = parser.parse_args()
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
         parser.error("Wire distance must be finite and between 75 and 200 mm")
@@ -258,6 +262,8 @@ def main():
         != hashlib.sha256((case / "drawing.png").read_bytes()).hexdigest()
     ):
         raise ValueError("Audited local drawing plan must match the current immutable drawing")
+    if args.output.exists() and any(args.output.iterdir()):
+        raise ValueError("Use a new output directory; preserve previous trials")
     args.output.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(args.drawing_plan, args.output / "connection_plan.json")
     audit = args.drawing_plan.with_suffix(".audit.json")
@@ -267,6 +273,11 @@ def main():
     report = {
         "success": False,
         "trial_state": "running",
+        "parameters": {
+            "wire_distance_mm": args.wire_distance_mm,
+            "place_in_nest": args.place_in_nest,
+            "support_approach_settle_time_s": 30,
+        },
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
         "model_sha256": {
             n: hashlib.sha256((args.models / (n + ".urdf")).read_bytes()).hexdigest()
@@ -290,7 +301,9 @@ def main():
         ):
             session = ArmSession(args.world, args.models, log)
             session.wait_ready()
-            run(session, args, report, checkpoint, guard_stream)
+            guards = run(session, args, report, checkpoint, guard_stream)
+            if args.place_in_nest:
+                place_in_nest(session, args, report, checkpoint, guards)
     except Exception as error:
         if session:
             report["phase"] = session.phase

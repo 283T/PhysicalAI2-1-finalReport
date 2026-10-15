@@ -62,6 +62,15 @@ class ReplayGripEvidenceTest(unittest.TestCase):
         self.assertFalse(result["evidence_consistent"])
         self.assertEqual(len(result["failed_observations"]), 1)
 
+    def test_release_event_cannot_hide_later_recorded_slip(self):
+        report, records = self.fixture()
+        report["grip_guard_endings"] = {
+            "primary": {"sim_time_s": 2, "reason": "intentional physical opening"}
+        }
+        result = replay(report, records)
+        self.assertFalse(result["evidence_consistent"])
+        self.assertEqual(len(result["failed_observations"]), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
