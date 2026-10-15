@@ -1,0 +1,41 @@
+{
+  "success": false,
+  "reason": "Before-release, physical opening and final seat observations required",
+  "trial_success": false,
+  "goal_pose_from_drawing": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.212
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.20800000000000002
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.15000000000000002
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "final_acceptance_eligible": false,
+  "input_sha256": {
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/case/world.sdf": "00d0c6011ffeb24fe587721086a0cf3e1c47480cc4359b66b8b47031168d267e",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/models/left_arm.urdf": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/case/board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/pickup/connection_plan.json": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/pickup/validation.json": "82506dc311cc10ed1d262f85c8eacd40bab39d1691be2beb61dd6eae9d21e7d6",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/pickup/trajectory.json.gz": "02e118c62f40952a4f18398f762b709c03090e76bd84507c7961f35802d62f76",
+    "/workspace/configs/final_acceptance.json": "13b7283880b483aab64754747442b0dcb27366119afd9af4ba4f1bc8227eb134"
+  }
+}
