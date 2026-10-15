@@ -108,6 +108,7 @@ def place_in_nest(session, args, report, checkpoint, guards):
             {name: np.array(path) for name, path in phase["joint_paths"].items()},
             cartesian_speed_m_s=0.02,
             full_finger_stroke=True,
+            feedback_paced=args.feedback_paced_transfer,
         )
     goal = np.array(plan["goal_connector_pose"])
     checkpoint("nest_before_release")

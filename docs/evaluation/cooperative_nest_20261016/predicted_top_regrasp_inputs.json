@@ -1,0 +1,21 @@
+{
+  "source_plan": "rigid_midpoint_plan.json",
+  "source_plan_sha256": "8aa2db544a6d627e0dfc5162a8bf8caeeb49f917d1c960dcb616006731ffe733",
+  "assumed_right_finger_intervals_m": [
+    0.0175,
+    0.0185
+  ],
+  "assumed_left_finger_intervals_m": [
+    0.0005,
+    0.0015
+  ],
+  "scope": "Planned future state, not actual seat observations or an executable regrasp plan",
+  "additional_hover_diagnostic": {
+    "held_left_collision": [
+      "right_arm_rv4frl_forearm",
+      "left_arm_rv4frl_upper_arm"
+    ],
+    "left_upright_collision": null,
+    "scope": "Goal-only IK and box checks, not a release/park/approach execution or complete collision-free route"
+  }
+}

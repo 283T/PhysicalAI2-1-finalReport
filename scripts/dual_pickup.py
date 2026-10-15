@@ -251,9 +251,12 @@ def main():
     parser.add_argument("--wire-distance-mm", type=float, default=110)
     parser.add_argument("--place-in-nest", action="store_true")
     parser.add_argument("--rigid-nest-transfer", action="store_true")
+    parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
     if args.rigid_nest_transfer and not args.place_in_nest:
         parser.error("--rigid-nest-transfer requires --place-in-nest")
+    if args.feedback_paced_transfer and not args.rigid_nest_transfer:
+        parser.error("--feedback-paced-transfer requires --rigid-nest-transfer")
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
         parser.error("Wire distance must be finite and between 75 and 200 mm")
     case = args.world.parent
@@ -282,6 +285,7 @@ def main():
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
             "rigid_nest_transfer": args.rigid_nest_transfer,
+            "feedback_paced_transfer": args.feedback_paced_transfer,
         },
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
         "model_sha256": {

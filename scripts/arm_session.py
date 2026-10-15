@@ -20,6 +20,7 @@ from arm_collision_bounds import (
 from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints
+from feedback_pacing import FeedbackPacer
 from fixture_collision_bounds import FixtureBounds, sdf_pose
 from gripper_model import OPEN_TRAVEL_M
 from gz.msgs10.contacts_pb2 import Contacts
@@ -264,7 +265,14 @@ class ArmSession:
         return rows
 
     def move(
-        self, phase, paths, *, cartesian_speed_m_s=None, settle_time_s=20, full_finger_stroke=False
+        self,
+        phase,
+        paths,
+        *,
+        cartesian_speed_m_s=None,
+        settle_time_s=20,
+        full_finger_stroke=False,
+        feedback_paced=False,
     ):
         if not np.isfinite(settle_time_s) or not 0 < settle_time_s <= 60:
             raise ValueError("Settling time must be finite and within (0, 60] seconds")
@@ -327,14 +335,29 @@ class ArmSession:
                 )
         start, wall, stable, previous = row["sim_time_s"], time.monotonic(), 0, None
         goals = {n: self.arms[n].forward(p[-1]) for n, p in paths.items()}
-        while self.poses[1] - start < duration + settle_time_s and time.monotonic() - wall < 240:
-            t = min(1, (self.poses[1] - start) / duration)
+        pacer = FeedbackPacer(self.arms, paths, duration, start) if feedback_paced else None
+        simulation_budget = duration * (8 if pacer else 1) + settle_time_s
+        wall_budget = max(240, 15 * simulation_budget) if pacer else 240
+        if pacer:
+            checks["feedback_pacing"] = pacer.summary
+            checks["feedback_pacing"].update(
+                nominal_duration_s=duration,
+                simulation_budget_s=simulation_budget,
+                wall_budget_s=wall_budget,
+            )
+        actual = row
+        while self.poses[1] - start < simulation_budget and time.monotonic() - wall < wall_budget:
+            t = pacer.fraction if pacer else min(1, (self.poses[1] - start) / duration)
             self.targets.update(
-                {n: interpolate_joints(p, t * t * (3 - 2 * t)) for n, p in paths.items()}
+                pacer.update(actual)
+                if pacer
+                else {n: interpolate_joints(p, t * t * (3 - 2 * t)) for n, p in paths.items()}
             )
             actual = self.tick()
             if not actual:
+                actual = row
                 continue
+            row = actual
             if any(
                 np.max(np.abs(np.array(actual["arms"][n]["q_rad"]) - q)) > 0.01
                 for n, q in parked.items()

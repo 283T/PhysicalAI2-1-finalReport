@@ -129,3 +129,5 @@ docker compose exec -T gui bash -lc 'source /opt/ros/jazzy/setup.bash && python3
 ```bash
 docker compose run --rm dev python3 scripts/add_workcell_camera.py --case docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/case --calibration configs/nest_camera.json --output outputs/dual_nest_view_new/case
 ```
+
+両工具の相対枠を保つ物理比較でも、回転中の実測工具間関係が指令から15 mm／0.098 radずれ、支持側の相対回転0.0564 radで停止した。計画だけで同期が成立したと扱わず、`--feedback-paced-transfer` を追加して比較する。両腕の工具と関節が追従するまで経路進行を待ち、更新量も制限する。入力はロボットの工具・関節だけ。物体真値は従来どおり独立評価に使う。待機を含む有限の時間予算と追従統計をpreflightへ残し、保持・衝突・着座の判定は維持する。現時点の結果は [goal-status.md](goal-status.md) を参照。

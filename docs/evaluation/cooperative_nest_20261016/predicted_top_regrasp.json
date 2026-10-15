@@ -1,0 +1,75 @@
+{
+  "scope": "Predicted end-of-plan state only, no physical nest or regrasp success. Uses known fixture seat, not object ground truth.",
+  "retreat": {
+    "arms": {
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.005
+    },
+    "fixtures": {
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.001
+    }
+  },
+  "top_options": [
+    {
+      "flipped": false,
+      "success": false,
+      "error": "No continuous pickup branch for right_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "right_arm",
+            "seed": 0,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 1,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 2,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 3,
+            "reason": "Start or goal rejected"
+          }
+        ]
+      }
+    },
+    {
+      "flipped": true,
+      "success": false,
+      "error": "No continuous pickup branch for right_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "right_arm",
+            "seed": 0,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 1,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 2,
+            "reason": "Start or goal rejected"
+          },
+          {
+            "arm": "right_arm",
+            "seed": 3,
+            "reason": "Start or goal rejected"
+          }
+        ]
+      }
+    }
+  ]
+}

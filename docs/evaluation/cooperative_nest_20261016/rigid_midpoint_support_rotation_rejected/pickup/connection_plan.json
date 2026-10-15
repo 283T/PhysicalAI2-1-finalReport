@@ -1,0 +1,31 @@
+{
+  "drawing_id": "D101",
+  "board_id": "B101",
+  "harness_id": "WH1",
+  "connections": [
+    {
+      "plug_id": "P1",
+      "socket": "J2",
+      "x_mm": 54,
+      "y_mm": 43,
+      "yaw_deg": 90
+    },
+    {
+      "plug_id": "P2",
+      "socket": "J1",
+      "x_mm": 164,
+      "y_mm": 128,
+      "yaw_deg": 90
+    },
+    {
+      "plug_id": "P3",
+      "socket": "J3",
+      "x_mm": 52,
+      "y_mm": 128,
+      "yaw_deg": 0
+    }
+  ],
+  "source": "local_vision_model",
+  "model": "qwen3-vl:2b-instruct",
+  "image_sha256": "deac4945efd41d660646fd72e1aad0bfdb699f3256f7ae45f4b45ad27d8e1eba"
+}

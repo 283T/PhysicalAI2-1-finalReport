@@ -1,0 +1,19 @@
+{
+  "housing_center_m": [
+    0.08,
+    -0.04,
+    0.23
+  ],
+  "yaw_rad": 0.0,
+  "pin_channel_width_m": 0.008,
+  "guide_top_m": 0.185,
+  "housing_stop_clearance_m": 0.001,
+  "cable_outlet_width_m": 0.01,
+  "cable_cradle_top_m": 0.226,
+  "pin_relief": false,
+  "supported_cable_exits": [
+    -1,
+    1
+  ],
+  "scope": "Passive prototype nest; no latch, clamp or grasp transition"
+}
