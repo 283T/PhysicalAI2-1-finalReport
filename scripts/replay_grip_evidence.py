@@ -1,12 +1,12 @@
 """Recompute tool-relative slip from archived observations, including failures."""
 
 import argparse
-import gzip
 import json
 import math
 from pathlib import Path
 
 from evidence_io import write_json_atomic
+from evidence_stream import open_evidence
 from grasp_validation import assess_relative_grasp
 
 
@@ -92,7 +92,7 @@ def main():
     report = json.loads((args.pickup / "validation.json").read_text())
     if report.get("trial_state") != "finished":
         parser.error("Only finished trials can be replayed")
-    with gzip.open(args.pickup / "grip_observations.jsonl.gz", "rt") as stream:
+    with open_evidence(args.pickup / "grip_observations.jsonl.gz") as stream:
         result = replay(report, (json.loads(line) for line in stream))
     write_json_atomic(args.output, result)
     print(json.dumps(result, indent=2))

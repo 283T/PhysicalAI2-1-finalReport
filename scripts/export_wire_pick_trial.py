@@ -7,6 +7,7 @@ import shutil
 from pathlib import Path
 
 import numpy as np
+from evidence_stream import split_evidence
 
 
 def export(case, pickup, models, output):
@@ -43,6 +44,8 @@ def export(case, pickup, models, output):
         target = output / "models" / (name + ".urdf")
         target.parent.mkdir(exist_ok=True)
         shutil.copyfile(models / target.name, target)
+    for path in output.rglob("*.jsonl.gz"):
+        split_evidence(path)
     manifest = {
         str(path.relative_to(output)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(output.rglob("*"))

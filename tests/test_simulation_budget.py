@@ -3,10 +3,23 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from simulation_budget import SimulationBudget
+from simulation_budget import SimulationBudget, dwell_wall_budget
 
 
 class SimulationBudgetTests(unittest.TestCase):
+    def test_loaded_hd_dwell_keeps_physical_duration_and_finite_compute_limits(self):
+        budget = SimulationBudget(0, 0, 2.5, dwell_wall_budget(2.5))
+        self.assertIsNone(budget.reason(2.402, 130.001))
+        self.assertEqual(budget.reason(2.5, 136), "simulation_budget_exhausted")
+        self.assertEqual(budget.summary["simulation_budget_s"], 2.5)
+        slow = SimulationBudget(0, 0, 2.5, dwell_wall_budget(2.5))
+        for wall in range(1, 360):
+            self.assertIsNone(slow.reason(wall / 200, wall))
+        self.assertEqual(slow.reason(1.8, 360), "wall_budget_exhausted")
+        for duration in (0, -1, float("nan"), float("inf")):
+            with self.assertRaises(ValueError):
+                dwell_wall_budget(duration)
+
     def test_slow_progress_gets_compute_time_but_same_physical_duration_limit(self):
         budget = SimulationBudget(0, 0, 10, 400)
         for wall in range(1, 300):

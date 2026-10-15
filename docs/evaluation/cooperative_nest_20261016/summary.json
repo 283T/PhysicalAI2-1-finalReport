@@ -166,6 +166,37 @@
           "maximum_angle_shift_rad": 0.000986244613449977
         }
       }
+    },
+    {
+      "archive": "preshape_nest_seat_wall_limit",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "nest_before_release",
+      "error": "wall_budget_exhausted in nest_before_release",
+      "dual_pickup_success": true,
+      "grip_guard_summaries": {
+        "primary": {
+          "samples": 208022,
+          "maximum_position_shift_m": 0.0020718311068900572,
+          "maximum_angle_shift_rad": 0.01501396988984689
+        },
+        "support": {
+          "samples": 183865,
+          "maximum_position_shift_m": 0.00034232012680650585,
+          "maximum_angle_shift_rad": 0.01596356538457141
+        }
+      },
+      "stop_diagnostics": {
+        "phase": "nest_before_release",
+        "execution_budget": {
+          "simulation_budget_s": 2.5,
+          "wall_budget_s": 130.0,
+          "stall_budget_wall_s": 30,
+          "elapsed_simulation_s": 2.4020000000000152,
+          "elapsed_wall_s": 130.00086126699898,
+          "stop_reason": "wall_budget_exhausted"
+        }
+      }
     }
   ]
 }

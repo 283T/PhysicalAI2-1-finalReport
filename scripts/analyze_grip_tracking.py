@@ -1,7 +1,6 @@
 """Separate recorded grip rotation from robot tracking in a completed trial."""
 
 import argparse
-import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -9,6 +8,7 @@ from pathlib import Path
 import numpy as np
 from arm_kinematics import rotation_error
 from evidence_io import write_json_atomic
+from evidence_stream import evidence_digest, open_evidence
 from feedback_pacing import pose_from_feedback
 
 
@@ -17,7 +17,7 @@ def analyze(pickup):
     if report["trial_state"] != "finished":
         raise ValueError("Only completed trials may be analyzed")
     first, last = {}, {}
-    with gzip.open(pickup / "grip_observations.jsonl.gz", "rt") as stream:
+    with open_evidence(pickup / "grip_observations.jsonl.gz") as stream:
         for line in stream:
             row = json.loads(line)
             if row["phase"] == report["phase"]:
@@ -33,8 +33,10 @@ def analyze(pickup):
         "scope": "Independent recorded tracking diagnostic. Rotation-vector projection, not torque measurement, causal proof or a success criterion",
         "phase": report["phase"],
         "input_sha256": {
-            name: hashlib.sha256((pickup / name).read_bytes()).hexdigest()
-            for name in ("validation.json", "grip_observations.jsonl.gz")
+            "validation.json": hashlib.sha256(
+                (pickup / "validation.json").read_bytes()
+            ).hexdigest(),
+            "grip_observations.jsonl.gz": evidence_digest(pickup / "grip_observations.jsonl.gz"),
         },
     }
     for name, row in last.items():

@@ -3,6 +3,18 @@
 import math
 
 
+def dwell_wall_budget(duration):
+    """Allow slow force-PID scenes without shortening any physical observation.
+
+    HD loaded seating measured 130 wall seconds for only 2.402 simulated
+    seconds. A finite 120:1 compute allowance plus startup margin leaves room
+    for the additional nest camera. No-progress detection remains 30 seconds.
+    """
+    if not math.isfinite(duration) or duration <= 0:
+        raise ValueError("Positive finite physical observation duration required")
+    return max(240.0, 60.0 + 120.0 * duration)
+
+
 class SimulationBudget:
     def __init__(self, sim_start, wall_start, simulation_s, wall_s, stall_s=30):
         if (

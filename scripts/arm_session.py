@@ -32,7 +32,7 @@ from plan_reach import load_arms
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
-from simulation_budget import SimulationBudget
+from simulation_budget import SimulationBudget, dwell_wall_budget
 from std_msgs.msg import Float64
 
 
@@ -281,7 +281,7 @@ class ArmSession:
     def dwell(self, phase, duration, *, teardown=False):
         self.phase = phase
         start, wall = self.snapshot()["sim_time_s"], time.monotonic()
-        budget = SimulationBudget(start, wall, duration, 30 + 40 * duration)
+        budget = SimulationBudget(start, wall, duration, dwell_wall_budget(duration))
         rows, previous = [], None
         while self.poses[1] - start < duration:
             reason = budget.reason(self.poses[1], time.monotonic())

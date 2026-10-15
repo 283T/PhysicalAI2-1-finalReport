@@ -1,12 +1,12 @@
 """Read complete records from a possibly unfinished gzip grip log; no robot control."""
 
 import argparse
-import gzip
 import json
 import math
 from pathlib import Path
 
 from evidence_io import write_json_atomic
+from evidence_stream import open_evidence
 
 
 def command_fraction(path, command):
@@ -26,7 +26,7 @@ def command_fraction(path, command):
 
 def inspect(pickup):
     first, latest, partial = {}, {}, False
-    with gzip.open(pickup / "grip_observations.jsonl.gz", "rt") as stream:
+    with open_evidence(pickup / "grip_observations.jsonl.gz") as stream:
         try:
             for line in stream:
                 row = json.loads(line)

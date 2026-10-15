@@ -1,0 +1,20 @@
+{
+  "source_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+  "arm": "right_arm",
+  "joint_index": 6,
+  "changes": {
+    "p_gain": {
+      "old": 320.0,
+      "new": 640.0
+    },
+    "d_gain": {
+      "old": 0.2,
+      "new": 0.282842712
+    },
+    "i_gain": {
+      "old": 40.0,
+      "new": 0.0
+    }
+  },
+  "scope": "Only explicitly selected PID gains changed. Geometry, initial placement, force caps and task acceptance unchanged; unspecified I gain preserved"
+}
