@@ -1,0 +1,8 @@
+{
+  "scope": "One native RGB frame during moving transfer; visibility diagnostic only, no stable pose or assembly success evidence",
+  "sensor_stamp_ns": 142800000000,
+  "width": 1920,
+  "height": 1440,
+  "pixel_format": "RGB_INT8",
+  "image_sha256": "eeace06d3355c8f51fcca82cc0552d264f28821bcc837b9f9a58978b4eb5d8d5"
+}

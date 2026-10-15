@@ -1,0 +1,11 @@
+{
+  "scope": "Read-only native RGB probes during moving nest transfer. No stable pose or assembly success evidence. Camera, lights, world and robot commands were not modified. First dark frame and later chromatic frame both retained. Cause of transient appearance is unproven.",
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "calibration_sha256": "55f7e5ee7e97e749b381c06bbde45917a43a758ed2be63017878d0820e7471aa",
+  "gazebo_version": "8.15.0",
+  "copied_image_sha256": {
+    "nest_camera_probe1.png": "eeace06d3355c8f51fcca82cc0552d264f28821bcc837b9f9a58978b4eb5d8d5",
+    "nest_camera_probe2.png": "f8b405a89478f6ba78a568f81bb60abb01f7a94ee284c329728446f3663830cd",
+    "inspection_camera_probe2.png": "6f704b0311aacad7c52fe56a146eb34d43ed3ec9881a04821636bef4136cdf98"
+  }
+}
