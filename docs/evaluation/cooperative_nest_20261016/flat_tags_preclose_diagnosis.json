@@ -1,0 +1,68 @@
+{
+  "scope": "Post-trial independent evaluation only. Simulator connector poses are never control targets. Nearest stored time used, with mismatch explicitly recorded. No success override.",
+  "source_sha256": "4b878472228afeb7719777b110d5a45d6362a1ef32be22e7a88a3cae26450b83",
+  "rows": [
+    {
+      "attempt": 0,
+      "sensor_time_s": 25.0,
+      "nearest_native_time_s": 25.0355,
+      "time_difference_s": 0.03549999999999898,
+      "vision_vs_native_position_m": 0.0005157148960322199,
+      "vision_vs_native_angle_rad": 0.0024613038842976535,
+      "tool_vs_independent_native_goal_position_m": 0.0028201013279066135,
+      "tool_vs_independent_native_goal_angle_rad": 0.05753348194535354,
+      "joint_error_rad": [
+        -0.0007808611697148748,
+        0.0006692924040576642,
+        0.0008793685309773647,
+        -0.0006331805336939889,
+        0.0022683155240198483,
+        -0.00339312545054149
+      ]
+    },
+    {
+      "attempt": 1,
+      "sensor_time_s": 31.0,
+      "nearest_native_time_s": 31.0369,
+      "time_difference_s": 0.03689999999999927,
+      "vision_vs_native_position_m": 0.0005168884775158401,
+      "vision_vs_native_angle_rad": 0.0024771772305027108,
+      "tool_vs_independent_native_goal_position_m": 0.0011944949735660498,
+      "tool_vs_independent_native_goal_angle_rad": 0.009053208677889946,
+      "joint_error_rad": [
+        -0.00034996703018164155,
+        0.0014559550457309278,
+        -0.0008874694177725129,
+        0.0030883804129802073,
+        0.0012575988484571088,
+        0.0035306656220148724
+      ]
+    },
+    {
+      "attempt": 2,
+      "sensor_time_s": 37.0,
+      "nearest_native_time_s": 36.9549,
+      "time_difference_s": 0.04509999999999792,
+      "vision_vs_native_position_m": 0.00034993859185528526,
+      "vision_vs_native_angle_rad": 0.01693652422951506,
+      "tool_vs_independent_native_goal_position_m": 0.0005860547054560562,
+      "tool_vs_independent_native_goal_angle_rad": 0.003293144601386548,
+      "joint_error_rad": [
+        0.00011313037703120088,
+        0.0007164165818409618,
+        -0.000406102134987707,
+        0.0016295399398975063,
+        0.00023166154260878535,
+        0.0035149619381282804
+      ]
+    }
+  ],
+  "input_sha256": {
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/trajectory.json.gz": "ed13c1d3c627ff3424f729ba53d32b608b032cf64be77a38fe966ae5d4f1aa40",
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/validation.json": "92fb8d99e72cac814b822834d1cd5dfa2c84d1cf31fa8aec65b4bbf398ceb698",
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/primary_preclose_0/detections.json": "3d157b66f1b68dd0886915870afe21ebb75ea7c94710626346ac44d023224400",
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/primary_preclose_1/detections.json": "613749e529af0d3e1729e97a556ff81d92b4bba54f64e879014c787ed9b6d82f",
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/primary_preclose_2/detections.json": "bc9787bc95edf0c51ca299dcd38ec9f9a8ff63944d4ec93c06e163e83b42cde0",
+    "outputs/dual_nest_flat_tags_dt01_20261016/pickup/primary_observation/detections.json": "ed74c308b24c49b109328a2a29afb64b9ac3bd4ad411291835cd0839a6538ad3"
+  }
+}

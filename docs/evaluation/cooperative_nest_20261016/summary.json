@@ -124,6 +124,15 @@
       "error": "Primary preclose rejected after bounded corrections",
       "dual_pickup_success": null,
       "grip_guard_summaries": null
+    },
+    {
+      "archive": "flat_tags_preclose_rejected",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_preclose_2",
+      "error": "Primary preclose rejected after bounded corrections",
+      "dual_pickup_success": null,
+      "grip_guard_summaries": null
     }
   ]
 }

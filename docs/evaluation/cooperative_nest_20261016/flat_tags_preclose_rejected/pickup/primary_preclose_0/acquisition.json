@@ -1,0 +1,93 @@
+{
+  "processed_frames": 4,
+  "frames": [
+    {
+      "sensor_stamp_ns": 22200000000,
+      "elapsed_wall_s": 2.132571084002848,
+      "detected_plugs": [],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 0,
+      "decode_wall_s": 0.005088165999040939,
+      "detector_wall_s": 0.013621917001728434,
+      "save_and_validation_wall_s": 0.024119707999489037
+    },
+    {
+      "sensor_stamp_ns": 23000000000,
+      "elapsed_wall_s": 14.592386173000705,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0014587090008717496,
+      "detector_wall_s": 0.020701790999737568,
+      "save_and_validation_wall_s": 0.02566912499969476
+    },
+    {
+      "sensor_stamp_ns": 24000000000,
+      "elapsed_wall_s": 30.268420680000418,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 2,
+      "decode_wall_s": 0.001167957998404745,
+      "detector_wall_s": 0.013276083001983352,
+      "save_and_validation_wall_s": 0.02433237500008545
+    },
+    {
+      "sensor_stamp_ns": 25000000000,
+      "elapsed_wall_s": 46.24229977100185,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0011814999998023268,
+      "detector_wall_s": 0.019938249999540858,
+      "save_and_validation_wall_s": 0.02743775000271853
+    }
+  ],
+  "success": true,
+  "timeout_s": 90,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd.xml",
+    "sha256": "2c03acf4be4d6d216c61346beefe2fb3799d164cf702f6f386628971a1f525d7"
+  },
+  "elapsed_wall_s": 46.548574105003354,
+  "transport": {
+    "received_messages": {
+      "rgb": 4,
+      "depth": 4
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 4,
+    "last_paired_stamp_ns": 25000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.3548623749993567
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.35673162499733735
+      }
+    }
+  },
+  "camera_info_messages": 4
+}
