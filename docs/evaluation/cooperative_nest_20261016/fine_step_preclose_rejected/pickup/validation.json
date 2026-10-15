@@ -1,0 +1,236 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "parameters": {
+    "wire_distance_mm": 140.0,
+    "place_in_nest": true,
+    "support_approach_settle_time_s": 30,
+    "nest_finger_envelope": "full_mechanical_stroke",
+    "rigid_nest_transfer": true,
+    "feedback_paced_transfer": true
+  },
+  "world_sha256": "1e716a388d58f33b4b55f3d63708d5eba0e3ce3c85484917dd00839daab0b4a5",
+  "model_sha256": {
+    "left_arm": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "phase": "primary_preclose_2",
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 295,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "primary_preclose_checks": [
+    {
+      "success": false,
+      "position_error_m": 0.003188545929236841,
+      "angle_error_rad": 0.05679452013015348,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0008269728707872489,
+      "angle_error_rad": 0.009977923316998294,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.00037303169173726205,
+      "angle_error_rad": 0.01929216985717965,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    }
+  ],
+  "primary_correction_budget": {
+    "right_arm": {
+      "translation_m": 0.004598077045403126,
+      "rotation_rad": 0.07294106628973641
+    }
+  },
+  "error": "Primary preclose rejected after bounded corrections",
+  "planning_diagnostics": null,
+  "contacts": [],
+  "unintended_contacts": [],
+  "stop_diagnostics": null,
+  "preflights": [
+    {
+      "phase": "primary_hover",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 295,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 295,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.01751774967378646,
+            0.01851774967378646
+          ],
+          [
+            0.017517719991270695,
+            0.018517719991270696
+          ]
+        ],
+        "right_arm": [
+          [
+            0.01754813510709893,
+            0.01854813510709893
+          ],
+          [
+            0.017558232026004053,
+            0.018558232026004054
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_approach",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017517749675951995,
+            0.018517749675951996
+          ],
+          [
+            0.017517719993437257,
+            0.018517719993437258
+          ]
+        ],
+        "right_arm": [
+          [
+            0.01755475230142671,
+            0.01855475230142671
+          ],
+          [
+            0.017563555943235883,
+            0.018563555943235884
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_correction",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.01751774967678536,
+            0.01851774967678536
+          ],
+          [
+            0.017517719994270622,
+            0.018517719994270623
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017585160136367396,
+            0.018585160136367396
+          ],
+          [
+            0.017524798494221012,
+            0.018524798494221013
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "primary_correction",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017517749677302213,
+            0.018517749677302214
+          ],
+          [
+            0.017517719994788936,
+            0.018517719994788937
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017570923170251527,
+            0.018570923170251528
+          ],
+          [
+            0.017538644837763184,
+            0.018538644837763185
+          ]
+        ]
+      }
+    }
+  ]
+}

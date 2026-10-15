@@ -1,0 +1,6 @@
+{
+  "source_world_sha256": "b47e215fc70cdd5c841e13b27d543c02e7f57a9229b0a1a67f6ee65168de270a",
+  "original_max_step_size_s": 0.001,
+  "max_step_size_s": 0.0001,
+  "scope": "Only max_step_size changed; all geometry, controller gains, force caps and task acceptance preserved"
+}

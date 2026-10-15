@@ -1,0 +1,7 @@
+{
+  "source_world_sha256": "1e716a388d58f33b4b55f3d63708d5eba0e3ce3c85484917dd00839daab0b4a5",
+  "world_sha256": "9c6f242b210c721200763958ff3154ee833ed5376386f659f379cf0be5b41983",
+  "tag_plane_offset_m": 0.02035,
+  "all_elements_except_visual_tags_identical": true,
+  "scope": "Coplanar visual marker correction only; collisions, inertia, robot control, initial placement, drawing and acceptance unchanged. No perception or physical success evidence"
+}

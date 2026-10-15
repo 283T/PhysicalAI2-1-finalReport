@@ -44,15 +44,18 @@ def add_end_markers(terminal, plug):
             collision=False,
         )
         cells = marker_image(marker_id, 6)
-        for row, column in zip(*np.where(cells == 0)):
+        # Render every cell on the same front plane. Black-only raised cells
+        # over a lower white backing made the RGB-D tag nonplanar by 0.1 mm,
+        # although pose_from_corners assumes a flat printed marker.
+        for row, column in np.ndindex(cells.shape):
             y = sign * (column + 0.5 - 3) * TAG_SIZE_M / 6
             z = (3 - row - 0.5) * TAG_SIZE_M / 6
             box(
                 terminal,
                 f"end_tag_{marker_id}_{row}_{column}",
                 f".0001 {TAG_SIZE_M / 6} {TAG_SIZE_M / 6}",
-                f"{sign * 0.02035} {y} {z} 0 0 0",
-                ".01 .01 .01 1",
+                f"{sign * (END_OFFSET_M - 0.00005)} {y} {z} 0 0 0",
+                ".01 .01 .01 1" if cells[row, column] == 0 else "1 1 1 1",
                 collision=False,
             )
 

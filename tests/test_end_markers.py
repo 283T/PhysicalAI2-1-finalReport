@@ -10,6 +10,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import rotation_error, transform
 from end_markers import (
+    END_OFFSET_M,
     TAG_SIZE_M,
     add_end_markers,
     connector_from_marker,
@@ -88,6 +89,22 @@ class EndMarkerTests(unittest.TestCase):
         self.assertGreater(len(terminal.findall("visual")), 30)
         self.assertEqual(len(terminal.findall("collision")), 1)
         self.assertEqual(ET.tostring(terminal.find("collision")), before)
+
+    def test_black_and_white_cells_share_the_calibrated_depth_plane(self):
+        for plug in ("P1", "P2", "P3"):
+            terminal = ET.Element("link")
+            add_end_markers(terminal, plug)
+            cells = [
+                v for v in terminal.findall("visual") if not v.get("name").endswith("_white_visual")
+            ]
+            self.assertEqual(len(cells), 72)
+            colors = set()
+            for visual in cells:
+                pose = list(map(float, visual.findtext("pose").split()))
+                size = list(map(float, visual.findtext("geometry/box/size").split()))
+                self.assertAlmostEqual(abs(pose[0]) + size[0] / 2, END_OFFSET_M)
+                colors.add(visual.findtext("material/diffuse"))
+            self.assertEqual(colors, {".01 .01 .01 1", "1 1 1 1"})
 
 
 if __name__ == "__main__":
