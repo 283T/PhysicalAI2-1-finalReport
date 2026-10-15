@@ -1,0 +1,100 @@
+{
+  "scope": "Offline prefix-only compression benchmark. Same JSONL observations and values, no decimation. Does not measure physical real-time factor or establish a simulator bottleneck.",
+  "python": "3.12.3",
+  "machine": "aarch64",
+  "source_compressed_sha256": "cfb76ef71b65f265a9771aee386b8c970c139e7765ab727f504b74ec13e5dde3",
+  "sample_records": 5000,
+  "sample_bytes": 7375464,
+  "sample_sha256": "aaf7b50a29790d2d21389f9286be6685470d5e808cecc2dcb2206aecc42cb26a",
+  "measurements": [
+    {
+      "repetition": 0,
+      "level": 9,
+      "cpu_s": 0.342232207,
+      "wall_s": 0.3422375000009197,
+      "compressed_bytes": 1763399,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 0,
+      "level": 1,
+      "cpu_s": 0.05044925,
+      "wall_s": 0.05045462500129361,
+      "compressed_bytes": 2120128,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 0,
+      "level": 6,
+      "cpu_s": 0.20950679100000003,
+      "wall_s": 0.20952154199767392,
+      "compressed_bytes": 1776486,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 1,
+      "level": 1,
+      "cpu_s": 0.05222700000000002,
+      "wall_s": 0.052230834000511095,
+      "compressed_bytes": 2120128,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 1,
+      "level": 6,
+      "cpu_s": 0.20596674999999998,
+      "wall_s": 0.20597654199809767,
+      "compressed_bytes": 1776486,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 1,
+      "level": 9,
+      "cpu_s": 0.397158707,
+      "wall_s": 0.3971617919996788,
+      "compressed_bytes": 1763399,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 2,
+      "level": 6,
+      "cpu_s": 0.19723816700000008,
+      "wall_s": 0.1972509170009289,
+      "compressed_bytes": 1776486,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 2,
+      "level": 9,
+      "cpu_s": 0.37722379000000017,
+      "wall_s": 0.37722791700070957,
+      "compressed_bytes": 1763399,
+      "decompressed_bytes_identical": true
+    },
+    {
+      "repetition": 2,
+      "level": 1,
+      "cpu_s": 0.04913758300000026,
+      "wall_s": 0.0491402499974356,
+      "compressed_bytes": 2120128,
+      "decompressed_bytes_identical": true
+    }
+  ],
+  "summary": {
+    "1": {
+      "median_cpu_s": 0.05044925,
+      "median_wall_s": 0.05045462500129361,
+      "compressed_bytes": 2120128
+    },
+    "6": {
+      "median_cpu_s": 0.20596674999999998,
+      "median_wall_s": 0.20597654199809767,
+      "compressed_bytes": 1776486
+    },
+    "9": {
+      "median_cpu_s": 0.37722379000000017,
+      "median_wall_s": 0.37722791700070957,
+      "compressed_bytes": 1763399
+    }
+  }
+}
