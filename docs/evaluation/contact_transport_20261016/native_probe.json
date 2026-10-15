@@ -1,0 +1,36 @@
+{
+  "scope": "Read-only native contact-name probe. Duplicate sensor messages are not distinct physical contact events or force measurements.",
+  "messages": 15043,
+  "pairs": [
+    {
+      "first": "conveyor_carrier::carrier::pallet_main_collision",
+      "second": "wire_harness_multi::P1::housing_collision",
+      "messages": 2149
+    },
+    {
+      "first": "conveyor_carrier::carrier::pallet_main_collision",
+      "second": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 2149
+    },
+    {
+      "first": "conveyor_carrier::carrier::pallet_upper_collision",
+      "second": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 2149
+    },
+    {
+      "first": "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_0_collision",
+      "second": "wire_harness_multi::P3::housing_collision",
+      "messages": 4298
+    },
+    {
+      "first": "right_arm::right_arm_finger_right::right_arm_finger_right_fixed_joint_lump__contact_pad_0_collision",
+      "second": "wire_harness_multi::P3::housing_collision",
+      "messages": 4298
+    },
+    {
+      "first": "right_arm::right_arm_finger_right::right_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1",
+      "second": "wire_harness_multi::P3::housing_collision",
+      "messages": 4298
+    }
+  ]
+}

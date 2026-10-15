@@ -1,0 +1,7 @@
+{
+  "scope": "Read-only three-second subscriber wait window during live trial; no before/after physical speed comparison",
+  "gazebo_sim_version": "8.15.0",
+  "source_probe_sha256": "26f92890f89619bb5bb33fa5386862b059e936a1f9ec457b4e266c5078fd883a",
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "source_url": "https://github.com/gazebosim/gz-sim/blob/gz-sim8_8.15.0/src/systems/contact/Contact.cc"
+}
