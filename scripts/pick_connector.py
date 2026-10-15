@@ -33,7 +33,7 @@ from grasp_validation import (
     assess_seat,
     world_link_positions,
 )
-from gripper_model import OPEN_TRAVEL_M
+from gripper_model import OPEN_TRAVEL_M, measured_rest_gap
 from gz.msgs10.contacts_pb2 import Contacts
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
@@ -121,6 +121,9 @@ def main():
         else {row["selected_arm"]: row}
     )
     selected = {name: arms[name] for name in assigned}
+    rest_gaps = {
+        name: measured_rest_gap(args.models / (name + ".urdf"), name + "_") for name in selected
+    }
     collision_bounds = (
         {
             name: ArmCollisionBounds(args.models / (name + ".urdf"), arm)
@@ -136,6 +139,7 @@ def main():
         "support_plug": args.support_plug,
         "inspection_timeout_s": args.inspection_timeout,
         "assignment": {name: row["plug_id"] for name, row in assigned.items()},
+        "measured_rest_gaps_m": rest_gaps,
         "scope": "RGB-D-derived contact pickup; optional second-terminal support, not direct wire support, collision planning or insertion",
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
         "model_sha256": {
@@ -728,7 +732,8 @@ def main():
             closed = dwell("close", 4)[-1]
             report.update(baseline=baseline, closed=closed, pickup_hold_success=False)
             report["closure"] = {
-                name: assess_opening([closed["arms"][name]["fingers"]]) for name in selected
+                name: assess_opening([closed["arms"][name]["fingers"]], rest_gap_m=rest_gaps[name])
+                for name in selected
             }
             checkpoint()
             if not all(check["success"] for check in report["closure"].values()):
@@ -743,7 +748,10 @@ def main():
             held = dwell("hold", 4)
             holds = {
                 name: assess_hold(
-                    baseline["arms"][name], [s["arms"][name] for s in held], closed["arms"][name]
+                    baseline["arms"][name],
+                    [s["arms"][name] for s in held],
+                    closed["arms"][name],
+                    rest_gap_m=rest_gaps[name],
                 )
                 for name in selected
             }
@@ -766,6 +774,7 @@ def main():
                             baseline["arms"][name],
                             [s["arms"][name] for s in [*held, *check_rows]],
                             closed["arms"][name],
+                            rest_gap_m=rest_gaps[name],
                         )
                         for name in selected
                     }

@@ -15,8 +15,8 @@ import rclpy
 from arm_kinematics import quaternion_rotation
 from build_case import harness_model
 from build_world import box, child, link, plugin
-from grasp_validation import assess_hold, assess_seat, world_link_positions
-from gripper_model import OPEN_TRAVEL_M, add_controllers, add_gripper
+from grasp_validation import assess_hold, assess_opening, assess_seat, world_link_positions
+from gripper_model import OPEN_TRAVEL_M, add_controllers, add_gripper, measured_rest_gap
 from gz.msgs10.contacts_pb2 import Contacts
 from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
@@ -38,8 +38,13 @@ def build_benchmark(
     pin_relief=False,
     moving_support=False,
     matched_static_support=False,
+    wire_grip=False,
 ):
     """Reuse production fingers on a vertical test carriage, with an unanchored cable."""
+    if wire_grip and (
+        regrasp_nest or support_tail or moving_support or matched_static_support or pin_relief
+    ):
+        raise ValueError("Wire grip is an isolated bare-pad comparison")
     output.mkdir(parents=True, exist_ok=True)
     robot = ET.Element("robot", name="grip_fixture")
     child(robot, "link", name="world")
@@ -53,7 +58,13 @@ def build_benchmark(
     child(lift, "origin", xyz="0 0 .35", rpy=f"{math.pi} 0 {math.pi / 2}")
     child(lift, "axis", xyz="0 0 -1")
     child(lift, "limit", lower="-.15", upper=".15", effort="100", velocity=".03")
-    add_gripper(robot, "bench_", "carriage", split_contacts=regrasp_nest)
+    add_gripper(
+        robot,
+        "bench_",
+        "carriage",
+        split_contacts=regrasp_nest,
+        pad_inward_extension_m=0.005 if wire_grip else 0,
+    )
     urdf = output / "gripper.urdf"
     ET.ElementTree(robot).write(urdf, encoding="utf-8", xml_declaration=True)
     converted = subprocess.run(
@@ -71,9 +82,9 @@ def build_benchmark(
         ("joint-position-controller", "JointPositionController"),
         joint_name="lift",
         topic="/grip_bench/lift/cmd",
-        p_gain=500,
-        d_gain=20,
-        i_gain=100,
+        p_gain=5000 if wire_grip else 500,
+        d_gain=60 if wire_grip else 20,
+        i_gain=0 if wire_grip else 100,
         i_max=100,
         i_min=-100,
         cmd_max=100,
@@ -120,7 +131,14 @@ def build_benchmark(
     harness = harness_model(
         world,
         {
-            "pose_m_rad": [-0.32, 0, 0.235 if regrasp_nest else 0.15, 0, 0, 0],
+            "pose_m_rad": [
+                -0.1625 if wire_grip else -0.32,
+                0,
+                0.235 if regrasp_nest else 0.15,
+                0,
+                0,
+                0,
+            ],
             "branches": [
                 {
                     "plug_id": "P1",
@@ -137,8 +155,10 @@ def build_benchmark(
     for item in list(terminal):
         if not regrasp_nest and item.get("name", "").startswith("pin_"):
             terminal.remove(item)
-    if regrasp_nest:
+    if regrasp_nest or wire_grip:
         plugin(world, ("contact", "Contact"))
+        if wire_grip:
+            terminal = harness.find("link[@name='P1_wire_6']")
         for index, collision in enumerate(terminal.findall("collision")):
             sensor = child(terminal, "sensor", name=f"terminal_contact_{index}", type="contact")
             child(sensor, "always_on", "true")
@@ -163,6 +183,7 @@ def run_trial(
     moving_support=False,
     return_reference="command",
     matched_static_support=False,
+    wire_grip=False,
 ):
     scene = build_benchmark(
         output,
@@ -172,12 +193,15 @@ def run_trial(
         pin_relief,
         moving_support,
         matched_static_support,
+        wire_grip,
     )
     os.environ["GZ_PARTITION"] = f"grip-contact-{os.getpid()}-{friction}"
     transport = Node()
     harness, fixture, states = {}, {}, {}
     joint_stamp = [0.0]
     plug_rotation = []
+    target_link = "P1_wire_6" if wire_grip else "P1"
+    rest_gap = measured_rest_gap(output / "gripper.urdf", "bench_")
     phase_name, lift_command = ["startup"], [0.0]
     contact_summary = {}
     contact_messages = [0]
@@ -193,7 +217,7 @@ def run_trial(
             entry["observations"] += 1
             entry["max_depth_m"] = max(entry["max_depth_m"], max(contact.depth, default=0.0))
 
-    if regrasp_nest:
+    if regrasp_nest or wire_grip:
         transport.subscribe(Contacts, "/grip_bench/contacts", receive_contacts)
 
     def receive(msg):
@@ -205,7 +229,8 @@ def run_trial(
             for p in msg.pose
         }
         if not all(
-            name in poses for name in ("wire_harness_multi", "grip_fixture", "P1", "carriage")
+            name in poses
+            for name in ("wire_harness_multi", "grip_fixture", "P1", "carriage", target_link)
         ):
             return
         stamp = time.monotonic()
@@ -215,7 +240,7 @@ def run_trial(
         harness.update({name: (stamp, point) for name, point in cable.items()})
         plug_rotation[:] = [
             quaternion_rotation(poses["wire_harness_multi"]["q"])
-            @ quaternion_rotation(poses["P1"]["q"])
+            @ quaternion_rotation(poses[target_link]["q"])
         ]
         fixture.update({name: (stamp, point) for name, point in tcp.items()})
         if moving_support and TAIL_MODEL in poses and TAIL_LINK in poses:
@@ -267,10 +292,22 @@ def run_trial(
         report["scope"] = (
             "Two independent vertical test stages: terminal contact gripper and moving contact tray supporting the tail; no harness attachment, MELFA, perception, side-to-top transition or board insertion"
         )
+    if wire_grip:
+        report["scope"] = (
+            "Cartesian carriage pinches an 8 mm flexible wire segment; no MELFA, perception, dual-arm operation or insertion"
+        )
+    report["target_link"] = target_link
+    report["rest_gap_m"] = rest_gap
+    report["lift_pid"] = {
+        "p": 5000 if wire_grip else 500,
+        "i": 0 if wire_grip else 100,
+        "d": 60 if wire_grip else 20,
+    }
+    report["holding_width_m"] = 0.008 if wire_grip else 0.020
     report["return_mode"] = return_mode
     report["pin_relief"] = pin_relief
     report["return_reference"] = return_reference
-    grip_height = -0.046 if regrasp_nest else -0.118
+    grip_height = -0.128 if wire_grip else -0.046 if regrasp_nest else -0.118
     support_origin = [grip_height]
 
     def publish_commands(lift, grip):
@@ -284,7 +321,10 @@ def run_trial(
     def sample():
         if "P1" not in harness or "carriage" not in fixture or len(states) != 3:
             return None
-        if min(harness["P1"][0], fixture["carriage"][0], joint_stamp[0]) < time.monotonic() - 0.5:
+        if (
+            min(harness[target_link][0], fixture["carriage"][0], joint_stamp[0])
+            < time.monotonic() - 0.5
+        ):
             return None
         if moving_support and (
             TAIL_LINK not in fixture or fixture[TAIL_LINK][0] < time.monotonic() - 0.5
@@ -292,7 +332,7 @@ def run_trial(
             return None
         row = {
             "time_s": time.monotonic(),
-            "plug": harness["P1"][1].tolist(),
+            "plug": harness[target_link][1].tolist(),
             "tcp": (fixture["carriage"][1] + [0, 0, -0.08]).tolist(),
             "fingers": [states["bench_finger_" + f + "_joint"] for f in ("left", "right")],
             "cable_z_span_m": float(np.ptp([p[1][2] for p in list(harness.values())])),
@@ -387,9 +427,18 @@ def run_trial(
             report["baseline"] = baseline
             # Nest trial uses 16 mm of the 20 mm housing height for finger contact.
             phase("approach", grip_height, OPEN_TRAVEL_M, 8, initial=0)
+            if wire_grip:
+                # The wire TCP is only 2 mm above the table. A timed approach
+                # can still sag into the table while closing the jaws.
+                settle_lift(grip_height, OPEN_TRAVEL_M, name="settle_approach", tolerance=0.0005)
             close_rows = phase("close", grip_height, 0, 6)
             closed = close_rows[-1]
             report["closed"] = closed
+            if wire_grip:
+                report["closure"] = assess_opening([closed["fingers"]], 0.008, rest_gap_m=rest_gap)
+                if not report["closure"]["success"]:
+                    report["motion_aborted"] = "closure_rejected"
+                    return report
             if return_reference == "closed":
                 window = [row for row in close_rows if row["time_s"] >= closed["time_s"] - 2]
                 report["reference_seat"] = assess_seat(window)
@@ -406,7 +455,13 @@ def run_trial(
             phase("lift", lift_height, 0, 8, initial=return_target)
             settle_lift(lift_height, 0)
             held = phase("hold", lift_height, 0, 4)
-            hold_result = assess_hold(baseline, held, closed)
+            hold_result = assess_hold(
+                baseline,
+                held,
+                closed,
+                housing_width=0.008 if wire_grip else 0.020,
+                rest_gap_m=rest_gap,
+            )
             report["hold"] = hold_result
             if not hold_result["success"]:
                 # An empty closed jaw cannot descend around the housing safely.
@@ -442,7 +497,7 @@ def run_trial(
             report["error"] = str(error)
         finally:
             transport.unsubscribe(pose_topic)
-            if regrasp_nest:
+            if regrasp_nest or wire_grip:
                 transport.unsubscribe("/grip_bench/contacts")
             for process in reversed(processes):
                 stop_process(process, group=True)
@@ -470,6 +525,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--friction", type=float, default=1.0)
+    parser.add_argument(
+        "--wire-grip",
+        action="store_true",
+        help="Pinch an 8 mm wire segment with inward-extended pads",
+    )
     parser.add_argument(
         "--matched-static-support",
         action="store_true",
@@ -545,11 +605,12 @@ def main():
             args.moving_support,
             args.return_reference,
             args.matched_static_support,
+            args.wire_grip,
         )
         expectation_met = (
             "error" not in result
-            and not result["hold"]["success"]
-            and result["hold"]["minimum_tcp_lift_m"] > 0.07
+            and result.get("hold", {}).get("success") is False
+            and result.get("hold", {}).get("minimum_tcp_lift_m", 0) > 0.07
             if args.expect_slip
             else result["success"]
         )

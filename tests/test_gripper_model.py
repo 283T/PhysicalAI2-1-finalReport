@@ -1,10 +1,45 @@
 import sys
+import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from gripper_model import OPEN_TRAVEL_M, add_gripper, gap_m
+from grasp_validation import assess_opening
+from gripper_model import OPEN_TRAVEL_M, add_gripper, gap_m, measured_rest_gap
+
+
+class WirePadTest(unittest.TestCase):
+    def test_wire_pad_geometry_and_measurement_reject_empty_closure(self):
+        for extension, expected in ((0, 0.016), (0.005, 0.006)):
+            robot = ET.Element("robot")
+            add_gripper(robot, "test_", "flange", pad_inward_extension_m=extension)
+            with tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "gripper.urdf"
+                ET.ElementTree(robot).write(path)
+                gap = measured_rest_gap(path, "test_")
+            self.assertAlmostEqual(gap, expected)
+            if extension:
+                self.assertTrue(assess_opening([[0.001, 0.001]], 0.008, rest_gap_m=gap)["success"])
+                self.assertFalse(assess_opening([[0, 0]], 0.008, rest_gap_m=gap)["success"])
+                self.assertTrue(assess_opening([[0.007, 0.007]], rest_gap_m=gap)["success"])
+                self.assertAlmostEqual(
+                    float(robot.find("link[@name='test_finger_left']/inertial/mass").get("value")),
+                    0.01625,
+                )
+        for extension in (-0.001, 0.006, float("nan")):
+            with self.assertRaises(ValueError):
+                add_gripper(
+                    ET.Element("robot"), "test_", "flange", pad_inward_extension_m=extension
+                )
+        with self.assertRaises(ValueError):
+            add_gripper(
+                ET.Element("robot"),
+                "test_",
+                "flange",
+                pad_inward_extension_m=0.005,
+                capture_fences=True,
+            )
 
 
 class GripperModelTest(unittest.TestCase):

@@ -1,0 +1,25 @@
+{
+  "inputs": {
+    "wire_observation": {
+      "path": "docs/evaluation/wire_support_rgbd_20261016/live_settled_repeat/wire_supports.json",
+      "sha256": "23f7fd7f0fe85ab7d771b669b6ffc30d23f6bb25e6dc490e0fc867d699126c04"
+    },
+    "fixture_world": {
+      "path": "docs/evaluation/single_nest_20261015/narrow_end_gap_raise_slip/world.sdf",
+      "sha256": "876db5b3ac741ca88b01d3bb7db4ddf653768ba38d17498620c028fada730984"
+    },
+    "historical_right_joints": {
+      "path": "docs/evaluation/single_nest_20261015/pin_clearance_transport_slip/validation.json",
+      "sha256": "ea2680c619520f53e7f9e3e66a86487ad41a04f2c7fa1eec8b265d665e738c48"
+    }
+  },
+  "left_initial_joints_rad": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "Offline planning hypotheses. Fixture positions from archived scene; arm bounds from new asymmetric URDFs. Historical right-arm joints are not proof of a current held object. No execution. Rejected paths may include standalone support lift; shared lift not screened here."
+}

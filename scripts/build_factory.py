@@ -98,6 +98,7 @@ def arm(
     housing_end_stops=False,
     pin_side_tip_recess_m=0.0,
     housing_end_clearance_m=0.0003,
+    pad_inward_extension_m=0.0,
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -140,6 +141,7 @@ def arm(
         housing_end_stops=housing_end_stops,
         pin_side_tip_recess_m=pin_side_tip_recess_m,
         housing_end_clearance_m=housing_end_clearance_m,
+        pad_inward_extension_m=pad_inward_extension_m,
     )
     if urdf_output is not None:
         ET.indent(robot)
@@ -186,6 +188,11 @@ def main():
     parser.add_argument("--pin-side-tip-recess-mm", type=float, default=0)
     parser.add_argument("--housing-end-clearance-mm", type=float, default=0.3)
     parser.add_argument("--housing-end-stops", action="store_true")
+    parser.add_argument(
+        "--left-wire-gripper",
+        action="store_true",
+        help="Bare left-arm pads extended inward 5 mm per finger",
+    )
     parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
@@ -235,13 +242,16 @@ def main():
         args.output / "left_arm.urdf",
         split_contacts=args.split_finger_contacts,
         gripper_p_gain=args.gripper_p_gain,
-        backstop=args.backstop_gripper,
-        capture_fences=args.capture_gripper,
-        front_fence_side=args.front_fence_side,
+        backstop=args.backstop_gripper and not args.left_wire_gripper,
+        capture_fences=args.capture_gripper and not args.left_wire_gripper,
+        front_fence_side="both" if args.left_wire_gripper else args.front_fence_side,
         fence_width_m=args.fence_width_mm / 1000,
-        housing_end_stops=args.housing_end_stops,
-        pin_side_tip_recess_m=args.pin_side_tip_recess_mm / 1000,
-        housing_end_clearance_m=args.housing_end_clearance_mm / 1000,
+        housing_end_stops=args.housing_end_stops and not args.left_wire_gripper,
+        pin_side_tip_recess_m=0 if args.left_wire_gripper else args.pin_side_tip_recess_mm / 1000,
+        housing_end_clearance_m=0.0003
+        if args.left_wire_gripper
+        else args.housing_end_clearance_mm / 1000,
+        pad_inward_extension_m=0.005 if args.left_wire_gripper else 0,
     )
     arm(
         world,

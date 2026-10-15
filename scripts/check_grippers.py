@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 import rclpy
-from gripper_model import OPEN_TRAVEL_M, gap_m
+from gripper_model import OPEN_TRAVEL_M, gap_m, measured_rest_gap
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
@@ -19,7 +19,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--world", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--models", type=Path, help="URDF directory; defaults to world directory")
     args = parser.parse_args()
+    models = args.models or args.world.parent
+    gaps = {
+        name: measured_rest_gap(models / (name + ".urdf"), name + "_")
+        for name in ("left_arm", "right_arm")
+    }
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "validation.json").unlink(missing_ok=True)
     os.environ["ROS_DOMAIN_ID"] = "174"
@@ -78,7 +84,7 @@ def main():
                 row = {
                     "stage": stage,
                     "target_travel_m": goal,
-                    "target_gap_m": gap_m(goal),
+                    "target_gap_m": {arm: gap_m(goal, gap) for arm, gap in gaps.items()},
                     "errors_m": errors,
                     "success": stable >= 5,
                 }

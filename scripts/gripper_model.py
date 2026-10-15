@@ -1,6 +1,7 @@
 """Small parallel-jaw prototype with two independent prismatic finger joints."""
 
 import math
+import xml.etree.ElementTree as ET
 
 from build_world import child, plugin
 
@@ -10,8 +11,48 @@ MAX_TRAVEL_M = 0.020
 OPEN_TRAVEL_M = 0.018
 
 
-def gap_m(travel):
-    return 2 * (FINGER_REST_X_M + travel) - FINGER_WIDTH_M
+def gap_m(travel, rest_gap_m=0.016):
+    return rest_gap_m + 2 * travel
+
+
+def measured_rest_gap(urdf, prefix):
+    """Read opposing pad inner faces at zero travel; reject unsupported geometry."""
+    robot = ET.parse(urdf).getroot()
+    faces = []
+    for name, side in (("left", -1), ("right", 1)):
+        joint = robot.find(f"joint[@name='{prefix}finger_{name}_joint']")
+        finger = robot.find(f"link[@name='{prefix}finger_{name}']")
+        if joint is None or finger is None or joint.get("type") != "prismatic":
+            raise ValueError("Two known prismatic fingers required")
+        if joint.find("axis").get("xyz") != f"{side} 0 0":
+            raise ValueError("Opposed X-axis finger travel required")
+        base = [float(v) for v in joint.find("origin").get("xyz").split()]
+        if joint.find("origin").get("rpy", "0 0 0") != "0 0 0":
+            raise ValueError("Unrotated finger origins required")
+        inner = []
+        for pad in finger.findall("collision"):
+            if not pad.get("name", "").startswith("contact_pad"):
+                continue
+            origin = pad.find("origin")
+            if origin.get("rpy", "0 0 0") != "0 0 0":
+                raise ValueError("Unrotated contact pads required")
+            xyz = [float(v) for v in origin.get("xyz").split()]
+            size = [float(v) for v in pad.find("geometry/box").get("size").split()]
+            if (
+                len(xyz) != 3
+                or len(size) != 3
+                or not all(math.isfinite(v) for v in [*base, *xyz, *size])
+                or min(size) <= 0
+            ):
+                raise ValueError("Finite positive pad geometry required")
+            inner.append(base[0] + xyz[0] - side * size[0] / 2)
+        if not inner or max(inner) - min(inner) > 1e-9:
+            raise ValueError("Coplanar contact pad inner faces required")
+        faces.append(inner[0])
+    gap = faces[1] - faces[0]
+    if not math.isfinite(gap) or gap <= 0:
+        raise ValueError("Positive rest gap required")
+    return gap
 
 
 def add_controllers(model, prefix, topic_root, p_gain=1000):
@@ -46,7 +87,14 @@ def add_gripper(
     housing_end_stops=False,
     pin_side_tip_recess_m=0.0,
     housing_end_clearance_m=0.0003,
+    pad_inward_extension_m=0.0,
 ):
+    if not math.isfinite(pad_inward_extension_m) or not 0 <= pad_inward_extension_m <= 0.005:
+        raise ValueError("Pad extension must be finite and between 0 and 5 mm")
+    if pad_inward_extension_m and (
+        backstop or capture_fences or housing_end_stops or pin_side_tip_recess_m
+    ):
+        raise ValueError("Wire pads require the bare, full-length finger profile")
     if (
         not math.isfinite(housing_end_clearance_m)
         or not 0.00005 <= housing_end_clearance_m <= 0.001
@@ -103,23 +151,37 @@ def add_gripper(
             ixz="-.00000025" if has_ends else "0",
             iyz="0",
         )
+        width = FINGER_WIDTH_M + pad_inward_extension_m
+        pad_x = -side * pad_inward_extension_m / 2
+        if pad_inward_extension_m:
+            # Same assumed density as the original bare rectangular finger.
+            finger_mass = 0.01 * width / FINGER_WIDTH_M
+            inertial.find("origin").set("xyz", f"{pad_x} 0 {length / 2}")
+            inertial.find("mass").set("value", str(finger_mass))
+            inertia = inertial.find("inertia")
+            for key, value in (
+                ("ixx", finger_mass * (0.020**2 + length**2) / 12),
+                ("iyy", finger_mass * (width**2 + length**2) / 12),
+                ("izz", finger_mass * (width**2 + 0.020**2) / 12),
+            ):
+                inertia.set(key, str(value))
         visual = child(finger, "visual")
-        child(visual, "origin", xyz=f"0 0 {length / 2}", rpy="0 0 0")
+        child(visual, "origin", xyz=f"{pad_x} 0 {length / 2}", rpy="0 0 0")
         child(
             child(visual, "geometry"),
             "box",
-            size=f".008 {0.026 if housing_end_stops else 0.020} {length}",
+            size=f"{width} {0.026 if housing_end_stops else 0.020} {length}",
         )
         # Two separated contact pads provide friction at distinct points along
         # the housing's long axis, rather than a single central contact pair.
         pad_offset = 0.009 if housing_end_stops else 0.006
         for index, y in enumerate((-pad_offset, pad_offset) if split_contacts else (0,)):
             shape = child(finger, "collision", name=f"contact_pad_{index}")
-            child(shape, "origin", xyz=f"0 {y} {length / 2}", rpy="0 0 0")
+            child(shape, "origin", xyz=f"{pad_x} {y} {length / 2}", rpy="0 0 0")
             child(
                 child(shape, "geometry"),
                 "box",
-                size=f".008 {0.008 if split_contacts else 0.026 if housing_end_stops else 0.020} {length}",
+                size=f"{width} {0.008 if split_contacts else 0.026 if housing_end_stops else 0.020} {length}",
             )
         if backstop or capture_fences:
             # A back-face fence resists yaw around the jaw closing axis. It

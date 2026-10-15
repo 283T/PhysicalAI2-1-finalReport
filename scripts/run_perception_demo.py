@@ -71,6 +71,7 @@ def main():
     parser.add_argument("--pin-side-tip-recess-mm", type=float, default=0)
     parser.add_argument("--housing-end-clearance-mm", type=float, default=0.3)
     parser.add_argument("--housing-end-stops", action="store_true")
+    parser.add_argument("--left-wire-gripper", action="store_true")
     parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
@@ -159,6 +160,8 @@ def main():
         models += "_gap" + format(args.housing_end_clearance_mm, "g").replace(".", "p")
     if args.pin_side_tip_recess_mm:
         models += "_tip" + format(args.pin_side_tip_recess_mm, "g").replace(".", "p")
+    if args.left_wire_gripper:
+        models += "_left_wire"
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -193,6 +196,8 @@ def main():
     )
     if args.housing_end_stops:
         factory.append("--housing-end-stops")
+    if args.left_wire_gripper:
+        factory.append("--left-wire-gripper")
     if args.backstop_gripper:
         factory.append("--backstop-gripper")
     if args.capture_gripper:

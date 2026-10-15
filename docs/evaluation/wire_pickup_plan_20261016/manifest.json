@@ -1,0 +1,8 @@
+{
+  "half_turn.json": "bf8b1b69e399cb40df278ed1a6586f83f646af6326a1d5f948ad2028e75bf043",
+  "left_arm.urdf": "6aef3cf0d2e2da789dfb295a6054b7a8646918ee3eb14b9eceb4bdff4bb80264",
+  "parked_upright.json": "b331ac2f8f1758344c4e09866903f8718bec76ea634463fbd9e742ed943395d7",
+  "provenance.json": "8a89f5f5bc9a1f01b91468cc7d8fb158f39c229a2363a5c73e2fa6cb2b209104",
+  "right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+  "right_holding_p3.json": "bf8b1b69e399cb40df278ed1a6586f83f646af6326a1d5f948ad2028e75bf043"
+}

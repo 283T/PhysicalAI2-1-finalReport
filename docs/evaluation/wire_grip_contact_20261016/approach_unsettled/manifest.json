@@ -1,0 +1,6 @@
+{
+  "gripper.urdf": "4dc2dae7f14ecac49dc8ee80c80ea7d06cd960954611401078c2fc1785dd9fd0",
+  "trajectory.json.gz": "ac114c1a45b13a661de237cc1edb5385fa14a6a3692b6ca5feb4f35b5575bb9f",
+  "validation.json": "fbb498e3ded368973224f86fd775f1e7ea3d7ff0ac42376c4842b3d5bbbb1fc5",
+  "world.sdf": "d92d6d89b44d7f761fe7e2fa2cbab566da726a056e20ee76b45c874fe2aaf1d5"
+}

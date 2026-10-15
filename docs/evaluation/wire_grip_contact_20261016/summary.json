@@ -1,0 +1,169 @@
+{
+  "approach_high_i_rejected": {
+    "success": false,
+    "error": "Test carriage did not converge during settle_approach; refusing next phase",
+    "expectation_met": false,
+    "motion_aborted": null,
+    "closure": null,
+    "hold": null,
+    "release_drop_m": null,
+    "settle_approach": {
+      "success": false,
+      "final_error_m": -0.002000039524845204,
+      "support_error_m": null
+    },
+    "world_sha256": "51c9acc53b8ea6763fe6ac9f6cbec5b1f781eb39e0e7813e0b9be8fc0a445b18"
+  },
+  "approach_unsettled": {
+    "success": false,
+    "error": null,
+    "expectation_met": false,
+    "motion_aborted": "closure_rejected",
+    "closure": {
+      "success": false,
+      "minimum_jaw_opening_m": 0.015407396685436336,
+      "maximum_jaw_opening_m": 0.015407396685436336,
+      "expected_housing_width_m": 0.008,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": null,
+    "release_drop_m": null,
+    "settle_approach": null,
+    "world_sha256": "d92d6d89b44d7f761fe7e2fa2cbab566da726a056e20ee76b45c874fe2aaf1d5"
+  },
+  "approach_tracking_rejected": {
+    "success": false,
+    "error": "Test carriage did not converge during settle_approach; refusing next phase",
+    "expectation_met": false,
+    "motion_aborted": null,
+    "closure": null,
+    "hold": null,
+    "release_drop_m": null,
+    "settle_approach": {
+      "success": false,
+      "final_error_m": -0.0020000040861554436,
+      "support_error_m": null
+    },
+    "world_sha256": "d92d6d89b44d7f761fe7e2fa2cbab566da726a056e20ee76b45c874fe2aaf1d5"
+  },
+  "approach_high_p_rejected": {
+    "success": false,
+    "error": "Test carriage did not converge during settle_approach; refusing next phase",
+    "expectation_met": false,
+    "motion_aborted": null,
+    "closure": null,
+    "hold": null,
+    "release_drop_m": null,
+    "settle_approach": {
+      "success": false,
+      "final_error_m": -0.0013853446565916805,
+      "support_error_m": null
+    },
+    "world_sha256": "bed1105ebe514b4c39b42f02784dbff3d65c300e98471e71d9dc34a4cbd1d17b"
+  },
+  "pd_hold_release": {
+    "success": true,
+    "error": null,
+    "expectation_met": true,
+    "motion_aborted": null,
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.007999789822832589,
+      "maximum_jaw_opening_m": 0.007999789822832589,
+      "expected_housing_width_m": 0.008,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": true,
+      "minimum_lift_m": 0.09959968181800957,
+      "relative_slip_m": 0.0,
+      "lift_slip_m": 0.00029459916338068034,
+      "minimum_tcp_lift_m": 0.09987130615679324,
+      "minimum_finger_travel_m": 0.0009701047834535204,
+      "minimum_jaw_opening_m": 0.007999849161573513,
+      "maximum_jaw_opening_m": 0.007999875884488026,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 235,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.025134230945054802
+    },
+    "release_drop_m": 0.09952718161209281,
+    "settle_approach": {
+      "success": true,
+      "final_error_m": -0.00035806499999999075,
+      "wall_time_s": 0.14999583400003758,
+      "support_error_m": null
+    },
+    "world_sha256": "842de9eed4ed237a145dc38cf96779f8e133d9da5017aee9c8425b66275bf8aa"
+  },
+  "zero_friction": {
+    "success": false,
+    "error": null,
+    "expectation_met": true,
+    "motion_aborted": "hold_rejected",
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.00799978991411385,
+      "maximum_jaw_opening_m": 0.00799978991411385,
+      "expected_housing_width_m": 0.008,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": false,
+      "minimum_lift_m": 3.353328309474435e-09,
+      "relative_slip_m": 0.0,
+      "lift_slip_m": 0.09999963658708344,
+      "minimum_tcp_lift_m": 0.09999963658708344,
+      "minimum_finger_travel_m": -1.0257579567646764e-14,
+      "minimum_jaw_opening_m": 0.005999999999979538,
+      "maximum_jaw_opening_m": 0.005999999999979538,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 229,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.0
+    },
+    "release_drop_m": null,
+    "settle_approach": {
+      "success": true,
+      "final_error_m": -0.00035806499999999075,
+      "wall_time_s": 0.14272804200027167,
+      "support_error_m": null
+    },
+    "world_sha256": "8a09ddc5f51424a4347e28be71bf0ac0fa09b247c9323d05e7f186e035f47dec"
+  },
+  "pd_repeat": {
+    "success": true,
+    "error": null,
+    "expectation_met": true,
+    "motion_aborted": null,
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.007999789938564282,
+      "maximum_jaw_opening_m": 0.007999789938564282,
+      "expected_housing_width_m": 0.008,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": true,
+      "minimum_lift_m": 0.09959747777233113,
+      "relative_slip_m": 0.0,
+      "lift_slip_m": 0.0002972592201463657,
+      "minimum_tcp_lift_m": 0.09987118903697517,
+      "minimum_finger_travel_m": 0.0009701084874867952,
+      "minimum_jaw_opening_m": 0.00799986419172408,
+      "maximum_jaw_opening_m": 0.007999867482674741,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 234,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.025561281993838288
+    },
+    "release_drop_m": 0.0995197700712705,
+    "settle_approach": {
+      "success": true,
+      "final_error_m": -0.00035806499999999075,
+      "wall_time_s": 0.15332629099975748,
+      "support_error_m": null
+    },
+    "world_sha256": "842de9eed4ed237a145dc38cf96779f8e133d9da5017aee9c8425b66275bf8aa"
+  }
+}
