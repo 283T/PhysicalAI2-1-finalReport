@@ -1,0 +1,13 @@
+{
+  "scope": "Post-trial execution-budget diagnosis only. No success override; no commands sent",
+  "input_sha256": "de5728644b68fd0ec70d8b9183a0cebc03180915b37fed0dc1cc69afdcffc4b1",
+  "stop_sim_time_s": 14.0979,
+  "minimum_possible_move_simulation_budget_s": 23,
+  "stop_sim_time_below_minimum_simulation_budget": true,
+  "old_nonpaced_wall_budget_s": 240,
+  "conclusion": "The old loop ended on its wall-time limit before the nominal path completed, not its simulation-time limit. Tracking error alone does not describe this failure.",
+  "actual_to_command_position_m": 0.0008575357191563564,
+  "actual_to_command_angle_rad": 0.006408264984080133,
+  "command_to_final_goal_position_m": 0.2749406065148266,
+  "maximum_joint_tracking_error_rad": 0.004137144922397695
+}

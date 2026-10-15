@@ -20,6 +20,7 @@ from arm_collision_bounds import (
 from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints
+from command_refresh import CommandRefresh
 from feedback_pacing import FeedbackPacer
 from fixture_collision_bounds import FixtureBounds, sdf_pose
 from gripper_model import OPEN_TRAVEL_M
@@ -30,6 +31,7 @@ from plan_reach import load_arms
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
+from simulation_budget import SimulationBudget
 from std_msgs.msg import Float64
 
 
@@ -61,6 +63,7 @@ class ArmSession:
         self.targets = None
         self.grips = {n: OPEN_TRAVEL_M for n in self.arms}
         self.pubs = {}
+        self.command_refresh = CommandRefresh()
         command = ["ros2", "run", "ros_gz_bridge", "parameter_bridge"]
         for name in self.arms:
             self.node.create_subscription(
@@ -232,9 +235,17 @@ class ArmSession:
                 raise RuntimeError("Lost feedback")
         if not teardown:
             self.check_finger_intervals(self.snapshot())
+        now = time.monotonic()
         for n, pubs in self.pubs.items():
-            for pub, value in zip(pubs, [*self.targets[n], self.grips[n], self.grips[n]]):
-                pub.publish(Float64(data=float(value)))
+            for index, (pub, value) in enumerate(
+                zip(pubs, [*self.targets[n], self.grips[n], self.grips[n]])
+            ):
+                self.command_refresh.publish(
+                    (n, index),
+                    value,
+                    now,
+                    lambda v, publisher=pub: publisher.publish(Float64(data=v)),
+                )
         rclpy.spin_once(self.node, timeout_sec=0.02)
         row = self.snapshot()
         if row and (
@@ -252,10 +263,15 @@ class ArmSession:
     def dwell(self, phase, duration, *, teardown=False):
         self.phase = phase
         start, wall = self.snapshot()["sim_time_s"], time.monotonic()
+        budget = SimulationBudget(start, wall, duration, 30 + 40 * duration)
         rows, previous = [], None
         while self.poses[1] - start < duration:
-            if time.monotonic() - wall > 30 + 15 * duration:
-                raise RuntimeError("Simulation stalled in " + phase)
+            reason = budget.reason(self.poses[1], time.monotonic())
+            if reason == "simulation_budget_exhausted":
+                break
+            if reason is not None:
+                self.stop_diagnostics = {"phase": phase, "execution_budget": budget.summary.copy()}
+                raise RuntimeError(reason + " in " + phase)
             row = self.tick(teardown=teardown)
             if row and row["sim_time_s"] != previous:
                 rows.append(row)
@@ -337,7 +353,12 @@ class ArmSession:
         goals = {n: self.arms[n].forward(p[-1]) for n, p in paths.items()}
         pacer = FeedbackPacer(self.arms, paths, duration, start) if feedback_paced else None
         simulation_budget = duration * (8 if pacer else 1) + settle_time_s
-        wall_budget = max(240, 15 * simulation_budget) if pacer else 240
+        # Smaller physics steps and actual camera rendering can run far below
+        # real time. Physical durations and all convergence gates stay fixed.
+        wall_budget = max(240, 40 * simulation_budget)
+        budget = SimulationBudget(start, wall, simulation_budget, wall_budget)
+        checks["execution_budget"] = budget.summary
+        checks["nominal_duration_s"] = float(duration)
         if pacer:
             checks["feedback_pacing"] = pacer.summary
             checks["feedback_pacing"].update(
@@ -346,7 +367,7 @@ class ArmSession:
                 wall_budget_s=wall_budget,
             )
         actual = row
-        while self.poses[1] - start < simulation_budget and time.monotonic() - wall < wall_budget:
+        while budget.reason(self.poses[1], time.monotonic()) is None:
             t = pacer.fraction if pacer else min(1, (self.poses[1] - start) / duration)
             self.targets.update(
                 pacer.update(actual)
@@ -377,6 +398,7 @@ class ArmSession:
                 stable = stable + 1 if valid else 0
                 previous = actual["sim_time_s"]
             if stable >= 5:
+                budget.summary["outcome"] = "converged"
                 self.motion_fingers = None
                 return actual
         self.stop_diagnostics = {
@@ -385,8 +407,14 @@ class ArmSession:
             "command_targets_rad": {n: q.tolist() for n, q in self.targets.items()},
             "goal_tcp_poses": {n: g.tolist() for n, g in goals.items()},
             "last_observation": actual,
+            "execution_budget": budget.summary.copy(),
+            "path_fraction": float(
+                pacer.fraction if pacer else min(1, (self.poses[1] - start) / duration)
+            ),
         }
-        raise RuntimeError("Robot tracking did not converge in " + phase)
+        raise RuntimeError(
+            str(budget.summary["stop_reason"]) + " before robot convergence in " + phase
+        )
 
     def close(self):
         try:

@@ -346,6 +346,7 @@ def main():
         finally:
             if session:
                 report.update(
+                    command_transport=session.command_refresh.summary,
                     contacts=list(session.contacts.values()),
                     unintended_contacts=session.unintended,
                     stop_diagnostics=session.stop_diagnostics,

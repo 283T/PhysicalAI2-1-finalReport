@@ -142,6 +142,15 @@
       "error": "Fresh observation rejected; see outputs/dual_nest_flat_tags_hd_dt01_20261016/pickup/primary_observation",
       "dual_pickup_success": null,
       "grip_guard_summaries": null
+    },
+    {
+      "archive": "hd_hover_wall_limit",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "primary_hover",
+      "error": "Robot tracking did not converge in primary_hover",
+      "dual_pickup_success": null,
+      "grip_guard_summaries": null
     }
   ]
 }
