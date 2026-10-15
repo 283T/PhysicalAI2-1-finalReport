@@ -3,11 +3,34 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_session import ArmSession
 
 
 class ArmSessionTeardownTest(unittest.TestCase):
+    def test_carrier_threshold_failure_preserves_the_offending_sample(self):
+        session = ArmSession.__new__(ArmSession)
+        session.arms, session.joints = {}, {}
+        session.phase = "lift"
+        session.carrier_pose = np.eye(4)
+        session.stop_diagnostics = None
+        session.poses = (
+            10,
+            42,
+            {
+                "conveyor_carrier": {"xyz": [0.0006, 0, 0], "q": [0, 0, 0, 1]},
+                "carrier": {"xyz": [0, 0, 0], "q": [0, 0, 0, 1]},
+            },
+        )
+        with patch("arm_session.time.monotonic", return_value=10):
+            with self.assertRaisesRegex(RuntimeError, "Carrier moved"):
+                session.snapshot()
+        self.assertEqual(session.stop_diagnostics["sim_time_s"], 42)
+        self.assertEqual(session.stop_diagnostics["carrier_position_error_m"], 0.0006)
+        self.assertEqual(session.stop_diagnostics["phase"], "lift")
+
     def test_invalid_geometry_snapshot_cannot_prevent_finger_open_or_cleanup(self):
         session = ArmSession.__new__(ArmSession)
         session.targets = {"left_arm": [0] * 6}

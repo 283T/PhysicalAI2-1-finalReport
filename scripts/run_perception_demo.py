@@ -72,6 +72,9 @@ def main():
     parser.add_argument("--housing-end-clearance-mm", type=float, default=0.3)
     parser.add_argument("--housing-end-stops", action="store_true")
     parser.add_argument("--left-wire-gripper", action="store_true")
+    parser.add_argument("--left-gripper-p-gain", type=float)
+    parser.add_argument("--conveyor-p-gain", type=float, default=400)
+    parser.add_argument("--wire-contact-length-mm", type=float, default=20)
     parser.add_argument("--fence-width-mm", type=float, default=12)
     parser.add_argument("--front-fence-side", choices=("both", "left", "right"), default="both")
     parser.add_argument(
@@ -96,6 +99,19 @@ def main():
         help="After paired pickup, attempt a continuously planned placement and primary release in the nest",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.conveyor_p_gain) or args.conveyor_p_gain <= 0:
+        parser.error("--conveyor-p-gain must be positive and finite")
+    if args.left_gripper_p_gain is not None and (
+        not math.isfinite(args.left_gripper_p_gain) or args.left_gripper_p_gain <= 0
+    ):
+        parser.error("--left-gripper-p-gain must be positive and finite")
+    if (
+        not math.isfinite(args.wire_contact_length_mm)
+        or not 20 <= args.wire_contact_length_mm <= 60
+    ):
+        parser.error("--wire-contact-length-mm must be between 20 and 60")
+    if args.wire_contact_length_mm != 20 and not args.left_wire_gripper:
+        parser.error("--wire-contact-length-mm requires --left-wire-gripper")
     if not math.isfinite(args.inspection_timeout) or not 5 <= args.inspection_timeout <= 300:
         parser.error("--inspection-timeout must be finite and between 5 and 300 seconds")
     if not math.isfinite(args.fence_width_mm) or not 4 <= args.fence_width_mm <= 12:
@@ -162,6 +178,12 @@ def main():
         models += "_tip" + format(args.pin_side_tip_recess_mm, "g").replace(".", "p")
     if args.left_wire_gripper:
         models += "_left_wire"
+        if args.wire_contact_length_mm != 20:
+            models += "_wire" + format(args.wire_contact_length_mm, "g").replace(".", "p")
+    if args.left_gripper_p_gain is not None:
+        models += "_left_g" + format(args.left_gripper_p_gain, "g").replace(".", "p")
+    if args.conveyor_p_gain != 400:
+        models += "_conveyor" + format(args.conveyor_p_gain, "g").replace(".", "p")
     if not (ROOT / "outputs/melfa_install/setup.bash").exists():
         run("bash", "scripts/setup_melfa.sh")
     generate = [
@@ -194,10 +216,14 @@ def main():
             str(args.housing_end_clearance_mm),
         ]
     )
+    factory.extend(["--conveyor-p-gain", str(args.conveyor_p_gain)])
+    if args.left_gripper_p_gain is not None:
+        factory.extend(["--left-gripper-p-gain", str(args.left_gripper_p_gain)])
     if args.housing_end_stops:
         factory.append("--housing-end-stops")
     if args.left_wire_gripper:
         factory.append("--left-wire-gripper")
+        factory.extend(["--wire-contact-length-mm", str(args.wire_contact_length_mm)])
     if args.backstop_gripper:
         factory.append("--backstop-gripper")
     if args.capture_gripper:

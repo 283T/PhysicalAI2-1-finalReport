@@ -88,7 +88,12 @@ def add_gripper(
     pin_side_tip_recess_m=0.0,
     housing_end_clearance_m=0.0003,
     pad_inward_extension_m=0.0,
+    wire_contact_length_m=0.020,
 ):
+    if not math.isfinite(wire_contact_length_m) or not 0.020 <= wire_contact_length_m <= 0.060:
+        raise ValueError("Wire contact length must be finite and between 20 and 60 mm")
+    if wire_contact_length_m != 0.020 and not pad_inward_extension_m:
+        raise ValueError("Long wire pads require the inward-extended bare profile")
     if not math.isfinite(pad_inward_extension_m) or not 0 <= pad_inward_extension_m <= 0.005:
         raise ValueError("Pad extension must be finite and between 0 and 5 mm")
     if pad_inward_extension_m and (
@@ -155,14 +160,14 @@ def add_gripper(
         pad_x = -side * pad_inward_extension_m / 2
         if pad_inward_extension_m:
             # Same assumed density as the original bare rectangular finger.
-            finger_mass = 0.01 * width / FINGER_WIDTH_M
+            finger_mass = 0.01 * width / FINGER_WIDTH_M * wire_contact_length_m / 0.020
             inertial.find("origin").set("xyz", f"{pad_x} 0 {length / 2}")
             inertial.find("mass").set("value", str(finger_mass))
             inertia = inertial.find("inertia")
             for key, value in (
-                ("ixx", finger_mass * (0.020**2 + length**2) / 12),
+                ("ixx", finger_mass * (wire_contact_length_m**2 + length**2) / 12),
                 ("iyy", finger_mass * (width**2 + length**2) / 12),
-                ("izz", finger_mass * (width**2 + 0.020**2) / 12),
+                ("izz", finger_mass * (width**2 + wire_contact_length_m**2) / 12),
             ):
                 inertia.set(key, str(value))
         visual = child(finger, "visual")
@@ -170,18 +175,18 @@ def add_gripper(
         child(
             child(visual, "geometry"),
             "box",
-            size=f"{width} {0.026 if housing_end_stops else 0.020} {length}",
+            size=f"{width} {0.026 if housing_end_stops else wire_contact_length_m} {length}",
         )
         # Two separated contact pads provide friction at distinct points along
         # the housing's long axis, rather than a single central contact pair.
-        pad_offset = 0.009 if housing_end_stops else 0.006
+        pad_offset = 0.009 if housing_end_stops else wire_contact_length_m * 0.30
         for index, y in enumerate((-pad_offset, pad_offset) if split_contacts else (0,)):
             shape = child(finger, "collision", name=f"contact_pad_{index}")
             child(shape, "origin", xyz=f"{pad_x} {y} {length / 2}", rpy="0 0 0")
             child(
                 child(shape, "geometry"),
                 "box",
-                size=f"{width} {0.008 if split_contacts else 0.026 if housing_end_stops else 0.020} {length}",
+                size=f"{width} {wire_contact_length_m * 0.40 if split_contacts and pad_inward_extension_m else 0.008 if split_contacts else 0.026 if housing_end_stops else wire_contact_length_m} {length}",
             )
         if backstop or capture_fences:
             # A back-face fence resists yaw around the jaw closing axis. It

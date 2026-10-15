@@ -10,6 +10,43 @@ from gripper_model import OPEN_TRAVEL_M, add_gripper, gap_m, measured_rest_gap
 
 
 class WirePadTest(unittest.TestCase):
+    def test_long_wire_pads_span_two_links_without_changing_jaw_opening(self):
+        robot = ET.Element("robot")
+        add_gripper(
+            robot,
+            "test_",
+            "flange",
+            split_contacts=True,
+            pad_inward_extension_m=0.005,
+            wire_contact_length_m=0.050,
+        )
+        for side in ("left", "right"):
+            finger = robot.find(f"link[@name='test_finger_{side}']")
+            intervals = []
+            for shape in finger.findall("collision"):
+                y = float(shape.find("origin").get("xyz").split()[1])
+                width = float(shape.find("geometry/box").get("size").split()[1])
+                intervals.append((y - width / 2, y + width / 2))
+            for link_center in (-0.0125, 0.0125):
+                self.assertTrue(any(a <= link_center <= b for a, b in intervals))
+            self.assertAlmostEqual(
+                max(b for a, b in intervals) - min(a for a, b in intervals), 0.050
+            )
+            self.assertAlmostEqual(float(finger.find("inertial/mass").get("value")), 0.040625)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "gripper.urdf"
+            ET.ElementTree(robot).write(path)
+            self.assertAlmostEqual(measured_rest_gap(path, "test_"), 0.006)
+        for length in (0.019, 0.061, float("nan")):
+            with self.assertRaises(ValueError):
+                add_gripper(
+                    ET.Element("robot"),
+                    "t_",
+                    "flange",
+                    pad_inward_extension_m=0.005,
+                    wire_contact_length_m=length,
+                )
+
     def test_wire_pad_geometry_and_measurement_reject_empty_closure(self):
         for extension, expected in ((0, 0.016), (0.005, 0.006)):
             robot = ET.Element("robot")

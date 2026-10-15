@@ -1,0 +1,32 @@
+{
+  "success": false,
+  "error": "No continuous pickup branch for left_arm",
+  "diagnostics": {
+    "individual": [
+      {
+        "arm": "left_arm",
+        "seed": 0,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 1,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 2,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "source_rgbd": "docs/evaluation/single_nest_20261015/pin_clearance_transport_slip/held_pose_check",
+  "joint_reference": "docs/evaluation/single_nest_20261015/pin_clearance_transport_slip/summary.json",
+  "scope_note": "Offline historical robot joint and single RGB-D frame; no stability or physical cooperative grasp claim",
+  "preferred_distance_m": 0.11
+}

@@ -1,0 +1,223 @@
+{
+  "length50_g10000_c4000_hold_rejected": {
+    "success": false,
+    "phase": "hold",
+    "error": "Wire hold rejected",
+    "preclose": {
+      "wire_center_change_m": 0.0010066199363228047,
+      "wire_tangent_change_rad": 0.0008226212691840426,
+      "tool_position_error_m": 0.0006761480547821848,
+      "tool_angle_error_rad": 0.002010080310440013,
+      "success": true
+    },
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.008135722469740047,
+      "maximum_jaw_opening_m": 0.008135722469740047,
+      "expected_housing_width_m": 0.009005712300672375,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": false,
+      "minimum_lift_m": 0.0936455557557743,
+      "relative_slip_m": 0.00017610522031227626,
+      "lift_slip_m": 0.006074400512020122,
+      "minimum_tcp_lift_m": 0.09971585353274828,
+      "minimum_finger_travel_m": 0.0010001801872090172,
+      "minimum_jaw_opening_m": 0.008031071631436206,
+      "maximum_jaw_opening_m": 0.008031185188605773,
+      "expected_housing_width_m": 0.009005712300672375,
+      "hold_samples": 341,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.5051334240935726
+    },
+    "world_sha256": "5d9e00569a37e3199d70c6a603d8d74c19e6c410c251846f2d8ece9dce6bf713",
+    "controller_settings": {
+      "left_arm": [
+        {
+          "topic": "/left_arm/gripper/left/cmd",
+          "p_gain": "10000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/left_arm/gripper/right/cmd",
+          "p_gain": "10000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "right_arm": [
+        {
+          "topic": "/right_arm/gripper/left/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/right_arm/gripper/right/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "conveyor_carrier": [
+        {
+          "topic": "/conveyor/cmd",
+          "p_gain": "4000.0",
+          "d_gain": "126.49110640673517",
+          "cmd_max": "20",
+          "cmd_min": "-20"
+        }
+      ]
+    },
+    "maximum_recorded_carrier_x_displacement_m": 4.228543175197263e-05
+  },
+  "length50_g10000_carrier_drift": {
+    "success": false,
+    "phase": "lift",
+    "error": "Carrier moved outside the preflight geometry tolerance",
+    "preclose": {
+      "wire_center_change_m": 0.0007735961866378336,
+      "wire_tangent_change_rad": 0.00259229941093279,
+      "tool_position_error_m": 0.0007146515154876707,
+      "tool_angle_error_rad": 0.0022689692284508936,
+      "success": true
+    },
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.0082199104879544,
+      "maximum_jaw_opening_m": 0.0082199104879544,
+      "expected_housing_width_m": 0.008972510204685662,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": null,
+    "world_sha256": "00129e27c77db235dab22b083f37f51b3abb4b07a4aa3a1eeec1d062282f3e92",
+    "controller_settings": {
+      "left_arm": [
+        {
+          "topic": "/left_arm/gripper/left/cmd",
+          "p_gain": "10000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/left_arm/gripper/right/cmd",
+          "p_gain": "10000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "right_arm": [
+        {
+          "topic": "/right_arm/gripper/left/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/right_arm/gripper/right/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "conveyor_carrier": [
+        {
+          "topic": "/conveyor/cmd",
+          "p_gain": "400",
+          "d_gain": "40",
+          "cmd_max": "20",
+          "cmd_min": "-20"
+        }
+      ]
+    },
+    "maximum_recorded_carrier_x_displacement_m": 0.0004959046959362793
+  },
+  "length50_g3000": {
+    "success": false,
+    "phase": "hold",
+    "error": "Wire hold rejected",
+    "preclose": {
+      "wire_center_change_m": 0.000773742492438448,
+      "wire_tangent_change_rad": 0.0025948515181681625,
+      "tool_position_error_m": 0.0006380028025790027,
+      "tool_angle_error_rad": 0.002031801363777244,
+      "success": true
+    },
+    "closure": {
+      "success": true,
+      "minimum_jaw_opening_m": 0.008649300238607084,
+      "maximum_jaw_opening_m": 0.008649300238607084,
+      "expected_housing_width_m": 0.008972423172318236,
+      "scope": "Joint opening only; not proof of housing contact or stable grasp"
+    },
+    "hold": {
+      "success": false,
+      "minimum_lift_m": 0.09141287594446136,
+      "relative_slip_m": 0.00010532371768027883,
+      "lift_slip_m": 0.008617760150691689,
+      "minimum_tcp_lift_m": 0.09969011960394916,
+      "minimum_finger_travel_m": 0.0010485328813537767,
+      "minimum_jaw_opening_m": 0.008195891750464018,
+      "maximum_jaw_opening_m": 0.008196581095376576,
+      "expected_housing_width_m": 0.008972423172318236,
+      "hold_samples": 365,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.747769148253832
+    },
+    "world_sha256": "e285c45eef00a13efb9d8dca9331c2b55527963f8bf2879df58b1751d45d158d",
+    "controller_settings": {
+      "left_arm": [
+        {
+          "topic": "/left_arm/gripper/left/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/left_arm/gripper/right/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "right_arm": [
+        {
+          "topic": "/right_arm/gripper/left/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        },
+        {
+          "topic": "/right_arm/gripper/right/cmd",
+          "p_gain": "3000.0",
+          "d_gain": "5",
+          "cmd_max": "12",
+          "cmd_min": "-12"
+        }
+      ],
+      "conveyor_carrier": [
+        {
+          "topic": "/conveyor/cmd",
+          "p_gain": "400",
+          "d_gain": "40",
+          "cmd_max": "20",
+          "cmd_min": "-20"
+        }
+      ]
+    },
+    "maximum_recorded_carrier_x_displacement_m": 0.00026188353773380613
+  }
+}

@@ -2,6 +2,7 @@
 
 import numpy as np
 from arm_collision_bounds import with_parked_arms
+from arm_kinematics import axis_rotation
 from cooperative_pick import prepare_pickup_paths
 from cooperative_transfer import rigid_pose
 from fixture_collision_bounds import FixtureBounds
@@ -39,7 +40,13 @@ def plan_wire_pickup(
     require_stable=True,
     upright=False,
     include_carrier=False,
+    tip_depth_m=None,
+    face_quarter_turns=0,
 ):
+    if face_quarter_turns not in (0, 1, 2, 3) or (upright and face_quarter_turns):
+        raise ValueError("A square-wire face index 0..3 requires the full wire frame")
+    if tip_depth_m is not None and (not np.isfinite(tip_depth_m) or not 0 < tip_depth_m <= 0.012):
+        raise ValueError("Finite positive tip depth up to 12 mm required")
     if set(arms) != set(bounds) or set(arms) != set(current) or len(arms) != 2:
         raise ValueError("Both arms require observed joints and collision geometry")
     if support_arm not in arms or plug_id not in {"P1", "P2", "P3"}:
@@ -58,6 +65,12 @@ def plan_wire_pickup(
         if upright
         else (rigid_pose(matching[0]["grasp_tcp_pose"]), 0.008)
     )
+    if face_quarter_turns:
+        grip[:3, :3] = grip[:3, :3] @ axis_rotation([0, 1, 0], face_quarter_turns * np.pi / 2)
+    if tip_depth_m is not None or face_quarter_turns:
+        depth = 0.002 if tip_depth_m is None else tip_depth_m
+        grip[:3, 3] = np.asarray(matching[0]["wire_center_xyz_m"]) + grip[:3, 2] * depth
+        grip = rigid_pose(grip)
     if half_turn:
         grip = grip @ np.diag([-1.0, -1.0, 1.0, 1.0])
     hover = grip.copy()
@@ -83,8 +96,10 @@ def plan_wire_pickup(
         "support_arm": support_arm,
         "branch": plug_id,
         "half_turn": half_turn,
+        "face_quarter_turns": face_quarter_turns,
         "upright": upright,
         "expected_wire_width_m": expected_width,
+        "tip_depth_m": tip_depth_m if tip_depth_m is not None else 0.001 if upright else 0.002,
         "includes_independent_support_lift": include_lift,
         "stable_observation_required": require_stable,
         "sensor_stamp_ns": observation.get("sensor_stamp_ns"),

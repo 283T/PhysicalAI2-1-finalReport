@@ -1,0 +1,66 @@
+{
+  "success": false,
+  "error": "No continuous IK branches passed active/parked arm box screening",
+  "diagnostics": {
+    "individual": [
+      {
+        "arm": "left_arm",
+        "seed": 1,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ],
+    "combinations": [
+      {
+        "seeds": {
+          "left_arm": 0
+        },
+        "screens": {
+          "hover": {
+            "clear": false,
+            "fraction": 0.8768472906403941,
+            "links": [
+              "left_arm_finger_right",
+              "right_arm_rv4frl_forearm"
+            ]
+          },
+          "approach": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          }
+        }
+      },
+      {
+        "seeds": {
+          "left_arm": 2
+        },
+        "screens": {
+          "hover": {
+            "clear": false,
+            "fraction": 0.8768472906403941,
+            "links": [
+              "left_arm_finger_right",
+              "right_arm_rv4frl_forearm"
+            ]
+          },
+          "approach": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          }
+        }
+      }
+    ]
+  },
+  "source_diagnostic": "docs/evaluation/wire_contact_length_20261016/raised_primary_rgbd_diagnostic.json",
+  "source_sha256": "0425abf2fa4cbe696077c728b25d38b4fb8ce6ab851178b32d76a6175161c209",
+  "scope_note": "Single-frame offline square-face search only; no stable acquisition or physical cooperative grasp",
+  "distance_m": 0.17,
+  "face_index": 2,
+  "flip": true
+}

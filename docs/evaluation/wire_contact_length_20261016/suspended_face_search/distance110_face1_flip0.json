@@ -1,0 +1,34 @@
+{
+  "success": false,
+  "error": "No continuous pickup branch for left_arm",
+  "diagnostics": {
+    "individual": [
+      {
+        "arm": "left_arm",
+        "seed": 0,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 1,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 2,
+        "reason": "Hover IK failed"
+      },
+      {
+        "arm": "left_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "source_diagnostic": "docs/evaluation/wire_contact_length_20261016/raised_primary_rgbd_diagnostic.json",
+  "source_sha256": "0425abf2fa4cbe696077c728b25d38b4fb8ce6ab851178b32d76a6175161c209",
+  "scope_note": "Single-frame offline square-face search only; no stable acquisition or physical cooperative grasp",
+  "distance_m": 0.11,
+  "face_index": 1,
+  "flip": false
+}

@@ -40,6 +40,7 @@ class ArmSession:
         self.joints, self.poses = {}, None
         self.phase = "startup"
         self.contacts, self.contact_count, self.unintended = {}, 0, []
+        self.stop_diagnostics = None
         self.expected_contact_publishers = sum(
             s.findtext("topic") == CONTACT_TOPIC
             for s in ET.parse(world).getroot().findall(".//sensor[@type='contact']")
@@ -125,10 +126,18 @@ class ArmSession:
         base_r = quaternion_rotation(model["q"])
         carrier_position = np.array(model["xyz"]) + base_r @ link["xyz"]
         carrier_rotation = base_r @ quaternion_rotation(link["q"])
-        if (
-            np.linalg.norm(carrier_position - self.carrier_pose[:3, 3]) > 0.0005
-            or np.linalg.norm(rotation_error(self.carrier_pose[:3, :3], carrier_rotation)) > 0.002
-        ):
+        carrier_error = float(np.linalg.norm(carrier_position - self.carrier_pose[:3, 3]))
+        carrier_angle = float(
+            np.linalg.norm(rotation_error(self.carrier_pose[:3, :3], carrier_rotation))
+        )
+        if carrier_error > 0.0005 or carrier_angle > 0.002:
+            self.stop_diagnostics = {
+                "phase": self.phase,
+                "sim_time_s": self.poses[1],
+                "carrier_position_error_m": carrier_error,
+                "carrier_angle_error_rad": carrier_angle,
+                "carrier_xyz_m": carrier_position.tolist(),
+            }
             raise RuntimeError("Carrier moved outside the preflight geometry tolerance")
         for name, arm in self.arms.items():
             q = np.array([self.joints[name][1][key] for key in arm.names])

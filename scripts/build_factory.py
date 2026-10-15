@@ -99,6 +99,7 @@ def arm(
     pin_side_tip_recess_m=0.0,
     housing_end_clearance_m=0.0003,
     pad_inward_extension_m=0.0,
+    wire_contact_length_m=0.020,
 ):
     """Load official robot geometry and model parameters; MELFA masses are placeholders."""
     import subprocess
@@ -142,6 +143,7 @@ def arm(
         pin_side_tip_recess_m=pin_side_tip_recess_m,
         housing_end_clearance_m=housing_end_clearance_m,
         pad_inward_extension_m=pad_inward_extension_m,
+        wire_contact_length_m=wire_contact_length_m,
     )
     if urdf_output is not None:
         ET.indent(robot)
@@ -182,7 +184,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--robot", choices=["ur3e", "melfa_rv4frl"], default="ur3e")
     parser.add_argument("--output", type=Path, default=ROOT / "sim/worlds")
+    parser.add_argument("--conveyor-p-gain", type=float, default=400)
+    parser.add_argument("--wire-contact-length-mm", type=float, default=20)
     parser.add_argument("--gripper-p-gain", type=float, default=1000)
+    parser.add_argument("--left-gripper-p-gain", type=float)
     parser.add_argument("--backstop-gripper", action="store_true")
     parser.add_argument("--capture-gripper", action="store_true")
     parser.add_argument("--pin-side-tip-recess-mm", type=float, default=0)
@@ -201,6 +206,19 @@ def main():
         help="Use two separated contact pads per finger",
     )
     args = parser.parse_args()
+    if not math.isfinite(args.conveyor_p_gain) or args.conveyor_p_gain <= 0:
+        parser.error("--conveyor-p-gain must be positive and finite")
+    if args.left_gripper_p_gain is not None and (
+        not math.isfinite(args.left_gripper_p_gain) or args.left_gripper_p_gain <= 0
+    ):
+        parser.error("--left-gripper-p-gain must be positive and finite")
+    if (
+        not math.isfinite(args.wire_contact_length_mm)
+        or not 20 <= args.wire_contact_length_mm <= 60
+    ):
+        parser.error("--wire-contact-length-mm must be between 20 and 60")
+    if args.wire_contact_length_mm != 20 and not args.left_wire_gripper:
+        parser.error("--wire-contact-length-mm requires --left-wire-gripper")
     if not math.isfinite(args.fence_width_mm) or not 4 <= args.fence_width_mm <= 12:
         parser.error("--fence-width-mm must be finite and between 4 and 12")
     if args.fence_width_mm != 12 and not (args.capture_gripper or args.backstop_gripper):
@@ -241,7 +259,9 @@ def main():
         args.robot,
         args.output / "left_arm.urdf",
         split_contacts=args.split_finger_contacts,
-        gripper_p_gain=args.gripper_p_gain,
+        gripper_p_gain=args.left_gripper_p_gain
+        if args.left_gripper_p_gain is not None
+        else args.gripper_p_gain,
         backstop=args.backstop_gripper and not args.left_wire_gripper,
         capture_fences=args.capture_gripper and not args.left_wire_gripper,
         front_fence_side="both" if args.left_wire_gripper else args.front_fence_side,
@@ -252,6 +272,7 @@ def main():
         if args.left_wire_gripper
         else args.housing_end_clearance_mm / 1000,
         pad_inward_extension_m=0.005 if args.left_wire_gripper else 0,
+        wire_contact_length_m=args.wire_contact_length_mm / 1000,
     )
     arm(
         world,
@@ -287,8 +308,8 @@ def main():
         ("joint-position-controller", "JointPositionController"),
         joint_name="travel",
         topic="/conveyor/cmd",
-        p_gain=400,
-        d_gain=40,
+        p_gain=args.conveyor_p_gain,
+        d_gain=2 * math.sqrt(args.conveyor_p_gain),
         cmd_max=20,
         cmd_min=-20,
     )

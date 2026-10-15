@@ -1,0 +1,35 @@
+{
+  "frame": "world",
+  "position_m": [
+    -0.3,
+    0.05,
+    0.9
+  ],
+  "pose_rpy_rad": [
+    0,
+    1.5707963267948966,
+    0
+  ],
+  "optical_to_world_rotation": [
+    [
+      0,
+      -1,
+      0
+    ],
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      -1
+    ]
+  ],
+  "horizontal_fov_rad": 1.1,
+  "width": 640,
+  "height": 480,
+  "topic": "/factory/rgbd",
+  "note": "Ideal simulator extrinsic calibration. Intrinsics come from CameraInfo; depth from RGB-D."
+}

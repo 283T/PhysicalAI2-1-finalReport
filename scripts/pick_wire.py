@@ -213,6 +213,7 @@ def main():
             report["success"] = False
         finally:
             if session:
+                report["stop_diagnostics"] = session.stop_diagnostics
                 report["contact_publishers"] = session.contact_publishers
                 report["expected_contact_publishers"] = session.expected_contact_publishers
                 report["contact_messages"] = session.contact_count

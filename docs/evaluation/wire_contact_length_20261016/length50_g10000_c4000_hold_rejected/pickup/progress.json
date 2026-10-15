@@ -1,0 +1,27 @@
+{
+  "success": false,
+  "trial_state": "running",
+  "phase": "hold",
+  "world_sha256": "5d9e00569a37e3199d70c6a603d8d74c19e6c410c251846f2d8ece9dce6bf713",
+  "model_sha256": {
+    "left_arm": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fresh RGB-D P3 wire pickup by left MELFA, right arm parked; no connector pickup, dual-arm holding, transport, insertion or release validation",
+  "preclose": {
+    "wire_center_change_m": 0.0010066199363228047,
+    "wire_tangent_change_rad": 0.0008226212691840426,
+    "tool_position_error_m": 0.0006761480547821848,
+    "tool_angle_error_rad": 0.002010080310440013,
+    "success": true
+  },
+  "evaluation_link": "P3_wire_2",
+  "expected_wire_width_m": 0.009005712300672375,
+  "closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.008135722469740047,
+    "maximum_jaw_opening_m": 0.008135722469740047,
+    "expected_housing_width_m": 0.009005712300672375,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  }
+}
