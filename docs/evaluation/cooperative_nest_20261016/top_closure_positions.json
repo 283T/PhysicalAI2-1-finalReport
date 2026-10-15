@@ -1,0 +1,71 @@
+{
+  "scope": "Predicted top pose, equal finger travels only, static boxes; no actual closure",
+  "rows": [
+    {
+      "travel_m": 0.018,
+      "jaw_opening_m": 0.052,
+      "fixture_overlap": null
+    },
+    {
+      "travel_m": 0.012,
+      "jaw_opening_m": 0.04,
+      "fixture_overlap": null
+    },
+    {
+      "travel_m": 0.008,
+      "jaw_opening_m": 0.032,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_corner_1_-1_collision"
+      ]
+    },
+    {
+      "travel_m": 0.004,
+      "jaw_opening_m": 0.024,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_end_support_1_collision"
+      ]
+    },
+    {
+      "travel_m": 0.003,
+      "jaw_opening_m": 0.022,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_corner_-1_-1_collision"
+      ]
+    },
+    {
+      "travel_m": 0.0025,
+      "jaw_opening_m": 0.021,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_corner_-1_-1_collision"
+      ]
+    },
+    {
+      "travel_m": 0.002,
+      "jaw_opening_m": 0.02,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_end_support_-1_collision"
+      ]
+    },
+    {
+      "travel_m": 0.0015,
+      "jaw_opening_m": 0.019,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_end_support_-1_collision"
+      ]
+    },
+    {
+      "travel_m": 0,
+      "jaw_opening_m": 0.016,
+      "fixture_overlap": [
+        "right_arm/right_arm_finger_right",
+        "regrasp_end_support_-1_collision"
+      ]
+    }
+  ]
+}

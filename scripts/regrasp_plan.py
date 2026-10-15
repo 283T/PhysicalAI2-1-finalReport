@@ -7,7 +7,13 @@ import math
 from pathlib import Path
 
 import numpy as np
-from arm_collision_bounds import ArmCollisionBounds, first_overlap, screen_paths, with_parked_arms
+from arm_collision_bounds import (
+    ArmCollisionBounds,
+    FingerStateBounds,
+    first_overlap,
+    screen_paths,
+    with_parked_arms,
+)
 from assembly_case import validate_connection_plan
 from cooperative_pick import prepare_pickup_paths
 from cooperative_transfer import assess_pair_path, paired_path, rigid_pose, socket_poses
@@ -39,11 +45,23 @@ def plan_top_pickup(arms, bounds, world, current, primary, vision_connector_pose
     body = rigid_pose(body)
     parked = {name: np.asarray(q) for name, q in current.items() if name != primary}
     fixtures = FixtureBounds(world, include_carrier=True)
+    raw = bounds[primary]
+    while isinstance(raw, FingerStateBounds):
+        raw = raw.bounds
+    fingers = [j.get("name") for j in raw.joints if j.get("type") == "prismatic"]
+    if len(fingers) != 2 or any(
+        not n.endswith(("finger_left_joint", "finger_right_joint")) for n in fingers
+    ):
+        raise ValueError("Known two-finger closing stroke required")
+    closing_bounds = {
+        **bounds,
+        primary: FingerStateBounds(raw, {n: [-0.0005, 0.0205] for n in fingers}),
+    }
     report = {
         "success": False,
         "attempts": [],
         "connector_pose": body.tolist(),
-        "scope": "Top pickup IK, screened joint transit and fixture checks only. No regrasp contact, grip or insertion proof; live execution requires fresh RGB-D, measured finger bounds and independent seat/grip evaluation",
+        "scope": "Top pickup IK, joint transit, complete mechanical closing stroke and post-close lift box screening only. No regrasp contact, grip or insertion proof; live execution requires fresh RGB-D, measured finger bounds and independent seat/grip evaluation",
     }
     for flipped in (False, True):
         relation = top_grasp_relation(flipped)
@@ -79,12 +97,28 @@ def plan_top_pickup(arms, bounds, world, current, primary, vision_connector_pose
                 transit_router=transit,
             )
             screens = {
-                phase: fixtures.screen(bounds, with_parked_arms(path, parked), margin=0.001)
+                phase: fixtures.screen(
+                    closing_bounds if phase == "lift" else bounds,
+                    with_parked_arms(path, parked),
+                    margin=0.001,
+                )
                 for phase, path in paths.items()
             }
+            closing_state = {primary: paths["approach"][primary][-1], **parked}
+            closure = {
+                "arms": first_overlap(closing_bounds, closing_state),
+                "fixtures": fixtures.first_overlap(closing_bounds, closing_state, margin=0.001),
+                "finger_intervals_m": {n: [-0.0005, 0.0205] for n in fingers},
+            }
+            lift_arm_check = screen_paths(closing_bounds, with_parked_arms(paths["lift"], parked))
             attempt.update(
-                success=all(s["clear"] for s in screens.values()),
+                success=all(s["clear"] for s in screens.values())
+                and closure["arms"] is None
+                and closure["fixtures"] is None
+                and lift_arm_check["clear"],
                 fixtures=screens,
+                closure=closure,
+                post_close_lift_arms=lift_arm_check,
                 branch_selection=selection,
             )
             if attempt["success"]:

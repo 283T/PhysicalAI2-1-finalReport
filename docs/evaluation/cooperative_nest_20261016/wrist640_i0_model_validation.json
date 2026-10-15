@@ -1,0 +1,12 @@
+{
+  "only_changes": {
+    "i_gain": {
+      "old": 40.0,
+      "new": 0.0
+    }
+  },
+  "geometry_initial_state_force_caps_and_PD_unchanged": true,
+  "source_world_sha256": "018fbd40610e9ac88a665c02740a833d32c46393255c38ea37309581cbacee94",
+  "new_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+  "scope": "Prepared comparison, not executed; no physical success claim"
+}

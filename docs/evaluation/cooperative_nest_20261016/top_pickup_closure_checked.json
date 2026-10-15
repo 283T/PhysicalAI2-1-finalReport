@@ -1,0 +1,472 @@
+{
+  "success": false,
+  "attempts": [
+    {
+      "flipped": false,
+      "transit_routes": [
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.9656624876698605,
+              0.8600085945124168,
+              1.4308003090647798,
+              0.0001954916071091519,
+              0.849675746897842,
+              2.7465315366059526
+            ]
+          ],
+          "reason": null,
+          "state_checks": 285,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -2.183340402622873,
+              1.0037828621875073,
+              1.7592689116770295,
+              2.6000458713895456,
+              1.0030052738158757,
+              -0.09272149272966895
+            ],
+            [
+              -1.965594881633636,
+              0.8604841581558377,
+              1.4296956302063049,
+              3.141649792092619,
+              -0.8513938663746862,
+              -0.39488509674602307
+            ]
+          ],
+          "reason": null,
+          "state_checks": 1278,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.9657087501518975,
+              0.858535289828855,
+              1.4331690619755113,
+              -2.0219149920210067e-05,
+              0.8454614067068591,
+              2.7469578862523507
+            ]
+          ],
+          "reason": null,
+          "state_checks": 285,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.9654836753643505,
+              0.8598682005827788,
+              1.4306220622094865,
+              -0.0009082645603436124,
+              0.8510030314520725,
+              2.747844315655049
+            ]
+          ],
+          "reason": null,
+          "state_checks": 286,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        }
+      ],
+      "success": false,
+      "fixtures": {
+        "hover": {
+          "clear": true,
+          "samples": 142,
+          "margin_per_box_m": 0.001
+        },
+        "approach": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.001
+        },
+        "lift": {
+          "clear": false,
+          "fraction": 0.0,
+          "shapes": [
+            "right_arm/right_arm_finger_right",
+            "regrasp_end_support_-1_collision"
+          ]
+        }
+      },
+      "closure": {
+        "arms": null,
+        "fixtures": [
+          "right_arm/right_arm_finger_right",
+          "regrasp_end_support_-1_collision"
+        ],
+        "finger_intervals_m": {
+          "right_arm_finger_left_joint": [
+            -0.0005,
+            0.0205
+          ],
+          "right_arm_finger_right_joint": [
+            -0.0005,
+            0.0205
+          ]
+        }
+      },
+      "post_close_lift_arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "branch_selection": {
+        "seeds": {
+          "right_arm": 0
+        },
+        "screens": {
+          "hover": {
+            "clear": true,
+            "samples": 142,
+            "margin_per_box_m": 0.005
+          },
+          "approach": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "lift": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          }
+        },
+        "rejected_individual_candidates": []
+      }
+    },
+    {
+      "flipped": true,
+      "transit_routes": [
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.965594881633636,
+              0.8604841581558378,
+              1.4296956302063049,
+              5.7138502825829565e-05,
+              0.8513938663746862,
+              -0.39488509674602296
+            ]
+          ],
+          "reason": null,
+          "state_checks": 246,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -2.197206761712156,
+              1.012795925165239,
+              1.7804732913725814,
+              2.5656219806294542,
+              1.1213430989455793,
+              0.6055295874401215
+            ],
+            [
+              -1.9656624876698603,
+              0.8600085945124168,
+              1.43080030906478,
+              3.1417881451969025,
+              -0.849675746897842,
+              2.7465315366059526
+            ]
+          ],
+          "reason": null,
+          "state_checks": 1719,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.9656019888872025,
+              0.8605019836074568,
+              1.429668757016244,
+              0.00011915345085516255,
+              0.8513625718136462,
+              -0.39498056260605013
+            ]
+          ],
+          "reason": null,
+          "state_checks": 246,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        },
+        {
+          "success": true,
+          "path": [
+            [
+              -2.2831645309610695,
+              1.2529506980836744,
+              1.9985704338491834,
+              2.4213485299300395,
+              1.6606111187981776,
+              -0.0729822848470259
+            ],
+            [
+              -1.9655871318592801,
+              0.8605871401972041,
+              1.4295394699009374,
+              -1.1094000800476126e-05,
+              0.8514583453105801,
+              -0.3947895710538273
+            ]
+          ],
+          "reason": null,
+          "state_checks": 246,
+          "seed": 0,
+          "resolution_rad": 0.01,
+          "maximum_nodes": 600,
+          "start_roundoff_correction_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+        }
+      ],
+      "success": false,
+      "fixtures": {
+        "hover": {
+          "clear": true,
+          "samples": 123,
+          "margin_per_box_m": 0.001
+        },
+        "approach": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.001
+        },
+        "lift": {
+          "clear": false,
+          "fraction": 0.0,
+          "shapes": [
+            "right_arm/right_arm_finger_right",
+            "regrasp_end_support_-1_collision"
+          ]
+        }
+      },
+      "closure": {
+        "arms": null,
+        "fixtures": [
+          "right_arm/right_arm_finger_right",
+          "regrasp_end_support_-1_collision"
+        ],
+        "finger_intervals_m": {
+          "right_arm_finger_left_joint": [
+            -0.0005,
+            0.0205
+          ],
+          "right_arm_finger_right_joint": [
+            -0.0005,
+            0.0205
+          ]
+        }
+      },
+      "post_close_lift_arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "branch_selection": {
+        "seeds": {
+          "right_arm": 0
+        },
+        "screens": {
+          "hover": {
+            "clear": true,
+            "samples": 123,
+            "margin_per_box_m": 0.005
+          },
+          "approach": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          },
+          "lift": {
+            "clear": true,
+            "samples": 81,
+            "margin_per_box_m": 0.005
+          }
+        },
+        "rejected_individual_candidates": []
+      }
+    }
+  ],
+  "connector_pose": [
+    [
+      -1.0,
+      -1.2246467991473532e-16,
+      0.0,
+      0.08
+    ],
+    [
+      1.2246467991473532e-16,
+      -1.0,
+      0.0,
+      -0.04
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.23000000000000004
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "scope": "Top pickup IK, joint transit, complete mechanical closing stroke and post-close lift box screening only. No regrasp contact, grip or insertion proof; live execution requires fresh RGB-D, measured finger bounds and independent seat/grip evaluation",
+  "scope_note": "Saved predicted state; complete closure screening added. No physical nest, release, parking, perception or grasp proof.",
+  "source_open_motion_plan_sha256": "d606fc6dd293d3c56a1d3a14d524745edb638afd47545169a4dfd946245a30ae"
+}

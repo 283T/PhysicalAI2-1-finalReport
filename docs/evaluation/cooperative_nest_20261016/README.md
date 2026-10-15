@@ -47,3 +47,11 @@
 同じ指令がGazeboへ届いていることを別のネイティブ購読で確認した。公式 [JointPositionControllerの実装](https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/joint_position_controller/JointPositionController.cc) も調査したが、今回の内部積分値・実トルクを測ったものではない。制御ゲートを広げる代わりに、次は左joint6だけP/Dを変更して比較する。`wrist640_controller_tuning.json` と `wrist640_model_validation.json` は、P320→640、D0.2→0.2828427以外のworld要素と図面・基板・初期配置が変わっていないことを確認した記録。物理結果は次の試験で確定する。
 
 `top_regrasp_parked_left.json` は `regrasp_plan.plan_top_pickup` の予備検査。左を直立・開指、右の退避と治具着座が完了した予定状態を仮定すると、右のホバー・接近・上昇が箱検査を通過した。参照計画のハッシュと仮定を含める。実際の着座、新しい画像、開放・退避・閉指を示す結果ではなく、実行用の目標へ転用しない。
+
+## 上面閉指の追加検査（オフライン）
+
+`top_closure_sweep_preflight.json` は、上記の予定把持姿勢で指の全閉じストロークを検査した結果。右C形状の包絡が治具と重なった。`top_closure_positions.json` は等しい左右の指位置の比較で、開口52／40 mmでは通るが、32 mmから重なり、20 mmハウジングの想定開口でも拒否。余裕ゼロでも指位置2 mmで右指と治具ストッパーの箱が重なった。物理接触の観測ではなく幾何検査。
+
+`top_pickup_closure_checked.json` は、閉指の全ストロークと閉指後上昇の包絡も検査するようプランナーを修正した後の同じ入力の結果。両向きとも拒否した。以前の開指だけの経路通過を、閉指や物理持ち替えの成功へ広げない。閉指中にのみ衝突する反例を回帰テストへ追加した。
+
+`wrist640_i0_controller_tuning.json` と `wrist640_i0_model_validation.json` は、P640比較caseから左joint6のIだけ40→0にした次の比較候補の静的検証。P/D・力上限・幾何・初期状態は同一。まだ物理実行しておらず、性能や原因の証拠ではない。現試験の終了を確認するまで再起動しない。

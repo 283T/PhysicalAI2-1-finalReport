@@ -139,3 +139,5 @@ docker compose run --rm dev python3 scripts/add_workcell_camera.py --case docs/e
 ```bash
 python3 scripts/inspect_grip_progress.py --pickup outputs/dual_nest_wrist640_20261016/pickup --output outputs/grip_progress.json
 ```
+
+上面持ち替えでは開指の経路だけでなく閉指中の全ストロークも検査する。旧C形状は、予定の治具姿勢で開いた状態なら通るが、20 mmハウジングまで閉じる途中で治具支持部・ストッパーの箱と重なることが分かった。`plan_top_pickup` はこの閉指包絡と閉指後上昇も検査し、重なれば拒否する。過去の開指だけの予備結果を閉指成功と扱わない。実際の持ち替えは、指・治具の幾何を解決し、新規画像と実測状態で再検査してから進める。

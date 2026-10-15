@@ -10,11 +10,13 @@ from pathlib import Path
 from evidence_io import write_json_atomic
 
 
-def retune(case, output, arm, index, p_gain, d_gain):
+def retune(case, output, arm, index, p_gain, d_gain, i_gain=None):
     if not 1 <= index <= 6 or arm not in ("left_arm", "right_arm"):
         raise ValueError("Known arm and joint index 1..6 required")
     if not all(math.isfinite(v) and v > 0 for v in (p_gain, d_gain)):
         raise ValueError("Positive finite P and D gains required")
+    if i_gain is not None and (not math.isfinite(i_gain) or i_gain < 0):
+        raise ValueError("Optional I gain must be finite and nonnegative")
     if output.resolve().is_relative_to(case.resolve()):
         raise ValueError("Output must be separate from the source case")
     if output.exists() and any(output.iterdir()):
@@ -33,7 +35,10 @@ def retune(case, output, arm, index, p_gain, d_gain):
     if plugin.findtext("use_velocity_commands", "false") != "false":
         raise ValueError("Force-PID mode required")
     changes = {}
-    for name, value in (("p_gain", p_gain), ("d_gain", d_gain)):
+    selected = [("p_gain", p_gain), ("d_gain", d_gain)]
+    if i_gain is not None:
+        selected.append(("i_gain", i_gain))
+    for name, value in selected:
         element = plugin.find(name)
         changes[name] = {"old": float(element.text), "new": value}
         element.text = str(value)
@@ -47,7 +52,7 @@ def retune(case, output, arm, index, p_gain, d_gain):
             "arm": arm,
             "joint_index": index,
             "changes": changes,
-            "scope": "Only selected P/D gains changed. Geometry, initial placement, I gain, force caps and task acceptance unchanged",
+            "scope": "Only explicitly selected PID gains changed. Geometry, initial placement, force caps and task acceptance unchanged; unspecified I gain preserved",
         },
     )
     write_json_atomic(
@@ -68,8 +73,11 @@ def main():
     parser.add_argument("--joint-index", type=int, required=True)
     parser.add_argument("--p-gain", type=float, required=True)
     parser.add_argument("--d-gain", type=float, required=True)
+    parser.add_argument("--i-gain", type=float)
     args = parser.parse_args()
-    retune(args.case, args.output, args.arm, args.joint_index, args.p_gain, args.d_gain)
+    retune(
+        args.case, args.output, args.arm, args.joint_index, args.p_gain, args.d_gain, args.i_gain
+    )
 
 
 if __name__ == "__main__":

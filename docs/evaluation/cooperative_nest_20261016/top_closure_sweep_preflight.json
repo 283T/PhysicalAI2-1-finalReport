@@ -1,0 +1,8 @@
+{
+  "scope": "Static full closing-stroke geometry at predicted top grip; no physical closure or placement",
+  "arm_overlap": null,
+  "fixture_overlap": [
+    "right_arm/right_arm_finger_right",
+    "regrasp_end_support_-1_collision"
+  ]
+}
