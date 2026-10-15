@@ -1,0 +1,1 @@
+Offline assumed nominal nest pose and zero parked joints, not fresh physical observations. The worker schema is exercised only; no physical success or final acceptance evidence.

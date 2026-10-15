@@ -54,3 +54,17 @@ def inter_arm_pair(first, second):
     return (belongs(first, "left_arm") and belongs(second, "right_arm")) or (
         belongs(first, "right_arm") and belongs(second, "left_arm")
     )
+
+
+def arm_fixture_pair(first, second):
+    def arm(name):
+        return any(
+            part == a or part.startswith(a + "_")
+            for part in name.split("::")
+            for a in ("left_arm", "right_arm")
+        )
+
+    def fixture(name):
+        return bool({"fixtures", "conveyor_carrier"} & set(name.split("::")))
+
+    return arm(first) and fixture(second) or arm(second) and fixture(first)

@@ -1,0 +1,35 @@
+{
+  "scope": "Offline nominal fixtures only; no fresh image, physical grasp, insertion or acceptance success. Request freshness label exercises a schema fixture, not physical evidence. Live controller always acquires new RGB-D.",
+  "instrumentation_only_xml_verified": true,
+  "added_contact_sensors": 9,
+  "added_camera": "nest_camera",
+  "unchanged_base_files": [
+    "inspection_camera.json",
+    "flat_marker_model.json",
+    "board.json",
+    "stepped_profile.json",
+    "drawing.png",
+    "controller_tuning.json",
+    "regrasp_nest.json",
+    "camera_resolution.json",
+    "camera_calibration.json",
+    "physics_refinement.json",
+    "case.json"
+  ],
+  "top_worker_success": true,
+  "socket_worker_success": true,
+  "input_sha256": {
+    "outputs/stepped_hd_shm64_20261016/case/world.sdf": "11b72f99f37b30f7d1221a9bdbc638f9fdb3410a7135aa1039bf9a1b44c9b6ed",
+    "outputs/stepped_nest_contacts_hd_20261016/case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "outputs/stepped_nest_contacts_hd_20261016/case/nest_camera.json": "55f7e5ee7e97e749b381c06bbde45917a43a758ed2be63017878d0820e7471aa",
+    "configs/nest_camera_hd.json": "55f7e5ee7e97e749b381c06bbde45917a43a758ed2be63017878d0820e7471aa",
+    "scripts/top_pickup_live.py": "ca1bbdd708a57b8dbc058639bdab5cca99ff4a4c1fdfcb3e97cdfcaf3b140d60",
+    "scripts/top_pickup_plan.py": "2bc5a4c95c760e33d4799ce14c2af0adfc4d161743e0d9ea17c7e5a0a9504cb2",
+    "scripts/socket_insert_live.py": "97b941f9301e2a680c7cc81023c21fae8304ee059ffc805f304714155d640670",
+    "scripts/socket_plan_worker.py": "3646d216336592b3c6e227db82e7504a528658491890ca059af7f2573ea28b40",
+    "scripts/arm_session.py": "10a4379c5a793cd7e637fea6125fb85ae3a9db7ccc1a6b454a77be87eaf8f7e1",
+    "scripts/connector_contacts.py": "e3ee0702de1f042e0125491b92e8e202d73a4dd0fd2c76440a3f8ca3fc84725d",
+    "scripts/carried_contact_guard.py": "9147960a6e89576d02ff0f2d4ec036d8824385ff58bee6738b689d1d6f1c6831",
+    "scripts/inspection_camera.py": "2e98ff780f33153250c9db0d23d11ebef90af4aefe5c8c9a3c245ef9cd6a8f31"
+  }
+}

@@ -7,6 +7,8 @@ from grasp_validation import assess_relative_grasp
 
 
 def register_grip_guard(session, report, prefix, reference, extract, stream):
+    if prefix in report.get("grip_references", {}):
+        raise ValueError("New grip episode name required; preserve the original closure reference")
     reference = copy.deepcopy(reference)
     report.setdefault("grip_references", {})[prefix] = reference
     summary = {"samples": 0, "maximum_position_shift_m": 0.0, "maximum_angle_shift_rad": 0.0}

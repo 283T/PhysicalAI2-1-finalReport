@@ -1,6 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
+from queue import SimpleQueue
 from unittest.mock import Mock, patch
 
 import numpy as np
@@ -10,6 +11,18 @@ from arm_session import ArmSession
 
 
 class ArmSessionTeardownTest(unittest.TestCase):
+    def test_native_contact_callbacks_defer_failures_to_controller_thread(self):
+        session = ArmSession.__new__(ArmSession)
+        session.contact_events = SimpleQueue()
+        guard = Mock()
+        session.contact_guards = [guard]
+        event = ("wire_harness_multi::P3::housing", "fixtures::board::socket_J2_0", 12, "insert")
+        session.contact_events.put(event)
+        guard.observe.side_effect = RuntimeError("unintended payload contact")
+        with self.assertRaisesRegex(RuntimeError, "unintended payload"):
+            session.evaluate_contacts()
+        guard.observe.assert_called_once_with(*event)
+
     def test_measured_collision_interval_is_enforced_at_runtime(self):
         session = ArmSession.__new__(ArmSession)
         session.motion_fingers = {"right_arm": np.array([[0.0175, 0.0185], [0.0175, 0.0185]])}

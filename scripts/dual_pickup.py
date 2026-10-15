@@ -5,6 +5,7 @@ import gzip
 import hashlib
 import json
 import shutil
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import numpy as np
@@ -14,6 +15,7 @@ from arm_kinematics import rotation_error
 from arm_observation import acquire_observation
 from arm_session import ArmSession
 from assembly_case import validate_connection_plan
+from connector_contacts import validate_connector_sensors
 from cooperative_pick import prepare_pickup_paths, shared_lift
 from cooperative_transfer import rigid_pose
 from evidence_io import write_json_atomic
@@ -25,10 +27,13 @@ from grasp_validation import (
 from grip_guard import register_grip_guard
 from gripper_model import measured_rest_gap
 from held_wire_nest import place_in_nest
+from inspection_camera import validate_world_camera
 from nest_aftercare import release_support_and_park
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
+from socket_insert_live import insert_after_top_pickup
+from top_pickup_live import top_pickup
 from wire_contact_profile import validate_deep_wire_profile
 from wire_preshape import assess_preshape, closing_support_bounds, preshape_target
 
@@ -291,6 +296,11 @@ def main():
     parser.add_argument("--wire-tip-depth-mm", type=float, default=6)
     parser.add_argument("--place-in-nest", action="store_true")
     parser.add_argument("--after-nest-parking", action="store_true")
+    parser.add_argument("--top-regrasp", action="store_true")
+    parser.add_argument("--insert-after-regrasp", action="store_true")
+    parser.add_argument(
+        "--nest-calibration", type=Path, default=Path("configs/nest_camera_hd.json")
+    )
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
@@ -298,6 +308,15 @@ def main():
         parser.error("--rigid-nest-transfer requires --place-in-nest")
     if args.after_nest_parking and not args.place_in_nest:
         parser.error("--after-nest-parking requires --place-in-nest")
+    if args.top_regrasp and not args.after_nest_parking:
+        parser.error("--top-regrasp requires --after-nest-parking")
+    if args.insert_after_regrasp and not args.top_regrasp:
+        parser.error("--insert-after-regrasp requires --top-regrasp")
+    if args.insert_after_regrasp:
+        validate_connector_sensors(ET.parse(args.world).getroot().find("world"), "P3")
+    if args.top_regrasp:
+        camera = json.loads(args.nest_calibration.read_text())
+        validate_world_camera(ET.parse(args.world).getroot().find("world"), camera)
     if args.feedback_paced_transfer and not args.rigid_nest_transfer:
         parser.error("--feedback-paced-transfer requires --rigid-nest-transfer")
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
@@ -339,12 +358,16 @@ def main():
             "deep_contact_profile": deep_profile,
             "place_in_nest": args.place_in_nest,
             "after_nest_parking": args.after_nest_parking,
+            "top_regrasp": args.top_regrasp,
+            "insert_after_regrasp": args.insert_after_regrasp,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
             "rigid_nest_transfer": args.rigid_nest_transfer,
             "feedback_paced_transfer": args.feedback_paced_transfer,
         },
         "world_sha256": hashlib.sha256(args.world.read_bytes()).hexdigest(),
+        "board_sha256": hashlib.sha256((case / "board.json").read_bytes()).hexdigest(),
+        "drawing_plan_sha256": hashlib.sha256(args.drawing_plan.read_bytes()).hexdigest(),
         "model_sha256": {
             n: hashlib.sha256((args.models / (n + ".urdf")).read_bytes()).hexdigest()
             for n in ["left_arm", "right_arm"]
@@ -366,6 +389,7 @@ def main():
             (args.output / "bridge.log").open("w") as log,
             gzip.open(args.output / "grip_observations.jsonl.gz", "wt") as guard_stream,
             gzip.open(args.output / "seat_observations.jsonl.gz", "wt") as seat_stream,
+            gzip.open(args.output / "carried_contacts.jsonl.gz", "wt") as contact_stream,
         ):
             session = ArmSession(args.world, args.models, log)
             session.wait_ready()
@@ -373,8 +397,27 @@ def main():
             if args.place_in_nest:
                 place_in_nest(session, args, report, checkpoint, guards)
             if args.after_nest_parking:
-                release_support_and_park(session, args, report, checkpoint, guards, seat_stream)
+                nest_guard = release_support_and_park(
+                    session, args, report, checkpoint, guards, seat_stream
+                )
                 report["success"] = bool(report.get("nest_aftercare_complete"))
+            if args.top_regrasp:
+                top_relation, top_guard = top_pickup(
+                    session, args, report, checkpoint, nest_guard, guard_stream
+                )
+                report["success"] = bool(report.get("top_pickup_complete"))
+            if args.insert_after_regrasp:
+                insert_after_top_pickup(
+                    session,
+                    args,
+                    report,
+                    checkpoint,
+                    top_relation,
+                    top_guard,
+                    seat_stream,
+                    contact_stream,
+                )
+                report["success"] = bool(report.get("single_connector_complete"))
     except Exception as error:
         if session:
             report["phase"] = session.phase

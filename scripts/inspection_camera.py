@@ -4,6 +4,40 @@ import copy
 
 import numpy as np
 from arm_kinematics import transform
+from fixture_collision_bounds import sdf_pose
+
+
+def validate_world_camera(world, calibration):
+    validate_calibration(calibration)
+    matches = [
+        (model, link, sensor)
+        for model in world.findall("model")
+        for link in model.findall("link")
+        for sensor in link.findall("sensor")
+        if sensor.findtext("topic") == calibration["topic"]
+    ]
+    if len(matches) != 1:
+        raise ValueError("Exactly one matching live camera required")
+    model, link, sensor = matches[0]
+    actual = sdf_pose(model) @ sdf_pose(link) @ sdf_pose(sensor)
+    expected = transform(calibration["position_m"], calibration["pose_rpy_rad"])
+    if (
+        model.findtext("static") != "true"
+        or sensor.get("type") != "rgbd_camera"
+        or not np.allclose(actual, expected, atol=1e-8, rtol=0)
+        or not np.isclose(
+            float(sensor.findtext("camera/horizontal_fov", "nan")),
+            calibration["horizontal_fov_rad"],
+            atol=1e-8,
+            rtol=0,
+        )
+        or any(
+            int(sensor.findtext("camera/image/" + key, "0")) != calibration[key]
+            for key in ("width", "height")
+        )
+    ):
+        raise ValueError("World camera pose, optics or resolution differs from calibration")
+    return True
 
 
 def validate_calibration(calibration):

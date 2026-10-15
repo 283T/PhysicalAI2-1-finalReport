@@ -11,6 +11,19 @@ from grip_guard import end_grip_for_release, register_grip_guard
 
 
 class GripGuardTest(unittest.TestCase):
+    def test_duplicate_episode_cannot_overwrite_original_reference(self):
+        report = {"grip_references": {"primary": {"original": True}}}
+        with self.assertRaises(ValueError):
+            register_grip_guard(
+                SimpleNamespace(evaluation_guards=[]),
+                report,
+                "primary",
+                {},
+                lambda row: row,
+                io.StringIO(),
+            )
+        self.assertEqual(report["grip_references"]["primary"], {"original": True})
+
     def test_intentional_release_ends_only_that_arm_without_erasing_evidence(self):
         primary, support = object(), object()
         session = SimpleNamespace(

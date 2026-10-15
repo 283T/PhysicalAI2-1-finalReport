@@ -4,10 +4,24 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from arm_contacts import CONTACT_TOPIC, accumulate_contact, add_arm_contact_sensors, inter_arm_pair
+from arm_contacts import (
+    CONTACT_TOPIC,
+    accumulate_contact,
+    add_arm_contact_sensors,
+    arm_fixture_pair,
+    inter_arm_pair,
+)
 
 
 class ArmContactsTests(unittest.TestCase):
+    def test_fixture_collision_gate_distinguishes_payload_telemetry(self):
+        for fixture in ("fixtures::board::collision", "conveyor_carrier::carrier::pallet"):
+            for arm in ("left_arm::finger::collision", "right_arm_wrist::collision"):
+                self.assertTrue(arm_fixture_pair(arm, fixture))
+                self.assertTrue(arm_fixture_pair(fixture, arm))
+            self.assertFalse(arm_fixture_pair("wire_harness_multi::P3::housing", fixture))
+            self.assertFalse(arm_fixture_pair("other_left_arm::collision", fixture))
+
     def test_contacts_are_grouped_by_phase_and_unordered_pair(self):
         records = {}
         accumulate_contact(records, "approach", "finger", "tray", [0.001], 1.0)

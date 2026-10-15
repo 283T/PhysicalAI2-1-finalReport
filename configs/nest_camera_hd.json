@@ -1,0 +1,35 @@
+{
+  "frame": "world",
+  "position_m": [
+    0.55,
+    -0.2,
+    0.45
+  ],
+  "pose_rpy_rad": [
+    0,
+    0.41711172323264734,
+    2.813472758574488
+  ],
+  "optical_to_world_rotation": [
+    [
+      0.32226379780430414,
+      0.3835082321448673,
+      -0.8654868459438683
+    ],
+    [
+      0.9466499060501441,
+      -0.13055599392165687,
+      0.29463381989578474
+    ],
+    [
+      0,
+      -0.9142628551616033,
+      -0.40512150235670424
+    ]
+  ],
+  "horizontal_fov_rad": 1.1,
+  "width": 1920,
+  "height": 1440,
+  "topic": "/factory/nest_rgbd",
+  "note": "Ideal HD fixed view of the passive nest; live visibility and pose accuracy still require measurement."
+}

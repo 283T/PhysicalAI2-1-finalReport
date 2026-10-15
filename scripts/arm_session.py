@@ -7,6 +7,7 @@ robot flange poses may be used for control. No object pose command is provided.
 import subprocess
 import time
 import xml.etree.ElementTree as ET
+from queue import Empty, SimpleQueue
 
 import numpy as np
 import rclpy
@@ -17,7 +18,7 @@ from arm_collision_bounds import (
     screen_paths,
     with_parked_arms,
 )
-from arm_contacts import CONTACT_TOPIC, accumulate_contact, inter_arm_pair
+from arm_contacts import CONTACT_TOPIC, accumulate_contact, arm_fixture_pair, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints
 from command_refresh import CommandRefresh
@@ -49,6 +50,8 @@ class ArmSession:
         self.joints, self.poses = {}, None
         self.phase = "startup"
         self.contacts, self.contact_count, self.unintended = {}, 0, []
+        self.contact_guards = []
+        self.contact_events = SimpleQueue()
         self.stop_diagnostics = None
         self.evaluation_guards = []
         self.motion_fingers = None
@@ -113,14 +116,26 @@ class ArmSession:
                 c.depth,
                 msg.header.stamp.sec + msg.header.stamp.nsec / 1e9,
             )
-            fixture = any(
-                token in name.split("::")
-                for name in (first, second)
-                for token in ("fixtures", "conveyor_carrier")
-            )
-            if inter_arm_pair(first, second) or fixture:
+            if inter_arm_pair(first, second) or arm_fixture_pair(first, second):
                 self.unintended.append([first, second])
                 del self.unintended[20:]
+            if self.contact_guards:
+                self.contact_events.put(
+                    (first, second, msg.header.stamp.sec + msg.header.stamp.nsec / 1e9, self.phase)
+                )
+
+    def evaluate_contacts(self):
+        # Native transport callbacks only enqueue. Evaluate/write evidence on
+        # the controller thread so failures propagate and streams stay scoped.
+        while True:
+            try:
+                event = self.contact_events.get_nowait()
+            except Empty:
+                break
+            for guard in self.contact_guards:
+                guard.observe(*event)
+        for guard in self.contact_guards:
+            guard.check()
 
     def snapshot(self):
         now = time.monotonic()
@@ -226,6 +241,8 @@ class ArmSession:
             raise RuntimeError("Lost arm contact publishers")
         if self.unintended and not teardown:
             raise RuntimeError("Unintended arm/fixture contact")
+        if not teardown:
+            self.evaluate_contacts()
         if self.snapshot() is None and not teardown:
             # Drain queued feedback before declaring loss; never move on stale state.
             deadline = time.monotonic() + 2
@@ -256,6 +273,7 @@ class ArmSession:
             self.history.append(row)
         if row and not teardown:
             self.check_finger_intervals(row)
+            self.evaluate_contacts()
             for guard in self.evaluation_guards:
                 guard(row)
         return row

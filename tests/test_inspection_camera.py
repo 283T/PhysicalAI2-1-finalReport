@@ -9,10 +9,36 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from inspection_camera import add_inspection_camera, validate_calibration
+from inspection_camera import add_inspection_camera, validate_calibration, validate_world_camera
 
 
 class InspectionCameraTests(unittest.TestCase):
+    def test_live_camera_must_match_full_calibration_before_actuation(self):
+        data = self.calibration()
+        world = ET.fromstring(
+            '<world><model name="camera"><static>true</static><link name="camera_link">'
+            '<pose>0 0 0 0 0 0</pose><sensor name="rgbd" type="rgbd_camera">'
+            "<topic>/factory/inspection_rgbd</topic><camera><horizontal_fov>1.1</horizontal_fov>"
+            "<image><width>640</width><height>480</height></image></camera></sensor></link></model></world>"
+        )
+        world.find("model/link/pose").text = " ".join(
+            map(str, data["position_m"] + data["pose_rpy_rad"])
+        )
+        for key in ("width", "height"):
+            world.find("model/link/sensor/camera/image/" + key).text = str(data[key])
+        world.find("model/link/sensor/camera/horizontal_fov").text = str(data["horizontal_fov_rad"])
+        self.assertTrue(validate_world_camera(world, data))
+        for path, text in (
+            ("link/pose", "0 0 0 0 0 0"),
+            ("static", "false"),
+            ("link/sensor/camera/horizontal_fov", "0.9"),
+            ("link/sensor/camera/image/width", "1"),
+        ):
+            changed = copy.deepcopy(world)
+            changed.find("model/" + path).text = text
+            with self.assertRaises(ValueError):
+                validate_world_camera(changed, data)
+
     def calibration(self):
         return json.loads((ROOT / "configs/inspection_camera.json").read_text())
 
