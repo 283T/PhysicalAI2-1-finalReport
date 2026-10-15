@@ -95,6 +95,26 @@
           "maximum_angle_shift_rad": 0.009699863686951086
         }
       }
+    },
+    {
+      "archive": "left_wrist640_pacing_stalled",
+      "trial_state": "finished",
+      "success": false,
+      "phase": "nest_transfer_2",
+      "error": "Robot tracking did not converge in nest_transfer_2",
+      "dual_pickup_success": true,
+      "grip_guard_summaries": {
+        "primary": {
+          "samples": 63040,
+          "maximum_position_shift_m": 0.0019075817308149483,
+          "maximum_angle_shift_rad": 0.010258004715917111
+        },
+        "support": {
+          "samples": 55281,
+          "maximum_position_shift_m": 0.00045471525412058093,
+          "maximum_angle_shift_rad": 0.004030079478981522
+        }
+      }
     }
   ]
 }

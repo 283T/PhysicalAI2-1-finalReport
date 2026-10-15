@@ -1,0 +1,325 @@
+{
+  "scope": "Empty-gripper controller comparison only; no grasp, transport or assembly success",
+  "trials": [
+    {
+      "archive": "i40",
+      "success": true,
+      "trial_state": "finished",
+      "error": null,
+      "source_world_sha256": "018fbd40610e9ac88a665c02740a833d32c46393255c38ea37309581cbacee94",
+      "world_sha256": "5b6b51df8e48c11744ad0c8860de6eea6ee97ef26f4d6c4473cdd234778a8519",
+      "max_step_size_s": null,
+      "steps": [
+        {
+          "target_rad": 0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.005136614024487042,
+              "final_error_rad": 0.004828391982776958,
+              "within_joint_gate": true,
+              "samples": 62
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.006000114920721555,
+              "final_error_rad": 0.005298807242213301,
+              "within_joint_gate": true,
+              "samples": 62
+            }
+          }
+        },
+        {
+          "target_rad": -0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.006251651064696252,
+              "final_error_rad": 0.005874317767227716,
+              "within_joint_gate": true,
+              "samples": 63
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005995451755344043,
+              "final_error_rad": 0.005294029388908661,
+              "within_joint_gate": true,
+              "samples": 63
+            }
+          }
+        },
+        {
+          "target_rad": 0.0,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.004772931842125016,
+              "final_error_rad": 0.004488496339533005,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005991614057011173,
+              "final_error_rad": 0.005296843257760283,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        }
+      ]
+    },
+    {
+      "archive": "i0",
+      "success": false,
+      "trial_state": "finished",
+      "error": "Robot tracking did not converge in wrist_step_0",
+      "source_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+      "world_sha256": "a9cee26402f130fa1d9b69aafe116b4630ec5008886ba7dd3a36e75d14eb78fa",
+      "max_step_size_s": null,
+      "steps": []
+    },
+    {
+      "archive": "dt05",
+      "success": true,
+      "trial_state": "finished",
+      "error": null,
+      "source_world_sha256": "018fbd40610e9ac88a665c02740a833d32c46393255c38ea37309581cbacee94",
+      "world_sha256": "bd441ebd6275c02fbaab9117845821395ff8e84e86b6270f247d374733104a49",
+      "max_step_size_s": 0.0005,
+      "steps": [
+        {
+          "target_rad": 0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.004037713526737,
+              "final_error_rad": 0.0037937665066546528,
+              "within_joint_gate": true,
+              "samples": 60
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005998632987844227,
+              "final_error_rad": 0.005296804906805154,
+              "within_joint_gate": true,
+              "samples": 60
+            }
+          }
+        },
+        {
+          "target_rad": -0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.004675735399998486,
+              "final_error_rad": 0.0043964000742325315,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005997002614093368,
+              "final_error_rad": 0.005302986667041015,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        },
+        {
+          "target_rad": 0.0,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.00433561681932357,
+              "final_error_rad": 0.004077237652823026,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005993209576768966,
+              "final_error_rad": 0.005297966374941625,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        }
+      ]
+    },
+    {
+      "archive": "i0_dt05",
+      "success": true,
+      "trial_state": "finished",
+      "error": null,
+      "source_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+      "world_sha256": "3823a56477b25f1e68a561a3cb96beec12602d052cac0b5e7d9602a082d4af0c",
+      "max_step_size_s": 0.0005,
+      "steps": [
+        {
+          "target_rad": 0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.008315411915717122,
+              "final_error_rad": 0.008315407111775142,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005994120941350177,
+              "final_error_rad": 0.005300438574518007,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        },
+        {
+          "target_rad": -0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.008315386927746436,
+              "final_error_rad": 0.008315382114044097,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005985887817981865,
+              "final_error_rad": 0.005290511817929722,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        },
+        {
+          "target_rad": 0.0,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.008315428109268715,
+              "final_error_rad": 0.008315423205163779,
+              "within_joint_gate": true,
+              "samples": 59
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005999186965068726,
+              "final_error_rad": 0.005293643382561035,
+              "within_joint_gate": true,
+              "samples": 59
+            }
+          }
+        }
+      ]
+    },
+    {
+      "archive": "i0_dt025",
+      "success": true,
+      "trial_state": "finished",
+      "error": null,
+      "source_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+      "world_sha256": "f813d8038930b2f0301b5bba0c63152c4837c433a75bfff5088ded2db2ef9a7e",
+      "max_step_size_s": 0.00025,
+      "steps": [
+        {
+          "target_rad": 0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.005074077351338822,
+              "final_error_rad": 0.005074074940844449,
+              "within_joint_gate": true,
+              "samples": 68
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.0059943530741886075,
+              "final_error_rad": 0.00529864146239048,
+              "within_joint_gate": true,
+              "samples": 68
+            }
+          }
+        },
+        {
+          "target_rad": -0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.005074902025315554,
+              "final_error_rad": 0.005074899584608231,
+              "within_joint_gate": true,
+              "samples": 77
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.006007405199686726,
+              "final_error_rad": 0.005301884584642862,
+              "within_joint_gate": true,
+              "samples": 77
+            }
+          }
+        },
+        {
+          "target_rad": 0.0,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.005073149485367627,
+              "final_error_rad": 0.005073147054725031,
+              "within_joint_gate": true,
+              "samples": 66
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.005996244546929724,
+              "final_error_rad": 0.005295008122981583,
+              "within_joint_gate": true,
+              "samples": 66
+            }
+          }
+        }
+      ]
+    },
+    {
+      "archive": "both_i0_dt01",
+      "success": true,
+      "trial_state": "finished",
+      "error": null,
+      "source_world_sha256": "b47e215fc70cdd5c841e13b27d543c02e7f57a9229b0a1a67f6ee65168de270a",
+      "world_sha256": "f2721ea2e09c623aa865df8f24ba1199a5295eb79044e25cd921a98b9872c1ce",
+      "max_step_size_s": 0.0001,
+      "steps": [
+        {
+          "target_rad": 0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.003025488710420396,
+              "final_error_rad": 0.003025487733887472,
+              "within_joint_gate": true,
+              "samples": 169
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.003767866184938448,
+              "final_error_rad": 0.003767864731316163,
+              "within_joint_gate": true,
+              "samples": 169
+            }
+          }
+        },
+        {
+          "target_rad": -0.04,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.0030194370779098798,
+              "final_error_rad": 0.003019032254915857,
+              "within_joint_gate": true,
+              "samples": 166
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.003763449249490146,
+              "final_error_rad": 0.003763153960219215,
+              "within_joint_gate": true,
+              "samples": 166
+            }
+          }
+        },
+        {
+          "target_rad": 0.0,
+          "arms": {
+            "left_arm": {
+              "maximum_error_rad_last_second": 0.0030237835552298,
+              "final_error_rad": 0.0030234518217730406,
+              "within_joint_gate": true,
+              "samples": 250
+            },
+            "right_arm": {
+              "maximum_error_rad_last_second": 0.003766353903725914,
+              "final_error_rad": 0.003766096110800939,
+              "within_joint_gate": true,
+              "samples": 250
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

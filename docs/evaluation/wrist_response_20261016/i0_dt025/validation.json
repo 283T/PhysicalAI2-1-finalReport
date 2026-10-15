@@ -1,0 +1,189 @@
+{
+  "trial_state": "finished",
+  "success": true,
+  "scope": "Empty-gripper wrist response with original arms, fixtures and controller limits; harness and cameras removed. No grasp, transport or assembly success",
+  "source_world_sha256": "f30d362ca1a54683e2253dbe9b7530178e189424395dcf25f6972b5b96960a9a",
+  "world_sha256": "f813d8038930b2f0301b5bba0c63152c4837c433a75bfff5088ded2db2ef9a7e",
+  "model_sha256": {
+    "left_arm": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "joint_index": 6,
+  "targets_rad": [
+    0.04,
+    -0.04,
+    0.0
+  ],
+  "source_max_step_size_s": 0.001,
+  "max_step_size_s": 0.00025,
+  "steps": [
+    {
+      "target_rad": 0.04,
+      "arms": {
+        "left_arm": {
+          "maximum_error_rad_last_second": 0.005074077351338822,
+          "final_error_rad": 0.005074074940844449,
+          "within_joint_gate": true,
+          "samples": 68
+        },
+        "right_arm": {
+          "maximum_error_rad_last_second": 0.0059943530741886075,
+          "final_error_rad": 0.00529864146239048,
+          "within_joint_gate": true,
+          "samples": 68
+        }
+      }
+    },
+    {
+      "target_rad": -0.04,
+      "arms": {
+        "left_arm": {
+          "maximum_error_rad_last_second": 0.005074902025315554,
+          "final_error_rad": 0.005074899584608231,
+          "within_joint_gate": true,
+          "samples": 77
+        },
+        "right_arm": {
+          "maximum_error_rad_last_second": 0.006007405199686726,
+          "final_error_rad": 0.005301884584642862,
+          "within_joint_gate": true,
+          "samples": 77
+        }
+      }
+    },
+    {
+      "target_rad": 0.0,
+      "arms": {
+        "left_arm": {
+          "maximum_error_rad_last_second": 0.005073149485367627,
+          "final_error_rad": 0.005073147054725031,
+          "within_joint_gate": true,
+          "samples": 66
+        },
+        "right_arm": {
+          "maximum_error_rad_last_second": 0.005996244546929724,
+          "final_error_rad": 0.005295008122981583,
+          "within_joint_gate": true,
+          "samples": 66
+        }
+      }
+    }
+  ],
+  "phase": "final_open",
+  "stop_diagnostics": null,
+  "preflights": [
+    {
+      "phase": "wrist_step_0",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.01751808211467574,
+            0.01851808211467574
+          ],
+          [
+            0.017517779071026873,
+            0.018517779071026873
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017546859428525678,
+            0.01854685942852568
+          ],
+          [
+            0.017557153557035528,
+            0.01855715355703553
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "wrist_step_1",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017518082117597693,
+            0.018518082117597694
+          ],
+          [
+            0.017517779074128638,
+            0.01851777907412864
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017546859443176462,
+            0.018546859443176463
+          ],
+          [
+            0.017557153562869236,
+            0.018557153562869237
+          ]
+        ]
+      }
+    },
+    {
+      "phase": "wrist_step_2",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.01751808212082996,
+            0.018518082120829962
+          ],
+          [
+            0.01751777907764334,
+            0.01851777907764334
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017546859458073747,
+            0.018546859458073748
+          ],
+          [
+            0.017557153565141453,
+            0.018557153565141454
+          ]
+        ]
+      }
+    }
+  ],
+  "contacts": [],
+  "unintended_contacts": []
+}
