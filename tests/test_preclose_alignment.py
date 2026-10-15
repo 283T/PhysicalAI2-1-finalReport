@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -6,14 +7,19 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_kinematics import axis_rotation, transform
-from preclose_alignment import correction_path, desired_tool_pose
+from preclose_alignment import (
+    correction_budget,
+    correction_path,
+    correction_tracking,
+    desired_tool_pose,
+)
 
 
 class LocalArm:
     def forward(self, q):
         return transform(q[:3], [0, 0, q[3]])
 
-    def inverse(self, target, seed, attempts):
+    def inverse(self, target, seed, attempts, **tolerances):
         assert attempts == 1
         return {"success": True, "q_rad": [*target[:3, 3], np.arctan2(target[1, 0], target[0, 0])]}
 
@@ -33,6 +39,37 @@ class PrecloseAlignmentTests(unittest.TestCase):
         np.testing.assert_allclose(LocalArm().forward(path[-1]), goal, atol=1e-8)
         self.assertLessEqual(np.max(np.abs(np.diff(path, axis=0))), 0.011)
 
+    def test_retries_share_translation_and_rotation_budget(self):
+        first = {"arm": transform([0.003, 0, 0], [0, 0, 0.04])}
+        used = correction_budget({}, {"arm": np.eye(4)}, first)
+        second = {"arm": transform([0.002, 0, 0], [0, 0, 0.01])}
+        used = correction_budget(used, first, second)
+        self.assertAlmostEqual(used["arm"]["translation_m"], 0.004)
+        self.assertAlmostEqual(used["arm"]["rotation_rad"], 0.07)
+        # Returning to the starting pose still consumes distance; retries cannot reset it.
+        with self.assertRaises(ValueError):
+            correction_budget(used, second, {"arm": np.eye(4)})
+        with self.assertRaises(ValueError):
+            correction_budget(used, second, {"arm": transform([0.002, 0, 0], [0, 0, 0.05])})
+
+    def test_tracking_failure_is_distinct_from_permission_to_reinspect(self):
+        result = correction_tracking(0.00087, 0.00554, 0.00556, 0.000001)
+        self.assertTrue(result["within_move_limits"])
+        self.assertFalse(result["precision_reached"])
+        self.assertTrue(correction_tracking(0.0002, 0.002, 0.001, 0.000001)["precision_reached"])
+        for index, value in enumerate((0.002, 0.025, 0.01, 0.001)):
+            errors = [0.0001, 0.001, 0.0001, 0.00001]
+            errors[index] = value
+            with self.subTest(index=index):
+                self.assertFalse(correction_tracking(*errors)["within_move_limits"])
+        self.assertFalse(correction_tracking(float("nan"), 0, 0, 0)["within_move_limits"])
+
+    def test_numpy_tracking_values_serialize_without_losing_failed_precision(self):
+        values = np.array([0.00087, 0.00554, 0.00556, 0.000001])
+        result = json.loads(json.dumps(correction_tracking(*values)))
+        self.assertIs(result["within_move_limits"], True)
+        self.assertIs(result["precision_reached"], False)
+
     def test_reject_large_corrections(self):
         for goal in (transform([0.006, 0, 0]), transform([0, 0, 0], [0, 0, 0.11])):
             with self.assertRaises(ValueError):
@@ -42,7 +79,7 @@ class PrecloseAlignmentTests(unittest.TestCase):
         for success, value in ((True, 3), (False, 0), (True, float("nan"))):
 
             class BrokenArm(LocalArm):
-                def inverse(self, target, seed, attempts):
+                def inverse(self, target, seed, attempts, **tolerances):
                     return {"success": success, "q_rad": [value, 0, 0, 0]}
 
             with self.subTest(success=success, value=value), self.assertRaises(ValueError):

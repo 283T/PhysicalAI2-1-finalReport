@@ -48,6 +48,32 @@ class ArmKinematicsTest(unittest.TestCase):
         self.assertTrue(((q >= self.arm.limits[:, 0]) & (q <= self.arm.limits[:, 1])).all())
         np.testing.assert_allclose(self.arm.forward(q)[:3, 3], target[:3, 3], atol=0.001)
 
+    def test_strict_inverse_does_not_accept_coarse_solution(self):
+        target = self.arm.forward([1.1, -0.6])
+        coarse = self.arm.inverse(target)
+        strict = self.arm.inverse(
+            target,
+            seed=coarse["q_rad"],
+            attempts=1,
+            position_tolerance=0.0001,
+            angle_tolerance=0.002,
+        )
+        self.assertTrue(strict["success"])
+        self.assertLess(
+            np.linalg.norm(self.arm.forward(strict["q_rad"])[:3, 3] - target[:3, 3]), 0.0001
+        )
+        self.assertLess(
+            np.linalg.norm(
+                rotation_error(self.arm.forward(strict["q_rad"])[:3, :3], target[:3, :3])
+            ),
+            0.002,
+        )
+        for value in (0, -1, float("nan"), float("inf")):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                self.arm.inverse(target, position_tolerance=value)
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                self.arm.inverse(target, angle_tolerance=value)
+
     def test_unreachable_pose_is_reported_as_failure(self):
         result = self.arm.inverse(transform([3, 0, 0]), attempts=3)
         self.assertFalse(result["success"])

@@ -23,6 +23,7 @@ from cooperative_pick import (
     shared_lift,
     upright_waist_path,
 )
+from evidence_io import write_json_atomic
 from fixture_collision_bounds import FixtureBounds
 from grasp_validation import (
     assess_hold,
@@ -38,7 +39,12 @@ from gz.msgs10.pose_v_pb2 import Pose_V
 from gz.transport13 import Node
 from plan_nest_transfer import plan_to_nest
 from plan_reach import load_arms, plan_reach
-from preclose_alignment import correction_path, desired_tool_pose
+from preclose_alignment import (
+    correction_budget,
+    correction_path,
+    correction_tracking,
+    desired_tool_pose,
+)
 from processes import stop_process
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import JointState
@@ -127,6 +133,7 @@ def main():
     )
     report = {
         "success": False,
+        "trial_state": "running",
         "plug_id": args.plug,
         "support_plug": args.support_plug,
         "inspection_timeout_s": args.inspection_timeout,
@@ -138,6 +145,11 @@ def main():
             for name in selected
         },
     }
+
+    def checkpoint():
+        write_json_atomic(args.output / "progress.json", report)
+
+    checkpoint()
     sensor = ET.parse(args.world).getroot().find("world/model[@name='overhead_camera']/link/sensor")
     camera_service = sensor.findtext("topic") + "/set_rate"
     original_rate = float(sensor.findtext("update_rate"))
@@ -348,6 +360,10 @@ def main():
 
     def dwell(phase, duration):
         current_phase[0] = phase
+        report["phase"] = phase
+        # Evidence failure must never prevent the final open-jaw teardown command.
+        if phase != "final_open":
+            checkpoint()
         print(f"{phase}: start ({duration:g} simulated seconds)", flush=True)
         rows, last = [], None
         start = truth[0][4]
@@ -368,6 +384,8 @@ def main():
 
     def inspect_pose(phase, rows, *, evaluate=False):
         current_phase[0] = phase
+        report["phase"] = phase
+        checkpoint()
         output = args.output / phase
         command = [
             "python3",
@@ -413,9 +431,13 @@ def main():
             finally:
                 stop_process(process, group=True)
 
-    def move(phase, targets, *, straight=False, ready_paths=None, joint_motion=False):
+    def move(
+        phase, targets, *, straight=False, ready_paths=None, joint_motion=False, precise=False
+    ):
         current_phase[0] = phase
         nonlocal target_q
+        report["phase"] = phase
+        checkpoint()
         print(f"{phase}: preflight and move", flush=True)
         deadline = time.monotonic() + 5
         observation = sample()
@@ -482,7 +504,8 @@ def main():
                 )
         start = truth[0][4]
         wall_start = time.monotonic()
-        stable, last = 0, None
+        stable, coarse_stable, last = 0, 0, None
+        tracking = {}
         error = angle = float("inf")
         while truth[0][4] - start < duration + 15 and time.monotonic() - wall_start < 180:
             t = min(1, (truth[0][4] - start) / duration)
@@ -504,8 +527,9 @@ def main():
                 if not all(check["success"] for check in checks.values()):
                     raise RuntimeError("Tool-relative slip detected in " + phase)
             if observation is None or t < 1:
+                stable = coarse_stable = 0
                 continue
-            valid = True
+            tracking = {}
             errors = []
             for name, arm in selected.items():
                 actual = arm.forward(observation["arms"][name]["q_rad"])
@@ -513,18 +537,43 @@ def main():
                 error = np.linalg.norm(targets[name][:3, 3] - measured)
                 angle = np.linalg.norm(rotation_error(targets[name][:3, :3], rotation))
                 errors.append(float(error))
-                valid = valid and error < 0.002 and angle < 0.025
-                valid = (
-                    valid
-                    and np.max(np.abs(paths[name][-1] - observation["arms"][name]["q_rad"])) < 0.01
+                tracking[name] = correction_tracking(
+                    error,
+                    angle,
+                    np.max(np.abs(paths[name][-1] - observation["arms"][name]["q_rad"])),
+                    np.linalg.norm(actual[:3, 3] - measured),
                 )
-                valid = valid and np.linalg.norm(actual[:3, 3] - measured) < 0.001
+            coarse_valid = all(row["within_move_limits"] for row in tracking.values())
+            valid = (
+                all(row["precision_reached"] for row in tracking.values())
+                if precise
+                else coarse_valid
+            )
             if truth[0][0] != last:
                 stable = stable + 1 if valid else 0
+                coarse_stable = coarse_stable + 1 if coarse_valid else 0
                 last = truth[0][0]
             if stable >= 5:
+                if precise:
+                    report.setdefault("correction_tracking", []).append(
+                        {"phase": phase, "precision_target_reached": True, "arms": tracking}
+                    )
                 print(f"{phase}: maximum TCP error {max(errors) * 1000:.2f} mm", flush=True)
                 return
+        if precise and coarse_stable >= 5 and sample() is not None:
+            report.setdefault("correction_tracking", []).append(
+                {
+                    "phase": phase,
+                    "precision_target_reached": False,
+                    "within_existing_move_limits": True,
+                    "mandatory_rgbd_reinspection": True,
+                    "arms": tracking,
+                }
+            )
+            print(
+                f"{phase}: precision not reached; open-jaw RGB-D reinspection required", flush=True
+            )
+            return
         raise RuntimeError(
             f"{phase} did not converge: position {error:.5f} m, angle {angle:.5f} rad"
         )
@@ -609,8 +658,10 @@ def main():
             move("approach", grips, ready_paths=prepared["approach"])
             if args.verify_before_close:
                 report["preclose_iterations"] = []
-                # One bounded correction; every attempt needs a new stable RGB-D observation.
-                for iteration in range(2 if args.correct_before_close else 1):
+                spent = {}
+                report["preclose_corrections"] = []
+                # Up to two corrections share one 5 mm / 0.10 rad command budget.
+                for iteration in range(3 if args.correct_before_close else 1):
                     phase = "preclose_observations" + (f"_{iteration}" if iteration else "")
                     report["preclose_check"] = {"success": False, "reason": "Missing inspection"}
                     observed, code = inspect_pose(phase, [])
@@ -625,13 +676,14 @@ def main():
                     if skew > 0.5:
                         raise RuntimeError("Stale pre-close observation; refusing closure")
                     by_plug = {row["plug_id"]: row for row in observed["connectors"]}
-                    checks, goals = {}, {}
+                    checks, goals, starts = {}, {}, {}
                     for name in selected:
                         body = by_plug[assigned[name]["plug_id"]]["pose_6d"]
                         relation = assigned[name]["grasp_candidate"]["connector_from_tool"]
                         tool = np.eye(4)
                         tool[:3, :3] = live["arms"][name]["tcp_rotation_world"]
                         tool[:3, 3] = live["arms"][name]["tcp"]
+                        starts[name] = tool
                         checks[name] = assess_preclose_pose(body, tool, relation)
                         goals[name] = desired_tool_pose(body, relation)
                     report["preclose_check"] = {
@@ -642,10 +694,12 @@ def main():
                     report["preclose_iterations"].append(
                         {"phase": phase, **report["preclose_check"]}
                     )
+                    checkpoint()
                     if report["preclose_check"]["success"]:
                         break
-                    if iteration or not args.correct_before_close:
+                    if iteration == 2 or not args.correct_before_close:
                         raise RuntimeError("Pre-close RGB-D alignment rejected; refusing closure")
+                    spent = correction_budget(spent, starts, goals)
                     paths = {
                         name: correction_path(arm, live["arms"][name]["q_rad"], goals[name])
                         for name, arm in selected.items()
@@ -655,16 +709,26 @@ def main():
                         "source_phase": phase,
                         "maximum_translation_m": 0.005,
                         "maximum_rotation_rad": 0.10,
+                        "accumulated_command_budget": spent,
+                        "move_position_tolerance_m": 0.0005,
+                        "move_angle_tolerance_rad": 0.005,
                     }
+                    report["preclose_corrections"].append(report["preclose_correction"])
                     if any(value != OPEN_TRAVEL_M for value in target_grip.values()):
                         raise RuntimeError("Pre-close correction requires open jaw commands")
-                    move("preclose_correction", goals, ready_paths=paths)
+                    move(
+                        f"preclose_correction_{iteration + 1}",
+                        goals,
+                        ready_paths=paths,
+                        precise=True,
+                    )
             target_grip = {name: 0.0 for name in selected}
             closed = dwell("close", 4)[-1]
             report.update(baseline=baseline, closed=closed, pickup_hold_success=False)
             report["closure"] = {
                 name: assess_opening([closed["arms"][name]["fingers"]]) for name in selected
             }
+            checkpoint()
             if not all(check["success"] for check in report["closure"].values()):
                 report["motion_aborted"] = "closure_rejected"
                 raise RuntimeError("Jaw opening rejected before lift; see closure")
@@ -844,7 +908,9 @@ def main():
             node.destroy_node()
             rclpy.shutdown()
             (args.output / "trajectory.json").write_text(json.dumps(history, indent=2) + "\n")
-            (args.output / "validation.json").write_text(json.dumps(report, indent=2) + "\n")
+            report["trial_state"] = "finished"
+            write_json_atomic(args.output / "validation.json", report)
+            checkpoint()
     print(json.dumps(report, indent=2))
     if not report["success"]:
         raise RuntimeError("MELFA pickup trial failed; see validation.json")

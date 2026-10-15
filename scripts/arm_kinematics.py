@@ -123,7 +123,9 @@ class ArmKinematics:
         ).T
         return matrix, derivative
 
-    def inverse(self, target, seed=None, attempts=12):
+    def inverse(
+        self, target, seed=None, attempts=12, *, position_tolerance=0.001, angle_tolerance=0.015
+    ):
         target = np.asarray(target, dtype=float)
         if target.shape != (4, 4) or not np.isfinite(target).all():
             raise ValueError("Target must be a finite 4x4 pose")
@@ -133,6 +135,11 @@ class ArmKinematics:
             or not np.isclose(np.linalg.det(target[:3, :3]), 1)
         ):
             raise ValueError("Target must be a rigid transform")
+        if (
+            not np.isfinite([position_tolerance, angle_tolerance]).all()
+            or min(position_tolerance, angle_tolerance) <= 0
+        ):
+            raise ValueError("Positive finite IK tolerances required")
         if attempts < 1:
             raise ValueError("At least one IK attempt is required")
         rng = np.random.default_rng(0)
@@ -158,7 +165,9 @@ class ArmKinematics:
                         "position_error_m": float(position_error),
                         "angle_error_rad": float(angle_error),
                         "score": float(score),
-                        "success": bool(position_error < 0.001 and angle_error < 0.015),
+                        "success": bool(
+                            position_error < position_tolerance and angle_error < angle_tolerance
+                        ),
                     }
                 if best["success"]:
                     # Equivalent revolute angles avoid unnecessary whole turns within URDF limits.

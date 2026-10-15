@@ -1,0 +1,61 @@
+{
+  "run_finalized": false,
+  "overall_success": false,
+  "reason": "Original validation JSON was not produced: NumPy bool serialization failed. Contact aggregates are unavailable. Derived measurements are not an original finalized trial report.",
+  "source_trace_sha256": "3136f0eba6588c32cd3edd6a726f310ee1d76a00137bb69a2a4a4806333cbbea",
+  "evaluation_source_sha256": "04ab2ed5e67439a6786e7ca7d45a5989fa56fa543a6e5200b767d1a279541cc8",
+  "scope": "Independent offline evaluation from saved trajectory; includes holding during camera wait; alignment uses recorded tool pose nearest sensor time, not original controller decision time",
+  "closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.01995792317871965,
+    "maximum_jaw_opening_m": 0.01995792317871965,
+    "expected_housing_width_m": 0.02,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  },
+  "holding": {
+    "success": true,
+    "minimum_lift_m": 0.09822339868954869,
+    "relative_slip_m": 6.355452019753675e-05,
+    "lift_slip_m": 0.00029023922489349627,
+    "minimum_tcp_lift_m": 0.09980077151122582,
+    "minimum_finger_travel_m": 0.0018253208673354943,
+    "minimum_jaw_opening_m": 0.019985252110339004,
+    "maximum_jaw_opening_m": 0.019995446316311123,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 292,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 0.023945502378573368
+  },
+  "release_drop_m": -0.0007479920149993657,
+  "image_alignment_at_recorded_sensor_time": [
+    {
+      "phase": "preclose_observations",
+      "stamp_skew_s": 0.0019999999999988916,
+      "success": false,
+      "position_error_m": 0.002951598353368809,
+      "angle_error_rad": 0.04667622188982242,
+      "scope": "RGB-D-derived alignment only; no force or contact validation"
+    },
+    {
+      "phase": "preclose_observations_1",
+      "stamp_skew_s": -0.006000000000000227,
+      "success": false,
+      "position_error_m": 0.0013737851887939722,
+      "angle_error_rad": 0.03931616657363379,
+      "scope": "RGB-D-derived alignment only; no force or contact validation"
+    },
+    {
+      "phase": "preclose_observations_2",
+      "stamp_skew_s": 0.005000000000002558,
+      "success": true,
+      "position_error_m": 0.00017004000846074726,
+      "angle_error_rad": 0.015569643511818783,
+      "scope": "RGB-D-derived alignment only; no force or contact validation"
+    }
+  ],
+  "inter_arm_contact_count": null,
+  "missing_evidence": [
+    "original_validation.json",
+    "contact_aggregates"
+  ]
+}
