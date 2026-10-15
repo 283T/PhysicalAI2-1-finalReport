@@ -1,0 +1,14 @@
+{
+  "scope": "Static generated model validation only; no live world, contact, grasp, wire support or insertion result",
+  "unchanged_except_links": [
+    "left_arm_finger_left",
+    "left_arm_finger_right"
+  ],
+  "all_other_world_elements_identical": true,
+  "board_case_drawing_identical": true,
+  "source_contact_sensors": 30,
+  "candidate_contact_sensors": 34,
+  "all_contact_references_resolve": true,
+  "source_world_sha256": "1e716a388d58f33b4b55f3d63708d5eba0e3ce3c85484917dd00839daab0b4a5",
+  "candidate_world_sha256": "46eaeb50a27a71e0f6c4a2fa2b1c99cf4f95206fb182cd928893988a4126f0c6"
+}

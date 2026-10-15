@@ -17,3 +17,10 @@ docker compose run --rm dev python3 docs/evaluation/stepped_regrasp_20261016/rep
 ```
 
 The generated URDFs, validation and SHA manifest are preserved here. Before physical use, generate a new complete world from the same URDFs, validate its mass/collision consistency, and begin a new trial. Do not replace a gripper on a running scene.
+
+
+`prepare_stepped_case.py` also builds a **separate** complete case and models directory via Gazebo URDF-to-SDF conversion, replacing only the two left finger links and their contact sensors. It checks that every other world element is identical and that all sensor references resolve (30 original contact sensors become 34). The new candidate at `outputs/stepped_bothwrist640_i0_dt01_checked_20261016` has not been started. Generated-scene validation and provenance are preserved in this directory. Example using a preserved baseline:
+
+```sh
+docker compose exec -T gui bash -lc 'source /opt/ros/jazzy/setup.bash && python3 scripts/prepare_stepped_case.py --case docs/evaluation/cooperative_nest_20261016/left_wrist640_pacing_stalled/case --models docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/models --output outputs/reproduce_stepped_scene'
+```
