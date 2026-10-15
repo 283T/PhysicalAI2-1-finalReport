@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 import rclpy
+from arm_collision_bounds import first_overlap
 from arm_kinematics import rotation_error
 from arm_observation import acquire_observation
 from arm_session import ArmSession
@@ -28,6 +29,7 @@ from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
 from wire_contact_profile import validate_deep_wire_profile
+from wire_preshape import assess_preshape, closing_support_bounds, preshape_target
 
 
 def primary_pickup(session, output, calibration, report, checkpoint, guard_stream):
@@ -132,10 +134,38 @@ def run(session, args, report, checkpoint, guard_stream):
         wire_distance_mm=args.wire_distance_mm,
         calibration=args.inspection_calibration,
     )
-    current = {n: s["q_rad"] for n, s in session.snapshot()["arms"].items()}
+    checkpoint("support_preshape")
+    row = session.tick()
+    target = preshape_target(
+        report["rest_gaps_m"]["left_arm"], observation["wire_supports"][0]["observed_width_m"]
+    )
+    closing, intervals = closing_support_bounds(session.bounds, row, "left_arm")
+    joints = {n: s["q_rad"] for n, s in row["arms"].items()}
+    preflight = {
+        "arms": first_overlap(closing, joints),
+        "fixtures": session.fixtures.first_overlap(closing, joints, margin=0.001),
+    }
+    report["support_preshape"] = {
+        "target": target,
+        "preflight": preflight,
+        "before_finger_intervals_m": intervals,
+    }
+    if any(value is not None for value in preflight.values()):
+        raise RuntimeError("Empty-space support jaw preparation preflight rejected")
+    session.grips["left_arm"] = target["target_travel_m"]
+    row = session.dwell("support_preshape", 3)[-1]
+    report["support_preshape"]["measured"] = assess_preshape(
+        row["arms"]["left_arm"]["fingers"], report["rest_gaps_m"]["left_arm"], target
+    )
+    if not report["support_preshape"]["measured"]["success"]:
+        raise RuntimeError("Support jaw preparation did not converge with wire clearance")
+    checkpoint("support_planning")
+    planning_bounds, intervals = closing_support_bounds(session.bounds, row, "left_arm")
+    report["support_closing_finger_intervals_m"] = intervals
+    current = {n: s["q_rad"] for n, s in row["arms"].items()}
     plan = plan_wire_pickup(
         session.arms,
-        session.bounds,
+        planning_bounds,
         args.world,
         observation,
         current,
@@ -300,6 +330,8 @@ def main():
         "parameters": {
             "wire_distance_mm": args.wire_distance_mm,
             "wire_tip_depth_mm": args.wire_tip_depth_mm,
+            "wire_preshape_clearance_m": 0.010,
+            "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
             "deep_contact_profile": deep_profile,
             "place_in_nest": args.place_in_nest,
             "support_approach_settle_time_s": 30,

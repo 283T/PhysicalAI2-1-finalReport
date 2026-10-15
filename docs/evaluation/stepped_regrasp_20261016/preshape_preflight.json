@@ -1,0 +1,447 @@
+{
+  "scope": "Offline only. Assumes empty-space preshape succeeded; actual motion, measured settling, fresh RGB-D, wire closure and holding are unproven",
+  "target": {
+    "model_wire_width_m": 0.008,
+    "observed_wire_width_m": 0.008156153043130998,
+    "sizing_width_m": 0.008156153043130998,
+    "clearance_m": 0.01,
+    "target_gap_m": 0.018156153043131,
+    "target_travel_m": 0.006078076521565501
+  },
+  "empty_space_preflight": {
+    "arms": {
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.005
+    },
+    "fixtures": {
+      "clear": true,
+      "samples": 81,
+      "margin_per_box_m": 0.001
+    }
+  },
+  "closing_intervals_m": {
+    "left_arm": {
+      "left_arm_finger_left_joint": [
+        -0.0005,
+        0.007078076521565502
+      ],
+      "left_arm_finger_right_joint": [
+        -0.0005,
+        0.007078076521565502
+      ]
+    },
+    "right_arm": {
+      "right_arm_finger_left_joint": [
+        0.0014440776740860068,
+        0.002444077674086007
+      ],
+      "right_arm_finger_right_joint": [
+        0.0015777569845294441,
+        0.002577756984529444
+      ]
+    }
+  },
+  "original_paths_with_prepared_bounds": {
+    "hover": {
+      "arms": {
+        "clear": true,
+        "samples": 116,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 116,
+        "margin_per_box_m": 0.001
+      }
+    },
+    "approach": {
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      }
+    }
+  },
+  "new_plan": {
+    "success": true,
+    "transit_routes": [
+      {
+        "success": true,
+        "path": [
+          [
+            0.0,
+            -5.2626812333683875e-11,
+            0.0,
+            0.0,
+            -1.661910571166031e-10,
+            0.0
+          ],
+          [
+            -1.3550272611475138,
+            1.1380645309710715,
+            1.9725602736810837,
+            2.297089475933263,
+            1.1397612469428688,
+            -0.5677067759885736
+          ]
+        ],
+        "reason": null,
+        "state_checks": 233,
+        "seed": 0,
+        "resolution_rad": 0.01,
+        "maximum_nodes": 600,
+        "start_roundoff_correction_rad": [
+          0.0,
+          0.0,
+          2.9496322918712397e-16,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+      },
+      {
+        "success": true,
+        "path": [
+          [
+            0.0,
+            -5.2626812333683875e-11,
+            0.0,
+            0.0,
+            -1.661910571166031e-10,
+            0.0
+          ],
+          [
+            -1.3546103476775682,
+            1.138696819664492,
+            1.9720699229003535,
+            2.2971740627399893,
+            1.1401367971302816,
+            -0.5675230931628538
+          ]
+        ],
+        "reason": null,
+        "state_checks": 233,
+        "seed": 0,
+        "resolution_rad": 0.01,
+        "maximum_nodes": 600,
+        "start_roundoff_correction_rad": [
+          0.0,
+          0.0,
+          2.9496322918712397e-16,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scope": "Discrete static-geometry joint screening; no self/cable/object collision or execution guarantee"
+      }
+    ],
+    "support_arm": "left_arm",
+    "branch": "P3",
+    "half_turn": false,
+    "face_quarter_turns": 2,
+    "upright": false,
+    "expected_wire_width_m": 0.008,
+    "tip_depth_m": 0.006,
+    "deep_contact_profile": null,
+    "includes_independent_support_lift": false,
+    "stable_observation_required": true,
+    "sensor_stamp_ns": 54000000000,
+    "grasp_tcp_pose": [
+      [
+        -0.5634147947862641,
+        0.2196416422394007,
+        -0.7964429157261248,
+        -0.25497024245022004
+      ],
+      [
+        -0.3197862400194286,
+        0.8308917989671223,
+        0.4553631288361145,
+        0.15448239981618103
+      ],
+      [
+        0.761774592455136,
+        0.5112498091965987,
+        -0.39789835748122054,
+        0.16078775308490884
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "parked_joints_rad": {
+      "right_arm": [
+        -2.8878161574338486,
+        1.1141606045933696,
+        1.2747054873961308,
+        0.26588067678654165,
+        0.6204568966706233,
+        2.245095331749753
+      ]
+    },
+    "paths": {
+      "hover": {
+        "left_arm": [
+          [
+            0.0,
+            -5.2626812333683875e-11,
+            0.0,
+            0.0,
+            -1.661910571166031e-10,
+            0.0
+          ],
+          [
+            -1.3550272611475138,
+            1.1380645309710715,
+            1.9725602736810837,
+            2.297089475933263,
+            1.1397612469428688,
+            -0.5677067759885736
+          ]
+        ]
+      },
+      "approach": {
+        "left_arm": [
+          [
+            -1.3550272611475138,
+            1.1380645309710715,
+            1.9725602736810837,
+            2.297089475933263,
+            1.1397612469428688,
+            -0.5677067759885736
+          ],
+          [
+            -1.3454461338364756,
+            1.1460936563779855,
+            1.9588554289137023,
+            2.304735778987949,
+            1.135825612190237,
+            -0.5631636063508105
+          ],
+          [
+            -1.33610845324722,
+            1.1541831301371261,
+            1.9448808702026186,
+            2.312080177063951,
+            1.13164960809164,
+            -0.5585402959704977
+          ],
+          [
+            -1.3269304565856181,
+            1.1623161610751234,
+            1.9307272423019586,
+            2.3192239911023447,
+            1.1273167603703946,
+            -0.5538676504018175
+          ],
+          [
+            -1.3179095193367505,
+            1.1704950279758057,
+            1.916393028578576,
+            2.326169375512594,
+            1.1228282243580963,
+            -0.5491466466307006
+          ],
+          [
+            -1.309043079059148,
+            1.17872232016395,
+            1.9018769006250056,
+            2.3329180671214633,
+            1.1181854256451151,
+            -0.544378384496052
+          ],
+          [
+            -1.3003285578124748,
+            1.1870006613811612,
+            1.8871773334024513,
+            2.339471698807133,
+            1.113389743971114,
+            -0.5395636819463451
+          ],
+          [
+            -1.2917633730451956,
+            1.195332719795571,
+            1.8722925949624334,
+            2.3458317882223905,
+            1.1084424985902814,
+            -0.5347030847439399
+          ],
+          [
+            -1.2833449423636647,
+            1.2037212134600859,
+            1.8572207382356327,
+            2.351999730378648,
+            1.1033449385386946,
+            -0.5297968684788475
+          ],
+          [
+            -1.275070687952907,
+            1.212168916315922,
+            1.841959591969383,
+            2.3579767898481134,
+            1.098098233318187,
+            -0.5248450398253518
+          ],
+          [
+            -1.266938040618181,
+            1.2206786647359391,
+            1.8265067507703439,
+            2.3637640925340917,
+            1.0927034639597166,
+            -0.5198473369152885
+          ],
+          [
+            -1.2589444434681456,
+            1.2292533646443642,
+            1.8108595641548126,
+            2.3693626169352364,
+            1.08716161439121,
+            -0.514803228733379
+          ],
+          [
+            -1.2510873552599133,
+            1.2378959992567806,
+            1.7950151244978745,
+            2.374773184821312,
+            1.0814735630333487,
+            -0.5097119134343174
+          ],
+          [
+            -1.2433642534258398,
+            1.2466096374925066,
+            1.7789702537592507,
+            2.3799964512282172,
+            1.0756400745447785,
+            -0.504572315473548
+          ],
+          [
+            -1.2357726368014068,
+            1.255397443120761,
+            1.7627214888482157,
+            2.385032893668582,
+            1.0696617916357491,
+            -0.4993830814337088
+          ],
+          [
+            -1.2283100280729673,
+            1.264262684712496,
+            1.7462650654719718,
+            2.3898828004408883,
+            1.063539226866094,
+            -0.4941425744162221
+          ],
+          [
+            -1.2209739759634832,
+            1.2732087464816928,
+            1.7295969002909837,
+            2.3945462579044396,
+            1.0572727543395979,
+            -0.48884886685214873
+          ],
+          [
+            -1.2137620571737024,
+            1.2822391401136042,
+            1.7127125711803446,
+            2.3990231365692223,
+            1.0508626012019993,
+            -0.48349973156773984
+          ],
+          [
+            -1.2066718780955012,
+            1.291357517693118,
+            1.6956072953677896,
+            2.4033130758282164,
+            1.0443088388439374,
+            -0.4780926309175636
+          ],
+          [
+            -1.1997010763133829,
+            1.3005676858646689,
+            1.6782759051855074,
+            2.4074154671344488,
+            1.0376113737028654,
+            -0.4726247037710023
+          ],
+          [
+            -1.1928473219093731,
+            1.309873621376292,
+            1.6607128211336675,
+            2.4113294353952566,
+            1.0307699375490367,
+            -0.46709275010545326
+          ],
+          [
+            -1.1861083185857917,
+            1.3192794881852505,
+            1.6429120219072133,
+            2.415053818320911,
+            1.0237840771298017,
+            -0.46149321292071344
+          ]
+        ]
+      }
+    },
+    "branch_selection": {
+      "seeds": {
+        "left_arm": 0
+      },
+      "screens": {
+        "hover": {
+          "clear": true,
+          "samples": 116,
+          "margin_per_box_m": 0.005
+        },
+        "approach": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.005
+        }
+      },
+      "rejected_individual_candidates": [
+        {
+          "arm": "left_arm",
+          "seed": 1,
+          "reason": "Hover IK failed"
+        },
+        {
+          "arm": "left_arm",
+          "seed": 3,
+          "reason": "Hover IK failed"
+        }
+      ]
+    },
+    "fixture_preflight": {
+      "hover": {
+        "clear": true,
+        "samples": 116,
+        "margin_per_box_m": 0.001
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      }
+    },
+    "scope": "Offline continuous IK and inter-arm/fixture box screening only; caller must verify acquisition freshness, contact, wire identity, slip and unintended collisions at execution. No self/cable/object collision guarantee"
+  },
+  "success": true,
+  "input_sha256": {
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/case/world.sdf": "00d0c6011ffeb24fe587721086a0cf3e1c47480cc4359b66b8b47031168d267e",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/pickup/suspended_wire_observation/wire_supports.json": "e4ad7ffcd415b9b25be1bd56c7de20483983cc7c2beb447f7fe73d39989708f8",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/pickup/trajectory.json.gz": "310d4b7f75a004789c0a629a1907e95fd6b3eb3a27b5478d813f19211f62a9f4",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/pickup/wire_plan.json": "c7a8f67e49a25257f8149a5918d8a6eaca021b6600e065aed8aebdee25b0f9e6",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/models/left_arm.urdf": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+    "docs/evaluation/cooperative_nest_20261016/hd_wire_approach_fixture_rejected/models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+    "scripts/wire_preshape.py": "2b1b02480cac6cfff477dddde34845ebeeda2c1d0bc5a088a059d9dbc42cccd8"
+  }
+}

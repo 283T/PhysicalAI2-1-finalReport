@@ -1,0 +1,13 @@
+{
+  "source_world_sha256": "9c6f242b210c721200763958ff3154ee833ed5376386f659f379cf0be5b41983",
+  "source_calibration_sha256": "215f975baf85a505513de000981512c80f4b5ebee8687666eca311568cd6f74e",
+  "old_resolution": {
+    "width": 960,
+    "height": 720
+  },
+  "new_resolution": {
+    "width": 1920,
+    "height": 1440
+  },
+  "scope": "Only matching camera image width/height and corresponding calibration dimensions changed. No physical model, control or acceptance changes; no perception success evidence"
+}

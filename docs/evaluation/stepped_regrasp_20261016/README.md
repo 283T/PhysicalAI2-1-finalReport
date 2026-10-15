@@ -35,3 +35,21 @@ docker compose run --rm dev python3 docs/evaluation/stepped_regrasp_20261016/dee
 ```
 
 `dual_pickup.py --wire-tip-depth-mm 19` can request this depth only with a compatible actual model. Its default stays 6 mm. A combined candidate with flat tags and 1920×1440 inspection is prepared at `outputs/stepped_hd_shm64_20261016`, but has not been started. The live high-resolution DDS comparison uses the original fingers and default 6 mm depth.
+
+
+`top_socket_plan.py` now screens the candidate after its assumed top regrasp to the exact P3→J3 row in the audited local-AI plan. `socket_preflight.json` passes joint transit and a descent with 0.1 mm / 0.002 rad IK tolerances. Both arms and fixtures retain their existing 5 mm / 1 mm box margins, with full finger strokes. Additional carried-part checks enclose the known housing and both physical pins; scene model/link placement is deliberately ignored when loading these intrinsic shapes.
+
+The carried part uses a new 0.5 mm-per-box margin. Only housing overlap on the selected socket's rim near its nominal seated pose is classified as intended; pin obstruction and every other fixture remain checked. These are discrete geometric checks, including inflated bounding boxes, not actual contact measurements. Tests demonstrate that a pin obstacle rejects a plan even when all arm checks pass, and that changing drawing coordinates cannot select a more convenient target. This candidate has not been physically regrasped, carried or inserted.
+
+```sh
+docker compose run --rm dev python3 docs/evaluation/stepped_regrasp_20261016/socket_preflight.py --output outputs/reproduce_socket_preflight.json
+```
+
+
+The later full task reached right-hand lift/hold but rejected the original left-wire approach against the pallet. `preshape_preflight.json` compares the exact archived rejected path with a physically achievable prepared jaw opening. The 8.156 mm observed wire plus 10 mm clearance gives an 18.156 mm gap (6.078 mm finger travel). The static comparison includes a worst allowed +0.5 mm settling error plus the additional planning interval and the full remaining closing stroke. Both the old path with these prepared bounds and the newly generated path pass unchanged arm/fixture margins. The empty-space jaw movement also passes a preflight spanning the original open-to-closed envelope.
+
+The live controller now physically prepares the jaws at the safe upright position, checks actual settling and clearance, then plans from measured finger positions. Matching total gap cannot hide asymmetric finger error. Default wire support depth stays 6 mm; no finger geometry changed. This preshape comparison is static only, and its subsequent full physical trial is still running.
+
+```sh
+docker compose run --rm dev python3 docs/evaluation/stepped_regrasp_20261016/preshape_preflight.py --output outputs/reproduce_preshape_preflight.json
+```
