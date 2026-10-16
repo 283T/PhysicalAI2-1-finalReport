@@ -1,0 +1,7 @@
+{
+  "scope": "Partial checkpoint during live physical comparison 37583. Primary lift/hold only; dual holding, nest placement and board insertion remain unproven. Not a finished trial or final acceptance result.",
+  "source": "outputs/centred_full_p3_hd64_20261016/pickup/progress.json",
+  "source_sha256": "9ef7ac5573c16e8318961d27cfd30bffdc4a9175c2ef974262af8f93a702b865",
+  "public_unchanged_world": "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure/case/world.sdf",
+  "final_acceptance_eligible": false
+}
