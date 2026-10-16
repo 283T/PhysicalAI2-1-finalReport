@@ -1,0 +1,93 @@
+{
+  "scope": "Offline ideal blocked-finger model. Constant measured joint positions, zero initial integrator, derivative and saturation omitted. No actual force, grip, placement or simulator performance evidence.",
+  "physical_tested": false,
+  "final_acceptance_eligible": false,
+  "plan": {
+    "reference_fingers_m": [
+      0.002096332694741622,
+      0.0019257767698223653
+    ],
+    "start_sim_time_s": 0,
+    "initial_squeeze_m": 0.0015,
+    "p_gain": 3000.0,
+    "i_gain": 40.0,
+    "initial_targets_m": [
+      0.0005963326947416221,
+      0.00042577676982236525
+    ],
+    "scope": "Robot finger targets only. Equal offsets preserve the commanded midpoint. Exponential decay bounds the ideal blocked-joint PI output; no measured-force or physical holding claim."
+  },
+  "integration_step_s": 0.01,
+  "maximum_ideal_pi_output_error": 0.000600000000000378,
+  "maximum_command_midpoint_change_m": 5.421010862427522e-20,
+  "samples": [
+    {
+      "elapsed_simulation_time_s": 0.0,
+      "finger_targets_m": [
+        0.0005963326947416221,
+        0.00042577676982236525
+      ],
+      "ideal_unclipped_pi_output": 4.5006,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 25.0,
+      "finger_targets_m": [
+        0.001021535728880938,
+        0.0008509798039616813
+      ],
+      "ideal_unclipped_pi_output": 4.50051496128296,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 50.0,
+      "finger_targets_m": [
+        0.001326207016192734,
+        0.0011556510912734772
+      ],
+      "ideal_unclipped_pi_output": 4.500454028379589,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 75.0,
+      "finger_targets_m": [
+        0.0015445135329844586,
+        0.0013739576080652018
+      ],
+      "ideal_unclipped_pi_output": 4.500410368046481,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 100.0,
+      "finger_targets_m": [
+        0.001700936987568032,
+        0.0015303810626487752
+      ],
+      "ideal_unclipped_pi_output": 4.500379084050781,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 125.0,
+      "finger_targets_m": [
+        0.0018130192904852794,
+        0.0016424633655660226
+      ],
+      "ideal_unclipped_pi_output": 4.50035666808835,
+      "command_midpoint_m": 8.527796245962841e-05
+    },
+    {
+      "elapsed_simulation_time_s": 150.0,
+      "finger_targets_m": [
+        0.001893329769886703,
+        0.0017227738449674462
+      ],
+      "ideal_unclipped_pi_output": 4.500340606349414,
+      "command_midpoint_m": 8.527796245962841e-05
+    }
+  ],
+  "input_sha256": {
+    "docs/evaluation/grip_centering_20261016/snapshot.json": "4e0ca1e3303f8214763396a1adbea62c12a9b96bd3ab3524d6caf81f000ac1a7",
+    "docs/evaluation/cooperative_nest_20261016/preshape_nest_seat_wall_limit/case/world.sdf": "00d0c6011ffeb24fe587721086a0cf3e1c47480cc4359b66b8b47031168d267e",
+    "scripts/centred_grip.py": "dad619095e71599fd84e5fcd417db32019f75f85bed18af08ed55bee77faedb4"
+  }
+}

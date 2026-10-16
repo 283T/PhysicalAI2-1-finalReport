@@ -1,0 +1,5 @@
+{
+  "source_world_sha256": "ee53341f4de040a6b96bfed94003b9a80d675f015806914147e0a0f823287f6f",
+  "sensors_added": 9,
+  "scope": "Contact telemetry only; robot, connector, wire and fixture physics unchanged. No insertion or contact success evidence"
+}

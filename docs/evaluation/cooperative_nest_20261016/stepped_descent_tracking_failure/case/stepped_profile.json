@@ -1,0 +1,14 @@
+{
+  "source_world_sha256": "00d0c6011ffeb24fe587721086a0cf3e1c47480cc4359b66b8b47031168d267e",
+  "source_urdf_sha256": "4ea7a47ee87baf8f284d86ac91dd932ef39b1fafa04c6bd1c4662889f628b0bc",
+  "candidate_urdf_sha256": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+  "changed_links": [
+    "left_arm_finger_left",
+    "left_arm_finger_right"
+  ],
+  "all_other_world_elements_identical": true,
+  "source_contact_sensors": 30,
+  "candidate_contact_sensors": 34,
+  "all_contact_references_resolve": true,
+  "scope": "Permanent geometry, visual, inertial and contact sensor change only; no physical grasp, transport or insertion validation"
+}

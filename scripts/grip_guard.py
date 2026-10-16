@@ -13,7 +13,7 @@ def register_grip_guard(session, report, prefix, reference, extract, stream):
     report.setdefault("grip_references", {})[prefix] = reference
     summary = {"samples": 0, "maximum_position_shift_m": 0.0, "maximum_angle_shift_rad": 0.0}
     report.setdefault("grip_guard_summaries", {})[prefix] = summary
-    previous = [None]
+    previous = [reference.get("time_s")]
 
     def guard(row):
         if row["sim_time_s"] == previous[0]:

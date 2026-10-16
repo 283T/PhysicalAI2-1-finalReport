@@ -1,0 +1,8 @@
+{
+  "scope": "One native statistics sample, read-only; not a task success or controlled performance comparison",
+  "sim_time_s": 192.1618,
+  "real_time_s": 4163.955290401,
+  "iterations": 1921618,
+  "paused": false,
+  "real_time_factor": 0.020379569481594702
+}

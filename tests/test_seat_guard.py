@@ -86,6 +86,27 @@ class SeatGuardTests(unittest.TestCase):
         self.assertIn(grip, session.evaluation_guards)
         self.assertEqual(report["seat_guard_endings"]["P3"]["grip"], "top_primary")
 
+    def test_passive_monitor_stays_active_while_waiting_for_next_grip_sample(self):
+        session, report, _, guard = self.setup_guard("passive_nest")
+        report["grip_references"] = {"top": {"time_s": 0.1}}
+        report["grip_guard_summaries"] = {"top": {"samples": 0}}
+
+        def grip(row):
+            if row["sim_time_s"] > 0.1:
+                report["grip_guard_summaries"]["top"]["samples"] += 1
+            self.assertIn(guard, session.evaluation_guards)
+
+        session.evaluation_guards.append(grip)
+        tick = session.tick
+
+        def next_tick():
+            session.row["sim_time_s"] += 0.1
+            return tick()
+
+        session.tick = next_tick
+        end_nest_guard_for_pickup(session, report, "P3", guard, "top", grip)
+        self.assertAlmostEqual(report["seat_guard_endings"]["P3"]["sim_time_s"], 0.2)
+
     def test_nonfinite_observation_fails_and_evidence_remains_valid_json(self):
         session, report, stream, _ = self.setup_guard()
         session.row["sim_time_s"] = 0.1

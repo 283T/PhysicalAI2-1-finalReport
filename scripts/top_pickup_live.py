@@ -8,6 +8,7 @@ import time
 import numpy as np
 from arm_collision_bounds import first_overlap
 from arm_observation import acquire_observation
+from centred_grip import activate as activate_centred_hold
 from cooperative_pick import shared_lift
 from cooperative_transfer import rigid_pose
 from evidence_io import write_json_atomic
@@ -167,8 +168,16 @@ def top_pickup(session, args, report, checkpoint, nest_guard, grip_stream):
     grip_guard = register_grip_guard(
         session, report, prefix, closed, lambda row: evaluation_state(row, name, "P3"), grip_stream
     )
+    activate_centred_hold(
+        session, args, report, checkpoint, name, prefix, grip_guard, 0.0008, "top_centred_hold"
+    )
     end_nest_guard_for_pickup(session, report, "P3_nest", nest_guard, prefix, grip_guard)
-    _, lifts = shared_lift({name: session.arms[name]}, {name: np.asarray(closed["q_rad"])})
+    lift_q = (
+        session.snapshot()["arms"][name]["q_rad"]
+        if getattr(args, "centred_grips", False)
+        else closed["q_rad"]
+    )
+    _, lifts = shared_lift({name: session.arms[name]}, {name: np.asarray(lift_q)})
     checkpoint("top_lift")
     session.move("top_lift", lifts, full_finger_stroke=True, cartesian_speed_m_s=0.02)
     checkpoint("top_hold")

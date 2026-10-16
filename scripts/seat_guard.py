@@ -3,6 +3,7 @@
 import copy
 import hashlib
 import json
+import time
 
 import numpy as np
 from arm_kinematics import rotation_error
@@ -146,12 +147,16 @@ def end_nest_guard_for_pickup(session, report, prefix, guard, grip_prefix, grip_
         or grip_prefix not in report.get("grip_references", {})
     ):
         raise RuntimeError("An active separate new grip monitor is required before lifting")
-    row = session.tick()
-    if (
-        row is None
-        or report.get("grip_guard_summaries", {}).get(grip_prefix, {}).get("samples", 0) < 1
-    ):
-        raise RuntimeError("New grip must have a fresh evaluated observation")
+    deadline = time.monotonic() + 2
+    while True:
+        row = session.tick()
+        if (
+            row is not None
+            and report.get("grip_guard_summaries", {}).get(grip_prefix, {}).get("samples", 0) >= 1
+        ):
+            break
+        if time.monotonic() >= deadline:
+            raise RuntimeError("New grip must have a fresh evaluated observation")
     report.setdefault("seat_guard_endings", {})[prefix] = {
         "sim_time_s": row["sim_time_s"],
         "phase": row["phase"],

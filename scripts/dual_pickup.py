@@ -15,6 +15,7 @@ from arm_kinematics import rotation_error
 from arm_observation import acquire_observation
 from arm_session import ArmSession
 from assembly_case import validate_connection_plan
+from centred_grip import activate as activate_centred_hold
 from connector_contacts import validate_connector_sensors
 from cooperative_pick import prepare_pickup_paths, shared_lift
 from cooperative_transfer import rigid_pose
@@ -38,7 +39,9 @@ from wire_contact_profile import validate_deep_wire_profile
 from wire_preshape import assess_preshape, closing_support_bounds, preshape_target
 
 
-def primary_pickup(session, output, calibration, report, checkpoint, guard_stream):
+def primary_pickup(
+    session, output, calibration, report, checkpoint, guard_stream, *, holding_args=None
+):
     name = "right_arm"
     checkpoint("primary_observation")
     initial = acquire_observation(session, output / "primary_observation")
@@ -112,7 +115,23 @@ def primary_pickup(session, output, calibration, report, checkpoint, guard_strea
     guard = register_grip_guard(
         session, report, "primary", closed, lambda r: evaluation_state(r, name, "P3"), guard_stream
     )
-    _, lifts = shared_lift({name: session.arms[name]}, {name: np.array(closed["q_rad"])})
+    activate_centred_hold(
+        session,
+        holding_args,
+        report,
+        checkpoint,
+        name,
+        "primary",
+        guard,
+        0.0015,
+        "primary_centred_hold",
+    )
+    lift_q = (
+        session.snapshot()["arms"][name]["q_rad"]
+        if getattr(holding_args, "centred_grips", False)
+        else closed["q_rad"]
+    )
+    _, lifts = shared_lift({name: session.arms[name]}, {name: np.array(lift_q)})
     checkpoint("primary_lift")
     session.move("primary_lift", lifts, cartesian_speed_m_s=0.02)
     checkpoint("primary_hold")
@@ -130,7 +149,13 @@ def run(session, args, report, checkpoint, guard_stream):
         n: measured_rest_gap(args.models / (n + ".urdf"), n + "_") for n in session.arms
     }
     relation, primary_guard = primary_pickup(
-        session, args.output, args.inspection_calibration, report, checkpoint, guard_stream
+        session,
+        args.output,
+        args.inspection_calibration,
+        report,
+        checkpoint,
+        guard_stream,
+        holding_args=args,
     )
     report["primary_connector_from_tool"] = relation.tolist()
     checkpoint("suspended_wire_observation")
@@ -262,9 +287,21 @@ def run(session, args, report, checkpoint, guard_stream):
         lambda r: evaluation_state(r, "left_arm", link),
         guard_stream,
     )
+    activate_centred_hold(
+        session,
+        args,
+        report,
+        checkpoint,
+        "left_arm",
+        "support",
+        support_guard,
+        0.0006,
+        "support_centred_hold",
+    )
+    lift_start = session.snapshot() if args.centred_grips else closed
     checkpoint("shared_lift")
     _, paths = shared_lift(
-        session.arms, {n: np.array(s["q_rad"]) for n, s in closed["arms"].items()}
+        session.arms, {n: np.array(s["q_rad"]) for n, s in lift_start["arms"].items()}
     )
     session.move("shared_lift", paths, cartesian_speed_m_s=0.02)
     checkpoint("dual_hold")
@@ -298,6 +335,7 @@ def main():
     parser.add_argument("--after-nest-parking", action="store_true")
     parser.add_argument("--top-regrasp", action="store_true")
     parser.add_argument("--insert-after-regrasp", action="store_true")
+    parser.add_argument("--centred-grips", action="store_true")
     parser.add_argument(
         "--nest-calibration", type=Path, default=Path("configs/nest_camera_hd.json")
     )
@@ -360,6 +398,7 @@ def main():
             "after_nest_parking": args.after_nest_parking,
             "top_regrasp": args.top_regrasp,
             "insert_after_regrasp": args.insert_after_regrasp,
+            "centred_grips": args.centred_grips,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
             "rigid_nest_transfer": args.rigid_nest_transfer,

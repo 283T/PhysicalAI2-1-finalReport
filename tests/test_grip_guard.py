@@ -11,6 +11,29 @@ from grip_guard import end_grip_for_release, register_grip_guard
 
 
 class GripGuardTest(unittest.TestCase):
+    def test_closure_reference_itself_is_not_counted_as_a_fresh_grip_sample(self):
+        identity = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+        reference = {
+            "time_s": 1,
+            "plug": [0, 0, 0],
+            "tcp": [0, 0, 0],
+            "plug_rotation_world": identity,
+            "tcp_rotation_world": identity,
+        }
+        stream, report, session = io.StringIO(), {}, SimpleNamespace(evaluation_guards=[])
+        guard = register_grip_guard(
+            session, report, "primary", reference, lambda r: r["state"], stream
+        )
+        guard({"sim_time_s": 1, "phase": "close", "state": reference})
+        self.assertEqual(report["grip_guard_summaries"]["primary"]["samples"], 0)
+        fresh = copy.deepcopy(reference)
+        fresh["time_s"] = 1.01
+        guard({"sim_time_s": 1.01, "phase": "hold", "state": fresh})
+        self.assertEqual(report["grip_guard_summaries"]["primary"]["samples"], 1)
+        from replay_grip_evidence import replay
+
+        self.assertTrue(replay(report, [json.loads(stream.getvalue())])["evidence_consistent"])
+
     def test_duplicate_episode_cannot_overwrite_original_reference(self):
         report = {"grip_references": {"primary": {"original": True}}}
         with self.assertRaises(ValueError):

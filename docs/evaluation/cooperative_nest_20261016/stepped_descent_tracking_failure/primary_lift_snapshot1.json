@@ -1,0 +1,26 @@
+{
+  "scope": "Diagnostic snapshot only; verify process liveness separately. Commanded path fraction is not physical task completion",
+  "incomplete_tail": true,
+  "grips": {
+    "primary": {
+      "phase": "primary_lift",
+      "sim_time_s": 43.5063,
+      "phase_elapsed_s": 2.4499000000000066,
+      "grip_check": {
+        "success": true,
+        "position_shift_m": 0.00012918352417259446,
+        "angle_shift_rad": 0.0008895064891728348
+      },
+      "tracking_position_m": 0.0007521989775919275,
+      "tracking_angle_rad": 0.005607554294034573,
+      "joint_errors_rad": [
+        7.332186431519006e-05,
+        0.0005833568601480987,
+        -0.00011952673231796496,
+        0.0018101315031303078,
+        -0.00511154055682872,
+        -0.004547924915693002
+      ]
+    }
+  }
+}

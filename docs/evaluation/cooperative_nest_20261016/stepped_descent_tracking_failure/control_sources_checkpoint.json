@@ -1,0 +1,15 @@
+{
+  "scope": "Control-source hash checkpoint during live primary hover. Does not indicate task success. Trial began with the dwell-budget fix before commit 4690093. Later evidence archive readers do not change live robot control.",
+  "committed_control_revision": "4690093",
+  "source_sha256": {
+    "dual_pickup.py": "c1406b0cb6ad2fef18d4af64a4d4e5624bad6a2e1e67167886da034680e80e1b",
+    "arm_session.py": "5333846ab4531e5df7566e6207d935a7e1ceb6e09f37b3e6a589a84d13d7d5a3",
+    "simulation_budget.py": "61832136d52ff17e9ba3f849c16d2a7b0279a8ecb9c9ccf4ca414f51e2772b31",
+    "top_pickup_live.py": "ca1bbdd708a57b8dbc058639bdab5cca99ff4a4c1fdfcb3e97cdfcaf3b140d60",
+    "top_pickup_plan.py": "2bc5a4c95c760e33d4799ce14c2af0adfc4d161743e0d9ea17c7e5a0a9504cb2",
+    "socket_insert_live.py": "97b941f9301e2a680c7cc81023c21fae8304ee059ffc805f304714155d640670",
+    "socket_plan_worker.py": "3646d216336592b3c6e227db82e7504a528658491890ca059af7f2573ea28b40",
+    "carried_contact_guard.py": "9147960a6e89576d02ff0f2d4ec036d8824385ff58bee6738b689d1d6f1c6831",
+    "wire_preshape.py": "2b1b02480cac6cfff477dddde34845ebeeda2c1d0bc5a088a059d9dbc42cccd8"
+  }
+}

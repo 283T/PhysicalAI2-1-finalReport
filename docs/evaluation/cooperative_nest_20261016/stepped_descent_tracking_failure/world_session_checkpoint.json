@@ -1,0 +1,15 @@
+{
+  "scope": "Read-only process identity checkpoint during the live physical trial; no object or robot pose command. Does not establish task success.",
+  "gazebo": {
+    "pid": 102,
+    "kernel_start_ticks": 3020008,
+    "command": "gz sim -s -r outputs/stepped_nest_contacts_hd_20261016/case/world.sdf"
+  },
+  "controller": {
+    "pid": 138,
+    "kernel_start_ticks": 3020313,
+    "command": "python3 scripts/dual_pickup.py --world outputs/stepped_nest_contacts_hd_20261016/case/world.sdf --models outputs/stepped_hd_shm64_20261016/models --drawing-plan docs/evaluation/dual_pickup_20261016/support140_settle30_dual_hold/pickup/connection_plan.json --output outputs/stepped_full_p3_hd64_20261016/pickup --inspection-calibration outputs/stepped_nest_contacts_hd_20261016/case/camera_calibration.json --nest-calibration configs/nest_camera_hd.json --wire-distance-mm 140 --wire-tip-depth-mm 19 --place-in-nest --rigid-nest-transfer --feedback-paced-transfer --after-nest-parking --top-regrasp --insert-after-regrasp"
+  },
+  "recorded_monotonic_s": 33796.317242441,
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305"
+}

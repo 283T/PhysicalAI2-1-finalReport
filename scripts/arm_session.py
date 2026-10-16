@@ -21,6 +21,7 @@ from arm_collision_bounds import (
 from arm_contacts import CONTACT_TOPIC, accumulate_contact, arm_fixture_pair, inter_arm_pair
 from arm_kinematics import quaternion_rotation, rotation_error
 from cartesian_path import interpolate_joints
+from centred_grip import finger_commands
 from command_refresh import CommandRefresh
 from feedback_pacing import FeedbackPacer
 from fixture_collision_bounds import FixtureBounds, sdf_pose
@@ -254,9 +255,8 @@ class ArmSession:
             self.check_finger_intervals(self.snapshot())
         now = time.monotonic()
         for n, pubs in self.pubs.items():
-            for index, (pub, value) in enumerate(
-                zip(pubs, [*self.targets[n], self.grips[n], self.grips[n]])
-            ):
+            fingers = finger_commands(self.grips[n], self.poses[1] if self.poses else None)
+            for index, (pub, value) in enumerate(zip(pubs, [*self.targets[n], *fingers])):
                 self.command_refresh.publish(
                     (n, index),
                     value,

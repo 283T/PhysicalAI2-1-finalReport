@@ -1,0 +1,43 @@
+{
+  "scope": "Native RGB comparison only; not a calibrated pose or task success check",
+  "frames": {
+    "nest": {
+      "stamp_ns": 148800000000,
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        255,
+        255,
+        255
+      ],
+      "channel_std": [
+        52.36053669417042,
+        47.120757851501644,
+        51.469940218587915
+      ],
+      "chromatic_pixels": 227526
+    },
+    "inspection": {
+      "stamp_ns": 149000000000,
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        235,
+        235,
+        235
+      ],
+      "channel_std": [
+        44.41702849974177,
+        42.66866939445411,
+        41.22641779499435
+      ],
+      "chromatic_pixels": 19848
+    }
+  }
+}

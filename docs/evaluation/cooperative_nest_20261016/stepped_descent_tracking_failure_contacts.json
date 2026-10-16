@@ -1,0 +1,13 @@
+{
+  "scope": "Fixed-P3 contact evidence only; does not prove drawing perception, seating, physical release/withdrawal or all-connectors completion. Phase-based arm ownership is specific to the current right-to-left regrasp sequence.",
+  "evidence_consistent": false,
+  "all_requested_target_contacts_recorded": false,
+  "arm_contact_audit_passed": true,
+  "payload_arm_violations": [],
+  "recomputed_summaries": {},
+  "recomputed_failures": [],
+  "trial_success": false,
+  "errors": [
+    "Carried contact episodes differ from drawing-selected plugs"
+  ]
+}

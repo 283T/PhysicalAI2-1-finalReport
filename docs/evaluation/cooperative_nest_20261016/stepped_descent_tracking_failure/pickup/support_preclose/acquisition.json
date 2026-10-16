@@ -1,0 +1,279 @@
+{
+  "processed_frames": 4,
+  "frames": [
+    {
+      "sensor_stamp_ns": 69000000000,
+      "elapsed_wall_s": 11.845783838998614,
+      "detected_plugs": [],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 0,
+      "decode_wall_s": 0.012057374999130843,
+      "detector_wall_s": 0.06407533400124521,
+      "save_and_validation_wall_s": 0.11360775000139256
+    },
+    {
+      "sensor_stamp_ns": 70000000000,
+      "elapsed_wall_s": 25.560363470001903,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [
+        "P3"
+      ],
+      "wire_stable_frames": 1,
+      "wire_supports": [
+        {
+          "plug_id": "P3",
+          "surface_xyz_m": [
+            -0.25321804785612084,
+            0.15360154021182976,
+            0.1617481256424171
+          ],
+          "wire_center_xyz_m": [
+            -0.25003545815383565,
+            0.1517780181007529,
+            0.16334371014263077
+          ],
+          "grasp_tcp_pose": [
+            [
+              0.5639175042443215,
+              0.22122889184874742,
+              0.7956474255712958,
+              -0.24844416330269306
+            ],
+            [
+              0.31693264420456396,
+              0.8317010541284429,
+              -0.45588052776921756,
+              0.15086625704521445
+            ],
+            [
+              -0.7625947465360345,
+              0.5092456518940662,
+              0.39889612505341376,
+              0.1641415023927376
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pixel_uv": [
+            829.9106382978723,
+            783.4695035460993
+          ],
+          "surface_normal_world": [
+            -0.7956474255712958,
+            0.45588052776921756,
+            -0.39889612505341376
+          ],
+          "tangent_world": [
+            0.22122889184874742,
+            0.8317010541284429,
+            0.5092456518940662
+          ],
+          "observed_width_m": 0.008098954224955643,
+          "observed_length_m": 0.027913511017353693,
+          "planar_rms_m": 6.525369545401787e-05,
+          "points": 654,
+          "source_points": 705,
+          "distance_from_connector_m": 0.13994229762043894
+        }
+      ],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0017584579982212745,
+      "detector_wall_s": 0.05721370900209877,
+      "save_and_validation_wall_s": 0.8909974999987753
+    },
+    {
+      "sensor_stamp_ns": 71000000000,
+      "elapsed_wall_s": 41.26586889399914,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [
+        "P3"
+      ],
+      "wire_stable_frames": 2,
+      "wire_supports": [
+        {
+          "plug_id": "P3",
+          "surface_xyz_m": [
+            -0.2533075572678136,
+            0.15329509571593403,
+            0.16157398367160353
+          ],
+          "wire_center_xyz_m": [
+            -0.25012026467953025,
+            0.1514757821095126,
+            0.16316497831589488
+          ],
+          "grasp_tcp_pose": [
+            [
+              0.5629528213761309,
+              0.21944701683271114,
+              0.7968231470708402,
+              -0.24852661838538856
+            ],
+            [
+              0.31977003451476227,
+              0.8311908626299634,
+              -0.4548284016053581,
+              0.15056612530630187
+            ],
+            [
+              -0.76212285488042,
+              0.5108470971667364,
+              0.3977486610728403,
+              0.16396047563804056
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pixel_uv": [
+            830.1158192090395,
+            783.7584745762712
+          ],
+          "surface_normal_world": [
+            -0.7968231470708402,
+            0.4548284016053581,
+            -0.3977486610728403
+          ],
+          "tangent_world": [
+            0.21944701683271114,
+            0.8311908626299634,
+            0.5108470971667364
+          ],
+          "observed_width_m": 0.008119508506936777,
+          "observed_length_m": 0.027793676259083615,
+          "planar_rms_m": 4.550654375875023e-05,
+          "points": 654,
+          "source_points": 708,
+          "distance_from_connector_m": 0.14028039657099667
+        }
+      ],
+      "stable_frames": 2,
+      "decode_wall_s": 0.0018716669983405154,
+      "detector_wall_s": 0.06408383300004061,
+      "save_and_validation_wall_s": 0.770385667001392
+    },
+    {
+      "sensor_stamp_ns": 72000000000,
+      "elapsed_wall_s": 53.11067152499891,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [
+        "P3"
+      ],
+      "wire_stable_frames": 3,
+      "wire_supports": [
+        {
+          "plug_id": "P3",
+          "surface_xyz_m": [
+            -0.2532431068558378,
+            0.15352186323558845,
+            0.1617068889481684
+          ],
+          "wire_center_xyz_m": [
+            -0.25005617208219455,
+            0.15170158400283468,
+            0.16329749583340086
+          ],
+          "grasp_tcp_pose": [
+            [
+              0.5628038228760947,
+              0.2201528531271568,
+              0.796733693410807,
+              -0.24846270469537293
+            ],
+            [
+              0.3190207861718372,
+              0.8313466230554133,
+              -0.4550698081884399,
+              0.1507914443864578
+            ],
+            [
+              -0.7625467821362544,
+              0.5102896369654524,
+              0.39765172130811965,
+              0.1640927992760171
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "pixel_uv": [
+            829.7667597765363,
+            783.608938547486
+          ],
+          "surface_normal_world": [
+            -0.796733693410807,
+            0.4550698081884399,
+            -0.39765172130811965
+          ],
+          "tangent_world": [
+            0.2201528531271568,
+            0.8313466230554133,
+            0.5102896369654524
+          ],
+          "observed_width_m": 0.008116236087073233,
+          "observed_length_m": 0.027915878450928872,
+          "planar_rms_m": 4.389737424180604e-05,
+          "points": 658,
+          "source_points": 716,
+          "distance_from_connector_m": 0.14002307308122833
+        }
+      ],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0019600419982452877,
+      "detector_wall_s": 0.05468595800266485,
+      "save_and_validation_wall_s": 0.7584582499985117
+    }
+  ],
+  "success": true,
+  "timeout_s": 90,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd_hd64.xml",
+    "sha256": "b0a630b3922ce408df1e820422acf0c127dbd1ed649d049cb1a2ee1cf7394a77"
+  },
+  "elapsed_wall_s": 53.41567023300013,
+  "transport": {
+    "received_messages": {
+      "rgb": 4,
+      "depth": 4
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 4,
+    "last_paired_stamp_ns": 72000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 1.120128876002127
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 1.1237044590016012
+      }
+    }
+  },
+  "camera_info_messages": 4
+}
