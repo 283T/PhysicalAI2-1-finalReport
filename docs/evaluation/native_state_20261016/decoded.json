@@ -1,0 +1,146 @@
+{
+  "scope": "Read-only native state snapshot, not an action target or task-success result. Empty command serialization does not mean zero force/torque; saturation and applied effort are unproven.",
+  "simulation_time_s": 109.4765,
+  "component_type_ids": {
+    "Name": 17448053894352336366,
+    "JointPosition": 8319580315957903596,
+    "JointVelocity": 99696134570833896,
+    "JointForceCmd": 5279140706653459474
+  },
+  "joints": {
+    "right_arm_finger_right_joint": {
+      "entity_id": 429,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.0019341110892817294,
+      "JointVelocity": -7.836717773324064e-08,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_3": {
+      "entity_id": 353,
+      "force_or_torque_verified": false,
+      "JointPosition": 1.807972381668769,
+      "JointVelocity": -5.4432777729651605e-12,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_6": {
+      "entity_id": 356,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.19778411056581133,
+      "JointVelocity": 1.2895273737711932e-09,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_4": {
+      "entity_id": 425,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.728003521851896,
+      "JointVelocity": 0.00012960861638600107,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_finger_left_joint": {
+      "entity_id": 428,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.002068274627067841,
+      "JointVelocity": 1.2065001775418693e-13,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_2": {
+      "entity_id": 352,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.9064823237083298,
+      "JointVelocity": -1.422530496175689e-12,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_3": {
+      "entity_id": 424,
+      "force_or_torque_verified": false,
+      "JointPosition": 1.4055129928257568,
+      "JointVelocity": 8.195588305226487e-12,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_5": {
+      "entity_id": 355,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.9411275915711265,
+      "JointVelocity": 1.568551399877549e-10,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_finger_right_joint": {
+      "entity_id": 358,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.0009036275835357117,
+      "JointVelocity": 3.445889407149849e-13,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_6": {
+      "entity_id": 427,
+      "force_or_torque_verified": false,
+      "JointPosition": 1.7303292469734575,
+      "JointVelocity": -1.7075676428390807e-09,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_4": {
+      "entity_id": 354,
+      "force_or_torque_verified": false,
+      "JointPosition": 1.92667734731095,
+      "JointVelocity": -1.844983782609e-05,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_rv4frl_joint_1": {
+      "entity_id": 351,
+      "force_or_torque_verified": false,
+      "JointPosition": -1.2362516949274343,
+      "JointVelocity": -1.2424904854979602e-12,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_2": {
+      "entity_id": 423,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.8663113903269885,
+      "JointVelocity": 8.796988745091161e-13,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_5": {
+      "entity_id": 426,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.7410637250157921,
+      "JointVelocity": 0.0004225775600560644,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "left_arm_finger_left_joint": {
+      "entity_id": 357,
+      "force_or_torque_verified": false,
+      "JointPosition": 0.0010963700652316434,
+      "JointVelocity": 1.308672064378319e-08,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    },
+    "right_arm_rv4frl_joint_1": {
+      "entity_id": 422,
+      "force_or_torque_verified": false,
+      "JointPosition": -2.975084311374153,
+      "JointVelocity": -1.0921281240472425e-12,
+      "joint_force_cmd_component_present": true,
+      "joint_force_cmd_serialized_bytes": 0
+    }
+  },
+  "input_sha256": {
+    "docs/evaluation/native_state_20261016/native_state.pbtxt.gz": "c72dcf3361a8f21287b96f86fa8eea81162b0718486c3adb592131bd6cd93693",
+    "uncompressed_state": "114dfe80fbf1c164a46f202f90abadb7b06370051e5d72d625e19997768684cc",
+    "decoder": "0b04c801cbf9378994203d98b272cc25e412033b229c152fd4682fa567eca847"
+  },
+  "final_acceptance_eligible": false
+}
