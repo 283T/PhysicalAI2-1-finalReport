@@ -43,7 +43,9 @@ def inspect(pickup):
     if not report_path.exists():
         report_path = pickup / "progress.json"
     references = (
-        json.loads(report_path.read_text()).get("grip_references", {}) if report_path.exists() else {}
+        json.loads(report_path.read_text()).get("grip_references", {})
+        if report_path.exists()
+        else {}
     )
     for name, row in latest.items():
         state = row["observed"]
