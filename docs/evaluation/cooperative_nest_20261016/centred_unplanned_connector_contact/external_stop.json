@@ -1,0 +1,16 @@
+{
+  "scope": "Externally requested controlled stop after confirmed unintended non-active P2/arm contact. This attempt is failed; do not treat unfinished descent as success. No scene or pose restoration.",
+  "reason": "Unplanned P2 contact with right gripper during fixed-P3 descent; P1/P2 also contact nest fixtures.",
+  "evidence": "outputs/centred_full_p3_hd64_20261016/descent_all_contacts_probe2.json",
+  "evidence_sha256": "9a2934275afa8a3b248d1feb2101221114f4d948bd4dfff5c9adc6b33a1500d3",
+  "observed_pairs": [
+    "right_arm::right_arm_finger_right::right_arm_finger_right_fixed_joint_lump__front_fence_collision_3 || wire_harness_multi::P2::pin_1_collision",
+    "right_arm::right_arm_finger_left::right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1 || wire_harness_multi::P2::housing_collision"
+  ],
+  "controller_pid": 152,
+  "kernel_start_ticks": 3648396,
+  "requested_signal": "SIGINT",
+  "requested_monotonic_s": 40494.987705448,
+  "trial_success": false,
+  "final_acceptance_eligible": false
+}

@@ -6,7 +6,12 @@ import io
 import json
 from pathlib import Path
 
-from arm_contacts import arm_fixture_pair, inter_arm_pair
+from arm_contacts import (
+    arm_fixture_pair,
+    inactive_payload_arm_pair,
+    inactive_payload_nest_pair,
+    inter_arm_pair,
+)
 from assembly_case import validate_connection_plan
 from carried_contact_guard import CarriedContactGuard
 from evidence_io import write_json_atomic
@@ -23,6 +28,19 @@ def payload_arm_audit(report):
             continue
         if phase == "final_open":
             continue  # Teardown is outside the retained contact-monitor interval.
+
+        inactive = inactive_payload_arm_pair(a, b, {"P3"})
+        if inactive is not None:
+            violations.append(
+                {**record, **inactive, "reason": "Non-active harness part touched robot"}
+            )
+            continue
+        inactive_nest = inactive_payload_nest_pair(a, b, {"P3"})
+        if inactive_nest is not None:
+            violations.append(
+                {**record, **inactive_nest, "reason": "Non-active harness part touched shared nest"}
+            )
+            continue
 
         def is_plug(name):
             parts = name.split("::")

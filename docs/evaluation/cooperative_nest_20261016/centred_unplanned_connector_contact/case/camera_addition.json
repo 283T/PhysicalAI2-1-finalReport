@@ -1,0 +1,6 @@
+{
+  "source_world_sha256": "11b72f99f37b30f7d1221a9bdbc638f9fdb3410a7135aa1039bf9a1b44c9b6ed",
+  "calibration_sha256": "55f7e5ee7e97e749b381c06bbde45917a43a758ed2be63017878d0820e7471aa",
+  "camera_model": "nest_camera",
+  "scope": "Added static RGB-D view only; drawing, board, robot and harness geometry unchanged"
+}

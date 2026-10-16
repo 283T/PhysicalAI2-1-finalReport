@@ -11,6 +11,7 @@ from pathlib import Path
 import numpy as np
 import rclpy
 from arm_collision_bounds import first_overlap
+from arm_contacts import InactivePayloadContactGuard
 from arm_kinematics import rotation_error
 from arm_observation import acquire_observation
 from arm_session import ArmSession
@@ -33,6 +34,7 @@ from nest_aftercare import release_support_and_park
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
 from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
+from rclpy.signals import SignalHandlerOptions
 from socket_insert_live import insert_after_top_pickup
 from top_pickup_live import top_pickup
 from wire_contact_profile import validate_deep_wire_profile
@@ -421,7 +423,8 @@ def main():
         write_json_atomic(args.output / "progress.json", report)
         print(phase, flush=True)
 
-    rclpy.init()
+    # Keep ROS usable for physical opening in finally after Python SIGINT.
+    rclpy.init(signal_handler_options=SignalHandlerOptions.NO)
     session = None
     try:
         with (
@@ -431,6 +434,7 @@ def main():
             gzip.open(args.output / "carried_contacts.jsonl.gz", "wt") as contact_stream,
         ):
             session = ArmSession(args.world, args.models, log)
+            session.contact_guards.append(InactivePayloadContactGuard({"P3"}, report))
             session.wait_ready()
             guards = run(session, args, report, checkpoint, guard_stream)
             if args.place_in_nest:
@@ -457,12 +461,12 @@ def main():
                     contact_stream,
                 )
                 report["success"] = bool(report.get("single_connector_complete"))
-    except Exception as error:
+    except (Exception, KeyboardInterrupt) as error:
         if session:
             report["phase"] = session.phase
         report.update(
             success=False,
-            error=str(error),
+            error=str(error) or type(error).__name__,
             planning_diagnostics=getattr(error, "diagnostics", None),
         )
     finally:

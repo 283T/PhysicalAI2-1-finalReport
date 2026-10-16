@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 import xml.etree.ElementTree as ET
@@ -6,14 +7,94 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from arm_contacts import (
     CONTACT_TOPIC,
+    InactivePayloadContactGuard,
     accumulate_contact,
     add_arm_contact_sensors,
     arm_fixture_pair,
+    inactive_payload_arm_pair,
+    inactive_payload_nest_pair,
     inter_arm_pair,
 )
 
 
 class ArmContactsTests(unittest.TestCase):
+    def test_inactive_parts_may_rest_on_supply_but_cannot_occupy_active_nest(self):
+        nest = "fixtures::fixture_link::regrasp_end_support_-1_collision"
+        for part in ("P1", "P2", "P2_wire_3", "junction"):
+            plug = f"wire_harness_multi::{part}::collision"
+            for a, b in ((plug, nest), (nest, plug)):
+                self.assertEqual(inactive_payload_nest_pair(a, b, {"P3"})["payload_link"], part)
+            for allowed in (
+                "conveyor_carrier::carrier::pallet",
+                "fixtures::fixture_link::socket_J1_0_collision",
+            ):
+                self.assertIsNone(inactive_payload_nest_pair(plug, allowed, {"P3"}))
+        self.assertIsNone(inactive_payload_nest_pair("wire_harness_multi::P3::pin", nest, {"P3"}))
+        guard = InactivePayloadContactGuard({"P3"}, {})
+        with self.assertRaisesRegex(RuntimeError, "non-active"):
+            guard.observe("wire_harness_multi::P1::housing", nest, 10, "nest_transfer_4")
+
+    def test_recorded_native_jam_stops_the_new_guard(self):
+        path = (
+            Path(__file__).resolve().parents[1]
+            / "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/descent_all_contacts_probe2.json"
+        )
+        native = json.loads(path.read_text())
+        report = {}
+        guard = InactivePayloadContactGuard({"P3"}, report)
+        with self.assertRaisesRegex(RuntimeError, "non-active"):
+            for pair, observation in native["pairs"].items():
+                first, second = pair.split(" || ")
+                guard.observe(first, second, observation["first_sim_time_s"], "nest_transfer_4")
+        self.assertEqual(report["inactive_payload_contact_failure"]["payload_link"], "P2")
+
+    def test_nonactive_connectors_wire_and_shared_junction_cannot_touch_robot(self):
+        for arm in ("left_arm", "right_arm"):
+            robot = f"{arm}::{arm}_finger_right::pad"
+            for link in ("P1", "P2", "P2_wire_3", "junction", "P30"):
+                payload = f"wire_harness_multi::{link}::collision"
+                for a, b in ((payload, robot), (robot, payload)):
+                    with self.subTest(arm=arm, link=link, a=a):
+                        self.assertEqual(
+                            inactive_payload_arm_pair(a, b, {"P3"})["payload_link"], link
+                        )
+            for link in ("P3", "P3_wire_0", "P3_wire_8"):
+                self.assertIsNone(
+                    inactive_payload_arm_pair(f"wire_harness_multi::{link}::c", robot, {"P3"})
+                )
+        self.assertIsNone(
+            inactive_payload_arm_pair(
+                "wire_harness_multi::P2::c", "fixtures::fixture_link::c", {"P3"}
+            )
+        )
+        self.assertIsNone(
+            inactive_payload_arm_pair("other_harness::P2::c", "right_arm::finger::c", {"P3"})
+        )
+
+    def test_nonactive_contact_failure_latches_after_report_is_removed(self):
+        report = {}
+        guard = InactivePayloadContactGuard({"P3"}, report)
+        finger = "right_arm::right_arm_finger_right::front_fence"
+        guard.observe("wire_harness_multi::P3::housing", finger, 1, "primary_close")
+        with self.assertRaisesRegex(RuntimeError, "non-active"):
+            guard.observe("wire_harness_multi::P2::pin_1_collision", finger, 2, "nest_transfer_4")
+        self.assertEqual(report["inactive_payload_contact_failure"]["payload_link"], "P2")
+        report.pop("inactive_payload_contact_failure")
+        with self.assertRaises(RuntimeError):
+            guard.observe("wire_harness_multi::P3::housing", finger, 3, "nest_transfer_4")
+        with self.assertRaises(ValueError):
+            InactivePayloadContactGuard({"P3"}, report)
+
+    def test_contact_episode_requires_explicit_intent_and_excludes_teardown(self):
+        for plugs in (set(), {"P0"}, {"P3_wire_4"}):
+            with self.assertRaises(ValueError):
+                InactivePayloadContactGuard(plugs, {})
+        report = {}
+        guard = InactivePayloadContactGuard({"P3"}, report)
+        guard.observe("wire_harness_multi::P2::c", "left_arm::finger::c", 10, "final_open")
+        guard.check()
+        self.assertNotIn("inactive_payload_contact_failure", report)
+
     def test_fixture_collision_gate_distinguishes_payload_telemetry(self):
         for fixture in ("fixtures::board::collision", "conveyor_carrier::carrier::pallet"):
             for arm in ("left_arm::finger::collision", "right_arm_wrist::collision"):

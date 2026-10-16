@@ -1,0 +1,94 @@
+{
+  "scope": "Diagnostic snapshot only; verify process liveness separately. Commanded path fraction is not physical task completion",
+  "incomplete_tail": true,
+  "grips": {
+    "primary": {
+      "phase": "shared_lift",
+      "sim_time_s": 79.9639,
+      "phase_elapsed_s": 2.855699999999999,
+      "grip_check": {
+        "success": true,
+        "position_shift_m": 8.352830980498627e-05,
+        "angle_shift_rad": 0.014426670731480915
+      },
+      "finger_travel_m": [
+        0.002078533302510415,
+        0.0019219922239684085
+      ],
+      "plug_position_world_m": [
+        -0.26353721450646267,
+        0.27269890543786607,
+        0.29351986433359323
+      ],
+      "tcp_position_world_m": [
+        -0.2633151503978652,
+        0.27306185955433987,
+        0.29586661931917624
+      ],
+      "tracking_position_m": 9.310286222011127e-05,
+      "tracking_angle_rad": 0.0044950587548042,
+      "joint_errors_rad": [
+        1.1049246739780472e-05,
+        -5.400620092033126e-05,
+        -7.851191567920246e-05,
+        -5.3188879821475243e-05,
+        -0.0001469531706581595,
+        -0.004417079820938863
+      ],
+      "closure_finger_travel_m": [
+        0.0021011414092568337,
+        0.00192121382669077
+      ],
+      "plug_offset_change_tool_frame_m": [
+        -5.478476082065322e-06,
+        2.436893933561309e-05,
+        7.97064591758611e-05
+      ],
+      "finger_half_difference_change_m": -1.1693252012028445e-05
+    },
+    "support": {
+      "phase": "shared_lift",
+      "sim_time_s": 79.963,
+      "phase_elapsed_s": 2.8547999999999973,
+      "grip_check": {
+        "success": true,
+        "position_shift_m": 2.099852043728287e-05,
+        "angle_shift_rad": 0.002837981237348295
+      },
+      "finger_travel_m": [
+        0.001105866359741783,
+        0.0009593270795826327
+      ],
+      "plug_position_world_m": [
+        -0.24786343077006018,
+        0.15921912815969375,
+        0.22699334187394124
+      ],
+      "tcp_position_world_m": [
+        -0.2643926072906431,
+        0.16067591868106074,
+        0.21541843480834486
+      ],
+      "tracking_position_m": 0.0009029567283637758,
+      "tracking_angle_rad": 0.0039949232684592054,
+      "joint_errors_rad": [
+        9.386826831780937e-05,
+        0.0022577804800523182,
+        -0.001408941171170186,
+        0.005362146301325588,
+        0.0006366555363305215,
+        -0.0037644584476396736
+      ],
+      "closure_finger_travel_m": [
+        0.0010691238983594757,
+        0.0010123742968898763
+      ],
+      "plug_offset_change_tool_frame_m": [
+        -3.1642360713325657e-06,
+        -7.198008929636471e-06,
+        -1.9470853553162776e-05
+      ],
+      "finger_half_difference_change_m": 4.489483934477545e-05
+    }
+  }
+}

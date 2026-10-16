@@ -1,0 +1,63 @@
+primary_observation
+primary_hover
+primary_approach
+primary_preclose_0
+primary_preclose_1
+primary_preclose_2
+primary_close
+primary_centred_hold
+primary_lift
+primary_hold
+suspended_wire_observation
+support_preshape
+support_planning
+support_hover
+support_approach
+support_preclose
+support_close
+support_centred_hold
+shared_lift
+dual_hold
+nest_held_observation
+nest_planning
+nest_transfer_0
+nest_transfer_1
+nest_transfer_2
+nest_transfer_3
+nest_transfer_4
+Traceback (most recent call last):
+  File "/workspace/scripts/dual_pickup.py", line 437, in main
+    place_in_nest(session, args, report, checkpoint, guards)
+  File "/workspace/scripts/held_wire_nest.py", line 106, in place_in_nest
+    session.move(
+  File "/workspace/scripts/arm_session.py", line 395, in move
+    actual = self.tick()
+             ^^^^^^^^^^^
+  File "/workspace/scripts/arm_session.py", line 267, in tick
+    row = self.snapshot()
+          ^^^^^^^^^^^^^^^
+  File "/workspace/scripts/arm_session.py", line 193, in snapshot
+    "command_tcp_pose": self.arms[name].forward(self.targets[name]).tolist()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scripts/arm_kinematics.py", line 111, in forward
+    motion = np.eye(4)
+             ^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/numpy/lib/twodim_base.py", line 211, in eye
+    m = zeros((N, M), dtype=dtype, order=order)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scripts/dual_pickup.py", line 495, in <module>
+    main()
+  File "/workspace/scripts/dual_pickup.py", line 488, in main
+    rclpy.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
+    context.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333

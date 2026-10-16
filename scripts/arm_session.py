@@ -441,7 +441,7 @@ class ArmSession:
                 # the failure. Never let a snapshot exception suppress teardown.
                 self.phase = "final_open"
                 start = self.poses[1] if self.poses else None
-                deadline = time.monotonic() + 30
+                deadline = time.monotonic() + dwell_wall_budget(1)
                 while time.monotonic() < deadline:
                     for pubs in self.pubs.values():
                         for pub in pubs[-2:]:

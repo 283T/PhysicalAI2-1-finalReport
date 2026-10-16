@@ -24,6 +24,7 @@ class DualStageFailureTests(unittest.TestCase):
             phase="after_pickup",
             command_refresh=SimpleNamespace(summary={}),
             contacts={},
+            contact_guards=[],
             unintended=[],
             stop_diagnostics=None,
             preflights=[],

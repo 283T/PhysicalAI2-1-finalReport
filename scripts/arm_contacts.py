@@ -1,8 +1,93 @@
-"""Contact sensors and inter-arm collision classification for the factory scene."""
+"""Contact sensors and collision classification for the factory scene."""
+
+import copy
+import math
+import re
 
 from build_world import child, plugin
 
 CONTACT_TOPIC = "/factory/arm_contacts"
+
+
+def inactive_payload_arm_pair(first, second, active_plugs):
+    """Identify robot contact with a harness part outside the intended branch set."""
+    for payload, robot in ((first, second), (second, first)):
+        parts, robot_parts = payload.split("::"), robot.split("::")
+        if "wire_harness_multi" not in parts:
+            continue
+        index = parts.index("wire_harness_multi")
+        if index + 1 >= len(parts):
+            continue
+        link = parts[index + 1]
+        for arm in ("left_arm", "right_arm"):
+            if arm not in robot_parts:
+                continue
+            if any(re.fullmatch(re.escape(p) + r"(?:_wire_\d+)?", link) for p in active_plugs):
+                return None
+            i = robot_parts.index(arm)
+            return {
+                "payload_link": link,
+                "arm": arm,
+                "arm_link": robot_parts[i + 1] if i + 1 < len(robot_parts) else None,
+            }
+    return None
+
+
+def inactive_payload_nest_pair(first, second, active_plugs):
+    """Only the current intended branch may contact the shared passive nest."""
+    for payload, fixture in ((first, second), (second, first)):
+        parts, other = payload.split("::"), fixture.split("::")
+        if "wire_harness_multi" not in parts or "fixtures" not in other:
+            continue
+        index = parts.index("wire_harness_multi")
+        if index + 1 >= len(parts) or not other[-1].startswith("regrasp_"):
+            continue
+        link = parts[index + 1]
+        if not any(re.fullmatch(re.escape(p) + r"(?:_wire_\d+)?", link) for p in active_plugs):
+            return {"payload_link": link, "fixture_collision": other[-1]}
+    return None
+
+
+class InactivePayloadContactGuard:
+    """Reject an inactive harness part touching an arm or shared passive nest."""
+
+    def __init__(self, active_plugs, report):
+        self.active = frozenset(active_plugs)
+        if not self.active or any(not re.fullmatch(r"P[1-9]\d*", p) for p in self.active):
+            raise ValueError("Explicit nonempty intended plug identities required")
+        if "inactive_payload_contact_guard" in report:
+            raise ValueError("Do not reset a contact episode")
+        self.report, self.failure = report, None
+        self.summary = {
+            "active_plugs": sorted(self.active),
+            "checked_events": 0,
+            "scope": "Fixed intended branch set for arm and passive-nest contacts; ordinary supply-carrier contact is not rejected. Counts may include sensor duplicates, never forces. Active-plug role checks remain separate.",
+        }
+        report["inactive_payload_contact_guard"] = self.summary
+
+    def check(self):
+        if self.failure is not None:
+            raise RuntimeError("Unplanned non-active harness contact is latched")
+
+    def observe(self, first, second, stamp, phase):
+        self.check()
+        if phase == "final_open":
+            return
+        self.summary["checked_events"] += 1
+        violation = inactive_payload_arm_pair(
+            first, second, self.active
+        ) or inactive_payload_nest_pair(first, second, self.active)
+        if violation is not None:
+            self.failure = {
+                "phase": phase,
+                "sim_time_s": stamp if math.isfinite(stamp) else None,
+                "collision1": first,
+                "collision2": second,
+                **violation,
+                "active_plugs": sorted(self.active),
+            }
+            self.report["inactive_payload_contact_failure"] = copy.deepcopy(self.failure)
+            self.check()
 
 
 def accumulate_contact(records, phase, first, second, depths, sim_time):

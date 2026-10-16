@@ -1,7 +1,7 @@
 {
   "scope": "Static and filesystem preparation verification only. Does not launch another Gazebo, load saved object poses, or establish complete reproduction or physical connection. Existing live physical trial 37583 unchanged.",
   "document": "docs/reproduce-fixed-trial.md",
-  "document_sha256": "b948ea7c90742db57e29c9e5f2f6df271487e7392f05fbd6689b4fda78568358",
+  "document_sha256": "51ebfc88f075aed21801829972925b3aa7eddda6b18cd67f295172280ac18b78",
   "source_archive": "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure",
   "input_files": {
     "case/inspection_camera.json": "215f975baf85a505513de000981512c80f4b5ebee8687666eca311568cd6f74e",
@@ -47,5 +47,6 @@
     "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL": "d3030d165d5a5e9bb77e47800bdca63bd607939b58fd4d2d3a54a5592471c168"
   },
   "full_run_from_staged_copy_verified": false,
-  "final_acceptance_eligible": false
+  "final_acceptance_eligible": false,
+  "command_blocks_unchanged_since_preparation_validation": true
 }

@@ -21,3 +21,7 @@ docker compose run --rm dev python3 docs/evaluation/centred_hold_20261016/reprod
 後続の `dual_hold_checkpoint.json` では双腕の100 mm上昇・4秒保持も通過した。最小上昇は左99.026 mm／右99.266 mm、各5,805標本。左の支持閉指前の画像照合は0.542 mm／0.002718 rad、実測開口8.081 mm。閉指からの監視は右44,338／左12,121標本で、最大ずれ右0.0981 mm／左0.1503 mm、回転右0.01444 rad／左0.01124 rad。
 
 `dual_hold_snapshot.json` はその後の保持中の新規画像取得段階の診断。`dual_hold_provenance.json` に複写元を保存する。搬送・着座・基板接続にはまだ達しておらず、比較試験は進行中。全体成功や最終評価には数えない。
+
+## 終了結果
+
+37583はその後、最終下降で未把持P2が右指と治具へ接触し、外部停止して失敗した。[全原本と停止理由](../cooperative_nest_20261016/centred_unplanned_connector_contact/README.md)。上記の途中記録は変更せず保持するが、現在は進行中ではない。単独・双腕保持の通過は、搬送・着座・接続成功の代わりにならない。

@@ -1,0 +1,23 @@
+{
+  "format": "gzip-byte-parts-v1",
+  "original_file": "grip_observations.jsonl.gz",
+  "bytes": 75800641,
+  "sha256": "6e12eee5d48379755709c69d088657c465c607c2a939193fad70973f2be2af42",
+  "parts": [
+    {
+      "file": "grip_observations.jsonl.gz.part0000",
+      "bytes": 33554432,
+      "sha256": "80f548a5bdeed1b12942457c2b7d22f862e9d6b616fa0986fd23b636cdb67305"
+    },
+    {
+      "file": "grip_observations.jsonl.gz.part0001",
+      "bytes": 33554432,
+      "sha256": "2488a2a830b083f3987e54c43ab94ac4e3be36483c12f7e7a329d601f91ec7e4"
+    },
+    {
+      "file": "grip_observations.jsonl.gz.part0002",
+      "bytes": 8691777,
+      "sha256": "610675e1de727f55aadfc879fb2fa3603df6a9758a58b267446ad4241b849a71"
+    }
+  ]
+}

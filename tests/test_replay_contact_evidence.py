@@ -15,6 +15,38 @@ TARGET = "fixtures::board::socket_J3_0_0_collision"
 
 
 class ReplayContactEvidenceTests(unittest.TestCase):
+    def test_unheld_connector_in_shared_nest_is_rejected(self):
+        report = {
+            "contacts": [
+                {
+                    "phase": "nest_transfer_4",
+                    "collision1": "wire_harness_multi::P1::housing",
+                    "collision2": "fixtures::fixture_link::regrasp_end_support_-1_collision",
+                    "messages": 1,
+                }
+            ]
+        }
+        violations = payload_arm_audit(report)
+        self.assertEqual(len(violations), 1)
+        self.assertEqual(violations[0]["payload_link"], "P1")
+
+    def test_other_connector_jamming_gripper_is_rejected_without_runtime_failure(self):
+        for payload in ("P2", "P2_wire_3", "junction"):
+            report = {
+                "success": True,
+                "contacts": [
+                    {
+                        "phase": "nest_transfer_4",
+                        "collision1": f"wire_harness_multi::{payload}::collision",
+                        "collision2": "right_arm::right_arm_finger_right::front_fence",
+                        "messages": 1,
+                    }
+                ],
+            }
+            violations = payload_arm_audit(report)
+            self.assertEqual(len(violations), 1)
+            self.assertEqual(violations[0]["payload_link"], payload)
+
     def fixture(self, *, fail=False):
         report, stream, native = {"success": not fail}, io.StringIO(), {}
         guard = CarriedContactGuard("P3", "J3", 10, report, stream)

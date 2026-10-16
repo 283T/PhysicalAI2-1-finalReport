@@ -1,0 +1,7 @@
+{
+  "scope": "Diagnostic world paused only AFTER failed controller termination, archive creation and native image capture. Goal remains active. No object/joint pose restoration. Frozen state is not a successful grasp/seat or final trial.",
+  "command": "gz service -s /world/multi_connector_factory/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --req pause:true",
+  "response_file": "post_failure_pause_response.txt",
+  "controller_trial_state": "finished",
+  "trial_success": false
+}

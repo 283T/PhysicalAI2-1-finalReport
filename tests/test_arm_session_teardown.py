@@ -62,7 +62,7 @@ class ArmSessionTeardownTest(unittest.TestCase):
         session.node, session.transport, session.bridge = Mock(), Mock(), Mock()
         session.pose_topic = "/poses"
         with (
-            patch("arm_session.time.monotonic", side_effect=[0, 0, 31]),
+            patch("arm_session.time.monotonic", side_effect=[0, 0, 241]),
             patch("arm_session.rclpy.spin_once"),
             patch("arm_session.stop_process") as stop,
         ):
@@ -76,6 +76,28 @@ class ArmSessionTeardownTest(unittest.TestCase):
         self.assertEqual(session.transport.unsubscribe.call_count, 2)
         session.node.destroy_node.assert_called_once()
         stop.assert_called_once()
+
+    def test_opening_continues_when_one_sim_second_takes_45_wall_seconds(self):
+        session = ArmSession.__new__(ArmSession)
+        session.targets = {"left_arm": [0] * 6}
+        session.poses = (0, 0, {})
+        session.pubs = {"left_arm": [Mock() for _ in range(8)]}
+        session.node, session.transport, session.bridge = Mock(), Mock(), Mock()
+        session.pose_topic = "/poses"
+        stamps = iter((0.2, 1.0))
+
+        def advance(*unused, **kwargs):
+            session.poses = (0, next(stamps), {})
+
+        with (
+            patch("arm_session.time.monotonic", side_effect=[0, 0, 45]),
+            patch("arm_session.rclpy.spin_once", side_effect=advance),
+            patch("arm_session.stop_process"),
+        ):
+            session.close()
+        self.assertEqual(session.pubs["left_arm"][-1].publish.call_count, 2)
+        self.assertEqual(session.poses[1], 1.0)
+        session.node.destroy_node.assert_called_once()
 
 
 if __name__ == "__main__":
