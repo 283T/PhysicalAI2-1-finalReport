@@ -1,0 +1,124 @@
+{
+  "scope": "Offline kinematic decomposition of native robot feedback. Linear terms are approximate; they do not identify applied torque, integrator state or the physical cause of the residual. No actuation or success claim.",
+  "trial_success": false,
+  "simulation_time_s": 223.6335,
+  "arms": {
+    "left_arm": {
+      "joint_error_rad": [
+        -0.0002746466827350247,
+        0.0001993122106207501,
+        7.294436532578885e-06,
+        -0.0004119373640229518,
+        -8.98970024221235e-06,
+        0.0033936193330302844
+      ],
+      "linearized_translation_by_joint_m": [
+        [
+          4.474229621830265e-05,
+          -3.057162529062184e-05,
+          -0.0
+        ],
+        [
+          -1.9208229552982467e-05,
+          -1.6450793986490403e-05,
+          -3.797169601351987e-05
+        ],
+        [
+          -1.7758530322230942e-06,
+          -1.5209206190921604e-06,
+          3.76103311124114e-07
+        ],
+        [
+          2.5532377625075966e-05,
+          -6.18583139029855e-05,
+          -3.531136797600422e-06
+        ],
+        [
+          -4.153409151389182e-08,
+          6.740897690482501e-08,
+          -1.4811858225541232e-06
+        ],
+        [
+          -9.014455160977595e-21,
+          2.2444153666107482e-20,
+          2.3547964502145555e-20
+        ]
+      ],
+      "exact_fk_translation_residual_m": [
+        4.923203570450507e-05,
+        -0.00011033970783222435,
+        -4.259843628978688e-05
+      ],
+      "native_translation_residual_m": [
+        4.908530687319779e-05,
+        -0.00011046721107277335,
+        -4.253965597650344e-05
+      ],
+      "linearization_error_m": 2.0234295480440204e-08,
+      "native_fk_discrepancy_m": 2.030801603234458e-07
+    },
+    "right_arm": {
+      "joint_error_rad": [
+        0.0003349048558667356,
+        -0.0011453832406964626,
+        -0.0006013773561270863,
+        0.0003080324585864602,
+        0.0010903528879240287,
+        0.0033300830665358647
+      ],
+      "linearized_translation_by_joint_m": [
+        [
+          0.00016001107662290948,
+          -6.701967664880833e-05,
+          0.0
+        ],
+        [
+          -0.00012346666174480763,
+          -0.00019353732153297315,
+          0.0005846302041564562
+        ],
+        [
+          -0.00010594236948991858,
+          -0.0001660675208852296,
+          0.00013692640979568493
+        ],
+        [
+          -5.0469721004048777e-05,
+          1.659976807991399e-07,
+          3.133053541022537e-06
+        ],
+        [
+          1.1144716163203058e-05,
+          -6.345994869181648e-07,
+          0.00017956158428292533
+        ],
+        [
+          6.64328926334349e-20,
+          -1.9744830521146581e-22,
+          -1.0650925721121356e-20
+        ]
+      ],
+      "exact_fk_translation_residual_m": [
+        -0.00010813827592522085,
+        -0.0004263318221621043,
+        0.0009047043815129663
+      ],
+      "native_translation_residual_m": [
+        -0.00010812187177976218,
+        -0.0004263762942278565,
+        0.0009047468612805032
+      ],
+      "linearization_error_m": 1.0614881596671607e-06,
+      "native_fk_discrepancy_m": 6.36505402214844e-08
+    }
+  },
+  "input_sha256": {
+    "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure/pickup/validation.json": "32cf0ccb729f5928b9a71993d0dc933683c4e54c858355280c8e058cea0b7732",
+    "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure/case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure/models/left_arm.urdf": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure/models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+    "scripts/arm_kinematics.py": "18646bcd7e60b2c149251e811ed8eb11e61a7144a1b3d4d16696dba094c659df",
+    "scripts/plan_reach.py": "049d940f9793c72315631af21678a10090cb6eefb2ab6323e658ea1c96d6b805",
+    "/workspace/docs/evaluation/tracking_residual_20261016/reproduce.py": "ed525be7c57ef38c6dcd9cf469e74129c891cb8ac33a14342d2e298a21a0b055"
+  }
+}
