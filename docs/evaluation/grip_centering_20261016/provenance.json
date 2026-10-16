@@ -1,0 +1,9 @@
+{
+  "scope": "Intermediate live observation only; not a completed trial or placement success. No controller or physics parameter changed.",
+  "source_snapshot_sha256": "4e0ca1e3303f8214763396a1adbea62c12a9b96bd3ab3524d6caf81f000ac1a7",
+  "input_sha256": {
+    "scripts/inspect_grip_progress.py": "ad0e6d8c48af19519a64463b8677fa2a6624cbe618a0bf4a8533865f7e282229",
+    "outputs/stepped_nest_contacts_hd_20261016/case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "outputs/stepped_hd_shm64_20261016/models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  }
+}

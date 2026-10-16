@@ -39,6 +39,12 @@ def inspect(pickup):
         "incomplete_tail": partial,
         "grips": {},
     }
+    report_path = pickup / "validation.json"
+    if not report_path.exists():
+        report_path = pickup / "progress.json"
+    references = (
+        json.loads(report_path.read_text()).get("grip_references", {}) if report_path.exists() else {}
+    )
     for name, row in latest.items():
         state = row["observed"]
         pose, rotation = state["command_tcp_pose"], state["tcp_rotation_world"]
@@ -48,12 +54,38 @@ def inspect(pickup):
             "sim_time_s": row["sim_time_s"],
             "phase_elapsed_s": row["sim_time_s"] - first[row["phase"]],
             "grip_check": row["check"],
+            "finger_travel_m": state["fingers"],
+            "plug_position_world_m": state["plug"],
+            "tcp_position_world_m": state["tcp"],
             "tracking_position_m": math.sqrt(
                 sum((x - pose[i][3]) ** 2 for i, x in enumerate(state["tcp"]))
             ),
             "tracking_angle_rad": math.acos(max(-1, min(1, (trace - 1) / 2))),
             "joint_errors_rad": [a - b for a, b in zip(state["q_rad"], state["command_q_rad"])],
         }
+        if name in references:
+            reference = references[name]
+            offsets = [
+                [
+                    sum(
+                        s["tcp_rotation_world"][k][i] * (s["plug"][k] - s["tcp"][k])
+                        for k in range(3)
+                    )
+                    for i in range(3)
+                ]
+                for s in (reference, state)
+            ]
+            result["grips"][name].update(
+                closure_finger_travel_m=reference["fingers"],
+                plug_offset_change_tool_frame_m=[b - a for a, b in zip(*offsets)],
+                finger_half_difference_change_m=(
+                    state["fingers"][0]
+                    - state["fingers"][1]
+                    - reference["fingers"][0]
+                    + reference["fingers"][1]
+                )
+                / 2,
+            )
     if "primary" in latest and latest["primary"]["phase"].startswith("nest_transfer_"):
         row = latest["primary"]
         plan = json.loads((pickup / "nest_plan.json").read_text())
