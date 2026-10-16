@@ -13,6 +13,8 @@ Physical AI応用1講座の最終課題。多品種少量生産を想定し、�
 [治具着座後の開放・退避と監視](docs/post-nest.md)も実装・事前検査中です。実際の基板接続はまだ検証していません。
 [上面持ち替えから固定P3の挿入](docs/top-regrasp-insertion.md)の実行入口と接触監視も追加しました。物理成功はこれから検証します。
 
+[現在の固定P3試験の再実行手順](docs/reproduce-fixed-trial.md)には、保存済み初期シーンのSHA照合、MELFAモデルの準備、ROS 2・Gazeboでの起動、把持中心保持の指定をまとめています。進行中の物理試験との同時起動は避けてください。
+
 ## 追加要件：複数端末・ランダム配置・一品一様の基板
 
 1本の分岐ハーネスに付いた全コネクタを接続します。最初は3端末を扱い、基板と図面を同じ設計データから生成し、初期配置を別のseedでランダム化します。[生成・ローカルAI読解・検証の手順](docs/multi-connector.md)。全端末を双腕で接続する統合制御は未完了です。
@@ -23,7 +25,7 @@ Physical AI応用1講座の最終課題。多品種少量生産を想定し、�
 python3 scripts/run_perception_demo.py --design-seed 101 --placement-seed 2
 ```
 
-MELFAシーン生成からカメラ画像の受信、全3端末の検出まで実行します。`--require-6d`で面識別マーカー付き試作端末の中心・立体姿勢を必須にできます。[6D姿勢・把持候補の検証](docs/grasp-candidates.md)。[精度評価と制約](docs/perception.md)。1端末の把持は下記の`--pick-connector`で実行できます。[双腕でP1・P3を保持して持ち上げる検証](docs/cooperative-pickup.md)も通過しました。直接のワイヤー支持と全端末の挿入は未完了です。
+MELFAシーン生成からカメラ画像の受信、全3端末の検出まで実行します。`--require-6d`で面識別マーカー付き試作端末の中心・立体姿勢を必須にできます。[6D姿勢・把持候補の検証](docs/grasp-candidates.md)。[精度評価と制約](docs/perception.md)。1端末の把持は下記の`--pick-connector`で実行できます。[双腕でP1・P3を保持して持ち上げる検証](docs/cooperative-pickup.md)も通過しました。現行の`dual_pickup.py`ではコネクタとワイヤー自体の双腕支持も確認しています。全端末の挿入は未完了です。
 
 ## 図面と認識結果からのIK計画
 
@@ -41,7 +43,7 @@ python3 scripts/run_perception_demo.py --design-seed 101 --placement-seed 2 \
   --output outputs/melfa_pick_pipeline --evaluate --pick-connector P1
 ```
 
-今回の図面をローカルAIで読み、動作前のRGB-D画像から求めた姿勢で端末をつかみ、持ち上げて解放します。D101／配置seed2／P1の検証が通りました。[実測グラフと制約](docs/melfa-pickup.md)。このコマンドは1端末の動作です。別端末を保持する支持動作は下記で実行できます。ワイヤー自体の支持と基板への挿入は未実装です。
+今回の図面をローカルAIで読み、動作前のRGB-D画像から求めた姿勢で端末をつかみ、持ち上げて解放します。D101／配置seed2／P1の検証が通りました。[実測グラフと制約](docs/melfa-pickup.md)。このコマンドは1端末の動作です。別端末を保持する支持動作は下記で実行できます。ワイヤー自体の支持・挿入を試す現行の制御入口は冒頭の`dual_pickup.py`です。
 
 双腕で同じハーネスの別端末を支えるには`--support-plug P3`を追加します。
 

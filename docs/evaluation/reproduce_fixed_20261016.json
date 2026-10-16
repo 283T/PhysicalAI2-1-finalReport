@@ -1,0 +1,51 @@
+{
+  "scope": "Static and filesystem preparation verification only. Does not launch another Gazebo, load saved object poses, or establish complete reproduction or physical connection. Existing live physical trial 37583 unchanged.",
+  "document": "docs/reproduce-fixed-trial.md",
+  "document_sha256": "b948ea7c90742db57e29c9e5f2f6df271487e7392f05fbd6689b4fda78568358",
+  "source_archive": "docs/evaluation/cooperative_nest_20261016/stepped_descent_tracking_failure",
+  "input_files": {
+    "case/inspection_camera.json": "215f975baf85a505513de000981512c80f4b5ebee8687666eca311568cd6f74e",
+    "case/flat_marker_model.json": "4f4366a1c6ce2e071dceebbd81c4ff404f31ad9fe01657f47aeb328e38459311",
+    "case/board.json": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+    "case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "case/stepped_profile.json": "56c961e9b11d563c60570ce21246d9007be21b305b2d11ac605311140c76b64b",
+    "case/drawing.png": "deac4945efd41d660646fd72e1aad0bfdb699f3256f7ae45f4b45ad27d8e1eba",
+    "case/connector_contact_telemetry.json": "fd51a36fb177b5659fc1951a6268cf1c403453fd0be0cb86bdf727facdeb9719",
+    "case/controller_tuning.json": "a606ef07d23a1137415b831af06ffd4520ed1f3bdc05a210a378d94c5f1c0d59",
+    "case/regrasp_nest.json": "a368ed1fe59ef53d1f6c058dbb38ae0899e830c5fba50eeb7654a56315dd3a12",
+    "case/camera_resolution.json": "19da014dce4e4977bb69e4289943aed8ef9092c13197075e4b5fb11c01c6c39f",
+    "case/manifest.json": "bf07ae3a29b6213d436a6ac10ca70f08834b067b838de44666e5006a8f4f8e30",
+    "case/nest_camera.json": "55f7e5ee7e97e749b381c06bbde45917a43a758ed2be63017878d0820e7471aa",
+    "case/camera_addition.json": "b4141633faf4419cfa2c48419ed73b206eeadc30d4f693dcefa71f3722366bca",
+    "case/camera_calibration.json": "f6336adff7896665206b8d7c2cbc05cb8f194d3525280bf2aea5c96412c3401f",
+    "case/physics_refinement.json": "abf4583e76e33093e72f8a2974e8da910a3ffa9e952edbd1fb3c8dcd99872332",
+    "case/case.json": "e6014ed5fd9bb8057b9a594e151349c001aec4b7b26299d87819f8a026f353da",
+    "models/left_arm.urdf": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+    "connection_plan.json": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+    "connection_plan.audit.json": "52c0ab583044b7267303014e6456450818ab3143858544d8e907e93a479f6341"
+  },
+  "checks": {
+    "documented_shell_syntax": true,
+    "exact_documented_preparation_executed": true,
+    "staged_files_byte_identical": true,
+    "existing_destination_rejected": true,
+    "sdf_check": {
+      "command": "gz sdf -k outputs/reproduce_p3/case/world.sdf",
+      "exit_code": 0,
+      "output": "Valid."
+    },
+    "all_mesh_files_exist": true
+  },
+  "mesh_sha256": {
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL": "1e9b69bae5d9bf93352f1efb1d53aabe589454028059f57bcf440712a7eb34ac",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL": "1b4d77f72e7701025151eed3d10c54afacde49694fe099da570f48524fce01dc",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL": "6f637298f81d9956de599c737c10b7d2725ef6c77b2d8b266f679dc0245838df",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL": "5807335acc4e873a7a3aacfdd2cd7ed064c5707c8d0a6eaee6553ca586a5992d",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL": "0418f82c3964fbc0c06a5af484e89aab334a699cb684a4b85d0a1b368489d497",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL": "a7d267fee081d12057fa328554753849bbc50c12c0c650c540ae96afc0de00c1",
+    "outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL": "d3030d165d5a5e9bb77e47800bdca63bd607939b58fd4d2d3a54a5592471c168"
+  },
+  "full_run_from_staged_copy_verified": false,
+  "final_acceptance_eligible": false
+}
