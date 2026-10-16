@@ -15,6 +15,46 @@ from test_cooperative_transfer import PoseArm
 
 
 class NestTransferTests(unittest.TestCase):
+    def test_restricted_orientation_never_falls_back_to_the_other_cable_exit(self):
+        class OrientationLimitedArm(PoseArm):
+            def inverse(self, target, seed, attempts=1, **kwargs):
+                result = super().inverse(target, seed, attempts=attempts, **kwargs)
+                if (
+                    np.linalg.norm(target[:3, 3] - [0.08, -0.04, 0.23]) < 0.01
+                    and abs(result["q_rad"][3]) < 0.1
+                ):
+                    result["success"] = False
+                return result
+
+        class PointBounds:
+            def boxes(self, q):
+                return [("tool", (np.asarray(q[:3]), np.eye(3), np.full(3, 0.001)))]
+
+        with tempfile.TemporaryDirectory() as directory:
+            world = self.write_world(directory)
+            args = (
+                {"active": OrientationLimitedArm()},
+                {"active": PointBounds(), "idle": PointBounds()},
+                world,
+                {"active": [0.1, -0.3, 0.4, 0]},
+                "active",
+                np.eye(4),
+            )
+            blocked = plan_to_nest(
+                *args, parked={"idle": [2, 2, 2, 0]}, flipped_candidates=(False,)
+            )
+            self.assertFalse(blocked["success"])
+            self.assertTrue(blocked["attempts"])
+            self.assertTrue(all(not a["flipped"] for a in blocked["attempts"]))
+            alternate = plan_to_nest(
+                *args, parked={"idle": [2, 2, 2, 0]}, flipped_candidates=(True,)
+            )
+            self.assertTrue(alternate["success"])
+            self.assertTrue(alternate["attempts"][alternate["selected_attempt"]]["flipped"])
+            for invalid in ((), (False, False), (0, 1)):
+                with self.assertRaises(ValueError):
+                    plan_to_nest(*args, parked={"idle": [2, 2, 2, 0]}, flipped_candidates=invalid)
+
     def test_intermediate_rotation_avoids_rejected_endpoint_rotation_with_rigid_frames(self):
         class RotationRegionArm(PoseArm):
             def inverse(self, target, seed, attempts=1, **kwargs):

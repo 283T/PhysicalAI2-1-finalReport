@@ -1,0 +1,10 @@
+{
+  "scope": "Offline geometric comparison from saved RGB-D and robot feedback, not new observations or physical holding. Independent support keeps its orientation while primary rotates; wire deformation remains to be tested.",
+  "source_request": "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/pickup/nest_plan_request.json",
+  "source_sha256": "c72550a79acb1da07baf69a51782a9fd17e90dac0ca3fa7c8d9618aff2da9f7e",
+  "changed_fields": {
+    "rigid_transfer": false,
+    "nest_orientation": "flipped"
+  },
+  "final_acceptance_eligible": false
+}

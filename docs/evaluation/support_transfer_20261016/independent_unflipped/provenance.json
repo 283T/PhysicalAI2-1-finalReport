@@ -1,0 +1,9 @@
+{
+  "scope": "Offline geometric comparison only; changes support trajectory policy, no physics or acceptance changes. Saved robot feedback and RGB-D relation, not fresh data or holding proof.",
+  "source_sha256": "4a76f68a2b10f44c76f862d1b3cc5afb2b6f037cad9adc52b33cca61ac0fba96",
+  "source_request": "outputs/unflipped_nest_preflight_20261016/request.json",
+  "changed_request_field": {
+    "rigid_transfer": false
+  },
+  "final_acceptance_eligible": false
+}

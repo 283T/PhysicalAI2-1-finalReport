@@ -1,0 +1,287 @@
+{
+  "scope": "Offline geometry only. Alternate pickup and lift endpoints are NOMINAL assumptions, not measured holding or fresh state. Saved RGB-D relation is assumed unchanged; execution must reacquire images and replan. No physical collision, seating, insertion or acceptance success claim.",
+  "physical_tested": false,
+  "final_acceptance_eligible": false,
+  "source_robot_time_s": 57.0122,
+  "attempts": [
+    {
+      "face_quarter_turns": 2,
+      "half_turn": true,
+      "geometry_success": false,
+      "lift_screens": {
+        "arms": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": false,
+          "fraction": 0.0,
+          "shapes": [
+            "left_arm/left_arm_finger_right",
+            "carrier/pallet_main_collision"
+          ]
+        }
+      },
+      "reason": "Nominal shared lift collision screen rejected",
+      "diagnostics": null
+    },
+    {
+      "face_quarter_turns": 0,
+      "half_turn": false,
+      "geometry_success": false,
+      "reason": "No continuous pickup branch for left_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "left_arm",
+            "seed": 0,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 1,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 2,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 3,
+            "reason": "Hover IK failed"
+          }
+        ],
+        "transit_routes": []
+      }
+    },
+    {
+      "face_quarter_turns": 0,
+      "half_turn": true,
+      "geometry_success": false,
+      "reason": "No continuous pickup branch for left_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "left_arm",
+            "seed": 0,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 1,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 2,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 3,
+            "reason": "Hover IK failed"
+          }
+        ],
+        "transit_routes": []
+      }
+    },
+    {
+      "face_quarter_turns": 1,
+      "half_turn": false,
+      "geometry_success": false,
+      "lift_screens": {
+        "arms": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.001
+        }
+      },
+      "nominal_lift_state": {
+        "sim_time_s": 57.0122,
+        "arms": {
+          "left_arm": {
+            "q_rad": [
+              -0.8414053681688615,
+              1.161826444666386,
+              1.2588152702966544,
+              -0.8083190497088089,
+              1.0676766189831828,
+              -3.063616749740324
+            ],
+            "fingers": [
+              0.0010000000000000009,
+              0.0010000000000000009
+            ]
+          },
+          "right_arm": {
+            "q_rad": [
+              -2.8878346497122083,
+              0.9176326653995808,
+              1.2997795663310423,
+              0.21728848679399929,
+              0.7871477936143053,
+              2.308439879240839
+            ],
+            "fingers": [
+              0.0020328857683484854,
+              0.0019911464065682297
+            ]
+          }
+        }
+      },
+      "nest_attempts": 10
+    },
+    {
+      "face_quarter_turns": 1,
+      "half_turn": true,
+      "geometry_success": false,
+      "lift_screens": {
+        "arms": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.001
+        }
+      },
+      "nominal_lift_state": {
+        "sim_time_s": 57.0122,
+        "arms": {
+          "left_arm": {
+            "q_rad": [
+              -0.8414053705415238,
+              1.1618264148003585,
+              1.2588153416196788,
+              -0.8083190783107196,
+              1.0676765917006499,
+              0.07797595264425437
+            ],
+            "fingers": [
+              0.0010000000000000009,
+              0.0010000000000000009
+            ]
+          },
+          "right_arm": {
+            "q_rad": [
+              -2.8878346497122083,
+              0.9176326653995808,
+              1.2997795663310423,
+              0.21728848679399929,
+              0.7871477936143053,
+              2.308439879240839
+            ],
+            "fingers": [
+              0.0020328857683484854,
+              0.0019911464065682297
+            ]
+          }
+        }
+      },
+      "nest_attempts": 10
+    },
+    {
+      "face_quarter_turns": 3,
+      "half_turn": false,
+      "geometry_success": false,
+      "reason": "No continuous pickup branch for left_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "left_arm",
+            "seed": 0,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 1,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 2,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 3,
+            "reason": "Hover IK failed"
+          }
+        ],
+        "transit_routes": []
+      }
+    },
+    {
+      "face_quarter_turns": 3,
+      "half_turn": true,
+      "geometry_success": false,
+      "reason": "No continuous pickup branch for left_arm",
+      "diagnostics": {
+        "individual": [
+          {
+            "arm": "left_arm",
+            "seed": 0,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 1,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 2,
+            "reason": "Hover IK failed"
+          },
+          {
+            "arm": "left_arm",
+            "seed": 3,
+            "reason": "Hover IK failed"
+          }
+        ],
+        "transit_routes": []
+      }
+    },
+    {
+      "face_quarter_turns": 2,
+      "half_turn": false,
+      "geometry_success": false,
+      "lift_screens": {
+        "arms": {
+          "clear": true,
+          "samples": 81,
+          "margin_per_box_m": 0.005
+        },
+        "fixtures": {
+          "clear": false,
+          "fraction": 0.0,
+          "shapes": [
+            "left_arm/left_arm_finger_left",
+            "carrier/pallet_main_collision"
+          ]
+        }
+      },
+      "reason": "Nominal shared lift collision screen rejected",
+      "diagnostics": null
+    }
+  ],
+  "selected": null,
+  "input_sha256": {
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/pickup/trajectory.json.gz": "3a406b5737a807f36ea2b72dc240767e600303744c752dcf63b6fe8727439e16",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/pickup/suspended_wire_observation/wire_supports.json": "6c67c8189ee7e1845900f525ca9244d4bb92bb2f4bcf632ac0ed1e9e85e8207b",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/pickup/nest_plan_request.json": "c72550a79acb1da07baf69a51782a9fd17e90dac0ca3fa7c8d9618aff2da9f7e",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/models/left_arm.urdf": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  }
+}

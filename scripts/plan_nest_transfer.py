@@ -60,12 +60,20 @@ def plan_to_nest(
     support_orbits=(0.0, -math.pi / 2, math.pi / 2, None),
     path_resolution_scale=1.0,
     intermediate_rotations=(),
+    flipped_candidates=None,
 ):
     """Plan from supplied current joints; never replace them with a new IK branch."""
     relation = rigid_pose(relation)
     if primary not in arms or set(current) != set(arms) or len(arms) not in (1, 2):
         raise ValueError("One or two active arms with matching current joints required")
     single = len(arms) == 1
+    flips = (
+        ((False, True) if single else (True, False))
+        if flipped_candidates is None
+        else tuple(flipped_candidates)
+    )
+    if not flips or any(type(f) is not bool for f in flips) or len(set(flips)) != len(flips):
+        raise ValueError("Explicit unique boolean nest orientation candidates required")
     parked = {} if parked is None else parked
     initial_paths = with_parked_arms(
         {name: np.repeat(np.asarray(q)[None, :], 2, axis=0) for name, q in current.items()}, parked
@@ -93,13 +101,14 @@ def plan_to_nest(
         "parked_joints_rad": {name: np.asarray(q).tolist() for name, q in parked.items()},
         "nest_connector_pose": seat.tolist(),
         "attempts": [],
+        "flipped_candidates": list(flips),
         "scope": "Continuous IK from the supplied lift state; inter-arm and static fixture box screening only. No physical placement, self/cable/object collision or force validation",
     }
     orders = [("translate_then_rotate", None), ("rotate_then_translate", None)]
     if not single:
         orders += [("intermediate_rotation", f) for f in intermediate_rotations]
     for flipped, height, orbit, (order, rotation_fraction), rise in itertools.product(
-        (False, True) if single else (True, False),
+        flips,
         (0.35, 0.45),
         (None,) if single else support_orbits,
         orders,

@@ -1,0 +1,9 @@
+{
+  "scope": "Immutable inputs for saved-data geometric comparison; not new sensor acquisition or physical task success.",
+  "sha256": {
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/case/world.sdf": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/models/left_arm.urdf": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/models/right_arm.urdf": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06",
+    "docs/evaluation/cooperative_nest_20261016/centred_unplanned_connector_contact/pickup/nest_plan_request.json": "c72550a79acb1da07baf69a51782a9fd17e90dac0ca3fa7c8d9618aff2da9f7e"
+  }
+}

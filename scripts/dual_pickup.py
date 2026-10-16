@@ -339,6 +339,9 @@ def main():
     parser.add_argument("--insert-after-regrasp", action="store_true")
     parser.add_argument("--centred-grips", action="store_true")
     parser.add_argument(
+        "--nest-orientation", choices=("either", "unflipped", "flipped"), default="either"
+    )
+    parser.add_argument(
         "--nest-calibration", type=Path, default=Path("configs/nest_camera_hd.json")
     )
     parser.add_argument("--rigid-nest-transfer", action="store_true")
@@ -357,8 +360,8 @@ def main():
     if args.top_regrasp:
         camera = json.loads(args.nest_calibration.read_text())
         validate_world_camera(ET.parse(args.world).getroot().find("world"), camera)
-    if args.feedback_paced_transfer and not args.rigid_nest_transfer:
-        parser.error("--feedback-paced-transfer requires --rigid-nest-transfer")
+    if args.feedback_paced_transfer and not args.place_in_nest:
+        parser.error("--feedback-paced-transfer requires --place-in-nest")
     if not np.isfinite(args.wire_distance_mm) or not 75 <= args.wire_distance_mm <= 200:
         parser.error("Wire distance must be finite and between 75 and 200 mm")
     if not np.isfinite(args.wire_tip_depth_mm) or not 0 < args.wire_tip_depth_mm <= 24:
@@ -401,6 +404,7 @@ def main():
             "top_regrasp": args.top_regrasp,
             "insert_after_regrasp": args.insert_after_regrasp,
             "centred_grips": args.centred_grips,
+            "nest_orientation": args.nest_orientation,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
             "rigid_nest_transfer": args.rigid_nest_transfer,

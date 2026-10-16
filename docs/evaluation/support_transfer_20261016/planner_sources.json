@@ -1,0 +1,11 @@
+{
+  "scope": "Planner source hashes for offline comparisons; no simulation actuation or physical proof.",
+  "sha256": {
+    "scripts/plan_nest_transfer.py": "c65f1c2b31591e81ca1eb6e5aaad96a0187551793bfc60e833fa1460b93021eb",
+    "scripts/plan_held_wire_transfer.py": "74f0eea4e11dc543b6fe5eb23e45f3122787cd547d3deb3e7f321636f63d1c78",
+    "scripts/cooperative_transfer.py": "4b72858e8cb4e172de02c44d6925fe98a87015b06d222459dad5856fa806418a",
+    "scripts/plan_wire_pickup.py": "342bc0beeea6cace71fed3f1c16687f4a5bd87ee91be4fa7951b07bbae2540a3",
+    "scripts/arm_collision_bounds.py": "be6522982401df30ff79b5bc09fbb3da88d4987473124683d39c40ba38d7acbd",
+    "scripts/fixture_collision_bounds.py": "d5ec25f34aa35f0bae39d6c2dfffbdfabe12040dc1dd317d8c778d3c23043b30"
+  }
+}

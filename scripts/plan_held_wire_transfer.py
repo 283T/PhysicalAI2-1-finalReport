@@ -14,9 +14,20 @@ from plan_reach import load_arms
 
 
 def plan_from_feedback(
-    world, arms, bounds, row, relation, *, full_finger_stroke=False, rigid_transfer=False
+    world,
+    arms,
+    bounds,
+    row,
+    relation,
+    *,
+    full_finger_stroke=False,
+    rigid_transfer=False,
+    nest_orientation="either",
 ):
     """Screen from supplied robot feedback; relation must originate in vision."""
+    choices = {"either": None, "unflipped": (False,), "flipped": (True,)}
+    if not isinstance(nest_orientation, str) or nest_orientation not in choices:
+        raise ValueError("Explicit either/unflipped/flipped nest orientation required")
     intervals = {
         name: {
             name + "_finger_" + side + "_joint": interval.tolist()
@@ -37,6 +48,7 @@ def plan_from_feedback(
         "right_arm",
         relation,
         include_carrier=True,
+        flipped_candidates=choices[nest_orientation],
         **(
             {
                 "support_orbits": (None,),
@@ -52,6 +64,7 @@ def plan_from_feedback(
         starting_joints_rad={name: q.tolist() for name, q in current.items()},
         finger_intervals_m=intervals,
         transfer_policy="rigid_grasp_frames" if rigid_transfer else "screened_support_orbits",
+        requested_nest_orientation=nest_orientation,
         finger_envelope_mode="full_mechanical_stroke"
         if full_finger_stroke
         else "measured_plus_minus_0.5mm",
@@ -118,6 +131,7 @@ def main():
             np.array(request["vision_connector_from_tool"]),
             full_finger_stroke=request.get("full_finger_stroke", False),
             rigid_transfer=request.get("rigid_transfer", False),
+            nest_orientation=request.get("nest_orientation", "either"),
         )
     write_json_atomic(args.output, result)
     print(json.dumps({"success": result["success"], "attempts": len(result["attempts"])}, indent=2))

@@ -25,6 +25,7 @@ def live_plan(session, args, row, relation):
             "vision_connector_from_tool": relation.tolist(),
             "full_finger_stroke": True,
             "rigid_transfer": args.rigid_nest_transfer,
+            "nest_orientation": getattr(args, "nest_orientation", "either"),
         },
     )
     with (args.output / "nest_planner.log").open("w") as log:

@@ -16,6 +16,25 @@ class Arm:
 
 
 class FeedbackPacingTest(unittest.TestCase):
+    def test_different_tool_orientations_and_changing_relative_frame_track_planned_path(self):
+        arms = {"a": Arm(), "b": Arm()}
+        paths = {
+            "a": np.array([[0, 0, 0.3, 0], [0.1, 0, 0.3, 0.5]]),
+            "b": np.array([[0, 0.2, 0.3, 0], [0.1, 0.2, 0.35, 0]]),
+        }
+        pacer = FeedbackPacer(arms, paths, 10, 0)
+        commands = pacer.commands(0)
+        for step in range(1, 1001):
+            commands = pacer.update(self.feedback(arms, commands, step * 0.05))
+            if pacer.fraction == 1:
+                break
+        self.assertEqual(pacer.fraction, 1)
+        for name in paths:
+            np.testing.assert_allclose(commands[name], paths[name][-1], atol=1e-12)
+        self.assertEqual(pacer.summary["paused_samples"], 0)
+        self.assertEqual(pacer.summary["position_gate_m"], 0.001)
+        self.assertEqual(pacer.summary["relative_position_gate_m"], 0.0015)
+
     def setup_motion(self):
         arms = {"a": Arm(), "b": Arm()}
         paths = {
