@@ -50,7 +50,12 @@ inputs = [
     Path("scripts/plan_reach.py"),
     Path(__file__),
 ]
-result["input_sha256"] = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
+result["input_sha256"] = {
+    str(p.relative_to(Path.cwd()) if p.is_absolute() else p): hashlib.sha256(
+        p.read_bytes()
+    ).hexdigest()
+    for p in inputs
+}
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(result, indent=2) + "\n")
 print(json.dumps(result["arms"], indent=2))
