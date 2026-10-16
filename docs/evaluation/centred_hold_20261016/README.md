@@ -15,3 +15,9 @@ docker compose run --rm dev python3 docs/evaluation/centred_hold_20261016/reprod
 `primary_hold_checkpoint.json` は進行中の試験から複写した途中報告。右単独の100 mm上昇・4秒保持は通過し、保持最小上昇99.851 mm、保持3,273標本。後続の左支持事前開口に進んだ途中報告時点で、閉指からの把持監視11,279標本、最大ずれ0.0808 mm／0.000963 rad。`primary_hold_snapshot.json` も左支持事前開口中の把持観測。`physical_control_sources.json` は実行コード989ffdbと全scriptsのSHA、`physical_session.json` は同じGazebo／制御プロセスの識別を保存する。
 
 **右単独の途中成功のみ。** 双腕保持、治具搬送・着座、基板挿入はこの証拠では未検証。試験終了・最終成功とは扱わず、従来試験との搬送性能比較も未確定。`primary_hold_provenance.json` に複写元のSHAと変更していない公開worldの参照を保存した。元の把持参照を変更せず、指の力上限・物理条件・評価基準も維持している。
+
+## 37583の双腕保持途中証拠
+
+後続の `dual_hold_checkpoint.json` では双腕の100 mm上昇・4秒保持も通過した。最小上昇は左99.026 mm／右99.266 mm、各5,805標本。左の支持閉指前の画像照合は0.542 mm／0.002718 rad、実測開口8.081 mm。閉指からの監視は右44,338／左12,121標本で、最大ずれ右0.0981 mm／左0.1503 mm、回転右0.01444 rad／左0.01124 rad。
+
+`dual_hold_snapshot.json` はその後の保持中の新規画像取得段階の診断。`dual_hold_provenance.json` に複写元を保存する。搬送・着座・基板接続にはまだ達しておらず、比較試験は進行中。全体成功や最終評価には数えない。

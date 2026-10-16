@@ -1,0 +1,545 @@
+{
+  "success": false,
+  "trial_state": "running",
+  "parameters": {
+    "wire_distance_mm": 140.0,
+    "wire_tip_depth_mm": 19.0,
+    "wire_preshape_clearance_m": 0.01,
+    "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
+    "deep_contact_profile": {
+      "scope": "Static bare finger contact geometry only; no wire identity, path, closure, force or holding success",
+      "urdf_sha256": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+      "tip_depth_m": 0.019,
+      "wire_cross_section_m": 0.008,
+      "normal_margin_m": 0.001,
+      "required_local_z_interval_m": [
+        0.056,
+        0.066
+      ],
+      "rest_gap_m": 0.005999999999999998,
+      "fingers": {
+        "left": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        },
+        "right": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        }
+      }
+    },
+    "place_in_nest": true,
+    "after_nest_parking": true,
+    "top_regrasp": true,
+    "insert_after_regrasp": true,
+    "centred_grips": true,
+    "support_approach_settle_time_s": 30,
+    "nest_finger_envelope": "full_mechanical_stroke",
+    "rigid_nest_transfer": true,
+    "feedback_paced_transfer": true
+  },
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "board_sha256": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "drawing_plan_sha256": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+  "model_sha256": {
+    "left_arm": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: dual contact pickup, fresh held RGB-D, cooperative nest transfer, primary opening and retreat. No top regrasp, board insertion or all-connectors completion",
+  "final_acceptance_eligible": false,
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "phase": "nest_held_observation",
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 295,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "primary_preclose_checks": [
+    {
+      "success": false,
+      "position_error_m": 0.002978980304011601,
+      "angle_error_rad": 0.05677931682033851,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0008268438860797537,
+      "angle_error_rad": 0.010001771042570641,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.00037776298431179084,
+      "angle_error_rad": 0.002318643110936787,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": true
+    }
+  ],
+  "primary_correction_budget": {
+    "right_arm": {
+      "translation_m": 0.004415259329639856,
+      "rotation_rad": 0.07262289361501717
+    }
+  },
+  "primary_closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.020022355235947604,
+    "maximum_jaw_opening_m": 0.020022355235947604,
+    "expected_housing_width_m": 0.02,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  },
+  "grip_references": {
+    "primary": {
+      "time_s": 41.0505,
+      "plug": [
+        -0.26358905876686367,
+        0.2727143525618662,
+        0.13293411541829261
+      ],
+      "plug_rotation_world": [
+        [
+          -0.8092335679235685,
+          -0.10005438178437202,
+          -0.5789042694879867
+        ],
+        [
+          0.5866611885356245,
+          -0.18985667657488176,
+          -0.7872630387779171
+        ],
+        [
+          -0.031139724013362204,
+          -0.9767003445507898,
+          0.21233641831463734
+        ]
+      ],
+      "q_rad": [
+        -2.88795263971762,
+        1.360286788389243,
+        1.1390306194372248,
+        0.3151589828760405,
+        0.51576574802705,
+        2.190607008351821
+      ],
+      "fingers": [
+        0.0021011414092568337,
+        0.00192121382669077
+      ],
+      "tcp": [
+        -0.26339344915846896,
+        0.2730816538059656,
+        0.13520127754926323
+      ],
+      "tcp_rotation_world": [
+        [
+          -0.5791907256761653,
+          -0.8087092966814764,
+          -0.1026030055683958
+        ],
+        [
+          -0.7878065056671697,
+          0.5876316463045494,
+          -0.18452630676922036
+        ],
+        [
+          0.20952091284451785,
+          -0.0260446102362204,
+          -0.9774572447726
+        ]
+      ],
+      "fk_native_error_m": 8.517261527941663e-08,
+      "command_q_rad": [
+        -2.8880394824043183,
+        1.359711273557197,
+        1.1391731473731717,
+        0.31439672472715624,
+        0.5157874106656396,
+        2.1870993655965494
+      ],
+      "command_tcp_pose": [
+        [
+          -0.5758263504020263,
+          -0.8110571007510465,
+          -0.10300676436035486,
+          -0.2635356617958223
+        ],
+        [
+          -0.7902366087790145,
+          0.5844453281266154,
+          -0.18425460801948867,
+          0.2731556864551413
+        ],
+        [
+          0.20964283037615566,
+          -0.024698942331192197,
+          -0.9774660331283103,
+          0.13547860390088082
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "support": {
+      "time_s": 76.1005,
+      "plug": [
+        -0.24813171544643028,
+        0.15883394280662827,
+        0.16713559697635416
+      ],
+      "plug_rotation_world": [
+        [
+          0.23041746408711278,
+          -0.7934088584755199,
+          -0.563391671518346
+        ],
+        [
+          0.8226449004755062,
+          0.4680787106229632,
+          -0.32273470278727107
+        ],
+        [
+          0.5197722193089083,
+          -0.38910757375578775,
+          0.7605472609118884
+        ]
+      ],
+      "q_rad": [
+        -1.1708857394208225,
+        1.3447923009581804,
+        1.5935723384596807,
+        2.416739071462482,
+        1.0030111766937182,
+        -0.446002251529161
+      ],
+      "fingers": [
+        0.0010691238983594757,
+        0.0010123742968898763
+      ],
+      "tcp": [
+        -0.26465404544080323,
+        0.16019642709586407,
+        0.15556526504511312
+      ],
+      "tcp_rotation_world": [
+        [
+          -0.5633914276663164,
+          0.21467650706157282,
+          -0.7978120684396497
+        ],
+        [
+          -0.3227344932971436,
+          0.8317440603624615,
+          0.4517125910222142
+        ],
+        [
+          0.7605475304465499,
+          0.5119724752050726,
+          -0.3993139598912687
+        ]
+      ],
+      "fk_native_error_m": 3.8425166775289903e-07,
+      "command_q_rad": [
+        -1.1703509344021488,
+        1.3440031660074956,
+        1.5931480053241467,
+        2.4167093892764493,
+        1.0015960655960907,
+        -0.44274729489158443
+      ],
+      "command_tcp_pose": [
+        [
+          -0.5631741555718822,
+          0.21579296881192517,
+          -0.7976642558791466,
+          -0.2649653101387646
+        ],
+        [
+          -0.32061892307020445,
+          0.832615052431742,
+          0.45161452659695234,
+          0.16039789073309235
+        ],
+        [
+          0.7616025056846908,
+          0.5100838843518021,
+          -0.3997199698030834,
+          0.1558784826452247
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "grip_guard_summaries": {
+    "primary": {
+      "samples": 44338,
+      "maximum_position_shift_m": 9.807185336881218e-05,
+      "maximum_angle_shift_rad": 0.014441153916563379
+    },
+    "support": {
+      "samples": 12121,
+      "maximum_position_shift_m": 0.00015025007687319612,
+      "maximum_angle_shift_rad": 0.011242608476311072
+    }
+  },
+  "centred_grip_plans": {
+    "primary": {
+      "reference_fingers_m": [
+        0.0021011414092568337,
+        0.00192121382669077
+      ],
+      "start_sim_time_s": 41.0528,
+      "initial_squeeze_m": 0.0015,
+      "p_gain": 3000.0,
+      "i_gain": 40.0,
+      "initial_targets_m": [
+        0.0006011414092568336,
+        0.00042121382669077
+      ],
+      "scope": "Robot finger targets only. Equal offsets preserve the commanded midpoint. Exponential decay bounds the ideal blocked-joint PI output; no measured-force or physical holding claim.",
+      "arm": "right_arm",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "pid_parameters": {
+        "p_gain": 3000.0,
+        "i_gain": 40.0,
+        "d_gain": 5.0,
+        "i_max": 12.0,
+        "i_min": -12.0,
+        "cmd_max": 12.0,
+        "cmd_min": -12.0
+      },
+      "requested_squeeze_m": 0.0015
+    },
+    "support": {
+      "reference_fingers_m": [
+        0.0010691238983594757,
+        0.0010123742968898763
+      ],
+      "start_sim_time_s": 76.1022,
+      "initial_squeeze_m": 0.0006,
+      "p_gain": 10000.0,
+      "i_gain": 40.0,
+      "initial_targets_m": [
+        0.0004691238983594758,
+        0.00041237429688987636
+      ],
+      "scope": "Robot finger targets only. Equal offsets preserve the commanded midpoint. Exponential decay bounds the ideal blocked-joint PI output; no measured-force or physical holding claim.",
+      "arm": "left_arm",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "pid_parameters": {
+        "p_gain": 10000.0,
+        "i_gain": 40.0,
+        "d_gain": 5.0,
+        "i_max": 12.0,
+        "i_min": -12.0,
+        "cmd_max": 12.0,
+        "cmd_min": -12.0
+      },
+      "requested_squeeze_m": 0.0006
+    }
+  },
+  "primary_hold": {
+    "success": true,
+    "minimum_lift_m": 0.0998506163491151,
+    "relative_slip_m": 3.545730706094848e-06,
+    "lift_slip_m": 8.011123901594046e-05,
+    "minimum_tcp_lift_m": 0.09990340055026822,
+    "minimum_finger_travel_m": 0.0019918506051319375,
+    "minimum_jaw_opening_m": 0.020024736370822974,
+    "maximum_jaw_opening_m": 0.020025208077910448,
+    "expected_housing_width_m": 0.02,
+    "hold_samples": 3273,
+    "rotation_validated": true,
+    "maximum_rotation_change_rad": 0.004796579848647868
+  },
+  "primary_connector_from_tool": [
+    [
+      -2.2991662618234917e-17,
+      1.0,
+      2.2625448161136045e-17,
+      -5.551115123125783e-17
+    ],
+    [
+      -6.959558949993298e-18,
+      -1.698650607794076e-18,
+      1.0,
+      -0.0020000000000000018
+    ],
+    [
+      1.0,
+      -4.959879271719612e-18,
+      -1.0872714924693461e-17,
+      -1.3877787807814457e-17
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "support_preshape": {
+    "target": {
+      "model_wire_width_m": 0.008,
+      "observed_wire_width_m": 0.008160891552216365,
+      "sizing_width_m": 0.008160891552216365,
+      "clearance_m": 0.01,
+      "target_gap_m": 0.018160891552216365,
+      "target_travel_m": 0.006080445776108183
+    },
+    "preflight": {
+      "arms": null,
+      "fixtures": null
+    },
+    "before_finger_intervals_m": {
+      "left_arm": {
+        "left_arm_finger_left_joint": [
+          -0.0005,
+          0.01851984574853715
+        ],
+        "left_arm_finger_right_joint": [
+          -0.0005,
+          0.018519814854246575
+        ]
+      },
+      "right_arm": {
+        "right_arm_finger_left_joint": [
+          0.0015328857668424484,
+          0.0025328857668424484
+        ],
+        "right_arm_finger_right_joint": [
+          0.0014914912755469587,
+          0.0024914912755469587
+        ]
+      }
+    },
+    "measured": {
+      "success": true,
+      "maximum_travel_error_m": 9.666038075746737e-06,
+      "measured_gap_m": 0.01818020345224291,
+      "remaining_wire_clearance_m": 0.010019311900026544,
+      "scope": "Empty-space jaw preparation only; no wire closure or holding proof"
+    }
+  },
+  "support_closing_finger_intervals_m": {
+    "left_arm": {
+      "left_arm_finger_left_joint": [
+        -0.0005,
+        0.0065901118141839295
+      ],
+      "left_arm_finger_right_joint": [
+        -0.0005,
+        0.00659009163805898
+      ]
+    },
+    "right_arm": {
+      "right_arm_finger_left_joint": [
+        0.0015328857684014066,
+        0.0025328857684014067
+      ],
+      "right_arm_finger_right_joint": [
+        0.0014911357620706407,
+        0.0024911357620706408
+      ]
+    }
+  },
+  "support_preclose": {
+    "center_change_m": 0.0001311596466717375,
+    "tangent_change_rad": 0.002285499551956892,
+    "tool_position_error_m": 0.0005424778872318917,
+    "tool_angle_error_rad": 0.0027180084528638892,
+    "success": true
+  },
+  "support_evaluation_link": "P3_wire_3",
+  "support_closure": {
+    "success": true,
+    "minimum_jaw_opening_m": 0.008081498195249351,
+    "maximum_jaw_opening_m": 0.008081498195249351,
+    "expected_housing_width_m": 0.008,
+    "scope": "Joint opening only; not proof of housing contact or stable grasp"
+  },
+  "dual_holds": {
+    "left_arm": {
+      "success": true,
+      "minimum_lift_m": 0.0990260319545069,
+      "relative_slip_m": 1.726815213156707e-05,
+      "lift_slip_m": 0.00015871212805521336,
+      "minimum_tcp_lift_m": 0.09951138376956417,
+      "minimum_finger_travel_m": 0.0009100920578954945,
+      "minimum_jaw_opening_m": 0.007999996885084291,
+      "maximum_jaw_opening_m": 0.007999997537789787,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 5805,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.013963331552918096
+    },
+    "right_arm": {
+      "success": true,
+      "minimum_lift_m": 0.09926635416414314,
+      "relative_slip_m": 2.3476322582908085e-06,
+      "lift_slip_m": 6.167717694094131e-05,
+      "minimum_tcp_lift_m": 0.09934892211457386,
+      "minimum_finger_travel_m": 0.0019203011076619244,
+      "minimum_jaw_opening_m": 0.020000272972139577,
+      "maximum_jaw_opening_m": 0.02000046217365066,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 5805,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.011163117701019533
+    }
+  },
+  "dual_pickup_success": true
+}

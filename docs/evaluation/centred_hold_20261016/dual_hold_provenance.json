@@ -1,0 +1,6 @@
+{
+  "scope": "Live physical comparison 37583: dual lift and hold passed. Overall report remains false; trial unfinished. Nest seating, insertion, release and final acceptance unproven.",
+  "source": "outputs/centred_full_p3_hd64_20261016/pickup/progress.json",
+  "source_sha256": "cb212ef6cc29d9ea776205a2460fd5e3e75f23861a6a9365191cdfcd264779cb",
+  "final_acceptance_eligible": false
+}

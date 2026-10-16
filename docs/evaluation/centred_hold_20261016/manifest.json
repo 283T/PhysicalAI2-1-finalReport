@@ -1,5 +1,8 @@
 {
-  "README.md": "962b7763504ad48bff76698e607deb806777fb515942e2243b46612bbe035250",
+  "README.md": "b02d4a771d61c236c94b73593538d97289688149d406c6ab09db36fca38fc9ca",
+  "dual_hold_checkpoint.json": "cb212ef6cc29d9ea776205a2460fd5e3e75f23861a6a9365191cdfcd264779cb",
+  "dual_hold_provenance.json": "8008764f16800e8b9f5bc9ddcdb3f1c2a773f282952d2e5328df227887f42534",
+  "dual_hold_snapshot.json": "9f240002f37fcbdd5ad6dfe583ac9a725b4c3ead362b958865501293133d6d10",
   "ideal_model.json": "fbf54d6fed894cada90a7877120746dba486c598ea3f0df7a9e98eaaa56a62af",
   "physical_control_sources.json": "66619f09ec41e2d0040cba0462c566176dd0810404419417fad498558a20bb68",
   "physical_session.json": "9691e304af1c7f9de9ba46853ed7cb3717a305d8a0a404f20d4ac93d069fe77a",
