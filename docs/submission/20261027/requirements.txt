@@ -1,0 +1,4 @@
+# Versions used to build the 2026-10-27 submission artifacts.
+Pillow==12.3.0
+reportlab==4.4.9
+numpy==2.3.5

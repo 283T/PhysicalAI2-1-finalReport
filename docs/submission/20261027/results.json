@@ -1,0 +1,81 @@
+{
+  "created_date": "2026-10-27",
+  "account": "283t_123",
+  "repository": "https://github.com/283T/PhysicalAI2-1-finalReport",
+  "physical_start_commit": "67633a0",
+  "current_trial_success": false,
+  "phase": "nest_transfer_1",
+  "error": "simulation_budget_exhausted before robot convergence in nest_transfer_1",
+  "primary_min_lift_mm": 99.84254858106839,
+  "left_min_lift_mm": 99.17990676767461,
+  "right_min_lift_mm": 99.2462404447152,
+  "grip_audit": {
+    "evidence_consistent": true,
+    "all_recorded_grips_within_limits": true,
+    "trial_success": false,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {
+      "primary": {
+        "samples": 126037,
+        "maximum_position_shift_m": 0.0005800314554628208,
+        "maximum_angle_shift_rad": 0.037176248689856584
+      },
+      "support": {
+        "samples": 90375,
+        "maximum_position_shift_m": 0.00026454564887799467,
+        "maximum_angle_shift_rad": 0.03786677397591641
+      }
+    },
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": []
+  },
+  "contact_audit": {
+    "scope": "Fixed-P3 contact evidence only; does not prove drawing perception, seating, physical release/withdrawal or all-connectors completion. Phase-based arm ownership is specific to the current right-to-left regrasp sequence.",
+    "evidence_consistent": false,
+    "all_requested_target_contacts_recorded": false,
+    "arm_contact_audit_passed": true,
+    "payload_arm_violations": [],
+    "recomputed_summaries": {},
+    "recomputed_failures": [],
+    "trial_success": false,
+    "errors": [
+      "Carried contact episodes differ from drawing-selected plugs"
+    ]
+  },
+  "video_scope": "Prototype actual footage at 1x, current dual-arm saved still, and result cards; no current insertion success",
+  "video_segments": [
+    {
+      "start_s": 0,
+      "end_s": 8,
+      "kind": "title"
+    },
+    {
+      "start_s": 8,
+      "end_s": 36,
+      "kind": "prototype_A_actual_1x_source_8_to_36"
+    },
+    {
+      "start_s": 36,
+      "end_s": 64,
+      "kind": "prototype_B_actual_1x_source_72_to_100"
+    },
+    {
+      "start_s": 64,
+      "end_s": 82,
+      "kind": "current_trial_saved_still"
+    },
+    {
+      "start_s": 82,
+      "end_s": 100,
+      "kind": "measured_results"
+    },
+    {
+      "start_s": 100,
+      "end_s": 120,
+      "kind": "limitations"
+    }
+  ],
+  "new_physical_run_performed": false,
+  "docker_check": "Docker daemon unavailable on 2026-10-27; no new simulation was run"
+}
