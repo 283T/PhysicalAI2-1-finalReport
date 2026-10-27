@@ -1,0 +1,901 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="reach_validation">
+    <physics name="physics" type="ignored">
+      <max_step_size>0.0001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <gravity>0 0 -9.81</gravity>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <light name="sun" type="directional">
+      <pose>0 0 3 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <direction>-0.3 -0.3 -1</direction>
+    </light>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact" />
+    <model name="right_arm">
+      <joint name="right_arm_rv4frl_world_to_base" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
+        <parent>world</parent>
+        <child>right_arm_rv4frl_base</child>
+      </joint>
+      <link name="right_arm_rv4frl_base">
+        <pose relative_to="right_arm_rv4frl_world_to_base">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.40000000000000002</mass>
+          <inertia>
+            <ixx>0.00044333315599999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00044333315599999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.00071999999999999994</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_base_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_base_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_base_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_1" type="revolute">
+        <pose relative_to="right_arm_rv4frl_base">0 0 0 0 0 0</pose>
+        <parent>right_arm_rv4frl_base</parent>
+        <child>right_arm_rv4frl_shoulder</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-4.1887902047863914</lower>
+            <upper>4.1887902047863914</upper>
+            <effort>50</effort>
+            <velocity>7.3303828583761854</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_shoulder">
+        <pose relative_to="right_arm_rv4frl_joint_1">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.37</mass>
+          <inertia>
+            <ixx>0.00041008316930000001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00041008316930000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.00066599999999999993</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_shoulder_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_shoulder_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_shoulder_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_2" type="revolute">
+        <pose relative_to="right_arm_rv4frl_shoulder">0 0 0.34999999999999998 0 0 0</pose>
+        <parent>right_arm_rv4frl_shoulder</parent>
+        <child>right_arm_rv4frl_upper_arm</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.0943951023931948</lower>
+            <upper>2.0943951023931948</upper>
+            <effort>50</effort>
+            <velocity>5.8643062867009466</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_upper_arm">
+        <pose relative_to="right_arm_rv4frl_joint_2">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.33929999999999999</mass>
+          <inertia>
+            <ixx>0.00037605734957700001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00037605734957700001</iyy>
+            <iyz>0</iyz>
+            <izz>0.00061073999999999992</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_upper_arm_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_upper_arm_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_upper_arm_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_3" type="revolute">
+        <pose relative_to="right_arm_rv4frl_upper_arm">0 0 0.31 0 0 0</pose>
+        <parent>right_arm_rv4frl_upper_arm</parent>
+        <child>right_arm_rv4frl_elbow</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>2.8623399732707</upper>
+            <effort>50</effort>
+            <velocity>4.3633231299858233</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_elbow">
+        <pose relative_to="right_arm_rv4frl_joint_3">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.22750000000000001</mass>
+          <inertia>
+            <ixx>0.00025214573247499998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00025214573247499998</iyy>
+            <iyz>0</iyz>
+            <izz>0.00040949999999999998</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_elbow_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_elbow_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_elbow_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_4" type="revolute">
+        <pose relative_to="right_arm_rv4frl_elbow">-0.050000000000000003 0 0 0 0 0</pose>
+        <parent>right_arm_rv4frl_elbow</parent>
+        <child>right_arm_rv4frl_forearm</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.4906585039886591</lower>
+            <upper>3.4906585039886591</upper>
+            <effort>50</effort>
+            <velocity>9.4247779607693793</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_forearm">
+        <pose relative_to="right_arm_rv4frl_joint_4">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.12189999999999999</mass>
+          <inertia>
+            <ixx>0.000135105779291</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000135105779291</iyy>
+            <iyz>0</iyz>
+            <izz>0.00021942000000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_forearm_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_forearm_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_forearm_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_5" type="revolute">
+        <pose relative_to="right_arm_rv4frl_forearm">0 0 0.33500000000000002 0 0 0</pose>
+        <parent>right_arm_rv4frl_forearm</parent>
+        <child>right_arm_rv4frl_wrist</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.0943951023931948</lower>
+            <upper>2.0943951023931948</upper>
+            <effort>50</effort>
+            <velocity>10.87340123992467</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_wrist">
+        <pose relative_to="right_arm_rv4frl_joint_5">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.12189999999999999</mass>
+          <inertia>
+            <ixx>0.000135105779291</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000135105779291</iyy>
+            <iyz>0</iyz>
+            <izz>0.00021942000000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_wrist_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_wrist_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_wrist_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_rv4frl_joint_6" type="revolute">
+        <pose relative_to="right_arm_rv4frl_wrist">0 0 0.085000000000000006 0 0 0</pose>
+        <parent>right_arm_rv4frl_wrist</parent>
+        <child>right_arm_rv4frl_hand_flange</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-6.2831853071795862</lower>
+            <upper>6.2831853071795862</upper>
+            <effort>50</effort>
+            <velocity>12.566370614359171</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <friction>1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_rv4frl_hand_flange">
+        <pose relative_to="right_arm_rv4frl_joint_6">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.068790000000000004</mass>
+          <inertia>
+            <ixx>4.0825575003100001e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>4.0825575003100001e-05</iyy>
+            <iyz>0</iyz>
+            <izz>5.3822000000000001e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_rv4frl_hand_flange_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="right_arm_rv4frl_hand_flange_fixed_joint_lump__right_arm_gripper_collision_1">
+          <pose>0 0 -0.0060000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.070000000000000007 0.040000000000000001 0.012</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_arm_rv4frl_hand_flange_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <visual name="right_arm_rv4frl_hand_flange_fixed_joint_lump__right_arm_gripper_visual_1">
+          <pose>0 0 -0.0060000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.070000000000000007 0.040000000000000001 0.012</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_hand_flange_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_1" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_rv4frl_hand_flange_fixed_joint_lump__right_arm_gripper_collision_1</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_finger_left_joint" type="prismatic">
+        <pose relative_to="right_arm_rv4frl_hand_flange">-0.012 0 0 0 0 0</pose>
+        <parent>right_arm_rv4frl_hand_flange</parent>
+        <child>right_arm_finger_left</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.02</upper>
+            <effort>12</effort>
+            <velocity>0.029999999999999999</velocity>
+          </limit>
+          <dynamics>
+            <damping>2</damping>
+            <friction>0.10000000000000001</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_finger_left">
+        <pose relative_to="right_arm_finger_left_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0.039 0 0 0</pose>
+          <mass>0.010999999999999999</mass>
+          <inertia>
+            <ixx>6.0000000000000002e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>6.0000000000000002e-06</iyy>
+            <iyz>0</iyz>
+            <izz>9.9999999999999995e-07</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_finger_left_fixed_joint_lump__contact_pad_0_collision">
+          <pose>0 -0.0089999999999999993 0.039 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.0080000000000000002 0.078</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1">
+          <pose>0 0.0089999999999999993 0.039 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.0080000000000000002 0.078</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_left_fixed_joint_lump__rear_fence_collision_2">
+          <pose>0.0040000000000000001 0 0.070999999999999994 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_arm_finger_left_visual">
+          <pose>0 0 0.039 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.078</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_left_fixed_joint_lump__rear_fence_visual_1">
+          <pose>0.0040000000000000001 0 0.070999999999999994 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_left_fixed_joint_lump__contact_pad_0_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_1" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_left_fixed_joint_lump__contact_pad_1_collision_1</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_2" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_left_fixed_joint_lump__rear_fence_collision_2</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <joint name="right_arm_finger_right_joint" type="prismatic">
+        <pose relative_to="right_arm_rv4frl_hand_flange">0.012 0 0 0 0 0</pose>
+        <parent>right_arm_rv4frl_hand_flange</parent>
+        <child>right_arm_finger_right</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.02</upper>
+            <effort>12</effort>
+            <velocity>0.029999999999999999</velocity>
+          </limit>
+          <dynamics>
+            <damping>2</damping>
+            <friction>0.10000000000000001</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right_arm_finger_right">
+        <pose relative_to="right_arm_finger_right_joint">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0.00040000000000000002 0 0.050500000000000003 0 0 0</pose>
+          <mass>0.016</mass>
+          <inertia>
+            <ixx>1.2e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>-2.4999999999999999e-07</ixz>
+            <iyy>1.2e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1.9999999999999999e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name="right_arm_finger_right_fixed_joint_lump__contact_pad_0_collision">
+          <pose>0 -0.0089999999999999993 0.040000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.0080000000000000002 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1">
+          <pose>0 0.0089999999999999993 0.040000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.0080000000000000002 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__rear_fence_collision_2">
+          <pose>-0.0040000000000000001 0 0.070999999999999994 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__front_fence_collision_3">
+          <pose>-0.0040000000000000001 0 0.092999999999999999 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__end_stop_spine_collision_4">
+          <pose>0.002 0 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000001 0.044999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__housing_end_minus_collision_5">
+          <pose>-0.0025000000000000001 -0.021299999999999999 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0050000000000000001 0.002 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <collision name="right_arm_finger_right_fixed_joint_lump__housing_end_plus_collision_6">
+          <pose>-0.0025000000000000001 0.021299999999999999 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0050000000000000001 0.002 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_arm_finger_right_visual">
+          <pose>0 0 0.040000000000000001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.080000000000000002</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_right_fixed_joint_lump__rear_fence_visual_1">
+          <pose>-0.0040000000000000001 0 0.070999999999999994 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_right_fixed_joint_lump__front_fence_visual_2">
+          <pose>-0.0040000000000000001 0 0.092999999999999999 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0080000000000000002 0.025999999999999999 0.001</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_right_fixed_joint_lump__end_stop_spine_visual_3">
+          <pose>0.002 0 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0040000000000000001 0.044999999999999998 0.02</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_right_fixed_joint_lump__housing_end_minus_visual_4">
+          <pose>-0.0025000000000000001 -0.021299999999999999 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0050000000000000001 0.002 0.02</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name="right_arm_finger_right_fixed_joint_lump__housing_end_plus_visual_5">
+          <pose>-0.0025000000000000001 0.021299999999999999 0.082000000000000003 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0050000000000000001 0.002 0.02</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="inter_arm_contact_0" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__contact_pad_0_collision</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_1" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__contact_pad_1_collision_1</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_2" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__rear_fence_collision_2</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_3" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__front_fence_collision_3</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_4" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__end_stop_spine_collision_4</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_5" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__housing_end_minus_collision_5</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+        <sensor name="inter_arm_contact_6" type="contact">
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <topic>/factory/arm_contacts</topic>
+          <contact>
+            <collision>right_arm_finger_right_fixed_joint_lump__housing_end_plus_collision_6</collision>
+            <topic>/factory/arm_contacts</topic>
+          </contact>
+        </sensor>
+      </link>
+      <frame name="right_arm_gripper_mount" attached_to="right_arm_rv4frl_default_tcp">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_gripper" attached_to="right_arm_gripper_mount">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_rv4frl_hand_tcp" attached_to="right_arm_rv4frl_hand_flange">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name="right_arm_rv4frl_default_tcp" attached_to="right_arm_rv4frl_hand_tcp">
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>0.28 0.44 .12 0 0 0</pose>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_1</joint_name>
+        <topic>/right_arm/joint_0/cmd</topic>
+        <p_gain>720.0</p_gain>
+        <d_gain>4.0</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_2</joint_name>
+        <topic>/right_arm/joint_1/cmd</topic>
+        <p_gain>720.0</p_gain>
+        <d_gain>4.0</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_3</joint_name>
+        <topic>/right_arm/joint_2/cmd</topic>
+        <p_gain>720.0</p_gain>
+        <d_gain>4.0</d_gain>
+        <i_gain>100</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_4</joint_name>
+        <topic>/right_arm/joint_3/cmd</topic>
+        <p_gain>320.0</p_gain>
+        <d_gain>0.2</d_gain>
+        <i_gain>40</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_5</joint_name>
+        <topic>/right_arm/joint_4/cmd</topic>
+        <p_gain>320.0</p_gain>
+        <d_gain>0.2</d_gain>
+        <i_gain>40</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_rv4frl_joint_6</joint_name>
+        <topic>/right_arm/joint_5/cmd</topic>
+        <p_gain>640.0</p_gain>
+        <d_gain>0.282842712</d_gain>
+        <i_gain>0.0</i_gain>
+        <i_max>50.0</i_max>
+        <i_min>-50.0</i_min>
+        <cmd_max>50.0</cmd_max>
+        <cmd_min>-50.0</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_finger_left_joint</joint_name>
+        <topic>/right_arm/gripper/left/cmd</topic>
+        <p_gain>3000.0</p_gain>
+        <d_gain>5</d_gain>
+        <i_gain>40</i_gain>
+        <i_max>12</i_max>
+        <i_min>-12</i_min>
+        <cmd_max>12</cmd_max>
+        <cmd_min>-12</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+        <joint_name>right_arm_finger_right_joint</joint_name>
+        <topic>/right_arm/gripper/right/cmd</topic>
+        <p_gain>3000.0</p_gain>
+        <d_gain>5</d_gain>
+        <i_gain>40</i_gain>
+        <i_max>12</i_max>
+        <i_min>-12</i_min>
+        <cmd_max>12</cmd_max>
+        <cmd_min>-12</cmd_min>
+      </plugin>
+      <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+        <topic>/right_arm/joints</topic>
+      </plugin>
+    </model>
+    </world>
+</sdf>

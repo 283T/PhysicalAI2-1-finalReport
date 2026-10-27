@@ -1,0 +1,181 @@
+left_arm none unloaded_tracking: True xyz=0.00100 m
+right_arm none unloaded_tracking: True xyz=0.00100 m
+{
+  "scope": "Separate single-arm worlds without harness, fixtures or the other arm. Recorded robot commands are goals, never restored object poses. Endpoint tracking only; not a replay of the loaded path, not causal proof and not assembly success.",
+  "source_trial_success": false,
+  "source_phase": "nest_transfer_1",
+  "input_sha256": {
+    "validation": "5ef246dd7169b442e9e88b55bb85e1ceb04a2c3a616a68b16838f5ddf254bad0",
+    "world": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305"
+  },
+  "gates": {
+    "position_m": 0.001,
+    "angle_rad": 0.01,
+    "joint_rad": 0.01,
+    "fk_m": 0.001
+  },
+  "arms": {
+    "left_arm": {
+      "plug_id": "none",
+      "stage": "unloaded_tracking",
+      "q_rad": [
+        -1.1706287922754335,
+        1.0046717166598267,
+        1.8033622339329822,
+        2.355167477552681,
+        0.9088046965382468,
+        -0.3440576207861648
+      ],
+      "target_pose": [
+        [
+          -0.5645480398221364,
+          0.21201755342758952,
+          -0.7977055019062878,
+          -0.2646814652569608
+        ],
+        [
+          -0.3283599737311965,
+          0.8289910423956065,
+          0.45271799089399284,
+          0.16019169982246936
+        ],
+        [
+          0.7572748763720023,
+          0.5175156120025991,
+          -0.3983871897405135,
+          0.27037387633102583
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "arm": "left_arm",
+      "position_error_m": 0.0009990339169671453,
+      "angle_error_rad": 0.004693097776214325,
+      "joint_error_rad": 0.0037469647003126605,
+      "fk_ground_truth_error_m": 6.031384822767016e-07,
+      "measured_tcp_pose": [
+        [
+          -0.5645957367079104,
+          0.2130873378076049,
+          -0.7973866317899488,
+          -0.264618779374984
+        ],
+        [
+          -0.3243127707368527,
+          0.8311184496616941,
+          0.4517337151120418,
+          0.15982751755014935
+        ],
+        [
+          0.7589814759453865,
+          0.5136495975838095,
+          -0.40013898844495643,
+          0.2694457004209854
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "acceptance_tolerances": {
+        "position_m": 0.001,
+        "angle_rad": 0.01,
+        "joint_rad": 0.01,
+        "fk_m": 0.001
+      },
+      "success": true
+    },
+    "right_arm": {
+      "plug_id": "none",
+      "stage": "unloaded_tracking",
+      "q_rad": [
+        -2.9239559274530538,
+        0.8729532525185902,
+        1.3511012424535498,
+        0.4143365904433346,
+        0.7566205940117713,
+        2.0834484959222004
+      ],
+      "target_pose": [
+        [
+          -0.5217791805506542,
+          -0.8429245679650302,
+          -0.13124275014207198,
+          -0.2630057417643894
+        ],
+        [
+          -0.785309982748408,
+          0.5347026340202089,
+          -0.3120598086385773,
+          0.27321901752808064
+        ],
+        [
+          0.33321872357294485,
+          -0.0597600693843067,
+          -0.9409537801441683,
+          0.35003834174319437
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "arm": "right_arm",
+      "position_error_m": 0.00099941739622203,
+      "angle_error_rad": 0.003748463825812827,
+      "joint_error_rad": 0.004122156111582953,
+      "fk_ground_truth_error_m": 7.139309911497449e-07,
+      "measured_tcp_pose": [
+        [
+          -0.5189323751914325,
+          -0.8447859815283832,
+          -0.13055970048718718,
+          -0.26297304135452104
+        ],
+        [
+          -0.7875746857911526,
+          0.531880119998112,
+          -0.31117463304672044,
+          0.27368416086648895
+        ],
+        [
+          0.33231807696715093,
+          -0.058653076338073734,
+          -0.9413418679507113,
+          0.3491543691815161
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "acceptance_tolerances": {
+        "position_m": 0.001,
+        "angle_rad": 0.01,
+        "joint_rad": 0.01,
+        "fk_m": 0.001
+      },
+      "success": true
+    }
+  },
+  "separate_world_endpoint_pair": {
+    "order": [
+      "left_arm",
+      "right_arm"
+    ],
+    "scope": "Combines endpoints measured in different worlds and at different times; not simultaneous dual-arm feedback",
+    "relative_position_error_m": 0.0007529678105295202,
+    "relative_angle_error_rad": 0.007477528060088992
+  },
+  "all_isolated_endpoints_within_gates": true
+}

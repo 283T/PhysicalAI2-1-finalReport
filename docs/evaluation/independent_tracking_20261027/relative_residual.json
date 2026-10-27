@@ -1,0 +1,166 @@
+{
+  "scope": "First-order kinematic attribution, not torque, friction, contact-force measurement or causal proof. Vector contributions can cancel; their norms must not be added as a scalar error.",
+  "source_trial_success": false,
+  "tool_order": [
+    "left_arm",
+    "right_arm"
+  ],
+  "sim_time_s": 154.2039,
+  "native_relative_translation_residual_m": [
+    -0.0010692447988946419,
+    -0.0010381354735061743,
+    0.00018373918838286707
+  ],
+  "fk_relative_translation_residual_m": [
+    -0.0010693989807748494,
+    -0.0010377746417074563,
+    0.00018388307753221256
+  ],
+  "linear_relative_translation_residual_m": [
+    -0.0010736024882863756,
+    -0.0010344901662407457,
+    0.00018534915018929147
+  ],
+  "linearization_error_m": 5.5323253272666075e-06,
+  "native_fk_relative_discrepancy_m": 4.1794225252994093e-07,
+  "maximum_central_difference_derivative_error_m_per_rad": 8.998933533348735e-11,
+  "ranked_contributions": [
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 2,
+      "joint_error_rad": -0.00096237786230291,
+      "relative_translation_contribution_m": [
+        -0.00045841464608322444,
+        -0.0003983937063964302,
+        0.000162158935465653
+      ],
+      "norm_m": 0.000628615187051066
+    },
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 6,
+      "joint_error_rad": -0.0037182117894229427,
+      "relative_translation_contribution_m": [
+        -0.0005030053473579013,
+        8.279797564811673e-05,
+        -5.54783234320126e-20
+      ],
+      "norm_m": 0.0005097743463946269
+    },
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 1,
+      "joint_error_rad": -0.00041662911954776227,
+      "relative_translation_contribution_m": [
+        0.00017490966626447515,
+        -0.0001518328287121402,
+        0.00013524239235388852
+      ],
+      "norm_m": 0.00026821093176282603
+    },
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 3,
+      "joint_error_rad": -0.0005560516028757512,
+      "relative_translation_contribution_m": [
+        -0.0001470701701790091,
+        -0.00021785165320154746,
+        -3.154687683307866e-05
+      ],
+      "norm_m": 0.00026473417459227177
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 1,
+      "joint_error_rad": 0.0004451284236126618,
+      "relative_translation_contribution_m": [
+        3.7455542359350085e-05,
+        -0.0001846332163813759,
+        -0.00016864606215313878
+      ],
+      "norm_m": 0.00025285141194884673
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 2,
+      "joint_error_rad": 0.0003743668850798576,
+      "relative_translation_contribution_m": [
+        -0.0001884589759488306,
+        -9.236182542895687e-05,
+        5.385639597591972e-05
+      ],
+      "norm_m": 0.00021667488040787302
+    },
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 4,
+      "joint_error_rad": 0.00031060129072146836,
+      "relative_translation_contribution_m": [
+        4.0959107493104545e-05,
+        -4.647969378183266e-05,
+        2.9360405559075794e-05
+      ],
+      "norm_m": 6.85568657048879e-05
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 3,
+      "joint_error_rad": 8.2871005934404e-05,
+      "relative_translation_contribution_m": [
+        -3.708116731435387e-05,
+        -3.886340465503843e-06,
+        -7.164096131777931e-06
+      ],
+      "norm_m": 3.7966312501930897e-05
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 4,
+      "joint_error_rad": 0.00019038454666864268,
+      "relative_translation_contribution_m": [
+        1.242580650964342e-05,
+        -1.3543298475630912e-05,
+        -1.12782381785883e-05
+      ],
+      "norm_m": 2.1564328355598976e-05
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 5,
+      "joint_error_rad": -0.00012653159331266206,
+      "relative_translation_contribution_m": [
+        1.2881297753335904e-05,
+        -1.783068055530395e-06,
+        1.6333148266383276e-05
+      ],
+      "norm_m": 2.0877712896589238e-05
+    },
+    {
+      "arm": "left_arm",
+      "joint_index_1based": 5,
+      "joint_error_rad": 0.00010561082460380788,
+      "relative_translation_contribution_m": [
+        -1.8203601782965465e-05,
+        -6.522510989913649e-06,
+        7.0331458649548196e-06
+      ],
+      "norm_m": 2.0576185463881754e-05
+    },
+    {
+      "arm": "right_arm",
+      "joint_index_1based": 6,
+      "joint_error_rad": 0.005706608859625817,
+      "relative_translation_contribution_m": [
+        3.0761006948044995e-20,
+        2.440826862208992e-20,
+        1.0881559495810487e-19
+      ],
+      "norm_m": 1.156842116784832e-19
+    }
+  ],
+  "input_sha256": {
+    "validation": "5ef246dd7169b442e9e88b55bb85e1ceb04a2c3a616a68b16838f5ddf254bad0",
+    "world": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "source": "70fd85662b4a0091e27bcda296f3c481aafa1b2943fe3c11c81f15f3316770f4"
+  }
+}

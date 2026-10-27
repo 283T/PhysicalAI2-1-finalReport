@@ -1,0 +1,31 @@
+{
+  "scope": "Independent recorded tracking diagnostic. Rotation-vector projection, not torque measurement, causal proof or a success criterion",
+  "phase": "nest_transfer_1",
+  "input_sha256": {
+    "validation.json": "5ef246dd7169b442e9e88b55bb85e1ceb04a2c3a616a68b16838f5ddf254bad0",
+    "grip_observations.jsonl.gz": "ef398d42252b6c801248a59e6854aee805479e51686938aa682c2c7f7d115dca"
+  },
+  "primary": {
+    "sim_time_s": 154.2039,
+    "grasp_rotation_rad": 0.037175339617285294,
+    "local_x_rotation_component_rad": 0.0031923685229674026,
+    "perpendicular_rotation_component_rad": 0.03703801640036988,
+    "tcp_tracking_position_m": 0.0003578750461816422,
+    "tcp_tracking_angle_rad": 0.005571146907961672
+  },
+  "support": {
+    "sim_time_s": 154.2039,
+    "grasp_rotation_rad": 0.03786499701140888,
+    "local_x_rotation_component_rad": 0.03549747198373717,
+    "perpendicular_rotation_component_rad": 0.013179054648865969,
+    "tcp_tracking_position_m": 0.0008726848541503703,
+    "tcp_tracking_angle_rad": 0.004528972975603683
+  },
+  "tool_pair": {
+    "sim_time_s": 154.2039,
+    "actual_relative_position_change_m": 0.017572910355476364,
+    "actual_relative_angle_change_rad": 0.14168433453131787,
+    "relative_tracking_position_m": 0.0012208619432371379,
+    "relative_tracking_angle_rad": 0.007914474638204523
+  }
+}

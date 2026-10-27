@@ -22,7 +22,14 @@ from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 
 
-def verify_arm(name, arm, source_world, goals, output):
+def verify_arm(name, arm, source_world, goals, output, *, tolerances=None):
+    gates = {"position_m": 0.006, "angle_rad": 0.04, "joint_rad": 0.02, "fk_m": 0.001}
+    if tolerances is not None:
+        if set(tolerances) != set(gates) or any(
+            not np.isfinite(v) or v <= 0 for v in tolerances.values()
+        ):
+            raise ValueError("Finite positive position, angle, joint and FK tolerances required")
+        gates = dict(tolerances)
     tree = ET.parse(source_world)
     world = tree.getroot().find("world")
     world.set("name", "reach_validation")
@@ -122,10 +129,10 @@ def verify_arm(name, arm, source_world, goals, output):
                     fk_error = float(np.linalg.norm(fk[:3, 3] - truth[0][1]))
                     consecutive = (
                         consecutive + 1
-                        if position_error < 0.006
-                        and angle_error < 0.04
-                        and joint_error < 0.02
-                        and fk_error < 0.001
+                        if position_error < gates["position_m"]
+                        and angle_error < gates["angle_rad"]
+                        and joint_error < gates["joint_rad"]
+                        and fk_error < gates["fk_m"]
                         else 0
                     )
                     if consecutive >= 5:
@@ -137,6 +144,10 @@ def verify_arm(name, arm, source_world, goals, output):
                     "angle_error_rad": angle_error,
                     "joint_error_rad": joint_error,
                     "fk_ground_truth_error_m": fk_error,
+                    "measured_tcp_pose": [
+                        [*truth[0][2][i].tolist(), float(truth[0][1][i])] for i in range(3)
+                    ] + [[0, 0, 0, 1]],
+                    "acceptance_tolerances": gates,
                     "success": consecutive >= 5,
                 }
                 results.append(row)

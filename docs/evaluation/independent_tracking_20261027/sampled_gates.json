@@ -1,0 +1,63 @@
+{
+  "scope": "Sampled trajectory rows compared with their saved commands; not every pacer call. Native pose and joint feedback may be asynchronous. Does not identify torque, contact forces, or root cause; does not alter success or gates.",
+  "trial_success": false,
+  "phase": "nest_transfer_1",
+  "pacer_tool_order": [
+    "left_arm",
+    "right_arm"
+  ],
+  "sample_count": 616,
+  "first_sim_time_s": 92.3195,
+  "last_sim_time_s": 154.1067,
+  "recorded_pacer_summary": {
+    "policy": "Bounded path fraction; wait for both tools and their relative frame",
+    "position_gate_m": 0.001,
+    "angle_gate_rad": 0.01,
+    "joint_gate_rad": 0.01,
+    "relative_position_gate_m": 0.0015,
+    "relative_angle_gate_rad": 0.015,
+    "maximum_command_translation_step_m": 0.0005,
+    "maximum_command_rotation_step_rad": 0.003,
+    "maximum_command_joint_step_rad": 0.01,
+    "advanced_samples": 614,
+    "paused_samples": 67674,
+    "maximum_tracking_position_m": 0.0010336968483902432,
+    "maximum_tracking_angle_rad": 0.009330874162153165,
+    "maximum_tracking_joint_error_rad": 0.009129679009183017,
+    "maximum_relative_tracking_position_m": 0.0015424489568578003,
+    "maximum_relative_tracking_angle_rad": 0.007916339786949623,
+    "final_fraction": 0.09711125543901925,
+    "nominal_duration_s": 5.23548993061008,
+    "simulation_budget_s": 61.88391944488064,
+    "wall_budget_s": 2475.3567777952258
+  },
+  "arms": {
+    "left_arm": {
+      "position_exceedances": 0,
+      "angle_exceedances": 0,
+      "joint_exceedances": 0,
+      "maximum_position_m": 0.0008736114572830705,
+      "maximum_angle_rad": 0.004528972975603683,
+      "maximum_joint_rad": 0.0037536023357936377
+    },
+    "right_arm": {
+      "position_exceedances": 16,
+      "angle_exceedances": 0,
+      "joint_exceedances": 0,
+      "maximum_position_m": 0.0010182615499572758,
+      "maximum_angle_rad": 0.00871126878419369,
+      "maximum_joint_rad": 0.008226418399816943
+    }
+  },
+  "relative": {
+    "position_exceedances": 594,
+    "angle_exceedances": 0,
+    "maximum_position_m": 0.0015397653546811918,
+    "maximum_angle_rad": 0.007916339786949523
+  },
+  "input_sha256": {
+    "validation.json": "5ef246dd7169b442e9e88b55bb85e1ceb04a2c3a616a68b16838f5ddf254bad0",
+    "trajectory.json.gz": "4804f887df677d1511e8f2fbf6160e09bcbf66fe7c7e17b1142c7304a67ec1a1",
+    "nest_plan.json": "083ee75bca903cd8b9c34f8848d76bcbd305b90ba86bea519be203d8ff4e9e28"
+  }
+}
