@@ -1,0 +1,7 @@
+{
+  "scope": "Monitored native contact-role audit for pickup/holding only; no socket or seating audit; no proof about uninstrumented contacts",
+  "physical_trial_success": true,
+  "violations": [],
+  "unintended_contacts": [],
+  "passed": true
+}

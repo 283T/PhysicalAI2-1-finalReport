@@ -1,0 +1,9 @@
+{
+  "scope": "Timing diagnostic only; original recorder and physical verdicts preserved. Raw PTS and recorder monotonic elapsed differ, so phase-wall offsets must not be used as video seek positions without validation. Cause unconfirmed.",
+  "raw_duration_s": 4515.8,
+  "recorder_monotonic_elapsed_s": 2276.046166125001,
+  "difference_s": 2239.753833874999,
+  "timing_consistent_for_direct_phase_seek": false,
+  "requires_video_timeline_review": true,
+  "raw_sha256": "2f5b8728c89c7322e24b83462eb82975f43b3a6cf406bd7042ace15dec9f4625"
+}
