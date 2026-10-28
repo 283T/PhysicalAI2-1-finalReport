@@ -1,0 +1,22 @@
+{
+  "scope": "Supplementary failure video only. Actual approach, no grasp or insertion success. Raw wall-clock footage at 2x, cuts before/after excerpt.",
+  "raw_sha256": "bb0270aceb8a9533960c44769243f871cd248e43842e7c394956e7e2273bc3bb",
+  "raw_start_wall_s": 552.6,
+  "raw_duration_wall_s": 150.4,
+  "speed": 2,
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "15/1"
+      }
+    ],
+    "format": {
+      "duration": "98.333333"
+    }
+  },
+  "video_sha256": "ec15c0bed0427c8b62a1179480b05633e103ac02b5ddcdfa5311e40085900700"
+}

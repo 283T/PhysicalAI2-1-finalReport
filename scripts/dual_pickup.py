@@ -338,6 +338,8 @@ def main():
     parser.add_argument("--top-regrasp", action="store_true")
     parser.add_argument("--insert-after-regrasp", action="store_true")
     parser.add_argument("--centred-grips", action="store_true")
+    parser.add_argument("--observation-timeout-wall-s", type=float, default=90,
+                        help="Wall wait for fresh stable RGB-D; physical acceptance is unchanged")
     parser.add_argument(
         "--nest-orientation", choices=("either", "unflipped", "flipped"), default="either"
     )
@@ -347,6 +349,8 @@ def main():
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
+    if not np.isfinite(args.observation_timeout_wall_s) or not 5 <= args.observation_timeout_wall_s <= 300:
+        parser.error("Observation wall timeout must be finite and within 5 to 300 seconds")
     if args.rigid_nest_transfer and not args.place_in_nest:
         parser.error("--rigid-nest-transfer requires --place-in-nest")
     if args.after_nest_parking and not args.place_in_nest:
@@ -404,6 +408,7 @@ def main():
             "top_regrasp": args.top_regrasp,
             "insert_after_regrasp": args.insert_after_regrasp,
             "centred_grips": args.centred_grips,
+            "observation_timeout_wall_s": args.observation_timeout_wall_s,
             "nest_orientation": args.nest_orientation,
             "support_approach_settle_time_s": 30,
             "nest_finger_envelope": "full_mechanical_stroke" if args.place_in_nest else None,
@@ -438,6 +443,7 @@ def main():
             gzip.open(args.output / "carried_contacts.jsonl.gz", "wt") as contact_stream,
         ):
             session = ArmSession(args.world, args.models, log)
+            session.observation_timeout_wall_s = args.observation_timeout_wall_s
             session.contact_guards.append(InactivePayloadContactGuard({"P3"}, report))
             session.wait_ready()
             guards = run(session, args, report, checkpoint, guard_stream)

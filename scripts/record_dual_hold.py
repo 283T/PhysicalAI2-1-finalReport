@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import math
 import os
 import signal
 import subprocess
@@ -19,7 +20,13 @@ def main():
     for name in ("world", "models", "drawing-plan", "inspection-calibration", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--wall-timeout", type=float, default=5400)
+    parser.add_argument("--observation-timeout-wall-s", type=float, default=240)
+    parser.add_argument("--gui-config", type=Path, default=Path("sim/melfa_gui.config"))
     args = parser.parse_args()
+    if not math.isfinite(args.wall_timeout) or args.wall_timeout <= 0:
+        parser.error("Positive finite recorder wall timeout required")
+    if not math.isfinite(args.observation_timeout_wall_s) or not 5 <= args.observation_timeout_wall_s <= 300:
+        parser.error("Observation wall timeout must be finite and within 5 to 300 seconds")
     if args.output.exists():
         parser.error("Use a new output directory and preserve earlier recordings")
     args.output.mkdir(parents=True)
@@ -30,10 +37,11 @@ def main():
                *sorted(args.models.glob("*.urdf")), args.drawing_plan,
                args.drawing_plan.with_suffix(".audit.json"),
                args.world.parent / "board.json", args.world.parent / "drawing.png",
-               args.inspection_calibration]
+               args.inspection_calibration, args.gui_config]
     summary = {
         "scope": "Actual new Gazebo/ROS execution recorded at wall-clock 1x. Physical contact pickup and dual hold only; no nest transfer, board insertion or final acceptance claim.",
         "trial_state": "starting", "capture_fps": 5, "capture_speed": 1,
+        "observation_timeout_wall_s": args.observation_timeout_wall_s,
         "source_sha256": {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
         "environment": {k: env[k] for k in ("GZ_PARTITION", "ROS_DOMAIN_ID")},
         "raw_video": "raw.mkv", "success": False,
@@ -47,7 +55,7 @@ def main():
              (args.output / "controller.log").open("w") as control_log, \
              (args.output / "phase_wall_timeline.jsonl").open("w") as timeline:
             scene = subprocess.Popen(
-                ["gz", "sim", "-r", str(args.world), "--gui-config", "sim/melfa_gui.config"],
+                ["gz", "sim", "-r", str(args.world), "--gui-config", str(args.gui_config)],
                 env=env, stdout=scene_log, stderr=scene_log, start_new_session=True)
             deadline = time.monotonic() + 60
             while True:
@@ -70,7 +78,8 @@ def main():
                  "--models", str(args.models), "--drawing-plan", str(args.drawing_plan),
                  "--inspection-calibration", str(args.inspection_calibration),
                  "--output", str(args.output / "pickup"), "--wire-distance-mm", "140",
-                 "--wire-tip-depth-mm", "19", "--centred-grips"],
+                 "--wire-tip-depth-mm", "19", "--centred-grips",
+                 "--observation-timeout-wall-s", str(args.observation_timeout_wall_s)],
                 env=env, stdout=control_log, stderr=control_log, start_new_session=True)
             summary.update(trial_state="running", scene_pid=scene.pid,
                            capture_pid=capture.pid, controller_pid=controller.pid)
