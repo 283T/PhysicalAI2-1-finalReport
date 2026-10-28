@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "approved_on": "2026-10-28",
+  "approval": "User approved the proposed dual-arm pickup and holding scope: その進め方で計画して",
+  "scope": "Fixed-case drawing interpretation and dual-arm contact pickup/lift/holding of P3 and its wire branch; not connector insertion or all-connectors completion",
+  "legacy_acceptance_preserved": "configs/final_acceptance.json",
+  "case": {"design_seed": 101, "placement_seed": 2, "plug_id": "P3", "drawing_socket": "J3", "carrier": "stopped"},
+  "robot": "MELFA RV-4FRL x 2",
+  "ai": {"mode": "local inference", "model": "qwen3-vl:2b-instruct", "role": "Read drawing connection mapping and validate against matching board", "plug_selection": "P3 fixed by trial specification, not autonomous AI choice", "audited_inference_reuse_requires_disclosure": true},
+  "recognition": {"fresh_rgbd_required": true, "stable_frames_required": 3},
+  "preclose": {"position_error_m_exclusive": 0.002, "angle_error_rad_exclusive": 0.025, "existing_bounded_corrections_and_preferred_alignment_preserved": true},
+  "holding": {"commanded_lift_m": 0.1, "minimum_lift_m_exclusive": 0.07, "maximum_position_slip_m_exclusive": 0.005, "maximum_rotation_change_rad_exclusive": 0.05, "physical_dwell_duration_s": 4.0, "minimum_distinct_timestamp_samples": 10, "record_dwell_start_and_end_sim_time": true, "primary_and_dual_hold_required_in_same_trial": true},
+  "evaluation": {"registration_required_before_start": true, "same_code_inputs_and_physics_within_series": true, "trials": ["pickup_hold_d101_p2_r01", "pickup_hold_d101_p2_r02", "pickup_hold_d101_p2_r03"], "minimum_successful_trials": 2, "all_results_including_failures_required": true, "independent_grip_replay_required": true, "monitored_contact_audit_required": true, "development_trials_excluded_from_formal_counts": ["dual_hold_recording_20261028", "dual_hold_recording_retry_20261028"], "changes_require_a_new_preregistered_series_with_prior_failures_preserved": true},
+  "artifacts": {"account": "283t_123", "video_duration_s": [60, 180], "maximum_marked_playback_speed": 2.0, "actual_current_dual_arm_motion_required": true, "successful_trial_recording_required": true, "pdf_required": true, "public_reproducible_code_required": true, "preserve_prior_submission_artifacts": true},
+  "not_required_for_this_submission_goal": ["socket_insertion", "all_three_connectors", "nest_transfer_and_regrasp", "random_placement", "multiple_board_design_physical_validation", "conveyor_in_motion", "controlled_return_and_placement", "real_hardware", "latch_or_electrical_validation"],
+  "rules": ["Do not alter legacy trial verdicts", "Never call legacy 12-run all-connectors acceptance complete", "Use object ground truth for independent evaluation only", "No teleportation, hidden attachment, cable deletion or physical threshold relaxation", "Reject monitored unintended arm, fixture and non-active harness contacts", "Do not treat unit tests, geometric plans, still images or partial success as full physical success", "YouTube publishing and course submission require final user confirmation"],
+  "feature_freeze_date_jst": "2026-10-29",
+  "submission_deadline_jst": "2026-11-02T10:00:00+09:00"
+}
