@@ -1,0 +1,18 @@
+{
+  "scope": "Intermediate fresh-image acquisition only; preclose alignment check 0 failed and bounded correction continues. Not grasp/hold/insertion success.",
+  "physical_start_revision": "8d64a0e",
+  "phase_at_copy": "primary_preclose_1",
+  "primary_preclose_checks": [
+    {
+      "success": false,
+      "position_error_m": 0.0029854138506583993,
+      "angle_error_rad": 0.056789009347925086,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    }
+  ],
+  "input_sha256": {
+    "acquisition.json": "3770c6c1163b10d2020699ea5f1b4a14f7cfb86c937996506c2b11d540114257",
+    "detections.json": "1684bd7d74c0266a9531f4cc6fae94c61e0782ccb81fd1240f585a1386e17d75"
+  }
+}
