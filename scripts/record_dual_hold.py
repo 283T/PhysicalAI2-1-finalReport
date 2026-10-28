@@ -49,6 +49,8 @@ def main():
     write_json_atomic(args.output / "recording.json", summary)
     scene = capture = controller = None
     capture_start = None
+    caption = args.output / "capture_caption.txt"
+    caption.write_text("phase=starting | recorder monotonic elapsed=0.0s\n")
     try:
         with (args.output / "scene.log").open("w") as scene_log, \
              (args.output / "capture.log").open("w") as capture_log, \
@@ -69,7 +71,10 @@ def main():
             capture_start = time.monotonic()
             capture = subprocess.Popen(
                 ["ffmpeg", "-y", "-loglevel", "warning", "-f", "x11grab", "-video_size",
-                 "1280x900", "-framerate", "5", "-i", ":99", "-an", "-c:v", "libx264",
+                 "1280x900", "-framerate", "5", "-i", ":99",
+                 "-vf", "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:"
+                 f"textfile='{caption}':reload=1:fontsize=16:fontcolor=white:box=1:"
+                 "boxcolor=black@0.7:x=8:y=h-28", "-an", "-c:v", "libx264",
                  "-preset", "ultrafast", "-crf", "24", "-pix_fmt", "yuv420p",
                  str(args.output / "raw.mkv")], env=env, stdout=capture_log,
                 stderr=capture_log, start_new_session=True)
@@ -100,6 +105,11 @@ def main():
                         timeline.flush()
                         print(json.dumps(row), flush=True)
                         previous = phase
+                temporary = caption.with_suffix(".tmp")
+                temporary.write_text(
+                    f"phase={previous or 'starting'} | recorder monotonic elapsed="
+                    f"{time.monotonic() - capture_start:.1f}s\n")
+                temporary.replace(caption)
                 time.sleep(1)
             summary["controller_exit_code"] = controller.returncode
             report = json.loads((args.output / "pickup/validation.json").read_text())
@@ -146,6 +156,13 @@ def main():
                 summary["capture_probe"] = metadata
                 if not metadata.get("streams") or float(metadata["format"]["duration"]) <= 0:
                     raise RuntimeError("Recording has no positive-duration video stream")
+                delta = float(metadata["format"]["duration"]) - summary["capture_wall_duration_s"]
+                summary["capture_timing"] = {
+                    "pts_minus_monotonic_duration_s": delta,
+                    "requires_review_before_phase_based_editing": abs(delta) > 5,
+                    "phase_and_monotonic_caption_sample_interval_s": 1,
+                    "scope": "Video timing metadata only; does not change physical verdicts",
+                }
             except Exception as error:
                 summary.update(success=False, capture_probe_error=str(error))
         else:

@@ -493,6 +493,7 @@ def main():
                     unintended_contacts=session.unintended,
                     stop_diagnostics=session.stop_diagnostics,
                     preflights=session.preflights,
+                    dwell_windows=session.dwell_windows,
                 )
                 (args.output / "trajectory.json.gz").write_bytes(
                     gzip.compress(json.dumps(session.history).encode(), mtime=0)

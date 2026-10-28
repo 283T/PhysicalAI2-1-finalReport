@@ -63,7 +63,7 @@ class ArmSession:
         if not self.expected_contact_publishers:
             raise ValueError("Arm contact sensors required")
         self.contact_publishers, self.contact_check_time = 0, -float("inf")
-        self.history, self.preflights = [], []
+        self.history, self.preflights, self.dwell_windows = [], [], []
         self.targets = None
         self.grips = {n: OPEN_TRAVEL_M for n in self.arms}
         self.pubs = {}
@@ -283,20 +283,29 @@ class ArmSession:
         start, wall = self.snapshot()["sim_time_s"], time.monotonic()
         budget = SimulationBudget(start, wall, duration, dwell_wall_budget(duration))
         rows, previous = [], None
-        while self.poses[1] - start < duration:
-            reason = budget.reason(self.poses[1], time.monotonic())
-            if reason == "simulation_budget_exhausted":
-                break
-            if reason is not None:
-                self.stop_diagnostics = {"phase": phase, "execution_budget": budget.summary.copy()}
-                raise RuntimeError(reason + " in " + phase)
-            row = self.tick(teardown=teardown)
-            if row and row["sim_time_s"] != previous:
-                rows.append(row)
-                previous = row["sim_time_s"]
-        if len(rows) < 10:
-            raise RuntimeError("Insufficient fresh observations")
-        return rows
+        window = {"phase": phase, "start_sim_time_s": start,
+                  "requested_duration_s": duration, "completed": False}
+        self.dwell_windows.append(window)
+        try:
+            while self.poses[1] - start < duration:
+                reason = budget.reason(self.poses[1], time.monotonic())
+                if reason == "simulation_budget_exhausted":
+                    break
+                if reason is not None:
+                    self.stop_diagnostics = {"phase": phase, "execution_budget": budget.summary.copy()}
+                    raise RuntimeError(reason + " in " + phase)
+                row = self.tick(teardown=teardown)
+                if row and row["sim_time_s"] != previous:
+                    rows.append(row)
+                    previous = row["sim_time_s"]
+            if len(rows) < 10:
+                raise RuntimeError("Insufficient fresh observations")
+            window["completed"] = True
+            return rows
+        finally:
+            window.update(end_sim_time_s=self.poses[1],
+                          elapsed_simulation_s=self.poses[1] - start,
+                          distinct_observation_timestamps=len({r["sim_time_s"] for r in rows}))
 
     def move(
         self,

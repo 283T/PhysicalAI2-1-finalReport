@@ -28,6 +28,7 @@ class DualStageFailureTests(unittest.TestCase):
             unintended=[],
             stop_diagnostics=None,
             preflights=[],
+            dwell_windows=[],
             history=[],
         )
 
