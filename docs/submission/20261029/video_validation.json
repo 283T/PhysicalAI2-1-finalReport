@@ -1,0 +1,64 @@
+{
+  "scope": "Formal B r03 actual recording excerpts; 2x wall capture playback; explicit cuts; no insertion claim",
+  "source_sha256": "43806adac2c650d261ee051ff63a7caa14af25439d1335e26e94abc36390e1bc",
+  "clips": [
+    {
+      "start_pts_s": 1880,
+      "end_pts_s": 1900,
+      "label": "01 右腕でP3コネクタを把持",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 2050,
+      "end_pts_s": 2090,
+      "label": "02 右腕で持上げ開始",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 2160,
+      "end_pts_s": 2200,
+      "label": "03 右腕の持上げ終盤（途中省略）",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 2630,
+      "end_pts_s": 2670,
+      "label": "04 左腕を分岐ワイヤーへ接近",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 2810,
+      "end_pts_s": 2850,
+      "label": "05 左腕でワイヤーを把持",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 2975,
+      "end_pts_s": 3015,
+      "label": "06 双腕で持上げ開始",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 3070,
+      "end_pts_s": 3110,
+      "label": "07 双腕の持上げ終盤（途中省略）",
+      "speed": 2
+    },
+    {
+      "start_pts_s": 3280,
+      "end_pts_s": 3300,
+      "label": "08 双腕保持区間の抜粋",
+      "speed": 2
+    }
+  ],
+  "source_packet_gap": {
+    "previous_pts_s": 22.6,
+    "next_pts_s": 921.0,
+    "delta_s": 898.4
+  },
+  "duration_s": 170.0,
+  "full_decode_passed": true,
+  "video_sha256": "e9c94b4f6579664c586d704d4537dc83360732e9a32eee5822bc128f109f9c88",
+  "video_bytes": 1725842,
+  "visual_qa": "Reviewed actual encoded cards, all eight clip starts and ends, source phase captions and source PTS samples. No clipped text or black frames in reviewed samples; full decode passed. Not a frame-by-frame review."
+}

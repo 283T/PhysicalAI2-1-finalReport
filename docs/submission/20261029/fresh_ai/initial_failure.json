@@ -1,0 +1,1 @@
+{"status":"failed","stage":"local_endpoint_connection","error":"127.0.0.1:11434 connection refused; Ollama server was not running","model_response_received":false,"retry":"retry/connection_plan.json","scope":"New inference check, excluded from formal B physics trials"}
