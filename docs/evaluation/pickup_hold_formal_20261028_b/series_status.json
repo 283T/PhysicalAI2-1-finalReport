@@ -2,7 +2,7 @@
   "series": "B",
   "candidate_revision": "40496fb",
   "registered_trials": 3,
-  "successful_trials": 1,
+  "successful_trials": 2,
   "trials": {
     "r01": {
       "status": "failed",
@@ -16,13 +16,14 @@
       "video": "recorded; two packet timestamp gaps require review"
     },
     "r03": {
-      "status": "running",
-      "output": "outputs/pickup_hold_formal_20261028_b/r03",
-      "source_hashes_match": true
+      "status": "passed",
+      "audit": "r03_result/formal_audit.json",
+      "video": "recorded; 898.4s packet timestamp gap requires review; full decode passed"
     }
   },
-  "note": "B r01 failed and is preserved; B r02 passed independent physical/log audit. Video packet gaps need editorial review. B r03 running with unchanged registered source/inputs; final rate pending all three results.",
+  "note": "All three preregistered B trials finished: r01 failed, r02/r03 passed independent audits. Physical protocol 2/3 requirement met. Video/PDF/reproduction deliverables pending; legacy insertion goal remains incomplete.",
   "started_trials": 3,
-  "finished_trials": 2,
-  "final_success_rate": null
+  "finished_trials": 3,
+  "final_success_rate": 0.6666666666666666,
+  "physical_protocol_passed": true
 }

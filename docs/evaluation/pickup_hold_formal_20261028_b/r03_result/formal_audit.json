@@ -1,0 +1,115 @@
+{
+  "scope": "New pickup/hold protocol only; not insertion, electrical continuity or uninstrumented contact proof. Video suitability is separate.",
+  "series": "B",
+  "trial_id": "pickup_hold_d101_p2_r03",
+  "status": "passed",
+  "errors": [],
+  "controller_error": null,
+  "hold_results": {
+    "primary": {
+      "success": true,
+      "minimum_lift_m": 0.09984455005031831,
+      "relative_slip_m": 3.7251689954794132e-06,
+      "lift_slip_m": 6.711020644060634e-05,
+      "minimum_tcp_lift_m": 0.09990326905863944,
+      "minimum_finger_travel_m": 0.0019808521830424076,
+      "minimum_jaw_opening_m": 0.02002354034367713,
+      "maximum_jaw_opening_m": 0.020024008573463654,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 6300,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.004777035214462513
+    },
+    "left_arm": {
+      "success": true,
+      "minimum_lift_m": 0.09903538318578836,
+      "relative_slip_m": 1.7495486348655546e-05,
+      "lift_slip_m": 0.00013114265433192856,
+      "minimum_tcp_lift_m": 0.09952141983703561,
+      "minimum_finger_travel_m": 0.0009102641226759339,
+      "minimum_jaw_opening_m": 0.007999932553193834,
+      "maximum_jaw_opening_m": 0.007999997521891079,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 9443,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.011038384845550428
+    },
+    "right_arm": {
+      "success": true,
+      "minimum_lift_m": 0.0992326610499405,
+      "relative_slip_m": 2.29196749299783e-06,
+      "lift_slip_m": 7.964235468407866e-05,
+      "minimum_tcp_lift_m": 0.09934789576462,
+      "minimum_finger_travel_m": 0.0019296280139132027,
+      "minimum_jaw_opening_m": 0.020004745259631758,
+      "maximum_jaw_opening_m": 0.020006112571434483,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 9443,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.008456792466690718
+    }
+  },
+  "hold_windows": {
+    "primary_hold": {
+      "phase": "primary_hold",
+      "start_sim_time_s": 47.0423,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 51.0428,
+      "elapsed_simulation_s": 4.000500000000002,
+      "distinct_observation_timestamps": 6300
+    },
+    "dual_hold": {
+      "phase": "dual_hold",
+      "start_sim_time_s": 81.0765,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 85.0769,
+      "elapsed_simulation_s": 4.000399999999999,
+      "distinct_observation_timestamps": 9443
+    }
+  },
+  "grip_replay": {
+    "evidence_consistent": true,
+    "all_recorded_grips_within_limits": true,
+    "trial_success": true,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {
+      "primary": {
+        "samples": 67666,
+        "maximum_position_shift_m": 0.00014257181123992363,
+        "maximum_angle_shift_rad": 0.011785626636542455
+      },
+      "support": {
+        "samples": 18547,
+        "maximum_position_shift_m": 0.00011834245340231695,
+        "maximum_angle_shift_rad": 0.008262677564338492
+      }
+    },
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": []
+  },
+  "raw_hold_timestamp_counts": {
+    "primary_hold": {
+      "primary": 6299
+    },
+    "dual_hold": {
+      "primary": 9443,
+      "support": 9443
+    }
+  },
+  "contact_violations": [],
+  "capture_timing": {
+    "pts_minus_monotonic_duration_s": 897.1648340580082,
+    "requires_review_before_phase_based_editing": true,
+    "phase_and_monotonic_caption_sample_interval_s": 1,
+    "scope": "Video timing metadata only; does not change physical verdicts"
+  },
+  "input_sha256": {
+    "registry": "2869b7be115f4aef7b37d3cec5a5092398cc8f83e06dfd14a8405a800d1af680",
+    "validation": "0ed879ea08e386f546c477dd5645e9c18ae8ade88c2782577dc7b969450f00a2",
+    "recording": "40384ba403adbe37e927abce9e9b0c61fa1b20d07b8a686a0857c1157f91981b",
+    "auditor": "27a1861baa9bffcde9b3fb4ea9f9ad95a0e2acd527635174bd2366b392720ca2"
+  }
+}
