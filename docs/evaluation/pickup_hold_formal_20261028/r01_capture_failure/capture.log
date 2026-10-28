@@ -1,0 +1,6 @@
+[x11grab @ 0xaaaace0f2a70] Stream #0: not enough frames to estimate rate; consider increasing probesize
+[Parsed_drawtext_0 @ 0xaaaace1018f0] [FILE @ 0xffffcd3dd820] Cannot read file 'outputs/pickup_hold_formal_20261028/r01/capture_caption.txt': No such file or directory
+[Parsed_drawtext_0 @ 0xaaaace1018f0] The text file 'outputs/pickup_hold_formal_20261028/r01/capture_caption.txt' could not be read or is empty
+[vf#0:0 @ 0xaaaace0b16e0] Error while filtering: No such file or directory
+Failed to inject frame into filter network: No such file or directory
+Error while filtering: No such file or directory

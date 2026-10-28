@@ -1,0 +1,109 @@
+{
+  "success": false,
+  "trial_state": "running",
+  "parameters": {
+    "wire_distance_mm": 140.0,
+    "wire_tip_depth_mm": 19.0,
+    "wire_preshape_clearance_m": 0.01,
+    "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
+    "deep_contact_profile": {
+      "scope": "Static bare finger contact geometry only; no wire identity, path, closure, force or holding success",
+      "urdf_sha256": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+      "tip_depth_m": 0.019,
+      "wire_cross_section_m": 0.008,
+      "normal_margin_m": 0.001,
+      "required_local_z_interval_m": [
+        0.056,
+        0.066
+      ],
+      "rest_gap_m": 0.005999999999999998,
+      "fingers": {
+        "left": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        },
+        "right": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        }
+      }
+    },
+    "place_in_nest": false,
+    "after_nest_parking": false,
+    "top_regrasp": false,
+    "insert_after_regrasp": false,
+    "centred_grips": true,
+    "observation_timeout_wall_s": 240.0,
+    "nest_orientation": "either",
+    "support_approach_settle_time_s": 30,
+    "nest_finger_envelope": null,
+    "rigid_nest_transfer": false,
+    "feedback_paced_transfer": false
+  },
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "board_sha256": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "drawing_plan_sha256": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+  "model_sha256": {
+    "left_arm": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "final_acceptance_eligible": false,
+  "inactive_payload_contact_guard": {
+    "active_plugs": [
+      "P3"
+    ],
+    "checked_events": 82383,
+    "scope": "Fixed intended branch set for arm and passive-nest contacts; ordinary supply-carrier contact is not rejected. Counts may include sensor duplicates, never forces. Active-plug role checks remain separate."
+  },
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "phase": "primary_hover",
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 295,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  }
+}

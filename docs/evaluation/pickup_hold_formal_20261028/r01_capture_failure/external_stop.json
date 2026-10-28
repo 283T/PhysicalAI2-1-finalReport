@@ -1,0 +1,5 @@
+{
+  "reason": "Capture or Gazebo exited before controller completion",
+  "controller_pid": 87946,
+  "scope": "Recorder-owned process interruption, never a successful trial"
+}

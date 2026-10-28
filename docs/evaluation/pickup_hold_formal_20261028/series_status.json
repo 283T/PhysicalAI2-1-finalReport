@@ -1,0 +1,20 @@
+{
+  "series_state": "aborted_after_r01",
+  "candidate_revision": "f7812d5",
+  "registered_trials": 3,
+  "executed_trials": 1,
+  "successful_trials": 0,
+  "trials": {
+    "r01": {
+      "state": "failed",
+      "reason": "FFmpeg drawtext could not reopen caption file; recorder interrupted controller at primary_hover"
+    },
+    "r02": {
+      "state": "not_run"
+    },
+    "r03": {
+      "state": "not_run"
+    }
+  },
+  "policy": "Preserve this series; any caption-code change starts a separately preregistered series. No result substitution."
+}

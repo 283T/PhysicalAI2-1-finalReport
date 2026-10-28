@@ -1,5 +1,16 @@
 # 正式評価シリーズ：固定P3の双腕取り出し・保持
 
+**シリーズAはr01の録画エラーで中止。1試行実行・0成功、r02/r03は未実行。**
+`registry.json` は変更せず保持し、状態は `series_status.json`、失敗原本は `r01_capture_failure/` に保存した。
+字幕を再読込するFFmpegがcaptionファイルのNo such fileエラーで終了したため、
+レコーダーが制御を中断。物理報告はprimary_hoverでKeyboardInterrupt、success=false。
+把持基準を満たさなかったという診断や、基板接続の成否とは区別する。
+
+字幕更新をrenameから同じinode・固定長の更新へ変更する。
+全270テストと、実際のDockerマウント上での329回の字幕更新／FFmpeg再読込試験を通過した。
+この変更を同じシリーズのr02へ混ぜず、別のシリーズBを実行前に登録する。
+以下は当初の登録・開始記録。r01を進行中や成功と解釈しない。
+
 `registry.json` を試行開始前に作成し、コミットして保存する。
 候補コードf7812d5、承認済み仕様 `configs/submission_acceptance.json`。
 設計101・配置2・P3、3試行、必要な一連成功は2試行以上。

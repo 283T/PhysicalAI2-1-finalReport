@@ -15,6 +15,16 @@ from evidence_io import write_json_atomic
 from processes import stop_process
 
 
+def update_caption(path, text):
+    # Keep the same inode and byte length: an atomic rename on a host bind
+    # mount can transiently disappear from drawtext's repeated open calls.
+    payload = text.encode("ascii")
+    if len(payload) > 255:
+        raise ValueError("Caption exceeds fixed buffer")
+    with path.open("r+b", buffering=0) as stream:
+        stream.write(payload.ljust(255, b" ") + b"\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("world", "models", "drawing-plan", "inspection-calibration", "output"):
@@ -50,7 +60,8 @@ def main():
     scene = capture = controller = None
     capture_start = None
     caption = args.output / "capture_caption.txt"
-    caption.write_text("phase=starting | recorder monotonic elapsed=0.0s\n")
+    caption.write_bytes(b" " * 255 + b"\n")
+    update_caption(caption, "phase=starting | recorder monotonic elapsed=0.0s")
     try:
         with (args.output / "scene.log").open("w") as scene_log, \
              (args.output / "capture.log").open("w") as capture_log, \
@@ -105,11 +116,9 @@ def main():
                         timeline.flush()
                         print(json.dumps(row), flush=True)
                         previous = phase
-                temporary = caption.with_suffix(".tmp")
-                temporary.write_text(
+                update_caption(caption,
                     f"phase={previous or 'starting'} | recorder monotonic elapsed="
-                    f"{time.monotonic() - capture_start:.1f}s\n")
-                temporary.replace(caption)
+                    f"{time.monotonic() - capture_start:.1f}s")
                 time.sleep(1)
             summary["controller_exit_code"] = controller.returncode
             report = json.loads((args.output / "pickup/validation.json").read_text())
