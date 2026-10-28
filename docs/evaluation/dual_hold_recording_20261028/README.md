@@ -23,6 +23,17 @@ Docker内の全266テストを通過した。取得成功や新しい把持成�
 実録抜粋は画面録画を2倍速、把持・挿入は未実施と動画内に明記。初版の提出動画を上書きしない。
 補足動画の検査値は `supplementary_video_validation.json`。
 
+補足動画の再生成にはPillow、FFmpeg、日本語TrueTypeフォントが必要。
+`python3 docs/evaluation/dual_hold_recording_20261028/make_review_video.py --output outputs/review_new`
+で、元映像のSHAを検査してから生成する。再生成した動画は初回と同じSHAであることを確認した。
+
+## 修正後の再試験
+
+別原本 `outputs/dual_hold_recording_retry_20261028` で、開始コード8d64a0eの再試験・録画を開始した。
+開始時の記録は `retry_launch_checkpoint.json`。取得待機240秒、GUIの専用視点configを指定する。
+認識から把持上方への移動まで進行を確認したが、持上げ・保持の新しい成功は未確定。
+現在の稼働や終了状態は別原本の `recording.json` と所有プロセスで確認する。
+
 以下は開始時の記録。`running` の開始コピーを現在の状態とは扱わない。
 
 - 実行・録画：`scripts/record_dual_hold.py`。

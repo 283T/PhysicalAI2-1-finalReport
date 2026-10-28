@@ -18,5 +18,8 @@
       "duration": "98.333333"
     }
   },
-  "video_sha256": "ec15c0bed0427c8b62a1179480b05633e103ac02b5ddcdfa5311e40085900700"
+  "video_sha256": "ec15c0bed0427c8b62a1179480b05633e103ac02b5ddcdfa5311e40085900700",
+  "full_video_decode": "ffmpeg completed without errors",
+  "rebuild_video_identical": true,
+  "visual_review": "45s frame: actual approach, 2x label and explicit failure scope"
 }
