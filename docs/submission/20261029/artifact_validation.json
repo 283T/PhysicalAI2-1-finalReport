@@ -1,0 +1,58 @@
+{
+  "date_jst": "2026-10-29",
+  "account": "283t_123",
+  "status": "prepared_awaiting_user_publication_and_submission_approval",
+  "artifacts": {
+    "PAI最終課題_283t_123.mp4": {
+      "bytes": 1725842,
+      "sha256": "e9c94b4f6579664c586d704d4537dc83360732e9a32eee5822bc128f109f9c88"
+    },
+    "説明資料_PAI最終課題_283t_123.pdf": {
+      "bytes": 390145,
+      "sha256": "5db44f80af79e85583f8228ea035bb7a528f5f7addfceec980a12d8f9824d553"
+    }
+  },
+  "pdf": {
+    "pages": 4,
+    "all_pages_rendered_and_visually_reviewed": true,
+    "layout": "no clipping, overlap or broken glyphs observed",
+    "author": "283t_123"
+  },
+  "video": {
+    "duration_s": 170.0,
+    "full_decode_passed": true,
+    "source_clip_starts_ends_and_cards_visually_reviewed": true,
+    "speed": 2,
+    "cuts_and_packet_gap_disclosed": true,
+    "visual_review_scope": "sampled starts/ends and cards, not every frame"
+  },
+  "physical_evaluation": {
+    "series": "B",
+    "registered_trials": 3,
+    "successes": 2,
+    "failures": 1,
+    "prior_A_failure_retained": true,
+    "development_successes_excluded": true,
+    "all_grip_log_replay_and_monitored_contacts_checked": true,
+    "frozen_sources_inputs_match_registry": true
+  },
+  "fresh_local_ai": "passed; local service startup failures also preserved; not retroactively substituted into B",
+  "code": {
+    "url": "https://github.com/283T/PhysicalAI2-1-finalReport",
+    "visibility_verified": "PUBLIC",
+    "control_candidate": "40496fbf0dd0e321dacf6ef93fc07f4c8fa6f834",
+    "preregistration_revision": "7064a92",
+    "instructions": "docs/reproduce-submission.md"
+  },
+  "limits": [
+    "Fixed D101/seed2/P3 only",
+    "No board insertion/all-connector completion",
+    "No full clean-clone Docker rebuild and end-to-end rerun",
+    "No uninstrumented contact, real material or hardware guarantee",
+    "Raw video local with public SHA; edited MP4 public in repository"
+  ],
+  "legacy_all_connectors_goal_complete": false,
+  "youtube_uploaded": false,
+  "coursework_submitted": false,
+  "next_action": "User approval for YouTube publication and coursework submission; autonomous development stops"
+}
