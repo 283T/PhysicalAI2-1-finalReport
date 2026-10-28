@@ -1,0 +1,26 @@
+{
+  "series": "B",
+  "candidate_revision": "40496fb",
+  "registered_trials": 3,
+  "successful_trials": 0,
+  "trials": {
+    "r01": {
+      "status": "failed",
+      "error": "Lost feedback",
+      "phase": "support_preclose",
+      "audit": "r01_result/formal_audit.json"
+    },
+    "r02": {
+      "status": "running",
+      "source_hashes_match": true,
+      "output": "outputs/pickup_hold_formal_20261028_b/r02"
+    },
+    "r03": {
+      "status": "not_started"
+    }
+  },
+  "note": "Primary hold and audit consistency are partial evidence, not a successful dual-arm trial. No criteria or source change for r02.",
+  "started_trials": 2,
+  "finished_trials": 1,
+  "final_success_rate": null
+}

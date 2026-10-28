@@ -1,0 +1,27 @@
+{
+  "trial_id": "pickup_hold_d101_p2_r01",
+  "series": "B",
+  "scope": "Formal fixed-case pickup/hold only; not connector insertion",
+  "status": "failed",
+  "physical_report_success": false,
+  "error": "Lost feedback",
+  "phase": "support_preclose",
+  "registered_control_sources_match": true,
+  "grip_evidence_consistent": true,
+  "all_recorded_grips_within_limits": true,
+  "monitored_contact_audit_passed": true,
+  "contact_violations": [],
+  "primary_hold_window": [
+    {
+      "phase": "primary_hold",
+      "start_sim_time_s": 47.046,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 51.0461,
+      "elapsed_simulation_s": 4.000100000000003,
+      "distinct_observation_timestamps": 5019
+    }
+  ],
+  "dual_hold_window": [],
+  "reason_not_success": "Controller rejected stale/missing feedback before left closure and dual hold; partial primary hold and grip checks do not establish whole trial success"
+}

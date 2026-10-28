@@ -1,0 +1,9 @@
+{
+  "scope": "Cleanup of verified orphan camera bridge from finished failed B r01 only",
+  "pid": 91791,
+  "pgid": 91791,
+  "cmd": "/usr/bin/python3 /opt/ros/jazzy/bin/ros2 run ros_gz_bridge parameter_bridge /factory/inspection_rgbd/image@sensor_msgs/msg/Image[gz.msgs.Image /factory/inspection_rgbd/depth_image@sensor_msgs/msg/Image[gz.msgs.Image /factory/inspection_rgbd/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo ",
+  "partition": "record-dual-hold-89060",
+  "signal": "SIGINT",
+  "utc": "2026-10-28T15:21:36.395973+00:00"
+}
