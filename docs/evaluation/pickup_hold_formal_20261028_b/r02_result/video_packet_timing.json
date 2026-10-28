@@ -1,0 +1,20 @@
+{
+  "scope": "Packet timestamp discontinuities; no claim about physical activity or cause during gaps. Cuts or gaps must be disclosed in edited video.",
+  "packet_count": 11627,
+  "first_pts_s": 0.0,
+  "last_pts_s": 3446.0,
+  "nominal_capture_fps": 5,
+  "nominal_frame_count_duration_s": 2325.4,
+  "gaps_over_1s": [
+    {
+      "previous_pts_s": 496.8,
+      "next_pts_s": 689.0,
+      "delta_s": 192.2
+    },
+    {
+      "previous_pts_s": 899.0,
+      "next_pts_s": 1826.4,
+      "delta_s": 927.4000000000001
+    }
+  ]
+}

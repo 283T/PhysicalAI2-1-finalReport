@@ -1,0 +1,93 @@
+{
+  "scope": "New pickup/hold protocol only; not insertion, electrical continuity or uninstrumented contact proof. Video suitability is separate.",
+  "series": "B",
+  "trial_id": "pickup_hold_d101_p2_r01",
+  "status": "failed",
+  "errors": [
+    "Controller did not finish successfully",
+    "Support alignment did not pass",
+    "left_arm: hold did not pass",
+    "left_arm: invalid/outside-limit minimum_lift_m",
+    "left_arm: invalid/outside-limit relative_slip_m",
+    "left_arm: invalid/outside-limit lift_slip_m",
+    "left_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "left_arm: rotation not validated",
+    "right_arm: hold did not pass",
+    "right_arm: invalid/outside-limit minimum_lift_m",
+    "right_arm: invalid/outside-limit relative_slip_m",
+    "right_arm: invalid/outside-limit lift_slip_m",
+    "right_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "right_arm: rotation not validated",
+    "dual_hold: exactly one hold window required",
+    "dual_hold/primary: insufficient raw grip timestamps",
+    "dual_hold/support: insufficient raw grip timestamps"
+  ],
+  "controller_error": "Lost feedback",
+  "hold_results": {
+    "primary": {
+      "success": true,
+      "minimum_lift_m": 0.09984116719438402,
+      "relative_slip_m": 3.4843496083322023e-06,
+      "lift_slip_m": 7.161935464315547e-05,
+      "minimum_tcp_lift_m": 0.09990039099623532,
+      "minimum_finger_travel_m": 0.0019895675948254352,
+      "minimum_jaw_opening_m": 0.02002392740323216,
+      "maximum_jaw_opening_m": 0.02002439709677127,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 5019,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.004780332409752907
+    },
+    "left_arm": {},
+    "right_arm": {}
+  },
+  "hold_windows": {
+    "primary_hold": {
+      "phase": "primary_hold",
+      "start_sim_time_s": 47.046,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 51.0461,
+      "elapsed_simulation_s": 4.000100000000003,
+      "distinct_observation_timestamps": 5019
+    }
+  },
+  "grip_replay": {
+    "evidence_consistent": true,
+    "all_recorded_grips_within_limits": true,
+    "trial_success": false,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {
+      "primary": {
+        "samples": 38552,
+        "maximum_position_shift_m": 6.660188165246505e-05,
+        "maximum_angle_shift_rad": 0.0009581692791788664
+      }
+    },
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": []
+  },
+  "raw_hold_timestamp_counts": {
+    "primary_hold": {
+      "primary": 5018
+    },
+    "dual_hold": {
+      "primary": 0,
+      "support": 0
+    }
+  },
+  "contact_violations": [],
+  "capture_timing": {
+    "pts_minus_monotonic_duration_s": -2.249227673998348,
+    "requires_review_before_phase_based_editing": false,
+    "phase_and_monotonic_caption_sample_interval_s": 1,
+    "scope": "Video timing metadata only; does not change physical verdicts"
+  },
+  "input_sha256": {
+    "registry": "2869b7be115f4aef7b37d3cec5a5092398cc8f83e06dfd14a8405a800d1af680",
+    "validation": "4b4fc2e094b556ecc88b48931990f4121768d68574b4560ac7e990eca66f7461",
+    "recording": "780042010f15d9cba66fda890014cf78d1739adc121af6ed76a2354c139c27cd",
+    "auditor": "27a1861baa9bffcde9b3fb4ea9f9ad95a0e2acd527635174bd2366b392720ca2"
+  }
+}

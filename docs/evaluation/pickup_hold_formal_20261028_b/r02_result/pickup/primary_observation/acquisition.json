@@ -1,0 +1,191 @@
+{
+  "processed_frames": 11,
+  "frames": [
+    {
+      "sensor_stamp_ns": 200000000,
+      "elapsed_wall_s": 2.515785751005751,
+      "detected_plugs": [],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 0,
+      "decode_wall_s": 0.00392566600930877,
+      "detector_wall_s": 0.011195833998499438,
+      "save_and_validation_wall_s": 0.02326987500418909
+    },
+    {
+      "sensor_stamp_ns": 400000000,
+      "elapsed_wall_s": 5.882327002007514,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0008253330015577376,
+      "detector_wall_s": 0.041242582999984734,
+      "save_and_validation_wall_s": 0.031997166996006854
+    },
+    {
+      "sensor_stamp_ns": 600000000,
+      "elapsed_wall_s": 9.234033754008124,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 2,
+      "decode_wall_s": 0.00041783301276154816,
+      "detector_wall_s": 0.031512041998212226,
+      "save_and_validation_wall_s": 0.03128120799374301
+    },
+    {
+      "sensor_stamp_ns": 800000000,
+      "elapsed_wall_s": 12.931802172010066,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0002345829998375848,
+      "detector_wall_s": 0.033086708004702814,
+      "save_and_validation_wall_s": 0.014135709003312513
+    },
+    {
+      "sensor_stamp_ns": 1000000000,
+      "elapsed_wall_s": 16.630226841007243,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.00022141699446365237,
+      "detector_wall_s": 0.020612042004358955,
+      "save_and_validation_wall_s": 0.025022457994055003
+    },
+    {
+      "sensor_stamp_ns": 1200000000,
+      "elapsed_wall_s": 21.146537468011957,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.00026950000028591603,
+      "detector_wall_s": 0.030412124993745238,
+      "save_and_validation_wall_s": 0.026336667011491954
+    },
+    {
+      "sensor_stamp_ns": 1400000000,
+      "elapsed_wall_s": 25.932760677998886,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0004707909974968061,
+      "detector_wall_s": 0.0346801670093555,
+      "save_and_validation_wall_s": 0.011790666991146281
+    },
+    {
+      "sensor_stamp_ns": 1600000000,
+      "elapsed_wall_s": 31.38511330600886,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.0003907089994754642,
+      "detector_wall_s": 0.0353202909900574,
+      "save_and_validation_wall_s": 0.024685709009645507
+    },
+    {
+      "sensor_stamp_ns": 1800000000,
+      "elapsed_wall_s": 36.577985558004,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.00023070799943525344,
+      "detector_wall_s": 0.043488917013746686,
+      "save_and_validation_wall_s": 0.011773457998060621
+    },
+    {
+      "sensor_stamp_ns": 2000000000,
+      "elapsed_wall_s": 40.93002022700966,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 2,
+      "decode_wall_s": 0.00026008300483226776,
+      "detector_wall_s": 0.023766375001287088,
+      "save_and_validation_wall_s": 0.03327816700038966
+    },
+    {
+      "sensor_stamp_ns": 2200000000,
+      "elapsed_wall_s": 45.75193739600945,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0007775830017635599,
+      "detector_wall_s": 0.03653587600274477,
+      "save_and_validation_wall_s": 0.023937457997817546
+    }
+  ],
+  "success": true,
+  "timeout_s": 240.0,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd_hd64.xml",
+    "sha256": "b0a630b3922ce408df1e820422acf0c127dbd1ed649d049cb1a2ee1cf7394a77"
+  },
+  "elapsed_wall_s": 46.057691646012245,
+  "transport": {
+    "received_messages": {
+      "rgb": 11,
+      "depth": 11
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 11,
+    "last_paired_stamp_ns": 2200000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.36739466700237244
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.3682936670084018
+      }
+    }
+  },
+  "camera_info_messages": 11
+}

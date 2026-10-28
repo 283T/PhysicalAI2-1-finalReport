@@ -1,0 +1,115 @@
+{
+  "scope": "New pickup/hold protocol only; not insertion, electrical continuity or uninstrumented contact proof. Video suitability is separate.",
+  "series": "B",
+  "trial_id": "pickup_hold_d101_p2_r02",
+  "status": "passed",
+  "errors": [],
+  "controller_error": null,
+  "hold_results": {
+    "primary": {
+      "success": true,
+      "minimum_lift_m": 0.09984466644268619,
+      "relative_slip_m": 3.6708364616477317e-06,
+      "lift_slip_m": 7.049411085767743e-05,
+      "minimum_tcp_lift_m": 0.09990343587961759,
+      "minimum_finger_travel_m": 0.0019852861093051627,
+      "minimum_jaw_opening_m": 0.020023592909060486,
+      "maximum_jaw_opening_m": 0.020024062142001264,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 5311,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.004780388503887134
+    },
+    "left_arm": {
+      "success": true,
+      "minimum_lift_m": 0.09913269855379445,
+      "relative_slip_m": 0.00027750546082191073,
+      "lift_slip_m": 0.0003029766165608834,
+      "minimum_tcp_lift_m": 0.09945546598053362,
+      "minimum_finger_travel_m": 0.0009162587969075744,
+      "minimum_jaw_opening_m": 0.007999982821741154,
+      "maximum_jaw_opening_m": 0.00811643200370022,
+      "expected_housing_width_m": 0.008,
+      "hold_samples": 8512,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.02423645605333037
+    },
+    "right_arm": {
+      "success": true,
+      "minimum_lift_m": 0.09924462708667814,
+      "relative_slip_m": 4.494727619587918e-06,
+      "lift_slip_m": 0.00011865059358600611,
+      "minimum_tcp_lift_m": 0.09936573536183702,
+      "minimum_finger_travel_m": 0.0019277789647103533,
+      "minimum_jaw_opening_m": 0.020005755550509537,
+      "maximum_jaw_opening_m": 0.020010695927950264,
+      "expected_housing_width_m": 0.02,
+      "hold_samples": 8512,
+      "rotation_validated": true,
+      "maximum_rotation_change_rad": 0.010068445713817093
+    }
+  },
+  "hold_windows": {
+    "primary_hold": {
+      "phase": "primary_hold",
+      "start_sim_time_s": 47.0434,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 51.0438,
+      "elapsed_simulation_s": 4.000399999999999,
+      "distinct_observation_timestamps": 5311
+    },
+    "dual_hold": {
+      "phase": "dual_hold",
+      "start_sim_time_s": 81.0893,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 85.0893,
+      "elapsed_simulation_s": 4.0,
+      "distinct_observation_timestamps": 8512
+    }
+  },
+  "grip_replay": {
+    "evidence_consistent": true,
+    "all_recorded_grips_within_limits": true,
+    "trial_success": true,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {
+      "primary": {
+        "samples": 67520,
+        "maximum_position_shift_m": 0.000148462606384012,
+        "maximum_angle_shift_rad": 0.011186793599391629
+      },
+      "support": {
+        "samples": 18188,
+        "maximum_position_shift_m": 0.0002946810270851685,
+        "maximum_angle_shift_rad": 0.021681595810633825
+      }
+    },
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": []
+  },
+  "raw_hold_timestamp_counts": {
+    "primary_hold": {
+      "primary": 5310
+    },
+    "dual_hold": {
+      "primary": 8511,
+      "support": 8511
+    }
+  },
+  "contact_violations": [],
+  "capture_timing": {
+    "pts_minus_monotonic_duration_s": 1118.6527329840055,
+    "requires_review_before_phase_based_editing": true,
+    "phase_and_monotonic_caption_sample_interval_s": 1,
+    "scope": "Video timing metadata only; does not change physical verdicts"
+  },
+  "input_sha256": {
+    "registry": "2869b7be115f4aef7b37d3cec5a5092398cc8f83e06dfd14a8405a800d1af680",
+    "validation": "91e8de39ca417a02d483bac09623621d34c07b15a986d9f4df9d327f337209ed",
+    "recording": "2e29269d9e6ef20d84bc9ad8b4f8ed5485cec3a2cca19ad2637a780784989051",
+    "auditor": "27a1861baa9bffcde9b3fb4ea9f9ad95a0e2acd527635174bd2366b392720ca2"
+  }
+}
