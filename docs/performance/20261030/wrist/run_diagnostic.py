@@ -25,6 +25,7 @@ def main():
     import subprocess
     import xml.etree.ElementTree as ET
     from arm_session import ArmSession
+    from cooperative_pick import upright_waist_path
     from arm_kinematics import rotation_error
     from evidence_io import write_json_atomic
     source=json.loads(args.target_report.read_text());goal=np.array(source['stop_diagnostics']['command_targets_rad']['right_arm'])
@@ -35,9 +36,12 @@ def main():
         with (args.output/'server.log').open('w') as server_log,(args.output/'bridge.log').open('w') as bridge_log:
             server=subprocess.Popen(['gz','sim','-s','-r',str(args.world)],stdout=server_log,stderr=server_log,start_new_session=True)
             report['server_pid']=server.pid;write_json_atomic(args.output/'validation.json',report)
-            session=ArmSession(args.world,args.models,bridge_log);session.wait_ready();session.dwell('initial_open',1)
-            start=np.array(session.snapshot()['arms']['right_arm']['q_rad']);move_wall=time.monotonic();session.move('diagnostic_hover',{'right_arm':np.array([start,goal])},settle_time_s=20);report['move_wall_s']=time.monotonic()-move_wall
-            target=session.arms['right_arm'].forward(goal);rows=session.dwell('diagnostic_hold',4);max_joint=max_position=max_angle=max_fk=0.
+            session=ArmSession(args.world,args.models,bridge_log);session.wait_ready();report['phase']='initial_open';write_json_atomic(args.output/'validation.json',report);session.dwell('initial_open',1)
+            start=np.array(session.snapshot()['arms']['right_arm']['q_rad']);path=upright_waist_path(start,goal);report['command_path']=path.tolist();report['phase']='diagnostic_hover';write_json_atomic(args.output/'validation.json',report);move_wall=time.monotonic();session.move('diagnostic_hover',{'right_arm':path},settle_time_s=20);report['move_wall_s']=time.monotonic()-move_wall
+            target=session.arms['right_arm'].forward(goal);report['phase']='diagnostic_hold';write_json_atomic(args.output/'validation.json',report);rows=session.dwell('diagnostic_hold',4);
+            with gzip.open(args.output/'hold_observations.jsonl.gz','wt') as evidence:
+                for row in rows:evidence.write(json.dumps(row)+'\n')
+            max_joint=max_position=max_angle=max_fk=0.
             for row in rows:
                 a=row['arms']['right_arm'];max_joint=max(max_joint,float(np.max(np.abs(np.array(a['q_rad'])-goal))));max_position=max(max_position,float(np.linalg.norm(np.array(a['tcp'])-target[:3,3])));max_angle=max(max_angle,float(np.linalg.norm(rotation_error(target[:3,:3],np.array(a['tcp_rotation_world'])))));max_fk=max(max_fk,a['fk_native_error_m'])
             report['hold']={'distinct_samples':len(rows),'max_joint_error_rad':max_joint,'max_tcp_position_error_m':max_position,'max_tcp_angle_error_rad':max_angle,'max_fk_native_error_m':max_fk,'gates':{'joint_exclusive':.01,'tcp_position_exclusive':.002,'tcp_angle_exclusive':.025,'fk_exclusive':.001}}
