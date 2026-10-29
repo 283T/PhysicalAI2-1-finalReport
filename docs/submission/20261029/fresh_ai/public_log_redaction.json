@@ -1,0 +1,7 @@
+{
+  "scope": "Public startup-failure traceback only. No physical trial evidence or control source modified.",
+  "redaction": "Replace local home/project path with <project-root> to remove personal local username. Error and stack trace otherwise retained.",
+  "original_sha256": "567f55bdb4dedb1fbe4f4b7e867114fd319b33220d5db6cbde239c6748eef81e",
+  "public_sha256": "5469ac18fea8907ca95f31ef8b45c0f9e719dc0713843ceb26fc50d7221b7169",
+  "original_local_path": "outputs/submission_fresh_ai_20261029/retry_inference.log"
+}

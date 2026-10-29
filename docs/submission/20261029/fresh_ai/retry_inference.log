@@ -1,5 +1,5 @@
 Traceback (most recent call last):
-  File "/Users/tsubasa/PhysicalAI2-1-finalReport/scripts/local_vision.py", line 37, in infer_drawing
+  File "<project-root>/scripts/local_vision.py", line 37, in infer_drawing
     with urllib.request.urlopen(request, timeout=300) as response:
          ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
   File "/opt/homebrew/Cellar/python@3.15/3.15.2/Frameworks/Python.framework/Versions/3.15/lib/python3.15/urllib/request.py", line 187, in urlopen
@@ -22,17 +22,17 @@ urllib.error.HTTPError: HTTP Error 404: Not Found
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/Users/tsubasa/PhysicalAI2-1-finalReport/scripts/read_connection_plan.py", line 61, in <module>
+  File "<project-root>/scripts/read_connection_plan.py", line 61, in <module>
     main()
     ~~~~^^
-  File "/Users/tsubasa/PhysicalAI2-1-finalReport/scripts/read_connection_plan.py", line 50, in main
+  File "<project-root>/scripts/read_connection_plan.py", line 50, in main
     plan, audit = infer_drawing(
                   ~~~~~~~~~~~~~^
         args.image, args.output, PROMPT, SCHEMA, args.model, num_predict=768
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     )
     ^
-  File "/Users/tsubasa/PhysicalAI2-1-finalReport/scripts/local_vision.py", line 40, in infer_drawing
+  File "<project-root>/scripts/local_vision.py", line 40, in infer_drawing
     raise RuntimeError(
         "Local Ollama request failed. Start ollama serve and pull the model."
     ) from error
