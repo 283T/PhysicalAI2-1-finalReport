@@ -37,7 +37,7 @@ class InitialInspectionTests(unittest.TestCase):
                                                 for n in ['left_arm', 'right_arm']}}),
             arms={'right_arm': Mock()}, bounds=Mock(), move=Mock())
 
-    def run_to_planning(self, enabled, observations):
+    def run_to_planning(self, enabled, observations, clearance=0):
         report = {}
         with patch('dual_pickup.acquire_observation', side_effect=observations) as acquire, \
              patch('dual_pickup.prepare_pickup_paths', side_effect=Planned) as plan:
@@ -45,7 +45,7 @@ class InitialInspectionTests(unittest.TestCase):
                 dual_pickup.primary_pickup(
                     self.session, Path('/tmp/test-pickup'), Path('/tmp/calibration.json'),
                     report, Mock(), Mock(), holding_args=SimpleNamespace(
-                        refine_initial_with_inspection=enabled))
+                        refine_initial_with_inspection=enabled, primary_grasp_clearance_m=clearance))
         self.session.move.assert_not_called()
         return report, acquire, plan
 
@@ -58,6 +58,13 @@ class InitialInspectionTests(unittest.TestCase):
         self.assertEqual(acquire.call_args.kwargs['calibration'], Path('/tmp/calibration.json'))
         self.assertEqual(report['initial_inspection_refinement']['inspection_sensor_stamp_ns'],
                          4000000000)
+
+    def test_clearance_is_preserved_in_the_refined_connector_frame(self):
+        _, _, plan = self.run_to_planning(True, [self.overview, self.inspection], .002)
+        shifted = self.body @ self.relation
+        shifted[:3, 3] -= .002 * shifted[:3, 2]
+        expected = self.fine @ np.linalg.inv(self.body) @ shifted
+        np.testing.assert_allclose(plan.call_args.args[3]['right_arm'], expected, atol=1e-12)
 
     def test_default_keeps_the_original_overview_goal(self):
         report, acquire, plan = self.run_to_planning(False, [self.overview])

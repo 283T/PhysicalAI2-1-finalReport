@@ -1,0 +1,119 @@
+{
+  "scope": "Offline geometry only, based on failed measured joints and closed finger envelope. No object poses used. Does not validate actual grasp, trajectory from startup, or physics. Never restore these joints in a simulation.",
+  "source_sim_time_s": 46.1565,
+  "candidates": [
+    {
+      "offset_along_outward_tool_axis_m": 0.0,
+      "ik_success": true,
+      "lift_fixture_screen": {
+        "clear": false,
+        "fraction": 0.0,
+        "shapes": [
+          "right_arm/right_arm_finger_right",
+          "carrier/pallet_main_collision"
+        ]
+      },
+      "lift_arm_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "hypothetical_right_q_rad": [
+        -2.885714235365007,
+        1.355384054784924,
+        1.15286337233719,
+        0.29650578382236714,
+        0.5068475804296959,
+        2.240324264900466
+      ]
+    },
+    {
+      "offset_along_outward_tool_axis_m": 0.001,
+      "ik_success": true,
+      "lift_fixture_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "lift_arm_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "hypothetical_right_q_rad": [
+        -2.8859761929113463,
+        1.3523422924110242,
+        1.1556611274847282,
+        0.2964328902594084,
+        0.5071269908483671,
+        2.240166057251479
+      ]
+    },
+    {
+      "offset_along_outward_tool_axis_m": 0.002,
+      "ik_success": true,
+      "lift_fixture_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "lift_arm_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "hypothetical_right_q_rad": [
+        -2.886238150457685,
+        1.3493005300371244,
+        1.1584588826322668,
+        0.29635999669644975,
+        0.5074064012670381,
+        2.240007849602492
+      ]
+    },
+    {
+      "offset_along_outward_tool_axis_m": 0.003,
+      "ik_success": true,
+      "lift_fixture_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "lift_arm_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "hypothetical_right_q_rad": [
+        -2.8865001080040242,
+        1.3462587676632245,
+        1.161256637779805,
+        0.29628710313349105,
+        0.5076858116857091,
+        2.239849641953505
+      ]
+    },
+    {
+      "offset_along_outward_tool_axis_m": 0.004,
+      "ik_success": true,
+      "lift_fixture_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "lift_arm_screen": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "hypothetical_right_q_rad": [
+        -2.886762065550363,
+        1.3432170052893246,
+        1.1640543929273435,
+        0.2962142095705323,
+        0.5079652221043803,
+        2.239691434304518
+      ]
+    }
+  ]
+}

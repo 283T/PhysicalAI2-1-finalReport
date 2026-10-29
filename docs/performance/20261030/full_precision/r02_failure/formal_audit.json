@@ -1,0 +1,78 @@
+{
+  "scope": "New pickup/hold protocol only; not insertion, electrical continuity or uninstrumented contact proof. Video suitability is separate.",
+  "series": "development_dt0005_i20_j2i200_precision",
+  "trial_id": "development_dt0005_i20_j2i200_precision_r02",
+  "status": "failed",
+  "errors": [
+    "Controller did not finish successfully",
+    "Support alignment did not pass",
+    "primary: hold did not pass",
+    "primary: invalid/outside-limit minimum_lift_m",
+    "primary: invalid/outside-limit relative_slip_m",
+    "primary: invalid/outside-limit lift_slip_m",
+    "primary: invalid/outside-limit maximum_rotation_change_rad",
+    "primary: rotation not validated",
+    "left_arm: hold did not pass",
+    "left_arm: invalid/outside-limit minimum_lift_m",
+    "left_arm: invalid/outside-limit relative_slip_m",
+    "left_arm: invalid/outside-limit lift_slip_m",
+    "left_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "left_arm: rotation not validated",
+    "right_arm: hold did not pass",
+    "right_arm: invalid/outside-limit minimum_lift_m",
+    "right_arm: invalid/outside-limit relative_slip_m",
+    "right_arm: invalid/outside-limit lift_slip_m",
+    "right_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "right_arm: rotation not validated",
+    "primary_hold: exactly one hold window required",
+    "dual_hold: exactly one hold window required",
+    "primary_hold/primary: insufficient raw grip timestamps",
+    "dual_hold/primary: insufficient raw grip timestamps",
+    "dual_hold/support: insufficient raw grip timestamps"
+  ],
+  "controller_error": "Motion preflight rejected: {'phase': 'primary_lift', 'settle_time_s': 20.0, 'require_precision': False, 'arms': {'clear': True, 'samples': 81, 'margin_per_box_m': 0.005}, 'fixtures': {'clear': False, 'fraction': 0.0, 'shapes': ['right_arm/right_arm_finger_right', 'carrier/pallet_main_collision']}, 'finger_envelope_mode': 'measured_plus_minus_0.5mm', 'planned_finger_intervals_m': {'left_arm': [[0.017521020351595678, 0.01852102035159568], [0.017518588160991503, 0.018518588160991504]], 'right_arm': [[0.0015195209659665649, 0.002519520965966565], [0.001505856014318388, 0.002505856014318388]]}}",
+  "hold_results": {
+    "primary": {},
+    "left_arm": {},
+    "right_arm": {}
+  },
+  "hold_windows": {},
+  "grip_replay": {
+    "evidence_consistent": true,
+    "all_recorded_grips_within_limits": true,
+    "trial_success": false,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {
+      "primary": {
+        "samples": 329,
+        "maximum_position_shift_m": 2.1613851331092347e-05,
+        "maximum_angle_shift_rad": 0.0005049426472808236
+      }
+    },
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": []
+  },
+  "raw_hold_timestamp_counts": {
+    "primary_hold": {
+      "primary": 0
+    },
+    "dual_hold": {
+      "primary": 0,
+      "support": 0
+    }
+  },
+  "contact_violations": [],
+  "capture_timing": {
+    "pts_minus_monotonic_duration_s": -1.4598113330051774,
+    "requires_review_before_phase_based_editing": false,
+    "phase_and_monotonic_caption_sample_interval_s": 1,
+    "scope": "Video timing metadata only; does not change physical verdicts"
+  },
+  "input_sha256": {
+    "registry": "0e05656c73b1caeeffbfceff654ce0b8ca60eddacfb79d0fa8aae870afb15f60",
+    "validation": "917c33c6eb9c7c737370a9835a68e521f71cca74438dc9f86be59de157aeee5f",
+    "recording": "1303eeb7e59e33e524a6847eb68ad1eb824f07958aef30ae8ba3732c4a9c1389",
+    "auditor": "27a1861baa9bffcde9b3fb4ea9f9ad95a0e2acd527635174bd2366b392720ca2"
+  }
+}

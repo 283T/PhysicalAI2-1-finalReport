@@ -5,6 +5,15 @@ from arm_kinematics import rotation_error
 from cooperative_transfer import pose_samples, rigid_pose
 
 
+def outward_grasp_clearance(grasp, distance):
+    """Move a grasp away from its visible face along the negative tool approach axis."""
+    if not np.isfinite(distance) or not 0 <= distance <= 0.004:
+        raise ValueError("Grasp clearance must be finite and within 0 to 4 mm")
+    result = rigid_pose(grasp).copy()
+    result[:3, 3] -= result[:3, 2] * distance
+    return result
+
+
 def desired_tool_pose(detection, connector_from_tool):
     body = np.eye(4)
     body[:3, :3] = detection["rotation_world_from_connector"]

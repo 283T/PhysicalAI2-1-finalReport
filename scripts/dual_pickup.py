@@ -37,6 +37,7 @@ from preclose_alignment import (
     correction_budget,
     correction_path,
     desired_tool_pose,
+    outward_grasp_clearance,
     tracking_compensated_goal,
 )
 from rclpy.signals import SignalHandlerOptions
@@ -55,7 +56,9 @@ def primary_pickup(
     pose = initial["connectors"][0]["pose_6d"]
     body = np.eye(4)
     body[:3, :3], body[:3, 3] = pose["rotation_world_from_connector"], pose["center_xyz_m"]
-    grip = rigid_pose(pose["grasp_tcp_pose"])
+    grip = outward_grasp_clearance(
+        pose["grasp_tcp_pose"], getattr(holding_args, "primary_grasp_clearance_m", 0)
+    )
     relation = np.linalg.inv(rigid_pose(body)) @ grip
     if getattr(holding_args, "refine_initial_with_inspection", False):
         checkpoint("primary_initial_inspection")
@@ -365,6 +368,8 @@ def main():
     parser.add_argument("--top-regrasp", action="store_true")
     parser.add_argument("--insert-after-regrasp", action="store_true")
     parser.add_argument("--centred-grips", action="store_true")
+    parser.add_argument("--primary-grasp-clearance-m", type=float, default=0,
+                        help="Move the primary grasp outward by 0 to 4 mm; all contact gates remain")
     parser.add_argument("--refine-initial-with-inspection", action="store_true",
                         help="Use fresh inspection RGB-D to refine the initial goal before arm motion")
     parser.add_argument("--initial-settle-s", type=float, default=0,
@@ -380,6 +385,8 @@ def main():
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
+    if not np.isfinite(args.primary_grasp_clearance_m) or not 0 <= args.primary_grasp_clearance_m <= 0.004:
+        parser.error("Primary grasp clearance must be finite and within 0 to 4 mm")
     if not np.isfinite(args.initial_settle_s) or not 0 <= args.initial_settle_s <= 30:
         parser.error("Initial settle duration must be finite and within 0 to 30 physical seconds")
     if not np.isfinite(args.observation_timeout_wall_s) or not 5 <= args.observation_timeout_wall_s <= 300:
@@ -441,6 +448,7 @@ def main():
             "top_regrasp": args.top_regrasp,
             "insert_after_regrasp": args.insert_after_regrasp,
             "centred_grips": args.centred_grips,
+            "primary_grasp_clearance_m": args.primary_grasp_clearance_m,
             "initial_settle_s": args.initial_settle_s,
             "refine_initial_with_inspection": args.refine_initial_with_inspection,
             "observation_timeout_wall_s": args.observation_timeout_wall_s,

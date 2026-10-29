@@ -1,0 +1,42 @@
+[
+  {
+    "script": "dual_pickup.py",
+    "value": "nan",
+    "exit_code": 2
+  },
+  {
+    "script": "dual_pickup.py",
+    "value": "inf",
+    "exit_code": 2
+  },
+  {
+    "script": "dual_pickup.py",
+    "value": "-0.001",
+    "exit_code": 2
+  },
+  {
+    "script": "dual_pickup.py",
+    "value": "0.0041",
+    "exit_code": 2
+  },
+  {
+    "script": "record_dual_hold.py",
+    "value": "nan",
+    "exit_code": 2
+  },
+  {
+    "script": "record_dual_hold.py",
+    "value": "inf",
+    "exit_code": 2
+  },
+  {
+    "script": "record_dual_hold.py",
+    "value": "-0.001",
+    "exit_code": 2
+  },
+  {
+    "script": "record_dual_hold.py",
+    "value": "0.0041",
+    "exit_code": 2
+  }
+]

@@ -1,0 +1,152 @@
+{
+  "scope": "Post-trial nearest-time native evaluation only; no truth-driven targets or verdict override. Downsampled trajectory is not the complete feedback stream.",
+  "observations": [
+    {
+      "phase": "primary_observation",
+      "sensor_time_s": 3.2,
+      "nearest_native_time_s": 3.218,
+      "time_mismatch_s": 0.017999999999999794,
+      "vision_vs_native_position_m": 0.0008031482538473735,
+      "vision_vs_native_angle_rad": 0.04091856520547738,
+      "native_center_world": [
+        -0.26145700773332625,
+        0.2744609956352881,
+        0.13263206538860814
+      ],
+      "native_rotation_world": [
+        [
+          -0.7820669165605313,
+          -0.11532685954819649,
+          -0.6124304478781488
+        ],
+        [
+          0.6228756387076436,
+          -0.17608422238206248,
+          -0.7622468663973471
+        ],
+        [
+          -0.019931801875633762,
+          -0.97759606284743,
+          0.20954393615455047
+        ]
+      ],
+      "tcp_tracking_vector_m": [
+        -1.2003629131090987e-05,
+        0.0,
+        -4.761134588804339e-07
+      ],
+      "tcp_tracking_position_m": 1.2013067732369748e-05,
+      "tcp_tracking_angle_rad": 2.827587209860542e-05,
+      "joint_tracking_error_rad": [
+        0.0,
+        -1.3383497341131777e-05,
+        3.863358697527829e-06,
+        0.0,
+        -1.875576106544382e-05,
+        0.0
+      ],
+      "fk_native_error_m": 2.2800096201852974e-11
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "sensor_time_s": 6.0,
+      "nearest_native_time_s": 5.995,
+      "time_mismatch_s": 0.004999999999999893,
+      "vision_vs_native_position_m": 0.0001568307692022855,
+      "vision_vs_native_angle_rad": 0.002573426045878113,
+      "native_center_world": [
+        -0.261293123708413,
+        0.2741332566234749,
+        0.13235780140932277
+      ],
+      "native_rotation_world": [
+        [
+          -0.7857784984438496,
+          -0.10521729472436162,
+          -0.6094927991979836
+        ],
+        [
+          0.6179532701534476,
+          -0.17527894600797428,
+          -0.7664274570974872
+        ],
+        [
+          -0.026189831804574945,
+          -0.9788802848035921,
+          0.20274979835460663
+        ]
+      ],
+      "tcp_tracking_vector_m": [
+        -1.2003629131090987e-05,
+        0.0,
+        -4.761134588804339e-07
+      ],
+      "tcp_tracking_position_m": 1.2013067732369748e-05,
+      "tcp_tracking_angle_rad": 2.827587209860542e-05,
+      "joint_tracking_error_rad": [
+        0.0,
+        -1.338350311407059e-05,
+        3.86332359769441e-06,
+        0.0,
+        -1.8755776302194913e-05,
+        0.0
+      ],
+      "fk_native_error_m": 4.7621525761921866e-11
+    },
+    {
+      "phase": "primary_preclose_0",
+      "sensor_time_s": 41.0,
+      "nearest_native_time_s": 40.968,
+      "time_mismatch_s": 0.031999999999996476,
+      "vision_vs_native_position_m": 0.00016034193487187576,
+      "vision_vs_native_angle_rad": 0.002886299357532732,
+      "native_center_world": [
+        -0.26128469508946334,
+        0.27411626022788854,
+        0.1323436544887059
+      ],
+      "native_rotation_world": [
+        [
+          -0.7859687855036943,
+          -0.10469688686524843,
+          -0.6093370414594463
+        ],
+        [
+          0.6176975204572752,
+          -0.17523370922296316,
+          -0.7666439332394294
+        ],
+        [
+          -0.026511156797559124,
+          -0.9789441807542597,
+          0.20239923303356142
+        ]
+      ],
+      "tcp_tracking_vector_m": [
+        0.000268102492659239,
+        0.00014237760811791622,
+        -0.00023289695870007399
+      ],
+      "tcp_tracking_position_m": 0.00038261119068216004,
+      "tcp_tracking_angle_rad": 0.004632535076554594,
+      "joint_tracking_error_rad": [
+        -0.00016296626217604526,
+        0.00031245020170578286,
+        0.00015292331107774615,
+        -0.0001611337343479513,
+        0.0008181873572250531,
+        -0.004544351510880951
+      ],
+      "fk_native_error_m": 2.9893669801409083e-16
+    }
+  ],
+  "native_center_displacement_m": 0.00048136783807436106,
+  "native_rotation_change_rad": 0.011849386973755443,
+  "video_packet_timing": {
+    "packets": 1358,
+    "first_pts_s": 0.0,
+    "last_pts_s": 271.4,
+    "maximum_gap_s": 0.20000000000004547,
+    "gaps_over_0_4s": 0
+  }
+}

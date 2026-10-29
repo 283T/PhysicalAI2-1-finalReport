@@ -12,6 +12,7 @@ from preclose_alignment import (
     correction_path,
     correction_tracking,
     desired_tool_pose,
+    outward_grasp_clearance,
     tracking_compensated_goal,
 )
 
@@ -26,6 +27,20 @@ class LocalArm:
 
 
 class PrecloseAlignmentTests(unittest.TestCase):
+    def test_clearance_uses_the_tool_axis_and_preserves_rotation_and_input(self):
+        grasp = transform([.1, .2, .3], [.3, -.4, .8])
+        original = grasp.copy()
+        shifted = outward_grasp_clearance(grasp, .002)
+        np.testing.assert_allclose(shifted[:3, 3], grasp[:3, 3] - .002 * grasp[:3, 2])
+        np.testing.assert_array_equal(shifted[:3, :3], grasp[:3, :3])
+        np.testing.assert_array_equal(grasp, original)
+        np.testing.assert_array_equal(outward_grasp_clearance(grasp, 0), grasp)
+
+    def test_invalid_grasp_clearance_is_rejected(self):
+        for distance in [-.001, .0041, float('nan'), float('inf')]:
+            with self.subTest(distance=distance), self.assertRaises(ValueError):
+                outward_grasp_clearance(np.eye(4), distance)
+
     def test_visual_servo_compensates_a_fixed_tool_tracking_bias(self):
         bias = transform([0.0008, -0.0004, 0], [0, 0, 0.008])
         commanded = transform([0.1, 0.2, 0.3], [0, 0, 0.1])

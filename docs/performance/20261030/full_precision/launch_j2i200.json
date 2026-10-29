@@ -1,0 +1,12 @@
+{
+  "scope": "Launch checkpoint only; outcome pending",
+  "registration_commit": "8b1534b",
+  "output": "outputs/performance_pickup_dt0005_i20_j2i200_precision_20261030_r02",
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-154678",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 154679,
+  "capture_pid": 154724,
+  "controller_pid": 154725
+}
