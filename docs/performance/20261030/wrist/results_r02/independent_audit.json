@@ -1,0 +1,57 @@
+{
+  "scope": "Same-gate diagnostic audit; never added to formal B or declared a harness pickup success",
+  "registry_sha256": "ec6692f74a48cf20a9b1ab3bda64ea0a538969b2151388e9330c5bc65d8dcd57",
+  "cases": [
+    {
+      "case": "dt0005_i0",
+      "reported_success": false,
+      "error": "RuntimeError: simulation_budget_exhausted before robot convergence in diagnostic_hover",
+      "world_sha256": "531bc72b57b45ba6b1e95b7f684c3e4ca5cd209c9a5a69e9bb3a701e7cb4fc35",
+      "method_sha256": "8acb3b229010ce5e95bab40ade4961ae232cd8244a759906bdbfb70ba8e57947",
+      "total_wall_s": 40.00347764301114,
+      "scope": "Isolated hover convergence only, not full pickup or formal acceptance",
+      "independent_pass": false,
+      "final_maximum_joint_error_rad": 0.011281856491146769,
+      "stop_reason": "simulation_budget_exhausted",
+      "failed_result_retained": true
+    },
+    {
+      "case": "dt0005_i20",
+      "reported_success": true,
+      "error": null,
+      "world_sha256": "551e2f26c1b1281e56ff7ed7836c5280713e28c532c87eea2350471c00f6445b",
+      "method_sha256": "8acb3b229010ce5e95bab40ade4961ae232cd8244a759906bdbfb70ba8e57947",
+      "total_wall_s": 24.05709226100589,
+      "scope": "Isolated hover convergence only, not full pickup or formal acceptance",
+      "independent_pass": true,
+      "observations": 237,
+      "distinct_timestamps": 237,
+      "hold_elapsed_sim_s": 4.0075,
+      "maximum_errors": {
+        "joint": 0.00877752808583887,
+        "position": 0.0012028953902738448,
+        "angle": 0.009018615061280995,
+        "fk_native": 3.2973318240625674e-06
+      }
+    },
+    {
+      "case": "dt0002_i0",
+      "reported_success": true,
+      "error": null,
+      "world_sha256": "a8469a949c253a02e4864334225294c5853edf95c2d4ad10a01af3749ad0e753",
+      "method_sha256": "8acb3b229010ce5e95bab40ade4961ae232cd8244a759906bdbfb70ba8e57947",
+      "total_wall_s": 30.21595780500502,
+      "scope": "Isolated hover convergence only, not full pickup or formal acceptance",
+      "independent_pass": true,
+      "observations": 305,
+      "distinct_timestamps": 305,
+      "hold_elapsed_sim_s": 4.000599999999999,
+      "maximum_errors": {
+        "joint": 0.0054538008606184185,
+        "position": 0.0012066049061347547,
+        "angle": 0.0057287601046999105,
+        "fk_native": 2.9287204707172734e-06
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"trial_state": "finished", "success": false, "error": "RuntimeError: simulation_budget_exhausted before robot convergence in diagnostic_hover", "move_wall_s": null, "total_wall_s": 40.00347764301114, "hold": null}

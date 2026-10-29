@@ -1,0 +1,261 @@
+{
+  "scope": "Empty-gripper right-arm hover convergence with harness and cameras removed; not a pickup, holding-success or full-workcell throughput trial",
+  "trial_state": "finished",
+  "success": true,
+  "world_sha256": "551e2f26c1b1281e56ff7ed7836c5280713e28c532c87eea2350471c00f6445b",
+  "source_target_report_sha256": "167ea9c9f8a05338987ec84569216ac9978bcfc147918983f5d940c4fcf860db",
+  "target_origin": "Recorded command computed from camera recognition in prior development trial; no object ground-truth target",
+  "goal_q_rad": [
+    -2.9587455612884184,
+    1.1002546260724753,
+    1.315765392406998,
+    0.37712493572811073,
+    0.6293319903446931,
+    2.380138086053516
+  ],
+  "max_step_size_s": 0.0005,
+  "right_wrist_pid": {
+    "p_gain": 640.0,
+    "i_gain": 20.0,
+    "d_gain": 0.282842712,
+    "cmd_max": 50.0,
+    "cmd_min": -50.0
+  },
+  "joint_gate_rad_exclusive": 0.01,
+  "settle_time_s": 20,
+  "requested_hold_sim_s": 4,
+  "source_sha256": {
+    "scripts/add_workcell_camera.py": "ba3df27a8488e69e6dcd7aa90656f5f3625c2706e9141e499148b04b141c283c",
+    "scripts/analyze_feedback_gates.py": "41c61fb9ceb20c16c2328f17f657f8690db86a0d2f47af352e7978c00b9c97a5",
+    "scripts/analyze_grip_tracking.py": "0fe5989114a4fd965c5f36dd46fdb918c4879af7f599c0425765cf73b5ff5e14",
+    "scripts/analyze_preclose.py": "4b878472228afeb7719777b110d5a45d6362a1ef32be22e7a88a3cae26450b83",
+    "scripts/arm_collision_bounds.py": "be6522982401df30ff79b5bc09fbb3da88d4987473124683d39c40ba38d7acbd",
+    "scripts/arm_contacts.py": "00b1d01923180dab74b3bef40b23c224072c53f59b1783acab0ae1ac0cb0fba8",
+    "scripts/arm_kinematics.py": "cd3c0ab8a7a00e333357f8baccf4a29cb7ab0735b6b59b64b49c05e7a2dd9913",
+    "scripts/arm_observation.py": "7eba85fec13bc2ade9ff856e0a6fddbfe22b292522e828745fc69ba831721cf8",
+    "scripts/arm_session.py": "275b89df9d5ff8b5322df41ef3f7304b64319c4776918becd802fb01f1d3dbda",
+    "scripts/assembly_case.py": "d754e645a90d37341449c266d4b9e9eaf4b93477bcd7699a95fb09c434b15a1b",
+    "scripts/benchmark_end_markers.py": "6dcba1e36f23c6d2577e1389c041f493770467321069d5164ad7c57ecc4c91c5",
+    "scripts/build_case.py": "e05c97192701d50e8800315c58ac4e3c6d9a1332da63898ab497e91fdcabaf48",
+    "scripts/build_drawings.py": "a21ce91f494e6c29c26548ca489c493fd771300b8dae14fd145d8eeeb3274692",
+    "scripts/build_factory.py": "dadf4e7b9192e04e7365e7f5add029332f04d7a3421cd695bb78492b35c42283",
+    "scripts/build_submission.py": "be39e7b02216cc36be628e418ae6168ff2167056c8db582fe9ec853eab230345",
+    "scripts/build_world.py": "fdc4b6c5c0d59a9f73806776e6f454d873ca29fe5649a8f0f32756139b1ae3f7",
+    "scripts/carried_connector.py": "9ed3300ff20412acc642905047780a91a9360dbd2ccce6d0f4e015be81a57e70",
+    "scripts/carried_contact_guard.py": "9147960a6e89576d02ff0f2d4ec036d8824385ff58bee6738b689d1d6f1c6831",
+    "scripts/cartesian_path.py": "093740b7abe8ed1da7a0d769d1fb938954e5cbb1e8e6402593bd05bdc9988921",
+    "scripts/centred_grip.py": "dad619095e71599fd84e5fcd417db32019f75f85bed18af08ed55bee77faedb4",
+    "scripts/check_arms.py": "5b621857726703e145db4129af52ee65bb430bb94cc9b28f147747f711c09b6d",
+    "scripts/check_cable.py": "602754bb80207f83f2c2ab8e98fd0c9f7ca9acdec1db6b91df8a3ad1c62f367e",
+    "scripts/check_grippers.py": "e865228543fb3c4d2399a07842d72e30d1b5d2db1c6701dafc79012f5b20f11b",
+    "scripts/check_reach.py": "966f0435ec8437b396a0bbb69c23dc0231a62f91ef07356ea6e37311f8d700d5",
+    "scripts/check_regrasp_nest.py": "4a4c8e78ad1179ce25aaf3e03da1943adad1c6b271a1bbe03ae4905a0aa0ac90",
+    "scripts/check_sim.py": "59fbf002a74232fb3d32839a2dd04e34ef88194476f274ee9beddfd3b7b0cb67",
+    "scripts/check_unloaded_tracking.py": "6cd2a2734b7628a30e4d7a5e621144bf1ab224cc7873a7885f494dfda9663962",
+    "scripts/clean_generated.py": "b48036ad90535754dbf9878911f33154be037f23fe3675e231e985fb9b77864d",
+    "scripts/command_refresh.py": "d296c65a8a90cc0dd743431b531757d9845b65c3e54f2821bb5b6649ff663dbc",
+    "scripts/connector_contacts.py": "e3ee0702de1f042e0125491b92e8e202d73a4dd0fd2c76440a3f8ca3fc84725d",
+    "scripts/connector_pose.py": "75a730530855d073e3ab8f216fa9d65b2b747a4608ed8fdd4c7a84694c4feb0d",
+    "scripts/connector_vision.py": "3c613033152af2e671f2400cef4eec447ff5bc684fa2caaa88480517691d4a1e",
+    "scripts/cooperative_pick.py": "49f9e452afca72098bfb08578826ecc48a11b204291306cd4faadbab22a15d86",
+    "scripts/cooperative_transfer.py": "4b72858e8cb4e172de02c44d6925fe98a87015b06d222459dad5856fa806418a",
+    "scripts/dual_pickup.py": "49a317cb37159270ad7eb80ea5d77a3a69db72ad38d011bf280077c1af1a7e9f",
+    "scripts/end_markers.py": "36724b2b71f0352417637cd623999288cf2358bf1626eef2878e77226a6c47ba",
+    "scripts/evaluate_drawings.py": "2b588849c963a7cfefd4ec667bd125bdf55bc8d187fc78b3574fd5cec334b996",
+    "scripts/evaluate_perception.py": "9c1d799fe60f42628dd5b464e15db9698211e23f710949b8f5f3b260260515ee",
+    "scripts/evidence_io.py": "4570c3ce7323cc0eb571995bee29e258cb9b982fd2cddb582b1f6ac986f96b4f",
+    "scripts/evidence_stream.py": "86ead0fcef4d97204df16fd6a5cd97c112d5bee2d66fcdf6b047b615fbc725d0",
+    "scripts/export_nest_trial.py": "90e98e2cf4adb6e64237a8c63ecebef27211797184980befdd663a702c18be12",
+    "scripts/export_return_study.py": "4a11fafe2434827328878f8d4e24b951274337d7c6c549605ae500d870f43b26",
+    "scripts/export_wire_grip_trial.py": "4b9eafb4f450b2b0d5d1c2aae3f19b457ba4b0b9a794230bd8dfa2167324ee30",
+    "scripts/export_wire_pick_trial.py": "dbd0fd8cfe58e405d46fada6283e8637669dc9beb49bba6bc386b9a9cac46642",
+    "scripts/feedback_pacing.py": "f909b8009cb238981329361dd39a73d876b5f2fd05e839ea232866a5a0a8b448",
+    "scripts/fixture_collision_bounds.py": "d5ec25f34aa35f0bae39d6c2dfffbdfabe12040dc1dd317d8c778d3c23043b30",
+    "scripts/grasp_benchmark.py": "3993279668cbc8493f00ea62e7f4c8ce1e9175b85e5cd4e1a866473f5bebf075",
+    "scripts/grasp_poses.py": "6fea4b22f205d70977236d6d327720743b2f34bb4f8c2e41d9081072fd539dad",
+    "scripts/grasp_validation.py": "c4075a8f4d455ed7308d7516f16fb13d229e05f54878149e12949c0289d598ca",
+    "scripts/grip_guard.py": "a3d1a61c17cd868bfc403f781113d93155b659f23f344ebeea813981fa1e186f",
+    "scripts/gripper_model.py": "d959e8d952adcca756cdb339ceebba3ecb80a0a6d1a75a166873438a745c8ef9",
+    "scripts/held_wire_nest.py": "cfe0922e8731502bf7828e638050ed72663fd2002dfa578584967f0398c08c8d",
+    "scripts/inspect_grip_progress.py": "03863dccf38110cd550c028d67653bbc9888e9fb519484b78b5456f7896cbd21",
+    "scripts/inspection_camera.py": "2e98ff780f33153250c9db0d23d11ebef90af4aefe5c8c9a3c245ef9cd6a8f31",
+    "scripts/joint_response_benchmark.py": "578b3fd4fbbbf18c96303b6326c1e20ef38e8cfa2e081a108a14f891c5610431",
+    "scripts/joint_route.py": "7aef30015972b217f423b47a700f92b6726e8e5c556db01ba127eb9fd7178963",
+    "scripts/local_vision.py": "aa2ef6ecf91d899d12ae7808f5745925ea254950c243e542d7b2dabc9a972b38",
+    "scripts/nest_aftercare.py": "abd6740c2350cad9295000429a58ec0244b6047f225b14c9e3c6c446c02f1097",
+    "scripts/observe_connectors.py": "48b5b0139b2accbf47cef940533b3dde9116ebda2a076f1055ef9dca8167ac9c",
+    "scripts/park_arm_plan.py": "1f7dd1b081ad05ee0ba12cb9f916b932f9dbda69cae221b5e798ce59fa1667b2",
+    "scripts/perception_stream.py": "7418248326c1502edc8a147be46a2578a70212108a5b5e75d668e3457d43861e",
+    "scripts/pick_connector.py": "5a4c9f72808968e0240a58dd019aae14242eedaa1fcd1adddf7721cba17b295a",
+    "scripts/pick_wire.py": "c4a9bf5d3e34cc628c91bc714b6fa0e24e625e4143b9c9723f0513534d9ede9a",
+    "scripts/plan_held_wire_transfer.py": "74f0eea4e11dc543b6fe5eb23e45f3122787cd547d3deb3e7f321636f63d1c78",
+    "scripts/plan_nest_transfer.py": "c65f1c2b31591e81ca1eb6e5aaad96a0187551793bfc60e833fa1460b93021eb",
+    "scripts/plan_reach.py": "049d940f9793c72315631af21678a10090cb6eefb2ab6323e658ea1c96d6b805",
+    "scripts/plan_transfer.py": "bcb124b3733b9aa9b6f4df7a0101e6488e508a1be4c209012dd546237fa91213",
+    "scripts/plan_wire_pickup.py": "342bc0beeea6cace71fed3f1c16687f4a5bd87ee91be4fa7951b07bbae2540a3",
+    "scripts/plot_contact_benchmark.py": "48957a58833e3a241d6b38512d73380743d2b3dcfec6585ed2a7068b6895140f",
+    "scripts/plot_pickup.py": "2a561688ea26c2297d955c0a745f9341cac2a509fb6c57bef8941a6c15cabe6b",
+    "scripts/plot_regrasp_benchmark.py": "e5bcd725df4047a7b60df153e125f34ca59843a0cd548a012c69fedfd1851990",
+    "scripts/plot_support_study.py": "fa31e02c290d8b5e6fb98ca72fdfed428dc3229e4984e66177a179d5f46cb792",
+    "scripts/plot_transfer.py": "63f956ad7dfe33a9a7b3c868b3434abcebb77d0aa15594660a1657065052f55c",
+    "scripts/preclose_alignment.py": "74bdd5a563b4e818c6a04c94f8f0184c971ead775c971c2cb1fdfbf31c380d54",
+    "scripts/prepare_flat_marker_case.py": "0f11645970d999c15235645bd4a0f812838f3a1b2479ee6f7df8599d9f58e970",
+    "scripts/prepare_stepped_case.py": "a704a80376aaef80bdcce7543a23a9683c5bbca0501f833bf0b2bce9cf6a8243",
+    "scripts/processes.py": "7860bb4462d3792c9c7796b61138333e5a1d76439f1478d89c694ca5f241df4e",
+    "scripts/project_paths.py": "ca46f318c630ed4b980c54afe569bac82baed878fa55f9a6002728fad021c848",
+    "scripts/read_connection_plan.py": "71a84b7e447a1366477ba2144434262b1271e533b12f80a483a560976661635e",
+    "scripts/read_drawing.py": "d35db1e899f1a7dab0e47e1835678657dd69a7790538038856b33026d9d5f0bb",
+    "scripts/record_demo.py": "0f03373a1e82f005e880d69b8c85e2cb29a8b5e89cd69afe7b5b29dbb49ac4a9",
+    "scripts/record_dual_hold.py": "14335d98e1d1323a62226546a1d3b5bfd1eb8fea4280b3c8bc9f049318f79755",
+    "scripts/refine_physics_timestep.py": "1b9b0aba8c20a190dea7af9ec5a5f491824ad4478ee24d6726eb7206cb8071d5",
+    "scripts/regrasp_fixture.py": "6d2ffab8542a0bb14363642d93139e9d413032f2850e1e78ccb4cc289eb88c80",
+    "scripts/regrasp_plan.py": "049d5d799a310937947282ccdb467e3f19cd742d05816897a6fe06ba96f5cdbe",
+    "scripts/release_witness.py": "9303b6e7964428fec8343d016c3eeb7e31e76811870b2c47ebc436c6d18c8357",
+    "scripts/replay_contact_evidence.py": "b91e704113c1d0502e1c683c05c4a05315476ed3477efc0105b2a022ff460915",
+    "scripts/replay_grip_evidence.py": "cd3feda2e12af2256a579f8aac53b60ac53b5e387929ba990ae8fc4cf2dbc0f5",
+    "scripts/replay_seat_evidence.py": "4f9b1e054102835c7fd57b61ae7b54567c3bd72b916958ee2e1052cecae026e6",
+    "scripts/resize_inspection_camera.py": "4b64e396268bb308e2d867df718bfba388ce273bbad1ce4140d0841643f31151",
+    "scripts/retune_joint_controller.py": "0124eb99cbade9a3104a646c8f4187f6ed25b3adb36779cf8e15bfe25282dc15",
+    "scripts/run_from_drawing.py": "c7749b7015c17d3e28555ef4b55b9b4c3d0b6b66d34f61238841d9230ed7e656",
+    "scripts/run_insertion.py": "21a6e2ec9b9850ce7e6317c26f757da376055df68ac26f191f4e8a949ff53832",
+    "scripts/run_perception_demo.py": "0a06636cc8b2f91868e0558ff63900d77135e953c5b1c8a0bac460d787a36241",
+    "scripts/seat_guard.py": "f9fc5b1091e4532ef741c43846ca51ad8d1dfadb17754162c7649fc51b751710",
+    "scripts/serve_demo.py": "2e89a112a94271ef93d377f6289e846ccfb1211d5a60ecd1c3176582b806b1ff",
+    "scripts/set_gui_view.py": "6094c708c50ced2ebeeba3b1034e685d0d5226dbb18c909a120aad13b7cbdc08",
+    "scripts/simulation_budget.py": "61832136d52ff17e9ba3f849c16d2a7b0279a8ecb9c9ccf4ca414f51e2772b31",
+    "scripts/socket_insert_live.py": "97b941f9301e2a680c7cc81023c21fae8304ee059ffc805f304714155d640670",
+    "scripts/socket_plan_worker.py": "3646d216336592b3c6e227db82e7504a528658491890ca059af7f2573ea28b40",
+    "scripts/start_desktop.py": "96aa17c4bac2de4bb679f90f92a2b70a2b674ab06022cae7541ab4bcd77ad326",
+    "scripts/stepped_wire_profile.py": "bda937b8dcd7eb9681f5a0875c673014bb149c36e2f3c2d5d3a70c7673b1c8f7",
+    "scripts/tail_support_stage.py": "f77a8eba68a6fa4a86982c9129b4f51cb9dc40d51b662bac43cdb01300aaf292",
+    "scripts/task_schema.py": "fb68013c4154215c3320f98db837f3ac40f6eedb783a3743970fd470d50924e4",
+    "scripts/top_pickup_live.py": "8705489d93e4ad70a7824891b426c0656f731f3492ce73ba0e1d2a1ba84cc7cf",
+    "scripts/top_pickup_plan.py": "2bc5a4c95c760e33d4799ce14c2af0adfc4d161743e0d9ea17c7e5a0a9504cb2",
+    "scripts/top_socket_plan.py": "f66e789b80ec93daaeece9e9deb081e9a856054b9f291809a3e6e473f995d42a",
+    "scripts/wire_contact_profile.py": "bf847a6e101e8eceed282c836207141e648a7e362cd1a44d0128a6f9e956c588",
+    "scripts/wire_preshape.py": "2b1b02480cac6cfff477dddde34845ebeeda2c1d0bc5a088a059d9dbc42cccd8",
+    "scripts/wire_support_vision.py": "752a985c78c50a6f606feddffd44b0868254a52589e7571179873da92685a446"
+  },
+  "method_sha256": "8acb3b229010ce5e95bab40ade4961ae232cd8244a759906bdbfb70ba8e57947",
+  "environment": {
+    "GZ_PARTITION": "wrist-convergence-146077",
+    "ROS_DOMAIN_ID": "182"
+  },
+  "server_pid": 146083,
+  "phase": "diagnostic_hold",
+  "command_path": [
+    [
+      0.0,
+      -1.3383492530951022e-05,
+      3.863386335109973e-06,
+      0.0,
+      -1.8755745335294703e-05,
+      0.0
+    ],
+    [
+      -2.9587455612884184,
+      -1.3383492530951022e-05,
+      3.863386335109973e-06,
+      0.0,
+      -1.8755745335294703e-05,
+      0.0
+    ],
+    [
+      -2.9587455612884184,
+      1.1002546260724753,
+      1.315765392406998,
+      0.37712493572811073,
+      0.6293319903446931,
+      2.380138086053516
+    ]
+  ],
+  "move_wall_s": 15.413447632003226,
+  "hold": {
+    "distinct_samples": 237,
+    "max_joint_error_rad": 0.00877752808583887,
+    "max_tcp_position_error_m": 0.0012028953902738448,
+    "max_tcp_angle_error_rad": 0.009018615061271428,
+    "max_fk_native_error_m": 3.2973318240625678e-06,
+    "gates": {
+      "joint_exclusive": 0.01,
+      "tcp_position_exclusive": 0.002,
+      "tcp_angle_exclusive": 0.025,
+      "fk_exclusive": 0.001
+    }
+  },
+  "control_wall_s_before_teardown": 22.945122510005604,
+  "stop_diagnostics": null,
+  "preflights": [
+    {
+      "phase": "diagnostic_hover",
+      "settle_time_s": 20.0,
+      "arms": {
+        "clear": true,
+        "samples": 297,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 297,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017521020363133414,
+            0.018521020363133415
+          ],
+          [
+            0.017518588151373044,
+            0.018518588151373045
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017544761446937764,
+            0.018544761446937764
+          ],
+          [
+            0.017555595813883683,
+            0.018555595813883684
+          ]
+        ]
+      },
+      "execution_budget": {
+        "simulation_budget_s": 35.25395327811981,
+        "wall_budget_s": 1410.1581311247924,
+        "stall_budget_wall_s": 30,
+        "elapsed_simulation_s": 15.326000000000002,
+        "elapsed_wall_s": 14.44180471499567,
+        "stop_reason": null,
+        "outcome": "converged"
+      },
+      "nominal_duration_s": 15.253953278119813
+    }
+  ],
+  "dwell_windows": [
+    {
+      "phase": "initial_open",
+      "start_sim_time_s": 0.0005,
+      "requested_duration_s": 1,
+      "completed": true,
+      "end_sim_time_s": 1.001,
+      "elapsed_simulation_s": 1.0005,
+      "distinct_observation_timestamps": 60
+    },
+    {
+      "phase": "diagnostic_hold",
+      "start_sim_time_s": 16.344,
+      "requested_duration_s": 4,
+      "completed": true,
+      "end_sim_time_s": 20.3515,
+      "elapsed_simulation_s": 4.0075,
+      "distinct_observation_timestamps": 237
+    }
+  ],
+  "unintended_contacts": [],
+  "contacts": [],
+  "remaining_owned_processes": [],
+  "total_wall_s": 24.05709226100589
+}
