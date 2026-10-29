@@ -1,7 +1,7 @@
 {
   "date_jst": "2026-10-29",
   "account": "283t_123",
-  "status": "prepared_awaiting_user_publication_and_submission_approval",
+  "status": "submitted",
   "artifacts": {
     "PAI最終課題_283t_123.mp4": {
       "bytes": 1725842,
@@ -52,7 +52,9 @@
     "Raw video local with public SHA; edited MP4 public in repository"
   ],
   "legacy_all_connectors_goal_complete": false,
-  "youtube_uploaded": false,
-  "coursework_submitted": false,
-  "next_action": "User approval for YouTube publication and coursework submission; autonomous development stops"
+  "youtube_uploaded": true,
+  "coursework_submitted": true,
+  "next_action": "Retain submitted files and unlisted video through grading; automatic development remains paused",
+  "youtube_url": "https://youtu.be/c6NrC0W62SQ",
+  "submission_receipt": "submission_receipt.json"
 }
