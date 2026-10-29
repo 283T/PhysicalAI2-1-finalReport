@@ -1,0 +1,104 @@
+{
+  "case": "gui_capture",
+  "trial_state": "finished",
+  "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+  "gui": true,
+  "image_sensors": true,
+  "capture": true,
+  "partition": "load-ablation-137181-gui_capture",
+  "source_world_sha256": "5eb80cc691893426fa7eaffbd2a15754f8a3b3389d3ec905bb5965782740d1e7",
+  "world_sha256": "5eb80cc691893426fa7eaffbd2a15754f8a3b3389d3ec905bb5965782740d1e7",
+  "changes": [],
+  "max_step_size_s": 0.0005,
+  "warmup_sim_s": 1,
+  "measurement_sim_s_requested": 3,
+  "measurement_wall_limit_s": 180,
+  "server_pid": 137408,
+  "warmup_wall_s": 6.083032961003482,
+  "start_stat": {
+    "host_monotonic_s": 97428.784835841,
+    "sim_time_s": 1.022,
+    "gazebo_real_time_s": 5.483286753,
+    "iterations": 2044,
+    "reported_rtf": 0.3565169153015634,
+    "paused": false
+  },
+  "start_resources": [
+    {
+      "pid": 137408,
+      "pgid": 137408,
+      "command": "gz sim -r outputs/performance_steps_20261029/dt_0005/run_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+      "cpu_ticks": 7,
+      "rss_pages": 15159
+    },
+    {
+      "pid": 137409,
+      "pgid": 137409,
+      "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_steps_20261029/dt_0005/run_r01/gui_capture/raw.mkv ",
+      "cpu_ticks": 30,
+      "rss_pages": 36056
+    },
+    {
+      "pid": 137410,
+      "pgid": 137410,
+      "command": "gz sim server                                                                                                                                                                           ",
+      "cpu_ticks": 387,
+      "rss_pages": 368703
+    },
+    {
+      "pid": 137411,
+      "pgid": 137411,
+      "command": "gz sim gui                                                                                                                                                                              ",
+      "cpu_ticks": 1572,
+      "rss_pages": 190579
+    }
+  ],
+  "measurement_completed": true,
+  "end_stat": {
+    "host_monotonic_s": 97439.402348095,
+    "sim_time_s": 4.0245,
+    "gazebo_real_time_s": 16.100706257,
+    "iterations": 8049,
+    "reported_rtf": 0.07781646985584499,
+    "paused": false
+  },
+  "measured_wall_s": 10.617512254000758,
+  "measured_sim_s": 3.0024999999999995,
+  "measured_rtf": 0.28278752387298967,
+  "iterations": 6005,
+  "end_resources": [
+    {
+      "pid": 137408,
+      "pgid": 137408,
+      "command": "gz sim -r outputs/performance_steps_20261029/dt_0005/run_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+      "cpu_ticks": 7,
+      "rss_pages": 15159
+    },
+    {
+      "pid": 137409,
+      "pgid": 137409,
+      "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_steps_20261029/dt_0005/run_r01/gui_capture/raw.mkv ",
+      "cpu_ticks": 73,
+      "rss_pages": 36120
+    },
+    {
+      "pid": 137410,
+      "pgid": 137410,
+      "command": "gz sim server                                                                                                                                                                           ",
+      "cpu_ticks": 1288,
+      "rss_pages": 368703
+    },
+    {
+      "pid": 137411,
+      "pgid": 137411,
+      "command": "gz sim gui                                                                                                                                                                              ",
+      "cpu_ticks": 4562,
+      "rss_pages": 190611
+    }
+  ],
+  "approximate_mean_cpu_cores": 3.7051993968903965,
+  "rss_snapshot_sum_bytes": 2500988928,
+  "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+  "owned_cleanup": [],
+  "remaining_owned_processes": []
+}

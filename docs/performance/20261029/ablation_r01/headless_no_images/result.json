@@ -1,0 +1,78 @@
+{
+  "case": "headless_no_images",
+  "trial_state": "finished",
+  "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+  "gui": false,
+  "image_sensors": false,
+  "capture": false,
+  "partition": "load-ablation-136439-headless_no_images",
+  "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "world_sha256": "d5657b78313cd1c7efc398bbf85cdd8aa6d4e323152416d3007fea2e88a6fadc",
+  "changes": [
+    {
+      "removed_sensor": "rgb",
+      "type": "rgbd_camera"
+    },
+    {
+      "removed_sensor": "inspection_rgbd",
+      "type": "rgbd_camera"
+    },
+    {
+      "removed_sensor": "nest_camera_rgbd",
+      "type": "rgbd_camera"
+    },
+    {
+      "removed_plugin": "gz::sim::systems::Sensors"
+    }
+  ],
+  "max_step_size_s": 0.0001,
+  "warmup_sim_s": 1,
+  "measurement_sim_s_requested": 3,
+  "measurement_wall_limit_s": 180,
+  "server_pid": 137008,
+  "warmup_wall_s": 9.925509003995103,
+  "start_stat": {
+    "host_monotonic_s": 97277.517211439,
+    "sim_time_s": 1.0102,
+    "gazebo_real_time_s": 9.414970088,
+    "iterations": 10102,
+    "reported_rtf": 0.10786520732232173,
+    "paused": false
+  },
+  "start_resources": [
+    {
+      "pid": 137008,
+      "pgid": 137008,
+      "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_no_images/world.sdf                                             ",
+      "cpu_ticks": 858,
+      "rss_pages": 147562
+    }
+  ],
+  "measurement_completed": true,
+  "end_stat": {
+    "host_monotonic_s": 97307.472675661,
+    "sim_time_s": 4.0187,
+    "gazebo_real_time_s": 39.370437893,
+    "iterations": 40187,
+    "reported_rtf": 0.11148272017837235,
+    "paused": false
+  },
+  "measured_wall_s": 29.955464222002774,
+  "measured_sim_s": 3.0084999999999997,
+  "measured_rtf": 0.10043242787705516,
+  "iterations": 30085,
+  "end_resources": [
+    {
+      "pid": 137008,
+      "pgid": 137008,
+      "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_no_images/world.sdf                                             ",
+      "cpu_ticks": 3976,
+      "rss_pages": 147562
+    }
+  ],
+  "approximate_mean_cpu_cores": 1.0408785445260362,
+  "rss_snapshot_sum_bytes": 604413952,
+  "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+  "owned_cleanup": [],
+  "remaining_owned_processes": []
+}

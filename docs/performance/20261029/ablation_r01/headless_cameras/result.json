@@ -1,0 +1,62 @@
+{
+  "case": "headless_cameras",
+  "trial_state": "finished",
+  "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+  "gui": false,
+  "image_sensors": true,
+  "capture": false,
+  "partition": "load-ablation-136439-headless_cameras",
+  "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "changes": [],
+  "max_step_size_s": 0.0001,
+  "warmup_sim_s": 1,
+  "measurement_sim_s_requested": 3,
+  "measurement_wall_limit_s": 180,
+  "server_pid": 136893,
+  "warmup_wall_s": 10.312095254004817,
+  "start_stat": {
+    "host_monotonic_s": 97236.553810878,
+    "sim_time_s": 1.0081,
+    "gazebo_real_time_s": 9.836987296,
+    "iterations": 10081,
+    "reported_rtf": 0.04188188721459064,
+    "paused": false
+  },
+  "start_resources": [
+    {
+      "pid": 136893,
+      "pgid": 136893,
+      "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_cameras/world.sdf                                             ",
+      "cpu_ticks": 933,
+      "rss_pages": 374003
+    }
+  ],
+  "measurement_completed": true,
+  "end_stat": {
+    "host_monotonic_s": 97267.309955726,
+    "sim_time_s": 4.0185,
+    "gazebo_real_time_s": 40.593401644,
+    "iterations": 40185,
+    "reported_rtf": 0.10940416304721227,
+    "paused": false
+  },
+  "measured_wall_s": 30.756144847997348,
+  "measured_sim_s": 3.0104000000000006,
+  "measured_rtf": 0.0978796274655996,
+  "iterations": 30104,
+  "end_resources": [
+    {
+      "pid": 136893,
+      "pgid": 136893,
+      "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_cameras/world.sdf                                             ",
+      "cpu_ticks": 4244,
+      "rss_pages": 374003
+    }
+  ],
+  "approximate_mean_cpu_cores": 1.0765328412789004,
+  "rss_snapshot_sum_bytes": 1531916288,
+  "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+  "owned_cleanup": [],
+  "remaining_owned_processes": []
+}

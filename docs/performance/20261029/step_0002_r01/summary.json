@@ -1,0 +1,109 @@
+{
+  "scope": "Exploratory initial-scene load ablation; one run per case, not assembly acceptance",
+  "results": [
+    {
+      "case": "gui_capture",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": true,
+      "image_sensors": true,
+      "capture": true,
+      "partition": "load-ablation-137196-gui_capture",
+      "source_world_sha256": "5e4740dba9be5178246400d1547a3cbec1a82d2e3e980ae33870a059d2db5205",
+      "world_sha256": "5e4740dba9be5178246400d1547a3cbec1a82d2e3e980ae33870a059d2db5205",
+      "changes": [],
+      "max_step_size_s": 0.0002,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 137205,
+      "warmup_wall_s": 9.311080838000635,
+      "start_stat": {
+        "host_monotonic_s": 97394.968090159,
+        "sim_time_s": 1.0012,
+        "gazebo_real_time_s": 8.701718546,
+        "iterations": 5006,
+        "reported_rtf": 0.058775281820129414,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 137205,
+          "pgid": 137205,
+          "command": "gz sim -r outputs/performance_steps_20261029/dt_0002/run_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 7,
+          "rss_pages": 15161
+        },
+        {
+          "pid": 137206,
+          "pgid": 137206,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_steps_20261029/dt_0002/run_r01/gui_capture/raw.mkv ",
+          "cpu_ticks": 43,
+          "rss_pages": 36062
+        },
+        {
+          "pid": 137207,
+          "pgid": 137207,
+          "command": "gz sim server                                                                                                                                                                           ",
+          "cpu_ticks": 682,
+          "rss_pages": 371353
+        },
+        {
+          "pid": 137208,
+          "pgid": 137208,
+          "command": "gz sim gui                                                                                                                                                                              ",
+          "cpu_ticks": 2473,
+          "rss_pages": 190444
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 97421.661633004,
+        "sim_time_s": 4.0022,
+        "gazebo_real_time_s": 35.395916517,
+        "iterations": 20011,
+        "reported_rtf": 0.14985482813524398,
+        "paused": false
+      },
+      "measured_wall_s": 26.693542844994226,
+      "measured_sim_s": 3.0010000000000003,
+      "measured_rtf": 0.11242419252575049,
+      "iterations": 15005,
+      "end_resources": [
+        {
+          "pid": 137205,
+          "pgid": 137205,
+          "command": "gz sim -r outputs/performance_steps_20261029/dt_0002/run_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 7,
+          "rss_pages": 15161
+        },
+        {
+          "pid": 137206,
+          "pgid": 137206,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_steps_20261029/dt_0002/run_r01/gui_capture/raw.mkv ",
+          "cpu_ticks": 153,
+          "rss_pages": 36094
+        },
+        {
+          "pid": 137207,
+          "pgid": 137207,
+          "command": "gz sim server                                                                                                                                                                           ",
+          "cpu_ticks": 2994,
+          "rss_pages": 371385
+        },
+        {
+          "pid": 137208,
+          "pgid": 137208,
+          "command": "gz sim gui                                                                                                                                                                              ",
+          "cpu_ticks": 10043,
+          "rss_pages": 190444
+        }
+      ],
+      "approximate_mean_cpu_cores": 3.743227363269906,
+      "rss_snapshot_sum_bytes": 2511192064,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    }
+  ]
+}

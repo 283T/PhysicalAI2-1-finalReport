@@ -1,0 +1,110 @@
+{
+  "gui_capture/capture.log": {
+    "sha256_original": "70dd37346565c253a25e9f773792de6e7e180bbc502488e5fc4d38d5309098a9",
+    "archive_path": "gui_capture/capture.log",
+    "encoding": "unchanged",
+    "sha256_archive": "70dd37346565c253a25e9f773792de6e7e180bbc502488e5fc4d38d5309098a9"
+  },
+  "gui_capture/result.json": {
+    "sha256_original": "de88f421d55f8fae5813f3a7a847f95e7933756eed95b07b95c510ae015df6bd",
+    "archive_path": "gui_capture/result.json",
+    "encoding": "unchanged",
+    "sha256_archive": "de88f421d55f8fae5813f3a7a847f95e7933756eed95b07b95c510ae015df6bd"
+  },
+  "gui_capture/server.log": {
+    "sha256_original": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a",
+    "archive_path": "gui_capture/server.log",
+    "encoding": "unchanged",
+    "sha256_archive": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a"
+  },
+  "gui_capture/stats.jsonl": {
+    "sha256_original": "99f71f635e879f2d2933959626c4f3d33da55bad777e22de6af934c39b14ad97",
+    "archive_path": "gui_capture/stats.jsonl",
+    "encoding": "unchanged",
+    "sha256_archive": "99f71f635e879f2d2933959626c4f3d33da55bad777e22de6af934c39b14ad97"
+  },
+  "gui_capture/world.sdf": {
+    "sha256_original": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "archive_path": "gui_capture/world.sdf.gz",
+    "encoding": "gzip",
+    "sha256_archive": "d52d34697e299041889fcb8857f9be36090a13c2b7f58cdada3c61cc44230aee"
+  },
+  "gui_no_capture/result.json": {
+    "sha256_original": "c776ccac5084fd56a48514cb7c04625b45cf545fe1a40d5d1ed0b1be9abb4c2f",
+    "archive_path": "gui_no_capture/result.json",
+    "encoding": "unchanged",
+    "sha256_archive": "c776ccac5084fd56a48514cb7c04625b45cf545fe1a40d5d1ed0b1be9abb4c2f"
+  },
+  "gui_no_capture/server.log": {
+    "sha256_original": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a",
+    "archive_path": "gui_no_capture/server.log",
+    "encoding": "unchanged",
+    "sha256_archive": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a"
+  },
+  "gui_no_capture/stats.jsonl": {
+    "sha256_original": "cd11d014d80c81a0f051b9448812fde54765d162fd0cf2385e582a126bc8e719",
+    "archive_path": "gui_no_capture/stats.jsonl",
+    "encoding": "unchanged",
+    "sha256_archive": "cd11d014d80c81a0f051b9448812fde54765d162fd0cf2385e582a126bc8e719"
+  },
+  "gui_no_capture/world.sdf": {
+    "sha256_original": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "archive_path": "gui_no_capture/world.sdf.gz",
+    "encoding": "gzip",
+    "sha256_archive": "d52d34697e299041889fcb8857f9be36090a13c2b7f58cdada3c61cc44230aee"
+  },
+  "headless_cameras/result.json": {
+    "sha256_original": "26e2c56ba1e7b53cba0ef8af276a72069be4f679b01dc695aa4f08432747f8e5",
+    "archive_path": "headless_cameras/result.json",
+    "encoding": "unchanged",
+    "sha256_archive": "26e2c56ba1e7b53cba0ef8af276a72069be4f679b01dc695aa4f08432747f8e5"
+  },
+  "headless_cameras/server.log": {
+    "sha256_original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "archive_path": "headless_cameras/server.log",
+    "encoding": "unchanged",
+    "sha256_archive": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "headless_cameras/stats.jsonl": {
+    "sha256_original": "e6bbd993834ea98704757ce2546f90eeccafd0f9af954f5f5506b89996239173",
+    "archive_path": "headless_cameras/stats.jsonl",
+    "encoding": "unchanged",
+    "sha256_archive": "e6bbd993834ea98704757ce2546f90eeccafd0f9af954f5f5506b89996239173"
+  },
+  "headless_cameras/world.sdf": {
+    "sha256_original": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "archive_path": "headless_cameras/world.sdf.gz",
+    "encoding": "gzip",
+    "sha256_archive": "d52d34697e299041889fcb8857f9be36090a13c2b7f58cdada3c61cc44230aee"
+  },
+  "headless_no_images/result.json": {
+    "sha256_original": "8b9a7df568f02c62a0133af7dd6d8cb27b69f1c043a5fae3a40f8525d9ece666",
+    "archive_path": "headless_no_images/result.json",
+    "encoding": "unchanged",
+    "sha256_archive": "8b9a7df568f02c62a0133af7dd6d8cb27b69f1c043a5fae3a40f8525d9ece666"
+  },
+  "headless_no_images/server.log": {
+    "sha256_original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "archive_path": "headless_no_images/server.log",
+    "encoding": "unchanged",
+    "sha256_archive": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "headless_no_images/stats.jsonl": {
+    "sha256_original": "52d812e9c8743dd8d2c9d9fb98a9e856d7d6514c4a3f2731e08a4674831cbd50",
+    "archive_path": "headless_no_images/stats.jsonl",
+    "encoding": "unchanged",
+    "sha256_archive": "52d812e9c8743dd8d2c9d9fb98a9e856d7d6514c4a3f2731e08a4674831cbd50"
+  },
+  "headless_no_images/world.sdf": {
+    "sha256_original": "d5657b78313cd1c7efc398bbf85cdd8aa6d4e323152416d3007fea2e88a6fadc",
+    "archive_path": "headless_no_images/world.sdf.gz",
+    "encoding": "gzip",
+    "sha256_archive": "5f5458ec5707f9d7c69aaa462b68db2b0ddc15625634f208d0227ba6fec32c5f"
+  },
+  "summary.json": {
+    "sha256_original": "f4abda62475d343de61240549c2f094c249bfacb11da6639246ec2869db06167",
+    "archive_path": "summary.json",
+    "encoding": "unchanged",
+    "sha256_archive": "f4abda62475d343de61240549c2f094c249bfacb11da6639246ec2869db06167"
+  }
+}

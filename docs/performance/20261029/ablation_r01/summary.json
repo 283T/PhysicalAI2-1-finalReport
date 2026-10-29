@@ -1,0 +1,339 @@
+{
+  "scope": "Exploratory initial-scene load ablation; one run per case, not assembly acceptance",
+  "results": [
+    {
+      "case": "gui_capture",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": true,
+      "image_sensors": true,
+      "capture": true,
+      "partition": "load-ablation-136439-gui_capture",
+      "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "changes": [],
+      "max_step_size_s": 0.0001,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 136462,
+      "warmup_wall_s": 14.137899755995022,
+      "start_stat": {
+        "host_monotonic_s": 97117.838173573,
+        "sim_time_s": 1.0042,
+        "gazebo_real_time_s": 13.444245881,
+        "iterations": 10042,
+        "reported_rtf": 0.09201037140906523,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 136462,
+          "pgid": 136462,
+          "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 7,
+          "rss_pages": 15160
+        },
+        {
+          "pid": 136463,
+          "pgid": 136463,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_ablation_20261029_r01/gui_capture/raw.mkv ",
+          "cpu_ticks": 64,
+          "rss_pages": 36138
+        },
+        {
+          "pid": 136464,
+          "pgid": 136464,
+          "command": "gz sim server                                                                                                                                                                  ",
+          "cpu_ticks": 1112,
+          "rss_pages": 374053
+        },
+        {
+          "pid": 136465,
+          "pgid": 136465,
+          "command": "gz sim gui                                                                                                                                                                     ",
+          "cpu_ticks": 3698,
+          "rss_pages": 190560
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 97162.579319969,
+        "sim_time_s": 4.0057,
+        "gazebo_real_time_s": 58.18542036,
+        "iterations": 40057,
+        "reported_rtf": 0.024912029396194687,
+        "paused": false
+      },
+      "measured_wall_s": 44.741146395987016,
+      "measured_sim_s": 3.0015,
+      "measured_rtf": 0.06708589836824598,
+      "iterations": 30015,
+      "end_resources": [
+        {
+          "pid": 136462,
+          "pgid": 136462,
+          "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 7,
+          "rss_pages": 15160
+        },
+        {
+          "pid": 136463,
+          "pgid": 136463,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_ablation_20261029_r01/gui_capture/raw.mkv ",
+          "cpu_ticks": 245,
+          "rss_pages": 36202
+        },
+        {
+          "pid": 136464,
+          "pgid": 136464,
+          "command": "gz sim server                                                                                                                                                                  ",
+          "cpu_ticks": 5027,
+          "rss_pages": 374053
+        },
+        {
+          "pid": 136465,
+          "pgid": 136465,
+          "command": "gz sim gui                                                                                                                                                                     ",
+          "cpu_ticks": 15901,
+          "rss_pages": 190592
+        }
+      ],
+      "approximate_mean_cpu_cores": 3.6429553806564763,
+      "rss_snapshot_sum_bytes": 2523164672,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    },
+    {
+      "case": "gui_no_capture",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": true,
+      "image_sensors": true,
+      "capture": false,
+      "partition": "load-ablation-136439-gui_no_capture",
+      "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "changes": [],
+      "max_step_size_s": 0.0001,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 136691,
+      "warmup_wall_s": 14.54257242399035,
+      "start_stat": {
+        "host_monotonic_s": 97178.155353726,
+        "sim_time_s": 1.0036,
+        "gazebo_real_time_s": 13.922982173,
+        "iterations": 10036,
+        "reported_rtf": 0.04879934101369895,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 136691,
+          "pgid": 136691,
+          "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_no_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 6,
+          "rss_pages": 15161
+        },
+        {
+          "pid": 136692,
+          "pgid": 136692,
+          "command": "gz sim server                                                                                                                                                                     ",
+          "cpu_ticks": 1145,
+          "rss_pages": 371399
+        },
+        {
+          "pid": 136693,
+          "pgid": 136693,
+          "command": "gz sim gui                                                                                                                                                                        ",
+          "cpu_ticks": 3854,
+          "rss_pages": 191089
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 97225.640183165,
+        "sim_time_s": 4.0038,
+        "gazebo_real_time_s": 61.407868237,
+        "iterations": 40038,
+        "reported_rtf": 0.08625641963403126,
+        "paused": false
+      },
+      "measured_wall_s": 47.4848294389958,
+      "measured_sim_s": 3.0002,
+      "measured_rtf": 0.06318228443579826,
+      "iterations": 30002,
+      "end_resources": [
+        {
+          "pid": 136691,
+          "pgid": 136691,
+          "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_no_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+          "cpu_ticks": 6,
+          "rss_pages": 15161
+        },
+        {
+          "pid": 136692,
+          "pgid": 136692,
+          "command": "gz sim server                                                                                                                                                                     ",
+          "cpu_ticks": 5325,
+          "rss_pages": 371399
+        },
+        {
+          "pid": 136693,
+          "pgid": 136693,
+          "command": "gz sim gui                                                                                                                                                                        ",
+          "cpu_ticks": 16887,
+          "rss_pages": 191089
+        }
+      ],
+      "approximate_mean_cpu_cores": 3.6249472101639744,
+      "rss_snapshot_sum_bytes": 2366050304,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    },
+    {
+      "case": "headless_cameras",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": false,
+      "image_sensors": true,
+      "capture": false,
+      "partition": "load-ablation-136439-headless_cameras",
+      "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "changes": [],
+      "max_step_size_s": 0.0001,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 136893,
+      "warmup_wall_s": 10.312095254004817,
+      "start_stat": {
+        "host_monotonic_s": 97236.553810878,
+        "sim_time_s": 1.0081,
+        "gazebo_real_time_s": 9.836987296,
+        "iterations": 10081,
+        "reported_rtf": 0.04188188721459064,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 136893,
+          "pgid": 136893,
+          "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_cameras/world.sdf                                             ",
+          "cpu_ticks": 933,
+          "rss_pages": 374003
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 97267.309955726,
+        "sim_time_s": 4.0185,
+        "gazebo_real_time_s": 40.593401644,
+        "iterations": 40185,
+        "reported_rtf": 0.10940416304721227,
+        "paused": false
+      },
+      "measured_wall_s": 30.756144847997348,
+      "measured_sim_s": 3.0104000000000006,
+      "measured_rtf": 0.0978796274655996,
+      "iterations": 30104,
+      "end_resources": [
+        {
+          "pid": 136893,
+          "pgid": 136893,
+          "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_cameras/world.sdf                                             ",
+          "cpu_ticks": 4244,
+          "rss_pages": 374003
+        }
+      ],
+      "approximate_mean_cpu_cores": 1.0765328412789004,
+      "rss_snapshot_sum_bytes": 1531916288,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    },
+    {
+      "case": "headless_no_images",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": false,
+      "image_sensors": false,
+      "capture": false,
+      "partition": "load-ablation-136439-headless_no_images",
+      "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "world_sha256": "d5657b78313cd1c7efc398bbf85cdd8aa6d4e323152416d3007fea2e88a6fadc",
+      "changes": [
+        {
+          "removed_sensor": "rgb",
+          "type": "rgbd_camera"
+        },
+        {
+          "removed_sensor": "inspection_rgbd",
+          "type": "rgbd_camera"
+        },
+        {
+          "removed_sensor": "nest_camera_rgbd",
+          "type": "rgbd_camera"
+        },
+        {
+          "removed_plugin": "gz::sim::systems::Sensors"
+        }
+      ],
+      "max_step_size_s": 0.0001,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 137008,
+      "warmup_wall_s": 9.925509003995103,
+      "start_stat": {
+        "host_monotonic_s": 97277.517211439,
+        "sim_time_s": 1.0102,
+        "gazebo_real_time_s": 9.414970088,
+        "iterations": 10102,
+        "reported_rtf": 0.10786520732232173,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 137008,
+          "pgid": 137008,
+          "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_no_images/world.sdf                                             ",
+          "cpu_ticks": 858,
+          "rss_pages": 147562
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 97307.472675661,
+        "sim_time_s": 4.0187,
+        "gazebo_real_time_s": 39.370437893,
+        "iterations": 40187,
+        "reported_rtf": 0.11148272017837235,
+        "paused": false
+      },
+      "measured_wall_s": 29.955464222002774,
+      "measured_sim_s": 3.0084999999999997,
+      "measured_rtf": 0.10043242787705516,
+      "iterations": 30085,
+      "end_resources": [
+        {
+          "pid": 137008,
+          "pgid": 137008,
+          "command": "gz sim -s -r outputs/performance_ablation_20261029_r01/headless_no_images/world.sdf                                             ",
+          "cpu_ticks": 3976,
+          "rss_pages": 147562
+        }
+      ],
+      "approximate_mean_cpu_cores": 1.0408785445260362,
+      "rss_snapshot_sum_bytes": 604413952,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    }
+  ]
+}

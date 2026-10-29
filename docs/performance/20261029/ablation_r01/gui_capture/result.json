@@ -1,0 +1,104 @@
+{
+  "case": "gui_capture",
+  "trial_state": "finished",
+  "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+  "gui": true,
+  "image_sensors": true,
+  "capture": true,
+  "partition": "load-ablation-136439-gui_capture",
+  "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "changes": [],
+  "max_step_size_s": 0.0001,
+  "warmup_sim_s": 1,
+  "measurement_sim_s_requested": 3,
+  "measurement_wall_limit_s": 180,
+  "server_pid": 136462,
+  "warmup_wall_s": 14.137899755995022,
+  "start_stat": {
+    "host_monotonic_s": 97117.838173573,
+    "sim_time_s": 1.0042,
+    "gazebo_real_time_s": 13.444245881,
+    "iterations": 10042,
+    "reported_rtf": 0.09201037140906523,
+    "paused": false
+  },
+  "start_resources": [
+    {
+      "pid": 136462,
+      "pgid": 136462,
+      "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+      "cpu_ticks": 7,
+      "rss_pages": 15160
+    },
+    {
+      "pid": 136463,
+      "pgid": 136463,
+      "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_ablation_20261029_r01/gui_capture/raw.mkv ",
+      "cpu_ticks": 64,
+      "rss_pages": 36138
+    },
+    {
+      "pid": 136464,
+      "pgid": 136464,
+      "command": "gz sim server                                                                                                                                                                  ",
+      "cpu_ticks": 1112,
+      "rss_pages": 374053
+    },
+    {
+      "pid": 136465,
+      "pgid": 136465,
+      "command": "gz sim gui                                                                                                                                                                     ",
+      "cpu_ticks": 3698,
+      "rss_pages": 190560
+    }
+  ],
+  "measurement_completed": true,
+  "end_stat": {
+    "host_monotonic_s": 97162.579319969,
+    "sim_time_s": 4.0057,
+    "gazebo_real_time_s": 58.18542036,
+    "iterations": 40057,
+    "reported_rtf": 0.024912029396194687,
+    "paused": false
+  },
+  "measured_wall_s": 44.741146395987016,
+  "measured_sim_s": 3.0015,
+  "measured_rtf": 0.06708589836824598,
+  "iterations": 30015,
+  "end_resources": [
+    {
+      "pid": 136462,
+      "pgid": 136462,
+      "command": "gz sim -r outputs/performance_ablation_20261029_r01/gui_capture/world.sdf --gui-config /workspace/sim/harness_recording_gui.config                                             ",
+      "cpu_ticks": 7,
+      "rss_pages": 15160
+    },
+    {
+      "pid": 136463,
+      "pgid": 136463,
+      "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_ablation_20261029_r01/gui_capture/raw.mkv ",
+      "cpu_ticks": 245,
+      "rss_pages": 36202
+    },
+    {
+      "pid": 136464,
+      "pgid": 136464,
+      "command": "gz sim server                                                                                                                                                                  ",
+      "cpu_ticks": 5027,
+      "rss_pages": 374053
+    },
+    {
+      "pid": 136465,
+      "pgid": 136465,
+      "command": "gz sim gui                                                                                                                                                                     ",
+      "cpu_ticks": 15901,
+      "rss_pages": 190592
+    }
+  ],
+  "approximate_mean_cpu_cores": 3.6429553806564763,
+  "rss_snapshot_sum_bytes": 2523164672,
+  "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+  "owned_cleanup": [],
+  "remaining_owned_processes": []
+}
