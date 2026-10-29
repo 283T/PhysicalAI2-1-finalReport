@@ -1,0 +1,433 @@
+{
+  "scope": "Diagnostic conservative collision approximation, not a geometry-equivalent physical model or successful pickup; boxes can introduce additional contacts",
+  "source_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "world_sha256": "c67bb9606cb242bd2e946c743749ea50dd5a5c7336320ccbcc7ff494392a1016",
+  "physics_step_s": 0.0001,
+  "arm_mesh_collisions_replaced": 14,
+  "visuals_inertias_controller_limits_and_sensors": "unchanged",
+  "collision_names": "preserved",
+  "source_scaled_mesh_aabbs_contained": true,
+  "changes": [
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_base",
+      "collision": "left_arm_rv4frl_base_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL",
+      "low_local_m": [
+        -0.22849999368190765,
+        -0.12800000607967377,
+        -9.843288353121051e-16
+      ],
+      "high_local_m": [
+        0.10199999809265137,
+        0.10199999809265137,
+        0.19300000369548798
+      ],
+      "box_size_m": [
+        0.330499991774559,
+        0.23000000417232513,
+        0.19300000369548895
+      ],
+      "box_pose": [
+        -0.06324999779462814,
+        -0.0130000039935112,
+        0.0965000018477435,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 1.3877787807814457e-17
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_shoulder",
+      "collision": "left_arm_rv4frl_shoulder_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL",
+      "low_local_m": [
+        -0.0949999988079071,
+        -0.11500000208616257,
+        0.19349999725818634
+      ],
+      "high_local_m": [
+        0.0949999988079071,
+        0.11500000208616257,
+        0.4300000071525574
+      ],
+      "box_size_m": [
+        0.1899999976158142,
+        0.23000000417232513,
+        0.23650000989437103
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        0.31175000220537186,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_upper_arm",
+      "collision": "left_arm_rv4frl_upper_arm_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL",
+      "low_local_m": [
+        -0.07999999821186066,
+        -0.0949999988079071,
+        -0.07984212040901184
+      ],
+      "high_local_m": [
+        0.07999999821186066,
+        0.0949999988079071,
+        0.36899664998054504
+      ],
+      "box_size_m": [
+        0.1599999964237213,
+        0.1899999976158142,
+        0.4488387703895569
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        0.1445772647857666,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_elbow",
+      "collision": "left_arm_rv4frl_elbow_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL",
+      "low_local_m": [
+        -0.1049496978521347,
+        -0.06300000101327896,
+        -0.08344089984893799
+      ],
+      "high_local_m": [
+        0.07274137437343597,
+        0.07599999755620956,
+        0.06099998950958252
+      ],
+      "box_size_m": [
+        0.17769107222557068,
+        0.13899999856948853,
+        0.1444408893585205
+      ],
+      "box_pose": [
+        -0.016104161739349365,
+        0.0064999982714653015,
+        -0.011220455169677734,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_forearm",
+      "collision": "left_arm_rv4frl_forearm_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL",
+      "low_local_m": [
+        -0.05447069928050041,
+        -0.059999775141477585,
+        0.06049996614456177
+      ],
+      "high_local_m": [
+        0.06799999624490738,
+        0.06591557711362839,
+        0.3802565932273865
+      ],
+      "box_size_m": [
+        0.12247069552540779,
+        0.12591535225510597,
+        0.3197566270828247
+      ],
+      "box_pose": [
+        0.006764648482203484,
+        0.0029579009860754013,
+        0.22037827968597412,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_wrist",
+      "collision": "left_arm_rv4frl_wrist_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL",
+      "low_local_m": [
+        -0.04679979011416435,
+        -0.032999999821186066,
+        -0.04676550626754761
+      ],
+      "high_local_m": [
+        0.04677965119481087,
+        0.032999999821186066,
+        0.07850003242492676
+      ],
+      "box_size_m": [
+        0.09357944130897522,
+        0.06599999964237213,
+        0.12526553869247437
+      ],
+      "box_pose": [
+        -1.0069459676742554e-05,
+        0.0,
+        0.015867263078689575,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "left_arm",
+      "link": "left_arm_rv4frl_hand_flange",
+      "collision": "left_arm_rv4frl_hand_flange_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL",
+      "low_local_m": [
+        -0.019999999552965164,
+        -0.019999999552965164,
+        -0.0065000057220458984
+      ],
+      "high_local_m": [
+        0.019999999552965164,
+        0.019999999552965164,
+        0.0
+      ],
+      "box_size_m": [
+        0.03999999910593033,
+        0.03999999910593033,
+        0.0065000057220458984
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        -0.0032500028610229492,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_base",
+      "collision": "right_arm_rv4frl_base_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/base.STL",
+      "low_local_m": [
+        -0.22849999368190765,
+        -0.12800000607967377,
+        -9.843288353121051e-16
+      ],
+      "high_local_m": [
+        0.10199999809265137,
+        0.10199999809265137,
+        0.19300000369548798
+      ],
+      "box_size_m": [
+        0.330499991774559,
+        0.23000000417232513,
+        0.19300000369548895
+      ],
+      "box_pose": [
+        -0.06324999779462814,
+        -0.0130000039935112,
+        0.0965000018477435,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 1.3877787807814457e-17
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_shoulder",
+      "collision": "right_arm_rv4frl_shoulder_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/shoulder.STL",
+      "low_local_m": [
+        -0.0949999988079071,
+        -0.11500000208616257,
+        0.19349999725818634
+      ],
+      "high_local_m": [
+        0.0949999988079071,
+        0.11500000208616257,
+        0.4300000071525574
+      ],
+      "box_size_m": [
+        0.1899999976158142,
+        0.23000000417232513,
+        0.23650000989437103
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        0.31175000220537186,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_upper_arm",
+      "collision": "right_arm_rv4frl_upper_arm_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/upper_arm.STL",
+      "low_local_m": [
+        -0.07999999821186066,
+        -0.0949999988079071,
+        -0.07984212040901184
+      ],
+      "high_local_m": [
+        0.07999999821186066,
+        0.0949999988079071,
+        0.36899664998054504
+      ],
+      "box_size_m": [
+        0.1599999964237213,
+        0.1899999976158142,
+        0.4488387703895569
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        0.1445772647857666,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_elbow",
+      "collision": "right_arm_rv4frl_elbow_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/elbow.STL",
+      "low_local_m": [
+        -0.1049496978521347,
+        -0.06300000101327896,
+        -0.08344089984893799
+      ],
+      "high_local_m": [
+        0.07274137437343597,
+        0.07599999755620956,
+        0.06099998950958252
+      ],
+      "box_size_m": [
+        0.17769107222557068,
+        0.13899999856948853,
+        0.1444408893585205
+      ],
+      "box_pose": [
+        -0.016104161739349365,
+        0.0064999982714653015,
+        -0.011220455169677734,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_forearm",
+      "collision": "right_arm_rv4frl_forearm_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/forearm.STL",
+      "low_local_m": [
+        -0.05447069928050041,
+        -0.059999775141477585,
+        0.06049996614456177
+      ],
+      "high_local_m": [
+        0.06799999624490738,
+        0.06591557711362839,
+        0.3802565932273865
+      ],
+      "box_size_m": [
+        0.12247069552540779,
+        0.12591535225510597,
+        0.3197566270828247
+      ],
+      "box_pose": [
+        0.006764648482203484,
+        0.0029579009860754013,
+        0.22037827968597412,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_wrist",
+      "collision": "right_arm_rv4frl_wrist_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/wrist.STL",
+      "low_local_m": [
+        -0.04679979011416435,
+        -0.032999999821186066,
+        -0.04676550626754761
+      ],
+      "high_local_m": [
+        0.04677965119481087,
+        0.032999999821186066,
+        0.07850003242492676
+      ],
+      "box_size_m": [
+        0.09357944130897522,
+        0.06599999964237213,
+        0.12526553869247437
+      ],
+      "box_pose": [
+        -1.0069459676742554e-05,
+        0.0,
+        0.015867263078689575,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    },
+    {
+      "model": "right_arm",
+      "link": "right_arm_rv4frl_hand_flange",
+      "collision": "right_arm_rv4frl_hand_flange_collision",
+      "mesh_uri": "file:///workspace/outputs/melfa_install/melfa_description/share/melfa_description/meshes/rv4frl/hand_flange.STL",
+      "low_local_m": [
+        -0.019999999552965164,
+        -0.019999999552965164,
+        -0.0065000057220458984
+      ],
+      "high_local_m": [
+        0.019999999552965164,
+        0.019999999552965164,
+        0.0
+      ],
+      "box_size_m": [
+        0.03999999910593033,
+        0.03999999910593033,
+        0.0065000057220458984
+      ],
+      "box_pose": [
+        0.0,
+        0.0,
+        -0.0032500028610229492,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aabb_corner_containment_maximum_excess_m": 0.0
+    }
+  ],
+  "adoption": "Requires separate full correctness/contact validation; never substituted into formal B"
+}

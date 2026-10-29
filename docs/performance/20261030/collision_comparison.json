@@ -1,0 +1,25 @@
+{
+  "scope": "Initial-scene throughput with 14 conservative arm-mesh AABBs; not a full physical equivalence or pickup test",
+  "ordered_cases": [
+    {
+      "case": "mesh_before",
+      "rtf": 0.07159073215675031,
+      "wall_s": 42.00683397699322,
+      "sim_s": 3.0073000000000003
+    },
+    {
+      "case": "boxes",
+      "rtf": 0.06743579934153748,
+      "wall_s": 44.54162372699648,
+      "sim_s": 3.0036999999999994
+    },
+    {
+      "case": "mesh_after",
+      "rtf": 0.06730340430085338,
+      "wall_s": 44.65153035300318,
+      "sim_s": 3.0052
+    }
+  ],
+  "boxes_vs_mean_mesh": 0.9710388222489396,
+  "decision": "Not adopted: no speed gain demonstrated, conservative shape changes would need full physical validation."
+}

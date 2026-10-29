@@ -1,0 +1,30 @@
+{
+  "scope": "Bounded idle controller with unchanged 0.1ms physics and 800x600 GUI. No full grasp/motion trial or recording-speed claim",
+  "ordered_cases": [
+    {
+      "case": "r04_reference",
+      "wall_s": 10.001400338005624,
+      "sim_s": 0.8519,
+      "rtf": 0.08517807219082654,
+      "ticks_per_wall_s": 781.890508900415
+    },
+    {
+      "case": "r05_cached",
+      "wall_s": 10.000313712997013,
+      "sim_s": 0.7914,
+      "rtf": 0.0791375173532255,
+      "ticks_per_wall_s": 1530.551984594983
+    },
+    {
+      "case": "r06_reference",
+      "wall_s": 10.00031312899955,
+      "sim_s": 0.7607,
+      "rtf": 0.07606761810228455,
+      "ticks_per_wall_s": 671.6789677836798
+    }
+  ],
+  "candidate_vs_mean_reference_rtf": 0.9815768373017594,
+  "conclusion": "FK and commanded-geometry computation improved; no Gazebo throughput gain established. Do not extrapolate microbenchmark speedup to whole simulation.",
+  "submitted_main_branch": "unchanged",
+  "development_branch": "codex/mac-docker-performance"
+}

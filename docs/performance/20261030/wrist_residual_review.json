@@ -1,0 +1,10 @@
+{
+  "scope": "Prior failed trial last 5 sim seconds, downsampled recorded history; no new trial or root-cause proof",
+  "samples": 50,
+  "joint": 6,
+  "target_rad": 2.380138086053516,
+  "error_min_rad": -0.011259987795564363,
+  "error_max_rad": -0.011259954852096854,
+  "observed_range_rad": 3.294346750948307e-08,
+  "interpretation": "Nearly constant residual in recorded samples, not demonstrated oscillation. Controller parameter causes require a separate diagnostic."
+}

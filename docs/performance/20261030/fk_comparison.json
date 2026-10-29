@@ -1,0 +1,49 @@
+{
+  "scope": "Numerical FK/Jacobian equivalence and isolated FK throughput; not physics/grasp/full task validation",
+  "platform": "Linux-7.0.14-linuxkit-aarch64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "1.26.4",
+  "reference_sha256": "18646bcd7e60b2c149251e811ed8eb11e61a7144a1b3d4d16696dba094c659df",
+  "candidate_sha256": "cd3c0ab8a7a00e333357f8baccf4a29cb7ab0735b6b59b64b49c05e7a2dd9913",
+  "random_seed": 20261030,
+  "pose_jacobian_cases": 2006,
+  "maximum_absolute_pose_difference": 0.0,
+  "maximum_absolute_jacobian_difference": 0.0,
+  "tolerance": 1e-12,
+  "alternating_timing_rounds": [
+    {
+      "round": 0,
+      "order": [
+        "reference",
+        "candidate"
+      ],
+      "reference_s": 0.34297808399423957,
+      "calls_per_implementation": 6018,
+      "candidate_s": 0.11849800100026187,
+      "speedup": 2.8943786485772165
+    },
+    {
+      "round": 1,
+      "order": [
+        "candidate",
+        "reference"
+      ],
+      "candidate_s": 0.11880316700262483,
+      "calls_per_implementation": 6018,
+      "reference_s": 0.3501788330031559,
+      "speedup": 2.9475546977246747
+    },
+    {
+      "round": 2,
+      "order": [
+        "reference",
+        "candidate"
+      ],
+      "reference_s": 0.3470544990123017,
+      "calls_per_implementation": 6018,
+      "candidate_s": 0.12165104199084453,
+      "speedup": 2.852869102744069
+    }
+  ],
+  "numerical_checks_passed": true
+}

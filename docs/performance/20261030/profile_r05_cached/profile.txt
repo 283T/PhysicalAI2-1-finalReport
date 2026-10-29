@@ -1,0 +1,90 @@
+Thu Oct 29 15:40:26 2026    outputs/controller_profile_20261030_r05_cached/main.pstats
+
+         16429658 function calls (16130759 primitive calls) in 8.949 seconds
+
+   Ordered by: cumulative time
+   List reduced from 199 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    29570    0.894    0.000    5.342    0.000 /workspace/scripts/arm_session.py:142(snapshot)
+    59140    1.645    0.000    2.216    0.000 /workspace/scripts/arm_kinematics.py:107(forward)
+    39424    0.090    0.000    1.092    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/guard_condition.py:32(trigger)
+   118280    0.229    0.000    1.087    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:2383(norm)
+   118280    0.552    0.000    0.764    0.000 {method 'dot' of 'numpy.ndarray' objects}
+     9856    0.018    0.000    0.652    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:575(handler)
+   213560    0.379    0.000    0.645    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/waitable.py:37(__add__)
+    17923    0.028    0.000    0.583    0.000 /opt/ros/jazzy/opt/gz_transport_vendor/lib/python/gz/transport13/__init__.py:107(cb_deserialize)
+    27779    0.046    0.000    0.527    0.000 /workspace/docs/performance/20261030/profile_controller.py:44(call_profiled)
+     9856    0.396    0.000    0.419    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:467(_take_subscription)
+    17365    0.012    0.000    0.414    0.000 /workspace/docs/performance/20261030/profile_controller.py:57(receive_contacts)
+    29570    0.167    0.000    0.400    0.000 /workspace/scripts/arm_kinematics.py:40(rotation_error)
+    59140    0.259    0.000    0.363    0.000 {method 'copy' of 'numpy.ndarray' objects}
+    17365    0.069    0.000    0.353    0.000 /workspace/scripts/arm_session.py:109(receive_contacts)
+   177420    0.144    0.000    0.315    0.000 /workspace/scripts/arm_kinematics.py:9(quaternion_rotation)
+    28100    0.066    0.000    0.257    0.000 {method 'extend' of 'list' objects}
+   354840    0.247    0.000    0.247    0.000 {built-in method numpy.array}
+   286620    0.098    0.000    0.235    0.000 /usr/lib/python3.12/contextlib.py:543(_push_cm_exit)
+    59140    0.040    0.000    0.222    0.000 /workspace/docs/performance/20261030/profile_controller.py:53(command_tcp_pose)
+    59140    0.119    0.000    0.182    0.000 /workspace/scripts/arm_session.py:206(command_tcp_pose)
+   264140    0.058    0.000    0.169    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:614(can_execute)
+  2602146    0.166    0.000    0.166    0.000 {built-in method builtins.getattr}
+    69460    0.043    0.000    0.161    0.000 {built-in method builtins.any}
+   213560    0.132    0.000    0.132    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/event_handler.py:127(__enter__)
+    17365    0.008    0.000    0.129    0.000 /workspace/scripts/arm_contacts.py:144(arm_fixture_pair)
+     9856    0.008    0.000    0.127    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:479(_execute)
+     9856    0.048    0.000    0.125    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/sensor_msgs/msg/_joint_state.py:102(__init__)
+    29570    0.019    0.000    0.122    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:2100(clip)
+   273996    0.099    0.000    0.121    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/callback_groups.py:101(can_execute)
+    34730    0.015    0.000    0.121    0.000 /workspace/scripts/arm_contacts.py:145(arm)
+     9856    0.006    0.000    0.117    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:108(await_or_execute)
+    19712    0.034    0.000    0.110    0.000 /workspace/scripts/centred_grip.py:64(finger_commands)
+    59140    0.025    0.000    0.104    0.000 {method 'all' of 'numpy.ndarray' objects}
+    29570    0.013    0.000    0.103    0.000 /usr/lib/python3/dist-packages/numpy/core/fromnumeric.py:53(_wrapfunc)
+    88708    0.052    0.000    0.101    0.000 {built-in method builtins.all}
+
+
+Thu Oct 29 15:40:26 2026    outputs/controller_profile_20261030_r05_cached/main.pstats
+
+         16429658 function calls (16130759 primitive calls) in 8.949 seconds
+
+   Ordered by: internal time
+   List reduced from 199 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    59140    1.645    0.000    2.216    0.000 /workspace/scripts/arm_kinematics.py:107(forward)
+    29570    0.894    0.000    5.342    0.000 /workspace/scripts/arm_session.py:142(snapshot)
+   118280    0.552    0.000    0.764    0.000 {method 'dot' of 'numpy.ndarray' objects}
+     9856    0.396    0.000    0.419    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:467(_take_subscription)
+   213560    0.379    0.000    0.645    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/waitable.py:37(__add__)
+    59140    0.259    0.000    0.363    0.000 {method 'copy' of 'numpy.ndarray' objects}
+   354840    0.247    0.000    0.247    0.000 {built-in method numpy.array}
+ 98431/18    0.245    0.000    0.002    0.000 /usr/lib/python3.12/contextlib.py:511(enter_context)
+   118280    0.229    0.000    1.087    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:2383(norm)
+    29570    0.167    0.000    0.400    0.000 /workspace/scripts/arm_kinematics.py:40(rotation_error)
+  2602146    0.166    0.000    0.166    0.000 {built-in method builtins.getattr}
+   177420    0.144    0.000    0.315    0.000 /workspace/scripts/arm_kinematics.py:9(quaternion_rotation)
+   213560    0.132    0.000    0.132    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/event_handler.py:127(__enter__)
+    59140    0.119    0.000    0.182    0.000 /workspace/scripts/arm_session.py:206(command_tcp_pose)
+   273996    0.099    0.000    0.121    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/callback_groups.py:101(can_execute)
+   286620    0.098    0.000    0.235    0.000 /usr/lib/python3.12/contextlib.py:543(_push_cm_exit)
+    39424    0.090    0.000    1.092    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/guard_condition.py:32(trigger)
+156196/65    0.090    0.000    0.000    0.000 /workspace/scripts/command_refresh.py:18(publish)
+  1281360    0.088    0.000    0.088    0.000 {built-in method builtins.setattr}
+    17923    0.080    0.000    0.080    0.000 {method 'ParseFromString' of 'google.protobuf.pyext._message.CMessage' objects}
+   295700    0.077    0.000    0.077    0.000 {method 'tolist' of 'numpy.ndarray' objects}
+   4704/0    0.072    0.000    0.000          /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py:249(__call__)
+   213560    0.071    0.000    0.091    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/event_handler.py:118(get_num_entities)
+    17365    0.069    0.000    0.353    0.000 /workspace/scripts/arm_session.py:109(receive_contacts)
+    28100    0.066    0.000    0.257    0.000 {method 'extend' of 'list' objects}
+    59140    0.064    0.000    0.064    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+    29570    0.060    0.000    0.060    0.000 /usr/lib/python3/dist-packages/numpy/core/_methods.py:90(_clip)
+      558    0.059    0.000    0.059    0.000 /workspace/scripts/arm_session.py:96(receive_poses)
+   286620    0.058    0.000    0.092    0.000 /usr/lib/python3.12/contextlib.py:548(_push_exit_callback)
+   264140    0.058    0.000    0.169    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:614(can_execute)
+    29570    0.055    0.000    0.055    0.000 {method 'trace' of 'numpy.ndarray' objects}
+    88708    0.052    0.000    0.101    0.000 {built-in method builtins.all}
+   366276    0.052    0.000    0.052    0.000 {method 'get' of 'dict' objects}
+   243110    0.048    0.000    0.075    0.000 /workspace/scripts/arm_contacts.py:146(<genexpr>)
+     9856    0.048    0.000    0.125    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/sensor_msgs/msg/_joint_state.py:102(__init__)
+
+

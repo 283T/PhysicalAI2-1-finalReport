@@ -1,0 +1,111 @@
+{
+  "scope": "Exploratory initial-scene load ablation; one run per case, not assembly acceptance",
+  "results": [
+    {
+      "case": "gui_capture",
+      "trial_state": "finished",
+      "scope": "Uncontrolled initial-scene throughput only; not full task speed or grasp validation",
+      "gui": true,
+      "image_sensors": true,
+      "capture": true,
+      "partition": "load-ablation-143624-gui_capture",
+      "benchmark_sha256": "932f3c8ab757bdccc619ac2de95062e2d62d4cc055159cd5412582de1951b9a8",
+      "gui_config_sha256": "a78bd31ad32aaf4995926543068205e4605949bf80037035ff58cdae606289cf",
+      "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+      "changes": [],
+      "max_step_size_s": 0.0001,
+      "warmup_sim_s": 1,
+      "measurement_sim_s_requested": 3,
+      "measurement_wall_limit_s": 180,
+      "server_pid": 144117,
+      "warmup_wall_s": 15.059441549004987,
+      "start_stat": {
+        "host_monotonic_s": 100608.801292121,
+        "sim_time_s": 1.004,
+        "gazebo_real_time_s": 14.367278924,
+        "iterations": 10040,
+        "reported_rtf": 0.03299105117736814,
+        "paused": false
+      },
+      "start_resources": [
+        {
+          "pid": 144117,
+          "pgid": 144117,
+          "command": "gz sim -r outputs/collision_box_compare_20261030/mesh_after/gui_capture/world.sdf --gui-config docs/performance/20261029/gui_800x600.config                                             ",
+          "cpu_ticks": 8,
+          "rss_pages": 15142
+        },
+        {
+          "pid": 144118,
+          "pgid": 144118,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/collision_box_compare_20261030/mesh_after/gui_capture/raw.mkv ",
+          "cpu_ticks": 77,
+          "rss_pages": 36103
+        },
+        {
+          "pid": 144119,
+          "pgid": 144119,
+          "command": "gz sim server                                                                                                                                                                           ",
+          "cpu_ticks": 1263,
+          "rss_pages": 371377
+        },
+        {
+          "pid": 144120,
+          "pgid": 144120,
+          "command": "gz sim gui                                                                                                                                                                              ",
+          "cpu_ticks": 3216,
+          "rss_pages": 186793
+        }
+      ],
+      "measurement_completed": true,
+      "end_stat": {
+        "host_monotonic_s": 100653.452822474,
+        "sim_time_s": 4.0092,
+        "gazebo_real_time_s": 59.01868761,
+        "iterations": 40092,
+        "reported_rtf": 0.04437458898036957,
+        "paused": false
+      },
+      "measured_wall_s": 44.65153035300318,
+      "measured_sim_s": 3.0052,
+      "measured_rtf": 0.06730340430085338,
+      "iterations": 30052,
+      "end_resources": [
+        {
+          "pid": 144117,
+          "pgid": 144117,
+          "command": "gz sim -r outputs/collision_box_compare_20261030/mesh_after/gui_capture/world.sdf --gui-config docs/performance/20261029/gui_800x600.config                                             ",
+          "cpu_ticks": 8,
+          "rss_pages": 15142
+        },
+        {
+          "pid": 144118,
+          "pgid": 144118,
+          "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/collision_box_compare_20261030/mesh_after/gui_capture/raw.mkv ",
+          "cpu_ticks": 266,
+          "rss_pages": 36199
+        },
+        {
+          "pid": 144119,
+          "pgid": 144119,
+          "command": "gz sim server                                                                                                                                                                           ",
+          "cpu_ticks": 5443,
+          "rss_pages": 371377
+        },
+        {
+          "pid": 144120,
+          "pgid": 144120,
+          "command": "gz sim gui                                                                                                                                                                              ",
+          "cpu_ticks": 13882,
+          "rss_pages": 186889
+        }
+      ],
+      "approximate_mean_cpu_cores": 3.3671858234504546,
+      "rss_snapshot_sum_bytes": 2496950272,
+      "resource_scope": "Owned-process CPU tick deltas and summed RSS snapshots; shared pages may be counted repeatedly; not peak memory",
+      "owned_cleanup": [],
+      "remaining_owned_processes": []
+    }
+  ]
+}

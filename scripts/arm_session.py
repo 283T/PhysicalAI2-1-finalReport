@@ -65,6 +65,7 @@ class ArmSession:
         self.contact_publishers, self.contact_check_time = 0, -float("inf")
         self.history, self.preflights, self.dwell_windows = [], [], []
         self.targets = None
+        self._command_pose_cache = {}
         self.grips = {n: OPEN_TRAVEL_M for n in self.arms}
         self.pubs = {}
         self.command_refresh = CommandRefresh()
@@ -190,7 +191,7 @@ class ArmSession:
                 "tcp_rotation_world": tool_r.tolist(),
                 "fk_native_error_m": fk_error,
                 "command_q_rad": self.targets[name].tolist() if self.targets is not None else None,
-                "command_tcp_pose": self.arms[name].forward(self.targets[name]).tolist()
+                "command_tcp_pose": self.command_tcp_pose(name)
                 if self.targets is not None
                 else None,
             }
@@ -201,6 +202,19 @@ class ArmSession:
             "evaluation_poses": poses,
             "phase": self.phase,
         }
+
+    def command_tcp_pose(self, name):
+        # Cache commanded geometry only. Measured feedback, freshness, carrier
+        # and contact checks still run on every snapshot / control tick.
+        arm = self.arms[name]
+        target = self.targets[name]
+        key = (id(arm), tuple(target), arm.base.tobytes(), arm.tool.tobytes())
+        cached = self._command_pose_cache.get(name)
+        if cached is None or cached[0] != key:
+            cached = (key, arm.forward(target))
+            self._command_pose_cache[name] = cached
+        # Evidence consumers may mutate their row without changing the cache.
+        return cached[1].tolist()
 
     def contact_monitor_ready(self):
         now = time.monotonic()

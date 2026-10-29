@@ -69,6 +69,8 @@ class ArmKinematics:
             raise ValueError("Tool chain must reach the URDF world link")
         self.chain = []
         self.names, limits = [], []
+        self._joint_rotations = []
+        self._identity_motion = np.eye(4)
         for joint in reversed(chain):
             origin = joint.find("origin")
             xyz = (
@@ -88,6 +90,12 @@ class ArmKinematics:
             if kind == "revolute":
                 axis = np.array([float(v) for v in joint.find("axis").get("xyz").split()])
                 axis /= np.linalg.norm(axis)
+                # URDF axes are constant. Prepare Rodrigues coefficients once
+                # instead of normalizing axes and allocating identities per FK.
+                x, y, z = axis / np.linalg.norm(axis)
+                skew = np.zeros((4, 4))
+                skew[:3, :3] = [[0, -z, y], [z, 0, -x], [-y, x, 0]]
+                self._joint_rotations.append((skew, skew @ skew))
                 self.names.append(joint.get("name"))
                 limit = joint.find("limit")
                 limits.append([float(limit.get("lower")), float(limit.get("upper"))])
@@ -106,10 +114,15 @@ class ArmKinematics:
         for origin, axis in self.chain:
             matrix = matrix @ origin
             if axis is not None:
-                origins.append(matrix[:3, 3].copy())
-                axes.append(matrix[:3, :3] @ axis)
-                motion = np.eye(4)
-                motion[:3, :3] = axis_rotation(axis, q[index])
+                if jacobian:
+                    origins.append(matrix[:3, 3].copy())
+                    axes.append(matrix[:3, :3] @ axis)
+                skew, square = self._joint_rotations[index]
+                motion = (
+                    self._identity_motion
+                    + math.sin(q[index]) * skew
+                    + (1 - math.cos(q[index])) * square
+                )
                 matrix = matrix @ motion
                 index += 1
         matrix = matrix @ self.tool

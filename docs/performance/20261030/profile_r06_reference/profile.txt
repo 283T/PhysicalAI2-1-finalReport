@@ -1,0 +1,90 @@
+Thu Oct 29 15:41:07 2026    outputs/controller_profile_20261030_r06_reference/main.pstats
+
+         13809547 function calls (13692244 primitive calls) in 9.775 seconds
+
+   Ordered by: cumulative time
+   List reduced from 200 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    12110    0.415    0.000    8.244    0.001 /workspace/scripts/arm_session.py:142(snapshot)
+    48440    1.775    0.000    7.103    0.000 /workspace/docs/performance/20261030/reference_arm_kinematics.py:99(forward)
+   290640    1.682    0.000    4.024    0.000 /workspace/docs/performance/20261030/reference_arm_kinematics.py:20(axis_rotation)
+    24220    0.030    0.000    3.521    0.000 /workspace/docs/performance/20261030/profile_controller.py:53(command_tcp_pose)
+   339080    0.557    0.000    1.762    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:2383(norm)
+   339080    0.652    0.000    0.985    0.000 {method 'dot' of 'numpy.ndarray' objects}
+   581280    0.621    0.000    0.841    0.000 /usr/lib/python3/dist-packages/numpy/lib/twodim_base.py:158(eye)
+    18748    0.039    0.000    0.665    0.000 /opt/ros/jazzy/opt/gz_transport_vendor/lib/python/gz/transport13/__init__.py:107(cb_deserialize)
+    16144    0.050    0.000    0.596    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/guard_condition.py:32(trigger)
+   339080    0.374    0.000    0.561    0.000 {method 'copy' of 'numpy.ndarray' objects}
+    22784    0.050    0.000    0.549    0.000 /workspace/docs/performance/20261030/profile_controller.py:44(call_profiled)
+    18190    0.017    0.000    0.484    0.000 /workspace/docs/performance/20261030/profile_controller.py:57(receive_contacts)
+   435960    0.409    0.000    0.409    0.000 {built-in method numpy.array}
+    18190    0.084    0.000    0.407    0.000 /workspace/scripts/arm_session.py:109(receive_contacts)
+     4036    0.008    0.000    0.340    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:575(handler)
+    76684    0.141    0.000    0.239    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/waitable.py:37(__add__)
+     4036    0.226    0.000    0.237    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:467(_take_subscription)
+    12110    0.073    0.000    0.185    0.000 /workspace/scripts/arm_kinematics.py:40(rotation_error)
+    72760    0.046    0.000    0.173    0.000 {built-in method builtins.any}
+   581280    0.138    0.000    0.138    0.000 {built-in method numpy.zeros}
+    72660    0.065    0.000    0.138    0.000 /workspace/scripts/arm_kinematics.py:9(quaternion_rotation)
+    18190    0.009    0.000    0.136    0.000 /workspace/scripts/arm_contacts.py:144(arm_fixture_pair)
+    36380    0.016    0.000    0.127    0.000 /workspace/scripts/arm_contacts.py:145(arm)
+    18190    0.012    0.000    0.111    0.000 /workspace/scripts/arm_contacts.py:133(inter_arm_pair)
+    36380    0.021    0.000    0.099    0.000 /workspace/scripts/arm_contacts.py:136(belongs)
+    10090    0.024    0.000    0.095    0.000 {method 'extend' of 'list' objects}
+   688240    0.091    0.000    0.091    0.000 {method 'append' of 'list' objects}
+   102918    0.035    0.000    0.089    0.000 /usr/lib/python3.12/contextlib.py:543(_push_cm_exit)
+    48440    0.021    0.000    0.089    0.000 {method 'all' of 'numpy.ndarray' objects}
+    18748    0.087    0.000    0.087    0.000 {method 'ParseFromString' of 'google.protobuf.pyext._message.CMessage' objects}
+   339080    0.058    0.000    0.084    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:140(isComplexType)
+  1162560    0.082    0.000    0.082    0.000 {built-in method _operator.index}
+   254660    0.052    0.000    0.079    0.000 /workspace/scripts/arm_contacts.py:146(<genexpr>)
+   678160    0.077    0.000    0.077    0.000 {built-in method numpy.asarray}
+    18190    0.033    0.000    0.076    0.000 /workspace/scripts/arm_contacts.py:93(accumulate_contact)
+
+
+Thu Oct 29 15:41:07 2026    outputs/controller_profile_20261030_r06_reference/main.pstats
+
+         13809547 function calls (13692244 primitive calls) in 9.775 seconds
+
+   Ordered by: internal time
+   List reduced from 200 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    48440    1.775    0.000    7.103    0.000 /workspace/docs/performance/20261030/reference_arm_kinematics.py:99(forward)
+   290640    1.682    0.000    4.024    0.000 /workspace/docs/performance/20261030/reference_arm_kinematics.py:20(axis_rotation)
+   339080    0.652    0.000    0.985    0.000 {method 'dot' of 'numpy.ndarray' objects}
+   581280    0.621    0.000    0.841    0.000 /usr/lib/python3/dist-packages/numpy/lib/twodim_base.py:158(eye)
+   339080    0.557    0.000    1.762    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:2383(norm)
+    12110    0.415    0.000    8.244    0.001 /workspace/scripts/arm_session.py:142(snapshot)
+   435960    0.409    0.000    0.409    0.000 {built-in method numpy.array}
+   339080    0.374    0.000    0.561    0.000 {method 'copy' of 'numpy.ndarray' objects}
+     4036    0.226    0.000    0.237    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:467(_take_subscription)
+    76684    0.141    0.000    0.239    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/waitable.py:37(__add__)
+   581280    0.138    0.000    0.138    0.000 {built-in method numpy.zeros}
+ 36282/18    0.111    0.000    0.004    0.000 /usr/lib/python3.12/contextlib.py:511(enter_context)
+   688240    0.091    0.000    0.091    0.000 {method 'append' of 'list' objects}
+    18748    0.087    0.000    0.087    0.000 {method 'ParseFromString' of 'google.protobuf.pyext._message.CMessage' objects}
+    18190    0.084    0.000    0.407    0.000 /workspace/scripts/arm_session.py:109(receive_contacts)
+  1162560    0.082    0.000    0.082    0.000 {built-in method _operator.index}
+   678160    0.077    0.000    0.077    0.000 {built-in method numpy.asarray}
+   339080    0.073    0.000    0.073    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+    12110    0.073    0.000    0.185    0.000 /workspace/scripts/arm_kinematics.py:40(rotation_error)
+    72660    0.065    0.000    0.138    0.000 /workspace/scripts/arm_kinematics.py:9(quaternion_rotation)
+   936354    0.060    0.000    0.060    0.000 {built-in method builtins.getattr}
+   678160    0.059    0.000    0.059    0.000 {built-in method builtins.issubclass}
+   339080    0.058    0.000    0.084    0.000 /usr/lib/python3/dist-packages/numpy/linalg/linalg.py:140(isComplexType)
+    48440    0.055    0.000    0.055    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+   254660    0.052    0.000    0.079    0.000 /workspace/scripts/arm_contacts.py:146(<genexpr>)
+      558    0.051    0.000    0.051    0.000 /workspace/scripts/arm_session.py:96(receive_poses)
+    76684    0.051    0.000    0.051    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/event_handler.py:127(__enter__)
+    16144    0.050    0.000    0.596    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/guard_condition.py:32(trigger)
+    22784    0.050    0.000    0.549    0.000 /workspace/docs/performance/20261030/profile_controller.py:44(call_profiled)
+    72760    0.046    0.000    0.173    0.000 {built-in method builtins.any}
+   327420    0.043    0.000    0.043    0.000 {method 'startswith' of 'str' objects}
+63091/145    0.039    0.000    0.001    0.000 /workspace/scripts/command_refresh.py:18(publish)
+    18748    0.039    0.000    0.665    0.000 /opt/ros/jazzy/opt/gz_transport_vendor/lib/python/gz/transport13/__init__.py:107(cb_deserialize)
+   290640    0.039    0.000    0.039    0.000 {built-in method math.sin}
+    98882    0.038    0.000    0.046    0.000 /opt/ros/jazzy/lib/python3.12/site-packages/rclpy/callback_groups.py:101(can_execute)
+
+
