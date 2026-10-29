@@ -1,0 +1,13 @@
+{
+  "scope": "Launch checkpoint only; physical outcome pending",
+  "registration_commit": "c497ed4",
+  "output": "outputs/performance_pickup_dt0002_inspection_20261030_r02",
+  "source_input_hashes_match": true,
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-151089",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 151090,
+  "capture_pid": 151142,
+  "controller_pid": 151143
+}
