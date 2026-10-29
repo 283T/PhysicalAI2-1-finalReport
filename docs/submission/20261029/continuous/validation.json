@@ -1,0 +1,35 @@
+{
+  "status": "verified_review_version",
+  "purpose": "Improvement review only; 16x exceeds the existing submission 2x constraint. Submitted video is unchanged.",
+  "source_sha256": "43806adac2c650d261ee051ff63a7caa14af25439d1335e26e94abc36390e1bc",
+  "source_interval_pts_s": [
+    921.0,
+    3321.6
+  ],
+  "recorded_interval_s": 2400.6,
+  "one_contiguous_interval": true,
+  "within_motion_interval_cuts": 0,
+  "playback_speed_against_wall_capture": 16,
+  "source_capture_fps": 5,
+  "output_fps": 30,
+  "frame_processing": "Standard frame dropping/duplication for 16x playback at 30fps; no generated/interpolated robot motion",
+  "source_gap_before_interval": [
+    22.6,
+    921.0
+  ],
+  "gap_cause": "Unknown. Earlier missing recording not reconstructed.",
+  "source_phase_at_interval_start": "primary_observation, before primary_hover/motion start, verified visible caption",
+  "duration_s": 168.033333,
+  "full_decode_passed": true,
+  "sha256": "47838f47d82e7dd249fe36855e91b92d0032c74ae4c6b44e96ac8ae3d4819160",
+  "file_name": "双腕ハーネス_連続動作_16倍速_283t_123.mp4",
+  "youtube_changed": false,
+  "coursework_resubmitted": false,
+  "visual_qa": {
+    "scope": "12 sampled actual encoded frames, including intro, motion beginning, approach, grip/lift/support, final hold and closing card; not every frame",
+    "findings": "Readable headers, source phase/monotonic caption retained, expected chronological motion observed, no clipping/black frames in samples",
+    "continuous_interval_gap_check": "No packet discontinuity over 1s inside source interval [921.0,3321.6]",
+    "expected_motion_duration_s": 150.0375,
+    "card_duration_s": 18
+  }
+}
