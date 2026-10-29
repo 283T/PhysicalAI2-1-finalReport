@@ -1,0 +1,27 @@
+{
+  "scope": "Independent early-failure check, before any connector grip; not a hold/contact success audit",
+  "trial_state": "finished",
+  "status": "failed",
+  "error": "simulation_budget_exhausted before robot convergence in primary_hover",
+  "phase": "primary_hover",
+  "path_fraction": 1.0,
+  "joint_errors_rad": [
+    0.0005078513415930352,
+    0.0009847794876034488,
+    1.8288931365351146e-05,
+    0.00011324384925354147,
+    9.949094456263019e-05,
+    0.011259954204072997
+  ],
+  "maximum_joint_error_rad": 0.011259954204072997,
+  "worst_joint_one_based": 6,
+  "joint_gate_rad_exclusive": 0.01,
+  "tcp_position_error_m": 0.000651297536298253,
+  "tcp_rotation_geodesic_rad": 0.010678323373168782,
+  "fk_native_error_m": 2.9323787127483853e-07,
+  "full_task_success": false,
+  "grip_hold_audit": "Not applicable as successful evidence: no grasp or hold reached",
+  "source_changes": [],
+  "recording_wall_duration_s": 201.75398167400272,
+  "root_cause_scope": "The last observation violates the joint convergence gate when the unchanged simulation budget expires. A single failed trial does not establish all numerical causes or a failure rate."
+}

@@ -1,0 +1,38 @@
+{
+  "gui_capture/capture.log": {
+    "sha256_original": "1536e9355834f60b744801eac1d3eba0c49cea32b1ff9910a5b14ddbbc626f6e",
+    "archive_path": "gui_capture/capture.log",
+    "encoding": "unchanged",
+    "sha256_archive": "1536e9355834f60b744801eac1d3eba0c49cea32b1ff9910a5b14ddbbc626f6e"
+  },
+  "gui_capture/result.json": {
+    "sha256_original": "3558826a1b30cbd1c7e45b28e13f754214aed29972c1432c5656b487c8f1c412",
+    "archive_path": "gui_capture/result.json",
+    "encoding": "unchanged",
+    "sha256_archive": "3558826a1b30cbd1c7e45b28e13f754214aed29972c1432c5656b487c8f1c412"
+  },
+  "gui_capture/server.log": {
+    "sha256_original": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a",
+    "archive_path": "gui_capture/server.log",
+    "encoding": "unchanged",
+    "sha256_archive": "293366de426441d567ee4a1add2b76715f0b8200d539dc3872951fd56e8ef69a"
+  },
+  "gui_capture/stats.jsonl": {
+    "sha256_original": "e46983eef182b83a04866030fb9cec9d433d51cddd42d92640df9e3614bd2661",
+    "archive_path": "gui_capture/stats.jsonl",
+    "encoding": "unchanged",
+    "sha256_archive": "e46983eef182b83a04866030fb9cec9d433d51cddd42d92640df9e3614bd2661"
+  },
+  "gui_capture/world.sdf": {
+    "sha256_original": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+    "archive_path": "gui_capture/world.sdf.gz",
+    "encoding": "gzip",
+    "sha256_archive": "d52d34697e299041889fcb8857f9be36090a13c2b7f58cdada3c61cc44230aee"
+  },
+  "summary.json": {
+    "sha256_original": "987926b3ba8ff2b9cd5d4ffbfe738b45e213e934d4132f7f3df6068f0b057a5c",
+    "archive_path": "summary.json",
+    "encoding": "unchanged",
+    "sha256_archive": "987926b3ba8ff2b9cd5d4ffbfe738b45e213e934d4132f7f3df6068f0b057a5c"
+  }
+}

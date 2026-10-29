@@ -73,6 +73,8 @@ def run_case(base, definition, args):
     env=os.environ.copy(); env['ROS_DOMAIN_ID']='179'
     report={'case':name,'trial_state':'running','scope':'Uncontrolled initial-scene throughput only; not full task speed or grasp validation',
             'gui':gui,'image_sensors':images,'capture':capture,'partition':partition,
+            'benchmark_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            'gui_config_sha256':hashlib.sha256(args.gui_config.read_bytes()).hexdigest(),
             'source_world_sha256':hashlib.sha256(args.world.read_bytes()).hexdigest(),
             'world_sha256':hashlib.sha256(scene.read_bytes()).hexdigest(),'changes':changes,
             'max_step_size_s':float(world.findtext('physics/max_step_size')),
@@ -90,7 +92,7 @@ def run_case(base, definition, args):
         if not subscription:raise RuntimeError('Stats subscription failed')
         log=(dest/'server.log').open('w');logs.append(log)
         command=['gz','sim','-r',str(scene)]
-        if gui: command+=['--gui-config',str(ROOT/'sim/harness_recording_gui.config')]
+        if gui: command+=['--gui-config',str(args.gui_config)]
         else: command.insert(2,'-s')
         launch=time.monotonic();server=subprocess.Popen(command,env=env,stdout=log,stderr=log,start_new_session=True)
         report['server_pid']=server.pid;write(dest/'result.json',report)
@@ -150,6 +152,7 @@ def run_case(base, definition, args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--world',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--gui-config',type=Path,default=ROOT/'sim/harness_recording_gui.config')
     parser.add_argument('--warmup',type=float,default=1);parser.add_argument('--measure',type=float,default=3);parser.add_argument('--wall-limit',type=float,default=180)
     parser.add_argument('--cases',nargs='+',choices=[r[0] for r in CASES],default=[r[0] for r in CASES]);args=parser.parse_args()
     if not all(v>0 for v in [args.warmup,args.measure,args.wall_limit]):parser.error('Positive intervals required')

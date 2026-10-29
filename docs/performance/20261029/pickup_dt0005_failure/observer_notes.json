@@ -1,0 +1,5 @@
+{
+  "first_native_stats_probe": "Failed to import gz because ROS environment had not been sourced; did not modify controller or simulator.",
+  "second_probe": "ROS environment sourced; received zero samples because simulator had already stopped. Zero samples is unavailable data, not zero simulation speed.",
+  "cpu_sample": "10-second exact-partition process reading completed during control; diagnostic only."
+}

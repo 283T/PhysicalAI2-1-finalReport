@@ -1,0 +1,14 @@
+{
+  "scope": "Development trial launch only; not a successful result",
+  "registration_commit": "c714cbc",
+  "world_sha256": "5eb80cc691893426fa7eaffbd2a15754f8a3b3389d3ec905bb5965782740d1e7",
+  "source_hashes_match": true,
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-137817",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 137818,
+  "capture_pid": 137863,
+  "controller_pid": 137864,
+  "output": "outputs/performance_pickup_dt0005_20261029_r01"
+}

@@ -1,0 +1,41 @@
+{
+  "scope": "10 wall second owned-process CPU sample during actual controller execution; snapshot, not exact component attribution",
+  "wall_s": 10.000929130008444,
+  "processes": [
+    {
+      "pid": 137818,
+      "command": "gz sim -r outputs/performance_pickup_dt0005_20261029_input/case/world.sdf --gui-config sim/harness_recording_gui.config                                             ",
+      "average_cpu_cores": 0.0
+    },
+    {
+      "pid": 137820,
+      "command": "gz sim server                                                                                                                                                       ",
+      "average_cpu_cores": 0.9999070956311793
+    },
+    {
+      "pid": 137821,
+      "command": "gz sim gui                                                                                                                                                          ",
+      "average_cpu_cores": 2.6967494369172904
+    },
+    {
+      "pid": 137863,
+      "command": "ffmpeg -y -loglevel warning -f x11grab -video_size 1280x900 -framerate 5 -i :99 -vf drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:textfile='outputs/performance_pickup_dt0005_20261029_r01/capture_caption.txt':reload=1:fontsize=16:fontcolor=white:box=1:boxcolor=black@0.7:x=8:y=h-28 -an -c:v libx264 -preset ultrafast -crf 24 -pix_fmt yuv420p outputs/performance_pickup_dt0005_20261029_r01/raw.mkv ",
+      "average_cpu_cores": 0.048995447685927784
+    },
+    {
+      "pid": 137864,
+      "command": "/usr/bin/python3 scripts/dual_pickup.py --world outputs/performance_pickup_dt0005_20261029_input/case/world.sdf --models outputs/stepped_hd_shm64_20261016/models --drawing-plan outputs/independent_support_p3_hd64_20261016/pickup/connection_plan.json --inspection-calibration outputs/performance_pickup_dt0005_20261029_input/case/camera_calibration.json --output outputs/performance_pickup_dt0005_20261029_r01/pickup --wire-distance-mm 140 --wire-tip-depth-mm 19 --centred-grips --observation-timeout-wall-s 240.0 ",
+      "average_cpu_cores": 1.0539020787952629
+    },
+    {
+      "pid": 137937,
+      "command": "/usr/bin/python3 /opt/ros/jazzy/bin/ros2 run ros_gz_bridge parameter_bridge /left_arm/joints@sensor_msgs/msg/JointState[gz.msgs.Model /left_arm/joint_0/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_1/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_2/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_3/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_4/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_5/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/gripper/left/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/gripper/right/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joints@sensor_msgs/msg/JointState[gz.msgs.Model /right_arm/joint_0/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_1/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_2/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_3/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_4/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_5/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/gripper/left/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/gripper/right/cmd@std_msgs/msg/Float64]gz.msgs.Double ",
+      "average_cpu_cores": 0.0
+    },
+    {
+      "pid": 137940,
+      "command": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /left_arm/joints@sensor_msgs/msg/JointState[gz.msgs.Model /left_arm/joint_0/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_1/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_2/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_3/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_4/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/joint_5/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/gripper/left/cmd@std_msgs/msg/Float64]gz.msgs.Double /left_arm/gripper/right/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joints@sensor_msgs/msg/JointState[gz.msgs.Model /right_arm/joint_0/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_1/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_2/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_3/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_4/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/joint_5/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/gripper/left/cmd@std_msgs/msg/Float64]gz.msgs.Double /right_arm/gripper/right/cmd@std_msgs/msg/Float64]gz.msgs.Double ",
+      "average_cpu_cores": 0.07599293926796963
+    }
+  ]
+}
