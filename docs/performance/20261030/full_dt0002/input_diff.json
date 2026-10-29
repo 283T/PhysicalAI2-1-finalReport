@@ -1,0 +1,12 @@
+{
+  "source": "outputs/stepped_nest_contacts_hd_20261016/case/world.sdf",
+  "candidate": "outputs/performance_pickup_dt0002_20261030_input/case/world.sdf",
+  "only_semantic_change": {
+    "max_step_size": [
+      0.0001,
+      0.0002
+    ]
+  },
+  "all_other_xml_fields_identical": true,
+  "right_wrist_i_gain": 0
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Launch checkpoint only; no successful outcome claim",
+  "registration_commit": "6c2c447",
+  "output": "outputs/performance_pickup_dt0005_i20_settle_20261030_r02",
+  "source_input_hashes_match": true,
+  "initial_settle_s": 2.5,
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-148161",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 148162,
+  "capture_pid": 148207,
+  "controller_pid": 148208
+}

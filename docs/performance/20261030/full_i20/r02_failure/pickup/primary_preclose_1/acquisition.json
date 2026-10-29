@@ -1,0 +1,81 @@
+{
+  "processed_frames": 3,
+  "frames": [
+    {
+      "sensor_stamp_ns": 44000000000,
+      "elapsed_wall_s": 3.7211412519973237,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 1,
+      "decode_wall_s": 0.006412124988855794,
+      "detector_wall_s": 0.06198737501108553,
+      "save_and_validation_wall_s": 0.08665787499921862
+    },
+    {
+      "sensor_stamp_ns": 45000000000,
+      "elapsed_wall_s": 8.278240628991625,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 2,
+      "decode_wall_s": 0.0025712499918881804,
+      "detector_wall_s": 0.04763141700823326,
+      "save_and_validation_wall_s": 0.1365994999941904
+    },
+    {
+      "sensor_stamp_ns": 46000000000,
+      "elapsed_wall_s": 12.780346881001606,
+      "detected_plugs": [
+        "P3"
+      ],
+      "wire_proposals": [],
+      "wire_stable_frames": 0,
+      "wire_supports": [],
+      "stable_frames": 3,
+      "decode_wall_s": 0.0023599999985890463,
+      "detector_wall_s": 0.04315991699695587,
+      "save_and_validation_wall_s": 0.08740116600529291
+    }
+  ],
+  "success": true,
+  "timeout_s": 240.0,
+  "dds_profile": {
+    "path": "/workspace/configs/fastdds_rgbd_hd64.xml",
+    "sha256": "b0a630b3922ce408df1e820422acf0c127dbd1ed649d049cb1a2ee1cf7394a77"
+  },
+  "elapsed_wall_s": 13.086525130987866,
+  "transport": {
+    "received_messages": {
+      "rgb": 3,
+      "depth": 3
+    },
+    "evicted_messages": {
+      "rgb": 0,
+      "depth": 0
+    },
+    "paired_frames": 3,
+    "last_paired_stamp_ns": 46000000000,
+    "streams": {
+      "rgb": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.43912858300609514
+      },
+      "depth": {
+        "pending_messages": 0,
+        "oldest_pending_stamp_ns": null,
+        "newest_pending_stamp_ns": null,
+        "last_arrival_age_s": 0.4411922500003129
+      }
+    }
+  },
+  "camera_info_messages": 3
+}
