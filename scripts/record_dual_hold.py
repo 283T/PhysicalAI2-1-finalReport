@@ -32,6 +32,7 @@ def main():
     parser.add_argument("--wall-timeout", type=float, default=5400)
     parser.add_argument("--observation-timeout-wall-s", type=float, default=240)
     parser.add_argument("--initial-settle-s", type=float, default=0)
+    parser.add_argument("--refine-initial-with-inspection", action="store_true")
     parser.add_argument("--gui-config", type=Path, default=Path("sim/melfa_gui.config"))
     args = parser.parse_args()
     if not math.isfinite(args.initial_settle_s) or not 0 <= args.initial_settle_s <= 30:
@@ -56,6 +57,7 @@ def main():
         "trial_state": "starting", "capture_fps": 5, "capture_speed": 1,
         "observation_timeout_wall_s": args.observation_timeout_wall_s,
         "initial_settle_s": args.initial_settle_s,
+        "refine_initial_with_inspection": args.refine_initial_with_inspection,
         "source_sha256": {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
         "environment": {k: env[k] for k in ("GZ_PARTITION", "ROS_DOMAIN_ID")},
         "raw_video": "raw.mkv", "success": False,
@@ -100,7 +102,8 @@ def main():
                  "--output", str(args.output / "pickup"), "--wire-distance-mm", "140",
                  "--wire-tip-depth-mm", "19", "--centred-grips",
                  "--initial-settle-s", str(args.initial_settle_s),
-                 "--observation-timeout-wall-s", str(args.observation_timeout_wall_s)],
+                 "--observation-timeout-wall-s", str(args.observation_timeout_wall_s),
+                 *(["--refine-initial-with-inspection"] if args.refine_initial_with_inspection else [])],
                 env=env, stdout=control_log, stderr=control_log, start_new_session=True)
             summary.update(trial_state="running", scene_pid=scene.pid,
                            capture_pid=capture.pid, controller_pid=controller.pid)

@@ -1,0 +1,14 @@
+{
+  "scope": "Post-observation native check; no object truth used in control. Native sample is after both acquisitions; time mismatch shown, not simultaneous calibration proof.",
+  "native_sim_time_s": 6.0736,
+  "inspection_sensor_time_s": 6.0,
+  "inspection_time_mismatch_s": 0.07359999999999989,
+  "inspection_stable_frames": 3,
+  "inspection_position_error_m": 0.0001692138775334779,
+  "inspection_angle_error_rad": 0.004693366181648046,
+  "overview_sensor_time_s": 3.0,
+  "two_image_pose_difference_m": 0.0016960422923571433,
+  "two_image_pose_difference_rad": 0.0333814137716648,
+  "remaining_owned_processes": [],
+  "changed_sources": []
+}

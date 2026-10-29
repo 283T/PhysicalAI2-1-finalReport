@@ -1,0 +1,14 @@
+{
+  "scope": "Launch checkpoint, not outcome",
+  "registration_commit": "6faad15",
+  "source_input_hashes_match": true,
+  "output": "outputs/performance_pickup_dt0002_settle_20261030_r01",
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-149195",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 149196,
+  "capture_pid": 149248,
+  "controller_pid": 149249,
+  "initial_launch_guard_false_positive": "First wrapper matched its own parent shell; no recorder/controller/Gazebo had started. Original log retained locally. Fixed ancestor PID exclusion before the first actual launch."
+}

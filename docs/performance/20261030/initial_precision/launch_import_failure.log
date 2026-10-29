@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/workspace/docs/performance/20261030/initial_precision/inspect.py", line 13, in <module>
+    import rclpy
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 47, in <module>
+    from rclpy.context import Context
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 15, in <module>
+    from inspect import ismethod
+  File "/workspace/docs/performance/20261030/initial_precision/inspect.py", line 15, in <module>
+    from arm_session import ArmSession
+  File "/workspace/scripts/arm_session.py", line 12, in <module>
+    import numpy as np
+  File "/usr/lib/python3/dist-packages/numpy/__init__.py", line 159, in <module>
+    from . import ma
+  File "/usr/lib/python3/dist-packages/numpy/ma/__init__.py", line 42, in <module>
+    from . import core
+  File "/usr/lib/python3/dist-packages/numpy/ma/core.py", line 7940, in <module>
+    inner.__doc__ = doc_note(np.inner.__doc__,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/numpy/ma/core.py", line 125, in doc_note
+    notesplit = re.split(r'\n\s*?Notes\n\s*?-----', inspect.cleandoc(initialdoc))
+                                                    ^^^^^^^^^^^^^^^^
+AttributeError: partially initialized module 'inspect' has no attribute 'cleandoc' (most likely due to a circular import)

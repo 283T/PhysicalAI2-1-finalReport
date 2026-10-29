@@ -1,0 +1,1117 @@
+{
+  "scope": "Fresh RGB-D diagnostic before arm motion; no grasp/hold or full-task success claim",
+  "trial_state": "finished",
+  "partition": "initial-precision-150367",
+  "source_sha256": {
+    "scripts/add_workcell_camera.py": "ba3df27a8488e69e6dcd7aa90656f5f3625c2706e9141e499148b04b141c283c",
+    "scripts/analyze_feedback_gates.py": "41c61fb9ceb20c16c2328f17f657f8690db86a0d2f47af352e7978c00b9c97a5",
+    "scripts/analyze_grip_tracking.py": "0fe5989114a4fd965c5f36dd46fdb918c4879af7f599c0425765cf73b5ff5e14",
+    "scripts/analyze_preclose.py": "4b878472228afeb7719777b110d5a45d6362a1ef32be22e7a88a3cae26450b83",
+    "scripts/arm_collision_bounds.py": "be6522982401df30ff79b5bc09fbb3da88d4987473124683d39c40ba38d7acbd",
+    "scripts/arm_contacts.py": "00b1d01923180dab74b3bef40b23c224072c53f59b1783acab0ae1ac0cb0fba8",
+    "scripts/arm_kinematics.py": "cd3c0ab8a7a00e333357f8baccf4a29cb7ab0735b6b59b64b49c05e7a2dd9913",
+    "scripts/arm_observation.py": "7eba85fec13bc2ade9ff856e0a6fddbfe22b292522e828745fc69ba831721cf8",
+    "scripts/arm_session.py": "275b89df9d5ff8b5322df41ef3f7304b64319c4776918becd802fb01f1d3dbda",
+    "scripts/assembly_case.py": "d754e645a90d37341449c266d4b9e9eaf4b93477bcd7699a95fb09c434b15a1b",
+    "scripts/benchmark_end_markers.py": "6dcba1e36f23c6d2577e1389c041f493770467321069d5164ad7c57ecc4c91c5",
+    "scripts/build_case.py": "e05c97192701d50e8800315c58ac4e3c6d9a1332da63898ab497e91fdcabaf48",
+    "scripts/build_drawings.py": "a21ce91f494e6c29c26548ca489c493fd771300b8dae14fd145d8eeeb3274692",
+    "scripts/build_factory.py": "dadf4e7b9192e04e7365e7f5add029332f04d7a3421cd695bb78492b35c42283",
+    "scripts/build_submission.py": "be39e7b02216cc36be628e418ae6168ff2167056c8db582fe9ec853eab230345",
+    "scripts/build_world.py": "fdc4b6c5c0d59a9f73806776e6f454d873ca29fe5649a8f0f32756139b1ae3f7",
+    "scripts/carried_connector.py": "9ed3300ff20412acc642905047780a91a9360dbd2ccce6d0f4e015be81a57e70",
+    "scripts/carried_contact_guard.py": "9147960a6e89576d02ff0f2d4ec036d8824385ff58bee6738b689d1d6f1c6831",
+    "scripts/cartesian_path.py": "093740b7abe8ed1da7a0d769d1fb938954e5cbb1e8e6402593bd05bdc9988921",
+    "scripts/centred_grip.py": "dad619095e71599fd84e5fcd417db32019f75f85bed18af08ed55bee77faedb4",
+    "scripts/check_arms.py": "5b621857726703e145db4129af52ee65bb430bb94cc9b28f147747f711c09b6d",
+    "scripts/check_cable.py": "602754bb80207f83f2c2ab8e98fd0c9f7ca9acdec1db6b91df8a3ad1c62f367e",
+    "scripts/check_grippers.py": "e865228543fb3c4d2399a07842d72e30d1b5d2db1c6701dafc79012f5b20f11b",
+    "scripts/check_reach.py": "966f0435ec8437b396a0bbb69c23dc0231a62f91ef07356ea6e37311f8d700d5",
+    "scripts/check_regrasp_nest.py": "4a4c8e78ad1179ce25aaf3e03da1943adad1c6b271a1bbe03ae4905a0aa0ac90",
+    "scripts/check_sim.py": "59fbf002a74232fb3d32839a2dd04e34ef88194476f274ee9beddfd3b7b0cb67",
+    "scripts/check_unloaded_tracking.py": "6cd2a2734b7628a30e4d7a5e621144bf1ab224cc7873a7885f494dfda9663962",
+    "scripts/clean_generated.py": "b48036ad90535754dbf9878911f33154be037f23fe3675e231e985fb9b77864d",
+    "scripts/command_refresh.py": "d296c65a8a90cc0dd743431b531757d9845b65c3e54f2821bb5b6649ff663dbc",
+    "scripts/connector_contacts.py": "e3ee0702de1f042e0125491b92e8e202d73a4dd0fd2c76440a3f8ca3fc84725d",
+    "scripts/connector_pose.py": "75a730530855d073e3ab8f216fa9d65b2b747a4608ed8fdd4c7a84694c4feb0d",
+    "scripts/connector_vision.py": "3c613033152af2e671f2400cef4eec447ff5bc684fa2caaa88480517691d4a1e",
+    "scripts/cooperative_pick.py": "49f9e452afca72098bfb08578826ecc48a11b204291306cd4faadbab22a15d86",
+    "scripts/cooperative_transfer.py": "4b72858e8cb4e172de02c44d6925fe98a87015b06d222459dad5856fa806418a",
+    "scripts/dual_pickup.py": "3039d6810fe43daeedf11a1950557dbee0c9004cbf8890fe83a7ec7172cfae72",
+    "scripts/end_markers.py": "36724b2b71f0352417637cd623999288cf2358bf1626eef2878e77226a6c47ba",
+    "scripts/evaluate_drawings.py": "2b588849c963a7cfefd4ec667bd125bdf55bc8d187fc78b3574fd5cec334b996",
+    "scripts/evaluate_perception.py": "9c1d799fe60f42628dd5b464e15db9698211e23f710949b8f5f3b260260515ee",
+    "scripts/evidence_io.py": "4570c3ce7323cc0eb571995bee29e258cb9b982fd2cddb582b1f6ac986f96b4f",
+    "scripts/evidence_stream.py": "86ead0fcef4d97204df16fd6a5cd97c112d5bee2d66fcdf6b047b615fbc725d0",
+    "scripts/export_nest_trial.py": "90e98e2cf4adb6e64237a8c63ecebef27211797184980befdd663a702c18be12",
+    "scripts/export_return_study.py": "4a11fafe2434827328878f8d4e24b951274337d7c6c549605ae500d870f43b26",
+    "scripts/export_wire_grip_trial.py": "4b9eafb4f450b2b0d5d1c2aae3f19b457ba4b0b9a794230bd8dfa2167324ee30",
+    "scripts/export_wire_pick_trial.py": "dbd0fd8cfe58e405d46fada6283e8637669dc9beb49bba6bc386b9a9cac46642",
+    "scripts/feedback_pacing.py": "f909b8009cb238981329361dd39a73d876b5f2fd05e839ea232866a5a0a8b448",
+    "scripts/fixture_collision_bounds.py": "d5ec25f34aa35f0bae39d6c2dfffbdfabe12040dc1dd317d8c778d3c23043b30",
+    "scripts/grasp_benchmark.py": "3993279668cbc8493f00ea62e7f4c8ce1e9175b85e5cd4e1a866473f5bebf075",
+    "scripts/grasp_poses.py": "6fea4b22f205d70977236d6d327720743b2f34bb4f8c2e41d9081072fd539dad",
+    "scripts/grasp_validation.py": "c4075a8f4d455ed7308d7516f16fb13d229e05f54878149e12949c0289d598ca",
+    "scripts/grip_guard.py": "a3d1a61c17cd868bfc403f781113d93155b659f23f344ebeea813981fa1e186f",
+    "scripts/gripper_model.py": "d959e8d952adcca756cdb339ceebba3ecb80a0a6d1a75a166873438a745c8ef9",
+    "scripts/held_wire_nest.py": "cfe0922e8731502bf7828e638050ed72663fd2002dfa578584967f0398c08c8d",
+    "scripts/inspect_grip_progress.py": "03863dccf38110cd550c028d67653bbc9888e9fb519484b78b5456f7896cbd21",
+    "scripts/inspection_camera.py": "2e98ff780f33153250c9db0d23d11ebef90af4aefe5c8c9a3c245ef9cd6a8f31",
+    "scripts/joint_response_benchmark.py": "578b3fd4fbbbf18c96303b6326c1e20ef38e8cfa2e081a108a14f891c5610431",
+    "scripts/joint_route.py": "7aef30015972b217f423b47a700f92b6726e8e5c556db01ba127eb9fd7178963",
+    "scripts/local_vision.py": "aa2ef6ecf91d899d12ae7808f5745925ea254950c243e542d7b2dabc9a972b38",
+    "scripts/nest_aftercare.py": "abd6740c2350cad9295000429a58ec0244b6047f225b14c9e3c6c446c02f1097",
+    "scripts/observe_connectors.py": "48b5b0139b2accbf47cef940533b3dde9116ebda2a076f1055ef9dca8167ac9c",
+    "scripts/park_arm_plan.py": "1f7dd1b081ad05ee0ba12cb9f916b932f9dbda69cae221b5e798ce59fa1667b2",
+    "scripts/perception_stream.py": "7418248326c1502edc8a147be46a2578a70212108a5b5e75d668e3457d43861e",
+    "scripts/pick_connector.py": "5a4c9f72808968e0240a58dd019aae14242eedaa1fcd1adddf7721cba17b295a",
+    "scripts/pick_wire.py": "c4a9bf5d3e34cc628c91bc714b6fa0e24e625e4143b9c9723f0513534d9ede9a",
+    "scripts/plan_held_wire_transfer.py": "74f0eea4e11dc543b6fe5eb23e45f3122787cd547d3deb3e7f321636f63d1c78",
+    "scripts/plan_nest_transfer.py": "c65f1c2b31591e81ca1eb6e5aaad96a0187551793bfc60e833fa1460b93021eb",
+    "scripts/plan_reach.py": "049d940f9793c72315631af21678a10090cb6eefb2ab6323e658ea1c96d6b805",
+    "scripts/plan_transfer.py": "bcb124b3733b9aa9b6f4df7a0101e6488e508a1be4c209012dd546237fa91213",
+    "scripts/plan_wire_pickup.py": "342bc0beeea6cace71fed3f1c16687f4a5bd87ee91be4fa7951b07bbae2540a3",
+    "scripts/plot_contact_benchmark.py": "48957a58833e3a241d6b38512d73380743d2b3dcfec6585ed2a7068b6895140f",
+    "scripts/plot_pickup.py": "2a561688ea26c2297d955c0a745f9341cac2a509fb6c57bef8941a6c15cabe6b",
+    "scripts/plot_regrasp_benchmark.py": "e5bcd725df4047a7b60df153e125f34ca59843a0cd548a012c69fedfd1851990",
+    "scripts/plot_support_study.py": "fa31e02c290d8b5e6fb98ca72fdfed428dc3229e4984e66177a179d5f46cb792",
+    "scripts/plot_transfer.py": "63f956ad7dfe33a9a7b3c868b3434abcebb77d0aa15594660a1657065052f55c",
+    "scripts/preclose_alignment.py": "74bdd5a563b4e818c6a04c94f8f0184c971ead775c971c2cb1fdfbf31c380d54",
+    "scripts/prepare_flat_marker_case.py": "0f11645970d999c15235645bd4a0f812838f3a1b2479ee6f7df8599d9f58e970",
+    "scripts/prepare_stepped_case.py": "a704a80376aaef80bdcce7543a23a9683c5bbca0501f833bf0b2bce9cf6a8243",
+    "scripts/processes.py": "7860bb4462d3792c9c7796b61138333e5a1d76439f1478d89c694ca5f241df4e",
+    "scripts/project_paths.py": "ca46f318c630ed4b980c54afe569bac82baed878fa55f9a6002728fad021c848",
+    "scripts/read_connection_plan.py": "71a84b7e447a1366477ba2144434262b1271e533b12f80a483a560976661635e",
+    "scripts/read_drawing.py": "d35db1e899f1a7dab0e47e1835678657dd69a7790538038856b33026d9d5f0bb",
+    "scripts/record_demo.py": "0f03373a1e82f005e880d69b8c85e2cb29a8b5e89cd69afe7b5b29dbb49ac4a9",
+    "scripts/record_dual_hold.py": "a94cd15143325f76117269ff8e47589b5a0064eeb07b2e556cc91543babcfc28",
+    "scripts/refine_physics_timestep.py": "1b9b0aba8c20a190dea7af9ec5a5f491824ad4478ee24d6726eb7206cb8071d5",
+    "scripts/regrasp_fixture.py": "6d2ffab8542a0bb14363642d93139e9d413032f2850e1e78ccb4cc289eb88c80",
+    "scripts/regrasp_plan.py": "049d5d799a310937947282ccdb467e3f19cd742d05816897a6fe06ba96f5cdbe",
+    "scripts/release_witness.py": "9303b6e7964428fec8343d016c3eeb7e31e76811870b2c47ebc436c6d18c8357",
+    "scripts/replay_contact_evidence.py": "b91e704113c1d0502e1c683c05c4a05315476ed3477efc0105b2a022ff460915",
+    "scripts/replay_grip_evidence.py": "cd3feda2e12af2256a579f8aac53b60ac53b5e387929ba990ae8fc4cf2dbc0f5",
+    "scripts/replay_seat_evidence.py": "4f9b1e054102835c7fd57b61ae7b54567c3bd72b916958ee2e1052cecae026e6",
+    "scripts/resize_inspection_camera.py": "4b64e396268bb308e2d867df718bfba388ce273bbad1ce4140d0841643f31151",
+    "scripts/retune_joint_controller.py": "0124eb99cbade9a3104a646c8f4187f6ed25b3adb36779cf8e15bfe25282dc15",
+    "scripts/run_from_drawing.py": "c7749b7015c17d3e28555ef4b55b9b4c3d0b6b66d34f61238841d9230ed7e656",
+    "scripts/run_insertion.py": "21a6e2ec9b9850ce7e6317c26f757da376055df68ac26f191f4e8a949ff53832",
+    "scripts/run_perception_demo.py": "0a06636cc8b2f91868e0558ff63900d77135e953c5b1c8a0bac460d787a36241",
+    "scripts/seat_guard.py": "f9fc5b1091e4532ef741c43846ca51ad8d1dfadb17754162c7649fc51b751710",
+    "scripts/serve_demo.py": "2e89a112a94271ef93d377f6289e846ccfb1211d5a60ecd1c3176582b806b1ff",
+    "scripts/set_gui_view.py": "6094c708c50ced2ebeeba3b1034e685d0d5226dbb18c909a120aad13b7cbdc08",
+    "scripts/simulation_budget.py": "61832136d52ff17e9ba3f849c16d2a7b0279a8ecb9c9ccf4ca414f51e2772b31",
+    "scripts/socket_insert_live.py": "97b941f9301e2a680c7cc81023c21fae8304ee059ffc805f304714155d640670",
+    "scripts/socket_plan_worker.py": "3646d216336592b3c6e227db82e7504a528658491890ca059af7f2573ea28b40",
+    "scripts/start_desktop.py": "96aa17c4bac2de4bb679f90f92a2b70a2b674ab06022cae7541ab4bcd77ad326",
+    "scripts/stepped_wire_profile.py": "bda937b8dcd7eb9681f5a0875c673014bb149c36e2f3c2d5d3a70c7673b1c8f7",
+    "scripts/tail_support_stage.py": "f77a8eba68a6fa4a86982c9129b4f51cb9dc40d51b662bac43cdb01300aaf292",
+    "scripts/task_schema.py": "fb68013c4154215c3320f98db837f3ac40f6eedb783a3743970fd470d50924e4",
+    "scripts/top_pickup_live.py": "8705489d93e4ad70a7824891b426c0656f731f3492ce73ba0e1d2a1ba84cc7cf",
+    "scripts/top_pickup_plan.py": "2bc5a4c95c760e33d4799ce14c2af0adfc4d161743e0d9ea17c7e5a0a9504cb2",
+    "scripts/top_socket_plan.py": "f66e789b80ec93daaeece9e9deb081e9a856054b9f291809a3e6e473f995d42a",
+    "scripts/wire_contact_profile.py": "bf847a6e101e8eceed282c836207141e648a7e362cd1a44d0128a6f9e956c588",
+    "scripts/wire_preshape.py": "2b1b02480cac6cfff477dddde34845ebeeda2c1d0bc5a088a059d9dbc42cccd8",
+    "scripts/wire_support_vision.py": "752a985c78c50a6f606feddffd44b0868254a52589e7571179873da92685a446"
+  },
+  "method_sha256": "f3329717f588d1d4ec2aa5e82926bcfd8ab139ec4975e175de5031fe6bf9b466",
+  "world_sha256": "5e4740dba9be5178246400d1547a3cbec1a82d2e3e980ae33870a059d2db5205",
+  "server_pid": 150387,
+  "overview": {
+    "source": "registered_rgbd_color_and_marker",
+    "required_plugs": [
+      "P3"
+    ],
+    "frame": "world",
+    "sensor_stamp_ns": 3000000000,
+    "stable_frames": 3,
+    "connectors": [
+      {
+        "plug_id": "P3",
+        "surface_xyz_m": [
+          -0.26232280592575885,
+          0.2711989300591265,
+          0.1427284121513367
+        ],
+        "yaw_rad": 2.508843874378445,
+        "pixel_uv": [
+          167.54336547851562,
+          214.03179931640625
+        ],
+        "depth_m": 0.7572715878486633,
+        "marker_pixels": 38,
+        "pose_6d": {
+          "center_xyz_m": [
+            -0.26128454151022207,
+            0.2737566393052907,
+            0.1328995973143661
+          ],
+          "rotation_world_from_connector": [
+            [
+              -0.7908184760570937,
+              -0.10187498765861484,
+              -0.6035127379072398
+            ],
+            [
+              0.6115813665515129,
+              -0.17014034886409887,
+              -0.7726710126408177
+            ],
+            [
+              -0.02396601789451156,
+              -0.9801396576906576,
+              0.19685497557420312
+            ]
+          ],
+          "visible_face": "y_negative",
+          "surface_normal_world": [
+            0.10187498765861484,
+            0.17014034886409887,
+            0.9801396576906576
+          ],
+          "grasp_tcp_pose": [
+            [
+              -0.6035127379072398,
+              -0.7908184760570937,
+              -0.10187498765861484,
+              -0.2610807915349048
+            ],
+            [
+              -0.7726710126408177,
+              0.6115813665515129,
+              -0.17014034886409887,
+              0.2740969200030189
+            ],
+            [
+              0.19685497557420312,
+              -0.02396601789451156,
+              -0.9801396576906576,
+              0.1348598766297474
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "plane_rms_m": 0.00035635227981462237,
+          "plane_inliers": 257,
+          "face_code_pixels": 34,
+          "method": "Known face code + white X marker + RGB-D plane; ideal camera calibration"
+        }
+      }
+    ],
+    "scope": "Coded prototype housings: full pose and candidate grasp; no holding validation"
+  },
+  "inspection": {
+    "source": "registered_rgbd_end_tags",
+    "required_plugs": [
+      "P3"
+    ],
+    "frame": "world",
+    "sensor_stamp_ns": 6000000000,
+    "stable_frames": 3,
+    "connectors": [
+      {
+        "plug_id": "P3",
+        "surface_xyz_m": [
+          -0.27865257682626754,
+          0.28431917097162207,
+          0.13179924668527837
+        ],
+        "yaw_rad": 2.5132183222203337,
+        "pixel_uv": [
+          885.2424926757812,
+          1011.073486328125
+        ],
+        "pose_6d": {
+          "center_xyz_m": [
+            -0.26220196536041246,
+            0.2723656995629311,
+            0.13258308575108518
+          ],
+          "rotation_world_from_connector": [
+            [
+              -0.8083838558159744,
+              -0.08748133401668992,
+              -0.582119023787025
+            ],
+            [
+              0.5873941724172477,
+              -0.18458517044063874,
+              -0.7879697970504058
+            ],
+            [
+              -0.03851789021163633,
+              -0.978915385031853,
+              0.20060169760394259
+            ]
+          ],
+          "marker_id": 4,
+          "plane_rms_m": 3.857836116158068e-06,
+          "plane_inliers": 1636,
+          "maximum_corner_fit_error_m": 0.00018886025785379217,
+          "method": "Known 16 mm ArUco end tag, RGB-D plane and corner-ray intersections; ideal calibration"
+        }
+      }
+    ],
+    "scope": "Coded prototype housings: full pose and candidate grasp; no holding validation"
+  },
+  "native_after_both_observations": {
+    "time_s": 103962.657617734,
+    "sim_time_s": 6.0736,
+    "arms": {
+      "left_arm": {
+        "q_rad": [
+          0.0,
+          -1.1066401204112821e-06,
+          -1.14947209736704e-15,
+          0.0,
+          -1.4315783627982784e-11,
+          0.0
+        ],
+        "fingers": [
+          0.018020106874570323,
+          0.018019904442600248
+        ],
+        "tcp": [
+          0.08000000000000054,
+          -0.3,
+          1.2800000000000002
+        ],
+        "tcp_rotation_world": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            1.3249773023540913e-15
+          ],
+          [
+            1.2246467991473532e-16,
+            -1.0,
+            -1.6226292122708326e-31
+          ],
+          [
+            1.3249773023540913e-15,
+            1.0947644252537633e-47,
+            1.0
+          ]
+        ],
+        "fk_native_error_m": 8.980870094421657e-07,
+        "command_q_rad": [
+          0.0,
+          -4.343697276865122e-16,
+          -8.6756140466048845e-16,
+          0.0,
+          -1.0588358315133384e-15,
+          0.0
+        ],
+        "command_tcp_pose": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            2.360766963860339e-15,
+            0.08000000000000096
+          ],
+          [
+            1.2246467991473532e-16,
+            -1.0,
+            -2.8911057058243795e-31,
+            -0.3
+          ],
+          [
+            2.360766963860339e-15,
+            0.0,
+            1.0,
+            1.28
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "right_arm": {
+        "q_rad": [
+          0.0,
+          -2.0567308095780746e-06,
+          3.2742751244471833e-07,
+          0.0,
+          -2.2113503231389e-06,
+          0.0
+        ],
+        "fingers": [
+          0.018047246132887152,
+          0.018057361186835565
+        ],
+        "tcp": [
+          0.2299979691801611,
+          0.44,
+          1.2799998971608768
+        ],
+        "tcp_rotation_world": [
+          [
+            0.9999999999908917,
+            0.0,
+            -4.2680741943365965e-06
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            4.2680741943365965e-06,
+            0.0,
+            0.9999999999908917
+          ]
+        ],
+        "fk_native_error_m": 1.645254818163893e-07,
+        "command_q_rad": [
+          0.0,
+          -3.816903824255258e-16,
+          -7.678356214735338e-16,
+          0.0,
+          -8.990634625671845e-16,
+          0.0
+        ],
+        "command_tcp_pose": [
+          [
+            1.0,
+            0.0,
+            -2.048589466466244e-15,
+            0.2299999999999992
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.44
+          ],
+          [
+            2.048589466466244e-15,
+            0.0,
+            1.0,
+            1.28
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    "evaluation_poses": {
+      "left_arm": {
+        "xyz": [
+          0.03,
+          -0.3,
+          0.12
+        ],
+        "q": [
+          0.0,
+          0.0,
+          1.0,
+          6.123233995736766e-17
+        ]
+      },
+      "right_arm": {
+        "xyz": [
+          0.28,
+          0.44,
+          0.12
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "conveyor_carrier": {
+        "xyz": [
+          -3.712102161718535e-07,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "wire_harness_multi": {
+        "xyz": [
+          -0.27740943447161065,
+          0.06756397000268814,
+          0.1270180227579608
+        ],
+        "q": [
+          -0.0002481894430488483,
+          0.0012649215158990323,
+          0.9812914179467136,
+          -0.1925240022430647
+        ]
+      },
+      "left_arm_rv4frl_base": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_shoulder": {
+        "xyz": [
+          3.469446951953614e-18,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_upper_arm": {
+        "xyz": [
+          3.469446951953614e-18,
+          0.0,
+          0.35
+        ],
+        "q": [
+          0.0,
+          -1.0859239939556287e-16,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_elbow": {
+        "xyz": [
+          -6.245004513516506e-17,
+          0.0,
+          0.6599999999999999
+        ],
+        "q": [
+          0.0,
+          -3.977795631944503e-16,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_forearm": {
+        "xyz": [
+          -0.05000000000000006,
+          0.0,
+          0.6599999999999999
+        ],
+        "q": [
+          0.0,
+          -3.977795631944503e-16,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_wrist": {
+        "xyz": [
+          -0.05000000000000032,
+          0.0,
+          0.995
+        ],
+        "q": [
+          5.473822126268817e-48,
+          -6.624886511770456e-16,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_rv4frl_hand_flange": {
+        "xyz": [
+          -0.05000000000000043,
+          0.0,
+          1.08
+        ],
+        "q": [
+          5.473822126268817e-48,
+          -6.624886511770456e-16,
+          0.0,
+          1.0
+        ]
+      },
+      "left_arm_finger_left": {
+        "xyz": [
+          -0.08002091471697086,
+          0.0,
+          1.0799999114465177
+        ],
+        "q": [
+          5.877471754111438e-39,
+          -5.533178929942623e-07,
+          -1.232595164407831e-32,
+          0.9999999999998469
+        ]
+      },
+      "left_arm_finger_right": {
+        "xyz": [
+          -0.019980323609877535,
+          0.0,
+          1.0799999778895844
+        ],
+        "q": [
+          0.0,
+          -5.533178920453975e-07,
+          -1.232595164407831e-32,
+          0.9999999999998469
+        ]
+      },
+      "right_arm_rv4frl_base": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "right_arm_rv4frl_shoulder": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "right_arm_rv4frl_upper_arm": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.35
+        ],
+        "q": [
+          0.0,
+          -1.0283625584422862e-06,
+          0.0,
+          0.9999999999994712
+        ]
+      },
+      "right_arm_rv4frl_elbow": {
+        "xyz": [
+          -6.375847862449824e-07,
+          0.0,
+          0.6599999999993442
+        ],
+        "q": [
+          0.0,
+          -1.0283625617335515e-06,
+          0.0,
+          0.9999999999994712
+        ]
+      },
+      "right_arm_rv4frl_forearm": {
+        "xyz": [
+          -0.050000637584680485,
+          0.0,
+          0.659999897163088
+        ],
+        "q": [
+          0.0,
+          -1.0283625617335515e-06,
+          0.0,
+          0.9999999999994712
+        ]
+      },
+      "right_arm_rv4frl_wrist": {
+        "xyz": [
+          -0.050001326587596845,
+          0.0,
+          0.9949998971623796
+        ],
+        "q": [
+          0.0,
+          -2.1340370971731577e-06,
+          0.0,
+          0.9999999999977229
+        ]
+      },
+      "right_arm_rv4frl_hand_flange": {
+        "xyz": [
+          -0.05000168937390337,
+          0.0,
+          1.0799998971616054
+        ],
+        "q": [
+          0.0,
+          -2.1340370971731577e-06,
+          0.0,
+          0.9999999999977229
+        ]
+      },
+      "right_arm_finger_left": {
+        "xyz": [
+          -0.08004868823176109,
+          0.0,
+          1.0799997951305915
+        ],
+        "q": [
+          0.0,
+          -1.9703054398078652e-06,
+          0.0,
+          0.9999999999980589
+        ]
+      },
+      "right_arm_finger_right": {
+        "xyz": [
+          -0.019945158632526716,
+          0.0,
+          1.0800000319752145
+        ],
+        "q": [
+          0.0,
+          -1.9703054363288265e-06,
+          0.0,
+          0.9999999999980589
+        ]
+      },
+      "carrier": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "junction": {
+        "xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "P1_wire_0": {
+        "xyz": [
+          0.011627027945667612,
+          -0.004338207710358144,
+          -0.0014973530496952825
+        ],
+        "q": [
+          0.006837093628323123,
+          0.05973700820443785,
+          -0.17705985193736531,
+          0.9823617219911503
+        ]
+      },
+      "P1_wire_1": {
+        "xyz": [
+          0.03520724512865686,
+          -0.012333094867360561,
+          -0.002985272929785829
+        ],
+        "q": [
+          -0.001393941837217138,
+          -0.00017284361921178,
+          -0.14789391446422137,
+          0.9890022331196662
+        ]
+      },
+      "P1_wire_2": {
+        "xyz": [
+          0.059230416151198395,
+          -0.019240224443186016,
+          -0.0029674690193237374
+        ],
+        "q": [
+          -0.0013967268977627947,
+          -0.00015334175675417886,
+          -0.13115098763025626,
+          0.9913614094183241
+        ]
+      },
+      "P1_wire_3": {
+        "xyz": [
+          0.08341489098669724,
+          -0.02557110317890854,
+          -0.002951147075444957
+        ],
+        "q": [
+          -0.001397934063791296,
+          -0.00014520881620633252,
+          -0.1241788243798336,
+          0.9922588595071316
+        ]
+      },
+      "P1_wire_4": {
+        "xyz": [
+          0.10763025203893989,
+          -0.03178504154064718,
+          -0.002935114057358079
+        ],
+        "q": [
+          -0.001397609694793583,
+          -0.0001482379330068857,
+          -0.12635321296211283,
+          0.9919843195770804
+        ]
+      },
+      "P1_wire_5": {
+        "xyz": [
+          0.13103845211411624,
+          -0.040247160070343846,
+          -0.0029132842147543553
+        ],
+        "q": [
+          -0.001377868458118493,
+          -0.0002547503081253885,
+          -0.21841880801543515,
+          0.9758541186498634
+        ]
+      },
+      "P1_wire_6": {
+        "xyz": [
+          0.1531024822185153,
+          -0.05146103463230642,
+          -0.00046911824454967666
+        ],
+        "q": [
+          -0.01583286774000221,
+          -0.09677446179484349,
+          -0.24569537428850846,
+          0.9643743085009367
+        ]
+      },
+      "P1_wire_7": {
+        "xyz": [
+          0.16967949834857482,
+          -0.047269190332472205,
+          0.006524875186928125
+        ],
+        "q": [
+          -0.4711873891996659,
+          -0.4372078546445302,
+          0.2757483150125316,
+          0.7146989596074936
+        ]
+      },
+      "P1_wire_8": {
+        "xyz": [
+          0.18215296113959578,
+          -0.02667840935495555,
+          0.009884509238524436
+        ],
+        "q": [
+          0.5655363631702509,
+          0.26844097881744716,
+          -0.40225829307960936,
+          -0.6680541358843989
+        ]
+      },
+      "P1": {
+        "xyz": [
+          0.1994512620647073,
+          0.0006569149777168048,
+          0.006754201149600986
+        ],
+        "q": [
+          0.5655363631702341,
+          0.2684409788173954,
+          -0.4022582930796266,
+          -0.6680541358843262
+        ]
+      },
+      "P2_wire_0": {
+        "xyz": [
+          -0.005327171096739192,
+          0.011204732612977386,
+          -0.0015248656261256377
+        ],
+        "q": [
+          0.053800704640572336,
+          -0.02925348130091945,
+          -0.843937839951119,
+          -0.53293399245178
+        ]
+      },
+      "P2_wire_1": {
+        "xyz": [
+          -0.01664861670470122,
+          0.03337841564785074,
+          -0.003078010681209803
+        ],
+        "q": [
+          0.002325779135870185,
+          0.0017039484072844972,
+          -0.8600977136399803,
+          -0.5101211721762923
+        ]
+      },
+      "P2_wire_2": {
+        "xyz": [
+          -0.028754970753425535,
+          0.05525111282810563,
+          -0.003134403395709806
+        ],
+        "q": [
+          0.002304411645246243,
+          0.0017088466270653903,
+          -0.8628326960328279,
+          -0.505481461763827
+        ]
+      },
+      "P2_wire_3": {
+        "xyz": [
+          -0.04107736935687853,
+          0.0770029615312246,
+          -0.0031904765115726846
+        ],
+        "q": [
+          0.002285841319048003,
+          0.0017129494487513346,
+          -0.8651067724940328,
+          -0.5015796177264445
+        ]
+      },
+      "P2_wire_4": {
+        "xyz": [
+          -0.05321531254554937,
+          0.09885615984558864,
+          -0.0032468049448658304
+        ],
+        "q": [
+          0.0023385991610030904,
+          0.001702461300178245,
+          -0.8585466154809333,
+          -0.5127273560340988
+        ]
+      },
+      "P2_wire_5": {
+        "xyz": [
+          -0.06271111830122697,
+          0.1218411830456422,
+          -0.003282758803954844
+        ],
+        "q": [
+          0.00190117709075475,
+          0.002042774371576133,
+          -0.8017004738773229,
+          -0.5977194682988056
+        ]
+      },
+      "P2_wire_6": {
+        "xyz": [
+          -0.06707489861263663,
+          0.14617724343808997,
+          -0.0015749987716712766
+        ],
+        "q": [
+          -0.06000947462970914,
+          0.03654019394077835,
+          -0.7283467431460828,
+          -0.6815971676363671
+        ]
+      },
+      "P2_wire_7": {
+        "xyz": [
+          -0.07945118058709347,
+          0.15854453388849207,
+          0.00484541599422364
+        ],
+        "q": [
+          -0.15122885866732952,
+          0.6016295945675432,
+          -0.7754153376700945,
+          -0.11790978480441791
+        ]
+      },
+      "P2_wire_8": {
+        "xyz": [
+          -0.10335616304643058,
+          0.15670870013877722,
+          0.008574698767872646
+        ],
+        "q": [
+          -0.016056171716195226,
+          0.6256223069640086,
+          -0.7756069560669124,
+          0.08229688985271116
+        ]
+      },
+      "P2": {
+        "xyz": [
+          -0.13539917542900326,
+          0.15190681607631226,
+          0.006037521812914615
+        ],
+        "q": [
+          -0.01605617171619858,
+          0.6256223069640001,
+          -0.7756069560668976,
+          0.08229688985269887
+        ]
+      },
+      "P3_wire_0": {
+        "xyz": [
+          -0.007958759153821715,
+          -0.009531997620504912,
+          -0.0014315179955221302
+        ],
+        "q": [
+          0.05045823713328328,
+          0.027493837453083942,
+          -0.9042091538555672,
+          0.4232066413601086
+        ]
+      },
+      "P3_wire_1": {
+        "xyz": [
+          -0.023484112296407067,
+          -0.029013692505797967,
+          -0.002876308602320979
+        ],
+        "q": [
+          -0.0007371443503539796,
+          0.0026838430163133088,
+          -0.8959112339133293,
+          0.44422439662040797
+        ]
+      },
+      "P3_wire_2": {
+        "xyz": [
+          -0.038559500095320304,
+          -0.04895676461260931,
+          -0.002863912541751293
+        ],
+        "q": [
+          -0.0021334181326053982,
+          0.0019716838485182874,
+          -0.8946213010278543,
+          0.4468157212286762
+        ]
+      },
+      "P3_wire_3": {
+        "xyz": [
+          -0.05339862307553178,
+          -0.06907512899070098,
+          -0.002812112402973549
+        ],
+        "q": [
+          -0.0021739762782863005,
+          0.0019611764882467315,
+          -0.8906233284645444,
+          0.4547323546974187
+        ]
+      },
+      "P3_wire_4": {
+        "xyz": [
+          -0.06829252755203716,
+          -0.0891520960843051,
+          -0.0027603459134287606
+        ],
+        "q": [
+          -0.002125039550601158,
+          0.0019746072199898794,
+          -0.8958451431849486,
+          0.4443569112382219
+        ]
+      },
+      "P3_wire_5": {
+        "xyz": [
+          -0.0846056687778503,
+          -0.108031222819743,
+          -0.0027050610668976904
+        ],
+        "q": [
+          -0.0020948248942211788,
+          0.0019265799132970134,
+          -0.9219433375650729,
+          0.3873143197944945
+        ]
+      },
+      "P3_wire_6": {
+        "xyz": [
+          -0.10549733544023343,
+          -0.11990388962664414,
+          -0.002296402464057795
+        ],
+        "q": [
+          -0.014267208505500593,
+          -0.008392558169980923,
+          -0.9927804400127433,
+          0.1187981887779618
+        ]
+      },
+      "P3_wire_7": {
+        "xyz": [
+          -0.11639173123117609,
+          -0.13432240836433648,
+          0.0028850814893119636
+        ],
+        "q": [
+          -0.5203642854559682,
+          0.24970572700802052,
+          -0.6226872765944125,
+          0.5283262400153067
+        ]
+      },
+      "P3_wire_8": {
+        "xyz": [
+          -0.1085665248779436,
+          -0.1564152482555404,
+          0.007234472928226904
+        ],
+        "q": [
+          -0.5442363674399746,
+          0.31918638804173016,
+          -0.3674498619218472,
+          0.683306245411394
+        ]
+      },
+      "P3": {
+        "xyz": [
+          -0.09146498271488279,
+          -0.18402683393844674,
+          0.006056512096741434
+        ],
+        "q": [
+          -0.5442363674399637,
+          0.3191863880417274,
+          -0.36744986192184387,
+          0.6833062454113924
+        ]
+      }
+    },
+    "phase": "inspection_observation"
+  },
+  "measurement_completed": true,
+  "remaining_owned_processes": [],
+  "changed_sources": []
+}

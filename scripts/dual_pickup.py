@@ -33,7 +33,12 @@ from inspection_camera import validate_world_camera
 from nest_aftercare import release_support_and_park
 from pick_wire import evaluation_state
 from plan_wire_pickup import plan_wire_pickup, wire_grasp_target
-from preclose_alignment import correction_budget, correction_path, tracking_compensated_goal
+from preclose_alignment import (
+    correction_budget,
+    correction_path,
+    desired_tool_pose,
+    tracking_compensated_goal,
+)
 from rclpy.signals import SignalHandlerOptions
 from socket_insert_live import insert_after_top_pickup
 from top_pickup_live import top_pickup
@@ -52,6 +57,24 @@ def primary_pickup(
     body[:3, :3], body[:3, 3] = pose["rotation_world_from_connector"], pose["center_xyz_m"]
     grip = rigid_pose(pose["grasp_tcp_pose"])
     relation = np.linalg.inv(rigid_pose(body)) @ grip
+    if getattr(holding_args, "refine_initial_with_inspection", False):
+        checkpoint("primary_initial_inspection")
+        refined = acquire_observation(
+            session, output / "primary_initial_inspection", calibration=calibration
+        )
+        if refined["connectors"][0]["plug_id"] != initial["connectors"][0]["plug_id"]:
+            raise RuntimeError("Initial inspection connector identity mismatch")
+        refined_grip = desired_tool_pose(refined["connectors"][0]["pose_6d"], relation)
+        report["initial_inspection_refinement"] = {
+            "scope": "Fresh inspection RGB-D before any arm motion; overview grasp relation retained",
+            "overview_sensor_stamp_ns": initial["sensor_stamp_ns"],
+            "inspection_sensor_stamp_ns": refined["sensor_stamp_ns"],
+            "inspection_stable_frames": refined["stable_frames"],
+            "overview_grasp_tcp_pose": grip.tolist(),
+            "refined_grasp_tcp_pose": refined_grip.tolist(),
+            "connector_from_tool": relation.tolist(),
+        }
+        grip = refined_grip
     hover = grip.copy()
     hover[:3, 3] -= grip[:3, 2] * 0.10
     row = session.snapshot()
@@ -338,6 +361,8 @@ def main():
     parser.add_argument("--top-regrasp", action="store_true")
     parser.add_argument("--insert-after-regrasp", action="store_true")
     parser.add_argument("--centred-grips", action="store_true")
+    parser.add_argument("--refine-initial-with-inspection", action="store_true",
+                        help="Use fresh inspection RGB-D to refine the initial goal before arm motion")
     parser.add_argument("--initial-settle-s", type=float, default=0,
                         help="Physical scene settling before new image acquisition")
     parser.add_argument("--observation-timeout-wall-s", type=float, default=90,
@@ -413,6 +438,7 @@ def main():
             "insert_after_regrasp": args.insert_after_regrasp,
             "centred_grips": args.centred_grips,
             "initial_settle_s": args.initial_settle_s,
+            "refine_initial_with_inspection": args.refine_initial_with_inspection,
             "observation_timeout_wall_s": args.observation_timeout_wall_s,
             "nest_orientation": args.nest_orientation,
             "support_approach_settle_time_s": 30,
