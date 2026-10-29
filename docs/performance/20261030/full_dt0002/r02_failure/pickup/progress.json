@@ -1,0 +1,217 @@
+{
+  "success": false,
+  "trial_state": "running",
+  "parameters": {
+    "wire_distance_mm": 140.0,
+    "wire_tip_depth_mm": 19.0,
+    "wire_preshape_clearance_m": 0.01,
+    "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
+    "deep_contact_profile": {
+      "scope": "Static bare finger contact geometry only; no wire identity, path, closure, force or holding success",
+      "urdf_sha256": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+      "tip_depth_m": 0.019,
+      "wire_cross_section_m": 0.008,
+      "normal_margin_m": 0.001,
+      "required_local_z_interval_m": [
+        0.056,
+        0.066
+      ],
+      "rest_gap_m": 0.005999999999999998,
+      "fingers": {
+        "left": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        },
+        "right": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        }
+      }
+    },
+    "place_in_nest": false,
+    "after_nest_parking": false,
+    "top_regrasp": false,
+    "insert_after_regrasp": false,
+    "centred_grips": true,
+    "initial_settle_s": 2.5,
+    "refine_initial_with_inspection": true,
+    "observation_timeout_wall_s": 240.0,
+    "nest_orientation": "either",
+    "support_approach_settle_time_s": 30,
+    "nest_finger_envelope": null,
+    "rigid_nest_transfer": false,
+    "feedback_paced_transfer": false
+  },
+  "world_sha256": "5e4740dba9be5178246400d1547a3cbec1a82d2e3e980ae33870a059d2db5205",
+  "board_sha256": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "drawing_plan_sha256": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+  "model_sha256": {
+    "left_arm": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "final_acceptance_eligible": false,
+  "inactive_payload_contact_guard": {
+    "active_plugs": [
+      "P3"
+    ],
+    "checked_events": 1083210,
+    "scope": "Fixed intended branch set for arm and passive-nest contacts; ordinary supply-carrier contact is not rejected. Counts may include sensor duplicates, never forces. Active-plug role checks remain separate."
+  },
+  "phase": "primary_preclose_2",
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "initial_inspection_refinement": {
+    "scope": "Fresh inspection RGB-D before any arm motion; overview grasp relation retained",
+    "overview_sensor_stamp_ns": 3000000000,
+    "inspection_sensor_stamp_ns": 6000000000,
+    "inspection_stable_frames": 3,
+    "overview_grasp_tcp_pose": [
+      [
+        -0.6035127379072398,
+        -0.7908184760570937,
+        -0.10187498765861484,
+        -0.2610807915349048
+      ],
+      [
+        -0.7726710126408177,
+        0.6115813665515129,
+        -0.17014034886409887,
+        0.2740969200030189
+      ],
+      [
+        0.19685497557420312,
+        -0.02396601789451156,
+        -0.9801396576906576,
+        0.1348598766297474
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "refined_grasp_tcp_pose": [
+      [
+        -0.5821190237870251,
+        -0.8083838558159744,
+        -0.08748133401668994,
+        -0.26202700269237905
+      ],
+      [
+        -0.787969797050406,
+        0.5873941724172477,
+        -0.18458517044063877,
+        0.27273486990381235
+      ],
+      [
+        0.2006016976039426,
+        -0.03851789021163632,
+        -0.978915385031853,
+        0.13454091652114888
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "connector_from_tool": [
+      [
+        -2.4555466681919485e-17,
+        1.0,
+        -2.2554574956642368e-17,
+        -5.551115123125783e-17
+      ],
+      [
+        1.6814732454978914e-17,
+        -3.715676758203179e-18,
+        1.0,
+        -0.0020000000000000018
+      ],
+      [
+        1.0000000000000002,
+        2.3209752593498285e-17,
+        4.982722224696078e-17,
+        1.3877787807814457e-17
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 293,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "primary_preclose_checks": [
+    {
+      "success": true,
+      "position_error_m": 0.0013562747891752137,
+      "angle_error_rad": 0.006282522912570035,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    },
+    {
+      "success": true,
+      "position_error_m": 0.0005599241066325493,
+      "angle_error_rad": 0.0005621955396240075,
+      "scope": "RGB-D-derived alignment only; no force or contact validation",
+      "preferred_alignment": false
+    }
+  ],
+  "primary_correction_budget": {
+    "right_arm": {
+      "translation_m": 0.00467781767098778,
+      "rotation_rad": 0.018345818523692776
+    }
+  }
+}

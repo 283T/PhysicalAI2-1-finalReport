@@ -1,0 +1,35 @@
+{
+  "scope": "Post-trial downsampled trace only; not a causal proof or controller input",
+  "phases": [
+    {
+      "phase": "primary_preclose_0",
+      "samples": 23,
+      "first_sim_time_s": 25.8358,
+      "last_sim_time_s": 28.0466,
+      "tcp_displacement_m": 0.0003389562362189737,
+      "maximum_command_joint_change_rad": 0.0,
+      "initial_tracking_error_m": 0.0016589997368617094,
+      "final_tracking_error_m": 0.0013283988345615776
+    },
+    {
+      "phase": "primary_preclose_1",
+      "samples": 30,
+      "first_sim_time_s": 31.061,
+      "last_sim_time_s": 33.9776,
+      "tcp_displacement_m": 0.0002990805605016831,
+      "maximum_command_joint_change_rad": 0.0,
+      "initial_tracking_error_m": 0.0018964690594443392,
+      "final_tracking_error_m": 0.0016163007612115538
+    },
+    {
+      "phase": "primary_preclose_2",
+      "samples": 30,
+      "first_sim_time_s": 37.0616,
+      "last_sim_time_s": 39.9788,
+      "tcp_displacement_m": 0.0002984549067654178,
+      "maximum_command_joint_change_rad": 0.0,
+      "initial_tracking_error_m": 0.0008733740110031527,
+      "final_tracking_error_m": 0.0005749738950624765
+    }
+  ]
+}

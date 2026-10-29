@@ -330,6 +330,7 @@ class ArmSession:
         settle_time_s=20,
         full_finger_stroke=False,
         feedback_paced=False,
+        require_precision=False,
     ):
         if not np.isfinite(settle_time_s) or not 0 < settle_time_s <= 60:
             raise ValueError("Settling time must be finite and within (0, 60] seconds")
@@ -363,6 +364,7 @@ class ArmSession:
         checks = {
             "phase": phase,
             "settle_time_s": float(settle_time_s),
+            "require_precision": bool(require_precision),
             "arms": screen_paths(state_bounds, full),
             "fixtures": self.fixtures.screen(state_bounds, full, margin=0.001),
             "finger_envelope_mode": "full_mechanical_stroke"
@@ -427,11 +429,12 @@ class ArmSession:
                 raise RuntimeError("Parked arm moved")
             valid = t >= 1 and all(
                 actual["arms"][n]["fk_native_error_m"] < 0.001
-                and np.linalg.norm(np.array(actual["arms"][n]["tcp"]) - g[:3, 3]) < 0.002
+                and np.linalg.norm(np.array(actual["arms"][n]["tcp"]) - g[:3, 3])
+                < (0.0005 if require_precision else 0.002)
                 and np.linalg.norm(
                     rotation_error(g[:3, :3], np.array(actual["arms"][n]["tcp_rotation_world"]))
                 )
-                < 0.025
+                < (0.005 if require_precision else 0.025)
                 and np.max(np.abs(np.array(actual["arms"][n]["q_rad"]) - paths[n][-1])) < 0.01
                 for n, g in goals.items()
             )

@@ -95,6 +95,7 @@ def primary_pickup(
             "primary_" + phase,
             paths[phase],
             cartesian_speed_m_s=0.02 if phase == "approach" else None,
+            require_precision=phase == "approach",
         )
     budget = {}
     for attempt in range(3):
@@ -127,7 +128,10 @@ def primary_pickup(
         q = np.array(actual["q_rad"])
         budget = correction_budget(budget, {name: session.arms[name].forward(q)}, {name: target})
         report["primary_correction_budget"] = budget
-        session.move("primary_correction", {name: correction_path(session.arms[name], q, target)})
+        session.move(
+            "primary_correction", {name: correction_path(session.arms[name], q, target)},
+            require_precision=True,
+        )
     baseline = evaluation_state(session.snapshot(), name, "P3")
     checkpoint("primary_close")
     session.grips[name] = 0
