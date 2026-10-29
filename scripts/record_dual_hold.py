@@ -31,8 +31,11 @@ def main():
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--wall-timeout", type=float, default=5400)
     parser.add_argument("--observation-timeout-wall-s", type=float, default=240)
+    parser.add_argument("--initial-settle-s", type=float, default=0)
     parser.add_argument("--gui-config", type=Path, default=Path("sim/melfa_gui.config"))
     args = parser.parse_args()
+    if not math.isfinite(args.initial_settle_s) or not 0 <= args.initial_settle_s <= 30:
+        parser.error("Initial settle duration must be finite and within 0 to 30 physical seconds")
     if not math.isfinite(args.wall_timeout) or args.wall_timeout <= 0:
         parser.error("Positive finite recorder wall timeout required")
     if not math.isfinite(args.observation_timeout_wall_s) or not 5 <= args.observation_timeout_wall_s <= 300:
@@ -52,6 +55,7 @@ def main():
         "scope": "Actual new Gazebo/ROS execution recorded at wall-clock 1x. Physical contact pickup and dual hold only; no nest transfer, board insertion or final acceptance claim.",
         "trial_state": "starting", "capture_fps": 5, "capture_speed": 1,
         "observation_timeout_wall_s": args.observation_timeout_wall_s,
+        "initial_settle_s": args.initial_settle_s,
         "source_sha256": {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
         "environment": {k: env[k] for k in ("GZ_PARTITION", "ROS_DOMAIN_ID")},
         "raw_video": "raw.mkv", "success": False,
@@ -95,6 +99,7 @@ def main():
                  "--inspection-calibration", str(args.inspection_calibration),
                  "--output", str(args.output / "pickup"), "--wire-distance-mm", "140",
                  "--wire-tip-depth-mm", "19", "--centred-grips",
+                 "--initial-settle-s", str(args.initial_settle_s),
                  "--observation-timeout-wall-s", str(args.observation_timeout_wall_s)],
                 env=env, stdout=control_log, stderr=control_log, start_new_session=True)
             summary.update(trial_state="running", scene_pid=scene.pid,

@@ -1,0 +1,13 @@
+{
+  "scope": "Full-workcell development launch only, not a success claim",
+  "registration_commit": "cc0da3c",
+  "output": "outputs/performance_pickup_dt0005_i20_20261030_r01",
+  "source_and_input_hashes_match": true,
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-146598",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 146599,
+  "capture_pid": 146644,
+  "controller_pid": 146645
+}

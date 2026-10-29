@@ -1,0 +1,42 @@
+[
+  [
+    "scripts/record_dual_hold.py",
+    "nan",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/record_dual_hold.py",
+    "inf",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/record_dual_hold.py",
+    "-1",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/record_dual_hold.py",
+    "31",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/dual_pickup.py",
+    "nan",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/dual_pickup.py",
+    "inf",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/dual_pickup.py",
+    "-1",
+    "rejected before output or simulator creation"
+  ],
+  [
+    "scripts/dual_pickup.py",
+    "31",
+    "rejected before output or simulator creation"
+  ]
+]

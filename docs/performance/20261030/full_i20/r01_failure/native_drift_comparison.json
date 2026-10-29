@@ -1,0 +1,56 @@
+[
+  {
+    "trial": "B_r02",
+    "requested_times_s": [
+      1.6,
+      25.0
+    ],
+    "sample_times_s": [
+      1.6091,
+      25.0303
+    ],
+    "phases": [
+      "primary_observation",
+      "primary_preclose_0"
+    ],
+    "native_center_displacement_m": 0.013003091184248193,
+    "native_rotation_change_rad": 0.30427136623212914,
+    "scope": "Observational nearest-time comparison only; differing controllers/timing prevent a single-factor causal claim"
+  },
+  {
+    "trial": "B_r03",
+    "requested_times_s": [
+      1.6,
+      25.0
+    ],
+    "sample_times_s": [
+      1.6103,
+      25.0353
+    ],
+    "phases": [
+      "primary_observation",
+      "primary_preclose_0"
+    ],
+    "native_center_displacement_m": 0.012937090921185392,
+    "native_rotation_change_rad": 0.3026085435290147,
+    "scope": "Observational nearest-time comparison only; differing controllers/timing prevent a single-factor causal claim"
+  },
+  {
+    "trial": "new_dt0005_i20",
+    "requested_times_s": [
+      1.6,
+      25.0
+    ],
+    "sample_times_s": [
+      1.6415,
+      24.9955
+    ],
+    "phases": [
+      "primary_observation",
+      "primary_preclose_0"
+    ],
+    "native_center_displacement_m": 0.010477119803626686,
+    "native_rotation_change_rad": 0.22306324455584411,
+    "scope": "Observational nearest-time comparison only; differing controllers/timing prevent a single-factor causal claim"
+  }
+]

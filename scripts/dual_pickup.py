@@ -338,6 +338,8 @@ def main():
     parser.add_argument("--top-regrasp", action="store_true")
     parser.add_argument("--insert-after-regrasp", action="store_true")
     parser.add_argument("--centred-grips", action="store_true")
+    parser.add_argument("--initial-settle-s", type=float, default=0,
+                        help="Physical scene settling before new image acquisition")
     parser.add_argument("--observation-timeout-wall-s", type=float, default=90,
                         help="Wall wait for fresh stable RGB-D; physical acceptance is unchanged")
     parser.add_argument(
@@ -349,6 +351,8 @@ def main():
     parser.add_argument("--rigid-nest-transfer", action="store_true")
     parser.add_argument("--feedback-paced-transfer", action="store_true")
     args = parser.parse_args()
+    if not np.isfinite(args.initial_settle_s) or not 0 <= args.initial_settle_s <= 30:
+        parser.error("Initial settle duration must be finite and within 0 to 30 physical seconds")
     if not np.isfinite(args.observation_timeout_wall_s) or not 5 <= args.observation_timeout_wall_s <= 300:
         parser.error("Observation wall timeout must be finite and within 5 to 300 seconds")
     if args.rigid_nest_transfer and not args.place_in_nest:
@@ -408,6 +412,7 @@ def main():
             "top_regrasp": args.top_regrasp,
             "insert_after_regrasp": args.insert_after_regrasp,
             "centred_grips": args.centred_grips,
+            "initial_settle_s": args.initial_settle_s,
             "observation_timeout_wall_s": args.observation_timeout_wall_s,
             "nest_orientation": args.nest_orientation,
             "support_approach_settle_time_s": 30,
@@ -446,6 +451,9 @@ def main():
             session.observation_timeout_wall_s = args.observation_timeout_wall_s
             session.contact_guards.append(InactivePayloadContactGuard({"P3"}, report))
             session.wait_ready()
+            if args.initial_settle_s > 0:
+                checkpoint("initial_scene_settle")
+                session.dwell("initial_scene_settle", args.initial_settle_s)
             guards = run(session, args, report, checkpoint, guard_stream)
             if args.place_in_nest:
                 place_in_nest(session, args, report, checkpoint, guards)

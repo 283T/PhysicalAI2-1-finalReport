@@ -1,0 +1,69 @@
+{
+  "scope": "Post-trial nearest-time native evaluation only; never used as robot targets, no verdict override",
+  "observations": [
+    {
+      "phase": "primary_observation",
+      "sensor_time_s": 1.6,
+      "nearest_native_time_s": 1.6415,
+      "time_mismatch_s": 0.04149999999999987,
+      "vision_vs_native_position_m": 0.0005380530866819887,
+      "vision_vs_native_angle_rad": 0.047131134233824694,
+      "native_center_world": [
+        -0.27018592030312477,
+        0.2792307871508233,
+        0.13443669268707495
+      ],
+      "native_rotation_world": [
+        [
+          -0.645649332765359,
+          -0.09159097584619807,
+          -0.7581213835812567
+        ],
+        [
+          0.7530853956011964,
+          -0.24081442911682793,
+          -0.6122669333397449
+        ],
+        [
+          -0.12648844228540804,
+          -0.9662398790531396,
+          0.22445750175820972
+        ]
+      ],
+      "vision_method": "Known face code + white X marker + RGB-D plane; ideal camera calibration"
+    },
+    {
+      "phase": "primary_preclose_0",
+      "sensor_time_s": 25.0,
+      "nearest_native_time_s": 24.9955,
+      "time_mismatch_s": 0.0045000000000001705,
+      "vision_vs_native_position_m": 0.00016033839959596317,
+      "vision_vs_native_angle_rad": 0.002885243524656431,
+      "native_center_world": [
+        -0.26128469850930436,
+        0.2741163450424078,
+        0.13234366333314093
+      ],
+      "native_rotation_world": [
+        [
+          -0.7859673324027656,
+          -0.10469704202531166,
+          -0.609338889114102
+        ],
+        [
+          0.6176993518128079,
+          -0.17523378902567951,
+          -0.766642439442056
+        ],
+        [
+          -0.0265115666394815,
+          -0.9789441498751575,
+          0.20239932870311758
+        ]
+      ],
+      "vision_method": "Known 16 mm ArUco end tag, RGB-D plane and corner-ray intersections; ideal calibration"
+    }
+  ],
+  "native_center_displacement_m": 0.010477119803626686,
+  "native_rotation_change_rad": 0.22306324455584411
+}
