@@ -1,0 +1,12 @@
+{
+  "scope": "Launch only; outcome pending",
+  "registration_commit": "2c75a9d",
+  "output": "outputs/performance_pickup_dt0005_i20_precision_20261030_r01",
+  "environment": {
+    "GZ_PARTITION": "record-dual-hold-153748",
+    "ROS_DOMAIN_ID": "174"
+  },
+  "scene_pid": 153749,
+  "capture_pid": 153794,
+  "controller_pid": 153795
+}

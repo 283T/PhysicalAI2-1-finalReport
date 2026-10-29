@@ -1,0 +1,1522 @@
+{
+  "success": false,
+  "trial_state": "finished",
+  "parameters": {
+    "wire_distance_mm": 140.0,
+    "wire_tip_depth_mm": 19.0,
+    "wire_preshape_clearance_m": 0.01,
+    "wire_planning_finger_envelope": "measured_support_to_closed_and_measured_parked",
+    "deep_contact_profile": {
+      "scope": "Static bare finger contact geometry only; no wire identity, path, closure, force or holding success",
+      "urdf_sha256": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+      "tip_depth_m": 0.019,
+      "wire_cross_section_m": 0.008,
+      "normal_margin_m": 0.001,
+      "required_local_z_interval_m": [
+        0.056,
+        0.066
+      ],
+      "rest_gap_m": 0.005999999999999998,
+      "fingers": {
+        "left": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        },
+        "right": {
+          "active_local_y_intervals_m": [
+            [
+              -0.025,
+              -0.0049999999999999975
+            ],
+            [
+              0.0049999999999999975,
+              0.025
+            ]
+          ]
+        }
+      }
+    },
+    "place_in_nest": false,
+    "after_nest_parking": false,
+    "top_regrasp": false,
+    "insert_after_regrasp": false,
+    "centred_grips": true,
+    "initial_settle_s": 2.5,
+    "refine_initial_with_inspection": true,
+    "observation_timeout_wall_s": 240.0,
+    "nest_orientation": "either",
+    "support_approach_settle_time_s": 30,
+    "nest_finger_envelope": null,
+    "rigid_nest_transfer": false,
+    "feedback_paced_transfer": false
+  },
+  "world_sha256": "3a087f8380e08ed97d5d63104b80841daa1308d8353a254bd5c784e2007cb118",
+  "board_sha256": "cc5d540d9357f06588dfc44d7589344da1a270272d5fc40803b35912865754db",
+  "drawing_plan_sha256": "503e2553cd9d541817f1a51dc2468333b3618ef8f1c12e3e622745bffe4cf637",
+  "model_sha256": {
+    "left_arm": "6f181e19c1ff4a1978aa91337b92eea5a460cd981ccc0b6d50e0679689a0b060",
+    "right_arm": "7c5fac16856745eb8d15e08f64e9ee41cdb39172d7a7b66aaef4d0714e7c9d06"
+  },
+  "scope": "Fixed P3: connector-first dual physical pickup and suspended wire support; no board insertion or all-connectors completion",
+  "final_acceptance_eligible": false,
+  "inactive_payload_contact_guard": {
+    "active_plugs": [
+      "P3"
+    ],
+    "checked_events": 446944,
+    "scope": "Fixed intended branch set for arm and passive-nest contacts; ordinary supply-carrier contact is not rejected. Counts may include sensor duplicates, never forces. Active-plug role checks remain separate."
+  },
+  "phase": "primary_approach",
+  "rest_gaps_m": {
+    "left_arm": 0.005999999999999998,
+    "right_arm": 0.016
+  },
+  "initial_inspection_refinement": {
+    "scope": "Fresh inspection RGB-D before any arm motion; overview grasp relation retained",
+    "overview_sensor_stamp_ns": 3200000000,
+    "inspection_sensor_stamp_ns": 6000000000,
+    "inspection_stable_frames": 3,
+    "overview_grasp_tcp_pose": [
+      [
+        -0.6436261194248948,
+        -0.7577645112524198,
+        -0.10741677653156707,
+        -0.2607214851503546
+      ],
+      [
+        -0.7400381032525699,
+        0.6519779296214124,
+        -0.16513141742538057,
+        0.2754027238145623
+      ],
+      [
+        0.19516409538741986,
+        -0.026790385830704287,
+        -0.9804046364122582,
+        0.1345992137749417
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "refined_grasp_tcp_pose": [
+      [
+        -0.6095906523128359,
+        -0.7859232197127815,
+        -0.10355640650924097,
+        -0.2609448521634633
+      ],
+      [
+        -0.7670072430605577,
+        0.617765771178101,
+        -0.17339360153526148,
+        0.2744405176213034
+      ],
+      [
+        0.2002476609238017,
+        -0.026270604808840716,
+        -0.9793930414381777,
+        0.13437233497346351
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "connector_from_tool": [
+      [
+        -5.640029986462445e-17,
+        1.0000000000000002,
+        -1.8031547659539947e-17,
+        0.0
+      ],
+      [
+        1.2419594053353786e-17,
+        -1.5443698521835197e-17,
+        1.0,
+        -0.0020000000000000295
+      ],
+      [
+        1.0,
+        -7.136005528344274e-17,
+        1.1331832861803166e-17,
+        -2.0816681711721685e-17
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "primary_branch_selection": {
+    "seeds": {
+      "right_arm": 0
+    },
+    "screens": {
+      "hover": {
+        "clear": true,
+        "samples": 293,
+        "margin_per_box_m": 0.005
+      },
+      "approach": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "lift": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      }
+    },
+    "rejected_individual_candidates": [
+      {
+        "arm": "right_arm",
+        "seed": 3,
+        "reason": "Hover IK failed"
+      }
+    ]
+  },
+  "error": "simulation_budget_exhausted before robot convergence in primary_approach",
+  "planning_diagnostics": null,
+  "command_transport": {
+    "refresh_interval_wall_s": 0.1,
+    "published": 53524,
+    "unchanged_suppressed": 2856748
+  },
+  "contacts": [
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 3001,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 2.503,
+      "max_depth_m": 0.00017601500000009526
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_0_collision",
+      "messages": 1927,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 1.021,
+      "max_depth_m": 0.00017601499999998424
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 3226,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 2.503,
+      "max_depth_m": 0.00017601500000048384
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_0_collision",
+      "messages": 1705,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 0.9095,
+      "max_depth_m": 0.00017601500000015077
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 3476,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 2.503,
+      "max_depth_m": 0.00017601500000090017
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_0_collision",
+      "messages": 1453,
+      "first_sim_time_s": 0.0385,
+      "last_sim_time_s": 0.7795,
+      "max_depth_m": 0.00017601500000028955
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 3045,
+      "first_sim_time_s": 0.9685,
+      "last_sim_time_s": 2.503,
+      "max_depth_m": 6.048123932986954e-06
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::housing_collision",
+      "messages": 1898,
+      "first_sim_time_s": 1.119,
+      "last_sim_time_s": 2.0825,
+      "max_depth_m": 6.525674230584838e-07
+    },
+    {
+      "phase": "initial_scene_settle",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::housing_collision",
+      "messages": 2392,
+      "first_sim_time_s": 1.196,
+      "last_sim_time_s": 2.3915,
+      "max_depth_m": 1.7418380835396152e-06
+    },
+    {
+      "phase": "primary_observation",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 1666,
+      "first_sim_time_s": 2.5035,
+      "last_sim_time_s": 3.336,
+      "max_depth_m": 9.400052074746978e-08
+    },
+    {
+      "phase": "primary_observation",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 1666,
+      "first_sim_time_s": 2.5035,
+      "last_sim_time_s": 3.336,
+      "max_depth_m": 4.7759706694669446e-08
+    },
+    {
+      "phase": "primary_observation",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 1660,
+      "first_sim_time_s": 2.5035,
+      "last_sim_time_s": 3.336,
+      "max_depth_m": 1.1342232660773582e-06
+    },
+    {
+      "phase": "primary_observation",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 124,
+      "first_sim_time_s": 2.5035,
+      "last_sim_time_s": 2.5675,
+      "max_depth_m": 1.8251047839180912e-07
+    },
+    {
+      "phase": "primary_observation",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_0_collision",
+      "messages": 11,
+      "first_sim_time_s": 3.042,
+      "last_sim_time_s": 3.047,
+      "max_depth_m": 1.5280518455892261e-06
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 6294,
+      "first_sim_time_s": 3.3365,
+      "last_sim_time_s": 6.483,
+      "max_depth_m": 4.804545979640584e-08
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 6294,
+      "first_sim_time_s": 3.3365,
+      "last_sim_time_s": 6.483,
+      "max_depth_m": 4.717360343152455e-08
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 6294,
+      "first_sim_time_s": 3.3365,
+      "last_sim_time_s": 6.483,
+      "max_depth_m": 5.1247794291206517e-08
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 4333,
+      "first_sim_time_s": 4.3085,
+      "last_sim_time_s": 6.483,
+      "max_depth_m": 7.624289345472407e-07
+    },
+    {
+      "phase": "primary_hover",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 29497,
+      "first_sim_time_s": 6.4835,
+      "last_sim_time_s": 21.2315,
+      "max_depth_m": 4.807977688724152e-08
+    },
+    {
+      "phase": "primary_hover",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 29497,
+      "first_sim_time_s": 6.4835,
+      "last_sim_time_s": 21.2315,
+      "max_depth_m": 4.725727855391104e-08
+    },
+    {
+      "phase": "primary_hover",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 29497,
+      "first_sim_time_s": 6.4835,
+      "last_sim_time_s": 21.2315,
+      "max_depth_m": 3.596104341217765e-08
+    },
+    {
+      "phase": "primary_hover",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 29497,
+      "first_sim_time_s": 6.4835,
+      "last_sim_time_s": 21.2315,
+      "max_depth_m": 1.7758853502330973e-09
+    },
+    {
+      "phase": "primary_hover",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::housing_collision",
+      "messages": 28361,
+      "first_sim_time_s": 7.0515,
+      "last_sim_time_s": 21.2315,
+      "max_depth_m": 2.7987502575904655e-09
+    },
+    {
+      "phase": "primary_approach",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 50026,
+      "first_sim_time_s": 21.232,
+      "last_sim_time_s": 46.2445,
+      "max_depth_m": 2.49200255344334e-08
+    },
+    {
+      "phase": "primary_approach",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 50026,
+      "first_sim_time_s": 21.232,
+      "last_sim_time_s": 46.2445,
+      "max_depth_m": 4.725696211259345e-08
+    },
+    {
+      "phase": "primary_approach",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::housing_collision",
+      "messages": 50026,
+      "first_sim_time_s": 21.232,
+      "last_sim_time_s": 46.2445,
+      "max_depth_m": 2.7855658110004233e-09
+    },
+    {
+      "phase": "primary_approach",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 50026,
+      "first_sim_time_s": 21.232,
+      "last_sim_time_s": 46.2445,
+      "max_depth_m": 3.597407952603271e-08
+    },
+    {
+      "phase": "primary_approach",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 50026,
+      "first_sim_time_s": 21.232,
+      "last_sim_time_s": 46.2445,
+      "max_depth_m": 1.7367639826293413e-09
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::pin_1_collision",
+      "messages": 2001,
+      "first_sim_time_s": 46.245,
+      "last_sim_time_s": 47.245,
+      "max_depth_m": 2.4920120694424397e-08
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_upper_collision",
+      "collision2": "wire_harness_multi::P2::pin_1_collision",
+      "messages": 2001,
+      "first_sim_time_s": 46.245,
+      "last_sim_time_s": 47.245,
+      "max_depth_m": 4.725473607379571e-08
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P3::housing_collision",
+      "messages": 2001,
+      "first_sim_time_s": 46.245,
+      "last_sim_time_s": 47.245,
+      "max_depth_m": 2.7851705004799943e-09
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::pin_1_collision",
+      "messages": 2001,
+      "first_sim_time_s": 46.245,
+      "last_sim_time_s": 47.245,
+      "max_depth_m": 3.597459700098449e-08
+    },
+    {
+      "phase": "final_open",
+      "collision1": "conveyor_carrier::carrier::pallet_main_collision",
+      "collision2": "wire_harness_multi::P1::housing_collision",
+      "messages": 2001,
+      "first_sim_time_s": 46.245,
+      "last_sim_time_s": 47.245,
+      "max_depth_m": 1.7351750036809221e-09
+    }
+  ],
+  "unintended_contacts": [],
+  "stop_diagnostics": {
+    "phase": "primary_approach",
+    "sim_time_s": 46.2445,
+    "command_targets_rad": {
+      "left_arm": [
+        0.0,
+        -2.730786517052275e-15,
+        -5.295836685847988e-15,
+        0.0,
+        -1.114043926553343e-14,
+        0.0
+      ],
+      "right_arm": [
+        -2.8858887954147456,
+        1.355071604585772,
+        1.1529929739850693,
+        0.2963068088938925,
+        0.5061626989777581,
+        2.2448088456774538
+      ]
+    },
+    "goal_tcp_poses": {
+      "right_arm": [
+        [
+          -0.6095898525120318,
+          -0.7859233237138087,
+          -0.10356032520709348,
+          -0.2609123052541212
+        ],
+        [
+          -0.7670069703035421,
+          0.6177657369368768,
+          -0.17339493006607393,
+          0.2744480886901985
+        ],
+        [
+          0.20025114037163494,
+          -0.026268298564569737,
+          -0.9793923918789559,
+          0.1343658065492156
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "last_observation": {
+      "time_s": 106010.321020874,
+      "sim_time_s": 46.2445,
+      "arms": {
+        "left_arm": {
+          "q_rad": [
+            0.0,
+            -1.1043431647242296e-05,
+            2.1674742056489152e-06,
+            0.0,
+            -4.4713370641550584e-10,
+            0.0
+          ],
+          "fingers": [
+            0.018021020351533853,
+            0.018018588160975967
+          ],
+          "tcp": [
+            0.08000786102198053,
+            -0.3,
+            1.2799995562021498
+          ],
+          "tcp_rotation_world": [
+            [
+              -0.9999999999606155,
+              -1.2246467991473532e-16,
+              8.875185162874654e-06
+            ],
+            [
+              1.224646799099121e-16,
+              -1.0,
+              -1.0868967101554525e-21
+            ],
+            [
+              8.875185162874654e-06,
+              -9.403954806485708e-38,
+              0.9999999999606155
+            ]
+          ],
+          "fk_native_error_m": 4.938707624646269e-10,
+          "command_q_rad": [
+            0.0,
+            -2.730786517052275e-15,
+            -5.295836685847988e-15,
+            0.0,
+            -1.114043926553343e-14,
+            0.0
+          ],
+          "command_tcp_pose": [
+            [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.9167062468433694e-14,
+              0.08000000000000669
+            ],
+            [
+              1.2246467991473532e-16,
+              -1.0,
+              -2.347288170102469e-30,
+              -0.3
+            ],
+            [
+              1.9167062468433694e-14,
+              0.0,
+              1.0,
+              1.2799999999999996
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "right_arm": {
+          "q_rad": [
+            -2.885965010232516,
+            1.355745930967887,
+            1.1530600527084354,
+            0.2962203136019792,
+            0.5066121313385006,
+            2.2409526620514235
+          ],
+          "fingers": [
+            0.01805269401517972,
+            0.018048070628556203
+          ],
+          "tcp": [
+            -0.2606060150478585,
+            0.27455995495476837,
+            0.13395828402878446
+          ],
+          "tcp_rotation_world": [
+            [
+              -0.6067288136662043,
+              -0.7882825716511989,
+              -0.10242428373277739
+            ],
+            [
+              -0.769475656242485,
+              0.6147532013185257,
+              -0.17316384125683126
+            ],
+            [
+              0.19946769442041679,
+              -0.02625049903519483,
+              -0.9795527296593103
+            ]
+          ],
+          "fk_native_error_m": 6.19838594137965e-08,
+          "command_q_rad": [
+            -2.8858887954147456,
+            1.355071604585772,
+            1.1529929739850693,
+            0.2963068088938925,
+            0.5061626989777581,
+            2.2448088456774538
+          ],
+          "command_tcp_pose": [
+            [
+              -0.6095898525120318,
+              -0.7859233237138087,
+              -0.10356032520709348,
+              -0.2609123052541212
+            ],
+            [
+              -0.7670069703035421,
+              0.6177657369368768,
+              -0.17339493006607393,
+              0.2744480886901985
+            ],
+            [
+              0.20025114037163494,
+              -0.026268298564569737,
+              -0.9793923918789559,
+              0.1343658065492156
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      },
+      "evaluation_poses": {
+        "left_arm": {
+          "xyz": [
+            0.03,
+            -0.3,
+            0.12
+          ],
+          "q": [
+            0.0,
+            0.0,
+            1.0,
+            6.123233995736766e-17
+          ]
+        },
+        "right_arm": {
+          "xyz": [
+            0.28,
+            0.44,
+            0.12
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "conveyor_carrier": {
+          "xyz": [
+            -4.0809812946208686e-07,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "wire_harness_multi": {
+          "xyz": [
+            -0.2773643031648671,
+            0.0677534449661634,
+            0.1269999989573666
+          ],
+          "q": [
+            -7.59470928014094e-08,
+            7.67736542520626e-08,
+            0.9738907571638312,
+            -0.22701716479343123
+          ]
+        },
+        "left_arm_rv4frl_base": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "left_arm_rv4frl_shoulder": {
+          "xyz": [
+            3.469446951953614e-18,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "left_arm_rv4frl_upper_arm": {
+          "xyz": [
+            3.469446951953614e-18,
+            0.0,
+            0.35
+          ],
+          "q": [
+            0.0,
+            -5.52166353070119e-06,
+            0.0,
+            0.9999999999847556
+          ]
+        },
+        "left_arm_rv4frl_elbow": {
+          "xyz": [
+            -3.4234313887882006e-06,
+            0.0,
+            0.6599999999810969
+          ],
+          "q": [
+            -4.70197740328915e-38,
+            -4.4375925509239045e-06,
+            0.0,
+            0.9999999999901539
+          ]
+        },
+        "left_arm_rv4frl_forearm": {
+          "xyz": [
+            -0.05000342342941956,
+            0.0,
+            0.6599995562218418
+          ],
+          "q": [
+            -4.70197740328915e-38,
+            -4.4375925509239045e-06,
+            0.0,
+            0.9999999999901539
+          ]
+        },
+        "left_arm_rv4frl_wrist": {
+          "xyz": [
+            -0.05000639661642865,
+            0.0,
+            0.9949995562086481
+          ],
+          "q": [
+            -4.70197740328915e-38,
+            -4.4375925814810204e-06,
+            0.0,
+            0.9999999999901539
+          ]
+        },
+        "left_arm_rv4frl_hand_flange": {
+          "xyz": [
+            -0.0500071510071675,
+            0.0,
+            1.0799995562053004
+          ],
+          "q": [
+            -4.70197740328915e-38,
+            -4.4375925814810204e-06,
+            0.0,
+            0.9999999999901539
+          ]
+        },
+        "left_arm_finger_left": {
+          "xyz": [
+            -0.08002817137447839,
+            0.0,
+            1.0799992897621404
+          ],
+          "q": [
+            0.0,
+            -4.437601491437255e-06,
+            -1.232595164407831e-32,
+            0.9999999999901538
+          ]
+        },
+        "left_arm_finger_right": {
+          "xyz": [
+            -0.019988476656391894,
+            0.0,
+            1.0799998226266188
+          ],
+          "q": [
+            4.70197740328915e-38,
+            -4.4376014712262e-06,
+            -1.232595164407831e-32,
+            0.9999999999901538
+          ]
+        },
+        "right_arm_rv4frl_base": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "right_arm_rv4frl_shoulder": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.991842951274052,
+            -0.12746591704443402
+          ]
+        },
+        "right_arm_rv4frl_upper_arm": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.3499999999999999
+          ],
+          "q": [
+            -0.6220220786072902,
+            -0.07993873869097338,
+            0.772554819798181,
+            -0.09928435016739774
+          ]
+        },
+        "right_arm_rv4frl_elbow": {
+          "xyz": [
+            -0.29301787920492733,
+            -0.07657876725787599,
+            0.4161529657045746
+          ],
+          "q": [
+            0.9426116209851351,
+            0.121139108109711,
+            -0.30860288586108037,
+            0.03965989546598615
+          ]
+        },
+        "right_arm_rv4frl_forearm": {
+          "xyz": [
+            -0.3320268639617996,
+            -0.08677348897144127,
+            0.44572265892966056
+          ],
+          "q": [
+            0.9501680971608074,
+            -0.019287586079327634,
+            -0.2993715492122684,
+            0.08476586390339746
+          ]
+        },
+        "right_arm_rv4frl_wrist": {
+          "xyz": [
+            -0.5237059912067755,
+            -0.13686791800511622,
+            0.17558444473143264
+          ],
+          "q": [
+            0.9948717571366905,
+            0.002570784412413081,
+            -0.05170022029622899,
+            0.08689456335456267
+          ]
+        },
+        "right_arm_rv4frl_hand_flange": {
+          "xyz": [
+            -0.5324120723492364,
+            -0.15158693774468512,
+            0.09232250240152928
+          ],
+          "q": [
+            -0.43533628227916527,
+            0.8945717892718338,
+            -0.055728993101365844,
+            -0.08436773375083992
+          ]
+        },
+        "right_arm_finger_left": {
+          "xyz": [
+            -0.5141781923209443,
+            -0.12846201020283815,
+            0.08632793552330095
+          ],
+          "q": [
+            -0.43533689504088613,
+            0.8945715145360068,
+            -0.05572903477035774,
+            -0.08436745747312605
+          ]
+        },
+        "right_arm_finger_right": {
+          "xyz": [
+            -0.5506430499234104,
+            -0.17470816945600287,
+            0.09831609486932447
+          ],
+          "q": [
+            -0.43533661648556066,
+            0.8945716394251854,
+            -0.05572901581548522,
+            -0.08436758310676772
+          ]
+        },
+        "carrier": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "junction": {
+          "xyz": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "q": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "P1_wire_0": {
+          "xyz": [
+            0.011302063665499573,
+            -0.0051310384147906785,
+            -0.001478414124112093
+          ],
+          "q": [
+            0.004757149789153678,
+            0.05958021486106781,
+            -0.2106361531526872,
+            0.9757356089166932
+          ]
+        },
+        "P1_wire_1": {
+          "xyz": [
+            0.034365442060157514,
+            -0.014495463528878316,
+            -0.002956827497800879
+          ],
+          "q": [
+            -0.005344844620214898,
+            0.0009325974055666596,
+            -0.17189098432077946,
+            0.9851010366491847
+          ]
+        },
+        "P1_wire_2": {
+          "xyz": [
+            0.057969601533901904,
+            -0.02272846941635509,
+            -0.002956837818495109
+          ],
+          "q": [
+            -0.005350384101836062,
+            0.000879544810057779,
+            -0.16212758051517798,
+            0.9867549074756019
+          ]
+        },
+        "P1_wire_3": {
+          "xyz": [
+            0.08183194865756505,
+            -0.030160527167651136,
+            -0.002956856794046614
+          ],
+          "q": [
+            -0.005365134938658693,
+            0.0007513661337726841,
+            -0.1386341391563667,
+            0.9903288475230814
+          ]
+        },
+        "P1_wire_4": {
+          "xyz": [
+            0.10583428727099858,
+            -0.03715127699754947,
+            -0.0029566286280565263
+          ],
+          "q": [
+            -0.00536464907669854,
+            0.0007701527696290239,
+            -0.1438263186415568,
+            0.9895881049563041
+          ]
+        },
+        "P1_wire_5": {
+          "xyz": [
+            0.12933310726044467,
+            -0.04557089064927389,
+            -0.00295639674466866
+          ],
+          "q": [
+            -0.005370106669143588,
+            0.0010871750394198091,
+            -0.19839162482167885,
+            0.9801075161457556
+          ]
+        },
+        "P1_wire_6": {
+          "xyz": [
+            0.14837084284373558,
+            -0.06040805114505468,
+            -0.002562742511715066
+          ],
+          "q": [
+            -0.0038534328592103456,
+            -0.015675230306971384,
+            -0.4459648038866826,
+            0.8949049289753187
+          ]
+        },
+        "P1_wire_7": {
+          "xyz": [
+            0.1658234911075589,
+            -0.06419281898990878,
+            0.002223775840361736
+          ],
+          "q": [
+            -0.49665656208562575,
+            -0.2950415095945733,
+            0.12535745444178473,
+            0.8065781273809021
+          ]
+        },
+        "P1_wire_8": {
+          "xyz": [
+            0.18211354913683864,
+            -0.04724568737118395,
+            0.006270315480442018
+          ],
+          "q": [
+            0.5536750232859463,
+            0.3034863752008377,
+            -0.3918286179514383,
+            -0.6691863139745775
+          ]
+        },
+        "P1": {
+          "xyz": [
+            0.19864736216124795,
+            -0.019280141034342252,
+            0.005369624104040821
+          ],
+          "q": [
+            0.5536750232859339,
+            0.30348637520078686,
+            -0.39182861795145535,
+            -0.6691863139745091
+          ]
+        },
+        "P2_wire_0": {
+          "xyz": [
+            -0.00446026102405081,
+            0.01158404401853183,
+            -0.001471732235853479
+          ],
+          "q": [
+            0.053369705296664835,
+            -0.026451280764606754,
+            -0.8232319057883646,
+            -0.5645717258192412
+          ]
+        },
+        "P2_wire_1": {
+          "xyz": [
+            -0.014387042279064649,
+            0.03440940275396717,
+            -0.0029434633356641426
+          ],
+          "q": [
+            0.0037757584579103504,
+            0.006034721513693689,
+            -0.8477171647281752,
+            -0.5304007300235769
+          ]
+        },
+        "P2_wire_2": {
+          "xyz": [
+            -0.025245267364458618,
+            0.05692810718492658,
+            -0.0029434653876625333
+          ],
+          "q": [
+            0.003796554843996442,
+            0.006023037558356546,
+            -0.8459503042116633,
+            -0.5332142083572803
+          ]
+        },
+        "P2_wire_3": {
+          "xyz": [
+            -0.03635325170632289,
+            0.079321887897033,
+            -0.0029434722118209106
+          ],
+          "q": [
+            0.0037081580267390134,
+            0.006076229170126816,
+            -0.8535890456984587,
+            -0.5208983298751441
+          ]
+        },
+        "P2_wire_4": {
+          "xyz": [
+            -0.047698868329527605,
+            0.10159895322021116,
+            -0.0029431595558822993
+          ],
+          "q": [
+            0.0037214854402073103,
+            0.006069291353879235,
+            -0.8515493998078202,
+            -0.5242260332485587
+          ]
+        },
+        "P2_wire_5": {
+          "xyz": [
+            -0.05746238228078768,
+            0.12455618389324022,
+            -0.0029428555702618042
+          ],
+          "q": [
+            0.004165611580876521,
+            0.005873049685857367,
+            -0.8156800183611985,
+            -0.5784585228119771
+          ]
+        },
+        "P2_wire_6": {
+          "xyz": [
+            -0.05857469044911165,
+            0.1484755954542682,
+            -0.00255049001730788
+          ],
+          "q": [
+            -0.011290156624879734,
+            0.01109889175223928,
+            -0.6156300803128429,
+            -0.7878762283374503
+          ]
+        },
+        "P2_wire_7": {
+          "xyz": [
+            -0.06656705440153701,
+            0.16464160527440044,
+            0.002153356370299786
+          ],
+          "q": [
+            -0.04406113770677067,
+            0.5758789037545995,
+            -0.7803425870425567,
+            -0.23976561722252243
+          ]
+        },
+        "P2_wire_8": {
+          "xyz": [
+            -0.09000840858819192,
+            0.16736408108056827,
+            0.006191278501725184
+          ],
+          "q": [
+            -0.02484826658065429,
+            0.629555357006323,
+            -0.7750750308952703,
+            0.0479719980325506
+          ]
+        },
+        "P2": {
+          "xyz": [
+            -0.12231868990661489,
+            0.16393043936286927,
+            0.005480064273325341
+          ],
+          "q": [
+            -0.024848266580657048,
+            0.629555357006314,
+            -0.7750750308952551,
+            0.04797199803253902
+          ]
+        },
+        "P3_wire_0": {
+          "xyz": [
+            -0.008586874164909802,
+            -0.008963625520755969,
+            -0.0014727531923140469
+          ],
+          "q": [
+            0.051260377218159806,
+            0.030226141463754356,
+            -0.9179114012736511,
+            0.3922976083428335
+          ]
+        },
+        "P3_wire_1": {
+          "xyz": [
+            -0.02536920366319101,
+            -0.02736571109831623,
+            -0.002945493265407134
+          ],
+          "q": [
+            -0.0028465762027275877,
+            0.006240343047269987,
+            -0.9098237636721774,
+            0.414938157054721
+          ]
+        },
+        "P3_wire_2": {
+          "xyz": [
+            -0.041947566718156915,
+            -0.046076536399352774,
+            -0.0029454558074708537
+          ],
+          "q": [
+            -0.0027856189592248603,
+            0.006271316756470549,
+            -0.9139349127609365,
+            0.40580276754824307
+          ]
+        },
+        "P3_wire_3": {
+          "xyz": [
+            -0.05817099622299676,
+            -0.0650842167377641,
+            -0.0029454271365725038
+          ],
+          "q": [
+            -0.002965270604908766,
+            0.006195007051094246,
+            -0.9019874625662695,
+            0.4317075936686063
+          ]
+        },
+        "P3_wire_4": {
+          "xyz": [
+            -0.07393824594564902,
+            -0.08448476988506978,
+            -0.002945172729455714
+          ],
+          "q": [
+            -0.0029468926306705358,
+            0.006204744142471415,
+            -0.903898159463995,
+            0.4276925698343977
+          ]
+        },
+        "P3_wire_5": {
+          "xyz": [
+            -0.09091114793857907,
+            -0.10277653809412937,
+            -0.0029449253736397035
+          ],
+          "q": [
+            -0.0025765157860078137,
+            0.006435460300267441,
+            -0.9283338813012448,
+            0.3716828638036626
+          ]
+        },
+        "P3_wire_6": {
+          "xyz": [
+            -0.1123847543805612,
+            -0.11268945009907691,
+            -0.0025538200931646687
+          ],
+          "q": [
+            -0.015440422603082168,
+            -0.00438869761725113,
+            -0.9985389732997876,
+            0.05159701042178152
+          ]
+        },
+        "P3_wire_7": {
+          "xyz": [
+            -0.12495798845327004,
+            -0.1256936877882446,
+            0.0021869754323585455
+          ],
+          "q": [
+            -0.4962618770733729,
+            0.2954026458265471,
+            -0.6469677719034059,
+            0.4978896748483678
+          ]
+        },
+        "P3_wire_8": {
+          "xyz": [
+            -0.11970594896767797,
+            -0.14868118611715056,
+            0.006205277521054653
+          ],
+          "q": [
+            -0.528806972000981,
+            0.3452007645284818,
+            -0.40610938391308554,
+            0.6605110043215212
+          ]
+        },
+        "P3": {
+          "xyz": [
+            -0.10567169493734437,
+            -0.17798216484076154,
+            0.005343674566959972
+          ],
+          "q": [
+            -0.52880697200097,
+            0.34520076452847864,
+            -0.40610938391308193,
+            0.66051100432152
+          ]
+        }
+      },
+      "phase": "primary_approach"
+    },
+    "execution_budget": {
+      "simulation_budget_s": 25.009439986329753,
+      "wall_budget_s": 1000.3775994531901,
+      "stall_budget_wall_s": 30,
+      "elapsed_simulation_s": 25.011000000000003,
+      "elapsed_wall_s": 141.93024414799584,
+      "stop_reason": "simulation_budget_exhausted"
+    },
+    "path_fraction": 1.0
+  },
+  "preflights": [
+    {
+      "phase": "primary_hover",
+      "settle_time_s": 20.0,
+      "require_precision": false,
+      "arms": {
+        "clear": true,
+        "samples": 293,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 293,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017521020363798424,
+            0.018521020363798425
+          ],
+          [
+            0.017518588154385752,
+            0.018518588154385753
+          ]
+        ],
+        "right_arm": [
+          [
+            0.01754476146856099,
+            0.018544761468560992
+          ],
+          [
+            0.01755559582260093,
+            0.01855559582260093
+          ]
+        ]
+      },
+      "execution_budget": {
+        "simulation_budget_s": 34.72962834211327,
+        "wall_budget_s": 1389.185133684531,
+        "stall_budget_wall_s": 30,
+        "elapsed_simulation_s": 14.745,
+        "elapsed_wall_s": 68.22180248999211,
+        "stop_reason": null,
+        "outcome": "converged"
+      },
+      "nominal_duration_s": 14.729628342113275
+    },
+    {
+      "phase": "primary_approach",
+      "settle_time_s": 20.0,
+      "require_precision": true,
+      "arms": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.005
+      },
+      "fixtures": {
+        "clear": true,
+        "samples": 81,
+        "margin_per_box_m": 0.001
+      },
+      "finger_envelope_mode": "measured_plus_minus_0.5mm",
+      "planned_finger_intervals_m": {
+        "left_arm": [
+          [
+            0.017521020362752836,
+            0.018521020362752837
+          ],
+          [
+            0.01751858815995787,
+            0.018518588159957872
+          ]
+        ],
+        "right_arm": [
+          [
+            0.017566945256705203,
+            0.018566945256705204
+          ],
+          [
+            0.01753901079976758,
+            0.01853901079976758
+          ]
+        ]
+      },
+      "execution_budget": {
+        "simulation_budget_s": 25.009439986329753,
+        "wall_budget_s": 1000.3775994531901,
+        "stall_budget_wall_s": 30,
+        "elapsed_simulation_s": 25.011000000000003,
+        "elapsed_wall_s": 141.93024414799584,
+        "stop_reason": "simulation_budget_exhausted"
+      },
+      "nominal_duration_s": 5.009439986329752
+    }
+  ],
+  "dwell_windows": [
+    {
+      "phase": "initial_scene_settle",
+      "start_sim_time_s": 0.001,
+      "requested_duration_s": 2.5,
+      "completed": true,
+      "end_sim_time_s": 2.5015,
+      "elapsed_simulation_s": 2.5005,
+      "distinct_observation_timestamps": 528
+    }
+  ]
+}

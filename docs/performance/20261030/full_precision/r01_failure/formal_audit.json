@@ -1,0 +1,76 @@
+{
+  "scope": "New pickup/hold protocol only; not insertion, electrical continuity or uninstrumented contact proof. Video suitability is separate.",
+  "series": "development_dt0005_i20_precision",
+  "trial_id": "development_dt0005_i20_precision_r01",
+  "status": "failed",
+  "errors": [
+    "Controller did not finish successfully",
+    "Final primary alignment failed",
+    "Support alignment did not pass",
+    "primary: hold did not pass",
+    "primary: invalid/outside-limit minimum_lift_m",
+    "primary: invalid/outside-limit relative_slip_m",
+    "primary: invalid/outside-limit lift_slip_m",
+    "primary: invalid/outside-limit maximum_rotation_change_rad",
+    "primary: rotation not validated",
+    "left_arm: hold did not pass",
+    "left_arm: invalid/outside-limit minimum_lift_m",
+    "left_arm: invalid/outside-limit relative_slip_m",
+    "left_arm: invalid/outside-limit lift_slip_m",
+    "left_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "left_arm: rotation not validated",
+    "right_arm: hold did not pass",
+    "right_arm: invalid/outside-limit minimum_lift_m",
+    "right_arm: invalid/outside-limit relative_slip_m",
+    "right_arm: invalid/outside-limit lift_slip_m",
+    "right_arm: invalid/outside-limit maximum_rotation_change_rad",
+    "right_arm: rotation not validated",
+    "primary_hold: exactly one hold window required",
+    "dual_hold: exactly one hold window required",
+    "Full grip replay did not pass",
+    "primary_hold/primary: insufficient raw grip timestamps",
+    "dual_hold/primary: insufficient raw grip timestamps",
+    "dual_hold/support: insufficient raw grip timestamps"
+  ],
+  "controller_error": "simulation_budget_exhausted before robot convergence in primary_approach",
+  "hold_results": {
+    "primary": {},
+    "left_arm": {},
+    "right_arm": {}
+  },
+  "hold_windows": {},
+  "grip_replay": {
+    "evidence_consistent": false,
+    "all_recorded_grips_within_limits": false,
+    "trial_success": false,
+    "scope": "Replays recorded grip observations only; does not establish insertion or sampling completeness between records",
+    "summaries": {},
+    "intentional_release_boundaries": {},
+    "failed_observations": [],
+    "errors": [
+      "No closure references; this trial did not reach guarded holding"
+    ]
+  },
+  "raw_hold_timestamp_counts": {
+    "primary_hold": {
+      "primary": 0
+    },
+    "dual_hold": {
+      "primary": 0,
+      "support": 0
+    }
+  },
+  "contact_violations": [],
+  "capture_timing": {
+    "pts_minus_monotonic_duration_s": -1.4207790729997214,
+    "requires_review_before_phase_based_editing": false,
+    "phase_and_monotonic_caption_sample_interval_s": 1,
+    "scope": "Video timing metadata only; does not change physical verdicts"
+  },
+  "input_sha256": {
+    "registry": "203cd98e8b4df990134c4fffb9366f4f15a6f5b3db3a1ba15cdb7d8e69154d01",
+    "validation": "6cf21e8eb34bf16befbe2ad58dc3310f5bc5f888c3cbf01f9773b8f1bebc4266",
+    "recording": "2601bab3d3e57a5bae4a29201d0f401fe86ec8897e15701de1a711eeae35f95c",
+    "auditor": "27a1861baa9bffcde9b3fb4ea9f9ad95a0e2acd527635174bd2366b392720ca2"
+  }
+}

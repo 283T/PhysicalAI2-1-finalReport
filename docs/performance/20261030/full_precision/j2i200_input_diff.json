@@ -1,0 +1,9 @@
+{
+  "source": "outputs/performance_pickup_dt0005_i20_20261030_input/case/world.sdf",
+  "candidate": "outputs/performance_pickup_dt0005_i20_j2i200_20261030_input/case/world.sdf",
+  "source_sha256": "3a087f8380e08ed97d5d63104b80841daa1308d8353a254bd5c784e2007cb118",
+  "candidate_sha256": "70937c8f8993ea6a153308e419a9896047c394690c0752047127f3e389d80048",
+  "only_xml_change": "right_arm joint_2 i_gain 100 -> 200",
+  "all_other_xml_fields_identical": true,
+  "force_caps_unchanged": true
+}

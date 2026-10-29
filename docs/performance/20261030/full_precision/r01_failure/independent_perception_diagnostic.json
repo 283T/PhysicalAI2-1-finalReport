@@ -1,0 +1,106 @@
+{
+  "scope": "Post-trial nearest-time native evaluation only; no truth-driven targets or verdict override. Downsampled trajectory is not the complete feedback stream.",
+  "observations": [
+    {
+      "phase": "primary_observation",
+      "sensor_time_s": 3.2,
+      "nearest_native_time_s": 3.221,
+      "time_mismatch_s": 0.020999999999999908,
+      "vision_vs_native_position_m": 0.0008035323514622675,
+      "vision_vs_native_angle_rad": 0.04092467694158174,
+      "native_center_world": [
+        -0.26145656757781127,
+        0.27446012495781263,
+        0.13263133733693416
+      ],
+      "native_rotation_world": [
+        [
+          -0.7820769569139566,
+          -0.11529996559505509,
+          -0.6124226901397114
+        ],
+        [
+          0.6228624995613876,
+          -0.17608224817739238,
+          -0.762258059004207
+        ],
+        [
+          -0.019948436136879816,
+          -0.9775995907376983,
+          0.2095258935910436
+        ]
+      ],
+      "tcp_tracking_vector_m": [
+        -1.2003629021734019e-05,
+        0.0,
+        -4.7611347575582386e-07
+      ],
+      "tcp_tracking_position_m": 1.2013067623767522e-05,
+      "tcp_tracking_angle_rad": 2.827587074242037e-05,
+      "joint_tracking_error_rad": [
+        0.0,
+        -1.3383497445481124e-05,
+        3.8633583051685595e-06,
+        0.0,
+        -1.8755759362089406e-05,
+        0.0
+      ],
+      "fk_native_error_m": 2.2909359354871133e-11
+    },
+    {
+      "phase": "primary_initial_inspection",
+      "sensor_time_s": 6.0,
+      "nearest_native_time_s": 5.999,
+      "time_mismatch_s": 0.001000000000000334,
+      "vision_vs_native_position_m": 0.0001568307692022855,
+      "vision_vs_native_angle_rad": 0.002573426045878113,
+      "native_center_world": [
+        -0.261293123708413,
+        0.2741332566234749,
+        0.13235780140932277
+      ],
+      "native_rotation_world": [
+        [
+          -0.7857784984438496,
+          -0.10521729472436162,
+          -0.6094927991979836
+        ],
+        [
+          0.6179532701534476,
+          -0.17527894600797428,
+          -0.7664274570974872
+        ],
+        [
+          -0.026189831804574945,
+          -0.9788802848035921,
+          0.20274979835460663
+        ]
+      ],
+      "tcp_tracking_vector_m": [
+        -1.2003629021734019e-05,
+        0.0,
+        -4.7611347575582386e-07
+      ],
+      "tcp_tracking_position_m": 1.2013067623767522e-05,
+      "tcp_tracking_angle_rad": 2.827587074242037e-05,
+      "joint_tracking_error_rad": [
+        0.0,
+        -1.3383503462027983e-05,
+        3.8633231603417635e-06,
+        0.0,
+        -1.8755774542747437e-05,
+        0.0
+      ],
+      "fk_native_error_m": 4.794180562392206e-11
+    }
+  ],
+  "native_center_displacement_m": 0.00045648516967240467,
+  "native_rotation_change_rad": 0.011238081529464308,
+  "video_packet_timing": {
+    "packets": 1245,
+    "first_pts_s": 0.0,
+    "last_pts_s": 248.8,
+    "maximum_gap_s": 0.20000000000001705,
+    "gaps_over_0_4s": 0
+  }
+}

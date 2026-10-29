@@ -1,0 +1,5 @@
+{"phase": "initial_scene_settle", "capture_wall_offset_s": 3.01827804298955}
+{"phase": "primary_observation", "capture_wall_offset_s": 13.048268296988681}
+{"phase": "primary_initial_inspection", "capture_wall_offset_s": 16.077374840999255}
+{"phase": "primary_hover", "capture_wall_offset_s": 30.121928763997857}
+{"phase": "primary_approach", "capture_wall_offset_s": 99.33033417099796}
