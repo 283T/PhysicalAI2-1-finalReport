@@ -1,0 +1,41 @@
+{
+  "scope": "Prospective isolated right hover convergence diagnosis only. Harness/cameras removed; no full task or formal B counting.",
+  "source_world_sha256": "1fb3254bd64a8c6563e56f8d40bc0277bfb871300ea01da720f36d45d412f305",
+  "control_base_commit": "9c2557d",
+  "fixed_target_report": "docs/performance/20261029/pickup_dt0005_failure/pickup/validation.json",
+  "target_report_sha256": "167ea9c9f8a05338987ec84569216ac9978bcfc147918983f5d940c4fcf860db",
+  "method_sha256": "2a067d13a0352ff9cc3d353db161f5eb930d31f7c2efb41198bed9f7fd1b3ebc",
+  "unchanged": "Meshes, inertias, friction, damping, torque limits, path planning, 0.01 rad joint gate, 20s settle budget, 4s physical hold; only timestep and declared right wrist integral gain differ between cases",
+  "cases": [
+    {
+      "label": "dt0005_i0",
+      "world": "outputs/wrist_convergence_20261030_input/dt0005_i0/world.sdf",
+      "world_sha256": "531bc72b57b45ba6b1e95b7f684c3e4ca5cd209c9a5a69e9bb3a701e7cb4fc35",
+      "step_s": 0.0005,
+      "right_joint_6_i_gain": 0,
+      "output": "outputs/wrist_convergence_20261030_dt0005_i0"
+    },
+    {
+      "label": "dt0005_i20",
+      "world": "outputs/wrist_convergence_20261030_input/dt0005_i20/world.sdf",
+      "world_sha256": "551e2f26c1b1281e56ff7ed7836c5280713e28c532c87eea2350471c00f6445b",
+      "step_s": 0.0005,
+      "right_joint_6_i_gain": 20,
+      "output": "outputs/wrist_convergence_20261030_dt0005_i20"
+    },
+    {
+      "label": "dt0002_i0",
+      "world": "outputs/wrist_convergence_20261030_input/dt0002_i0/world.sdf",
+      "world_sha256": "a8469a949c253a02e4864334225294c5853edf95c2d4ad10a01af3749ad0e753",
+      "step_s": 0.0002,
+      "right_joint_6_i_gain": 0,
+      "output": "outputs/wrist_convergence_20261030_dt0002_i0"
+    }
+  ],
+  "rules": [
+    "New process and initial scene per case",
+    "Keep failure results and finish/cleanup before next",
+    "Do not lower gates, extend budgets or treat these as harness success",
+    "Successful candidates require full dual-arm/harness/RGB-D/GUI/recording validation"
+  ]
+}
